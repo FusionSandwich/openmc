@@ -62,6 +62,7 @@ bool output_summary {true};
 bool output_tallies {true};
 bool particle_restart_run {false};
 bool photon_transport {false};
+bool recoil_production {false};
 bool reduce_tallies {true};
 bool res_scat_on {false};
 bool restart_run {false};

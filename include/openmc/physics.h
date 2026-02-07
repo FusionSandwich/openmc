@@ -39,6 +39,9 @@ void sample_electron_reaction(Particle& p);
 //! directions.
 void sample_positron_reaction(Particle& p);
 
+//! Samples a reaction for particles we don't handle and
+void sample_other_reaction(Particle& p);
+
 //! Sample a nuclide based on their total cross sections and densities within
 //! the current material
 //!
