@@ -340,9 +340,15 @@ should be set to:
 
   :damage_model:
     An optional damage model to apply when tallying recoil damage energy
-    instead of particle weight. When set to ``nrt``, the filter weight for
-    each secondary is multiplied by the damage energy computed from the
-    Lindhard/Robinson partition function used in NRT-DPA calculations.
+    instead of particle weight. Valid options are:
+
+    - ``nrt``: The filter weight for each secondary is multiplied by the
+      damage energy computed from the Lindhard/Robinson partition function
+      used in NRT-DPA calculations.
+    - ``recoil-energy``: The filter weight for each secondary is multiplied
+      by its full kinetic energy with no electronic loss correction. This
+      gives an upper bound on damage energy (as if all recoil energy went
+      into atomic displacements).
 
   For example, to tally photon and neutron production in three energy groups:
 
@@ -351,16 +357,6 @@ should be set to:
       <filter id="1" type="particleproduction">
         <particles>photon neutron</particles>
         <energies>0.0 1.0e5 1.0e6 20.0e6</energies>
-      </filter>
-
-  To tally damage energy from recoil nuclei using the NRT model:
-
-  .. code-block:: xml
-
-      <filter id="2" type="particleproduction">
-        <particles>Fe56 Cr52 Ni58</particles>
-        <energies>0.0 1.0e5 1.0e6 20.0e6</energies>
-        <damage_model>nrt</damage_model>
       </filter>
 
 ------------------

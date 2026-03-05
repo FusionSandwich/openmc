@@ -29,7 +29,10 @@ void ParticleProductionFilter::get_all_bins(
 
     // Compute the weight for this secondary
     double weight = site.wgt;
-    if (damage_model_ == DamageModel::NRT) {
+    if (damage_model_ == DamageModel::RECOIL_ENERGY) {
+      // Full recoil kinetic energy with no electronic loss correction
+      weight = site.wgt * site.E;
+    } else if (damage_model_ == DamageModel::NRT) {
       // Extract recoil Z, A from PDG ion number encoding
       int pdg = site.particle.pdg_number();
       int Z_R = 0, A_R = 0;
@@ -109,6 +112,8 @@ void ParticleProductionFilter::from_xml(pugi::xml_node node)
     std::string model_str = get_node_value(node, "damage_model");
     if (model_str == "nrt") {
       damage_model_ = DamageModel::NRT;
+    } else if (model_str == "recoil-energy") {
+      damage_model_ = DamageModel::RECOIL_ENERGY;
     } else {
       throw std::runtime_error {
         "Unrecognized damage model '" + model_str + "'"};
@@ -144,6 +149,8 @@ void ParticleProductionFilter::to_statepoint(hid_t filter_group) const
     std::string model_str;
     if (damage_model_ == DamageModel::NRT)
       model_str = "nrt";
+    else if (damage_model_ == DamageModel::RECOIL_ENERGY)
+      model_str = "recoil-energy";
     write_dataset(filter_group, "damage_model", model_str);
   }
 }

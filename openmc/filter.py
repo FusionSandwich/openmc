@@ -1939,7 +1939,7 @@ class ParticleProductionFilter(Filter):
     @damage_model.setter
     def damage_model(self, model):
         if model is not None:
-            cv.check_value('damage_model', model, ('nrt',))
+            cv.check_value('damage_model', model, ('nrt', 'recoil-energy'))
         self._damage_model = model
 
     @property
