@@ -2,6 +2,7 @@
 
 #include <fmt/core.h>
 
+#include "openmc/nuclide.h"
 #include "openmc/search.h"
 #include "openmc/xml_interface.h"
 
@@ -26,11 +27,34 @@ void ParticleProductionFilter::get_all_bins(
     if (it == type_to_index_.end())
       continue;
 
+    // Compute the weight for this secondary
+    double weight = site.wgt;
+    if (damage_model_ == DamageModel::NRT) {
+      // Extract recoil Z, A from PDG ion number encoding
+      int pdg = site.particle.pdg_number();
+      int Z_R = 0, A_R = 0;
+      if (pdg > 1000000000) {
+        Z_R = (pdg - 1000000000) / 10000;
+        A_R = ((pdg - 1000000000) % 10000) / 10;
+      }
+
+      // Get lattice Z, A from the collision target nuclide
+      int Z_L = Z_R;
+      int A_L = A_R;
+      if (p.event_nuclide() >= 0) {
+        const auto& nuc = *data::nuclides[p.event_nuclide()];
+        Z_L = nuc.Z_;
+        A_L = nuc.A_;
+      }
+
+      weight = site.wgt * lindhard_partition(site.E, Z_R, A_R, Z_L, A_L);
+    }
+
     int particle_idx = it->second;
     if (energy_bins_.empty()) {
       // No energy binning, just particle type
       match.bins_.push_back(particle_idx);
-      match.weights_.push_back(site.wgt);
+      match.weights_.push_back(weight);
     } else {
       // Bin the energy
       if (site.E >= energy_bins_.front() && site.E <= energy_bins_.back()) {
@@ -38,7 +62,7 @@ void ParticleProductionFilter::get_all_bins(
         auto energy_idx =
           lower_bound_index(energy_bins_.begin(), energy_bins_.end(), site.E);
         match.bins_.push_back(particle_idx * n_energies + energy_idx);
-        match.weights_.push_back(site.wgt);
+        match.weights_.push_back(weight);
       }
     }
   }
@@ -80,6 +104,17 @@ void ParticleProductionFilter::from_xml(pugi::xml_node node)
     type_to_index_[secondary_types_.back().pdg_number()] = idx;
   }
 
+  // Read damage model if present (optional)
+  if (check_for_node(node, "damage_model")) {
+    std::string model_str = get_node_value(node, "damage_model");
+    if (model_str == "nrt") {
+      damage_model_ = DamageModel::NRT;
+    } else {
+      throw std::runtime_error {
+        "Unrecognized damage model '" + model_str + "'"};
+    }
+  }
+
   // Compute total bins
   if (energy_bins_.empty()) {
     n_bins_ = secondary_types_.size();
@@ -103,6 +138,14 @@ void ParticleProductionFilter::to_statepoint(hid_t filter_group) const
     names.push_back(pt.str());
   }
   write_dataset(filter_group, "particles", names);
+
+  // Write damage model if set
+  if (damage_model_ != DamageModel::NONE) {
+    std::string model_str;
+    if (damage_model_ == DamageModel::NRT)
+      model_str = "nrt";
+    write_dataset(filter_group, "damage_model", model_str);
+  }
 }
 
 } // namespace openmc

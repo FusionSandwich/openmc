@@ -413,6 +413,41 @@ def test_particle_production_filter():
     assert f4.num_bins == len(expected) - 1
 
 
+def test_particle_production_filter_damage_model():
+    # --- damage_model defaults to None ---
+    f = openmc.ParticleProductionFilter(['photon', 'neutron'])
+    assert f.damage_model is None
+
+    # --- damage_model='nrt' ---
+    f_nrt = openmc.ParticleProductionFilter(
+        ['Fe56', 'Cr52'],
+        energies=[0.0, 1e3, 1e5, 1e7],
+        damage_model='nrt'
+    )
+    assert f_nrt.damage_model == 'nrt'
+    assert f_nrt.num_bins == 6  # 2 particles * 3 energy bins
+
+    # __repr__ should include damage model
+    r = repr(f_nrt)
+    assert 'nrt' in r
+
+    # XML round-trip preserves damage_model
+    elem = f_nrt.to_xml_element()
+    assert elem.find('damage_model').text == 'nrt'
+    new_f = openmc.Filter.from_xml_element(elem)
+    assert new_f.damage_model == 'nrt'
+    assert len(new_f.particles) == 2
+
+    # When damage_model is None, XML should not contain it
+    f_no_dam = openmc.ParticleProductionFilter('photon')
+    elem2 = f_no_dam.to_xml_element()
+    assert elem2.find('damage_model') is None
+
+    # Invalid damage model should raise
+    with raises(ValueError):
+        openmc.ParticleProductionFilter('Fe56', damage_model='invalid')
+
+
 def test_weight():
     f = openmc.WeightFilter([0.01, 0.1, 1.0, 10.0])
     expected_bins = [[0.01, 0.1], [0.1, 1.0], [1.0, 10.0]]

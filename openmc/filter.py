@@ -1831,6 +1831,12 @@ class ParticleProductionFilter(Filter):
         (must be a key in :data:`openmc.mgxs.GROUP_STRUCTURES`). If not
         provided, the filter tallies total secondary particle production without
         energy binning.
+    damage_model : {'nrt'}, optional
+        Damage model to apply. When set, the filter weight for each secondary
+        is multiplied by the damage energy computed from the Lindhard/Robinson
+        partition function. Currently only 'nrt' (NRT-DPA) is supported.
+
+        .. versionadded:: 0.15.5
     filter_id : int, optional
         Unique identifier for the filter
 
@@ -1840,6 +1846,8 @@ class ParticleProductionFilter(Filter):
         The secondary particle types this filter applies to
     energies : numpy.ndarray or None
         Energy boundaries in [eV], or None if no energy binning
+    damage_model : str or None
+        Damage model applied to filter weights ('nrt' or None)
     bins : list
         A list of bins; each element fully describes one bin. When energies are
         specified, each element is a tuple ``(particle, energy_low,
@@ -1853,9 +1861,11 @@ class ParticleProductionFilter(Filter):
         Shape of the filter as (n_particles, n_energy_bins)
     """
 
-    def __init__(self, particles, energies=None, filter_id=None):
+    def __init__(self, particles, energies=None, damage_model=None,
+                 filter_id=None):
         self.particles = particles
         self.energies = energies
+        self.damage_model = damage_model
         self.id = filter_id
 
     def __repr__(self):
@@ -1864,6 +1874,9 @@ class ParticleProductionFilter(Filter):
             [str(p) for p in self.particles])
         if self.energies is not None:
             string += '{: <16}=\t{}\n'.format('\tEnergies', self.energies)
+        if self.damage_model is not None:
+            string += '{: <16}=\t{}\n'.format('\tDamage Model',
+                self.damage_model)
         string += '{: <16}=\t{}\n'.format('\tID', self.id)
         return string
 
@@ -1899,6 +1912,16 @@ class ParticleProductionFilter(Filter):
                     raise ValueError("Energy bins must be monotonically "
                                      "increasing.")
             self._energies = energies
+
+    @property
+    def damage_model(self):
+        return self._damage_model
+
+    @damage_model.setter
+    def damage_model(self, model):
+        if model is not None:
+            cv.check_value('damage_model', model, ('nrt',))
+        self._damage_model = model
 
     @property
     def bins(self):
@@ -1948,6 +1971,10 @@ class ParticleProductionFilter(Filter):
             subelement = ET.SubElement(element, 'energies')
             subelement.text = ' '.join(str(e) for e in self.energies)
 
+        if self.damage_model is not None:
+            subelement = ET.SubElement(element, 'damage_model')
+            subelement.text = self.damage_model
+
         return element
 
     @classmethod
@@ -1961,7 +1988,10 @@ class ParticleProductionFilter(Filter):
         else:
             energies = None
 
-        return cls(particles, energies=energies, filter_id=filter_id)
+        damage_model = get_text(elem, 'damage_model')
+
+        return cls(particles, energies=energies,
+                   damage_model=damage_model, filter_id=filter_id)
 
     @classmethod
     def from_hdf5(cls, group, **kwargs):
@@ -1977,7 +2007,12 @@ class ParticleProductionFilter(Filter):
         else:
             energies = None
 
-        return cls(particles, energies=energies, filter_id=filter_id)
+        damage_model = None
+        if 'damage_model' in group:
+            damage_model = group['damage_model'][()].decode()
+
+        return cls(particles, energies=energies,
+                   damage_model=damage_model, filter_id=filter_id)
 
     def get_pandas_dataframe(self, data_size, stride, **kwargs):
         """Builds a Pandas DataFrame for the Filter's bins.

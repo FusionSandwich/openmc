@@ -3,6 +3,7 @@
 
 #include <unordered_map>
 
+#include "openmc/damage.h"
 #include "openmc/particle.h"
 #include "openmc/tallies/filter.h"
 #include "openmc/vector.h"
@@ -47,6 +48,8 @@ private:
   std::unordered_map<int32_t, int> type_to_index_;
 
   vector<double> energy_bins_; //!< Energy bin boundaries (optional)
+
+  DamageModel damage_model_ {DamageModel::NONE}; //!< Damage energy model
 };
 
 } // namespace openmc
