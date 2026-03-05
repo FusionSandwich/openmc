@@ -1880,6 +1880,25 @@ class ParticleProductionFilter(Filter):
         string += '{: <16}=\t{}\n'.format('\tID', self.id)
         return string
 
+    def __eq__(self, other):
+        if type(self) is not type(other):
+            return False
+        if self.particles != other.particles:
+            return False
+        if self.damage_model != other.damage_model:
+            return False
+        # Compare energy arrays: both None, or both present and numerically equal
+        if self.energies is None and other.energies is None:
+            return True
+        if self.energies is None or other.energies is None:
+            return False
+        return np.allclose(self.energies, other.energies)
+
+    def __hash__(self):
+        particles_tuple = tuple(str(p) for p in self.particles)
+        energies_tuple = tuple(self.energies) if self.energies is not None else None
+        return hash((particles_tuple, energies_tuple, self.damage_model))
+
     @property
     def particles(self):
         return self._particles
