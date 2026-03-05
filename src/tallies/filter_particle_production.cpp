@@ -33,13 +33,9 @@ void ParticleProductionFilter::get_all_bins(
       // Full recoil kinetic energy with no electronic loss correction
       weight = site.wgt * site.E;
     } else if (damage_model_ == DamageModel::NRT) {
-      // Extract recoil Z, A from PDG ion number encoding
-      int pdg = site.particle.pdg_number();
-      int Z_R = 0, A_R = 0;
-      if (pdg > 1000000000) {
-        Z_R = (pdg - 1000000000) / 10000;
-        A_R = ((pdg - 1000000000) % 10000) / 10;
-      }
+      // Extract recoil Z, A using ParticleType methods
+      int Z_R = site.particle.atomic_number();
+      int A_R = site.particle.mass_number();
 
       // Get lattice Z, A from the collision target nuclide
       int Z_L = Z_R;
