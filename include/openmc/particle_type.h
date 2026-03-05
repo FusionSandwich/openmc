@@ -83,6 +83,26 @@ public:
     return pdg_number_ >= 1000000000 || pdg_number_ == PDG_PROTON;
   }
 
+  // Get atomic number (Z) if this is a nucleus, otherwise 0
+  constexpr int atomic_number() const
+  {
+    if (!is_nucleus())
+      return 0;
+    if (pdg_number_ == PDG_PROTON)
+      return 1;
+    return (pdg_number_ - 1000000000) / 10000;
+  }
+
+  // Get mass number (A) if this is a nucleus, otherwise 0
+  constexpr int mass_number() const
+  {
+    if (!is_nucleus())
+      return 0;
+    if (pdg_number_ == PDG_PROTON)
+      return 1;
+    return ((pdg_number_ - 1000000000) % 10000) / 10;
+  }
+
   // Get transport index (0-3 for transportable particles, C_NONE otherwise)
   constexpr int transport_index() const;
 
