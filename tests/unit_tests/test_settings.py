@@ -2,6 +2,27 @@ import openmc
 import openmc.stats
 
 
+def test_recoil_setting_validation():
+    s = openmc.Settings()
+
+    s.recoil = {'direction': 'momentum', 'bank_residual': True}
+    assert s.recoil == {'direction': 'momentum', 'bank_residual': True}
+
+    try:
+        s.recoil = {'direction': 'invalid'}
+    except ValueError:
+        pass
+    else:
+        raise AssertionError("Expected ValueError for invalid recoil direction")
+
+    try:
+        s.recoil = {'bad_key': True}
+    except ValueError:
+        pass
+    else:
+        raise AssertionError("Expected ValueError for unknown recoil key")
+
+
 def test_export_to_xml(run_in_tmpdir):
     s = openmc.Settings(run_mode='fixed source', batches=1000, seed=17)
     s.generations_per_batch = 10
@@ -200,24 +221,3 @@ def test_export_to_xml(run_in_tmpdir):
     assert s.max_secondaries == 1_000_000
     assert s.source_rejection_fraction == 0.01
     assert s.free_gas_threshold == 800.0
-
-
-def test_recoil_setting_validation():
-    s = openmc.Settings()
-
-    s.recoil = {'direction': 'momentum', 'bank_residual': True}
-    assert s.recoil == {'direction': 'momentum', 'bank_residual': True}
-
-    try:
-        s.recoil = {'direction': 'invalid'}
-    except ValueError:
-        pass
-    else:
-        raise AssertionError("Expected ValueError for invalid recoil direction")
-
-    try:
-        s.recoil = {'bad_key': True}
-    except ValueError:
-        pass
-    else:
-        raise AssertionError("Expected ValueError for unknown recoil key")
