@@ -534,9 +534,6 @@ class R2SManager:
             during the photon transport step. By default, output is disabled.
         """
 
-        step_name = 'step3_photon_transport'
-        step_start = perf_counter()
-
         # TODO: Automatically determine bounding box for each cell
         if bounding_boxes is None and self.method == 'cell-based':
             raise ValueError("bounding_boxes must be provided for cell-based "
@@ -566,7 +563,6 @@ class R2SManager:
         # photon model if it is different from the neutron model to account for
         # potential material changes
         if self.method == 'mesh-based' and different_photon_model:
-            photon_mmv_start = perf_counter()
             if mat_vol_kwargs is None:
                 mat_vol_kwargs = {}
             photon_mmv_list = []
@@ -581,14 +577,11 @@ class R2SManager:
                         output_dir / f'mesh_material_volumes_{i}.npz')
 
             self.results['mesh_material_volumes_photon'] = photon_mmv_list
-            self._record_time(step_name, 'photon_mesh_material_volumes', photon_mmv_start)
 
         if comm.rank == 0:
             tally_ids = [tally.id for tally in self.photon_model.tallies]
-            tally_json_start = perf_counter()
             with open(output_dir / 'tally_ids.json', 'w') as f:
                 json.dump(tally_ids, f)
-            self._record_time(step_name, 'write_tally_ids', tally_json_start)
 
         self.results['photon_tallies'] = {}
 
@@ -618,28 +611,19 @@ class R2SManager:
                 time_index += len(self.results['depletion_results'])
 
             # Build decay photon sources and assign to the photon model
-            source_start = perf_counter()
             sources = self._create_photon_sources(time_index, work_items)
-            self._record_time(step_name, f'build_sources_{time_index}', source_start)
             self.photon_model.settings.source = sources
 
             # Run photon transport calculation
             photon_dir = Path(output_dir) / f'time_{time_index}'
-            run_start = perf_counter()
             with TemporarySession(self.photon_model, cwd=photon_dir):
                 statepoint_path = self.photon_model.run(**run_kwargs)
-            self._record_time(step_name, f'run_photon_{time_index}', run_start)
 
             # Store tally results
-            tally_start = perf_counter()
             with openmc.StatePoint(statepoint_path) as sp:
                 self.results['photon_tallies'][time_index] = [
                     sp.tallies[tally.id] for tally in self.photon_model.tallies
                 ]
-            self._record_time(step_name, f'load_tallies_{time_index}', tally_start)
-
-        self._record_time(step_name, 'total', step_start)
-        self._write_timing(output_dir)
 
     def _get_mesh_work_items(self):
         """Enumerate mesh-based work items across all meshes.
