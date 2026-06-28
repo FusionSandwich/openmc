@@ -125,8 +125,7 @@ extern "C" bool output_summary;      //!< write summary.h5?
 extern bool output_tallies;          //!< write tallies.out?
 extern bool particle_restart_run;    //!< particle restart run?
 extern "C" bool photon_transport;    //!< photon transport turned on?
-extern bool recoil_production;       //!< produce recoil nuclei?
-extern RecoilSettings recoil;        //!< recoil modeling options
+extern bool atomic_relaxation;       //!< atomic relaxation enabled?
 extern "C" bool reduce_tallies;      //!< reduce tallies at end of batch?
 extern bool res_scat_on;             //!< use resonance upscattering method?
 extern "C" bool restart_run;         //!< restart run?
@@ -147,13 +146,16 @@ extern bool uniform_source_sampling; //!< sample sources uniformly?
 extern bool ufs_on;                  //!< uniform fission site method on?
 extern bool urr_ptables_on;          //!< use unresolved resonance prob. tables?
 extern bool use_decay_photons;       //!< use decay photons for D1S
-extern "C" bool weight_windows_on;   //!< are weight windows are enabled?
+extern bool use_shared_secondary_bank; //!< Use shared bank for secondaries
+extern "C" bool weight_windows_on;     //!< are weight windows are enabled?
 extern bool weight_window_checkpoint_surface;   //!< enable weight window check
                                                 //!< upon surface crossing?
 extern bool weight_window_checkpoint_collision; //!< enable weight window check
                                                 //!< upon collision?
 extern bool write_all_tracks;     //!< write track files for every particle?
 extern bool write_initial_source; //!< write out initial source file?
+extern bool recoil_production;    //!< produce recoil nuclei?
+extern RecoilSettings recoil;     //!< recoil modeling options
 
 // Paths to various files
 extern std::string path_cross_sections; //!< path to cross_sections.xml
@@ -163,6 +165,8 @@ extern std::string path_particle_restart; //!< path to a particle restart file
 extern std::string path_sourcepoint;      //!< path to a source file
 extern std::string path_statepoint;       //!< path to a statepoint file
 extern std::string weight_windows_file;   //!< Location of weight window file to
+                                          //!< load on simulation initialization
+extern std::string properties_file;       //!< Location of properties file to
                                           //!< load on simulation initialization
 
 // This is required because the c_str() may not be the first thing in

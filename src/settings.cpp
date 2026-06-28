@@ -62,8 +62,7 @@ bool output_summary {true};
 bool output_tallies {true};
 bool particle_restart_run {false};
 bool photon_transport {false};
-bool recoil_production {false};
-RecoilSettings recoil {};
+bool atomic_relaxation {true};
 bool reduce_tallies {true};
 bool res_scat_on {false};
 bool restart_run {false};
@@ -84,11 +83,14 @@ bool uniform_source_sampling {false};
 bool ufs_on {false};
 bool urr_ptables_on {true};
 bool use_decay_photons {false};
+bool use_shared_secondary_bank {false};
 bool weight_windows_on {false};
 bool weight_window_checkpoint_surface {false};
 bool weight_window_checkpoint_collision {true};
 bool write_all_tracks {false};
 bool write_initial_source {false};
+bool recoil_production {false};
+RecoilSettings recoil {};
 
 std::string path_cross_sections;
 std::string path_input;
@@ -98,6 +100,7 @@ std::string path_sourcepoint;
 std::string path_statepoint;
 const char* path_statepoint_c {path_statepoint.c_str()};
 std::string weight_windows_file;
+std::string properties_file;
 
 int32_t n_inactive {0};
 int32_t max_lost_particles {10};
@@ -609,6 +612,11 @@ void read_settings_xml(pugi::xml_node root)
     }
   }
 
+  // Check for atomic relaxation
+  if (check_for_node(root, "atomic_relaxation")) {
+    atomic_relaxation = get_node_value_bool(root, "atomic_relaxation");
+  }
+
   // Number of bins for logarithmic grid
   if (check_for_node(root, "log_grid_bins")) {
     n_log_bins = std::stoi(get_node_value(root, "log_grid_bins"));
@@ -842,6 +850,14 @@ void read_settings_xml(pugi::xml_node root)
     }
     if (check_for_node(node_cutoff, "time_positron")) {
       time_cutoff[3] = std::stod(get_node_value(node_cutoff, "time_positron"));
+    }
+  }
+
+  // read properties from file
+  if (check_for_node(root, "properties_file")) {
+    properties_file = get_node_value(root, "properties_file");
+    if (!file_exists(properties_file)) {
+      fatal_error(fmt::format("File '{}' does not exist.", properties_file));
     }
   }
 
@@ -1386,6 +1402,27 @@ void read_settings_xml(pugi::xml_node root)
   if (check_for_node(root, "use_decay_photons")) {
     settings::use_decay_photons =
       get_node_value_bool(root, "use_decay_photons");
+  }
+
+  // If weight windows are on, also enable shared secondary bank (unless
+  // explicitly disabled by user).
+  if (check_for_node(root, "shared_secondary_bank")) {
+    bool val = get_node_value_bool(root, "shared_secondary_bank");
+    if (val && run_mode == RunMode::EIGENVALUE) {
+      warning(
+        "Shared secondary bank is not supported in eigenvalue calculations. "
+        "Setting will be ignored.");
+    } else {
+      settings::use_shared_secondary_bank = val;
+    }
+  } else if (settings::weight_windows_on) {
+    if (run_mode == RunMode::EIGENVALUE) {
+      warning(
+        "Shared secondary bank is not supported in eigenvalue calculations. "
+        "Particle local secondary banks will be used instead.");
+    } else if (run_mode == RunMode::FIXED_SOURCE) {
+      settings::use_shared_secondary_bank = true;
+    }
   }
 }
 
