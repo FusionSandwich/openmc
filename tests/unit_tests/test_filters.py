@@ -1,5 +1,6 @@
 import numpy as np
 import openmc
+import pytest
 from pytest import fixture, approx, raises
 
 
@@ -437,6 +438,17 @@ def test_particle_production_filter_damage_model():
     new_f = openmc.Filter.from_xml_element(elem)
     assert new_f.damage_model == 'nrt'
     assert len(new_f.particles) == 2
+    assert new_f == f_nrt
+    assert hash(new_f) == hash(f_nrt)
+
+    # --- damage_model='recoil-energy' ---
+    f_recoil = openmc.ParticleProductionFilter(
+        'Fe56', energies=[0.0, 1e6], damage_model='recoil-energy'
+    )
+    assert f_recoil.damage_model == 'recoil-energy'
+    elem_recoil = f_recoil.to_xml_element()
+    assert elem_recoil.find('damage_model').text == 'recoil-energy'
+    assert openmc.Filter.from_xml_element(elem_recoil) == f_recoil
 
     # When damage_model is None, XML should not contain it
     f_no_dam = openmc.ParticleProductionFilter('photon')
@@ -446,6 +458,29 @@ def test_particle_production_filter_damage_model():
     # Invalid damage model should raise
     with raises(ValueError):
         openmc.ParticleProductionFilter('Fe56', damage_model='invalid')
+
+    # Damage models are only meaningful for recoil nuclei
+    with raises(ValueError, match='recoiling nuclei'):
+        openmc.ParticleProductionFilter('photon', damage_model='nrt')
+
+
+def test_particle_production_filter_damage_model_hdf5(tmp_path):
+    h5py = pytest.importorskip('h5py')
+    path = tmp_path / 'filters.h5'
+
+    with h5py.File(path, 'w') as fh:
+        group = fh.create_group('filter 7')
+        group.create_dataset('particles', data=[b'Fe56', b'Cr52'])
+        group.create_dataset('energies', data=[0.0, 1e3, 1e6])
+        group.create_dataset('damage_model', data=b'recoil-energy')
+
+    with h5py.File(path, 'r') as fh:
+        filt = openmc.ParticleProductionFilter.from_hdf5(fh['filter 7'])
+
+    assert filt.id == 7
+    assert [str(p) for p in filt.particles] == ['Fe56', 'Cr52']
+    assert np.allclose(filt.energies, [0.0, 1e3, 1e6])
+    assert filt.damage_model == 'recoil-energy'
 
 
 def test_weight():

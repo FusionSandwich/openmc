@@ -1831,10 +1831,11 @@ class ParticleProductionFilter(Filter):
         (must be a key in :data:`openmc.mgxs.GROUP_STRUCTURES`). If not
         provided, the filter tallies total secondary particle production without
         energy binning.
-    damage_model : {'nrt'}, optional
-        Damage model to apply. When set, the filter weight for each secondary
-        is multiplied by the damage energy computed from the Lindhard/Robinson
-        partition function. Currently only 'nrt' (NRT-DPA) is supported.
+    damage_model : {'nrt', 'recoil-energy'}, optional
+        Damage model to apply to recoiling nuclei. When set, the filter weight
+        for each secondary is multiplied by either the damage energy computed
+        from the Lindhard/Robinson partition function (``'nrt'``) or the full
+        recoil kinetic energy (``'recoil-energy'``).
 
         .. versionadded:: 0.15.5
     filter_id : int, optional
@@ -1847,7 +1848,8 @@ class ParticleProductionFilter(Filter):
     energies : numpy.ndarray or None
         Energy boundaries in [eV], or None if no energy binning
     damage_model : str or None
-        Damage model applied to filter weights ('nrt' or None)
+        Damage model applied to filter weights (``'nrt'``,
+        ``'recoil-energy'``, or None)
     bins : list
         A list of bins; each element fully describes one bin. When energies are
         specified, each element is a tuple ``(particle, energy_low,
@@ -1909,6 +1911,8 @@ class ParticleProductionFilter(Filter):
             self._particles = [openmc.ParticleType(particles)]
         else:
             self._particles = [openmc.ParticleType(p) for p in particles]
+        if getattr(self, '_damage_model', None) is not None:
+            self._check_damage_model_particles()
 
     @property
     def energies(self):
@@ -1941,6 +1945,17 @@ class ParticleProductionFilter(Filter):
         if model is not None:
             cv.check_value('damage_model', model, ('nrt', 'recoil-energy'))
         self._damage_model = model
+        if model is not None and hasattr(self, '_particles'):
+            self._check_damage_model_particles()
+
+    def _check_damage_model_particles(self):
+        invalid = [str(p) for p in self.particles
+                   if not (p.is_nucleus or p.pdg_number == 2212)]
+        if invalid:
+            particles = ', '.join(invalid)
+            raise ValueError(
+                f'Damage models can only be applied to recoiling nuclei; '
+                f'got {particles}.')
 
     @property
     def bins(self):

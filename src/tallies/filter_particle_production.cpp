@@ -116,6 +116,16 @@ void ParticleProductionFilter::from_xml(pugi::xml_node node)
     }
   }
 
+  if (damage_model_ != DamageModel::NONE) {
+    for (const auto& type : secondary_types_) {
+      if (!type.is_nucleus()) {
+        throw std::runtime_error {
+          "Particle production damage models can only be applied to "
+          "recoiling nuclei."};
+      }
+    }
+  }
+
   // Compute total bins
   if (energy_bins_.empty()) {
     n_bins_ = secondary_types_.size();
