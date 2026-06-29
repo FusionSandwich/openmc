@@ -7,7 +7,7 @@
 #include <cmath>
 
 #include "openmc/constants.h"
-#include "openmc/vector.h"
+#include "openmc/position.h"
 
 namespace openmc::recoil {
 

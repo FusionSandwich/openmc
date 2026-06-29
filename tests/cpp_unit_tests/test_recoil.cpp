@@ -2,8 +2,8 @@
 #include <catch2/catch_test_macros.hpp>
 
 #include "openmc/constants.h"
+#include "openmc/position.h"
 #include "openmc/recoil.h"
-#include "openmc/vector.h"
 
 TEST_CASE("Elastic recoil energy bound")
 {
