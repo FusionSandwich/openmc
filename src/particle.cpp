@@ -49,13 +49,18 @@ double Particle::speed() const
     // Determine mass in eV/c^2
     double mass;
     switch (type().pdg_number()) {
+    case PDG_PHOTON:
+      return C_LIGHT;
     case PDG_NEUTRON:
       mass = MASS_NEUTRON_EV;
+      break;
     case PDG_ELECTRON:
     case PDG_POSITRON:
       mass = MASS_ELECTRON_EV;
+      break;
     default:
       mass = this->type().mass() * AMU_EV;
+      break;
     }
 
     // Equivalent to C * sqrt(1-(m/(m+E))^2) without problem at E<<m:
