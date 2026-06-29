@@ -36,6 +36,9 @@ namespace {
 constexpr int REACTION_EVENT_PROVENANCE_ELASTIC_EXACT {1};
 constexpr int REACTION_EVENT_PROVENANCE_PRODUCT_DISTRIBUTION_SAMPLED {2};
 constexpr int REACTION_EVENT_PROVENANCE_RESIDUAL_MOMENTUM_BALANCE {3};
+constexpr int REACTION_EVENT_PROVENANCE_CAPTURE_GAMMA_APPROX {4};
+constexpr int REACTION_EVENT_PROVENANCE_ENERGY_BALANCE_ONLY {5};
+constexpr int REACTION_EVENT_PROVENANCE_UNSUPPORTED {6};
 
 constexpr int REACTION_PRODUCT_SOURCE_SAMPLED_PRODUCT {1};
 
@@ -250,6 +253,9 @@ void write_reaction_event_metadata(hid_t group_id)
     metadata_group, "provenance_2", "product_distribution_sampled");
   write_attribute(
     metadata_group, "provenance_3", "residual_momentum_balance");
+  write_attribute(metadata_group, "provenance_4", "capture_gamma_approx");
+  write_attribute(metadata_group, "provenance_5", "energy_balance_only");
+  write_attribute(metadata_group, "provenance_6", "unsupported");
   write_attribute(metadata_group, "product_source_1", "sampled_product");
   close_group(metadata_group);
 }
@@ -459,6 +465,69 @@ void reaction_event_record_neutron_product(Particle& p, const Nuclide& nuc,
 
     simulation::reaction_event_product_bank.thread_safe_append(product);
   }
+}
+
+void reaction_event_record_capture(Particle& p, const Nuclide& nuc,
+  int reaction_mt, double E_in, Direction u_in, double event_weight,
+  double E_recoil, Direction u_recoil, bool has_recoil,
+  bool has_energy_balance)
+{
+  const auto& cfg = settings::reaction_event_output;
+  if (!cfg.enabled)
+    return;
+
+  int provenance;
+  if (has_recoil) {
+    if (!cfg.balance_diagnostics)
+      return;
+    provenance = REACTION_EVENT_PROVENANCE_CAPTURE_GAMMA_APPROX;
+  } else if (has_energy_balance) {
+    if (!cfg.balance_diagnostics)
+      return;
+    provenance = REACTION_EVENT_PROVENANCE_ENERGY_BALANCE_ONLY;
+  } else {
+    if (!cfg.write_unsupported)
+      return;
+    provenance = REACTION_EVENT_PROVENANCE_UNSUPPORTED;
+  }
+
+  int cell_index = p.lowest_coord().cell();
+  int material_index = p.material();
+  int universe_index = p.lowest_coord().universe();
+  if (cell_index == C_NONE || material_index == C_NONE ||
+      universe_index == C_NONE)
+    return;
+
+  int cell_id = model::cells[cell_index]->id_;
+  int material_id = model::materials[material_index]->id_;
+  std::string nuclide = nuc.name_;
+  if (!matches_reaction_event_filters(cell_id, material_id, nuclide, reaction_mt))
+    return;
+
+  ReactionEventSite site;
+  site.event_id = reaction_event_id(p);
+  site.history_id = p.id();
+  site.particle_id = p.id();
+  site.parent_id = p.id();
+  site.cell_id = cell_id;
+  site.cell_instance = p.cell_instance();
+  site.material_id = material_id;
+  site.universe_id = model::universes[universe_index]->id_;
+  site.target_za = 1000 * nuc.Z_ + nuc.A_;
+  site.reaction_mt = reaction_mt;
+  site.incident_particle = PDG_NEUTRON;
+  site.incident_energy = E_in;
+  site.incident_direction = u_in;
+  site.recoil_za = site.target_za;
+  if (has_recoil) {
+    site.recoil_energy = E_recoil;
+    site.recoil_direction = u_recoil;
+  }
+  site.event_weight = event_weight;
+  site.time = p.time();
+  site.provenance = provenance;
+
+  simulation::reaction_event_bank.thread_safe_append(site);
 }
 
 } // namespace openmc

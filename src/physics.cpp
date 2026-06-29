@@ -476,7 +476,13 @@ PhotonMomentumInfo banked_capture_photon_momentum(
 void create_absorption_recoil(Particle& p, int i_nuclide, double recoil_weight,
   double E_in, Direction u_in, double incident_wgt, const Reaction* rx)
 {
-  if (!settings::recoil_production || recoil_weight <= 0.0) {
+  bool capture_diagnostics = settings::reaction_event_output.enabled &&
+                             (settings::reaction_event_output
+                                  .balance_diagnostics ||
+                               settings::reaction_event_output
+                                 .write_unsupported);
+  if ((!settings::recoil_production && !capture_diagnostics) ||
+      recoil_weight <= 0.0) {
     return;
   }
 
@@ -485,6 +491,10 @@ void create_absorption_recoil(Particle& p, int i_nuclide, double recoil_weight,
     rx = sample_disappearance_reaction(i_nuclide, p);
   }
   if (!rx) {
+    if (capture_diagnostics && settings::reaction_event_output.write_unsupported) {
+      reaction_event_record_capture(p, *nuc, N_GAMMA, E_in, u_in,
+        recoil_weight, 0.0, {}, false, false);
+    }
     return;
   }
 
@@ -492,9 +502,11 @@ void create_absorption_recoil(Particle& p, int i_nuclide, double recoil_weight,
   Direction p_recoil = p_in;
   double emitted_kinetic = 0.0;
   ParticleType recoil_type = residual_particle_type(*nuc, rx->mt_);
+  bool capture_photon_momentum = false;
 
   if (rx->mt_ == N_GAMMA) {
     if (recoil_includes_photon_momentum(rx->mt_)) {
+      capture_photon_momentum = true;
       PhotonMomentumInfo gamma_info;
       if (settings::recoil.capture_photons == RecoilCapturePhotons::phantom) {
         gamma_info =
@@ -532,6 +544,29 @@ void create_absorption_recoil(Particle& p, int i_nuclide, double recoil_weight,
         warned_multicharged_absorption = true;
       }
     }
+  }
+
+  if (rx->mt_ == N_GAMMA && capture_diagnostics) {
+    double recoil_momentum2 = p_recoil.dot(p_recoil);
+    bool has_recoil = capture_photon_momentum &&
+                      std::isfinite(recoil_momentum2) &&
+                      recoil_momentum2 > 0.0;
+    double E_recoil = 0.0;
+    Direction u_recoil {};
+    if (has_recoil) {
+      E_recoil = recoil::kinetic_energy_from_momentum2(
+        recoil_momentum2, particle_mass_ev(recoil_type));
+      has_recoil = std::isfinite(E_recoil) && E_recoil > 0.0;
+      if (has_recoil) {
+        u_recoil = p_recoil / std::sqrt(recoil_momentum2);
+      }
+    }
+    reaction_event_record_capture(p, *nuc, rx->mt_, E_in, u_in, recoil_weight,
+      E_recoil, u_recoil, has_recoil, emitted_kinetic > 0.0);
+  }
+
+  if (!settings::recoil_production) {
+    return;
   }
 
   check_recoil_sanity(*nuc, *rx, E_in, emitted_kinetic);
@@ -621,6 +656,9 @@ void sample_neutron_reaction(Particle& p)
   // absorption (including fission)
 
   const auto& nuc {data::nuclides[i_nuclide]};
+  double E_in = p.E();
+  Direction u_in = p.u();
+  double wgt_in = p.wgt();
 
   if (nuc->fissionable_ && p.neutron_xs(i_nuclide).fission > 0.0) {
     auto& rx = sample_fission(i_nuclide, p);
@@ -653,8 +691,14 @@ void sample_neutron_reaction(Particle& p)
   if (p.neutron_xs(i_nuclide).absorption > 0.0) {
     absorption(p, i_nuclide);
   }
-  if (!p.alive())
+  if (!p.alive()) {
+    if (!settings::recoil_production && !p.fission() &&
+        (p.event_mt() == N_DISAPPEAR || p.event_mt() == N_GAMMA)) {
+      reaction_event_record_capture(
+        p, *nuc, N_GAMMA, E_in, u_in, wgt_in, 0.0, {}, false, false);
+    }
     return;
+  }
 
   // Sample a scattering reaction and determine the secondary energy of the
   // exiting neutron

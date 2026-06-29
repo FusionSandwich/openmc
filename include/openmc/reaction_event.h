@@ -41,6 +41,23 @@ void reaction_event_record_neutron_product(Particle& p, const Nuclide& nuc,
   const Reaction& rx, double E_in, Direction u_in, int n_products,
   double E_recoil, Direction u_recoil, bool has_residual);
 
+//! Record capture diagnostics when balance or unsupported output is enabled.
+//!
+//! \param p Particle at capture
+//! \param nuc Target nuclide
+//! \param reaction_mt Sampled or inferred capture reaction MT
+//! \param E_in Incident neutron energy in [eV]
+//! \param u_in Incident neutron direction
+//! \param event_weight Weight associated with the capture event
+//! \param E_recoil Approximate residual recoil energy in [eV], if available
+//! \param u_recoil Approximate residual recoil direction, if available
+//! \param has_recoil Whether approximate residual recoil information is available
+//! \param has_energy_balance Whether emitted energy information is available
+void reaction_event_record_capture(Particle& p, const Nuclide& nuc,
+  int reaction_mt, double E_in, Direction u_in, double event_weight,
+  double E_recoil, Direction u_recoil, bool has_recoil,
+  bool has_energy_balance);
+
 } // namespace openmc
 
 #endif // OPENMC_REACTION_EVENT_H
