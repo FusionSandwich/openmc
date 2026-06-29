@@ -36,6 +36,7 @@ constexpr array<int, 2> VERSION_MGXS_LIBRARY {1, 0};
 constexpr array<int, 2> VERSION_PROPERTIES {1, 1};
 constexpr array<int, 2> VERSION_WEIGHT_WINDOWS {1, 0};
 constexpr array<int, 2> VERSION_COLLISION_TRACK {1, 1};
+constexpr array<int, 2> VERSION_REACTION_EVENTS {1, 0};
 
 // ============================================================================
 // ADJUSTABLE PARAMETERS

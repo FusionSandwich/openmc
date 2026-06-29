@@ -19,6 +19,7 @@
 #include "openmc/random_dist.h"
 #include "openmc/random_lcg.h"
 #include "openmc/reaction.h"
+#include "openmc/reaction_event.h"
 #include "openmc/recoil.h"
 #include "openmc/search.h"
 #include "openmc/secondary_uncorrelated.h"
@@ -1360,10 +1361,18 @@ void elastic_scatter(int i_nuclide, const Reaction& rx, double kT, Particle& p)
   if (std::abs(p.mu()) > 1.0)
     p.mu() = std::copysign(1.0, p.mu());
 
+  Direction p_recoil =
+    recoil::elastic_recoil_momentum(E_in, u_in, p.E(), p.u());
+  double recoil_momentum2 = p_recoil.dot(p_recoil);
+  if (settings::reaction_event_output.enabled && recoil_momentum2 > 0.0) {
+    Direction u_recoil = p_recoil / std::sqrt(recoil_momentum2);
+    double E_recoil = recoil::kinetic_energy_from_momentum2(
+      recoil_momentum2, nuc->awr_ * MASS_NEUTRON_EV);
+    reaction_event_record_elastic(p, *nuc, E_in, u_in, E_recoil, u_recoil);
+  }
+
   // Generate recoil
   if (settings::recoil_production) {
-    Direction p_recoil =
-      recoil::elastic_recoil_momentum(E_in, u_in, p.E(), p.u());
     create_recoil_secondary(p, *nuc, p.wgt(), p_recoil, nuc->particle_type());
   }
 }

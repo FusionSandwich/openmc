@@ -73,6 +73,30 @@ struct CollisionTrackSite {
   int64_t progeny_id;
 };
 
+struct ReactionEventSite {
+  int64_t event_id {0};
+  int64_t history_id {0};
+  int64_t particle_id {0};
+  int64_t parent_id {0};
+  int cell_id {0};
+  int cell_instance {-1};
+  int material_id {0};
+  int universe_id {0};
+  int target_za {0};
+  int reaction_mt {0};
+  int incident_particle {0};
+  double incident_energy {0.0};
+  Direction incident_direction {};
+  double outgoing_neutron_energy {0.0};
+  Direction outgoing_neutron_direction {};
+  int recoil_za {0};
+  double recoil_energy {0.0};
+  Direction recoil_direction {};
+  double event_weight {0.0};
+  double time {0.0};
+  int provenance {0};
+};
+
 //! State of a particle used for particle track files
 struct TrackState {
   Position r;           //!< Position in [cm]

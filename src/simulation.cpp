@@ -16,6 +16,7 @@
 #include "openmc/particle.h"
 #include "openmc/photon.h"
 #include "openmc/random_lcg.h"
+#include "openmc/reaction_event.h"
 #include "openmc/settings.h"
 #include "openmc/source.h"
 #include "openmc/state_point.h"
@@ -200,6 +201,10 @@ int openmc_simulation_finalize()
   if (settings::output_tallies && mpi::master)
     write_tallies();
 
+  if (settings::reaction_event_output.enabled) {
+    reaction_event_flush_bank();
+  }
+
   // If weight window generators are present in this simulation,
   // write a weight windows file
   if (variance_reduction::weight_windows_generators.size() > 0) {
@@ -354,6 +359,10 @@ void allocate_banks()
   if (settings::collision_track) {
     // Allocate collision track bank
     collision_track_reserve_bank();
+  }
+
+  if (settings::reaction_event_output.enabled) {
+    reaction_event_reserve_bank();
   }
 }
 
