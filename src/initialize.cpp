@@ -211,41 +211,43 @@ void initialize_mpi(MPI_Comm intracomm)
   MPI_Type_commit(&mpi::collision_track_site);
 
   ReactionEventSite br;
-  MPI_Aint dispr[21];
+  MPI_Aint dispr[23];
   MPI_Get_address(&br.event_id, &dispr[0]);                   // int64_t
-  MPI_Get_address(&br.history_id, &dispr[1]);                 // int64_t
-  MPI_Get_address(&br.particle_id, &dispr[2]);                // int64_t
-  MPI_Get_address(&br.parent_id, &dispr[3]);                  // int64_t
-  MPI_Get_address(&br.cell_id, &dispr[4]);                    // int
-  MPI_Get_address(&br.cell_instance, &dispr[5]);              // int
-  MPI_Get_address(&br.material_id, &dispr[6]);                // int
-  MPI_Get_address(&br.universe_id, &dispr[7]);                // int
-  MPI_Get_address(&br.target_za, &dispr[8]);                  // int
-  MPI_Get_address(&br.reaction_mt, &dispr[9]);                // int
-  MPI_Get_address(&br.incident_particle, &dispr[10]);         // int
-  MPI_Get_address(&br.incident_energy, &dispr[11]);           // double
-  MPI_Get_address(&br.incident_direction, &dispr[12]);        // double
-  MPI_Get_address(&br.outgoing_neutron_energy, &dispr[13]);   // double
-  MPI_Get_address(&br.outgoing_neutron_direction, &dispr[14]); // double
-  MPI_Get_address(&br.recoil_za, &dispr[15]);                 // int
-  MPI_Get_address(&br.recoil_energy, &dispr[16]);             // double
-  MPI_Get_address(&br.recoil_direction, &dispr[17]);          // double
-  MPI_Get_address(&br.event_weight, &dispr[18]);              // double
-  MPI_Get_address(&br.time, &dispr[19]);                      // double
-  MPI_Get_address(&br.provenance, &dispr[20]);                // int
-  for (int i = 20; i >= 0; --i) {
+  MPI_Get_address(&br.n_products, &dispr[1]);                 // int
+  MPI_Get_address(&br.first_product_index, &dispr[2]);        // int64_t
+  MPI_Get_address(&br.history_id, &dispr[3]);                 // int64_t
+  MPI_Get_address(&br.particle_id, &dispr[4]);                // int64_t
+  MPI_Get_address(&br.parent_id, &dispr[5]);                  // int64_t
+  MPI_Get_address(&br.cell_id, &dispr[6]);                    // int
+  MPI_Get_address(&br.cell_instance, &dispr[7]);              // int
+  MPI_Get_address(&br.material_id, &dispr[8]);                // int
+  MPI_Get_address(&br.universe_id, &dispr[9]);                // int
+  MPI_Get_address(&br.target_za, &dispr[10]);                 // int
+  MPI_Get_address(&br.reaction_mt, &dispr[11]);               // int
+  MPI_Get_address(&br.incident_particle, &dispr[12]);         // int
+  MPI_Get_address(&br.incident_energy, &dispr[13]);           // double
+  MPI_Get_address(&br.incident_direction, &dispr[14]);        // double
+  MPI_Get_address(&br.outgoing_neutron_energy, &dispr[15]);   // double
+  MPI_Get_address(&br.outgoing_neutron_direction, &dispr[16]); // double
+  MPI_Get_address(&br.recoil_za, &dispr[17]);                 // int
+  MPI_Get_address(&br.recoil_energy, &dispr[18]);             // double
+  MPI_Get_address(&br.recoil_direction, &dispr[19]);          // double
+  MPI_Get_address(&br.event_weight, &dispr[20]);              // double
+  MPI_Get_address(&br.time, &dispr[21]);                      // double
+  MPI_Get_address(&br.provenance, &dispr[22]);                // int
+  for (int i = 22; i >= 0; --i) {
     dispr[i] -= dispr[0];
   }
 
-  int blocksr[] = {1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 3, 1, 3, 1, 1, 3, 1, 1,
-    1};
-  MPI_Datatype typesr[] = {MPI_INT64_T, MPI_INT64_T, MPI_INT64_T,
-    MPI_INT64_T, MPI_INT, MPI_INT, MPI_INT, MPI_INT, MPI_INT, MPI_INT, MPI_INT,
-    MPI_DOUBLE, MPI_DOUBLE, MPI_DOUBLE, MPI_DOUBLE, MPI_INT, MPI_DOUBLE,
-    MPI_DOUBLE, MPI_DOUBLE, MPI_DOUBLE, MPI_INT};
+  int blocksr[] = {1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 3, 1, 3, 1, 1, 3,
+    1, 1, 1};
+  MPI_Datatype typesr[] = {MPI_INT64_T, MPI_INT, MPI_INT64_T, MPI_INT64_T,
+    MPI_INT64_T, MPI_INT64_T, MPI_INT, MPI_INT, MPI_INT, MPI_INT, MPI_INT,
+    MPI_INT, MPI_INT, MPI_DOUBLE, MPI_DOUBLE, MPI_DOUBLE, MPI_DOUBLE, MPI_INT,
+    MPI_DOUBLE, MPI_DOUBLE, MPI_DOUBLE, MPI_DOUBLE, MPI_INT};
 
   MPI_Type_create_struct(
-    21, blocksr, dispr, typesr, &mpi::reaction_event_site);
+    23, blocksr, dispr, typesr, &mpi::reaction_event_site);
   MPI_Type_commit(&mpi::reaction_event_site);
 
   ReactionEventProductSite bp;

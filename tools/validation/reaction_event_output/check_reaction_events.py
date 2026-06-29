@@ -9,6 +9,8 @@ import numpy as np
 
 EVENT_FIELDS = (
     'event_id',
+    'n_products',
+    'first_product_index',
     'history_id',
     'particle_id',
     'parent_id',
@@ -131,6 +133,7 @@ def _check_events(events, allowed_provenance, required_provenance, errors):
     _nonnegative(errors, 'events.outgoing_neutron_energy',
                  data['outgoing_neutron_energy'])
     _nonnegative(errors, 'events.recoil_energy', data['recoil_energy'])
+    _nonnegative(errors, 'events.n_products', data['n_products'])
 
     for field in ('incident_direction', 'outgoing_neutron_direction',
                   'recoil_direction'):
@@ -154,6 +157,13 @@ def _check_events(events, allowed_provenance, required_provenance, errors):
     return {
         'events': int(events.shape[0]),
         'event_ids': set(int(x) for x in data['event_id']),
+        'product_ranges': {
+            int(row['event_id']): (
+                int(row['first_product_index']),
+                int(row['n_products']),
+            )
+            for row in data
+        },
         'reaction_mts': sorted(int(x) for x in np.unique(data['reaction_mt'])),
         'provenance': sorted(provenance),
     }
@@ -194,10 +204,59 @@ def _check_products(products, event_ids, allowed_provenance, errors):
 
     return {
         'products': int(products.shape[0]),
+        'product_event_counts': {
+            int(event_id): int(np.count_nonzero(data['event_id'] == event_id))
+            for event_id in product_event_ids
+        },
         'product_sources': sorted(
             int(x) for x in np.unique(data['product_source'])),
         'product_provenance': sorted(provenance),
     }
+
+
+def _check_product_ranges(product_ranges, products, errors):
+    if products is None:
+        for event_id, (first_index, n_products) in product_ranges.items():
+            if n_products != 0:
+                errors.append(
+                    f'event_id {event_id} declares products but products '
+                    'dataset is absent')
+            if first_index != -1:
+                errors.append(
+                    f'event_id {event_id} has no products but '
+                    'first_product_index is not -1')
+        return
+
+    data = products[()]
+    n_rows = int(products.shape[0])
+    for event_id, (first_index, n_products) in product_ranges.items():
+        if n_products == 0:
+            if first_index != -1:
+                errors.append(
+                    f'event_id {event_id} has no products but '
+                    'first_product_index is not -1')
+            continue
+        if first_index < 0:
+            errors.append(
+                f'event_id {event_id} declares products but '
+                'first_product_index is negative')
+            continue
+        if first_index + n_products > n_rows:
+            errors.append(
+                f'event_id {event_id} product range extends past products '
+                'dataset')
+            continue
+        event_product_ids = data['event_id'][first_index:first_index + n_products]
+        if np.any(event_product_ids != event_id):
+            errors.append(
+                f'event_id {event_id} product range contains rows for another '
+                'event')
+        product_indices = data['product_index'][first_index:
+                                                first_index + n_products]
+        if not np.array_equal(product_indices, np.arange(n_products)):
+            errors.append(
+                f'event_id {event_id} product_index values are not contiguous '
+                'from zero')
 
 
 def check_reaction_events(path, require_products=False,
@@ -242,12 +301,17 @@ def check_reaction_events(path, require_products=False,
             product_summary = _check_products(
                 group['products'], event_summary.get('event_ids', set()),
                 allowed_provenance, errors)
+            _check_product_ranges(event_summary.get('product_ranges', {}),
+                                  group['products'], errors)
             summary.update({
                 'products': product_summary.get('products', 0),
                 'product_sources': product_summary.get('product_sources', []),
                 'product_provenance': product_summary.get(
                     'product_provenance', []),
             })
+        else:
+            _check_product_ranges(event_summary.get('product_ranges', {}),
+                                  None, errors)
 
     return summary, errors
 

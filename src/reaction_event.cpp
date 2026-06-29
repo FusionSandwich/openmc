@@ -77,6 +77,10 @@ hid_t h5_reaction_event_type()
   hid_t eventtype = H5Tcreate(H5T_COMPOUND, sizeof(ReactionEventSite));
   H5Tinsert(eventtype, "event_id", HOFFSET(ReactionEventSite, event_id),
     H5T_NATIVE_INT64);
+  H5Tinsert(eventtype, "n_products", HOFFSET(ReactionEventSite, n_products),
+    H5T_NATIVE_INT);
+  H5Tinsert(eventtype, "first_product_index",
+    HOFFSET(ReactionEventSite, first_product_index), H5T_NATIVE_INT64);
   H5Tinsert(eventtype, "history_id", HOFFSET(ReactionEventSite, history_id),
     H5T_NATIVE_INT64);
   H5Tinsert(eventtype, "particle_id", HOFFSET(ReactionEventSite, particle_id),
@@ -447,24 +451,38 @@ void reaction_event_record_neutron_product(Particle& p, const Nuclide& nuc,
   if (idx < 0)
     return;
 
-  for (int i = 0; i < n_products; ++i) {
-    if (simulation::reaction_event_product_bank.full())
-      break;
+  int64_t first_product_index {-1};
+  int actual_products {0};
+#pragma omp critical(reaction_event_product_append)
+  {
+    for (int i = 0; i < n_products; ++i) {
+      if (simulation::reaction_event_product_bank.full())
+        break;
 
-    ReactionEventProductSite product;
-    product.event_id = event_id;
-    product.product_index = i;
-    product.product_particle = PDG_NEUTRON;
-    product.product_za_or_pdg = PDG_NEUTRON;
-    product.product_energy = p.E();
-    product.product_direction = p.u();
-    product.product_weight = p.wgt();
-    product.product_source = REACTION_PRODUCT_SOURCE_SAMPLED_PRODUCT;
-    product.product_provenance =
-      REACTION_EVENT_PROVENANCE_PRODUCT_DISTRIBUTION_SAMPLED;
+      ReactionEventProductSite product;
+      product.event_id = event_id;
+      product.product_index = i;
+      product.product_particle = PDG_NEUTRON;
+      product.product_za_or_pdg = PDG_NEUTRON;
+      product.product_energy = p.E();
+      product.product_direction = p.u();
+      product.product_weight = p.wgt();
+      product.product_source = REACTION_PRODUCT_SOURCE_SAMPLED_PRODUCT;
+      product.product_provenance =
+        REACTION_EVENT_PROVENANCE_PRODUCT_DISTRIBUTION_SAMPLED;
 
-    simulation::reaction_event_product_bank.thread_safe_append(product);
+      int64_t product_bank_index =
+        simulation::reaction_event_product_bank.thread_safe_append(product);
+      if (product_bank_index < 0)
+        break;
+      if (first_product_index < 0)
+        first_product_index = product_bank_index;
+      ++actual_products;
+    }
   }
+
+  simulation::reaction_event_bank[idx].n_products = actual_products;
+  simulation::reaction_event_bank[idx].first_product_index = first_product_index;
 }
 
 void reaction_event_record_capture(Particle& p, const Nuclide& nuc,

@@ -75,6 +75,8 @@ struct CollisionTrackSite {
 
 struct ReactionEventSite {
   int64_t event_id {0};
+  int n_products {0};
+  int64_t first_product_index {-1};
   int64_t history_id {0};
   int64_t particle_id {0};
   int64_t parent_id {0};
