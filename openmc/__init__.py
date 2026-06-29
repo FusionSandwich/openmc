@@ -33,6 +33,7 @@ from openmc.mixin import *
 from openmc.plotter import *
 from openmc.search import *
 from openmc.polynomial import *
+from openmc.reaction_groups import *
 from openmc.tracks import *
 from .config import *
 
