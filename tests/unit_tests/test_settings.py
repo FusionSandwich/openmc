@@ -1,5 +1,6 @@
 import openmc
 import openmc.stats
+import pytest
 
 
 def test_export_to_xml(run_in_tmpdir):
@@ -34,6 +35,7 @@ def test_export_to_xml(run_in_tmpdir):
         'missing_products': 'neutron_only',
         'capture_photons': 'phantom',
         'include_photon_momentum': 'capture_only',
+        'photon_multiplicity': 'per_interaction',
         'bank_residual': True,
         'bank_emitted_ions': False,
         'q_sanity_check': True,
@@ -135,6 +137,7 @@ def test_export_to_xml(run_in_tmpdir):
         'missing_products': 'neutron_only',
         'capture_photons': 'phantom',
         'include_photon_momentum': 'capture_only',
+        'photon_multiplicity': 'per_interaction',
         'bank_residual': True,
         'bank_emitted_ions': False,
         'q_sanity_check': True,
@@ -221,3 +224,9 @@ def test_recoil_setting_validation():
         pass
     else:
         raise AssertionError("Expected ValueError for unknown recoil key")
+
+    with pytest.raises(TypeError):
+        s.recoil = {'direction': True}
+
+    with pytest.raises(TypeError):
+        s.recoil = {'bank_residual': 'true'}
