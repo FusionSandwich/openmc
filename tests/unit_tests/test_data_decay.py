@@ -49,6 +49,12 @@ def test_get_decay_modes():
     assert openmc.data.get_decay_modes(2.4) == ['ec/beta+', 'alpha']
 
 
+def test_depletion_chain_import_without_transport_library():
+    from openmc.deplete import Chain
+
+    assert Chain.__name__ == 'Chain'
+
+
 def test_nb90_halflife(nb90):
     ufloat_close(nb90.half_life, ufloat(52560.0, 180.0))
     ufloat_close(nb90.decay_constant, log(2.)/nb90.half_life)

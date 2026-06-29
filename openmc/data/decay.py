@@ -593,7 +593,7 @@ def decay_photon_energy(nuclide: str) -> Univariate | None:
                 "openmc.config['chain_file'] in order to load decay data."
             )
 
-        from openmc.deplete import Chain
+        from openmc.deplete.chain import Chain
         chain = Chain.from_xml(chain_file)
         for nuc in chain.nuclides:
             if 'photon' in nuc.sources:
@@ -638,7 +638,7 @@ def decay_energy(nuclide: str):
                 "openmc.config['chain_file'] in order to load decay data."
             )
 
-        from openmc.deplete import Chain
+        from openmc.deplete.chain import Chain
         chain = Chain.from_xml(chain_file)
         for nuc in chain.nuclides:
             if nuc.decay_energy:
