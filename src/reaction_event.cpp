@@ -1,6 +1,8 @@
 #include "openmc/reaction_event.h"
 
 #include <algorithm>
+#include <cmath>
+#include <limits>
 #include <string>
 #include <unordered_set>
 
@@ -41,6 +43,13 @@ constexpr int REACTION_EVENT_PROVENANCE_ENERGY_BALANCE_ONLY {5};
 constexpr int REACTION_EVENT_PROVENANCE_UNSUPPORTED {6};
 
 constexpr int REACTION_PRODUCT_SOURCE_SAMPLED_PRODUCT {1};
+
+double particle_momentum(double energy, double mass)
+{
+  if (energy < 0.0 || mass <= 0.0)
+    return std::numeric_limits<double>::quiet_NaN();
+  return std::sqrt(energy * (energy + 2.0 * mass));
+}
 
 int64_t reaction_event_id(const Particle& p)
 {
@@ -119,6 +128,10 @@ hid_t h5_reaction_event_type()
     HOFFSET(ReactionEventSite, event_weight), H5T_NATIVE_DOUBLE);
   H5Tinsert(
     eventtype, "time", HOFFSET(ReactionEventSite, time), H5T_NATIVE_DOUBLE);
+  H5Tinsert(eventtype, "energy_balance_error",
+    HOFFSET(ReactionEventSite, energy_balance_error), H5T_NATIVE_DOUBLE);
+  H5Tinsert(eventtype, "momentum_balance_error",
+    HOFFSET(ReactionEventSite, momentum_balance_error), H5T_NATIVE_DOUBLE);
   H5Tinsert(eventtype, "provenance", HOFFSET(ReactionEventSite, provenance),
     H5T_NATIVE_INT);
 
@@ -390,6 +403,15 @@ void reaction_event_record_elastic(Particle& p, const Nuclide& nuc,
   site.recoil_direction = u_recoil;
   site.event_weight = p.wgt();
   site.time = p.time();
+  site.energy_balance_error = E_in - p.E() - E_recoil;
+  double p_in = particle_momentum(E_in, MASS_NEUTRON_EV);
+  double p_out = particle_momentum(p.E(), MASS_NEUTRON_EV);
+  double p_recoil = particle_momentum(E_recoil, nuc.awr_ * MASS_NEUTRON_EV);
+  Position residual {
+    p_in * u_in.x - p_out * p.u().x - p_recoil * u_recoil.x,
+    p_in * u_in.y - p_out * p.u().y - p_recoil * u_recoil.y,
+    p_in * u_in.z - p_out * p.u().z - p_recoil * u_recoil.z};
+  site.momentum_balance_error = residual.norm();
   site.provenance = REACTION_EVENT_PROVENANCE_ELASTIC_EXACT;
   site.event_id = reaction_event_id(p);
 

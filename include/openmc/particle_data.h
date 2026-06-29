@@ -1,6 +1,8 @@
 #ifndef OPENMC_PARTICLE_DATA_H
 #define OPENMC_PARTICLE_DATA_H
 
+#include <limits>
+
 #include "openmc/array.h"
 #include "openmc/constants.h"
 #include "openmc/particle_type.h"
@@ -96,6 +98,8 @@ struct ReactionEventSite {
   Direction recoil_direction {};
   double event_weight {0.0};
   double time {0.0};
+  double energy_balance_error {std::numeric_limits<double>::quiet_NaN()};
+  double momentum_balance_error {std::numeric_limits<double>::quiet_NaN()};
   int provenance {0};
 };
 

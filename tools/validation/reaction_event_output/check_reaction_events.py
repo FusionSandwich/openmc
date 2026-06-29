@@ -30,6 +30,8 @@ EVENT_FIELDS = (
     'recoil_direction',
     'event_weight',
     'time',
+    'energy_balance_error',
+    'momentum_balance_error',
     'provenance',
 )
 
@@ -46,6 +48,7 @@ PRODUCT_FIELDS = (
 )
 
 DEFAULT_PROVENANCE_CODES = {1, 2, 3, 4, 5, 6}
+EXPECTED_SCHEMA_VERSION = (1, 2)
 PROVENANCE_ELASTIC_EXACT = 1
 PROVENANCE_PRODUCT_DISTRIBUTION_SAMPLED = 2
 PROVENANCE_RESIDUAL_MOMENTUM_BALANCE = 3
@@ -88,6 +91,15 @@ def _nonnegative(errors, label, values):
         errors.append(f'{label} contains negative values')
 
 
+def _schema_version(metadata):
+    if 'schema_version' not in metadata.attrs:
+        return None
+    value = metadata.attrs['schema_version']
+    if np.isscalar(value):
+        return (int(value),)
+    return tuple(int(x) for x in value)
+
+
 def _metadata_provenance_codes(metadata):
     codes = set()
     for name in metadata.attrs:
@@ -128,6 +140,35 @@ def _check_metadata(metadata, errors):
                  'n_reaction_filters'):
         if attr in metadata.attrs and int(metadata.attrs[attr]) < 0:
             errors.append(f'metadata attribute "{attr}" is negative')
+
+    schema_version = _schema_version(metadata)
+    if schema_version is not None and schema_version != EXPECTED_SCHEMA_VERSION:
+        expected = '.'.join(str(x) for x in EXPECTED_SCHEMA_VERSION)
+        observed = '.'.join(str(x) for x in schema_version)
+        errors.append(
+            f'metadata schema_version is {observed}; expected {expected}')
+
+
+def _check_balance_diagnostics(data, elastic_exact, has_products,
+                               unsupported, errors):
+    for field in ('energy_balance_error', 'momentum_balance_error'):
+        values = data[field]
+        if values.dtype.names is not None or values.ndim != 1:
+            errors.append(f'events.{field} is not a scalar numeric field')
+            continue
+        finite = np.isfinite(values)
+        sentinel = np.isnan(values)
+        if np.any(~(finite | sentinel)):
+            errors.append(
+                f'events.{field} contains values that are neither finite nor '
+                'NaN sentinel')
+        if np.any(elastic_exact & sentinel):
+            errors.append(f'elastic_exact events have NaN {field}')
+        if np.any(unsupported & ~sentinel):
+            errors.append(f'unsupported events have non-sentinel {field}')
+        if np.any(has_products & ~sentinel):
+            errors.append(
+                f'product-bearing events have non-sentinel {field}')
 
 
 def _check_events(events, allowed_provenance, required_provenance, errors):
@@ -188,6 +229,9 @@ def _check_events(events, allowed_provenance, required_provenance, errors):
     if np.any(has_products & ~np.isin(data['provenance'],
                                       list(product_event_provenance))):
         errors.append('events with products use non-product provenance')
+
+    _check_balance_diagnostics(
+        data, elastic_exact, has_products, unsupported, errors)
 
     return {
         'events': int(events.shape[0]),

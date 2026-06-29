@@ -211,7 +211,7 @@ void initialize_mpi(MPI_Comm intracomm)
   MPI_Type_commit(&mpi::collision_track_site);
 
   ReactionEventSite br;
-  MPI_Aint dispr[23];
+  MPI_Aint dispr[25];
   MPI_Get_address(&br.event_id, &dispr[0]);                   // int64_t
   MPI_Get_address(&br.n_products, &dispr[1]);                 // int
   MPI_Get_address(&br.first_product_index, &dispr[2]);        // int64_t
@@ -234,20 +234,23 @@ void initialize_mpi(MPI_Comm intracomm)
   MPI_Get_address(&br.recoil_direction, &dispr[19]);          // double
   MPI_Get_address(&br.event_weight, &dispr[20]);              // double
   MPI_Get_address(&br.time, &dispr[21]);                      // double
-  MPI_Get_address(&br.provenance, &dispr[22]);                // int
-  for (int i = 22; i >= 0; --i) {
+  MPI_Get_address(&br.energy_balance_error, &dispr[22]);      // double
+  MPI_Get_address(&br.momentum_balance_error, &dispr[23]);    // double
+  MPI_Get_address(&br.provenance, &dispr[24]);                // int
+  for (int i = 24; i >= 0; --i) {
     dispr[i] -= dispr[0];
   }
 
   int blocksr[] = {1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 3, 1, 3, 1, 1, 3,
-    1, 1, 1};
+    1, 1, 1, 1, 1};
   MPI_Datatype typesr[] = {MPI_INT64_T, MPI_INT, MPI_INT64_T, MPI_INT64_T,
     MPI_INT64_T, MPI_INT64_T, MPI_INT, MPI_INT, MPI_INT, MPI_INT, MPI_INT,
     MPI_INT, MPI_INT, MPI_DOUBLE, MPI_DOUBLE, MPI_DOUBLE, MPI_DOUBLE, MPI_INT,
-    MPI_DOUBLE, MPI_DOUBLE, MPI_DOUBLE, MPI_DOUBLE, MPI_INT};
+    MPI_DOUBLE, MPI_DOUBLE, MPI_DOUBLE, MPI_DOUBLE, MPI_DOUBLE, MPI_DOUBLE,
+    MPI_INT};
 
   MPI_Type_create_struct(
-    23, blocksr, dispr, typesr, &mpi::reaction_event_site);
+    25, blocksr, dispr, typesr, &mpi::reaction_event_site);
   MPI_Type_commit(&mpi::reaction_event_site);
 
   ReactionEventProductSite bp;

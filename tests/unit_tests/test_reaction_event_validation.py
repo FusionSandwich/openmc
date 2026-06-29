@@ -37,7 +37,19 @@ EVENT_DTYPE = np.dtype([
     ('recoil_direction', VECTOR_DTYPE),
     ('event_weight', 'f8'),
     ('time', 'f8'),
+    ('energy_balance_error', 'f8'),
+    ('momentum_balance_error', 'f8'),
     ('provenance', 'i4'),
+])
+
+EVENT_DTYPE_1_1 = np.dtype([
+    field for field in EVENT_DTYPE.descr
+    if field[0] not in {'energy_balance_error', 'momentum_balance_error'}
+])
+
+EVENT_DTYPE_BAD_DIAGNOSTIC_SHAPE = np.dtype([
+    (name, VECTOR_DTYPE if name == 'energy_balance_error' else dtype)
+    for name, dtype in EVENT_DTYPE.descr
 ])
 
 PRODUCT_DTYPE = np.dtype([
@@ -60,7 +72,8 @@ def _unit_vector():
 def _event(event_id=10, n_products=0, first_product_index=-1,
            target_za=26056, reaction_mt=None,
            incident_energy=14.1e6, recoil_energy=1.0, provenance=None,
-           recoil_direction=None):
+           recoil_direction=None, energy_balance_error=None,
+           momentum_balance_error=None):
     row = np.zeros((), dtype=EVENT_DTYPE)
     row['event_id'] = event_id
     row['n_products'] = n_products
@@ -73,6 +86,7 @@ def _event(event_id=10, n_products=0, first_product_index=-1,
     row['material_id'] = 1
     row['universe_id'] = 0
     row['target_za'] = target_za
+    event_provenance = provenance or (2 if n_products else 1)
     row['reaction_mt'] = reaction_mt or (16 if n_products else 2)
     row['incident_particle'] = 2112
     row['incident_energy'] = incident_energy
@@ -83,7 +97,13 @@ def _event(event_id=10, n_products=0, first_product_index=-1,
     row['recoil_energy'] = recoil_energy
     row['recoil_direction'] = recoil_direction or _unit_vector()
     row['event_weight'] = 1.0
-    row['provenance'] = provenance or (2 if n_products else 1)
+    if energy_balance_error is None:
+        energy_balance_error = 0.0 if event_provenance == 1 else np.nan
+    if momentum_balance_error is None:
+        momentum_balance_error = 0.0 if event_provenance == 1 else np.nan
+    row['energy_balance_error'] = energy_balance_error
+    row['momentum_balance_error'] = momentum_balance_error
+    row['provenance'] = event_provenance
     return row
 
 
@@ -101,17 +121,18 @@ def _product(event_id, product_index, product_source=1, product_provenance=2):
     return row
 
 
-def _write_file(path, events, products=None):
+def _write_file(path, events, products=None, event_dtype=EVENT_DTYPE,
+                schema_version=(1, 2)):
     with h5py.File(path, 'w') as h5file:
         h5file.attrs['filetype'] = 'reaction_events'
-        h5file.attrs['version'] = (1, 1)
+        h5file.attrs['version'] = schema_version
         group = h5file.create_group('reaction_events')
-        group.create_dataset('events', data=np.array(events, dtype=EVENT_DTYPE))
+        group.create_dataset('events', data=np.array(events, dtype=event_dtype))
         if products is not None:
             group.create_dataset(
                 'products', data=np.array(products, dtype=PRODUCT_DTYPE))
         metadata = group.create_group('metadata')
-        metadata.attrs['schema_version'] = (1, 1)
+        metadata.attrs['schema_version'] = schema_version
         metadata.attrs['max_events'] = 100
         metadata.attrs['filename'] = 'reaction_events.h5'
         metadata.attrs['write_products'] = products is not None
@@ -157,7 +178,7 @@ def test_elastic_pka_event_sanity_fixture(tmp_path):
 
     with h5py.File(path, 'r') as h5file:
         metadata = h5file['reaction_events']['metadata'].attrs
-        assert tuple(metadata['schema_version']) == (1, 1)
+        assert tuple(metadata['schema_version']) == (1, 2)
         events = h5file['reaction_events']['events'][()]
 
     awr_by_za = {1001: 1.0, 26056: 56.0}
@@ -170,6 +191,8 @@ def test_elastic_pka_event_sanity_fixture(tmp_path):
         assert 0.0 <= row['recoil_energy'] <= t_max
     assert np.all(np.isfinite(_direction_norms(events['recoil_direction'])))
     assert np.allclose(_direction_norms(events['recoil_direction']), 1.0)
+    assert np.all(np.isfinite(events['energy_balance_error']))
+    assert np.all(np.isfinite(events['momentum_balance_error']))
 
 
 def test_reaction_event_checker_accepts_product_ranges(tmp_path):
@@ -266,7 +289,9 @@ def test_unsupported_product_data_fixture_is_not_exact(tmp_path):
     path = tmp_path / 'reaction_events.h5'
     unsupported = _event(event_id=20, reaction_mt=107, provenance=6,
                          n_products=0, first_product_index=-1,
-                         recoil_energy=0.0, recoil_direction=(0.0, 0.0, 0.0))
+                         recoil_energy=0.0, recoil_direction=(0.0, 0.0, 0.0),
+                         energy_balance_error=np.nan,
+                         momentum_balance_error=np.nan)
     _write_file(path, [unsupported])
 
     summary, errors = check_reaction_events(
@@ -281,6 +306,8 @@ def test_unsupported_product_data_fixture_is_not_exact(tmp_path):
     assert event['provenance'] != 1
     assert event['n_products'] == 0
     assert event['first_product_index'] == -1
+    assert np.isnan(event['energy_balance_error'])
+    assert np.isnan(event['momentum_balance_error'])
 
 
 def test_reaction_event_checker_rejects_unsupported_event_with_products(
@@ -318,3 +345,79 @@ def test_reaction_event_checker_rejects_unknown_product_source(tmp_path):
 
     assert any('unknown product_source codes: 99' in error
                for error in errors)
+
+
+def test_reaction_event_checker_rejects_schema_1_2_missing_balance_fields(
+        tmp_path):
+    path = tmp_path / 'reaction_events.h5'
+    event = np.zeros((), dtype=EVENT_DTYPE_1_1)
+    for name in EVENT_DTYPE_1_1.names:
+        event[name] = _event()[name]
+    _write_file(path, [event], event_dtype=EVENT_DTYPE_1_1)
+
+    _, errors = check_reaction_events(path)
+
+    assert any('energy_balance_error' in error for error in errors)
+    assert any('momentum_balance_error' in error for error in errors)
+
+
+def test_reaction_event_checker_rejects_bad_balance_field_shape(tmp_path):
+    path = tmp_path / 'reaction_events.h5'
+    event = np.zeros((), dtype=EVENT_DTYPE_BAD_DIAGNOSTIC_SHAPE)
+    source = _event()
+    for name in EVENT_DTYPE_BAD_DIAGNOSTIC_SHAPE.names:
+        if name == 'energy_balance_error':
+            event[name] = _unit_vector()
+        else:
+            event[name] = source[name]
+    _write_file(path, [event], event_dtype=EVENT_DTYPE_BAD_DIAGNOSTIC_SHAPE)
+
+    _, errors = check_reaction_events(path)
+
+    assert any('events.energy_balance_error is not a scalar numeric field'
+               in error for error in errors)
+
+
+def test_reaction_event_checker_rejects_elastic_sentinel_diagnostics(tmp_path):
+    path = tmp_path / 'reaction_events.h5'
+    event = _event(energy_balance_error=np.nan,
+                   momentum_balance_error=np.nan)
+    _write_file(path, [event])
+
+    _, errors = check_reaction_events(path)
+
+    assert any('elastic_exact events have NaN energy_balance_error' in error
+               for error in errors)
+    assert any('elastic_exact events have NaN momentum_balance_error' in error
+               for error in errors)
+
+
+def test_reaction_event_checker_rejects_unsupported_fake_zero_diagnostics(
+        tmp_path):
+    path = tmp_path / 'reaction_events.h5'
+    unsupported = _event(event_id=20, reaction_mt=107, provenance=6,
+                         energy_balance_error=0.0,
+                         momentum_balance_error=0.0)
+    _write_file(path, [unsupported])
+
+    _, errors = check_reaction_events(path)
+
+    assert any('unsupported events have non-sentinel energy_balance_error'
+               in error for error in errors)
+    assert any('unsupported events have non-sentinel momentum_balance_error'
+               in error for error in errors)
+
+
+def test_reaction_event_checker_rejects_product_fake_zero_diagnostics(
+        tmp_path):
+    path = tmp_path / 'reaction_events.h5'
+    event = _event(event_id=10, n_products=1, first_product_index=0,
+                   energy_balance_error=0.0, momentum_balance_error=0.0)
+    _write_file(path, [event], [_product(10, 0)])
+
+    _, errors = check_reaction_events(path, require_products=True)
+
+    assert any('product-bearing events have non-sentinel energy_balance_error'
+               in error for error in errors)
+    assert any('product-bearing events have non-sentinel momentum_balance_error'
+               in error for error in errors)
