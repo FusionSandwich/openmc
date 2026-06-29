@@ -1,6 +1,8 @@
 #include "openmc/reaction_event.h"
 
+#include <algorithm>
 #include <string>
+#include <unordered_set>
 
 #include <fmt/format.h>
 
@@ -30,6 +32,26 @@ namespace openmc {
 namespace {
 
 constexpr int REACTION_EVENT_PROVENANCE_ELASTIC_EXACT {1};
+
+template<typename T>
+vector<T> sorted_filter_values(const std::unordered_set<T>& values)
+{
+  vector<T> result {values.begin(), values.end()};
+  std::sort(result.begin(), result.end());
+  return result;
+}
+
+std::string joined_string_filter(const std::unordered_set<std::string>& values)
+{
+  auto sorted = sorted_filter_values(values);
+  std::string result;
+  for (const auto& value : sorted) {
+    if (!result.empty())
+      result += ",";
+    result += value;
+  }
+  return result;
+}
 
 hid_t h5_reaction_event_type()
 {
@@ -118,6 +140,47 @@ void write_reaction_event_bank(hid_t group_id,
   H5Tclose(eventtype);
 }
 
+void write_reaction_event_metadata(hid_t group_id)
+{
+  const auto& cfg = settings::reaction_event_output;
+  auto material_filters = sorted_filter_values(cfg.material_ids);
+  auto cell_filters = sorted_filter_values(cfg.cell_ids);
+  auto reaction_filters = sorted_filter_values(cfg.mt_numbers);
+  auto nuclide_filters = joined_string_filter(cfg.nuclides);
+
+  hid_t metadata_group = create_group(group_id, "metadata");
+  write_attribute(metadata_group, "schema_version", VERSION_REACTION_EVENTS);
+  write_attribute(metadata_group, "max_events", cfg.max_events);
+  write_attribute(metadata_group, "filename", cfg.filename);
+  write_attribute(metadata_group, "write_products", cfg.write_products);
+  write_attribute(metadata_group, "write_unsupported", cfg.write_unsupported);
+  write_attribute(
+    metadata_group, "balance_diagnostics", cfg.balance_diagnostics);
+  write_attribute(metadata_group, "n_material_filters",
+    static_cast<int>(material_filters.size()));
+  write_attribute(
+    metadata_group, "n_cell_filters", static_cast<int>(cell_filters.size()));
+  write_attribute(metadata_group, "n_nuclide_filters",
+    static_cast<int>(cfg.nuclides.size()));
+  write_attribute(metadata_group, "n_reaction_filters",
+    static_cast<int>(reaction_filters.size()));
+  if (!material_filters.empty()) {
+    write_attribute(metadata_group, "material_filters", material_filters);
+  }
+  if (!cell_filters.empty()) {
+    write_attribute(metadata_group, "cell_filters", cell_filters);
+  }
+  if (!nuclide_filters.empty()) {
+    write_attribute(metadata_group, "nuclide_filters", nuclide_filters);
+  }
+  if (!reaction_filters.empty()) {
+    write_attribute(metadata_group, "reaction_filters", reaction_filters);
+  }
+  write_attribute(metadata_group, "tracking_method", "surface");
+  write_attribute(metadata_group, "provenance_1", "elastic_exact");
+  close_group(metadata_group);
+}
+
 void write_h5_reaction_events(const std::string& filename,
   openmc::span<ReactionEventSite> event_bank,
   const openmc::vector<int64_t>& bank_index)
@@ -144,10 +207,14 @@ void write_h5_reaction_events(const std::string& filename,
     write_attribute(file_id, "filetype", "reaction_events");
     write_attribute(file_id, "version", VERSION_REACTION_EVENTS);
     write_attribute(file_id, "openmc_version", VERSION);
+#ifdef GIT_SHA1
+    write_attribute(file_id, "git_sha1", GIT_SHA1);
+#endif
 
     event_group = create_group(file_id, "reaction_events");
     write_attribute(event_group, "schema_version", VERSION_REACTION_EVENTS);
     write_attribute(event_group, "provenance_1", "elastic_exact");
+    write_reaction_event_metadata(event_group);
   }
 
   write_reaction_event_bank(event_group, event_bank, bank_index);
