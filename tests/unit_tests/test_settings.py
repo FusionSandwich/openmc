@@ -230,3 +230,63 @@ def test_recoil_setting_validation():
 
     with pytest.raises(TypeError):
         s.recoil = {'bank_residual': 'true'}
+
+
+def test_reaction_event_output_xml_roundtrip(tmp_path):
+    s = openmc.Settings()
+    s.reaction_event_output = {
+        'enabled': True,
+        'filename': 'reaction_events.h5',
+        'max_events': 1000,
+        'materials': [1, 2],
+        'cells': [10],
+        'nuclides': ['Fe56'],
+        'reactions': ['elastic', 102],
+        'write_products': False,
+        'write_unsupported': False,
+        'balance_diagnostics': True,
+    }
+
+    path = tmp_path / 'settings.xml'
+    s.export_to_xml(path)
+    s = openmc.Settings.from_xml(path)
+
+    assert s.reaction_event_output == {
+        'enabled': True,
+        'filename': 'reaction_events.h5',
+        'max_events': 1000,
+        'materials': [1, 2],
+        'cells': [10],
+        'nuclides': ['Fe56'],
+        'reactions': ['elastic', '102'],
+        'write_products': False,
+        'write_unsupported': False,
+        'balance_diagnostics': True,
+    }
+
+
+def test_reaction_event_output_setting_validation():
+    s = openmc.Settings()
+
+    s.reaction_event_output = {
+        'enabled': True,
+        'reactions': ['elastic', 102],
+        'materials': [1],
+    }
+    assert s.reaction_event_output == {
+        'enabled': True,
+        'reactions': ['elastic', 102],
+        'materials': [1],
+    }
+
+    with pytest.raises(ValueError):
+        s.reaction_event_output = {'bad_key': True}
+
+    with pytest.raises(TypeError):
+        s.reaction_event_output = {'enabled': 'true'}
+
+    with pytest.raises(ValueError):
+        s.reaction_event_output = {'max_events': 0}
+
+    with pytest.raises(ValueError):
+        s.reaction_event_output = {'cells': [0]}

@@ -80,6 +80,19 @@ struct RecoilSettings {
   bool fail_on_nonphysical {false};
 };
 
+struct ReactionEventOutputConfig {
+  bool enabled {false};
+  bool write_products {false};
+  bool write_unsupported {false};
+  bool balance_diagnostics {false};
+  std::string filename {"reaction_events.h5"};
+  int64_t max_events {1000000};
+  std::unordered_set<int> material_ids;
+  std::unordered_set<int> cell_ids;
+  std::unordered_set<std::string> nuclides;
+  std::unordered_set<int> mt_numbers;
+};
+
 struct CollisionTrackConfig {
   bool mcpl_write {false}; //!< Write collision tracks using MCPL?
   std::unordered_set<int>
@@ -127,6 +140,8 @@ extern bool particle_restart_run;    //!< particle restart run?
 extern "C" bool photon_transport;    //!< photon transport turned on?
 extern bool recoil_production;       //!< produce recoil nuclei?
 extern RecoilSettings recoil;        //!< recoil modeling options
+extern ReactionEventOutputConfig
+  reaction_event_output;             //!< reaction-event diagnostic output options
 extern "C" bool reduce_tallies;      //!< reduce tallies at end of batch?
 extern bool res_scat_on;             //!< use resonance upscattering method?
 extern "C" bool restart_run;         //!< restart run?

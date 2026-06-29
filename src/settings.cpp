@@ -64,6 +64,7 @@ bool particle_restart_run {false};
 bool photon_transport {false};
 bool recoil_production {false};
 RecoilSettings recoil {};
+ReactionEventOutputConfig reaction_event_output {};
 bool reduce_tallies {true};
 bool res_scat_on {false};
 bool restart_run {false};
@@ -790,6 +791,60 @@ void read_settings_xml(pugi::xml_node root)
     if (check_for_node(node_recoil, "fail_on_nonphysical")) {
       recoil.fail_on_nonphysical =
         get_node_value_bool(node_recoil, "fail_on_nonphysical");
+    }
+  }
+
+  // Reaction-event diagnostic output
+  if (check_for_node(root, "reaction_event_output")) {
+    xml_node node_event = root.child("reaction_event_output");
+    reaction_event_output = ReactionEventOutputConfig {};
+
+    if (check_for_node(node_event, "enabled")) {
+      reaction_event_output.enabled =
+        get_node_value_bool(node_event, "enabled");
+    }
+    if (check_for_node(node_event, "filename")) {
+      reaction_event_output.filename = get_node_value(node_event, "filename");
+    }
+    if (check_for_node(node_event, "max_events")) {
+      reaction_event_output.max_events =
+        std::stoll(get_node_value(node_event, "max_events"));
+    }
+    if (check_for_node(node_event, "materials")) {
+      auto temp = get_node_array<int>(node_event, "materials");
+      for (const auto& id : temp) {
+        reaction_event_output.material_ids.insert(id);
+      }
+    }
+    if (check_for_node(node_event, "cells")) {
+      auto temp = get_node_array<int>(node_event, "cells");
+      for (const auto& id : temp) {
+        reaction_event_output.cell_ids.insert(id);
+      }
+    }
+    if (check_for_node(node_event, "nuclides")) {
+      auto temp = get_node_array<std::string>(node_event, "nuclides");
+      for (const auto& name : temp) {
+        reaction_event_output.nuclides.insert(name);
+      }
+    }
+    if (check_for_node(node_event, "reactions")) {
+      auto temp = get_node_array<std::string>(node_event, "reactions");
+      for (const auto& name : temp) {
+        reaction_event_output.mt_numbers.insert(reaction_mt(name));
+      }
+    }
+    if (check_for_node(node_event, "write_products")) {
+      reaction_event_output.write_products =
+        get_node_value_bool(node_event, "write_products");
+    }
+    if (check_for_node(node_event, "write_unsupported")) {
+      reaction_event_output.write_unsupported =
+        get_node_value_bool(node_event, "write_unsupported");
+    }
+    if (check_for_node(node_event, "balance_diagnostics")) {
+      reaction_event_output.balance_diagnostics =
+        get_node_value_bool(node_event, "balance_diagnostics");
     }
   }
 

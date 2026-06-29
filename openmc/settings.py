@@ -48,6 +48,14 @@ _RECOIL_BOOL_OPTIONS = {
 
 _RECOIL_OPTIONS = set(_RECOIL_OPTION_VALUES) | _RECOIL_BOOL_OPTIONS
 
+_REACTION_EVENT_BOOL_OPTIONS = {
+    'enabled', 'write_products', 'write_unsupported', 'balance_diagnostics'
+}
+
+_REACTION_EVENT_OPTIONS = _REACTION_EVENT_BOOL_OPTIONS | {
+    'filename', 'max_events', 'materials', 'cells', 'nuclides', 'reactions'
+}
+
 
 class Settings:
     """Settings used for an OpenMC simulation.
@@ -269,6 +277,11 @@ class Settings:
         :fail_on_nonphysical: bool
 
         .. versionadded:: 0.15.4
+    reaction_event_output : dict
+        Reaction-event diagnostic output settings. Accepted keys are
+        'enabled', 'filename', 'max_events', 'materials', 'cells', 'nuclides',
+        'reactions', 'write_products', 'write_unsupported', and
+        'balance_diagnostics'.
     resonance_scattering : dict
         Settings for resonance elastic scattering. Accepted keys are 'enable'
         (bool), 'method' (str), 'energy_min' (float), 'energy_max' (float), and
@@ -450,6 +463,7 @@ class Settings:
         self._survival_biasing = None
         self._recoil_production = None
         self._recoil = {}
+        self._reaction_event_output = {}
         self._free_gas_threshold = None
 
         # Shannon entropy mesh
@@ -816,6 +830,62 @@ class Settings:
                 validated[key] = value
 
         self._recoil = validated
+
+    @property
+    def reaction_event_output(self) -> dict:
+        return self._reaction_event_output
+
+    @reaction_event_output.setter
+    def reaction_event_output(self, output: dict):
+        cv.check_type('reaction event output options', output, Mapping)
+        unknown = set(output) - _REACTION_EVENT_OPTIONS
+        if unknown:
+            raise ValueError(
+                f'Unrecognized reaction_event_output setting(s): '
+                f'{sorted(unknown)}')
+
+        validated = {}
+        for key in _REACTION_EVENT_BOOL_OPTIONS:
+            if key in output:
+                value = output[key]
+                cv.check_type(f'reaction_event_output "{key}"', value, bool)
+                validated[key] = value
+
+        if 'filename' in output:
+            value = output['filename']
+            cv.check_type('reaction event output filename', value, str)
+            validated['filename'] = value
+
+        if 'max_events' in output:
+            value = output['max_events']
+            cv.check_type('maximum reaction events', value, Integral)
+            cv.check_greater_than('maximum reaction events', value, 0)
+            validated['max_events'] = value
+
+        for key in ('materials', 'cells'):
+            if key in output:
+                value = output[key]
+                cv.check_type(
+                    f'reaction_event_output "{key}"', value, Iterable, Integral)
+                for item in value:
+                    cv.check_greater_than(
+                        f'reaction_event_output "{key}" entry', item, 0)
+                validated[key] = list(value)
+
+        if 'nuclides' in output:
+            value = output['nuclides']
+            cv.check_type(
+                'reaction_event_output "nuclides"', value, Iterable, str)
+            validated['nuclides'] = list(value)
+
+        if 'reactions' in output:
+            value = output['reactions']
+            cv.check_type(
+                'reaction_event_output "reactions"', value, Iterable,
+                (str, Integral))
+            validated['reactions'] = list(value)
+
+        self._reaction_event_output = validated
 
     @property
     def survival_biasing(self) -> bool:
@@ -1766,6 +1836,18 @@ class Settings:
                     subelement.text = str(value).lower() if isinstance(value, bool) \
                         else str(value)
 
+    def _create_reaction_event_output_subelement(self, root):
+        if self._reaction_event_output:
+            element = ET.SubElement(root, "reaction_event_output")
+            for key, value in sorted(self._reaction_event_output.items()):
+                subelement = ET.SubElement(element, key)
+                if key in _REACTION_EVENT_BOOL_OPTIONS:
+                    subelement.text = str(value).lower()
+                elif key in ('materials', 'cells', 'nuclides', 'reactions'):
+                    subelement.text = ' '.join(str(x) for x in value)
+                else:
+                    subelement.text = str(value)
+
     def _create_cutoff_subelement(self, root):
         if self._cutoff is not None:
             element = ET.SubElement(root, "cutoff")
@@ -2298,6 +2380,25 @@ class Settings:
                     recoil[key] = value in ('true', '1')
             self.recoil = recoil
 
+    def _reaction_event_output_from_xml_element(self, root):
+        elem = root.find('reaction_event_output')
+        if elem is not None:
+            output = {}
+            for key in _REACTION_EVENT_OPTIONS:
+                value = get_text(elem, key)
+                if value is not None:
+                    if key in _REACTION_EVENT_BOOL_OPTIONS:
+                        output[key] = value in ('true', '1')
+                    elif key in ('materials', 'cells'):
+                        output[key] = [int(x) for x in value.split()]
+                    elif key in ('nuclides', 'reactions'):
+                        output[key] = value.split()
+                    elif key == 'max_events':
+                        output[key] = int(value)
+                    else:
+                        output[key] = value
+            self.reaction_event_output = output
+
     def _cutoff_from_xml_element(self, root):
         elem = root.find('cutoff')
         if elem is not None:
@@ -2605,6 +2706,7 @@ class Settings:
         self._create_survival_biasing_subelement(element)
         self._create_recoil_production_subelement(element)
         self._create_recoil_subelement(element)
+        self._create_reaction_event_output_subelement(element)
         self._create_cutoff_subelement(element)
         self._create_entropy_mesh_subelement(element, mesh_memo)
         self._create_trigger_subelement(element)
@@ -2723,6 +2825,7 @@ class Settings:
         settings._survival_biasing_from_xml_element(elem)
         settings._recoil_production_from_xml_element(elem)
         settings._recoil_from_xml_element(elem)
+        settings._reaction_event_output_from_xml_element(elem)
         settings._cutoff_from_xml_element(elem)
         settings._entropy_mesh_from_xml_element(elem, meshes)
         settings._trigger_from_xml_element(elem)
