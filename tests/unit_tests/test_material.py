@@ -425,6 +425,56 @@ def test_get_nuclide_atoms():
     assert atoms['Li6'] == pytest.approx(mat.density * 10.0)
 
 
+def test_get_nuclide_density_dataframe():
+    mat = openmc.Material(material_id=900001, name='lithium')
+    mat.add_nuclide('Li6', 1.0)
+    mat.add_nuclide('Li7', 3.0)
+    mat.set_density('atom/b-cm', 4.0)
+    mat.volume = 2.5
+
+    df = mat.get_nuclide_density_dataframe()
+
+    assert list(df.columns) == [
+        'material_id',
+        'material_name',
+        'nuclide',
+        'atom_density',
+        'density_units',
+        'volume',
+        'volume_units',
+        'mass_density',
+    ]
+    assert list(df.nuclide) == ['Li6', 'Li7']
+
+    li6 = df[df.nuclide == 'Li6'].iloc[0]
+    assert li6.material_id == 900001
+    assert li6.material_name == 'lithium'
+    assert li6.atom_density == pytest.approx(1.0)
+    assert li6.density_units == 'atom/b-cm'
+    assert li6.volume == pytest.approx(2.5)
+    assert li6.volume_units == 'cm3'
+    assert li6.mass_density == pytest.approx(mat.get_mass_density('Li6'))
+
+
+def test_materials_get_nuclide_density_dataframe():
+    lithium = openmc.Material(material_id=900002, name='lithium')
+    lithium.add_nuclide('Li6', 1.0)
+    lithium.set_density('atom/b-cm', 1.0)
+
+    beryllium = openmc.Material(material_id=900003, name='beryllium')
+    beryllium.add_nuclide('Be9', 1.0)
+    beryllium.set_density('atom/b-cm', 2.0)
+
+    df = openmc.Materials([beryllium, lithium]).get_nuclide_density_dataframe()
+
+    assert list(df.material_id) == [900002, 900003]
+    assert list(df.nuclide) == ['Li6', 'Be9']
+
+    empty = openmc.Materials().get_nuclide_density_dataframe()
+    assert list(empty.columns) == list(df.columns)
+    assert empty.empty
+
+
 def test_mass():
     m = openmc.Material()
     m.add_nuclide('Zr90', 1.0, 'wo')

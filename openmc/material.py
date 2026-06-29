@@ -14,6 +14,7 @@ import warnings
 import lxml.etree as ET
 import numpy as np
 import h5py
+import pandas as pd
 
 import openmc
 import openmc.data
@@ -39,6 +40,17 @@ _SMALLEST_NORMAL = sys.float_info.min
 _BECQUEREL_PER_CURIE = 3.7e10
 
 NuclideTuple = namedtuple('NuclideTuple', ['name', 'percent', 'percent_type'])
+
+_NUCLIDE_DENSITY_COLUMNS = [
+    'material_id',
+    'material_name',
+    'nuclide',
+    'atom_density',
+    'density_units',
+    'volume',
+    'volume_units',
+    'mass_density',
+]
 
 
 class Material(IDManagerMixin):
@@ -1580,6 +1592,33 @@ class Material(IDManagerMixin):
             raise ValueError("Volume must be set in order to determine mass.")
         return volume*self.get_mass_density(nuclide)
 
+    def get_nuclide_density_dataframe(self) -> pd.DataFrame:
+        """Return nuclide densities for this material as a dataframe.
+
+        Returns
+        -------
+        pandas.DataFrame
+            DataFrame with one row for each nuclide in the material. Atom
+            densities are reported in [atom/b-cm], volumes in [cm3], and mass
+            densities in [g/cm3].
+
+        """
+        rows = []
+        for nuclide, atom_density in self.get_nuclide_atom_densities().items():
+            rows.append((
+                self.id,
+                self.name,
+                nuclide,
+                atom_density,
+                'atom/b-cm',
+                self.volume,
+                'cm3',
+                self.get_mass_density(nuclide),
+            ))
+
+        return pd.DataFrame.from_records(
+            rows, columns=_NUCLIDE_DENSITY_COLUMNS)
+
     def waste_classification(self, metal: bool = False) -> str:
         """Classify the material for near-surface waste disposal.
 
@@ -2145,6 +2184,27 @@ class Materials(cv.CheckedList):
     def make_isotropic_in_lab(self):
         for material in self:
             material.make_isotropic_in_lab()
+
+    def get_nuclide_density_dataframe(self) -> pd.DataFrame:
+        """Return nuclide densities for all materials as a dataframe.
+
+        Returns
+        -------
+        pandas.DataFrame
+            DataFrame with one row for each nuclide in each material. Atom
+            densities are reported in [atom/b-cm], volumes in [cm3], and mass
+            densities in [g/cm3].
+
+        """
+        frames = [
+            material.get_nuclide_density_dataframe()
+            for material in sorted(self, key=lambda m: m.id)
+        ]
+
+        if frames:
+            return pd.concat(frames, ignore_index=True)
+        else:
+            return pd.DataFrame(columns=_NUCLIDE_DENSITY_COLUMNS)
 
     def _write_xml(self, file, header=True, level=0, spaces_per_level=2,
                    trailing_indent=True, nuclides_to_ignore=None):
