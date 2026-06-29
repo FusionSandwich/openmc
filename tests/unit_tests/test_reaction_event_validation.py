@@ -87,7 +87,7 @@ def _event(event_id=10, n_products=0, first_product_index=-1,
     return row
 
 
-def _product(event_id, product_index):
+def _product(event_id, product_index, product_source=1, product_provenance=2):
     row = np.zeros((), dtype=PRODUCT_DTYPE)
     row['event_id'] = event_id
     row['product_index'] = product_index
@@ -96,8 +96,8 @@ def _product(event_id, product_index):
     row['product_energy'] = 1.0e6
     row['product_direction'] = _unit_vector()
     row['product_weight'] = 1.0
-    row['product_source'] = 1
-    row['product_provenance'] = 2
+    row['product_source'] = product_source
+    row['product_provenance'] = product_provenance
     return row
 
 
@@ -127,6 +127,7 @@ def _write_file(path, events, products=None):
         metadata.attrs['provenance_4'] = 'capture_gamma_approx'
         metadata.attrs['provenance_5'] = 'energy_balance_only'
         metadata.attrs['provenance_6'] = 'unsupported'
+        metadata.attrs['product_source_1'] = 'sampled_product'
 
 
 def _direction_norms(direction):
@@ -227,6 +228,40 @@ def test_reaction_event_checker_rejects_product_count_mismatch(tmp_path):
                for error in errors)
 
 
+def test_reaction_event_checker_rejects_unknown_provenance(tmp_path):
+    path = tmp_path / 'reaction_events.h5'
+    _write_file(path, [_event(provenance=99)])
+
+    _, errors = check_reaction_events(path)
+
+    assert any('unknown provenance codes: 99' in error for error in errors)
+
+
+def test_reaction_event_checker_rejects_exact_nonelastic_event(tmp_path):
+    path = tmp_path / 'reaction_events.h5'
+    event = _event(event_id=10, reaction_mt=16, provenance=1)
+    _write_file(path, [event])
+
+    _, errors = check_reaction_events(path)
+
+    assert any('elastic_exact provenance is used for non-elastic events'
+               in error for error in errors)
+
+
+def test_reaction_event_checker_rejects_exact_event_with_products(tmp_path):
+    path = tmp_path / 'reaction_events.h5'
+    event = _event(event_id=10, reaction_mt=2, provenance=1,
+                   n_products=1, first_product_index=0)
+    _write_file(path, [event], [_product(10, 0)])
+
+    _, errors = check_reaction_events(path, require_products=True)
+
+    assert any('elastic_exact events declare product rows' in error
+               for error in errors)
+    assert any('events with products use non-product provenance' in error
+               for error in errors)
+
+
 def test_unsupported_product_data_fixture_is_not_exact(tmp_path):
     path = tmp_path / 'reaction_events.h5'
     unsupported = _event(event_id=20, reaction_mt=107, provenance=6,
@@ -246,3 +281,40 @@ def test_unsupported_product_data_fixture_is_not_exact(tmp_path):
     assert event['provenance'] != 1
     assert event['n_products'] == 0
     assert event['first_product_index'] == -1
+
+
+def test_reaction_event_checker_rejects_unsupported_event_with_products(
+        tmp_path):
+    path = tmp_path / 'reaction_events.h5'
+    event = _event(event_id=20, reaction_mt=107, provenance=6,
+                   n_products=1, first_product_index=0)
+    _write_file(path, [event], [_product(20, 0)])
+
+    _, errors = check_reaction_events(path, require_products=True)
+
+    assert any('unsupported events declare product rows' in error
+               for error in errors)
+    assert any('unsupported events have non-sentinel first_product_index'
+               in error for error in errors)
+
+
+def test_reaction_event_checker_rejects_product_nonproduct_provenance(
+        tmp_path):
+    path = tmp_path / 'reaction_events.h5'
+    event = _event(event_id=10, n_products=1, first_product_index=0)
+    _write_file(path, [event], [_product(10, 0, product_provenance=1)])
+
+    _, errors = check_reaction_events(path, require_products=True)
+
+    assert any('non-product provenance codes: 1' in error for error in errors)
+
+
+def test_reaction_event_checker_rejects_unknown_product_source(tmp_path):
+    path = tmp_path / 'reaction_events.h5'
+    event = _event(event_id=10, n_products=1, first_product_index=0)
+    _write_file(path, [event], [_product(10, 0, product_source=99)])
+
+    _, errors = check_reaction_events(path, require_products=True)
+
+    assert any('unknown product_source codes: 99' in error
+               for error in errors)

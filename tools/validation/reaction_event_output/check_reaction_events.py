@@ -46,6 +46,11 @@ PRODUCT_FIELDS = (
 )
 
 DEFAULT_PROVENANCE_CODES = {1, 2, 3, 4, 5, 6}
+PROVENANCE_ELASTIC_EXACT = 1
+PROVENANCE_PRODUCT_DISTRIBUTION_SAMPLED = 2
+PROVENANCE_RESIDUAL_MOMENTUM_BALANCE = 3
+PROVENANCE_UNSUPPORTED = 6
+PRODUCT_SOURCE_SAMPLED_PRODUCT = 1
 
 
 def _decode(value):
@@ -90,6 +95,15 @@ def _metadata_provenance_codes(metadata):
         if match:
             codes.add(int(match.group(1)))
     return codes or set(DEFAULT_PROVENANCE_CODES)
+
+
+def _metadata_product_source_codes(metadata):
+    codes = set()
+    for name in metadata.attrs:
+        match = re.fullmatch(r'product_source_(\d+)', name)
+        if match:
+            codes.add(int(match.group(1)))
+    return codes or {PRODUCT_SOURCE_SAMPLED_PRODUCT}
 
 
 def _check_file_attrs(h5file, errors):
@@ -154,6 +168,27 @@ def _check_events(events, allowed_provenance, required_provenance, errors):
         errors.append('events dataset is missing required provenance codes: ' +
                       ', '.join(str(x) for x in missing_provenance))
 
+    elastic_exact = data['provenance'] == PROVENANCE_ELASTIC_EXACT
+    if np.any(elastic_exact & (data['reaction_mt'] != 2)):
+        errors.append('elastic_exact provenance is used for non-elastic events')
+    if np.any(elastic_exact & (data['n_products'] != 0)):
+        errors.append('elastic_exact events declare product rows')
+
+    unsupported = data['provenance'] == PROVENANCE_UNSUPPORTED
+    if np.any(unsupported & (data['n_products'] != 0)):
+        errors.append('unsupported events declare product rows')
+    if np.any(unsupported & (data['first_product_index'] != -1)):
+        errors.append('unsupported events have non-sentinel first_product_index')
+
+    has_products = data['n_products'] > 0
+    product_event_provenance = {
+        PROVENANCE_PRODUCT_DISTRIBUTION_SAMPLED,
+        PROVENANCE_RESIDUAL_MOMENTUM_BALANCE,
+    }
+    if np.any(has_products & ~np.isin(data['provenance'],
+                                      list(product_event_provenance))):
+        errors.append('events with products use non-product provenance')
+
     return {
         'events': int(events.shape[0]),
         'event_ids': set(int(x) for x in data['event_id']),
@@ -169,7 +204,8 @@ def _check_events(events, allowed_provenance, required_provenance, errors):
     }
 
 
-def _check_products(products, event_ids, allowed_provenance, errors):
+def _check_products(products, event_ids, allowed_provenance,
+                    allowed_product_sources, errors):
     missing = _missing_fields(products, PRODUCT_FIELDS)
     if missing:
         errors.append('products dataset is missing fields: ' + ', '.join(missing))
@@ -202,14 +238,26 @@ def _check_products(products, event_ids, allowed_provenance, errors):
         errors.append('products dataset contains unknown provenance codes: ' +
                       ', '.join(str(x) for x in unknown))
 
+    invalid_product_provenance = sorted(
+        provenance - {PROVENANCE_PRODUCT_DISTRIBUTION_SAMPLED,
+                      PROVENANCE_RESIDUAL_MOMENTUM_BALANCE})
+    if invalid_product_provenance:
+        errors.append('products dataset contains non-product provenance codes: ' +
+                      ', '.join(str(x) for x in invalid_product_provenance))
+
+    product_sources = set(int(x) for x in np.unique(data['product_source']))
+    unknown_sources = sorted(product_sources - allowed_product_sources)
+    if unknown_sources:
+        errors.append('products dataset contains unknown product_source codes: ' +
+                      ', '.join(str(x) for x in unknown_sources))
+
     return {
         'products': int(products.shape[0]),
         'product_event_counts': {
             int(event_id): int(np.count_nonzero(data['event_id'] == event_id))
             for event_id in product_event_ids
         },
-        'product_sources': sorted(
-            int(x) for x in np.unique(data['product_source'])),
+        'product_sources': sorted(product_sources),
         'product_provenance': sorted(provenance),
     }
 
@@ -297,6 +345,7 @@ def check_reaction_events(path, require_products=False,
         metadata = group['metadata']
         _check_metadata(metadata, errors)
         allowed_provenance = _metadata_provenance_codes(metadata)
+        allowed_product_sources = _metadata_product_source_codes(metadata)
         event_summary = _check_events(
             group['events'], allowed_provenance, required_provenance, errors)
         summary.update({
@@ -311,7 +360,7 @@ def check_reaction_events(path, require_products=False,
         if has_products:
             product_summary = _check_products(
                 group['products'], event_summary.get('event_ids', set()),
-                allowed_provenance, errors)
+                allowed_provenance, allowed_product_sources, errors)
             _check_product_ranges(event_summary.get('product_ranges', {}),
                                   group['products'], errors)
             summary.update({
