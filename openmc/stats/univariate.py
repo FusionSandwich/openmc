@@ -2361,6 +2361,10 @@ class DecaySpectrum(Univariate):
         volume = float(elem.get('volume'))
         names = get_elem_list(elem, 'nuclides', str)
         densities = get_elem_list(elem, 'parameters', float)
+        if len(names) != len(densities):
+            raise ValueError(
+                'DecaySpectrum nuclides and parameters must have the same '
+                'length.')
         nuclides = dict(zip(names, densities))
         return cls(nuclides, volume)
 

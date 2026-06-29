@@ -1,6 +1,7 @@
 from math import pi
 from pathlib import Path
 
+import lxml.etree as ET
 import numpy as np
 import pytest
 import openmc
@@ -1050,6 +1051,14 @@ def test_decay_spectrum_validation():
 
     with pytest.raises(ValueError):
         openmc.stats.DecaySpectrum({'I135': 1e-3}, volume=0.0)
+
+    elem = ET.Element('energy', {'type': 'decay_spectrum', 'volume': '1.0'})
+    nuclides = ET.SubElement(elem, 'nuclides')
+    nuclides.text = 'I135 Xe135'
+    parameters = ET.SubElement(elem, 'parameters')
+    parameters.text = '1.0e-3'
+    with pytest.raises(ValueError, match='same length'):
+        openmc.stats.DecaySpectrum.from_xml_element(elem)
 
 
 def test_decay_spectrum_xml_roundtrip():
