@@ -247,6 +247,29 @@ void initialize_mpi(MPI_Comm intracomm)
   MPI_Type_create_struct(
     21, blocksr, dispr, typesr, &mpi::reaction_event_site);
   MPI_Type_commit(&mpi::reaction_event_site);
+
+  ReactionEventProductSite bp;
+  MPI_Aint dispp[9];
+  MPI_Get_address(&bp.event_id, &dispp[0]);           // int64_t
+  MPI_Get_address(&bp.product_index, &dispp[1]);      // int
+  MPI_Get_address(&bp.product_particle, &dispp[2]);   // int
+  MPI_Get_address(&bp.product_za_or_pdg, &dispp[3]);  // int
+  MPI_Get_address(&bp.product_energy, &dispp[4]);     // double
+  MPI_Get_address(&bp.product_direction, &dispp[5]);  // double
+  MPI_Get_address(&bp.product_weight, &dispp[6]);     // double
+  MPI_Get_address(&bp.product_source, &dispp[7]);     // int
+  MPI_Get_address(&bp.product_provenance, &dispp[8]); // int
+  for (int i = 8; i >= 0; --i) {
+    dispp[i] -= dispp[0];
+  }
+
+  int blocksp[] = {1, 1, 1, 1, 1, 3, 1, 1, 1};
+  MPI_Datatype typesp[] = {MPI_INT64_T, MPI_INT, MPI_INT, MPI_INT, MPI_DOUBLE,
+    MPI_DOUBLE, MPI_DOUBLE, MPI_INT, MPI_INT};
+
+  MPI_Type_create_struct(
+    9, blocksp, dispp, typesp, &mpi::reaction_event_product_site);
+  MPI_Type_commit(&mpi::reaction_event_product_site);
 }
 #endif // OPENMC_MPI
 

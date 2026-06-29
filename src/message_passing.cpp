@@ -12,6 +12,7 @@ MPI_Comm intracomm {MPI_COMM_NULL};
 MPI_Datatype source_site {MPI_DATATYPE_NULL};
 MPI_Datatype collision_track_site {MPI_DATATYPE_NULL};
 MPI_Datatype reaction_event_site {MPI_DATATYPE_NULL};
+MPI_Datatype reaction_event_product_site {MPI_DATATYPE_NULL};
 #endif
 
 extern "C" bool openmc_master()

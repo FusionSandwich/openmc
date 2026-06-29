@@ -190,6 +190,9 @@ int openmc_finalize()
   if (mpi::reaction_event_site != MPI_DATATYPE_NULL) {
     MPI_Type_free(&mpi::reaction_event_site);
   }
+  if (mpi::reaction_event_product_site != MPI_DATATYPE_NULL) {
+    MPI_Type_free(&mpi::reaction_event_product_site);
+  }
 #endif
 
   openmc_finalize_random_ray();

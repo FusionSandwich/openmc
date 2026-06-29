@@ -97,6 +97,18 @@ struct ReactionEventSite {
   int provenance {0};
 };
 
+struct ReactionEventProductSite {
+  int64_t event_id {0};
+  int product_index {0};
+  int product_particle {0};
+  int product_za_or_pdg {0};
+  double product_energy {0.0};
+  Direction product_direction {};
+  double product_weight {0.0};
+  int product_source {0};
+  int product_provenance {0};
+};
+
 //! State of a particle used for particle track files
 struct TrackState {
   Position r;           //!< Position in [cm]

@@ -23,6 +23,7 @@ extern SharedArray<SourceSite> surf_source_bank;
 extern SharedArray<CollisionTrackSite> collision_track_bank;
 
 extern SharedArray<ReactionEventSite> reaction_event_bank;
+extern SharedArray<ReactionEventProductSite> reaction_event_product_bank;
 
 extern SharedArray<SourceSite> fission_bank;
 

@@ -1713,9 +1713,11 @@ void inelastic_scatter(const Nuclide& nuc, const Reaction& rx, Particle& p)
 
   // evaluate yield
   double yield = (*rx.products_[0].yield_)(E_in);
+  int n_sampled_products = yield > 0.0 ? 1 : 0;
   if (std::floor(yield) == yield && yield > 0) {
+    n_sampled_products = static_cast<int>(std::round(yield));
     // If yield is integral, create exactly that many secondary particles
-    for (int i = 0; i < static_cast<int>(std::round(yield)) - 1; ++i) {
+    for (int i = 0; i < n_sampled_products - 1; ++i) {
       p.create_secondary(p.wgt(), p.u(), p.E(), ParticleType::neutron());
     }
   } else {
@@ -1723,7 +1725,13 @@ void inelastic_scatter(const Nuclide& nuc, const Reaction& rx, Particle& p)
     p.wgt() *= yield;
   }
 
+  bool write_product_event = settings::reaction_event_output.enabled &&
+                             settings::reaction_event_output.write_products;
   if (!settings::recoil_production) {
+    if (write_product_event) {
+      reaction_event_record_neutron_product(
+        p, nuc, rx, E_in, u_in, n_sampled_products, 0.0, {}, false);
+    }
     return;
   }
 
@@ -1782,6 +1790,22 @@ void inelastic_scatter(const Nuclide& nuc, const Reaction& rx, Particle& p)
   }
 
   check_recoil_sanity(nuc, rx, E_in, emitted_kinetic);
+  double recoil_momentum2 = p_recoil.dot(p_recoil);
+  bool has_residual = std::isfinite(recoil_momentum2) && recoil_momentum2 > 0.0;
+  double E_recoil = 0.0;
+  Direction u_recoil {};
+  if (has_residual) {
+    E_recoil = recoil::kinetic_energy_from_momentum2(
+      recoil_momentum2, particle_mass_ev(residual_particle_type(nuc, rx.mt_)));
+    has_residual = std::isfinite(E_recoil) && E_recoil > 0.0;
+    if (has_residual) {
+      u_recoil = p_recoil / std::sqrt(recoil_momentum2);
+    }
+  }
+  if (write_product_event) {
+    reaction_event_record_neutron_product(p, nuc, rx, E_in, u_in,
+      n_sampled_products, E_recoil, u_recoil, has_residual);
+  }
   create_recoil_secondary(
     p, nuc, p.wgt(), p_recoil, residual_particle_type(nuc, rx.mt_));
 }

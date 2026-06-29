@@ -11,6 +11,7 @@
 #include "openmc/cell.h"
 #include "openmc/constants.h"
 #include "openmc/error.h"
+#include "openmc/endf.h"
 #include "openmc/file_utils.h"
 #include "openmc/hdf5_interface.h"
 #include "openmc/material.h"
@@ -19,6 +20,7 @@
 #include "openmc/output.h"
 #include "openmc/particle.h"
 #include "openmc/particle_type.h"
+#include "openmc/reaction.h"
 #include "openmc/settings.h"
 #include "openmc/simulation.h"
 #include "openmc/universe.h"
@@ -32,6 +34,15 @@ namespace openmc {
 namespace {
 
 constexpr int REACTION_EVENT_PROVENANCE_ELASTIC_EXACT {1};
+constexpr int REACTION_EVENT_PROVENANCE_PRODUCT_DISTRIBUTION_SAMPLED {2};
+constexpr int REACTION_EVENT_PROVENANCE_RESIDUAL_MOMENTUM_BALANCE {3};
+
+constexpr int REACTION_PRODUCT_SOURCE_SAMPLED_PRODUCT {1};
+
+int64_t reaction_event_id(const Particle& p)
+{
+  return p.id() * 1000000 + p.n_collision();
+}
 
 template<typename T>
 vector<T> sorted_filter_values(const std::unordered_set<T>& values)
@@ -108,11 +119,52 @@ hid_t h5_reaction_event_type()
   return eventtype;
 }
 
+hid_t h5_reaction_event_product_type()
+{
+  hid_t postype = H5Tcreate(H5T_COMPOUND, sizeof(Position));
+  H5Tinsert(postype, "x", HOFFSET(Position, x), H5T_NATIVE_DOUBLE);
+  H5Tinsert(postype, "y", HOFFSET(Position, y), H5T_NATIVE_DOUBLE);
+  H5Tinsert(postype, "z", HOFFSET(Position, z), H5T_NATIVE_DOUBLE);
+
+  hid_t producttype =
+    H5Tcreate(H5T_COMPOUND, sizeof(ReactionEventProductSite));
+  H5Tinsert(producttype, "event_id",
+    HOFFSET(ReactionEventProductSite, event_id), H5T_NATIVE_INT64);
+  H5Tinsert(producttype, "product_index",
+    HOFFSET(ReactionEventProductSite, product_index), H5T_NATIVE_INT);
+  H5Tinsert(producttype, "product_particle",
+    HOFFSET(ReactionEventProductSite, product_particle), H5T_NATIVE_INT);
+  H5Tinsert(producttype, "product_za_or_pdg",
+    HOFFSET(ReactionEventProductSite, product_za_or_pdg), H5T_NATIVE_INT);
+  H5Tinsert(producttype, "product_energy",
+    HOFFSET(ReactionEventProductSite, product_energy), H5T_NATIVE_DOUBLE);
+  H5Tinsert(producttype, "product_direction",
+    HOFFSET(ReactionEventProductSite, product_direction), postype);
+  H5Tinsert(producttype, "product_weight",
+    HOFFSET(ReactionEventProductSite, product_weight), H5T_NATIVE_DOUBLE);
+  H5Tinsert(producttype, "product_source",
+    HOFFSET(ReactionEventProductSite, product_source), H5T_NATIVE_INT);
+  H5Tinsert(producttype, "product_provenance",
+    HOFFSET(ReactionEventProductSite, product_provenance), H5T_NATIVE_INT);
+
+  H5Tclose(postype);
+  return producttype;
+}
+
 bool matches_reaction_event_filters(
   int cell_id, int material_id, const std::string& nuclide, int mt)
 {
   auto matches_filter = [](const auto& filter_set, const auto& value) {
     return filter_set.empty() || filter_set.count(value) > 0;
+  };
+  auto matches_mt_filter = [](const auto& filter_set, int value) {
+    if (filter_set.empty())
+      return true;
+    for (int mt : filter_set) {
+      if (mt_matches(value, mt))
+        return true;
+    }
+    return false;
   };
 
   const auto& cfg = settings::reaction_event_output;
@@ -121,7 +173,7 @@ bool matches_reaction_event_filters(
          matches_filter(cfg.cell_ids, cell_id) &&
          matches_filter(cfg.material_ids, material_id) &&
          matches_filter(cfg.nuclides, nuclide) &&
-         matches_filter(cfg.mt_numbers, mt);
+         matches_mt_filter(cfg.mt_numbers, mt);
 }
 
 void write_reaction_event_bank(hid_t group_id,
@@ -138,6 +190,22 @@ void write_reaction_event_bank(hid_t group_id,
 #endif
 
   H5Tclose(eventtype);
+}
+
+void write_reaction_event_product_bank(hid_t group_id,
+  openmc::span<ReactionEventProductSite> product_bank,
+  const openmc::vector<int64_t>& bank_index)
+{
+  hid_t producttype = h5_reaction_event_product_type();
+#ifdef OPENMC_MPI
+  write_bank_dataset("products", group_id, product_bank, bank_index,
+    producttype, producttype, mpi::reaction_event_product_site);
+#else
+  write_bank_dataset(
+    "products", group_id, product_bank, bank_index, producttype, producttype);
+#endif
+
+  H5Tclose(producttype);
 }
 
 void write_reaction_event_metadata(hid_t group_id)
@@ -178,12 +246,19 @@ void write_reaction_event_metadata(hid_t group_id)
   }
   write_attribute(metadata_group, "tracking_method", "surface");
   write_attribute(metadata_group, "provenance_1", "elastic_exact");
+  write_attribute(
+    metadata_group, "provenance_2", "product_distribution_sampled");
+  write_attribute(
+    metadata_group, "provenance_3", "residual_momentum_balance");
+  write_attribute(metadata_group, "product_source_1", "sampled_product");
   close_group(metadata_group);
 }
 
 void write_h5_reaction_events(const std::string& filename,
   openmc::span<ReactionEventSite> event_bank,
-  const openmc::vector<int64_t>& bank_index)
+  const openmc::vector<int64_t>& event_bank_index,
+  openmc::span<ReactionEventProductSite> product_bank,
+  const openmc::vector<int64_t>& product_bank_index)
 {
 #ifdef PHDF5
   bool parallel = true;
@@ -217,7 +292,11 @@ void write_h5_reaction_events(const std::string& filename,
     write_reaction_event_metadata(event_group);
   }
 
-  write_reaction_event_bank(event_group, event_bank, bank_index);
+  write_reaction_event_bank(event_group, event_bank, event_bank_index);
+  if (settings::reaction_event_output.write_products) {
+    write_reaction_event_product_bank(
+      event_group, product_bank, product_bank_index);
+  }
 
   if (mpi::master || parallel) {
     close_group(event_group);
@@ -231,6 +310,10 @@ void reaction_event_reserve_bank()
 {
   simulation::reaction_event_bank.reserve(
     settings::reaction_event_output.max_events);
+  if (settings::reaction_event_output.write_products) {
+    simulation::reaction_event_product_bank.reserve(
+      settings::reaction_event_output.max_events);
+  }
 }
 
 void reaction_event_flush_bank()
@@ -239,16 +322,23 @@ void reaction_event_flush_bank()
     return;
 
   auto size = simulation::reaction_event_bank.size();
+  auto product_size = simulation::reaction_event_product_bank.size();
   auto reaction_event_work_index = mpi::calculate_parallel_index_vector(size);
+  auto reaction_product_work_index =
+    mpi::calculate_parallel_index_vector(product_size);
   openmc::span<ReactionEventSite> eventspan(
     simulation::reaction_event_bank.begin(), size);
+  openmc::span<ReactionEventProductSite> productspan(
+    simulation::reaction_event_product_bank.begin(), product_size);
 
   std::string filename =
     settings::path_output + settings::reaction_event_output.filename;
   write_message("Creating {}...", filename, 4);
-  write_h5_reaction_events(filename, eventspan, reaction_event_work_index);
+  write_h5_reaction_events(filename, eventspan, reaction_event_work_index,
+    productspan, reaction_product_work_index);
 
   simulation::reaction_event_bank.clear();
+  simulation::reaction_event_product_bank.clear();
 }
 
 void reaction_event_record_elastic(Particle& p, const Nuclide& nuc,
@@ -291,11 +381,83 @@ void reaction_event_record_elastic(Particle& p, const Nuclide& nuc,
   site.event_weight = p.wgt();
   site.time = p.time();
   site.provenance = REACTION_EVENT_PROVENANCE_ELASTIC_EXACT;
+  site.event_id = reaction_event_id(p);
+
+  simulation::reaction_event_bank.thread_safe_append(site);
+}
+
+void reaction_event_record_neutron_product(Particle& p, const Nuclide& nuc,
+  const Reaction& rx, double E_in, Direction u_in, int n_products,
+  double E_recoil, Direction u_recoil, bool has_residual)
+{
+  const auto& cfg = settings::reaction_event_output;
+  if (!cfg.enabled || !cfg.write_products ||
+      simulation::reaction_event_product_bank.full() || n_products <= 0)
+    return;
+
+  int cell_index = p.lowest_coord().cell();
+  int material_index = p.material();
+  int universe_index = p.lowest_coord().universe();
+  if (cell_index == C_NONE || material_index == C_NONE ||
+      universe_index == C_NONE)
+    return;
+
+  int cell_id = model::cells[cell_index]->id_;
+  int material_id = model::materials[material_index]->id_;
+  std::string nuclide = nuc.name_;
+  if (!matches_reaction_event_filters(cell_id, material_id, nuclide, rx.mt_))
+    return;
+
+  int64_t event_id = reaction_event_id(p);
+
+  ReactionEventSite site;
+  site.event_id = event_id;
+  site.history_id = p.id();
+  site.particle_id = p.id();
+  site.parent_id = p.id();
+  site.cell_id = cell_id;
+  site.cell_instance = p.cell_instance();
+  site.material_id = material_id;
+  site.universe_id = model::universes[universe_index]->id_;
+  site.target_za = 1000 * nuc.Z_ + nuc.A_;
+  site.reaction_mt = rx.mt_;
+  site.incident_particle = PDG_NEUTRON;
+  site.incident_energy = E_in;
+  site.incident_direction = u_in;
+  site.outgoing_neutron_energy = p.E();
+  site.outgoing_neutron_direction = p.u();
+  site.recoil_za = site.target_za;
+  if (has_residual) {
+    site.recoil_energy = E_recoil;
+    site.recoil_direction = u_recoil;
+  }
+  site.event_weight = p.wgt();
+  site.time = p.time();
+  site.provenance = has_residual
+                      ? REACTION_EVENT_PROVENANCE_RESIDUAL_MOMENTUM_BALANCE
+                      : REACTION_EVENT_PROVENANCE_PRODUCT_DISTRIBUTION_SAMPLED;
 
   int64_t idx = simulation::reaction_event_bank.thread_safe_append(site);
-  if (idx >= 0) {
-    simulation::reaction_event_bank[idx].event_id =
-      p.id() * 1000000 + p.n_collision();
+  if (idx < 0)
+    return;
+
+  for (int i = 0; i < n_products; ++i) {
+    if (simulation::reaction_event_product_bank.full())
+      break;
+
+    ReactionEventProductSite product;
+    product.event_id = event_id;
+    product.product_index = i;
+    product.product_particle = PDG_NEUTRON;
+    product.product_za_or_pdg = PDG_NEUTRON;
+    product.product_energy = p.E();
+    product.product_direction = p.u();
+    product.product_weight = p.wgt();
+    product.product_source = REACTION_PRODUCT_SOURCE_SAMPLED_PRODUCT;
+    product.product_provenance =
+      REACTION_EVENT_PROVENANCE_PRODUCT_DISTRIBUTION_SAMPLED;
+
+    simulation::reaction_event_product_bank.thread_safe_append(product);
   }
 }
 
