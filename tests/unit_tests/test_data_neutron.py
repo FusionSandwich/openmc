@@ -459,6 +459,69 @@ def test_laboratory(be9):
         assert np.all((-1. <= mu.x) & (mu.x <= 1.))
 
 
+def test_product_summary():
+    data = openmc.data.IncidentNeutron('Fe56', 26, 56, 0, 55.45, [0.0253])
+
+    elastic = openmc.data.Reaction(2)
+    elastic.q_value = 0.0
+    elastic.xs['294K'] = openmc.data.Tabulated1D([1.0e-5, 1.0e6],
+                                                  [1.0, 2.0])
+    elastic.products = [openmc.data.Product('neutron')]
+    data.reactions[elastic.mt] = elastic
+
+    capture = openmc.data.Reaction(102)
+    capture.q_value = 7.0e6
+    capture.xs['294K'] = openmc.data.Tabulated1D([1.0e-5, 1.0e6],
+                                                  [0.1, 0.2])
+    data.reactions[capture.mt] = capture
+
+    n2n = openmc.data.Reaction(16)
+    n2n.q_value = -1.0e6
+    product = openmc.data.Product('neutron')
+    product.distribution = [openmc.data.UncorrelatedAngleEnergy()]
+    n2n.products = [product]
+    data.reactions[n2n.mt] = n2n
+
+    summary = data.product_summary()
+
+    assert list(summary.columns) == [
+        'mt',
+        'reaction_name',
+        'q_value',
+        'threshold',
+        'product_particle',
+        'product_yield_type',
+        'distribution_type',
+        'has_angle_distribution',
+        'has_energy_distribution',
+        'has_energy_angle_distribution',
+        'supports_recoil_sampling',
+        'notes',
+    ]
+
+    elastic_row = summary[summary.mt == 2].iloc[0]
+    assert elastic_row.reaction_name == '(n,elastic)'
+    assert elastic_row.threshold == pytest.approx(1.0e-5)
+    assert elastic_row.product_particle == 'neutron'
+    assert elastic_row.product_yield_type == 'Polynomial'
+    assert not elastic_row.has_energy_angle_distribution
+    assert elastic_row.supports_recoil_sampling
+    assert elastic_row.notes == 'two-body neutron kinematics'
+
+    capture_row = summary[summary.mt == 102].iloc[0]
+    assert capture_row.reaction_name == '(n,gamma)'
+    assert pd.isna(capture_row.product_particle)
+    assert not capture_row.supports_recoil_sampling
+    assert capture_row.notes == 'no product data'
+
+    n2n_row = summary[summary.mt == 16].iloc[0]
+    assert n2n_row.reaction_name == '(n,2n)'
+    assert n2n_row.distribution_type == 'UncorrelatedAngleEnergy'
+    assert n2n_row.has_energy_angle_distribution
+    assert n2n_row.supports_recoil_sampling
+    assert n2n_row.notes == 'product distribution present'
+
+
 @needs_njoy
 def test_correlated(tmpdir, endf_data):
     endf_file = os.path.join(endf_data, 'neutrons', 'n-014_Si_030.endf')
