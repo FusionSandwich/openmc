@@ -26,6 +26,9 @@ Run the exported model:
 python build_model.py --output-dir run --run
 ```
 
+When ``--run`` is used, the example also writes CSV tables for detector photon
+flux, pulse height, and heating from the final statepoint.
+
 The included depletion chain fragment is limited to the Co-60 photon source used
 by this example. Set ``OPENMC_CROSS_SECTIONS`` to a photon-capable data library
 before running transport.

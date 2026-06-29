@@ -132,6 +132,11 @@ def build_metadata(detector_cell_id, source_energy):
             'energy_bins_eV': ENERGY_BINS_EV.tolist(),
             'detector_cell_id': detector_cell_id,
             'active_volume_cm3': detector_volume,
+            'outputs': {
+                'detector_photon_flux.csv': 'detector photon flux',
+                'detector_pulse_height.csv': 'detector pulse height',
+                'detector_heating.csv': 'detector heating',
+            },
         },
         'transport': {
             'particles': ['photon'],
@@ -153,6 +158,23 @@ def export_example(output_dir='.', particles=10000, batches=10):
         json.dump(metadata, fh, indent=2)
         fh.write('\n')
     return model, metadata
+
+
+def export_statepoint_tables(statepoint_path, output_dir='.'):
+    output_dir = Path(output_dir)
+    outputs = {
+        'detector_photon_flux.csv': 'detector photon flux',
+        'detector_pulse_height.csv': 'detector pulse height',
+        'detector_heating.csv': 'detector heating',
+    }
+    written = []
+    with openmc.StatePoint(statepoint_path) as sp:
+        for filename, tally_name in outputs.items():
+            tally = sp.get_tally(name=tally_name)
+            path = output_dir / filename
+            tally.get_pandas_dataframe().to_csv(path, index=False)
+            written.append(path)
+    return written
 
 
 def main():
@@ -180,8 +202,10 @@ def main():
         old_chain = os.environ.get('OPENMC_CHAIN_FILE')
         os.environ['OPENMC_CHAIN_FILE'] = str(chain_path.resolve())
         try:
-            model.run(cwd=output_dir, openmc_exec=args.openmc_exec,
-                      export_model_xml=False)
+            statepoint = model.run(cwd=output_dir, openmc_exec=args.openmc_exec,
+                                   export_model_xml=False)
+            for path in export_statepoint_tables(statepoint, output_dir):
+                print(path)
         finally:
             if old_chain is None:
                 os.environ.pop('OPENMC_CHAIN_FILE', None)

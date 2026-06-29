@@ -36,6 +36,11 @@ def test_decay_photon_detector_example_export(tmp_path):
     assert metadata['source']['type'] == 'decay_photon'
     assert metadata['tallies']['detector_cell_id'] is not None
     assert metadata['transport']['particles'] == ['photon']
+    assert metadata['tallies']['outputs'] == {
+        'detector_photon_flux.csv': 'detector photon flux',
+        'detector_pulse_height.csv': 'detector pulse height',
+        'detector_heating.csv': 'detector heating',
+    }
 
     bins = np.asarray(metadata['tallies']['energy_bins_eV'])
     assert np.all(np.isfinite(bins))
