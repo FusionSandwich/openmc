@@ -4,18 +4,16 @@ from contextlib import nullcontext
 import copy
 from datetime import datetime
 import json
+from numbers import Integral
 from pathlib import Path
 from time import perf_counter
 
 import numpy as np
 import openmc
-from . import IndependentOperator, PredictorIntegrator
 from .chain import Chain
-from .microxs import get_microxs_and_flux, write_microxs_hdf5, read_microxs_hdf5
 from .results import Results
 from ..checkvalue import PathLike
 from ..mpi import comm
-from openmc.lib import TemporarySession
 
 
 def get_activation_materials(
@@ -164,6 +162,32 @@ class R2SManager:
         timing_file = output_path / 'timing.json'
         with timing_file.open('w') as fh:
             json.dump(self.results.get('time', {}), fh, indent=2)
+
+    @staticmethod
+    def _normalize_time_indices(
+        time_indices: Sequence[int] | None,
+        n_times: int
+    ) -> list[int]:
+        """Return validated depletion-result indices for photon transport."""
+        if time_indices is None:
+            return list(range(n_times))
+
+        normalized = []
+        for time_index in time_indices:
+            if not isinstance(time_index, Integral):
+                raise TypeError("photon_time_indices entries must be integers.")
+
+            original_index = time_index
+            if time_index < 0:
+                time_index += n_times
+            if time_index < 0 or time_index >= n_times:
+                raise IndexError(
+                    f"photon time index {original_index} is out of range for "
+                    f"{n_times} depletion result time entries."
+                )
+            normalized.append(int(time_index))
+
+        return normalized
 
     def run(
         self,
@@ -370,6 +394,9 @@ class R2SManager:
         micro_kwargs.setdefault('path_statepoint', output_dir / 'statepoint.h5')
         micro_kwargs.setdefault('path_input', output_dir / 'model.xml')
 
+        from .microxs import get_microxs_and_flux, write_microxs_hdf5
+        from openmc.lib import TemporarySession
+
         # Run neutron transport and get fluxes and micros. Run via openmc.lib to
         # maintain a consistent parallelism strategy with the activation step.
         microxs_start = perf_counter()
@@ -465,6 +492,7 @@ class R2SManager:
             operator_kwargs = {}
         operator_kwargs.setdefault('normalization_mode', 'source-rate')
         operator_start = perf_counter()
+        from .independent_operator import IndependentOperator
         op = IndependentOperator(
             self.results['activation_materials'],
             self.results['fluxes'],
@@ -475,6 +503,7 @@ class R2SManager:
 
         # Create time integrator and solve depletion equations
         integrator_start = perf_counter()
+        from .integrators import PredictorIntegrator
         integrator = PredictorIntegrator(
             op, timesteps, source_rates=source_rates, timestep_units=timestep_units
         )
@@ -553,9 +582,8 @@ class R2SManager:
         output_dir.mkdir(parents=True, exist_ok=True)
 
         # Get default time indices if not provided
-        if time_indices is None:
-            n_steps = len(self.results['depletion_results'])
-            time_indices = list(range(n_steps))
+        time_indices = self._normalize_time_indices(
+            time_indices, len(self.results['depletion_results']))
 
         # Check whether the photon model is different
         neutron_univ = self.neutron_model.geometry.root_universe
@@ -612,11 +640,9 @@ class R2SManager:
         # Ensure photon transport is enabled in settings
         self.photon_model.settings.photon_transport = True
 
-        for time_index in time_indices:
-            # Convert time_index (which may be negative) to a normal index
-            if time_index < 0:
-                time_index += len(self.results['depletion_results'])
+        from openmc.lib import TemporarySession
 
+        for time_index in time_indices:
             # Build decay photon sources and assign to the photon model
             source_start = perf_counter()
             sources = self._create_photon_sources(time_index, work_items)
@@ -768,6 +794,8 @@ class R2SManager:
                 ]
         fluxes_file = neutron_dir / 'fluxes.npy'
         if fluxes_file.exists():
+            from .microxs import read_microxs_hdf5
+
             self.results['fluxes'] = list(np.load(fluxes_file, allow_pickle=True))
             micros_dict = read_microxs_hdf5(neutron_dir / 'micros.h5')
             self.results['micros'] = [

@@ -5,6 +5,28 @@ import openmc
 from openmc.deplete import Chain, R2SManager
 
 
+def test_r2s_time_index_normalization():
+    normalize = R2SManager._normalize_time_indices
+
+    assert normalize(None, 3) == [0, 1, 2]
+    assert normalize([0, 2], 3) == [0, 2]
+    assert normalize([-1, -3], 3) == [2, 0]
+    assert normalize([1, 1], 3) == [1, 1]
+
+
+def test_r2s_time_index_validation():
+    normalize = R2SManager._normalize_time_indices
+
+    with pytest.raises(TypeError, match='integers'):
+        normalize([0.5], 3)
+
+    with pytest.raises(IndexError, match='out of range'):
+        normalize([3], 3)
+
+    with pytest.raises(IndexError, match='out of range'):
+        normalize([-4], 3)
+
+
 @pytest.fixture
 def simple_model_and_mesh():
     # Define two materials: water and Ni
