@@ -8,6 +8,7 @@ from warnings import warn
 
 import numpy as np
 import h5py
+import pandas as pd
 
 from . import HDF5_VERSION, HDF5_VERSION_MAJOR
 from .ace import Library, Table, get_table, get_metadata
@@ -18,7 +19,7 @@ from .fission_energy import FissionEnergyRelease
 from .function import Tabulated1D, Sum, ResonancesWithBackground
 from .njoy import make_ace, make_pendf
 from .product import Product
-from .reaction import Reaction, _get_photon_products_ace, FISSION_MTS
+from .reaction import Reaction, _get_photon_products_ace, FISSION_MTS, REACTION_NAME
 from . import resonance as res
 from . import resonance_covariance as res_cov
 from .urr import ProbabilityTables
@@ -128,6 +129,109 @@ class IncidentNeutron(EqualityMixin):
 
     def __iter__(self):
         return iter(self.reactions.values())
+
+    def product_summary(self):
+        """Return a table summarizing reaction products.
+
+        Returns
+        -------
+        pandas.DataFrame
+            DataFrame with one row for each reaction product. Reactions with no
+            products are retained with ``product_particle`` set to ``None`` so
+            missing product data are visible.
+
+        """
+        rows = []
+        for mt, reaction in sorted(self.reactions.items()):
+            products = reaction.products or [None]
+            for product in products:
+                rows.append(self._product_summary_row(reaction, product))
+        return pd.DataFrame(rows, columns=[
+            'mt',
+            'reaction_name',
+            'q_value',
+            'threshold',
+            'product_particle',
+            'product_yield_type',
+            'distribution_type',
+            'has_angle_distribution',
+            'has_energy_distribution',
+            'has_energy_angle_distribution',
+            'supports_recoil_sampling',
+            'notes',
+        ])
+
+    @staticmethod
+    def _reaction_threshold(reaction):
+        thresholds = []
+        for xs in reaction.xs.values():
+            grid = getattr(xs, 'x', None)
+            if grid is not None and len(grid) > 0:
+                thresholds.append(float(grid[0]))
+        return min(thresholds) if thresholds else None
+
+    @staticmethod
+    def _product_summary_row(reaction, product):
+        mt = reaction.mt
+        reaction_name = REACTION_NAME.get(mt)
+        threshold = IncidentNeutron._reaction_threshold(reaction)
+
+        if product is None:
+            return {
+                'mt': mt,
+                'reaction_name': reaction_name,
+                'q_value': reaction.q_value,
+                'threshold': threshold,
+                'product_particle': None,
+                'product_yield_type': None,
+                'distribution_type': None,
+                'has_angle_distribution': False,
+                'has_energy_distribution': False,
+                'has_energy_angle_distribution': False,
+                'supports_recoil_sampling': False,
+                'notes': 'no product data',
+            }
+
+        distributions = product.distribution
+        distribution_types = tuple(type(d).__name__ for d in distributions)
+        has_energy_angle = bool(distributions)
+        has_angle = any(
+            getattr(d, 'angle', None) is not None or
+            type(d).__name__ in {'CorrelatedAngleEnergy', 'KalbachMann',
+                                 'LaboratoryAngleEnergy'}
+            for d in distributions
+        )
+        has_energy = any(
+            getattr(d, 'energy', None) is not None or
+            type(d).__name__ in {'CorrelatedAngleEnergy', 'KalbachMann',
+                                 'LaboratoryAngleEnergy', 'NBodyPhaseSpace'}
+            for d in distributions
+        )
+
+        supports_recoil = has_energy_angle or (
+            product.particle == 'neutron' and (mt == 2 or 51 <= mt <= 90)
+        )
+        if has_energy_angle:
+            notes = 'product distribution present'
+        elif product.particle == 'neutron' and (mt == 2 or 51 <= mt <= 90):
+            notes = 'two-body neutron kinematics'
+        else:
+            notes = 'no product distribution'
+
+        return {
+            'mt': mt,
+            'reaction_name': reaction_name,
+            'q_value': reaction.q_value,
+            'threshold': threshold,
+            'product_particle': product.particle,
+            'product_yield_type': type(product.yield_).__name__,
+            'distribution_type': ', '.join(distribution_types) or None,
+            'has_angle_distribution': has_angle,
+            'has_energy_distribution': has_energy,
+            'has_energy_angle_distribution': has_energy_angle,
+            'supports_recoil_sampling': supports_recoil,
+            'notes': notes,
+        }
 
     @property
     def name(self):
