@@ -19,6 +19,7 @@
 #include "openmc/random_dist.h"
 #include "openmc/random_lcg.h"
 #include "openmc/reaction.h"
+#include "openmc/recoil.h"
 #include "openmc/search.h"
 #include "openmc/secondary_uncorrelated.h"
 #include "openmc/settings.h"
@@ -62,19 +63,6 @@ double particle_mass_ev(ParticleType type)
     }
     return MASS_NEUTRON_EV;
   }
-}
-
-Direction momentum_from_kinetic_energy(double mass, double E, Direction u)
-{
-  if (mass <= 0.0 || E <= 0.0) {
-    return {};
-  }
-  return std::sqrt(2.0 * mass * E) * u;
-}
-
-Direction neutron_momentum(double E, Direction u)
-{
-  return momentum_from_kinetic_energy(MASS_NEUTRON_EV, E, u);
 }
 
 Direction photon_momentum(double E, Direction u)
@@ -254,7 +242,7 @@ bool create_recoil_secondary(Particle& p, const Nuclide& nuc, double weight,
     return false;
   }
 
-  double E_recoil = p2 / (2.0 * mass);
+  double E_recoil = recoil::kinetic_energy_from_momentum2(p2, mass);
   if (!std::isfinite(E_recoil) || E_recoil <= 0.0) {
     return false;
   }
@@ -395,7 +383,7 @@ bool sample_two_body_charged_product(const Nuclide& nuc, const Reaction& rx,
   double p_cm = std::sqrt(2.0 * mu_final * available);
   Direction u_cm = isotropic_direction(seed);
 
-  Direction p_in = neutron_momentum(E_in, u_in);
+  Direction p_in = recoil::neutron_momentum(E_in, u_in);
   Direction v_cm = p_in / (m_n + m_target);
   Direction v_emitted = v_cm + (p_cm / m_emitted) * u_cm;
   p_emitted = m_emitted * v_emitted;
@@ -499,7 +487,7 @@ void create_absorption_recoil(Particle& p, int i_nuclide, double recoil_weight,
     return;
   }
 
-  Direction p_in = neutron_momentum(E_in, u_in);
+  Direction p_in = recoil::neutron_momentum(E_in, u_in);
   Direction p_recoil = p_in;
   double emitted_kinetic = 0.0;
   ParticleType recoil_type = residual_particle_type(*nuc, rx->mt_);
@@ -1375,7 +1363,8 @@ void elastic_scatter(int i_nuclide, const Reaction& rx, double kT, Particle& p)
   // Generate recoil
   if (settings::recoil_production) {
     Direction p_recoil =
-      neutron_momentum(E_in, u_in) - neutron_momentum(p.E(), p.u());
+      recoil::neutron_momentum(E_in, u_in) -
+      recoil::neutron_momentum(p.E(), p.u());
     create_recoil_secondary(p, *nuc, p.wgt(), p_recoil, nuc->particle_type());
   }
 }
@@ -1730,7 +1719,7 @@ void inelastic_scatter(const Nuclide& nuc, const Reaction& rx, Particle& p)
     return;
   }
 
-  Direction p_recoil = neutron_momentum(E_in, u_in);
+  Direction p_recoil = recoil::neutron_momentum(E_in, u_in);
   double emitted_kinetic = 0.0;
 
   int n_neutron, n_proton, n_deuteron, n_triton, n_he3, n_alpha;
@@ -1753,19 +1742,19 @@ void inelastic_scatter(const Nuclide& nuc, const Reaction& rx, Particle& p)
 
   if (settings::recoil.multi_neutron_mode ==
       RecoilMultiNeutronMode::one_particle) {
-    p_recoil -= neutron_momentum(E_out, u_out);
+    p_recoil -= recoil::neutron_momentum(E_out, u_out);
     emitted_kinetic += E_out;
   } else if (settings::recoil.multi_neutron_mode ==
              RecoilMultiNeutronMode::duplicate_as_transport) {
     double multiplicity = std::max(0.0, yield);
-    p_recoil -= multiplicity * neutron_momentum(E_out, u_out);
+    p_recoil -= multiplicity * recoil::neutron_momentum(E_out, u_out);
     emitted_kinetic += multiplicity * E_out;
   } else {
     int n_secondary = 0;
     if (std::floor(yield) == yield && yield > 0.0) {
       n_secondary = static_cast<int>(std::round(yield)) - 1;
     }
-    p_recoil -= neutron_momentum(E_out, u_out);
+    p_recoil -= recoil::neutron_momentum(E_out, u_out);
     emitted_kinetic += E_out;
 
     if (n_secondary > 0) {
@@ -1774,12 +1763,12 @@ void inelastic_scatter(const Nuclide& nuc, const Reaction& rx, Particle& p)
         double mu_extra;
         Direction u_extra;
         sample_neutron_out(E_extra, mu_extra, u_extra);
-        p_recoil -= neutron_momentum(E_extra, u_extra);
+        p_recoil -= recoil::neutron_momentum(E_extra, u_extra);
         emitted_kinetic += E_extra;
       }
     } else if (yield > 1.0) {
       double extra = yield - 1.0;
-      p_recoil -= extra * neutron_momentum(E_out, u_out);
+      p_recoil -= extra * recoil::neutron_momentum(E_out, u_out);
       emitted_kinetic += extra * E_out;
     }
   }
