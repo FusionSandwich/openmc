@@ -57,7 +57,10 @@ def _unit_vector():
     return (0.0, 0.0, 1.0)
 
 
-def _event(event_id=10, n_products=0, first_product_index=-1):
+def _event(event_id=10, n_products=0, first_product_index=-1,
+           target_za=26056, reaction_mt=None,
+           incident_energy=14.1e6, recoil_energy=1.0, provenance=None,
+           recoil_direction=None):
     row = np.zeros((), dtype=EVENT_DTYPE)
     row['event_id'] = event_id
     row['n_products'] = n_products
@@ -69,18 +72,18 @@ def _event(event_id=10, n_products=0, first_product_index=-1):
     row['cell_instance'] = 0
     row['material_id'] = 1
     row['universe_id'] = 0
-    row['target_za'] = 26056
-    row['reaction_mt'] = 16 if n_products else 2
+    row['target_za'] = target_za
+    row['reaction_mt'] = reaction_mt or (16 if n_products else 2)
     row['incident_particle'] = 2112
-    row['incident_energy'] = 14.1e6
+    row['incident_energy'] = incident_energy
     row['incident_direction'] = _unit_vector()
     row['outgoing_neutron_energy'] = 1.0e6
     row['outgoing_neutron_direction'] = _unit_vector()
-    row['recoil_za'] = 26056
-    row['recoil_energy'] = 1.0
-    row['recoil_direction'] = _unit_vector()
+    row['recoil_za'] = target_za
+    row['recoil_energy'] = recoil_energy
+    row['recoil_direction'] = recoil_direction or _unit_vector()
     row['event_weight'] = 1.0
-    row['provenance'] = 2 if n_products else 1
+    row['provenance'] = provenance or (2 if n_products else 1)
     return row
 
 
@@ -126,16 +129,58 @@ def _write_file(path, events, products=None):
         metadata.attrs['provenance_6'] = 'unsupported'
 
 
+def _direction_norms(direction):
+    return np.sqrt(
+        direction['x'] * direction['x'] +
+        direction['y'] * direction['y'] +
+        direction['z'] * direction['z'])
+
+
+def _max_elastic_recoil_energy(incident_energy, awr):
+    return 4.0 * awr / ((1.0 + awr) * (1.0 + awr)) * incident_energy
+
+
+def test_elastic_pka_event_sanity_fixture(tmp_path):
+    path = tmp_path / 'reaction_events.h5'
+    h1_event = _event(event_id=1, target_za=1001, recoil_energy=8.0e6)
+    fe56_event = _event(event_id=2, target_za=26056, recoil_energy=8.0e5)
+    _write_file(path, [h1_event, fe56_event])
+
+    assert path.exists()
+    summary, errors = check_reaction_events(
+        path, required_provenance=(1,))
+    assert errors == []
+    assert summary['events'] == 2
+    assert summary['products'] is None
+    assert summary['provenance'] == [1]
+
+    with h5py.File(path, 'r') as h5file:
+        metadata = h5file['reaction_events']['metadata'].attrs
+        assert tuple(metadata['schema_version']) == (1, 1)
+        events = h5file['reaction_events']['events'][()]
+
+    awr_by_za = {1001: 1.0, 26056: 56.0}
+    assert np.all(events['n_products'] == 0)
+    assert np.all(events['first_product_index'] == -1)
+    assert set(events['target_za']) == {1001, 26056}
+    for row in events:
+        t_max = _max_elastic_recoil_energy(
+            row['incident_energy'], awr_by_za[int(row['target_za'])])
+        assert 0.0 <= row['recoil_energy'] <= t_max
+    assert np.all(np.isfinite(_direction_norms(events['recoil_direction'])))
+    assert np.allclose(_direction_norms(events['recoil_direction']), 1.0)
+
+
 def test_reaction_event_checker_accepts_product_ranges(tmp_path):
     path = tmp_path / 'reaction_events.h5'
-    _write_file(path, [_event(10, 2, 0)],
-                [_product(10, 0), _product(10, 1)])
+    _write_file(path, [_event(10, 2, 0), _event(11, 1, 2)],
+                [_product(10, 0), _product(10, 1), _product(11, 0)])
 
     summary, errors = check_reaction_events(path, require_products=True)
 
     assert errors == []
-    assert summary['events'] == 1
-    assert summary['products'] == 2
+    assert summary['events'] == 2
+    assert summary['products'] == 3
 
 
 def test_reaction_event_checker_accepts_no_product_file(tmp_path):
@@ -169,3 +214,35 @@ def test_reaction_event_checker_rejects_bad_product_range(tmp_path):
 
     assert any('product range contains rows for another event' in error
                for error in errors)
+
+
+def test_reaction_event_checker_rejects_product_count_mismatch(tmp_path):
+    path = tmp_path / 'reaction_events.h5'
+    _write_file(path, [_event(10, 1, 0)],
+                [_product(10, 0), _product(10, 1)])
+
+    _, errors = check_reaction_events(path, require_products=True)
+
+    assert any('declares 1 products but 2 product rows reference it' in error
+               for error in errors)
+
+
+def test_unsupported_product_data_fixture_is_not_exact(tmp_path):
+    path = tmp_path / 'reaction_events.h5'
+    unsupported = _event(event_id=20, reaction_mt=107, provenance=6,
+                         n_products=0, first_product_index=-1,
+                         recoil_energy=0.0, recoil_direction=(0.0, 0.0, 0.0))
+    _write_file(path, [unsupported])
+
+    summary, errors = check_reaction_events(
+        path, required_provenance=(6,))
+
+    assert errors == []
+    assert summary['provenance'] == [6]
+    with h5py.File(path, 'r') as h5file:
+        event = h5file['reaction_events']['events'][0]
+    assert event['reaction_mt'] == 107
+    assert event['provenance'] == 6
+    assert event['provenance'] != 1
+    assert event['n_products'] == 0
+    assert event['first_product_index'] == -1

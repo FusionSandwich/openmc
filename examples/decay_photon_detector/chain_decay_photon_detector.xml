@@ -1,0 +1,10 @@
+<?xml version="1.0"?>
+<depletion_chain>
+  <nuclide name="Co60" half_life="166344200.0" decay_modes="1" decay_energy="2505000.0" reactions="0">
+    <decay type="beta-" target="Ni60" branching_ratio="1.0"/>
+    <source type="discrete" particle="photon">
+      <parameters>1173228.0 1332492.0 0.999 0.999</parameters>
+    </source>
+  </nuclide>
+  <nuclide name="Ni60" decay_modes="0" reactions="0"/>
+</depletion_chain>

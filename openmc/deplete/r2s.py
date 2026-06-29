@@ -1,23 +1,24 @@
 from __future__ import annotations
 from collections.abc import Sequence
+from contextlib import nullcontext
 import copy
 from datetime import datetime
 import json
+from numbers import Integral
 from pathlib import Path
+from time import perf_counter
 
 import numpy as np
 import openmc
-from . import IndependentOperator, PredictorIntegrator
-from .microxs import get_microxs_and_flux, write_microxs_hdf5, read_microxs_hdf5
+from .chain import Chain
 from .results import Results
 from ..checkvalue import PathLike
 from ..mpi import comm
-from openmc.lib import TemporarySession
-from openmc.utility_funcs import change_directory
 
 
 def get_activation_materials(
-    model: openmc.Model, mmv: openmc.MeshMaterialVolumes
+    model: openmc.Model,
+    mmv_list: list[openmc.MeshMaterialVolumes]
 ) -> openmc.Materials:
     """Get a list of activation materials for each mesh element/material.
 
@@ -31,35 +32,35 @@ def get_activation_materials(
     ----------
     model : openmc.Model
         The full model containing the geometry and materials.
-    mmv : openmc.MeshMaterialVolumes
-        The mesh material volumes object containing the materials and their
-        volumes for each mesh element.
+    mmv_list : list of openmc.MeshMaterialVolumes
+        List of mesh material volumes objects, one per mesh, containing the
+        materials and their volumes for each mesh element.
 
     Returns
     -------
     openmc.Materials
         A list of materials, each corresponding to a unique mesh element and
-        material combination.
+        material combination across all meshes.
 
     """
-    # Get the material ID, volume, and element index for each element-material
-    # combination
-    mat_ids = mmv._materials[mmv._materials > -1]
-    volumes = mmv._volumes[mmv._materials > -1]
-    elems, _ = np.where(mmv._materials > -1)
-
     # Get all materials in the model
     material_dict = model._get_all_materials()
 
     # Create a new activation material for each element-material combination
+    # across all meshes
     materials = openmc.Materials()
-    for elem, mat_id, vol in zip(elems, mat_ids, volumes):
-        mat = material_dict[mat_id]
-        new_mat = mat.clone()
-        new_mat.depletable = True
-        new_mat.name = f'Element {elem}, Material {mat_id}'
-        new_mat.volume = vol
-        materials.append(new_mat)
+    for mesh_idx, mmv in enumerate(mmv_list):
+        mat_ids = mmv._materials[mmv._materials > -1]
+        volumes = mmv._volumes[mmv._materials > -1]
+        elems, _ = np.where(mmv._materials > -1)
+
+        for elem, mat_id, vol in zip(elems, mat_ids, volumes):
+            mat = material_dict[mat_id]
+            new_mat = mat.clone()
+            new_mat.depletable = True
+            new_mat.name = f'Mesh {mesh_idx}, Element {elem}, Material {mat_id}'
+            new_mat.volume = vol
+            materials.append(new_mat)
 
     return materials
 
@@ -70,7 +71,9 @@ class R2SManager:
     This class is responsible for managing the materials and sources needed for
     mesh-based or cell-based R2S calculations. It provides methods to get
     activation materials and decay photon sources based on the mesh/cells and
-    materials in the OpenMC model.
+    materials in the OpenMC model. Multiple meshes can be specified as domains,
+    in which case each element--material combination of each mesh is treated as
+    an activation region (meshes are assumed to be non-overlapping).
 
     This class supports the use of a different models for the neutron and photon
     transport calculation. However, for cell-based calculations, it assumes that
@@ -83,17 +86,20 @@ class R2SManager:
     ----------
     neutron_model : openmc.Model
         The OpenMC model to use for neutron transport.
-    domains : openmc.MeshBase or Sequence[openmc.Cell]
-        The mesh or a sequence of cells that represent the spatial units over
-        which the R2S calculation will be performed.
+    domains : openmc.MeshBase or Sequence[openmc.MeshBase] or Sequence[openmc.Cell]
+        The mesh(es) or a sequence of cells that represent the spatial units
+        over which the R2S calculation will be performed. When a single
+        :class:`~openmc.MeshBase` or a sequence of meshes is given, each
+        element--material combination across all meshes is treated as an
+        activation region.
     photon_model : openmc.Model, optional
         The OpenMC model to use for photon transport calculations. If None, a
         shallow copy of the neutron_model will be created and used.
 
     Attributes
     ----------
-    domains : openmc.MeshBase or Sequence[openmc.Cell]
-        The mesh or a sequence of cells that represent the spatial units over
+    domains : list of openmc.MeshBase or Sequence[openmc.Cell]
+        The meshes or a sequence of cells that represent the spatial units over
         which the R2S calculation will be performed.
     neutron_model : openmc.Model
         The OpenMC model used for neutron transport.
@@ -101,7 +107,7 @@ class R2SManager:
         The OpenMC model used for photon transport calculations.
     method : {'mesh-based', 'cell-based'}
         Indicates whether the R2S calculation uses mesh elements ('mesh-based')
-        as the spatial discetization or a list of a cells ('cell-based').
+        as the spatial discretization or a list of cells ('cell-based').
     results : dict
         A dictionary that stores results from the R2S calculation.
 
@@ -109,7 +115,7 @@ class R2SManager:
     def __init__(
         self,
         neutron_model: openmc.Model,
-        domains: openmc.MeshBase | Sequence[openmc.Cell],
+        domains: openmc.MeshBase | Sequence[openmc.MeshBase] | Sequence[openmc.Cell],
         photon_model: openmc.Model | None = None,
     ):
         self.neutron_model = neutron_model
@@ -126,10 +132,77 @@ class R2SManager:
             self.photon_model = photon_model
         if isinstance(domains, openmc.MeshBase):
             self.method = 'mesh-based'
+            self.domains = [domains]
+        elif isinstance(domains, Sequence) and len(domains) > 0 and \
+                isinstance(domains[0], openmc.MeshBase):
+            self.method = 'mesh-based'
+            self.domains = list(domains)
         else:
             self.method = 'cell-based'
-        self.domains = domains
-        self.results = {}
+            self.domains = list(domains)
+        self.results = {'time': {}}
+
+    def _record_time(self, step: str, label: str, start_time: float) -> float:
+        """Record elapsed time for a labelled operation within a step."""
+
+        elapsed = perf_counter() - start_time
+        step_times = self.results.setdefault('time', {}).setdefault(step, {})
+        step_times[label] = elapsed
+        if comm.rank == 0:
+            print(f"[openmc.r2s] {step}: {label} took {elapsed:.2f} seconds")
+        return elapsed
+
+    def _write_timing(self, output_dir: PathLike) -> None:
+        """Write accumulated timing information to JSON in the output directory."""
+
+        if comm.rank != 0:
+            return
+        output_path = Path(output_dir)
+        output_path.mkdir(parents=True, exist_ok=True)
+        timing_file = output_path / 'timing.json'
+        with timing_file.open('w') as fh:
+            json.dump(self.results.get('time', {}), fh, indent=2)
+
+    @staticmethod
+    def _normalize_time_indices(
+        time_indices: Sequence[int] | None,
+        n_times: int
+    ) -> list[int]:
+        """Return validated depletion-result indices for photon transport."""
+        if time_indices is None:
+            return list(range(n_times))
+
+        normalized = []
+        for time_index in time_indices:
+            if isinstance(time_index, bool) or not isinstance(time_index, Integral):
+                raise TypeError("photon_time_indices entries must be integers.")
+
+            original_index = time_index
+            if time_index < 0:
+                time_index += n_times
+            if time_index < 0 or time_index >= n_times:
+                raise IndexError(
+                    f"photon time index {original_index} is out of range for "
+                    f"{n_times} depletion result time entries."
+                )
+            normalized.append(int(time_index))
+
+        return normalized
+
+    @staticmethod
+    def _photon_time_metadata(depletion_results, time_indices):
+        """Return metadata for photon-source times selected from depletion results."""
+        metadata = []
+        for time_index in time_indices:
+            step = depletion_results[time_index]
+            time_window = tuple(float(t) for t in step.time)
+            metadata.append({
+                'index': time_index,
+                'time': time_window[0],
+                'time_window': time_window,
+                'source_rate': float(step.source_rate),
+            })
+        return metadata
 
     def run(
         self,
@@ -139,7 +212,7 @@ class R2SManager:
         photon_time_indices: Sequence[int] | None = None,
         output_dir: PathLike | None = None,
         bounding_boxes: dict[int, openmc.BoundingBox] | None = None,
-        chain_file: PathLike | None = None,
+        chain_file: PathLike | Chain | None = None,
         micro_kwargs: dict | None = None,
         mat_vol_kwargs: dict | None = None,
         run_kwargs: dict | None = None,
@@ -177,9 +250,10 @@ class R2SManager:
             Dictionary mapping cell IDs to bounding boxes used for spatial
             source sampling in cell-based R2S calculations. Required if method
             is 'cell-based'.
-        chain_file : PathLike, optional
-            Path to the depletion chain XML file to use during activation. If
-            not provided, the default configured chain file will be used.
+        chain_file : PathLike or openmc.deplete.Chain, optional
+            Path to the depletion chain XML file or depletion chain object to
+            use during activation. If not provided, the default configured
+            chain file will be used.
         micro_kwargs : dict, optional
             Additional keyword arguments passed to
             :func:`openmc.deplete.get_microxs_and_flux` during the neutron
@@ -206,6 +280,8 @@ class R2SManager:
             # consistency (different ranks may have slightly different times)
             stamp = datetime.now().strftime('%Y-%m-%dT%H-%M-%S')
             output_dir = Path(comm.bcast(f'r2s_{stamp}'))
+        else:
+            output_dir = Path(output_dir)
 
         # Set run_kwargs for the neutron transport step
         if micro_kwargs is None:
@@ -216,22 +292,35 @@ class R2SManager:
             operator_kwargs = {}
         run_kwargs.setdefault('output', False)
         micro_kwargs.setdefault('run_kwargs', run_kwargs)
-        # If a chain file is provided, prefer it for steps 1 and 2
-        if chain_file is not None:
-            micro_kwargs.setdefault('chain_file', chain_file)
-            operator_kwargs.setdefault('chain_file', chain_file)
 
-        self.step1_neutron_transport(
-            output_dir / 'neutron_transport', mat_vol_kwargs, micro_kwargs
+        # DecaySpectrum distributions are resolved in the C++ solver using
+        # OPENMC_CHAIN_FILE. If a Chain object was passed, write an XML
+        # representation alongside the R2S outputs.
+        if isinstance(chain_file, Chain):
+            output_dir.mkdir(parents=True, exist_ok=True)
+            chain_path = output_dir / 'chain.xml'
+            if comm.rank == 0:
+                chain_file.export_to_xml(chain_path)
+            comm.barrier()
+        else:
+            chain_path = chain_file
+
+        chain_context = (
+            openmc.config.patch('chain_file', chain_path)
+            if chain_path is not None else nullcontext()
         )
-        self.step2_activation(
-            timesteps, source_rates, timestep_units, output_dir / 'activation',
-            operator_kwargs=operator_kwargs
-        )
-        self.step3_photon_transport(
-            photon_time_indices, bounding_boxes, output_dir / 'photon_transport',
-            mat_vol_kwargs=mat_vol_kwargs, run_kwargs=run_kwargs
-        )
+        with chain_context:
+            self.step1_neutron_transport(
+                output_dir / 'neutron_transport', mat_vol_kwargs, micro_kwargs
+            )
+            self.step2_activation(
+                timesteps, source_rates, timestep_units,
+                output_dir / 'activation', operator_kwargs=operator_kwargs
+            )
+            self.step3_photon_transport(
+                photon_time_indices, bounding_boxes, output_dir / 'photon_transport',
+                mat_vol_kwargs=mat_vol_kwargs, run_kwargs=run_kwargs
+            )
 
         return output_dir
 
@@ -243,11 +332,13 @@ class R2SManager:
     ):
         """Run the neutron transport step.
 
-        This step computes the material volume fractions on the mesh, creates a
-        mesh-material filter, and retrieves the fluxes and microscopic cross
-        sections for each mesh/material combination. This step will populate the
-        'fluxes' and 'micros' keys in the results dictionary. For a mesh-based
-        calculation, it will also populate the 'mesh_material_volumes' key.
+        This step computes the material volume fractions on each mesh, creates
+        mesh-material filters, and retrieves the fluxes and microscopic cross
+        sections for each mesh/material combination via a single transport
+        solve. This step will populate the 'fluxes' and 'micros' keys in the
+        results dictionary. For a mesh-based calculation, it will also populate
+        the 'mesh_material_volumes' key (a list of
+        :class:`~openmc.MeshMaterialVolumes`, one per mesh).
 
         Parameters
         ----------
@@ -261,24 +352,36 @@ class R2SManager:
             :func:`openmc.deplete.get_microxs_and_flux`.
 
         """
-
+        step_name = 'step1_neutron_transport'
+        step_start = perf_counter()
         output_dir = Path(output_dir).resolve()
         output_dir.mkdir(parents=True, exist_ok=True)
 
         if self.method == 'mesh-based':
-            # Compute material volume fractions on the mesh
+            mat_vol_start = perf_counter()
+            # Compute material volume fractions on each mesh
             if mat_vol_kwargs is None:
                 mat_vol_kwargs = {}
             mat_vol_kwargs.setdefault('bounding_boxes', True)
-            self.results['mesh_material_volumes'] = mmv = comm.bcast(
-                self.domains.material_volumes(self.neutron_model, **mat_vol_kwargs))
 
-            # Save results to file
-            if comm.rank == 0:
-                mmv.save(output_dir / 'mesh_material_volumes.npz')
+            mmv_list = []
+            domain_filters = []
+            for i, mesh in enumerate(self.domains):
+                mmv = comm.bcast(
+                    mesh.material_volumes(self.neutron_model, **mat_vol_kwargs))
+                mmv_list.append(mmv)
 
-            # Create mesh-material filter based on what combos were found
-            domains = openmc.MeshMaterialFilter.from_volumes(self.domains, mmv)
+                # Save results to file
+                if comm.rank == 0:
+                    mmv.save(output_dir / f'mesh_material_volumes_{i}.npz')
+
+                # Create mesh-material filter for this mesh
+                domain_filters.append(
+                    openmc.MeshMaterialFilter.from_volumes(mesh, mmv))
+
+            self.results['mesh_material_volumes'] = mmv_list
+            domains = domain_filters
+            self._record_time(step_name, 'mesh_material_volumes', mat_vol_start)
         else:
             domains: Sequence[openmc.Cell] = self.domains
 
@@ -306,16 +409,29 @@ class R2SManager:
         micro_kwargs.setdefault('path_statepoint', output_dir / 'statepoint.h5')
         micro_kwargs.setdefault('path_input', output_dir / 'model.xml')
 
+        from .microxs import get_microxs_and_flux, write_microxs_hdf5
+        from openmc.lib import TemporarySession
+
         # Run neutron transport and get fluxes and micros. Run via openmc.lib to
         # maintain a consistent parallelism strategy with the activation step.
+        microxs_start = perf_counter()
         with TemporarySession():
             self.results['fluxes'], self.results['micros'] = get_microxs_and_flux(
                 self.neutron_model, domains, **micro_kwargs)
+        self._record_time(step_name, 'get_microxs_and_flux', microxs_start)
 
         # Save flux and micros to file
         if comm.rank == 0:
+            save_flux_start = perf_counter()
             np.save(output_dir / 'fluxes.npy', self.results['fluxes'])
+            self._record_time(step_name, 'save_fluxes', save_flux_start)
+
+            save_micros_start = perf_counter()
             write_microxs_hdf5(self.results['micros'], output_dir / 'micros.h5')
+            self._record_time(step_name, 'write_micros', save_micros_start)
+
+        self._record_time(step_name, 'total', step_start)
+        self._write_timing(output_dir)
 
     def step2_activation(
         self,
@@ -355,12 +471,19 @@ class R2SManager:
             :class:`openmc.deplete.IndependentOperator`.
         """
 
+        step_name = 'step2_activation'
+        step_start = perf_counter()
+
         if self.method == 'mesh-based':
             # Get unique material for each (mesh, material) combination
-            mmv = self.results['mesh_material_volumes']
-            self.results['activation_materials'] = get_activation_materials(self.neutron_model, mmv)
+            activation_start = perf_counter()
+            mmv_list = self.results['mesh_material_volumes']
+            self.results['activation_materials'] = get_activation_materials(
+                self.neutron_model, mmv_list)
+            self._record_time(step_name, 'get_activation_materials', activation_start)
         else:
             # Create unique material for each cell
+            activation_start = perf_counter()
             activation_mats = openmc.Materials()
             for cell in self.domains:
                 mat = cell.fill.clone()
@@ -369,34 +492,50 @@ class R2SManager:
                 mat.volume = cell.volume
                 activation_mats.append(mat)
             self.results['activation_materials'] = activation_mats
+            self._record_time(step_name, 'build_activation_materials', activation_start)
 
         # Save activation materials to file
         output_dir = Path(output_dir)
         output_dir.mkdir(parents=True, exist_ok=True)
+        save_mats_start = perf_counter()
         self.results['activation_materials'].export_to_xml(
             output_dir / 'materials.xml')
+        self._record_time(step_name, 'export_activation_materials', save_mats_start)
 
         # Create depletion operator for the activation materials
         if operator_kwargs is None:
             operator_kwargs = {}
         operator_kwargs.setdefault('normalization_mode', 'source-rate')
+        operator_start = perf_counter()
+        from .independent_operator import IndependentOperator
         op = IndependentOperator(
             self.results['activation_materials'],
             self.results['fluxes'],
             self.results['micros'],
             **operator_kwargs
         )
+        self._record_time(step_name, 'build_operator', operator_start)
 
         # Create time integrator and solve depletion equations
+        integrator_start = perf_counter()
+        from .integrators import PredictorIntegrator
         integrator = PredictorIntegrator(
             op, timesteps, source_rates=source_rates, timestep_units=timestep_units
         )
+        self._record_time(step_name, 'build_integrator', integrator_start)
         output_path = output_dir / 'depletion_results.h5'
+        integrate_start = perf_counter()
         integrator.integrate(final_step=False, path=output_path)
         comm.barrier()
+        self._record_time(step_name, 'integrate', integrate_start)
 
         # Get depletion results
+        results_start = perf_counter()
         self.results['depletion_results'] = Results(output_path)
+        self._record_time(step_name, 'load_results', results_start)
+
+        self._record_time(step_name, 'total', step_start)
+        self._write_timing(output_dir)
 
     def step3_photon_transport(
         self,
@@ -439,6 +578,9 @@ class R2SManager:
             during the photon transport step. By default, output is disabled.
         """
 
+        step_name = 'step3_photon_transport'
+        step_start = perf_counter()
+
         # TODO: Automatically determine bounding box for each cell
         if bounding_boxes is None and self.method == 'cell-based':
             raise ValueError("bounding_boxes must be provided for cell-based "
@@ -455,9 +597,10 @@ class R2SManager:
         output_dir.mkdir(parents=True, exist_ok=True)
 
         # Get default time indices if not provided
-        if time_indices is None:
-            n_steps = len(self.results['depletion_results'])
-            time_indices = list(range(n_steps))
+        time_indices = self._normalize_time_indices(
+            time_indices, len(self.results['depletion_results']))
+        self.results['photon_time_metadata'] = self._photon_time_metadata(
+            self.results['depletion_results'], time_indices)
 
         # Check whether the photon model is different
         neutron_univ = self.neutron_model.geometry.root_universe
@@ -468,17 +611,29 @@ class R2SManager:
         # photon model if it is different from the neutron model to account for
         # potential material changes
         if self.method == 'mesh-based' and different_photon_model:
-            self.results['mesh_material_volumes_photon'] = photon_mmv = comm.bcast(
-                self.domains.material_volumes(self.photon_model, **mat_vol_kwargs))
+            photon_mmv_start = perf_counter()
+            if mat_vol_kwargs is None:
+                mat_vol_kwargs = {}
+            photon_mmv_list = []
+            for i, mesh in enumerate(self.domains):
+                photon_mmv = comm.bcast(
+                    mesh.material_volumes(self.photon_model, **mat_vol_kwargs))
+                photon_mmv_list.append(photon_mmv)
 
-            # Save photon MMV results to file
-            if comm.rank == 0:
-                photon_mmv.save(output_dir / 'mesh_material_volumes.npz')
+                # Save photon MMV results to file
+                if comm.rank == 0:
+                    photon_mmv.save(
+                        output_dir / f'mesh_material_volumes_{i}.npz')
+
+            self.results['mesh_material_volumes_photon'] = photon_mmv_list
+            self._record_time(step_name, 'photon_mesh_material_volumes', photon_mmv_start)
 
         if comm.rank == 0:
             tally_ids = [tally.id for tally in self.photon_model.tallies]
+            tally_json_start = perf_counter()
             with open(output_dir / 'tally_ids.json', 'w') as f:
                 json.dump(tally_ids, f)
+            self._record_time(step_name, 'write_tally_ids', tally_json_start)
 
         self.results['photon_tallies'] = {}
 
@@ -486,141 +641,150 @@ class R2SManager:
         if different_photon_model:
             photon_cells = self.photon_model.geometry.get_all_cells()
 
-        for time_index in time_indices:
-            # Create decay photon source
-            if self.method == 'mesh-based':
-                self.photon_model.settings.source = \
-                    self.get_decay_photon_source_mesh(time_index)
-            else:
-                sources = []
-                results = self.results['depletion_results']
-                for cell, original_mat in zip(self.domains, self.results['activation_materials']):
-                    # Skip if the cell is not in the photon model or the
-                    # material has changed
-                    if different_photon_model:
-                        if cell.id not in photon_cells or \
+        # Determine eligible work items upfront (independent of time index).
+        if self.method == 'mesh-based':
+            work_items = self._get_mesh_work_items()
+        else:
+            work_items = []
+            for cell, original_mat in zip(
+                    self.domains, self.results['activation_materials']):
+                if different_photon_model:
+                    if cell.id not in photon_cells or \
                             cell.fill.id != photon_cells[cell.id].fill.id:
-                            continue
+                        continue
+                work_items.append((cell, original_mat, bounding_boxes[cell.id]))
 
-                    # Get bounding box for the cell
-                    bounding_box = bounding_boxes[cell.id]
+        # Ensure photon transport is enabled in settings
+        self.photon_model.settings.photon_transport = True
 
-                    # Get activated material composition
-                    activated_mat = results[time_index].get_material(str(original_mat.id))
+        from openmc.lib import TemporarySession
 
-                    # Create decay photon source source
-                    space = openmc.stats.Box(*bounding_box)
-                    energy = activated_mat.get_decay_photon_energy()
-                    strength = energy.integral() if energy is not None else 0.0
-                    source = openmc.IndependentSource(
-                        space=space,
-                        energy=energy,
-                        particle='photon',
-                        strength=strength,
-                        constraints={'domains': [cell]}
-                    )
-                    sources.append(source)
-                self.photon_model.settings.source = sources
-
-            # Convert time_index (which may be negative) to a normal index
-            if time_index < 0:
-                time_index = len(self.results['depletion_results']) + time_index
+        for time_index in time_indices:
+            # Build decay photon sources and assign to the photon model
+            source_start = perf_counter()
+            sources = self._create_photon_sources(time_index, work_items)
+            self._record_time(step_name, f'build_sources_{time_index}', source_start)
+            self.photon_model.settings.source = sources
 
             # Run photon transport calculation
             photon_dir = Path(output_dir) / f'time_{time_index}'
+            run_start = perf_counter()
             with TemporarySession(self.photon_model, cwd=photon_dir):
                 statepoint_path = self.photon_model.run(**run_kwargs)
+            self._record_time(step_name, f'run_photon_{time_index}', run_start)
 
             # Store tally results
+            tally_start = perf_counter()
             with openmc.StatePoint(statepoint_path) as sp:
                 self.results['photon_tallies'][time_index] = [
                     sp.tallies[tally.id] for tally in self.photon_model.tallies
                 ]
+            self._record_time(step_name, f'load_tallies_{time_index}', tally_start)
 
-    def get_decay_photon_source_mesh(
-        self,
-        time_index: int = -1
-    ) -> list[openmc.IndependentSource]:
-        """Create decay photon source for a mesh-based calculation.
+        self._record_time(step_name, 'total', step_start)
+        self._write_timing(output_dir)
 
-        For each mesh element-material combination, an
-        :class:`~openmc.IndependentSource` is created with a
-        :class:`~openmc.stats.Box` spatial distribution based on the bounding
-        box of the material within the mesh element. A material constraint is
-        also applied so that sampled source sites are limited to the correct
-        region.
+    def _get_mesh_work_items(self):
+        """Enumerate mesh-based work items across all meshes.
 
-        When the photon transport model is different from the neutron model, the
-        photon MeshMaterialVolumes is used to determine whether an (element,
-        material) combination exists in the photon model.
+        Returns a list of (index_mat, mat_id, bbox) tuples for each eligible
+        mesh element--material combination, where index_mat is the index into
+        the activation materials list, mat_id is the material ID, and bbox is
+        the bounding box for that mesh element--material combination.
+
+        Returns
+        -------
+        list of tuple
+            Each tuple is (index_mat, mat_id, bbox).
+        """
+        mmv_list = self.results['mesh_material_volumes']
+        photon_mmv_list = self.results.get('mesh_material_volumes_photon')
+
+        work_items = []
+        index_mat = 0
+        for mesh_idx, mat_vols in enumerate(mmv_list):
+            photon_mat_vols = photon_mmv_list[mesh_idx] \
+                if photon_mmv_list is not None else None
+
+            n_elements = mat_vols.num_elements
+            for index_elem in range(n_elements):
+                if photon_mat_vols is not None:
+                    photon_materials = {
+                        mat_id
+                        for mat_id, _ in photon_mat_vols.by_element(index_elem)
+                        if mat_id is not None
+                    }
+
+                for mat_id, _, bbox in mat_vols.by_element(
+                        index_elem, include_bboxes=True):
+                    if mat_id is None:
+                        continue
+                    if photon_mat_vols is not None \
+                            and mat_id not in photon_materials:
+                        index_mat += 1
+                        continue
+                    work_items.append((index_mat, mat_id, bbox))
+                    index_mat += 1
+
+        return work_items
+
+    def _create_photon_sources(self, time_index, work_items):
+        """Create decay photon sources for a set of regions.
+
+        Builds :class:`openmc.IndependentSource` objects with
+        :class:`openmc.stats.DecaySpectrum` energy distributions that will be
+        serialized to XML and resolved against the depletion chain by the C++
+        solver.
 
         Parameters
         ----------
-        time_index : int, optional
-            Time index for the decay photon source. Default is -1 (last time).
+        time_index : int
+            Index into depletion results.
+        work_items : list of tuple
+            For mesh-based: list of (index_mat, mat_id, bbox).
+            For cell-based: list of (cell, original_mat, bbox).
 
         Returns
         -------
         list of openmc.IndependentSource
-            A list of IndependentSource objects for the decay photons, one for
-            each mesh element-material combination with non-zero source strength.
-
+            Photon sources for each activated region.
         """
-        mat_dict = self.neutron_model._get_all_materials()
-
-        # List to hold all sources
-        sources = []
-
-        # Index in the overall list of activated materials
-        index_mat = 0
-
-        # Get various results from previous steps
-        mat_vols = self.results['mesh_material_volumes']
+        step_result = self.results['depletion_results'][time_index]
         materials = self.results['activation_materials']
-        results = self.results['depletion_results']
-        photon_mat_vols = self.results.get('mesh_material_volumes_photon')
+        mesh_based = self.method == 'mesh-based'
+        if mesh_based:
+            mat_dict = self.neutron_model._get_all_materials()
 
-        # Total number of mesh elements
-        n_elements = mat_vols.num_elements
-
-        for index_elem in range(n_elements):
-            # Determine which materials exist in the photon model for this element
-            if photon_mat_vols is not None:
-                photon_materials = {
-                    mat_id
-                    for mat_id, _ in photon_mat_vols.by_element(index_elem)
-                    if mat_id is not None
-                }
-
-            for mat_id, _, bbox in mat_vols.by_element(index_elem, include_bboxes=True):
-                # Skip void volume
-                if mat_id is None:
-                    continue
-
-                # Skip if this material doesn't exist in photon model
-                if photon_mat_vols is not None and mat_id not in photon_materials:
-                    index_mat += 1
-                    continue
-
-                # Get activated material composition
+        sources = []
+        for item in work_items:
+            if mesh_based:
+                index_mat, domain_id, bbox = item
                 original_mat = materials[index_mat]
-                activated_mat = results[time_index].get_material(str(original_mat.id))
+                domain = mat_dict[domain_id]
+            else:
+                cell, original_mat, bbox = item
+                domain = cell
 
-                # Create decay photon source
-                energy = activated_mat.get_decay_photon_energy()
-                if energy is not None:
-                    strength = energy.integral()
-                    space = openmc.stats.Box(*bbox)
-                    sources.append(openmc.IndependentSource(
-                        space=space,
-                        energy=energy,
-                        particle='photon',
-                        strength=strength,
-                        constraints={'domains': [mat_dict[mat_id]]}
-                    ))
+            activated_mat = step_result.get_material(str(original_mat.id))
+            nuclides = activated_mat.get_nuclide_atom_densities()
+            if not nuclides:
+                continue
 
-                # Increment index of activated material
-                index_mat += 1
+            # Eliminate nuclides with zero density
+            nuclides = {nuclide: density for nuclide, density in nuclides.items()
+                        if density > 0}
+
+            energy = openmc.stats.DecaySpectrum(nuclides, activated_mat.volume)
+            energy.clip(inplace=True)
+            if not energy.nuclides:
+                continue
+
+            sources.append(openmc.IndependentSource(
+                space=openmc.stats.Box(bbox.lower_left, bbox.upper_right),
+                energy=energy,
+                particle='photon',
+                constraints={'domains': [domain]},
+            ))
 
         return sources
 
@@ -638,12 +802,17 @@ class R2SManager:
         # Load neutron transport results
         neutron_dir = path / 'neutron_transport'
         if self.method == 'mesh-based':
-            mmv_file = neutron_dir / 'mesh_material_volumes.npz'
-            if mmv_file.exists():
-                self.results['mesh_material_volumes'] = \
-                    openmc.MeshMaterialVolumes.from_npz(mmv_file)
+            mmv_files = sorted(neutron_dir.glob('mesh_material_volumes*.npz'),
+                               key=lambda p: int(p.stem.split('_')[-1])
+                               if p.stem[-1].isdigit() else 0)
+            if mmv_files:
+                self.results['mesh_material_volumes'] = [
+                    openmc.MeshMaterialVolumes.from_npz(f) for f in mmv_files
+                ]
         fluxes_file = neutron_dir / 'fluxes.npy'
         if fluxes_file.exists():
+            from .microxs import read_microxs_hdf5
+
             self.results['fluxes'] = list(np.load(fluxes_file, allow_pickle=True))
             micros_dict = read_microxs_hdf5(neutron_dir / 'micros.h5')
             self.results['micros'] = [
@@ -665,10 +834,15 @@ class R2SManager:
 
         # Load photon mesh material volumes if they exist (for mesh-based calculations)
         if self.method == 'mesh-based':
-            photon_mmv_file = photon_dir / 'mesh_material_volumes.npz'
-            if photon_mmv_file.exists():
-                self.results['mesh_material_volumes_photon'] = \
-                    openmc.MeshMaterialVolumes.from_npz(photon_mmv_file)
+            photon_mmv_files = sorted(
+                photon_dir.glob('mesh_material_volumes*.npz'),
+                key=lambda p: int(p.stem.split('_')[-1])
+                if p.stem[-1].isdigit() else 0)
+            if photon_mmv_files:
+                self.results['mesh_material_volumes_photon'] = [
+                    openmc.MeshMaterialVolumes.from_npz(f)
+                    for f in photon_mmv_files
+                ]
 
         # Load tally IDs from JSON file
         tally_ids_path = photon_dir / 'tally_ids.json'

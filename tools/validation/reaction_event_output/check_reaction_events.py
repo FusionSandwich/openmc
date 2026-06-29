@@ -229,7 +229,18 @@ def _check_product_ranges(product_ranges, products, errors):
 
     data = products[()]
     n_rows = int(products.shape[0])
+    product_event_ids, product_event_counts = np.unique(data['event_id'],
+                                                        return_counts=True)
+    observed_counts = {
+        int(event_id): int(count)
+        for event_id, count in zip(product_event_ids, product_event_counts)
+    }
     for event_id, (first_index, n_products) in product_ranges.items():
+        observed_count = observed_counts.get(event_id, 0)
+        if observed_count != n_products:
+            errors.append(
+                f'event_id {event_id} declares {n_products} products but '
+                f'{observed_count} product rows reference it')
         if n_products == 0:
             if first_index != -1:
                 errors.append(
