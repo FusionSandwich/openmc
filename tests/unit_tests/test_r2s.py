@@ -1,4 +1,5 @@
 from pathlib import Path
+from types import SimpleNamespace
 
 import pytest
 import openmc
@@ -20,11 +21,39 @@ def test_r2s_time_index_validation():
     with pytest.raises(TypeError, match='integers'):
         normalize([0.5], 3)
 
+    with pytest.raises(TypeError, match='integers'):
+        normalize([True], 3)
+
     with pytest.raises(IndexError, match='out of range'):
         normalize([3], 3)
 
     with pytest.raises(IndexError, match='out of range'):
         normalize([-4], 3)
+
+
+def test_r2s_photon_time_metadata():
+    depletion_results = [
+        SimpleNamespace(time=[0.0, 0.0], source_rate=1.0),
+        SimpleNamespace(time=[0.0, 3600.0], source_rate=2.5),
+        SimpleNamespace(time=[3600.0, 7200.0], source_rate=0.0),
+    ]
+
+    metadata = R2SManager._photon_time_metadata(depletion_results, [0, 2])
+
+    assert metadata == [
+        {
+            'index': 0,
+            'time': 0.0,
+            'time_window': (0.0, 0.0),
+            'source_rate': 1.0,
+        },
+        {
+            'index': 2,
+            'time': 3600.0,
+            'time_window': (3600.0, 7200.0),
+            'source_rate': 0.0,
+        },
+    ]
 
 
 @pytest.fixture

@@ -174,7 +174,7 @@ class R2SManager:
 
         normalized = []
         for time_index in time_indices:
-            if not isinstance(time_index, Integral):
+            if isinstance(time_index, bool) or not isinstance(time_index, Integral):
                 raise TypeError("photon_time_indices entries must be integers.")
 
             original_index = time_index
@@ -188,6 +188,21 @@ class R2SManager:
             normalized.append(int(time_index))
 
         return normalized
+
+    @staticmethod
+    def _photon_time_metadata(depletion_results, time_indices):
+        """Return metadata for photon-source times selected from depletion results."""
+        metadata = []
+        for time_index in time_indices:
+            step = depletion_results[time_index]
+            time_window = tuple(float(t) for t in step.time)
+            metadata.append({
+                'index': time_index,
+                'time': time_window[0],
+                'time_window': time_window,
+                'source_rate': float(step.source_rate),
+            })
+        return metadata
 
     def run(
         self,
@@ -584,6 +599,8 @@ class R2SManager:
         # Get default time indices if not provided
         time_indices = self._normalize_time_indices(
             time_indices, len(self.results['depletion_results']))
+        self.results['photon_time_metadata'] = self._photon_time_metadata(
+            self.results['depletion_results'], time_indices)
 
         # Check whether the photon model is different
         neutron_univ = self.neutron_model.geometry.root_universe
