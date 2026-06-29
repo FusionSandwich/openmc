@@ -1363,8 +1363,7 @@ void elastic_scatter(int i_nuclide, const Reaction& rx, double kT, Particle& p)
   // Generate recoil
   if (settings::recoil_production) {
     Direction p_recoil =
-      recoil::neutron_momentum(E_in, u_in) -
-      recoil::neutron_momentum(p.E(), p.u());
+      recoil::elastic_recoil_momentum(E_in, u_in, p.E(), p.u());
     create_recoil_secondary(p, *nuc, p.wgt(), p_recoil, nuc->particle_type());
   }
 }

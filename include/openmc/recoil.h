@@ -32,6 +32,20 @@ inline double kinetic_energy_from_momentum2(double p2, double mass)
   return p2 / (2.0 * mass);
 }
 
+inline Direction elastic_recoil_momentum(
+  double E_in, Direction u_in, double E_out, Direction u_out)
+{
+  return neutron_momentum(E_in, u_in) - neutron_momentum(E_out, u_out);
+}
+
+inline double elastic_recoil_energy(
+  double E_in, Direction u_in, double E_out, Direction u_out, double target_awr)
+{
+  Direction p_recoil = elastic_recoil_momentum(E_in, u_in, E_out, u_out);
+  return kinetic_energy_from_momentum2(
+    p_recoil.dot(p_recoil), target_awr * MASS_NEUTRON_EV);
+}
+
 inline double max_elastic_recoil_energy(double E, double target_awr)
 {
   if (E <= 0.0 || target_awr <= 0.0) {
