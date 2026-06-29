@@ -85,3 +85,42 @@ def test_reaction_filter_total_warning():
     with pytest.warns(UserWarning, match="ambiguous"):
         f = openmc.ReactionFilter(['total'])
     assert f.bins[0] == '(n,total)'
+
+
+def test_reaction_group_helper():
+    assert openmc.reaction_group('elastic') == ('(n,elastic)',)
+    assert openmc.reaction_group('capture', as_mts=True) == (102,)
+
+    inelastic = openmc.reaction_group('discrete_inelastic')
+    assert inelastic[0] == '(n,n1)'
+    assert inelastic[-1] == '(n,n40)'
+    assert len(inelastic) == 40
+
+    gas = openmc.reaction_group('gas production')
+    assert '(n,p)' in gas
+    assert '(n,d)' in gas
+    assert '(n,t)' in gas
+    assert '(n,3He)' in gas
+    assert '(n,a)' in gas
+    assert '(n,pc)' in gas
+    assert '(n,ac)' in gas
+
+    pka = openmc.reaction_group('pka-relevant')
+    assert '(n,elastic)' in pka
+    assert '(n,nc)' in pka
+    assert '(n,gamma)' in pka
+    assert '(n,2n)' in pka
+    assert '(n,p)' in pka
+
+    f = openmc.ReactionFilter(openmc.reaction_group('multi-neutron'))
+    assert '(n,2n)' in f.bins
+    assert '(n,3n)' in f.bins
+    assert '(n,4n)' in f.bins
+
+
+def test_reaction_group_invalid():
+    with pytest.raises(ValueError, match='Unknown reaction group'):
+        openmc.reaction_group('not-a-group')
+
+    with pytest.raises(TypeError, match='must be a string'):
+        openmc.reaction_group(102)

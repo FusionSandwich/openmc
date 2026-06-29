@@ -156,6 +156,13 @@ Constructing Tallies
    openmc.Tally
    openmc.Tallies
 
+.. autosummary::
+   :toctree: generated
+   :nosignatures:
+   :template: myfunction.rst
+
+   openmc.reaction_group
+
 Meshes
 ------
 
