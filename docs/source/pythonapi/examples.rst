@@ -10,6 +10,7 @@ Simple Models
    :nosignatures:
    :template: myfunction.rst
 
+   openmc.examples.reaction_tally_model
    openmc.examples.slab_mg
 
 Reactor Models

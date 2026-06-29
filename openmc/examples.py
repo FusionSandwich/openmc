@@ -656,6 +656,89 @@ def slab_mg(num_regions=1, mat_names=None, mgxslib_name='2g.h5') -> openmc.Model
     return model
 
 
+def reaction_tally_model() -> openmc.Model:
+    """Create a fixed-source model with reaction-filtered tallies.
+
+    The model uses simple iron and water slab regions and includes examples of
+    combining :class:`openmc.ReactionFilter` with
+    :class:`openmc.ParticleProductionFilter`, ``damage-energy`` and ``heating``
+    scores, :class:`openmc.EnergyFilter`, and :class:`openmc.MaterialFilter`.
+
+    Returns
+    -------
+    model : openmc.Model
+        Fixed-source model with reaction-filtered tallies.
+
+    """
+    model = openmc.Model()
+
+    iron = openmc.Material(name='iron')
+    iron.set_density('g/cm3', 7.87)
+    iron.add_nuclide('Fe56', 1.0)
+
+    water = openmc.Material(name='water')
+    water.set_density('g/cm3', 1.0)
+    water.add_nuclide('H1', 2.0)
+    water.add_nuclide('O16', 1.0)
+
+    model.materials = openmc.Materials([iron, water])
+
+    left = openmc.XPlane(x0=-10.0, boundary_type='reflective')
+    middle = openmc.XPlane(x0=0.0)
+    right = openmc.XPlane(x0=10.0, boundary_type='vacuum')
+    iron_cell = openmc.Cell(fill=iron, region=+left & -middle)
+    water_cell = openmc.Cell(fill=water, region=+middle & -right)
+    model.geometry = openmc.Geometry([iron_cell, water_cell])
+
+    source = openmc.IndependentSource()
+    source.space = openmc.stats.Box((-10.0, -1.0, -1.0), (0.0, 1.0, 1.0))
+    source.energy = openmc.stats.delta_function(14.1e6)
+
+    model.settings.run_mode = 'fixed source'
+    model.settings.batches = 10
+    model.settings.particles = 1000
+    model.settings.source = source
+
+    reaction_filter = openmc.ReactionFilter(['(n,elastic)', '(n,2n)',
+                                             '(n,gamma)'])
+    energy_filter = openmc.EnergyFilter([0.0, 1.0e6, 20.0e6])
+    material_filter = openmc.MaterialFilter([iron, water])
+    production_filter = openmc.ParticleProductionFilter(
+        ['neutron'], [0.0, 1.0e6, 20.0e6])
+
+    production_tally = openmc.Tally(name='reaction-neutron-production')
+    production_tally.filters = [reaction_filter, production_filter]
+    production_tally.scores = ['events']
+    production_tally.estimator = 'analog'
+
+    damage_tally = openmc.Tally(name='reaction-damage-energy')
+    damage_tally.filters = [reaction_filter, material_filter]
+    damage_tally.scores = ['damage-energy']
+    damage_tally.estimator = 'collision'
+
+    heating_tally = openmc.Tally(name='reaction-heating')
+    heating_tally.filters = [reaction_filter, material_filter]
+    heating_tally.scores = ['heating']
+    heating_tally.estimator = 'collision'
+
+    energy_tally = openmc.Tally(name='reaction-energy')
+    energy_tally.filters = [reaction_filter, energy_filter]
+    energy_tally.scores = ['events']
+    energy_tally.estimator = 'analog'
+
+    material_tally = openmc.Tally(name='reaction-material')
+    material_tally.filters = [reaction_filter, material_filter]
+    material_tally.scores = ['events']
+    material_tally.estimator = 'analog'
+
+    model.tallies = openmc.Tallies([
+        production_tally, damage_tally, heating_tally, energy_tally,
+        material_tally
+    ])
+
+    return model
+
+
 def _generate_c5g7_materials(second_temp = False) -> openmc.Materials:
     """Generate materials utilizing multi-group cross sections based on the
     the C5G7 Benchmark.
