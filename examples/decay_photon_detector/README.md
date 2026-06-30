@@ -27,7 +27,15 @@ python build_model.py --output-dir run --run
 ```
 
 When ``--run`` is used, the example also writes CSV tables for detector photon
-flux, pulse height, and heating from the final statepoint.
+flux, pulse height, and heating from the final statepoint. The detector
+response manifest ``detector_response_manifest.json`` records the source,
+timing, detector, tally, units, energy-bin, and export-file metadata.
+
+Validate detector response outputs:
+
+```
+python ../../tools/validation/detector_response/check_detector_response.py run
+```
 
 The included depletion chain fragment is limited to the Co-60 photon source used
 by this example. Set ``OPENMC_CROSS_SECTIONS`` to a photon-capable data library

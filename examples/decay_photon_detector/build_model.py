@@ -20,6 +20,13 @@ DETECTOR_HEIGHT_CM = 4.0
 DETECTOR_CENTER_X_CM = 8.0
 BOUNDARY_RADIUS_CM = 20.0
 ENERGY_BINS_EV = np.linspace(0.0, 1.5e6, 151)
+DETECTOR_RESPONSE_MANIFEST = 'detector_response_manifest.json'
+DETECTOR_RESPONSE_SCHEMA_VERSION = 1
+TALLY_SCORES = {
+    'detector photon flux': 'flux',
+    'detector pulse height': 'pulse-height',
+    'detector heating': 'heating',
+}
 
 
 def _copy_chain_file(output_dir):
@@ -146,6 +153,59 @@ def build_metadata(detector_cell_id, source_energy):
     }
 
 
+def build_detector_response_manifest(metadata, export_files=None):
+    """Build a JSON-serializable detector response manifest."""
+    timing = metadata.get('timing', {})
+    source = metadata.get('source', {})
+    tallies = metadata.get('tallies', {})
+    geometry = metadata.get('geometry', {})
+    outputs = tallies.get('outputs', {})
+    export_files = [] if export_files is None else export_files
+    export_file_entries = []
+    for path in export_files:
+        filename = Path(path).name
+        tally_name = outputs.get(filename)
+        export_file_entries.append({
+            'path': filename,
+            'tally_name': tally_name,
+            'tally_score': TALLY_SCORES.get(tally_name),
+        })
+
+    return {
+        'schema_version': DETECTOR_RESPONSE_SCHEMA_VERSION,
+        'openmc_version': metadata.get('openmc_version'),
+        'git_sha_if_available': None,
+        'source_type': source.get('type'),
+        'source_normalization': source.get('strength_photons_per_s'),
+        'source_units': source.get('units'),
+        'source_time_metadata': timing,
+        'count_start': timing.get('count_start_s'),
+        'count_duration': timing.get('count_duration_s'),
+        'detector_name': 'active germanium',
+        'detector_cell_id': tallies.get('detector_cell_id'),
+        'detector_material': 'germanium',
+        'detector_active_volume_if_available': tallies.get(
+            'active_volume_cm3'),
+        'geometry_description': geometry.get('detector'),
+        'tally_name': 'detector pulse height',
+        'tally_score': 'pulse-height',
+        'energy_units': 'eV',
+        'tally_units': 'per source particle',
+        'energy_bin_edges': tallies.get('energy_bins_eV'),
+        'export_files': export_file_entries,
+    }
+
+
+def write_detector_response_manifest(output_dir, metadata, export_files=None):
+    output_dir = Path(output_dir)
+    manifest = build_detector_response_manifest(metadata, export_files)
+    path = output_dir / DETECTOR_RESPONSE_MANIFEST
+    with open(path, 'w') as fh:
+        json.dump(manifest, fh, indent=2)
+        fh.write('\n')
+    return path
+
+
 def export_example(output_dir='.', particles=10000, batches=10):
     output_dir = Path(output_dir)
     output_dir.mkdir(parents=True, exist_ok=True)
@@ -157,10 +217,11 @@ def export_example(output_dir='.', particles=10000, batches=10):
     with open(output_dir / 'detector_conditions.json', 'w') as fh:
         json.dump(metadata, fh, indent=2)
         fh.write('\n')
+    write_detector_response_manifest(output_dir, metadata)
     return model, metadata
 
 
-def export_statepoint_tables(statepoint_path, output_dir='.'):
+def export_statepoint_tables(statepoint_path, output_dir='.', metadata=None):
     output_dir = Path(output_dir)
     outputs = {
         'detector_photon_flux.csv': 'detector photon flux',
@@ -186,6 +247,13 @@ def export_statepoint_tables(statepoint_path, output_dir='.'):
             )
             df.to_csv(path, index=False)
             written.append(path)
+    if metadata is None:
+        conditions = output_dir / 'detector_conditions.json'
+        if conditions.exists():
+            with open(conditions) as fh:
+                metadata = json.load(fh)
+    if metadata is not None:
+        write_detector_response_manifest(output_dir, metadata, written)
     return written
 
 
@@ -216,8 +284,10 @@ def main():
         try:
             statepoint = model.run(cwd=output_dir, openmc_exec=args.openmc_exec,
                                    export_model_xml=False)
-            for path in export_statepoint_tables(statepoint, output_dir):
+            for path in export_statepoint_tables(
+                    statepoint, output_dir, metadata):
                 print(path)
+            print(output_dir / DETECTOR_RESPONSE_MANIFEST)
         finally:
             if old_chain is None:
                 os.environ.pop('OPENMC_CHAIN_FILE', None)
