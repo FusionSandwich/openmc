@@ -1,0 +1,53 @@
+<?xml version='1.0' encoding='utf-8'?>
+<model>
+  <materials>
+    <material id="40" name="no-void fuel">
+      <density value="7.0" units="g/cm3"/>
+      <nuclide name="Fe56" ao="1.0"/>
+    </material>
+    <material id="41" name="water">
+      <density value="1.0" units="g/cm3"/>
+      <nuclide name="Fe56" ao="1.0"/>
+    </material>
+  </materials>
+  <geometry>
+    <dagmc_universe id="1" length_multiplier="0.4" filename="../legacy/dagmc.h5m"/>
+  </geometry>
+  <settings>
+    <run_mode>fixed source</run_mode>
+    <particles>500</particles>
+    <batches>10</batches>
+    <source type="independent" strength="1.0" particle="neutron">
+      <space type="point">
+        <parameters>-1.3 0.7 1.8</parameters>
+      </space>
+      <energy type="discrete">
+        <parameters>2000000.0 1.0</parameters>
+      </energy>
+    </source>
+    <seed>19073486328125</seed>
+  </settings>
+  <tallies>
+    <filter id="1" type="cell">
+      <bins>1 2 3</bins>
+    </filter>
+    <filter id="2" type="material">
+      <bins>40 41</bins>
+    </filter>
+    <filter id="3" type="surface">
+      <bins>24 25 26 27 28 29</bins>
+    </filter>
+    <tally id="1" name="cell reaction rates">
+      <filters>1</filters>
+      <scores>flux</scores>
+    </tally>
+    <tally id="2" name="material reaction rates">
+      <filters>2</filters>
+      <scores>absorption</scores>
+    </tally>
+    <tally id="3" name="vacuum boundary current">
+      <filters>3</filters>
+      <scores>current</scores>
+    </tally>
+  </tallies>
+</model>
