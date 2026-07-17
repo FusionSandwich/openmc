@@ -1,13 +1,13 @@
 from collections.abc import Iterable, Mapping
 from numbers import Integral, Real
 
-import h5py
 import lxml.etree as ET
 import numpy as np
 import warnings
 
 import openmc
 import openmc.checkvalue as cv
+import h5py
 from ._xml import get_elem_list, get_text
 from .checkvalue import check_type, check_value
 from .surface import _BOUNDARY_TYPES
@@ -36,8 +36,9 @@ class DAGMCUniverse(openmc.UniverseBase):
     auto_mat_ids : bool
         Set IDs automatically on initialization (True)  or report overlaps in ID
         space between OpenMC and UWUW materials (False)
-    length_multiplier : float
-        Coordinate scaling factor applied when loading a DAGMC geometry model.
+    length_multiplier : float, optional
+        Positive, finite factor applied to DAGMC vertex coordinates about the
+        global origin when the geometry is loaded. Defaults to 1.0.
     Attributes
     ----------
     id : int
@@ -53,7 +54,8 @@ class DAGMCUniverse(openmc.UniverseBase):
         Set IDs automatically on initialization (True)  or report overlaps in ID
         space between OpenMC and UWUW materials (False)
     length_multiplier : float
-        Coordinate scaling factor applied when loading a DAGMC geometry model.
+        Positive, finite factor applied to DAGMC vertex coordinates about the
+        global origin when the geometry is loaded.
     bounding_box : openmc.BoundingBox
         Lower-left and upper-right coordinates of an axis-aligned bounding box
         of the universe.
@@ -191,10 +193,15 @@ class DAGMCUniverse(openmc.UniverseBase):
         return self._length_multiplier
 
     @length_multiplier.setter
-    def length_multiplier(self, length_multiplier):
-        cv.check_type('DAGMC universe length multiplier', length_multiplier, Real)
-        cv.check_greater_than('DAGMC universe length multiplier', length_multiplier, 0.0)
-        self._length_multiplier = length_multiplier
+    def length_multiplier(self, value):
+        if isinstance(value, bool):
+            raise TypeError('DAGMC length multiplier must be a real number.')
+        cv.check_type('DAGMC length multiplier', value, Real)
+        value = float(value)
+        cv.check_greater_than('DAGMC length multiplier', value, 0.0)
+        if not np.isfinite(value):
+            raise ValueError('DAGMC length multiplier must be finite.')
+        self._length_multiplier = value
 
     @property
     def material_names(self):
