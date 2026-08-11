@@ -237,6 +237,15 @@ def test_dagmc_xml(model):
             pytest.fail(f"Unexpected DAGMC cell fill type: {cell.fill_type}")
 
 
+@pytest.mark.parametrize('value, error', [
+    (0.0, ValueError), (-1.0, ValueError), (np.nan, ValueError),
+    (np.inf, ValueError), (-np.inf, ValueError), (True, TypeError),
+])
+def test_dagmc_length_multiplier_rejects_invalid_values(value, error):
+    with pytest.raises(error):
+        openmc.DAGMCUniverse('dagmc.h5m', length_multiplier=value)
+
+
 def test_dagmc_xml_reject_fill_override():
     mats = {'1': openmc.Material(1), 'void': None}
     elem = ET.fromstring(

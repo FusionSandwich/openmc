@@ -3,21 +3,29 @@ import pytest
 from pathlib import Path
 
 
-def test_bounding_box(request):
+@pytest.mark.parametrize("scale", [100.0, 0.01])
+def test_bounding_box(request, scale):
     """Checks that the DAGMCUniverse.bounding_box returns the correct values"""
 
-    u = openmc.DAGMCUniverse(Path(request.fspath).parent / "dagmc.h5m")
+    path = Path(request.fspath).parent / "dagmc.h5m"
+    u = openmc.DAGMCUniverse(path)
 
     ll, ur = u.bounding_box
     assert ll == pytest.approx((-25.0, -25.0, -25))
     assert ur == pytest.approx((25.0, 25.0, 25))
+
+    scaled = openmc.DAGMCUniverse(path, length_multiplier=scale)
+    ll, ur = scaled.bounding_box
+    assert ll == pytest.approx((-25.0 * scale,) * 3)
+    assert ur == pytest.approx((25.0 * scale,) * 3)
 
 
 def test_bounding_region(request):
     """Checks that the DAGMCUniverse.bounding_region() returns a region with
     correct surfaces and boundary types"""
 
-    u = openmc.DAGMCUniverse(Path(request.fspath).parent / "dagmc.h5m")
+    path = Path(request.fspath).parent / "dagmc.h5m"
+    u = openmc.DAGMCUniverse(path)
 
     region = u.bounding_region()  # should default to bounded_type='box'
     assert isinstance(region, openmc.Region)
@@ -55,6 +63,13 @@ def test_bounding_region(request):
     assert region.surface.boundary_type == "reflective"
     larger_region = u.bounding_region(bounded_type="sphere", padding_distance=10)
     assert larger_region.surface.r > region.surface.r
+
+    scaled = openmc.DAGMCUniverse(path, length_multiplier=0.01)
+    scaled_region = scaled.bounding_region()
+    positions = [scaled_region[i].surface.x0 for i in range(2)]
+    positions += [scaled_region[i].surface.y0 for i in range(2, 4)]
+    positions += [scaled_region[i].surface.z0 for i in range(4, 6)]
+    assert positions == pytest.approx([-0.25, 0.25] * 3)
 
 
 def test_bounded_universe(request):

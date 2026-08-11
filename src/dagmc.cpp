@@ -20,6 +20,7 @@
 #include <fmt/core.h>
 
 #include <algorithm>
+#include <cmath>
 #include <filesystem>
 #include <fstream>
 #include <sstream>
@@ -83,7 +84,11 @@ DAGUniverse::DAGUniverse(pugi::xml_node node)
   }
 
   if (check_for_node(node, "length_multiplier")) {
-    length_multiplier_ = std::stod(get_node_value(node, "length_multiplier"));
+    length_multiplier_ =
+      std::stod(get_node_value(node, "length_multiplier"));
+    if (!std::isfinite(length_multiplier_) || length_multiplier_ <= 0.0) {
+      fatal_error("DAGMC length multiplier must be finite and positive.");
+    }
   }
 
   // Get material assignment overrides from nested DAGMC cell elements.
@@ -225,6 +230,7 @@ void DAGUniverse::init_dagmc()
 
   // create a new DAGMC instance
   dagmc_instance_ = std::make_shared<moab::DagMC>();
+  dagmc_instance_->set_length_multiplier(length_multiplier_);
 
   // load the DAGMC geometry
   if (!file_exists(filename_)) {
@@ -232,28 +238,6 @@ void DAGUniverse::init_dagmc()
   }
   moab::ErrorCode rval = dagmc_instance_->load_file(filename_.c_str());
   MB_CHK_ERR_CONT(rval);
-
-  if (length_multiplier_ != 1.0) {
-    moab::Range verts;
-    rval =
-      dagmc_instance_->moab_instance()->get_entities_by_dimension(0, 0, verts);
-    MB_CHK_ERR_CONT(rval);
-
-    for (auto vert : verts) {
-      std::array<double, 3> coord;
-      rval =
-        dagmc_instance_->moab_instance()->get_coords(&vert, 1, coord.data());
-      MB_CHK_ERR_CONT(rval);
-
-      for (auto& c : coord) {
-        c *= length_multiplier_;
-      }
-
-      rval =
-        dagmc_instance_->moab_instance()->set_coords(&vert, 1, coord.data());
-      MB_CHK_ERR_CONT(rval);
-    }
-  }
 
   // initialize acceleration data structures
   rval = dagmc_instance_->init_OBBTree();
