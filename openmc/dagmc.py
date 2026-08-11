@@ -559,6 +559,7 @@ class DAGMCUniverse(openmc.UniverseBase):
                 f"the number of cells in the Python universe."
             )
 
+        volumes = self.get_cell_volumes()
         mats_per_id = {mat.id: mat for mat in mats}
         for dag_cell_id in dagmc_cell_ids:
             dag_cell = openmc.lib.cells[dag_cell_id]
@@ -573,6 +574,29 @@ class DAGMCUniverse(openmc.UniverseBase):
             else:
                 self.add_cell(
                     openmc.DAGMCCell(cell_id=dag_cell_id, name=name, fill=fill))
+            if self._cells[dag_cell_id].volume is None:
+                self._cells[dag_cell_id].volume = volumes[dag_cell_id]
+
+    def get_cell_volumes(self):
+        """Return intrinsic volumes of this universe's DAGMC cells in cm³.
+
+        Volumes are measured from the geometry already loaded by OpenMC and
+        cached by the C++ DAGMC universe. The infinite implicit-complement cell
+        has a value of ``None``. Repeated placements of this universe do not
+        multiply the returned intrinsic volumes.
+
+        Returns
+        -------
+        dict
+            Mapping from OpenMC cell ID to volume in cm³ or ``None``.
+
+        """
+        import openmc.lib
+        if not openmc.lib.is_initialized:
+            raise RuntimeError("This universe must be part of an openmc.Model "
+                               "initialized via Model.init_lib before calling "
+                               "this method.")
+        return openmc.lib.dagmc.dagmc_universe_cell_volumes(self.id)
 
     @add_plot_params
     def plot(self, *args, **kwargs):
@@ -604,9 +628,9 @@ class DAGMCCell(openmc.Cell):
     Notes
     -----
     DAGMC geometries are composed of triangulated surfaces, which means cell
-    volumes can in principle be computed exactly (e.g. via mesh-based
-    integration). Manually specifying :attr:`volume` overrides any such
-    calculation and may introduce inconsistencies if the value does not
+    volumes are computed from the loaded mesh when the parent universe is
+    synchronized with OpenMC's C API. Manually specifying :attr:`volume`
+    overrides that value and may introduce inconsistencies if it does not
     accurately reflect the true geometric volume.
 
     """

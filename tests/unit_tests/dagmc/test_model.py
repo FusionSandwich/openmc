@@ -87,6 +87,33 @@ def test_dagmc_sync_cell_names(model):
                for cell in dag_univ.cells.values())
 
 
+def test_dagmc_cell_volumes(model):
+    dag_univ = next(
+        univ for univ in model.geometry.get_all_universes().values()
+        if isinstance(univ, openmc.DAGMCUniverse)
+    )
+
+    volumes = dag_univ.get_cell_volumes()
+    assert volumes == dag_univ.get_cell_volumes()
+    assert volumes.keys() == dag_univ.cells.keys()
+    assert all(cell.volume == volumes[cell_id]
+               for cell_id, cell in dag_univ.cells.items())
+
+    implicit = next(cell for cell in dag_univ.cells.values()
+                    if cell.name == "implicit complement")
+    assert volumes[implicit.id] is None
+    finite_ids = sorted(cell_id for cell_id, volume in volumes.items()
+                        if volume is not None)
+    assert [volumes[cell_id] for cell_id in finite_ids] == pytest.approx([
+        6157.4829631194325, 4021.2133636697267,
+        5026.5167045878015, 7351.0,
+    ])
+
+    dag_univ.cells[finite_ids[0]].volume = 1.0
+    dag_univ.sync_dagmc_cells(model.materials)
+    assert dag_univ.cells[finite_ids[0]].volume == 1.0
+
+
 def test_dagmc_add_material_override_with_id(model):
     mats = {}
     mats["foo"] = openmc.Material(name="foo")

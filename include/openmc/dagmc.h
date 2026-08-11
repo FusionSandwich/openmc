@@ -162,6 +162,9 @@ public:
   //! \param[in] vol MOAB handle to the DAGMC volume set
   int32_t cell_index(moab::EntityHandle vol) const;
 
+  //! Return intrinsic volumes of the DAGMC cells in this universe
+  int get_cell_volumes(double* volumes, size_t* n) const;
+
   //! Return the index into the model surfaces vector for a given DAGMC surface
   //! handle in the universe
   //! \param[in] surf MOAB handle to the DAGMC surface set
@@ -214,6 +217,7 @@ private:
     1.0}; //!< Multiplicative factor applied to geometry coordinates
   bool has_graveyard_; //!< Indicates if the DAGMC geometry has a "graveyard"
                        //!< volume
+  mutable vector<double> cell_volumes_; //!< Cached intrinsic cell volumes
 };
 
 //==============================================================================

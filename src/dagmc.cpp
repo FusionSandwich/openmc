@@ -20,8 +20,10 @@
 #include <fmt/core.h>
 
 #include <algorithm>
+#include <cmath>
 #include <filesystem>
 #include <fstream>
+#include <limits>
 #include <sstream>
 #include <string>
 
@@ -513,6 +515,43 @@ int32_t DAGUniverse::cell_index(moab::EntityHandle vol) const
   // return the index of the volume in the DAGMC instance and then
   // adjust by the offset into the model cells for this DAGMC universe
   return dagmc_ptr()->index_by_handle(vol) + cell_idx_offset_;
+}
+
+int DAGUniverse::get_cell_volumes(double* volumes, size_t* n) const
+{
+  if (cell_volumes_.empty()) {
+    cell_volumes_.reserve(cells_.size());
+    for (const auto cell_index : cells_) {
+      const auto* cell = dynamic_cast<DAGCell*>(model::cells[cell_index].get());
+      if (cell == nullptr) {
+        cell_volumes_.clear();
+        set_errmsg(fmt::format(
+          "Cell {} is not a DAGMC cell", model::cells[cell_index]->id_));
+        return OPENMC_E_INVALID_TYPE;
+      }
+
+      const auto volume_handle = cell->mesh_handle();
+      if (dagmc_instance_->is_implicit_complement(volume_handle)) {
+        cell_volumes_.push_back(std::numeric_limits<double>::quiet_NaN());
+        continue;
+      }
+
+      double volume;
+      const auto rval = dagmc_instance_->measure_volume(volume_handle, volume);
+      if (rval != moab::MB_SUCCESS || !std::isfinite(volume) || volume <= 0.0) {
+        cell_volumes_.clear();
+        set_errmsg(fmt::format(
+          "Could not measure a positive finite volume for DAGMC cell {}",
+          cell->id_));
+        return OPENMC_E_GEOMETRY;
+      }
+      cell_volumes_.push_back(volume);
+    }
+  }
+
+  std::copy(cell_volumes_.begin(), cell_volumes_.end(), volumes);
+  *n = cell_volumes_.size();
+  return 0;
 }
 
 int32_t DAGUniverse::surface_index(moab::EntityHandle surf) const
@@ -1067,6 +1106,17 @@ extern "C" int openmc_dagmc_universe_get_num_cells(int32_t univ_id, size_t* n)
   return 0;
 }
 
+extern "C" int openmc_dagmc_universe_get_cell_volumes(
+  int32_t univ_id, double* volumes, size_t* n)
+{
+  const auto& univ = model::universes[model::universe_map[univ_id]];
+  if (univ->geom_type() != GeometryType::DAG) {
+    set_errmsg(fmt::format("Universe {} is not a DAGMC universe", univ_id));
+    return OPENMC_E_INVALID_TYPE;
+  }
+  return static_cast<DAGUniverse*>(univ.get())->get_cell_volumes(volumes, n);
+}
+
 } // namespace openmc
 
 #else
@@ -1081,6 +1131,13 @@ extern "C" int openmc_dagmc_universe_get_cell_ids(
 };
 
 extern "C" int openmc_dagmc_universe_get_num_cells(int32_t univ_id, size_t* n)
+{
+  set_errmsg("OpenMC was not configured with DAGMC");
+  return OPENMC_E_UNASSIGNED;
+};
+
+extern "C" int openmc_dagmc_universe_get_cell_volumes(
+  int32_t univ_id, double* volumes, size_t* n)
 {
   set_errmsg("OpenMC was not configured with DAGMC");
   return OPENMC_E_UNASSIGNED;
