@@ -1,0 +1,41 @@
+{
+  "schema_version": 1,
+  "project": "StellarCSG",
+  "repository": "FusionSandwich/openmc",
+  "branch": "codex/stellarcsg-native-csg-foundation-20260828",
+  "frozen_base_commit": "9a62e431d3101799e6179a6d0cf3b37440062e23",
+  "created_date": "2026-08-28",
+  "isolation": {
+    "pull_request_created": false,
+    "draft_pull_request_created": false,
+    "default_branch_modified": false,
+    "upstream_repository_modified": false,
+    "root_openmc_build_modified": false
+  },
+  "implemented_components": [
+    "uniform periodic bicubic B-spline coefficient evaluator",
+    "periodic radial implicit surface evaluate/gradient/normal",
+    "finite-interval reference nearest-root search",
+    "exact torus, shaped axisymmetric, and helical tests"
+  ],
+  "verification": {
+    "gcc": "14.2.0",
+    "clang": "17.0.0",
+    "cmake": "3.31.6",
+    "gcc_ctest": "PASS",
+    "clang_asan_ubsan_ctest": "PASS",
+    "torus_exact_radial_cases": 512,
+    "torus_off_grid_tangent_cases": 12,
+    "helical_exact_radial_cases": 200
+  },
+  "deferred_components": [
+    "OpenMC Surface subclass and parser integration",
+    "certified interval or patch-bounded nearest-root solver",
+    "swept-coil primitive",
+    "HDF5 coefficient schema",
+    "generic input compiler",
+    "tally mesh and parametric surface filters",
+    "DAGMC comparison benchmarks"
+  ],
+  "local_verification_command": "cmake -S dev/stellarcsg -B build/stellarcsg -DSTELLARCSG_BUILD_TESTS=ON && cmake --build build/stellarcsg --parallel && ctest --test-dir build/stellarcsg --output-on-failure"
+}
