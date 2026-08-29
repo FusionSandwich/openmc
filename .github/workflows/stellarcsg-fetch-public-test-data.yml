@@ -1,0 +1,31 @@
+name: StellarCSG public test-data fetch
+
+on:
+  push:
+    branches:
+      - codex/stellarcsg-native-csg-foundation-20260828
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  fetch-data:
+    if: github.ref == 'refs/heads/codex/stellarcsg-native-csg-foundation-20260828'
+    runs-on: ubuntu-24.04
+    steps:
+      - name: Fetch minimal public H-1 test library
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p artifact/cross_sections
+          base=https://raw.githubusercontent.com/FusionSandwich/parastell/magnet-radiation-valid-baseline-and-instrumentation-20260827/tests/files_for_tests/cross_sections
+          curl --fail --location --retry 4 "$base/01H_001.h5" -o artifact/cross_sections/01H_001.h5
+          curl --fail --location --retry 4 "$base/cross_sections.xml" -o artifact/cross_sections/cross_sections.xml
+          sha256sum artifact/cross_sections/* > artifact/SHA256SUMS.txt
+      - uses: actions/upload-artifact@v4
+        with:
+          name: stellarcsg-minimal-cross-sections-${{ github.sha }}
+          path: artifact/
+          if-no-files-found: error
+          retention-days: 7
