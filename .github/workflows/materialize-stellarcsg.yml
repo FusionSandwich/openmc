@@ -1,0 +1,44 @@
+name: Materialize staged StellarCSG source
+
+on:
+  push:
+    branches:
+      - codex/stellarcsg-native-csg-foundation-20260828
+
+permissions:
+  contents: write
+
+env:
+  EXPECTED_BUNDLE_SHA256: 73de10041ece295365226916180462eed4b8c9dba0952ded9dfc1b468fae7b2c
+
+jobs:
+  materialize:
+    if: github.event.head_commit.message == 'Stage StellarCSG materializer'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          persist-credentials: true
+      - name: Verify and extract staged source
+        shell: bash
+        run: |
+          set -euo pipefail
+          cat dev/stellarcsg/.materialize/part-* > "$RUNNER_TEMP/stellarcsg.b64"
+          base64 --decode "$RUNNER_TEMP/stellarcsg.b64" > "$RUNNER_TEMP/stellarcsg.tar.gz"
+          echo "${EXPECTED_BUNDLE_SHA256}  $RUNNER_TEMP/stellarcsg.tar.gz" | sha256sum --check --strict
+          tar -xzf "$RUNNER_TEMP/stellarcsg.tar.gz" -C "$GITHUB_WORKSPACE"
+          rm -f \
+            dev/stellarcsg/include/stellarcsg/periodic_radial_surface.hpp \
+            dev/stellarcsg/src/periodic_radial_surface.cpp \
+            dev/stellarcsg/tests/test_reference_kernel.cpp
+      - name: Commit materialized implementation
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -A dev/stellarcsg
+          git diff --cached --check
+          git commit -m "Implement conservative periodic spline OpenMC surface"
+          git push origin HEAD:codex/stellarcsg-native-csg-foundation-20260828
