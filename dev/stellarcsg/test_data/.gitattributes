@@ -1,0 +1,2 @@
+# Preserve the byte-identical pinned MAKEGRID fixture, including source spaces.
+parastell_generic/coils.example whitespace=-blank-at-eol
