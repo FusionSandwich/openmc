@@ -1,0 +1,36 @@
+{
+  "schema": "stellarcsg.github_savepoint/v1",
+  "created_date": "2026-08-30",
+  "repository": "FusionSandwich/openmc",
+  "branch": "codex/stellarcsg-native-csg-foundation-20260828",
+  "parent_commit": "ade0578c6abab200a7cec290eb1ddaf4dd883eaa",
+  "verified_source_snapshot": {
+    "path": "dev/stellarcsg/snapshots/periodic_axis_openmc_adapter_source.zip",
+    "bytes": 100273,
+    "sha256": "5043bcd871b07067468ca9ba094e6da4b9fb2cc03f21f714248c71f1a9ecc44a",
+    "git_blob": "ffe455a35afdc114b3dd1753bef3e15fb2fddc2f"
+  },
+  "integration_patch": {
+    "path": "dev/stellarcsg/snapshots/periodic_axis_openmc_adapter_milestone.patch",
+    "bytes": 221090,
+    "sha256": "7f89f70568283868eeb91954c2aeae2fa207b4ccddffc7aa03daa284704fc922",
+    "git_blob": "62b09378cfb49a2d479f715ec48fb656600485bb"
+  },
+  "local_codex_prompt": {
+    "path": "dev/stellarcsg/docs/LOCAL_CODEX_COMPLETION_PROMPT.md",
+    "bytes": 20084,
+    "sha256": "85ee07b237bb49c8c0ccbe25d930b6bdcbd496302bc310262078b9fb412d4986",
+    "git_blob": "704464ff73c79530f3bfc6463ec6536e87a224eb"
+  },
+  "revalidation": {
+    "gcc_release_ctest": "PASS_3_OF_3",
+    "python_pytest": "PASS_9_OF_9"
+  },
+  "failed_materializer": {
+    "status": "REMOVED_AND_SUPERSEDED",
+    "expected_archive_sha256": "73de10041ece295365226916180462eed4b8c9dba0952ded9dfc1b468fae7b2c",
+    "observed_archive_sha256": "705b836d9c1fe0b99dd0aae7e456858ca01e95c64e3e2c0b1ca528569455e7ba",
+    "reason": "The staged base64 archive failed gzip CRC and length validation. The corrupt chunks and auto-materializer workflow are removed in this savepoint."
+  },
+  "benchmark_scope": "The retained speed result is bounded spline-patch BVH versus the same kernel's global reference search, not end-to-end OpenMC or DAGMC."
+}
