@@ -1,0 +1,97 @@
+name: StellarCSG Step 2 quality and adversarial rays
+
+on:
+  push:
+    branches: [feature/native-stellarator-csg-openmc-0.16]
+    paths:
+      - '.github/workflows/stellarcsg-step2-quality.yml'
+      - 'dev/stellarcsg/CMakeLists.txt'
+      - 'dev/stellarcsg/include/stellarcsg/**'
+      - 'dev/stellarcsg/src/**'
+      - 'dev/stellarcsg/tests/**'
+      - 'dev/stellarcsg/tools/adversarial_rays.cpp'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  release:
+    name: Release and adversarial qualification
+    runs-on: ubuntu-24.04
+    timeout-minutes: 45
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y --no-install-recommends libhdf5-dev
+      - name: Configure and build
+        run: |
+          cmake -S dev/stellarcsg -B build/stellarcsg-step2 \
+            -DCMAKE_BUILD_TYPE=Release \
+            -DSTELLARCSG_ENABLE_HDF5=ON \
+            -DSTELLARCSG_BUILD_TESTS=ON \
+            -DSTELLARCSG_BUILD_BENCHMARKS=ON \
+            -DSTELLARCSG_BUILD_TOOLS=ON
+          cmake --build build/stellarcsg-step2 --parallel 2
+      - name: Run C++ tests
+        run: ctest --test-dir build/stellarcsg-step2 --output-on-failure | tee step2-ctest.log
+      - name: Run expanded adversarial ray campaign
+        run: |
+          build/stellarcsg-step2/stellarcsg_adversarial_rays 10000 \
+            | tee step2-adversarial-10000.json
+          python - <<'PY'
+          import json
+          data = json.load(open('step2-adversarial-10000.json'))
+          for name, case in data['cases'].items():
+              assert case['classification_mismatches'] == 0, (name, case)
+              assert case['distance_mismatches'] == 0, (name, case)
+          PY
+      - name: Run geometry microbenchmark
+        run: build/stellarcsg-step2/stellarcsg_surface_benchmark | tee step2-benchmark.json
+      - uses: actions/upload-artifact@v4
+        with:
+          name: stellarcsg-step2-release-${{ github.sha }}
+          path: |
+            step2-ctest.log
+            step2-adversarial-10000.json
+            step2-benchmark.json
+          retention-days: 90
+
+  sanitizer:
+    name: ASan and UBSan
+    runs-on: ubuntu-24.04
+    timeout-minutes: 45
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y --no-install-recommends libhdf5-dev
+      - name: Configure sanitizer build
+        run: |
+          cmake -S dev/stellarcsg -B build/stellarcsg-step2-sanitize \
+            -DCMAKE_BUILD_TYPE=RelWithDebInfo \
+            -DSTELLARCSG_ENABLE_HDF5=ON \
+            -DSTELLARCSG_ENABLE_SANITIZERS=ON \
+            -DSTELLARCSG_BUILD_TESTS=ON \
+            -DSTELLARCSG_BUILD_BENCHMARKS=OFF \
+            -DSTELLARCSG_BUILD_TOOLS=ON
+          cmake --build build/stellarcsg-step2-sanitize --parallel 2
+      - name: Run sanitizer tests
+        env:
+          ASAN_OPTIONS: detect_leaks=1:halt_on_error=1
+          UBSAN_OPTIONS: halt_on_error=1:print_stacktrace=1
+        run: |
+          ctest --test-dir build/stellarcsg-step2-sanitize --output-on-failure \
+            | tee step2-sanitizer-ctest.log
+          build/stellarcsg-step2-sanitize/stellarcsg_adversarial_rays 1000 \
+            | tee step2-sanitizer-adversarial.json
+      - uses: actions/upload-artifact@v4
+        with:
+          name: stellarcsg-step2-sanitizer-${{ github.sha }}
+          path: |
+            step2-sanitizer-ctest.log
+            step2-sanitizer-adversarial.json
+          retention-days: 90
