@@ -1,0 +1,15 @@
+OpenMC version 0.15.1-dev626
+Commit hash: 77b4096d79e13d6f422b8a4db00e4340cc23a24d
+Copyright (c) 2011-2026 MIT, UChicago Argonne LLC, and contributors
+MIT/X license at <https://docs.openmc.org/en/latest/license.html>
+Build type:            Release
+Compiler ID:           GNU 13.3.0
+MPI enabled:           no
+Parallel HDF5 enabled: no
+PNG support:           yes
+DAGMC support:         no
+libMesh support:       no
+Coverage testing:      no
+Profiling flags:       no
+UWUW support:          no
+Strict FP:             no

@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "comparison": "OpenMC ZTorus versus native periodic-spline",
+  "point_samples": 50000,
+  "ray_samples": 20000,
+  "sense_mismatches": 0,
+  "ray_classification_mismatches": 0,
+  "ray_distance_mismatches": 0,
+  "maximum_distance_error_cm": 8.4929752119933255e-10,
+  "maximum_normal_angle_rad": 2.1073424255447017e-08,
+  "builtin_ns_per_ray": 301.37365,
+  "custom_ns_per_ray": 2167702.1475,
+  "custom_to_builtin_time_ratio": 7192.7394697578902,
+  "passed": true
+}

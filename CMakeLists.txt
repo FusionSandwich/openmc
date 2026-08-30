@@ -617,6 +617,15 @@ if (OPENMC_BUILD_TESTS)
     target_link_libraries(stellarcsg_openmc_surface_tests PRIVATE libopenmc)
     add_test(NAME stellarcsg_openmc_surface_tests
       COMMAND stellarcsg_openmc_surface_tests)
+    add_executable(stellarcsg_openmc_ztorus_comparison
+      dev/stellarcsg/openmc_adapter/tests/test_periodic_spline_vs_ztorus.cpp)
+    target_include_directories(stellarcsg_openmc_ztorus_comparison PRIVATE
+      ${CMAKE_CURRENT_SOURCE_DIR}/dev/stellarcsg/include)
+    target_compile_definitions(stellarcsg_openmc_ztorus_comparison PRIVATE
+      STELLARCSG_HAS_HDF5)
+    target_link_libraries(stellarcsg_openmc_ztorus_comparison PRIVATE libopenmc)
+    add_test(NAME stellarcsg_openmc_ztorus_comparison
+      COMMAND stellarcsg_openmc_ztorus_comparison 10000 5000)
   endif()
 endif()
 
