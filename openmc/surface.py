@@ -4,6 +4,7 @@ from collections.abc import Iterable
 from copy import deepcopy
 import math
 from numbers import Real
+from pathlib import Path
 from warnings import warn, catch_warnings, simplefilter
 
 import lxml.etree as ET
@@ -460,6 +461,9 @@ class Surface(IDManagerMixin, ABC):
         surf_type = get_text(elem, "type")
         cls = _SURFACE_CLASSES[surf_type]
 
+        if surf_type == 'periodic-spline':
+            return cls._from_xml_element(elem)
+
         # Determine ID, boundary type, boundary albedo, coefficients
         kwargs = {}
         kwargs['surface_id'] = int(get_text(elem, "id"))
@@ -501,13 +505,16 @@ class Surface(IDManagerMixin, ABC):
             bc_alb = float(group['albedo'][()].decode())
         else:
             bc_alb = 1.0
-        coeffs = group['coefficients'][...]
         kwargs = {'boundary_type': bc, 'albedo': bc_alb, 'name': name,
                   'surface_id': surface_id}
 
         surf_type = group['type'][()].decode()
         cls = _SURFACE_CLASSES[surf_type]
 
+        if surf_type == 'periodic-spline':
+            return cls._from_hdf5(group, **kwargs)
+
+        coeffs = group['coefficients'][...]
         return cls(*coeffs, **kwargs)
 
 
@@ -2581,6 +2588,145 @@ class ZTorus(TorusMixin, Surface):
             )
         elif side == '+':
             return BoundingBox.infinite()
+
+
+class PeriodicSplineSurface(Surface):
+    """Experimental native periodic-spline surface.
+
+    The coefficient payload is stored in an external HDF5 file and is loaded by
+    OpenMC during geometry initialization. Lengths in that payload must be in
+    centimetres. The OpenMC executable must be configured with
+    ``OPENMC_ENABLE_EXPERIMENTAL_STELLARCSG=ON``.
+
+    Parameters
+    ----------
+    data_file : path-like
+        HDF5 coefficient file. Relative paths are resolved from the OpenMC input
+        directory by the C++ reader.
+    dataset : str
+        Absolute HDF5 group containing the coefficient payload.
+    content_id : str
+        Canonical payload identity, normally ``sha256:<64 lowercase hex>``.
+    solver : {'reference'}
+        Root-solver policy. Only the independently tested reference policy is
+        currently accepted.
+    kwargs : dict
+        Keyword arguments passed to :class:`Surface`.
+    """
+
+    _type = 'periodic-spline'
+    _coeff_keys = ()
+
+    def __init__(self, data_file, dataset, content_id, solver='reference', **kwargs):
+        super().__init__(**kwargs)
+        check_type('data_file', data_file, (str, Path))
+        check_type('dataset', dataset, str)
+        check_type('content_id', content_id, str)
+        check_type('solver', solver, str)
+        if not dataset.startswith('/'):
+            raise ValueError('dataset must be an absolute HDF5 group path')
+        if not content_id:
+            raise ValueError('content_id cannot be empty')
+        if solver != 'reference':
+            raise ValueError("only solver='reference' is currently supported")
+        self.data_file = str(data_file)
+        self.dataset = dataset
+        self.content_id = content_id
+        self.solver = solver
+
+    def _get_base_coeffs(self):
+        return ()
+
+    def evaluate(self, point):
+        raise NotImplementedError(
+            'PeriodicSplineSurface evaluation is provided by an experimental '
+            'OpenMC build, not the dependency-free Python geometry API'
+        )
+
+    def bounding_box(self, side):
+        if side == '+':
+            return BoundingBox.infinite()
+        if side != '-':
+            raise ValueError("side must be '+' or '-'")
+
+        import h5py
+
+        with h5py.File(self.data_file, 'r') as h5:
+            group = h5[self.dataset]
+            units = group.attrs['units']
+            if isinstance(units, bytes):
+                units = units.decode()
+            if units != 'cm':
+                raise ValueError("periodic-spline payload units must be 'cm'")
+            axis_r = group['axis_r_coefficients'][...]
+            axis_z = group['axis_z_coefficients'][...]
+            radius = group['radius_coefficients'][...]
+            characteristic = float(group.attrs['characteristic_length'])
+        radius_max = float(np.max(radius))
+        radial_extent = float(np.max(np.abs(axis_r))) + radius_max
+        epsilon = max(1.0e-10 * characteristic, 1.0e-9)
+        return BoundingBox(
+            np.array([-radial_extent - epsilon, -radial_extent - epsilon,
+                      float(np.min(axis_z)) - radius_max - epsilon]),
+            np.array([radial_extent + epsilon, radial_extent + epsilon,
+                      float(np.max(axis_z)) + radius_max + epsilon]),
+        )
+
+    def translate(self, vector, inplace=False):
+        raise NotImplementedError(
+            'translate the coefficient payload before constructing this surface'
+        )
+
+    def rotate(self, rotation, pivot=(0., 0., 0.), order='xyz', inplace=False):
+        raise NotImplementedError(
+            'rotate the coefficient payload before constructing this surface'
+        )
+
+    def to_xml_element(self):
+        element = super().to_xml_element()
+        element.attrib.pop('coeffs', None)
+        element.set('data_file', self.data_file)
+        element.set('dataset', self.dataset)
+        element.set('content_id', self.content_id)
+        element.set('solver', self.solver)
+        element.set('units', 'cm')
+        return element
+
+    @classmethod
+    def _from_xml_element(cls, elem):
+        kwargs = {
+            'surface_id': int(get_text(elem, 'id')),
+            'boundary_type': get_text(elem, 'boundary', 'transmission'),
+            'name': get_text(elem, 'name'),
+        }
+        if kwargs['boundary_type'] in _ALBEDO_BOUNDARIES:
+            kwargs['albedo'] = float(get_text(elem, 'albedo', 1.0))
+        units = get_text(elem, 'units', 'cm')
+        if units != 'cm':
+            raise ValueError("periodic-spline XML units must be 'cm'")
+        return cls(
+            data_file=get_text(elem, 'data_file'),
+            dataset=get_text(elem, 'dataset'),
+            content_id=get_text(elem, 'content_id'),
+            solver=get_text(elem, 'solver', 'reference'),
+            **kwargs,
+        )
+
+    @classmethod
+    def _from_hdf5(cls, group, **kwargs):
+        def text(name, default=None):
+            if name not in group:
+                return default
+            value = group[name][()]
+            return value.decode() if isinstance(value, bytes) else str(value)
+
+        return cls(
+            data_file=text('data_file'),
+            dataset=text('dataset'),
+            content_id=text('content_id'),
+            solver=text('solver', 'reference'),
+            **kwargs,
+        )
 
 
 class Halfspace(Region):

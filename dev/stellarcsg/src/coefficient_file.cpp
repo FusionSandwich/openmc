@@ -1,4 +1,5 @@
 #include "stellarcsg/coefficient_file.hpp"
+#include "stellarcsg/sha256.hpp"
 
 #ifdef STELLARCSG_HAS_HDF5
 
@@ -8,6 +9,7 @@
 #include <algorithm>
 #include <array>
 #include <cstdint>
+#include <cstring>
 #include <stdexcept>
 #include <string>
 #include <vector>
@@ -143,12 +145,44 @@ std::vector<double> read_vector(hid_t group, const char* name)
   return values;
 }
 
+void update_little_endian(Sha256& digest, const std::vector<double>& values)
+{
+  static_assert(sizeof(double) == sizeof(std::uint64_t));
+  std::array<std::uint8_t, 8> bytes {};
+  for (double value : values) {
+    std::uint64_t bits = 0;
+    std::memcpy(&bits, &value, sizeof(bits));
+    for (std::size_t i = 0; i < bytes.size(); ++i) {
+      bytes[i] = static_cast<std::uint8_t>(bits >> (8u * i));
+    }
+    digest.update(bytes.data(), bytes.size());
+  }
+}
+
 } // namespace
+
+std::string periodic_spline_content_id(const PeriodicSplineSurfaceData& data)
+{
+  require(!data.canonical_metadata_json.empty(),
+    "Canonical metadata JSON is required for SHA-256 verification");
+  Sha256 digest;
+  digest.update(
+    data.canonical_metadata_json.data(), data.canonical_metadata_json.size());
+  update_little_endian(digest, data.axis_r_coefficients);
+  update_little_endian(digest, data.axis_z_coefficients);
+  update_little_endian(digest, data.radius_coefficients);
+  return "sha256:" + digest.hex_digest();
+}
 
 void write_periodic_spline_surface_hdf5(const std::string& filename,
   const std::string& dataset, const PeriodicSplineSurfaceData& data,
   bool overwrite, CoefficientFileMode mode)
 {
+  if (data.content_id.rfind("sha256:", 0) == 0 &&
+      periodic_spline_content_id(data) != data.content_id) {
+    throw std::runtime_error(
+      "Periodic-spline canonical payload SHA-256 does not match content_id");
+  }
   const hid_t file_id = mode == CoefficientFileMode::truncate
     ? H5Fcreate(filename.c_str(), H5F_ACC_TRUNC, H5P_DEFAULT, H5P_DEFAULT)
     : (H5Fis_hdf5(filename.c_str()) > 0
@@ -173,6 +207,10 @@ void write_periodic_spline_surface_hdf5(const std::string& filename,
   write_string_attribute(group.get(), "surface_type", "periodic-radial-bicubic");
   write_string_attribute(group.get(), "units", data.units);
   write_string_attribute(group.get(), "content_id", data.content_id);
+  if (!data.canonical_metadata_json.empty()) {
+    write_string_attribute(group.get(), "canonical_metadata_json",
+      data.canonical_metadata_json);
+  }
   require(H5LTset_attribute_int(group.get(), ".", "n_field_periods",
     &data.n_field_periods, 1) >= 0, "Unable to write n_field_periods");
   require(H5LTset_attribute_double(group.get(), ".", "characteristic_length",
@@ -208,8 +246,14 @@ PeriodicSplineSurfaceData read_periodic_spline_surface_hdf5(
     "Unable to read schema_version");
   data.schema_major = schema[0];
   data.schema_minor = schema[1];
+  const auto surface_type =
+    read_string_attribute(group.get(), "surface_type");
+  require(surface_type == "periodic-radial-bicubic",
+    "Unsupported coefficient surface_type '" + surface_type + "'");
   data.units = read_string_attribute(group.get(), "units", "cm");
   data.content_id = read_string_attribute(group.get(), "content_id");
+  data.canonical_metadata_json =
+    read_string_attribute(group.get(), "canonical_metadata_json");
   if (!expected_content_id.empty() && data.content_id != expected_content_id) {
     throw std::runtime_error("Coefficient content_id mismatch: expected '"
       + expected_content_id + "' but file contains '" + data.content_id + "'");
@@ -244,6 +288,11 @@ PeriodicSplineSurfaceData read_periodic_spline_surface_hdf5(
   require(H5LTread_dataset_double(group.get(), "radius_coefficients",
     data.radius_coefficients.data()) >= 0,
     "Unable to read radius_coefficients");
+  if (data.content_id.rfind("sha256:", 0) == 0 &&
+      periodic_spline_content_id(data) != data.content_id) {
+    throw std::runtime_error(
+      "Periodic-spline canonical payload SHA-256 does not verify");
+  }
   return data;
 }
 

@@ -43,6 +43,7 @@ def write_surface(
         group.attrs["surface_type"] = "periodic-radial-bicubic"
         group.attrs["units"] = surface.units
         group.attrs["content_id"] = surface.content_id
+        group.attrs["canonical_metadata_json"] = surface.canonical_metadata_json()
         group.attrs["n_field_periods"] = surface.n_field_periods
         group.attrs["characteristic_length"] = surface.characteristic_length
         group.attrs["coordinate_singularity_tolerance"] = (

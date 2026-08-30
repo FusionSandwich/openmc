@@ -10,6 +10,9 @@ namespace stellarcsg {
 enum class CoefficientFileMode { truncate, append };
 
 #ifdef STELLARCSG_HAS_HDF5
+[[nodiscard]] std::string periodic_spline_content_id(
+  const PeriodicSplineSurfaceData& data);
+
 void write_periodic_spline_surface_hdf5(const std::string& filename,
   const std::string& dataset, const PeriodicSplineSurfaceData& data,
   bool overwrite = false,

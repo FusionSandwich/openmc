@@ -1,5 +1,6 @@
 #include "stellarcsg/coefficient_file.hpp"
 #include "stellarcsg/compiled_periodic_surface.hpp"
+#include "stellarcsg/sha256.hpp"
 
 #include <cmath>
 #include <cstdio>
@@ -122,7 +123,9 @@ void test_moving_axis_and_helical_radius()
 void test_hdf5_round_trip()
 {
   const std::string filename = "stellarcsg_compiled_surface_test.h5";
-  const auto source = make_torus_data();
+  auto source = make_torus_data();
+  source.canonical_metadata_json = "{\"case\":\"torus\"}";
+  source.content_id = stellarcsg::periodic_spline_content_id(source);
   stellarcsg::write_periodic_spline_surface_hdf5(filename,
     "/surfaces/torus", source, true,
     stellarcsg::CoefficientFileMode::truncate);
@@ -148,6 +151,16 @@ void test_hdf5_round_trip()
 }
 #endif
 
+void test_sha256_known_vector()
+{
+  stellarcsg::Sha256 digest;
+  const std::string input = "abc";
+  digest.update(input.data(), input.size());
+  check(digest.hex_digest() ==
+      "ba7816bf8f01cfea414140de5dae2223b00361a396177a9cb410ff61f20015ad",
+    "SHA-256 known vector");
+}
+
 } // namespace
 
 int main()
@@ -155,6 +168,7 @@ int main()
   try {
     test_compiled_torus();
     test_moving_axis_and_helical_radius();
+    test_sha256_known_vector();
 #ifdef STELLARCSG_HAS_HDF5
     test_hdf5_round_trip();
 #endif

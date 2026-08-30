@@ -18,6 +18,7 @@ struct PeriodicSplineSurfaceData {
   int schema_major {1};
   int schema_minor {0};
   std::string content_id {};
+  std::string canonical_metadata_json {};
   std::string units {"cm"};
   int n_field_periods {1};
   std::vector<double> axis_r_coefficients {};

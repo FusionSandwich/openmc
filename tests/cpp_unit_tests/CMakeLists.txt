@@ -14,6 +14,10 @@ set(TEST_NAMES
   # Add additional unit test files here
 )
 
+if(OPENMC_ENABLE_EXPERIMENTAL_STELLARCSG)
+  list(APPEND TEST_NAMES test_stellarcsg_surface)
+endif()
+
 foreach(test ${TEST_NAMES})
   add_executable(${test} ${test}.cpp)
   target_link_libraries(${test} Catch2::Catch2WithMain libopenmc)

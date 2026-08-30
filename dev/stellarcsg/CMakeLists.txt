@@ -10,6 +10,7 @@ option(STELLARCSG_ENABLE_SANITIZERS "Enable ASan/UBSan for standalone tests" OFF
 add_library(stellarcsg_reference STATIC
   src/periodic_radial_surface.cpp
   src/root_solver.cpp
+  src/sha256.cpp
   src/uniform_periodic_bicubic_spline.cpp
   src/uniform_periodic_cubic_spline.cpp
   src/compiled_periodic_surface.cpp

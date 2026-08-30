@@ -22,6 +22,7 @@ A geometry file contains one or more independent surfaces under:
 | `surface_type` | UTF-8 string | `periodic-radial-bicubic` |
 | `units` | UTF-8 string | must be `cm` |
 | `content_id` | UTF-8 string | canonical `sha256:<hex>` or explicit test identity |
+| `canonical_metadata_json` | UTF-8 string | exact canonical JSON bytes covered by `content_id` |
 | `n_field_periods` | integer | positive field-period count |
 | `characteristic_length` | float64 | scale used for numerical tolerances |
 | `coordinate_singularity_tolerance` | float64 | exclusion scale around singular coordinates |
@@ -41,10 +42,11 @@ The axis splines and the second radial coordinate use reduced toroidal phase
 
 ## Content identity
 
-The Python compiler computes SHA-256 over canonical JSON metadata and
-little-endian contiguous float64 coefficient bytes. Readers reject a changed
-payload. The C++ adapter verifies an expected identity supplied in OpenMC XML;
-a future version should also recompute the SHA-256 in C++.
+The Python compiler computes SHA-256 over `canonical_metadata_json` followed by
+the axis-R, axis-Z, and radius coefficient arrays as contiguous little-endian
+float64 bytes. Both Python and C++ readers recompute this digest and reject a
+changed payload. The C++ reader also verifies an expected identity supplied in
+OpenMC XML.
 
 ## OpenMC XML reference
 

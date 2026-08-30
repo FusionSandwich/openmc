@@ -228,6 +228,17 @@ class PeriodicRadialSurfaceData:
 
     def compute_content_id(self) -> str:
         digest = hashlib.sha256()
+        digest.update(self.canonical_metadata_json().encode())
+        for array in (
+            self.axis_r_coefficients,
+            self.axis_z_coefficients,
+            self.radius_coefficients,
+        ):
+            digest.update(np.asarray(array, dtype="<f8", order="C").tobytes())
+        return "sha256:" + digest.hexdigest()
+
+    def canonical_metadata_json(self) -> str:
+        """Return the exact canonical metadata bytes covered by content_id."""
         metadata = {
             "schema_version": [1, 0],
             "name": self.name,
@@ -237,14 +248,7 @@ class PeriodicRadialSurfaceData:
             "coordinate_singularity_tolerance": self.coordinate_singularity_tolerance,
             "source_metadata": dict(self.source_metadata or {}),
         }
-        digest.update(json.dumps(metadata, sort_keys=True, separators=(",", ":")).encode())
-        for array in (
-            self.axis_r_coefficients,
-            self.axis_z_coefficients,
-            self.radius_coefficients,
-        ):
-            digest.update(np.asarray(array, dtype="<f8", order="C").tobytes())
-        return "sha256:" + digest.hexdigest()
+        return json.dumps(metadata, sort_keys=True, separators=(",", ":"))
 
     def axis(self, phi: np.ndarray | float) -> tuple[np.ndarray, ...]:
         r, dr = sample_periodic_cubic(

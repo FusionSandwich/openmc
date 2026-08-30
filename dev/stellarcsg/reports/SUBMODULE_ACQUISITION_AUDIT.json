@@ -1,0 +1,38 @@
+{
+  "schema": "stellarcsg.dependency-acquisition-audit/v1",
+  "timestamp": "2026-08-30T14:24:40.6852226-04:00",
+  "host": "VENGEANCE",
+  "ram_total_gib": 31.91,
+  "ram_free_gib": 8.07,
+  "free_space_gib": {"C:": 171.6, "D:": 323.81},
+  "significant_processes": [
+    "Memory Compression (1697.8 MiB RSS)",
+    "vmmemWSL (800.4 MiB RSS)",
+    "ChatGPT (701.3 MiB RSS)",
+    "codex (676.4 MiB RSS)",
+    "MsMpEng (620.1 MiB RSS)",
+    "Chrome processes"
+  ],
+  "existing_capabilities": {
+    "wsl_distribution": "Debian 13 (trixie)",
+    "cmake": "3.31.6",
+    "gcc": "14.2.0",
+    "hdf5": "1.14.5",
+    "system_fmt": "absent",
+    "system_pugixml": "absent",
+    "system_catch2": "absent",
+    "python_and_conda_environments": "unchanged from LOCAL_CODEX_STARTING_STATE.json",
+    "package_and_build_caches": "unchanged from LOCAL_CODEX_STARTING_STATE.json"
+  },
+  "planned_acquisition": {
+    "reason": "OpenMC cannot configure and its C++ unit tests cannot build without fmt, pugixml, and Catch2.",
+    "target": "vendor/ submodule worktrees in the isolated OpenMC checkout",
+    "github_reported_total_kib": 58456,
+    "components": [
+      {"repository": "zeux/pugixml", "reported_kib": 6950, "gitlink": "ee86beb30e4973f5feffe3ce63bfa4fbadf72f38"},
+      {"repository": "fmtlib/fmt", "reported_kib": 17734, "gitlink": "0c9fce2ffefecfdce794e1859584e25877b7b592"},
+      {"repository": "catchorg/Catch2", "reported_kib": 33772, "gitlink": "5a40b2275caa05cf809bf04df848764a9d7df2e2"}
+    ],
+    "rollback": "Run git submodule deinit for only vendor/pugixml, vendor/fmt, and vendor/Catch2, then remove only their generated submodule worktrees if necessary."
+  }
+}
