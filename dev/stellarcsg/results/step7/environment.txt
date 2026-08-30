@@ -1,0 +1,35 @@
+container_image=openmc/openmc:develop-dagmc
+trigger_sha=b53548fc9746b58e450935cf3e4cb12e3add1bf2
+Linux 38f6b8f88163 6.17.0-1022-azure #22-Ubuntu SMP Mon Jul 27 17:24:03 UTC 2026 x86_64 x86_64 x86_64 GNU/Linux
+Python 3.12.3
+cmake version 3.28.3
+c++ (Ubuntu 13.3.0-6ubuntu2~24.04.1) 13.3.0
+/usr/local/bin/openmc
+OpenMC version 0.16.1-dev14
+Commit hash: 150f9ac044031a840c555cfdb2bb2c7f63f23d7c
+Copyright (c) 2011-2026 MIT, UChicago Argonne LLC, and contributors
+MIT/X license at <https://docs.openmc.org/en/latest/license.html>
+Build type:            RelWithDebInfo
+Compiler ID:           GNU 13.3.0
+MPI enabled:           yes
+Parallel HDF5 enabled: yes
+PNG support:           yes
+DAGMC support:         yes
+libMesh support:       no
+Coverage testing:      no
+Profiling flags:       no
+UWUW support:          no
+Strict FP:             no
+python_path=/work:/work/dev/stellarcsg/python:
+--- pymoab candidates before package installation ---
+/usr/local/lib/python3.12/site-packages/pymoab
+/usr/local/lib/python3.12/site-packages/pymoab/pymoab
+/root/MOAB/build/pymoab
+/root/MOAB/build/pymoab/build/temp.linux-x86_64-cpython-312/pymoab
+/root/MOAB/build/pymoab/build/lib.linux-x86_64-cpython-312/pymoab
+/root/MOAB/build/pymoab/build/lib.linux-x86_64-cpython-312/pymoab/pymoab
+/root/MOAB/build/pymoab/pymoab
+/root/MOAB/moab/pymoab
+/root/MOAB/moab/pymoab/pymoab
+/root/DAGMC/lib/cmake/dagmc/DAGMCConfig.cmake
+PyMOAB was not importable; rebuilding bindings from MOAB 5.5.1.
