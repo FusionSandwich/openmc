@@ -1,0 +1,36 @@
+name: StellarCSG fetch pinned public ParaStell fixtures
+
+on:
+  push:
+    branches:
+      - codex/stellarcsg-native-csg-foundation-20260828
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  fetch:
+    if: github.ref == 'refs/heads/codex/stellarcsg-native-csg-foundation-20260828'
+    runs-on: ubuntu-24.04
+    env:
+      PARASTELL_SHA: de7d2978ff314b060ca2e6b10745a034e8b2a3c4
+    steps:
+      - name: Download pinned public fixtures
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p public_parastell
+          base="https://raw.githubusercontent.com/FusionSandwich/parastell/${PARASTELL_SHA}/examples"
+          curl --fail --location --retry 5 --output public_parastell/wout_vmec.nc "${base}/wout_vmec.nc"
+          curl --fail --location --retry 5 --output public_parastell/coils.example "${base}/coils.example"
+          printf '%s\n' "${PARASTELL_SHA}" > public_parastell/PARASTELL_COMMIT.txt
+          sha256sum public_parastell/wout_vmec.nc public_parastell/coils.example > public_parastell/SHA256SUMS.txt
+          test "$(sha256sum public_parastell/wout_vmec.nc | cut -d' ' -f1)" = "1cebb8d46e60d77df4a6904662a9c9f943137a9fb59f7290e5309af15fa04797"
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: public-parastell-fixtures-${{ github.sha }}
+          path: public_parastell/
+          if-no-files-found: error
+          retention-days: 7
