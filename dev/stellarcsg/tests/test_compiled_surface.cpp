@@ -12,6 +12,7 @@
 namespace {
 
 int failures = 0;
+constexpr double pi = 3.141592653589793238462643383279502884;
 
 void check(bool condition, const std::string& message)
 {
@@ -130,6 +131,98 @@ void test_moving_axis_and_helical_radius()
   }
 }
 
+
+stellarcsg::PeriodicSplineSurfaceData make_adversarial_surface(bool helical)
+{
+  stellarcsg::PeriodicSplineSurfaceData data;
+  data.content_id = helical ? "regression-helical-v1" : "regression-torus-v1";
+  data.n_field_periods = helical ? 5 : 1;
+  constexpr std::size_t n_axis = 24;
+  data.axis_r_coefficients.resize(n_axis);
+  data.axis_z_coefficients.resize(n_axis);
+  for (std::size_t i = 0; i < n_axis; ++i) {
+    const double psi = 2.0 * pi * static_cast<double>(i)
+                       / static_cast<double>(n_axis);
+    data.axis_r_coefficients[i] =
+      500.0 + (helical ? 8.0 * std::cos(psi) : 0.0);
+    data.axis_z_coefficients[i] = helical ? 5.0 * std::sin(psi) : 0.0;
+  }
+  data.n_theta = 40;
+  data.n_phi = 32;
+  data.radius_coefficients.resize(data.n_theta * data.n_phi);
+  for (std::size_t i = 0; i < data.n_theta; ++i) {
+    const double theta = 2.0 * pi * static_cast<double>(i)
+                         / static_cast<double>(data.n_theta);
+    for (std::size_t j = 0; j < data.n_phi; ++j) {
+      const double psi = 2.0 * pi * static_cast<double>(j)
+                         / static_cast<double>(data.n_phi);
+      double radius = 100.0;
+      if (helical) {
+        radius += 12.0 * std::cos(2.0 * theta - psi)
+                  + 4.0 * std::cos(3.0 * theta + 2.0 * psi);
+      }
+      data.radius_coefficients[i * data.n_phi + j] = radius;
+    }
+  }
+  data.characteristic_length = 620.0;
+  return data;
+}
+
+void check_fast_matches_reference(const stellarcsg::CompiledPeriodicSplineSurface& surface,
+  const stellarcsg::Vec3& origin, const stellarcsg::Vec3& direction,
+  const std::string& label)
+{
+  stellarcsg::FastDistanceOptions fast_options;
+  fast_options.fallback_to_reference = false;
+  fast_options.minimum_scan_intervals = 12;
+  fast_options.maximum_scan_intervals = 192;
+  fast_options.maximum_scan_step_fraction = 0.35;
+  fast_options.absolute_f_tolerance = 2.0e-9;
+  fast_options.absolute_t_tolerance = 2.0e-10;
+
+  stellarcsg::RootSearchOptions reference_options;
+  reference_options.initial_subdivisions = 128;
+  reference_options.max_refinement_levels = 6;
+  reference_options.absolute_f_tolerance = 2.0e-9;
+  reference_options.absolute_t_tolerance = 2.0e-10;
+  reference_options.require_refinement_stability = true;
+
+  const auto fast = surface.distance_fast(
+    origin, direction, false, fast_options);
+  const auto reference = surface.distance_reference(
+    origin, direction, false, reference_options);
+  check(fast.found == reference.found, label + " hit classification");
+  if (fast.found && reference.found) {
+    check_near(fast.distance, reference.distance, 2.0e-6,
+      label + " nearest distance");
+  }
+}
+
+void test_close_root_pair_regressions()
+{
+  const stellarcsg::CompiledPeriodicSplineSurface torus {
+    make_adversarial_surface(false)};
+  const stellarcsg::CompiledPeriodicSplineSurface helical {
+    make_adversarial_surface(true)};
+
+  // These fixed rays are from the first 10,000-ray remote qualification.
+  // Each crosses a thin chord for which scan endpoints and the midpoint have
+  // equal sign. The stationary point inside the interval exposes a close pair
+  // of roots; the earlier root must be returned.
+  check_fast_matches_reference(torus,
+    {-468.259, -27.6116, 108.378},
+    {0.713639, -0.247312, -0.655405},
+    "circular-torus close-pair regression");
+  check_fast_matches_reference(helical,
+    {-61.7683, 459.774, 124.697},
+    {-0.215491, -0.594493, -0.774688},
+    "helical close-pair miss regression");
+  check_fast_matches_reference(helical,
+    {533.783, 333.175, 136.203},
+    {-0.635488, -0.747599, -0.193006},
+    "helical nearest-root regression");
+}
+
 #ifdef STELLARCSG_HAS_HDF5
 void test_hdf5_round_trip()
 {
@@ -167,6 +260,7 @@ int main()
   try {
     test_compiled_torus();
     test_moving_axis_and_helical_radius();
+    test_close_root_pair_regressions();
 #ifdef STELLARCSG_HAS_HDF5
     test_hdf5_round_trip();
 #endif

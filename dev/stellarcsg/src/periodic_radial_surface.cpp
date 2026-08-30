@@ -159,12 +159,12 @@ RefinedRoot refine_stationary(FastEvaluator& evaluator, double a, double b,
     return result;
   }
 
+  // A stationary point is useful even when it is not itself a tangent root.
+  // If its signed value is opposite to the interval endpoints, the interval
+  // contains a close pair of ordinary roots. Returning the stationary point
+  // lets the caller split the interval and refine the earlier crossing.
   const double residual = std::abs(evaluator.f(t));
-  if (residual <= options.tangent_residual_multiplier
-                    * options.absolute_f_tolerance) {
-    return {true, t, residual, result.iterations};
-  }
-  return result;
+  return {true, t, residual, result.iterations};
 }
 
 } // namespace
@@ -477,16 +477,58 @@ DistanceResult PeriodicRadialSurface::distance_fast(const Vec3& origin,
             || std::abs(segment.dfleft) <= options.derivative_tolerance
             || std::abs(segment.dfright) <= options.derivative_tolerance);
       if (stationary_possible) {
-        const auto root = refine_stationary(evaluator, segment.left, segment.right,
-          segment.dfleft, segment.dfright, options);
-        total_iterations += root.iterations;
-        if (root.found) {
-          diagnostics_.root_function_evaluations.fetch_add(
-        evaluator.diagnostics.function_evaluations, std::memory_order_relaxed);
-          diagnostics_.root_derivative_evaluations.fetch_add(
-        evaluator.diagnostics.derivative_evaluations, std::memory_order_relaxed);
-          return {true, root.t, RootKind::stationary_tangent, root.residual,
-            evaluator.diagnostics, false, intervals, total_iterations};
+        const auto stationary = refine_stationary(evaluator, segment.left,
+          segment.right, segment.dfleft, segment.dfright, options);
+        total_iterations += stationary.iterations;
+        if (stationary.found) {
+          const double fs = evaluator.f(stationary.t);
+          if (std::abs(fs) <= options.tangent_residual_multiplier
+                              * options.absolute_f_tolerance) {
+            diagnostics_.root_function_evaluations.fetch_add(
+              evaluator.diagnostics.function_evaluations,
+              std::memory_order_relaxed);
+            diagnostics_.root_derivative_evaluations.fetch_add(
+              evaluator.diagnostics.derivative_evaluations,
+              std::memory_order_relaxed);
+            return {true, stationary.t, RootKind::stationary_tangent,
+              std::abs(fs), evaluator.diagnostics, false, intervals,
+              total_iterations};
+          }
+
+          // A stationary value with opposite sign from either endpoint means
+          // a close pair of crossings was hidden inside a scan segment. Search
+          // the left half first so the returned root is the nearest positive
+          // intersection along the ray.
+          if (std::signbit(segment.fleft) != std::signbit(fs)) {
+            const auto root = refine_sign_change(evaluator, segment.left,
+              stationary.t, segment.fleft, fs, options);
+            total_iterations += root.iterations;
+            if (root.found) {
+              diagnostics_.root_function_evaluations.fetch_add(
+                evaluator.diagnostics.function_evaluations,
+                std::memory_order_relaxed);
+              diagnostics_.root_derivative_evaluations.fetch_add(
+                evaluator.diagnostics.derivative_evaluations,
+                std::memory_order_relaxed);
+              return {true, root.t, RootKind::sign_change, root.residual,
+                evaluator.diagnostics, false, intervals, total_iterations};
+            }
+          }
+          if (std::signbit(fs) != std::signbit(segment.fright)) {
+            const auto root = refine_sign_change(evaluator, stationary.t,
+              segment.right, fs, segment.fright, options);
+            total_iterations += root.iterations;
+            if (root.found) {
+              diagnostics_.root_function_evaluations.fetch_add(
+                evaluator.diagnostics.function_evaluations,
+                std::memory_order_relaxed);
+              diagnostics_.root_derivative_evaluations.fetch_add(
+                evaluator.diagnostics.derivative_evaluations,
+                std::memory_order_relaxed);
+              return {true, root.t, RootKind::sign_change, root.residual,
+                evaluator.diagnostics, false, intervals, total_iterations};
+            }
+          }
         }
       }
     }

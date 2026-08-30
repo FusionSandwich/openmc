@@ -1,0 +1,39 @@
+{
+  "schema_version": 1,
+  "random_ray_count": 1000,
+  "all_fallback_results_match_reference": true,
+  "cases": {
+    "circular_torus": {
+      "total_rays": 1992,
+      "reference_hits": 1261,
+      "fast_hits": 1261,
+      "classification_mismatches": 0,
+      "distance_mismatches": 0,
+      "fallback_recoveries": 0,
+      "fallback_failures": 0,
+      "maximum_distance_error_cm": 3.2017467788136855e-08,
+      "maximum_fast_residual_cm": 1.9828974018309964e-09,
+      "average_fast_function_evaluations": 12.346887550200803,
+      "average_reference_function_evaluations": 2328.3453815261046,
+      "fast_seconds": 0.057161838,
+      "reference_seconds": 7.551820567,
+      "speed_ratio_reference_over_fast": 132.11297661562247
+    },
+    "helical_surface": {
+      "total_rays": 1992,
+      "reference_hits": 1283,
+      "fast_hits": 1283,
+      "classification_mismatches": 0,
+      "distance_mismatches": 0,
+      "fallback_recoveries": 0,
+      "fallback_failures": 0,
+      "maximum_distance_error_cm": 2.0071354356332449e-08,
+      "maximum_fast_residual_cm": 1.9909975890186615e-09,
+      "average_fast_function_evaluations": 15.160642570281125,
+      "average_reference_function_evaluations": 2746.0883534136547,
+      "fast_seconds": 0.06568918,
+      "reference_seconds": 8.9937787819999997,
+      "speed_ratio_reference_over_fast": 136.91415819165348
+    }
+  }
+}

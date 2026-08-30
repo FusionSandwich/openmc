@@ -266,10 +266,12 @@ int main(int argc, char** argv)
 
   const auto torus_summary = run_case(torus, rays);
   const auto helical_summary = run_case(helical, rays);
-  const bool passed = torus_summary.fallback_failures == 0
-                      && helical_summary.fallback_failures == 0
+  const bool passed = torus_summary.classification_mismatches == 0
+                      && helical_summary.classification_mismatches == 0
                       && torus_summary.distance_mismatches == 0
-                      && helical_summary.distance_mismatches == 0;
+                      && helical_summary.distance_mismatches == 0
+                      && torus_summary.fallback_failures == 0
+                      && helical_summary.fallback_failures == 0;
 
   std::cout << std::setprecision(17)
             << "{\n  \"schema_version\": 1,\n"
