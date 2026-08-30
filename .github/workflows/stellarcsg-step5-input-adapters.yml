@@ -1,0 +1,140 @@
+name: StellarCSG Step 5 VMEC and MAKEGRID adapters
+
+on:
+  push:
+    branches:
+      - feature/native-stellarator-csg-openmc-0.16
+    paths:
+      - .github/workflows/stellarcsg-step5-input-adapters.yml
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  qualify-input-adapters:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 45
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          submodules: false
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Install Python dependencies
+        run: |
+          python -m pip install --upgrade pip
+          python -m pip install -e 'dev/stellarcsg[test,vmec]'
+      - name: Materialize the reviewed adapter patch
+        shell: bash
+        run: |
+          set -euo pipefail
+          base64 --decode dev/stellarcsg/patches/step5-vmec-makegrid.patch.gz.b64 \
+            | gzip --decompress > /tmp/step5-vmec-makegrid.patch
+          git apply --3way /tmp/step5-vmec-makegrid.patch
+      - name: Run full StellarCSG Python suite
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p dev/stellarcsg/results/step5
+          pytest -q dev/stellarcsg/python/tests \
+            | tee dev/stellarcsg/results/step5/pytest.log
+      - name: Exercise classic netCDF VMEC and MAKEGRID replay
+        shell: bash
+        run: |
+          set -euo pipefail
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          import numpy as np
+          from netCDF4 import Dataset
+          from stellarcsg.inputs import read_makegrid_coils, read_vmec_surface, write_coil_collection_hdf5
+
+          out = Path('dev/stellarcsg/results/step5')
+          fixture = out / 'synthetic_wout.nc'
+          with Dataset(fixture, 'w') as nc:
+              nc.createDimension('scalar', 1)
+              nc.createDimension('mode', 3)
+              nc.createDimension('surface', 2)
+              nfp = nc.createVariable('nfp', 'i4', ('scalar',))
+              xm = nc.createVariable('xm', 'f8', ('mode',))
+              xn = nc.createVariable('xn', 'f8', ('mode',))
+              rmnc = nc.createVariable('rmnc', 'f8', ('surface', 'mode'))
+              zmns = nc.createVariable('zmns', 'f8', ('surface', 'mode'))
+              nfp[:] = [5]
+              xm[:] = [0.0, 1.0, 2.0]
+              xn[:] = [0.0, 0.0, 5.0]
+              rmnc[:] = [[5.0, 0.8, 0.02], [5.0, 1.0, 0.04]]
+              zmns[:] = [[0.0, 0.8, 0.01], [0.0, 1.0, 0.02]]
+          surface = read_vmec_surface(fixture, n_theta=64, n_phi=48, units='m')
+          theta = np.linspace(0.0, 2.0*np.pi, 97, endpoint=False)
+          phi = np.linspace(0.0, 2.0*np.pi/5.0, 73, endpoint=False)
+          t, p = np.meshgrid(theta, phi, indexing='ij')
+          residual = np.max(np.abs(surface.evaluate(surface.position(t, p))))
+
+          makegrid = out / 'synthetic_coils.txt'
+          makegrid.write_text('''periods 5
+          begin filament
+          1 0 0 100000 coil-A
+          0 1 0 100000 coil-A
+          -1 0 0 100000 coil-A
+          0 -1 0 100000 coil-A
+          1 0 0 0 coil-A
+          2 0 0 -50000 coil-B
+          0 2 0 -50000 coil-B
+          -2 0 0 -50000 coil-B
+          0 -2 0 -50000 coil-B
+          2 0 0 0 coil-B
+          end
+          ''')
+          coils = read_makegrid_coils(makegrid, units='m')
+          write_coil_collection_hdf5(out / 'synthetic_coils.h5', coils)
+          summary = {
+              'schema_version': 1,
+              'vmec_input_kind': 'classic-netcdf',
+              'n_field_periods': surface.n_field_periods,
+              'surface_content_id': surface.content_id,
+              'maximum_surface_replay_residual_cm': float(residual),
+              'makegrid_coil_count': len(coils),
+              'coil_names': [c.name for c in coils],
+              'coil_lengths_cm': [c.length_cm for c in coils],
+              'coil_content_ids': [c.content_id for c in coils],
+              'cad_dependency_used': False,
+              'passed': bool(residual < 1.0e-7 and len(coils) == 2),
+          }
+          (out / 'adapter-smoke.json').write_text(json.dumps(summary, indent=2) + '\n')
+          assert summary['passed']
+          PY
+      - name: Record compact evidence and push
+        shell: bash
+        run: |
+          set -euo pipefail
+          cat > dev/stellarcsg/results/step5/README.md <<'EOF'
+          # Step 5 remote qualification
+
+          CAD-free VMEC and MAKEGRID adapters were tested on GitHub Actions.
+
+          - `pytest.log`: full StellarCSG Python suite.
+          - `adapter-smoke.json`: classic-netCDF VMEC replay, surface residual,
+            MAKEGRID coil parsing, units, hashes, and coil lengths.
+          - `synthetic_wout.nc`, `synthetic_coils.txt`, and
+            `synthetic_coils.h5`: small deterministic replay fixtures.
+
+          The adapters produce frozen StellarCSG coefficient/centerline records;
+          no CAD kernel is imported.
+          EOF
+          git config user.name github-actions[bot]
+          git config user.email 41898282+github-actions[bot]@users.noreply.github.com
+          git add dev/stellarcsg/python/stellarcsg/__init__.py \
+                  dev/stellarcsg/python/stellarcsg/inputs.py \
+                  dev/stellarcsg/python/tests/test_inputs.py \
+                  dev/stellarcsg/results/step5
+          git commit -m 'Add and qualify CAD-free VMEC and MAKEGRID adapters'
+          git push origin HEAD:feature/native-stellarator-csg-openmc-0.16
+      - uses: actions/upload-artifact@v4
+        with:
+          name: stellarcsg-step5-${{ github.sha }}
+          path: dev/stellarcsg/results/step5
+          retention-days: 90
