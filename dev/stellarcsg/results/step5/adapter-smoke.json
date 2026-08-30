@@ -1,0 +1,22 @@
+{
+  "schema_version": 1,
+  "vmec_input_kind": "classic-netcdf",
+  "n_field_periods": 5,
+  "surface_content_id": "sha256:4e59c5714e53ba462607ac0e6fd44d7ece2d379102d4d398d69610a2a4d4f7e8",
+  "maximum_surface_replay_residual_cm": 2.2737367544323206e-13,
+  "makegrid_coil_count": 2,
+  "coil_names": [
+    "coil-A",
+    "coil-B"
+  ],
+  "coil_lengths_cm": [
+    565.685424949238,
+    1131.370849898476
+  ],
+  "coil_content_ids": [
+    "sha256:3ee11dacdff7abaf022a7073e7e4c3f90e473de8ed86c1e1ef521049f221cbf3",
+    "sha256:ddcdd193f93f36545279f7d77c5c96bf70d4dfe207d49f932d0c00b3adc11ef9"
+  ],
+  "cad_dependency_used": false,
+  "passed": true
+}

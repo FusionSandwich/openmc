@@ -1,0 +1,13 @@
+periods 5
+begin filament
+1 0 0 100000 coil-A
+0 1 0 100000 coil-A
+-1 0 0 100000 coil-A
+0 -1 0 100000 coil-A
+1 0 0 0 coil-A
+2 0 0 -50000 coil-B
+0 2 0 -50000 coil-B
+-2 0 0 -50000 coil-B
+0 -2 0 -50000 coil-B
+2 0 0 0 coil-B
+end
