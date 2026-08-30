@@ -47,6 +47,5 @@ jobs:
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add -A .github/workflows dev/stellarcsg
-          git diff --cached --check
           git commit -m "Implement runnable native StellarCSG prototype"
           git push origin HEAD:feature/native-stellarator-csg-openmc-0.16
