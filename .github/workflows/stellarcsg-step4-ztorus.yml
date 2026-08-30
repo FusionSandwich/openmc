@@ -42,7 +42,7 @@ jobs:
           pytest -q tests/unit_tests/test_surface_periodic_spline.py dev/stellarcsg/python/tests/test_openmc_surface.py | tee dev/stellarcsg/results/step3/python-replay-after-step2.log
       - name: Run matched ZTorus comparison
         run: |
-          build/step4/stellarcsg_openmc_ztorus_comparison 50000 20000 | tee dev/stellarcsg/results/step4/ztorus-comparison.json
+          build/step4/bin/stellarcsg_openmc_ztorus_comparison 50000 20000 | tee dev/stellarcsg/results/step4/ztorus-comparison.json
           python -c "import json; d=json.load(open('dev/stellarcsg/results/step4/ztorus-comparison.json')); assert d['passed']; assert d['sense_mismatches']==0; assert d['ray_classification_mismatches']==0; assert d['ray_distance_mismatches']==0"
           build/step4/bin/openmc --version > dev/stellarcsg/results/step4/openmc-version.txt
       - name: Record compact evidence and push
