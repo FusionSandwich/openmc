@@ -1,5 +1,6 @@
 name: StellarCSG branch source export
 
+# Manual source snapshot after remote Step 6 qualification.
 on:
   push:
     branches:
