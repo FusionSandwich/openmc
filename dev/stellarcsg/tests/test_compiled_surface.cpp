@@ -72,6 +72,18 @@ void test_compiled_torus()
       "compiled torus radial crossing distance");
   }
 
+  stellarcsg::FastDistanceOptions fast_options;
+  fast_options.fallback_to_reference = false;
+  const auto fast_crossing = surface.distance_fast(
+    {7.0, 0.0, 0.0}, {-1.0, 0.0, 0.0}, false, fast_options);
+  check(fast_crossing.found, "compiled torus fast radial crossing is found");
+  if (fast_crossing.found) {
+    check_near(fast_crossing.distance, 1.0, 3.0e-8,
+      "compiled torus fast radial crossing distance");
+    check(!fast_crossing.used_fallback,
+      "compiled torus fast radial crossing avoids fallback");
+  }
+
   const auto box = surface.bounding_box();
   check(box.lower.x <= -6.0 && box.upper.x >= 6.0,
     "compiled torus conservative xy bounds");

@@ -34,16 +34,152 @@ bool finite_radius(const RadiusSample& radius)
          && std::isfinite(radius.dphi);
 }
 
+double t_tolerance(double a, double b, const FastDistanceOptions& options)
+{
+  return options.absolute_t_tolerance
+         + options.relative_t_tolerance * std::max(std::abs(a), std::abs(b));
+}
+
+struct FastEvaluator {
+  const PeriodicRadialSurface& surface;
+  Vec3 origin;
+  Vec3 direction;
+  RootSearchDiagnostics diagnostics {};
+
+  double f(double t)
+  {
+    ++diagnostics.function_evaluations;
+    return surface.evaluate(origin + t * direction);
+  }
+
+  double df(double t)
+  {
+    ++diagnostics.derivative_evaluations;
+    return surface.directional_derivative(origin + t * direction, direction);
+  }
+};
+
+struct RefinedRoot {
+  bool found {false};
+  double t {std::numeric_limits<double>::infinity()};
+  double residual {std::numeric_limits<double>::infinity()};
+  int iterations {0};
+};
+
+RefinedRoot refine_sign_change(FastEvaluator& evaluator, double a, double b,
+  double fa, double fb, const FastDistanceOptions& options)
+{
+  RefinedRoot result;
+  if (!std::isfinite(fa) || !std::isfinite(fb)) return result;
+  if (std::abs(fa) <= options.absolute_f_tolerance) {
+    return {true, a, std::abs(fa), 0};
+  }
+  if (std::abs(fb) <= options.absolute_f_tolerance) {
+    return {true, b, std::abs(fb), 0};
+  }
+  if (std::signbit(fa) == std::signbit(fb)) return result;
+
+  double x = std::abs(fa) < std::abs(fb) ? a : b;
+  double fx = std::abs(fa) < std::abs(fb) ? fa : fb;
+  for (int iteration = 1; iteration <= options.maximum_hybrid_iterations;
+       ++iteration) {
+    result.iterations = iteration;
+    double candidate = a + 0.5 * (b - a);
+
+    const double dfx = evaluator.df(x);
+    if (std::isfinite(dfx) && std::abs(dfx) > options.derivative_tolerance) {
+      const double newton = x - fx / dfx;
+      if (newton > a && newton < b) candidate = newton;
+    } else if (fb != fa) {
+      const double secant = (a * fb - b * fa) / (fb - fa);
+      if (secant > a && secant < b) candidate = secant;
+    }
+
+    double fc = evaluator.f(candidate);
+    if (!std::isfinite(fc)) {
+      candidate = a + 0.5 * (b - a);
+      fc = evaluator.f(candidate);
+      if (!std::isfinite(fc)) return {};
+    }
+    if (std::abs(fc) <= options.absolute_f_tolerance
+        || (b - a) <= t_tolerance(a, b, options)) {
+      return {true, candidate, std::abs(fc), iteration};
+    }
+
+    if (std::signbit(fa) != std::signbit(fc)) {
+      b = candidate;
+      fb = fc;
+    } else {
+      a = candidate;
+      fa = fc;
+    }
+    x = std::abs(fa) < std::abs(fb) ? a : b;
+    fx = std::abs(fa) < std::abs(fb) ? fa : fb;
+  }
+
+  const double midpoint = a + 0.5 * (b - a);
+  const double residual = std::abs(evaluator.f(midpoint));
+  return {residual <= options.tangent_residual_multiplier
+                       * options.absolute_f_tolerance,
+    midpoint, residual, options.maximum_hybrid_iterations};
+}
+
+RefinedRoot refine_stationary(FastEvaluator& evaluator, double a, double b,
+  double dfa, double dfb, const FastDistanceOptions& options)
+{
+  RefinedRoot result;
+  if (!std::isfinite(dfa) || !std::isfinite(dfb)) return result;
+  double t = a;
+  if (std::abs(dfa) <= options.derivative_tolerance) {
+    t = a;
+  } else if (std::abs(dfb) <= options.derivative_tolerance) {
+    t = b;
+  } else if (std::signbit(dfa) != std::signbit(dfb)) {
+    for (int iteration = 1; iteration <= options.maximum_stationary_iterations;
+         ++iteration) {
+      result.iterations = iteration;
+      const double midpoint = a + 0.5 * (b - a);
+      const double dfm = evaluator.df(midpoint);
+      if (!std::isfinite(dfm)) return {};
+      if (std::abs(dfm) <= options.derivative_tolerance
+          || (b - a) <= t_tolerance(a, b, options)) {
+        t = midpoint;
+        break;
+      }
+      if (std::signbit(dfa) != std::signbit(dfm)) {
+        b = midpoint;
+        dfb = dfm;
+      } else {
+        a = midpoint;
+        dfa = dfm;
+      }
+      t = a + 0.5 * (b - a);
+    }
+  } else {
+    return result;
+  }
+
+  const double residual = std::abs(evaluator.f(t));
+  if (residual <= options.tangent_residual_multiplier
+                    * options.absolute_f_tolerance) {
+    return {true, t, residual, result.iterations};
+  }
+  return result;
+}
+
 } // namespace
 
 PeriodicRadialSurface::PeriodicRadialSurface(AxisField axis, RadiusField radius,
   BoundingBox conservative_bounds, double characteristic_length,
-  double coordinate_singularity_tolerance)
+  double coordinate_singularity_tolerance, double minimum_feature_length)
   : axis_ {std::move(axis)}
   , radius_ {std::move(radius)}
   , conservative_bounds_ {conservative_bounds}
   , characteristic_length_ {characteristic_length}
   , coordinate_singularity_tolerance_ {coordinate_singularity_tolerance}
+  , minimum_feature_length_ {minimum_feature_length > 0.0
+        ? minimum_feature_length
+        : characteristic_length / 16.0}
 {
   if (!axis_ || !radius_) {
     throw std::invalid_argument("Axis and radius fields must be callable");
@@ -57,6 +193,39 @@ PeriodicRadialSurface::PeriodicRadialSurface(AxisField axis, RadiusField radius,
   if (!(coordinate_singularity_tolerance_ > 0.0)) {
     throw std::invalid_argument("Coordinate singularity tolerance must be positive");
   }
+  if (!(minimum_feature_length_ > 0.0)
+      || !std::isfinite(minimum_feature_length_)) {
+    throw std::invalid_argument("Minimum feature length must be finite and positive");
+  }
+}
+
+SurfaceDiagnostics PeriodicRadialSurface::diagnostics() const noexcept
+{
+  return SurfaceDiagnostics {
+    diagnostics_.evaluate_calls.load(std::memory_order_relaxed),
+    diagnostics_.gradient_calls.load(std::memory_order_relaxed),
+    diagnostics_.distance_calls.load(std::memory_order_relaxed),
+    diagnostics_.fast_distance_calls.load(std::memory_order_relaxed),
+    diagnostics_.reference_distance_calls.load(std::memory_order_relaxed),
+    diagnostics_.fast_fallbacks.load(std::memory_order_relaxed),
+    diagnostics_.finite_difference_directional_derivatives.load(
+      std::memory_order_relaxed),
+    diagnostics_.root_function_evaluations.load(std::memory_order_relaxed),
+    diagnostics_.root_derivative_evaluations.load(std::memory_order_relaxed)};
+}
+
+void PeriodicRadialSurface::reset_diagnostics() const noexcept
+{
+  diagnostics_.evaluate_calls.store(0, std::memory_order_relaxed);
+  diagnostics_.gradient_calls.store(0, std::memory_order_relaxed);
+  diagnostics_.distance_calls.store(0, std::memory_order_relaxed);
+  diagnostics_.fast_distance_calls.store(0, std::memory_order_relaxed);
+  diagnostics_.reference_distance_calls.store(0, std::memory_order_relaxed);
+  diagnostics_.fast_fallbacks.store(0, std::memory_order_relaxed);
+  diagnostics_.finite_difference_directional_derivatives.store(
+    0, std::memory_order_relaxed);
+  diagnostics_.root_function_evaluations.store(0, std::memory_order_relaxed);
+  diagnostics_.root_derivative_evaluations.store(0, std::memory_order_relaxed);
 }
 
 LocalCoordinates PeriodicRadialSurface::local_coordinates(const Vec3& point) const
@@ -156,6 +325,7 @@ DistanceResult PeriodicRadialSurface::distance_reference(const Vec3& origin,
   const Vec3& direction, bool coincident, const RootSearchOptions& options) const
 {
   ++diagnostics_.distance_calls;
+  ++diagnostics_.reference_distance_calls;
   const double direction_norm = norm(direction);
   if (!(direction_norm > 0.0) || !std::isfinite(direction_norm)) {
     throw std::invalid_argument("Ray direction must be finite and non-zero");
@@ -172,9 +342,6 @@ DistanceResult PeriodicRadialSurface::distance_reference(const Vec3& origin,
   const double t_max = bounds_interval->exit;
   if (coincident || std::abs(evaluate(origin)) <= options.absolute_f_tolerance) {
     t_min = std::max(t_min, crossing_push);
-    // Move outside the numerical coincidence band before asking the root oracle
-    // for the next crossing. A fixed machine-epsilon push is insufficient when
-    // the surface residual tolerance is much larger than machine epsilon.
     for (int attempt = 0; attempt < 40 && t_min < t_max; ++attempt) {
       if (std::abs(evaluate(origin + t_min * unit_direction))
           > 4.0 * options.absolute_f_tolerance) {
@@ -196,16 +363,156 @@ DistanceResult PeriodicRadialSurface::distance_reference(const Vec3& origin,
 
   RootSearchResult root =
     find_nearest_root_reference(function, derivative, t_min, t_max, options);
-  diagnostics_.root_function_evaluations += root.diagnostics.function_evaluations;
-  diagnostics_.root_derivative_evaluations += root.diagnostics.derivative_evaluations;
+  diagnostics_.root_function_evaluations.fetch_add(
+    root.diagnostics.function_evaluations, std::memory_order_relaxed);
+  diagnostics_.root_derivative_evaluations.fetch_add(
+    root.diagnostics.derivative_evaluations, std::memory_order_relaxed);
 
   if (!root.found) {
     return DistanceResult {false, std::numeric_limits<double>::infinity(),
       RootKind::sign_change, std::numeric_limits<double>::infinity(),
-      root.diagnostics};
+      root.diagnostics, false, 0, 0};
   }
   return DistanceResult {true, root.root.t, root.root.kind,
-    root.root.residual, root.diagnostics};
+    root.root.residual, root.diagnostics, false, 0, 0};
+}
+
+DistanceResult PeriodicRadialSurface::distance_fast(const Vec3& origin,
+  const Vec3& direction, bool coincident,
+  const FastDistanceOptions& options) const
+{
+  ++diagnostics_.distance_calls;
+  ++diagnostics_.fast_distance_calls;
+  if (options.minimum_scan_intervals < 2
+      || options.maximum_scan_intervals < options.minimum_scan_intervals
+      || options.maximum_hybrid_iterations < 1
+      || !(options.maximum_scan_step_fraction > 0.0)
+      || !(options.absolute_f_tolerance > 0.0)) {
+    throw std::invalid_argument("Fast distance options are invalid");
+  }
+
+  const double direction_norm = norm(direction);
+  if (!(direction_norm > 0.0) || !std::isfinite(direction_norm)) {
+    throw std::invalid_argument("Ray direction must be finite and non-zero");
+  }
+  const Vec3 unit_direction = direction / direction_norm;
+  const auto bounds_interval = conservative_bounds_.ray_interval(origin, unit_direction);
+  if (!bounds_interval) return {};
+
+  double t_min = std::max(0.0, bounds_interval->enter);
+  const double t_max = bounds_interval->exit;
+  const double crossing_push = std::max(options.absolute_t_tolerance * 8.0,
+    std::numeric_limits<double>::epsilon() * characteristic_length_ * 64.0);
+  if (coincident || std::abs(evaluate(origin)) <= options.absolute_f_tolerance) {
+    t_min = std::max(t_min, crossing_push);
+    for (int attempt = 0; attempt < 40 && t_min < t_max; ++attempt) {
+      if (std::abs(evaluate(origin + t_min * unit_direction))
+          > 4.0 * options.absolute_f_tolerance) break;
+      t_min *= 2.0;
+    }
+  }
+  if (!(t_max > t_min)) return {};
+
+  const double maximum_step = std::max(options.absolute_t_tolerance * 64.0,
+    options.maximum_scan_step_fraction * minimum_feature_length_);
+  int intervals = static_cast<int>(std::ceil((t_max - t_min) / maximum_step));
+  intervals = std::clamp(intervals, options.minimum_scan_intervals,
+    options.maximum_scan_intervals);
+  const double step = (t_max - t_min) / static_cast<double>(intervals);
+
+  FastEvaluator evaluator {*this, origin, unit_direction};
+  double a = t_min;
+  double fa = evaluator.f(a);
+  double dfa = evaluator.df(a);
+  int total_iterations = 0;
+
+  for (int i = 0; i < intervals; ++i) {
+    const double b = i + 1 == intervals ? t_max : t_min + step * (i + 1);
+    const double fb = evaluator.f(b);
+    const double dfb = evaluator.df(b);
+
+    if (std::isfinite(fa) && std::abs(fa) <= options.absolute_f_tolerance) {
+      diagnostics_.root_function_evaluations.fetch_add(
+        evaluator.diagnostics.function_evaluations, std::memory_order_relaxed);
+      diagnostics_.root_derivative_evaluations.fetch_add(
+        evaluator.diagnostics.derivative_evaluations, std::memory_order_relaxed);
+      return {true, a, RootKind::sampled_zero, std::abs(fa),
+        evaluator.diagnostics, false, intervals, total_iterations};
+    }
+
+    // Midpoint sampling catches a common two-crossing interval that has equal
+    // endpoint signs without paying for a globally refined scan.
+    const double midpoint = a + 0.5 * (b - a);
+    const double fm = evaluator.f(midpoint);
+    const double dfm = evaluator.df(midpoint);
+    const struct Segment {
+      double left;
+      double right;
+      double fleft;
+      double fright;
+      double dfleft;
+      double dfright;
+    } segments[2] {{a, midpoint, fa, fm, dfa, dfm},
+      {midpoint, b, fm, fb, dfm, dfb}};
+
+    for (const auto& segment : segments) {
+      if (!std::isfinite(segment.fleft) || !std::isfinite(segment.fright)) continue;
+      if (std::signbit(segment.fleft) != std::signbit(segment.fright)) {
+        const auto root = refine_sign_change(evaluator, segment.left, segment.right,
+          segment.fleft, segment.fright, options);
+        total_iterations += root.iterations;
+        if (root.found) {
+          diagnostics_.root_function_evaluations.fetch_add(
+        evaluator.diagnostics.function_evaluations, std::memory_order_relaxed);
+          diagnostics_.root_derivative_evaluations.fetch_add(
+        evaluator.diagnostics.derivative_evaluations, std::memory_order_relaxed);
+          return {true, root.t, RootKind::sign_change, root.residual,
+            evaluator.diagnostics, false, intervals, total_iterations};
+        }
+      }
+
+      const bool stationary_possible =
+        std::isfinite(segment.dfleft) && std::isfinite(segment.dfright)
+        && (std::signbit(segment.dfleft) != std::signbit(segment.dfright)
+            || std::abs(segment.dfleft) <= options.derivative_tolerance
+            || std::abs(segment.dfright) <= options.derivative_tolerance);
+      if (stationary_possible) {
+        const auto root = refine_stationary(evaluator, segment.left, segment.right,
+          segment.dfleft, segment.dfright, options);
+        total_iterations += root.iterations;
+        if (root.found) {
+          diagnostics_.root_function_evaluations.fetch_add(
+        evaluator.diagnostics.function_evaluations, std::memory_order_relaxed);
+          diagnostics_.root_derivative_evaluations.fetch_add(
+        evaluator.diagnostics.derivative_evaluations, std::memory_order_relaxed);
+          return {true, root.t, RootKind::stationary_tangent, root.residual,
+            evaluator.diagnostics, false, intervals, total_iterations};
+        }
+      }
+    }
+
+    a = b;
+    fa = fb;
+    dfa = dfb;
+  }
+
+  diagnostics_.root_function_evaluations.fetch_add(
+        evaluator.diagnostics.function_evaluations, std::memory_order_relaxed);
+  diagnostics_.root_derivative_evaluations.fetch_add(
+        evaluator.diagnostics.derivative_evaluations, std::memory_order_relaxed);
+  if (!options.fallback_to_reference) {
+    return {false, std::numeric_limits<double>::infinity(), RootKind::sign_change,
+      std::numeric_limits<double>::infinity(), evaluator.diagnostics, false,
+      intervals, total_iterations};
+  }
+
+  ++diagnostics_.fast_fallbacks;
+  auto fallback = distance_reference(origin, direction, coincident,
+    options.fallback_options);
+  fallback.used_fallback = true;
+  fallback.scan_intervals = intervals;
+  fallback.hybrid_iterations = total_iterations;
+  return fallback;
 }
 
 AxisField circular_axis(double major_radius, double z_offset)

@@ -98,7 +98,9 @@ CompiledPeriodicSplineSurface::CompiledPeriodicSplineSurface(
       data_.radius_coefficients}
   , surface_ {make_axis_field(&axis_r_, &axis_z_), make_radius_field(&radius_),
       conservative_bounds(data_), data_.characteristic_length,
-      data_.coordinate_singularity_tolerance}
+      data_.coordinate_singularity_tolerance,
+      *std::min_element(data_.radius_coefficients.begin(),
+        data_.radius_coefficients.end())}
 {}
 
 double CompiledPeriodicSplineSurface::evaluate(const Vec3& point) const
@@ -121,6 +123,13 @@ DistanceResult CompiledPeriodicSplineSurface::distance_reference(
   const RootSearchOptions& options) const
 {
   return surface_.distance_reference(origin, direction, coincident, options);
+}
+
+DistanceResult CompiledPeriodicSplineSurface::distance_fast(
+  const Vec3& origin, const Vec3& direction, bool coincident,
+  const FastDistanceOptions& options) const
+{
+  return surface_.distance_fast(origin, direction, coincident, options);
 }
 
 } // namespace stellarcsg

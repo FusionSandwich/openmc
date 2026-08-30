@@ -1,5 +1,9 @@
 #include "openmc/surface.h"
 
+#ifdef OPENMC_USE_STELLARATOR_CSG
+#include "openmc/surface_periodic_spline.h"
+#endif
+
 #include <cmath>
 #include <complex>
 #include <initializer_list>
@@ -1237,6 +1241,12 @@ void read_surfaces(pugi::xml_node node,
 
       } else if (surf_type == "z-torus") {
         model::surfaces.push_back(std::make_unique<SurfaceZTorus>(surf_node));
+
+#ifdef OPENMC_USE_STELLARATOR_CSG
+      } else if (surf_type == "periodic-spline") {
+        model::surfaces.push_back(
+          std::make_unique<SurfacePeriodicSpline>(surf_node));
+#endif
 
       } else {
         fatal_error(fmt::format("Invalid surface type, \"{}\"", surf_type));

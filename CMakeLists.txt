@@ -44,6 +44,8 @@ option(OPENMC_USE_MPI         "Enable MPI"                                      
 option(OPENMC_USE_UWUW        "Enable UWUW"                                          OFF)
 option(OPENMC_FORCE_VENDORED_LIBS "Explicitly use submodules defined in 'vendor'"    OFF)
 option(OPENMC_ENABLE_STRICT_FP "Enable strict FP flags to improve test portability"  OFF)
+option(OPENMC_USE_STELLARATOR_CSG
+  "Enable experimental native periodic-spline stellarator CSG surfaces" OFF)
 
 message(STATUS "OPENMC_USE_OPENMP ${OPENMC_USE_OPENMP}")
 message(STATUS "OPENMC_BUILD_TESTS ${OPENMC_BUILD_TESTS}")
@@ -55,6 +57,7 @@ message(STATUS "OPENMC_USE_MPI ${OPENMC_USE_MPI}")
 message(STATUS "OPENMC_USE_UWUW ${OPENMC_USE_UWUW}")
 message(STATUS "OPENMC_FORCE_VENDORED_LIBS ${OPENMC_FORCE_VENDORED_LIBS}")
 message(STATUS "OPENMC_ENABLE_STRICT_FP ${OPENMC_ENABLE_STRICT_FP}")
+message(STATUS "OPENMC_USE_STELLARATOR_CSG ${OPENMC_USE_STELLARATOR_CSG}")
 
 # Warnings for deprecated options
 foreach(OLD_OPT IN ITEMS "openmp" "profile" "coverage" "dagmc" "libmesh")
@@ -492,6 +495,17 @@ list(APPEND libopenmc_SOURCES
   src/xml_interface.cpp
   src/xsdata.cpp)
 
+if(OPENMC_USE_STELLARATOR_CSG)
+  list(APPEND libopenmc_SOURCES
+    src/surface_periodic_spline.cpp
+    dev/stellarcsg/src/periodic_radial_surface.cpp
+    dev/stellarcsg/src/root_solver.cpp
+    dev/stellarcsg/src/uniform_periodic_cubic_spline.cpp
+    dev/stellarcsg/src/uniform_periodic_bicubic_spline.cpp
+    dev/stellarcsg/src/compiled_periodic_surface.cpp
+    dev/stellarcsg/src/coefficient_file.cpp)
+endif()
+
 # Add bundled external dependencies
 list(APPEND libopenmc_SOURCES
   src/external/quartic_solver.cpp
@@ -522,6 +536,13 @@ target_include_directories(libopenmc
     $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>
     ${HDF5_INCLUDE_DIRS}
 )
+
+if(OPENMC_USE_STELLARATOR_CSG)
+  target_include_directories(libopenmc PRIVATE
+    ${CMAKE_CURRENT_SOURCE_DIR}/dev/stellarcsg/include)
+  target_compile_definitions(libopenmc PRIVATE
+    OPENMC_USE_STELLARATOR_CSG STELLARCSG_HAS_HDF5)
+endif()
 
 # Set compile flags
 target_compile_options(libopenmc PRIVATE ${cxxflags})
@@ -586,6 +607,17 @@ if (OPENMC_BUILD_TESTS)
   # Add cpp tests directory
   include(CTest)
   add_subdirectory(tests/cpp_unit_tests)
+  if(OPENMC_USE_STELLARATOR_CSG)
+    add_executable(stellarcsg_openmc_surface_tests
+      dev/stellarcsg/openmc_adapter/tests/test_periodic_spline_surface.cpp)
+    target_include_directories(stellarcsg_openmc_surface_tests PRIVATE
+      ${CMAKE_CURRENT_SOURCE_DIR}/dev/stellarcsg/include)
+    target_compile_definitions(stellarcsg_openmc_surface_tests PRIVATE
+      STELLARCSG_HAS_HDF5)
+    target_link_libraries(stellarcsg_openmc_surface_tests PRIVATE libopenmc)
+    add_test(NAME stellarcsg_openmc_surface_tests
+      COMMAND stellarcsg_openmc_surface_tests)
+  endif()
 endif()
 
 #===============================================================================

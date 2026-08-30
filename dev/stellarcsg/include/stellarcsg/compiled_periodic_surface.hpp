@@ -43,6 +43,9 @@ public:
   [[nodiscard]] DistanceResult distance_reference(const Vec3& origin,
     const Vec3& direction, bool coincident,
     const RootSearchOptions& options = {}) const;
+  [[nodiscard]] DistanceResult distance_fast(const Vec3& origin,
+    const Vec3& direction, bool coincident,
+    const FastDistanceOptions& options = {}) const;
 
   [[nodiscard]] const BoundingBox& bounding_box() const noexcept
   {

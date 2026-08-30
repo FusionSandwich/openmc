@@ -32,10 +32,13 @@ if(CMAKE_CXX_COMPILER_ID MATCHES "GNU|Clang")
   target_compile_options(stellarcsg_reference PRIVATE
     -Wall -Wextra -Wpedantic -Wconversion -Wshadow)
   if(STELLARCSG_ENABLE_SANITIZERS)
-    target_compile_options(stellarcsg_reference PRIVATE
+    add_library(stellarcsg_sanitizer_flags INTERFACE)
+    target_compile_options(stellarcsg_sanitizer_flags INTERFACE
       -fsanitize=address,undefined -fno-omit-frame-pointer)
-    target_link_options(stellarcsg_reference PRIVATE
+    target_link_options(stellarcsg_sanitizer_flags INTERFACE
       -fsanitize=address,undefined)
+    target_link_libraries(stellarcsg_reference PUBLIC
+      stellarcsg_sanitizer_flags)
   endif()
 elseif(MSVC)
   target_compile_options(stellarcsg_reference PRIVATE /W4 /permissive-)
@@ -64,12 +67,6 @@ if(STELLARCSG_BUILD_TESTS)
     foreach(target stellarcsg_reference_tests stellarcsg_compiled_surface_tests)
       target_compile_options(${target} PRIVATE
         -Wall -Wextra -Wpedantic -Wconversion -Wshadow)
-      if(STELLARCSG_ENABLE_SANITIZERS)
-        target_compile_options(${target} PRIVATE
-          -fsanitize=address,undefined -fno-omit-frame-pointer)
-        target_link_options(${target} PRIVATE
-          -fsanitize=address,undefined)
-      endif()
     endforeach()
   endif()
 endif()
@@ -86,4 +83,8 @@ if(STELLARCSG_BUILD_TOOLS)
   add_executable(stellarcsg_inspect_surface tools/inspect_surface.cpp)
   target_link_libraries(stellarcsg_inspect_surface PRIVATE StellarCSG::reference)
   target_compile_features(stellarcsg_inspect_surface PRIVATE cxx_std_17)
+
+  add_executable(stellarcsg_adversarial_rays tools/adversarial_rays.cpp)
+  target_link_libraries(stellarcsg_adversarial_rays PRIVATE StellarCSG::reference)
+  target_compile_features(stellarcsg_adversarial_rays PRIVATE cxx_std_17)
 endif()
