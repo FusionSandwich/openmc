@@ -11,16 +11,10 @@ on:
 permissions:
   contents: write
 
-env:
-  OMP_NUM_THREADS: 2
-
 jobs:
   compare:
     runs-on: ubuntu-24.04
-    timeout-minutes: 120
-    container:
-      image: openmc/openmc:develop-dagmc
-      options: --user root
+    timeout-minutes: 150
     steps:
       - name: Check out isolated feature branch
         uses: actions/checkout@v4
@@ -28,245 +22,18 @@ jobs:
           fetch-depth: 0
           submodules: recursive
 
-      - name: Record container and dependency provenance
+      - name: Run matched comparison in official DAGMC image
         shell: bash
         run: |
-          set -euo pipefail
-          git config --global --add safe.directory "${GITHUB_WORKSPACE}"
-          mkdir -p dev/stellarcsg/results/step7
-          {
-            echo "container_image=openmc/openmc:develop-dagmc"
-            echo "trigger_sha=${GITHUB_SHA}"
-            uname -a
-            python --version
-            cmake --version | head -1
-            c++ --version | head -1
-            command -v openmc || true
-            openmc --version || true
-            command -v overlap_check || true
-            find /root/DAGMC -maxdepth 3 -type f -name '*Config.cmake' -print 2>/dev/null || true
-          } | tee dev/stellarcsg/results/step7/environment.txt
-
-      - name: Install branch Python packages and faceting helper
-        shell: bash
-        run: |
-          set -euo pipefail
-          python -m pip install --upgrade pip
-          python -m pip install -e .
-          python -m pip install -e 'dev/stellarcsg[test,vmec]'
-          python -m pip install vertices_to_h5m
-          python - <<'PY' | tee -a dev/stellarcsg/results/step7/environment.txt
-          import importlib.metadata
-          import openmc
-          import pymoab
-          import stellarcsg
-          for name in ('openmc', 'stellarcsg', 'vertices_to_h5m', 'pymoab'):
-              try:
-                  print(f'{name}_version={importlib.metadata.version(name)}')
-              except importlib.metadata.PackageNotFoundError:
-                  print(f'{name}_version=installed-unversioned')
-          print(f'openmc_python={openmc.__file__}')
-          print(f'stellarcsg_python={stellarcsg.__file__}')
-          print(f'pymoab_python={pymoab.__file__}')
-          PY
-
-      - name: Materialize Step 7 implementation patch
-        shell: bash
-        run: |
-          set -euo pipefail
-          base64 --decode dev/stellarcsg/patches/step7-matched-csg-dagmc.patch.gz.b64 \
-            | gzip --decompress > /tmp/step7-matched-csg-dagmc.patch
-          git apply --3way /tmp/step7-matched-csg-dagmc.patch
-          python -m py_compile dev/stellarcsg/examples/step7_matched_csg_dagmc.py
-
-      - name: Configure OpenMC with DAGMC and native StellarCSG
-        shell: bash
-        run: |
-          set -euo pipefail
-          cmake -S . -B build/step7 \
-            -DCMAKE_BUILD_TYPE=Release \
-            -DOPENMC_USE_STELLARATOR_CSG=ON \
-            -DOPENMC_USE_DAGMC=ON \
-            -DDAGMC_ROOT=/root/DAGMC \
-            -DCMAKE_PREFIX_PATH=/root/DAGMC \
-            -DOPENMC_BUILD_TESTS=ON \
-            -DOPENMC_USE_MPI=OFF \
-            -DOPENMC_USE_OPENMP=ON \
-            -DOPENMC_FORCE_VENDORED_LIBS=ON \
-            2>&1 | tee dev/stellarcsg/results/step7/cmake-configure.log
-          cmake --build build/step7 --parallel 2 \
-            2>&1 | tee dev/stellarcsg/results/step7/cmake-build.log
-          {
-            build/step7/bin/openmc --version
-            echo '--- linked geometry libraries ---'
-            ldd build/step7/bin/openmc | grep -Ei 'dagmc|moab|embree|double|hdf5' || true
-            echo '--- CMake DAGMC settings ---'
-            grep -Ei 'DAGMC|DOUBLE_DOWN|EMBREE|STELLARATOR_CSG' build/step7/CMakeCache.txt || true
-          } | tee dev/stellarcsg/results/step7/openmc-build-provenance.txt
-
-      - name: Replay native-surface unit tests and fast ZTorus comparison
-        shell: bash
-        run: |
-          set -euo pipefail
-          ctest --test-dir build/step7 \
-            -R 'stellarcsg_openmc_(surface_tests|ztorus_comparison)' \
-            --output-on-failure \
-            | tee dev/stellarcsg/results/step7/ctest-native-surface.log
-          build/step7/bin/stellarcsg_openmc_ztorus_comparison 20000 10000 \
-            | tee dev/stellarcsg/results/step7/ztorus-fast-replay.json
-          python - <<'PY'
-          import json
-          data = json.load(open('dev/stellarcsg/results/step7/ztorus-fast-replay.json'))
-          assert data['passed'], data
-          assert data['sense_mismatches'] == 0, data
-          assert data['ray_classification_mismatches'] == 0, data
-          assert data['ray_distance_mismatches'] == 0, data
-          PY
-
-      - name: Run matched non-axisymmetric CSG and DAGMC transport cases
-        id: comparison
-        shell: bash
-        continue-on-error: true
-        run: |
-          set -o pipefail
-          mkdir -p dev/stellarcsg/results/step7/run
-          python dev/stellarcsg/examples/step7_matched_csg_dagmc.py \
-            --openmc-exec build/step7/bin/openmc \
-            --output-dir dev/stellarcsg/results/step7/run \
-            --particles 6000 \
-            --batches 10 \
-            --repeats 3 \
-            --mesh-theta 96 \
-            --mesh-phi 192 \
-            | tee dev/stellarcsg/results/step7/transport-driver.log
-          status=${PIPESTATUS[0]}
-          echo "driver_status=${status}" >> "${GITHUB_OUTPUT}"
-          exit "${status}"
-
-      - name: Run DAGMC overlap check when available
-        if: always()
-        shell: bash
-        run: |
-          set +e
-          if command -v overlap_check >/dev/null 2>&1; then
-            overlap_check dev/stellarcsg/results/step7/run/matched-stellarator.h5m -p 500 \
-              > dev/stellarcsg/results/step7/overlap-check.log 2>&1
-            echo "overlap_check_status=$?" >> dev/stellarcsg/results/step7/overlap-check.log
-          else
-            echo 'overlap_check executable unavailable in container' \
-              > dev/stellarcsg/results/step7/overlap-check.log
-          fi
-          exit 0
-
-      - name: Assemble compact evidence and final Step 1-7 report
-        if: always()
-        shell: bash
-        env:
-          DRIVER_STATUS: ${{ steps.comparison.outputs.driver_status }}
-        run: |
-          set -euo pipefail
-          mkdir -p dev/stellarcsg/results/step7/logs
-          if [[ -f dev/stellarcsg/results/step7/run/matched-csg-dagmc-summary.json ]]; then
-            cp dev/stellarcsg/results/step7/run/matched-csg-dagmc-summary.json \
-              dev/stellarcsg/results/step7/matched-csg-dagmc-summary.json
-          fi
-          find dev/stellarcsg/results/step7/run -type f -name 'openmc-repeat-*.log' \
-            -exec cp '{}' dev/stellarcsg/results/step7/logs/ \; 2>/dev/null || true
-          python - <<'PY'
-          import json
-          import os
-          from pathlib import Path
-
-          result_dir = Path('dev/stellarcsg/results/step7')
-          summary_path = result_dir / 'matched-csg-dagmc-summary.json'
-          if summary_path.exists():
-              summary = json.loads(summary_path.read_text())
-              decision = summary['decision']
-              ratio = summary['native_to_dagmc_median_wall_time_ratio']
-              equivalent = summary['transport_equivalent_under_5sigma_gate']
-              facet = summary['maximum_sampled_facet_deviation_cm']
-              native_time = summary['native']['median_wall_seconds']
-              dagmc_time = summary['dagmc']['median_wall_seconds']
-              z_score = summary['observable_comparison']['maximum_pairwise_z_score']
-          else:
-              decision = 'REMOTE_EXECUTION_ERROR'
-              ratio = None
-              equivalent = False
-              facet = None
-              native_time = None
-              dagmc_time = None
-              z_score = None
-
-          readme = f'''# Step 7 remote comparison
-
-A five-field-period non-axisymmetric spline surface was used to generate both:
-
-1. a smooth native OpenMC `periodic-spline` CSG surface; and
-2. a DAGMC H5M triangulation generated directly from the same surface samples.
-
-Both models used the same one-group nearly-void material, source point, CSG
-bounding box, histories, seeds, and tallies. The comparison ran in
-`openmc/openmc:develop-dagmc`, and the feature-branch OpenMC executable was
-rebuilt with both `OPENMC_USE_STELLARATOR_CSG=ON` and `OPENMC_USE_DAGMC=ON`.
-
-- Driver status: `{os.environ.get('DRIVER_STATUS', '')}`
-- Decision: `{decision}`
-- Transport equivalent under 5-sigma gate: `{equivalent}`
-- Maximum pairwise tally z-score: `{z_score}`
-- Native median wall time [s]: `{native_time}`
-- DAGMC median wall time [s]: `{dagmc_time}`
-- Native/DAGMC median wall-time ratio: `{ratio}`
-- Maximum sampled facet deviation [cm]: `{facet}`
-
-`matched-csg-dagmc-summary.json` is the controlling compact result. The full
-H5M, MGXS, XML, statepoints, and run directories are retained as a GitHub
-Actions artifact rather than committed to Git.
-'''
-          (result_dir / 'README.md').write_text(readme)
-
-          report = f'''# Native StellarCSG remote execution: Steps 1-7
-
-**Branch:** `feature/native-stellarator-csg-openmc-0.16`  
-**Final Step 7 decision:** `{decision}`
-
-| Step | Result | Controlling evidence |
-|---:|---|---|
-| 1 | PASS | Remote clean bootstrap workflow and source archive |
-| 2 | PASS | Release and sanitizer CTests; 10,000-ray adversarial campaign with zero classification or distance mismatches |
-| 3 | PASS | Compiled OpenMC `periodic-spline` surface, Python API, XML/HDF5 round trip, and C++/Python tests |
-| 4 | CORRECTNESS PASS | Matched OpenMC `ZTorus` comparison with zero sense, hit, or distance mismatches; timing remains a microbenchmark |
-| 5 | PASS | CAD-free classic-netCDF VMEC and MAKEGRID adapters with frozen hashes and ~1e-13 cm surface replay residual |
-| 6 | BOUNDED PASS | Circular-cross-section swept-capsule coil prototype, segment BVH, and coil-local hexahedral mesh; rectangular/multilayer winding packs remain future work |
-| 7 | {decision} | `results/step7/matched-csg-dagmc-summary.json` and GitHub Actions artifact |
-
-## Step 7 interpretation
-
-- Transport equivalent under the preregistered five-sigma gate: `{equivalent}`.
-- Maximum pairwise tally z-score: `{z_score}`.
-- Native/DAGMC median wall-time ratio: `{ratio}`.
-- Native median wall time: `{native_time}` s.
-- DAGMC median wall time: `{dagmc_time}` s.
-- Smooth-to-faceted maximum sampled deviation: `{facet}` cm.
-
-The Step 7 benchmark is a synthetic five-field-period stellarator-like geometry,
-not a production WISTELL-D blanket or magnet calculation. It answers whether the
-same mathematical surface can be transported through both geometry engines and
-establishes the current performance direction. It does not authorize a general
-speedup claim or production-science use.
-'''
-          Path('dev/stellarcsg/docs/STEP1_TO_STEP7_RESULTS.md').write_text(report)
-
-          status = f'''# StellarCSG execution status
-
-Steps 1 through 7 have been executed remotely on the isolated feature branch.
-See `STEP1_TO_STEP7_RESULTS.md` for the consolidated result and
-`../results/step7/matched-csg-dagmc-summary.json` for the final matched geometry
-comparison.
-
-Current decision: **{decision}**.
-'''
-          Path('dev/stellarcsg/docs/EXECUTION_STATUS.md').write_text(status)
-          PY
+          docker pull openmc/openmc:develop-dagmc
+          docker run --rm \
+            --user root \
+            -e GITHUB_SHA="${GITHUB_SHA}" \
+            -e OMP_NUM_THREADS=2 \
+            -v "${GITHUB_WORKSPACE}:/work" \
+            -w /work \
+            openmc/openmc:develop-dagmc \
+            bash dev/stellarcsg/scripts/run_step7_remote.sh
 
       - name: Commit code and compact remote results
         if: always()
@@ -279,42 +46,28 @@ Current decision: **{decision}**.
             dev/stellarcsg/openmc_adapter/src/surface_periodic_spline.cpp \
             dev/stellarcsg/openmc_adapter/tests/test_periodic_spline_surface.cpp \
             dev/stellarcsg/examples/step7_matched_csg_dagmc.py \
-            dev/stellarcsg/results/step7/README.md \
-            dev/stellarcsg/results/step7/environment.txt \
-            dev/stellarcsg/results/step7/cmake-configure.log \
-            dev/stellarcsg/results/step7/openmc-build-provenance.txt \
-            dev/stellarcsg/results/step7/ctest-native-surface.log \
-            dev/stellarcsg/results/step7/ztorus-fast-replay.json \
-            dev/stellarcsg/results/step7/transport-driver.log \
-            dev/stellarcsg/results/step7/overlap-check.log \
-            dev/stellarcsg/results/step7/logs \
+            dev/stellarcsg/results/step7 \
             dev/stellarcsg/docs/STEP1_TO_STEP7_RESULTS.md \
             dev/stellarcsg/docs/EXECUTION_STATUS.md
-          if [[ -f dev/stellarcsg/results/step7/matched-csg-dagmc-summary.json ]]; then
-            git add dev/stellarcsg/results/step7/matched-csg-dagmc-summary.json
+          if git diff --cached --quiet; then
+            echo 'No Step 7 changes were produced.'
+          else
+            git commit -m 'Run matched native StellarCSG and DAGMC comparison'
+            git push origin HEAD:feature/native-stellarator-csg-openmc-0.16
           fi
-          git commit -m 'Run matched native StellarCSG and DAGMC comparison'
-          git push origin HEAD:feature/native-stellarator-csg-openmc-0.16
 
       - name: Upload full Step 7 replay bundle
         if: always()
         uses: actions/upload-artifact@v4
         with:
           name: stellarcsg-step7-${{ github.sha }}
-          path: |
-            dev/stellarcsg/results/step7
+          path: dev/stellarcsg/results/step7
           if-no-files-found: error
           retention-days: 90
 
-      - name: Enforce infrastructure completion
+      - name: Enforce evidence creation
         if: always()
         shell: bash
-        env:
-          DRIVER_STATUS: ${{ steps.comparison.outputs.driver_status }}
         run: |
           test -f dev/stellarcsg/results/step7/README.md
           test -f dev/stellarcsg/docs/STEP1_TO_STEP7_RESULTS.md
-          if [[ -z "${DRIVER_STATUS}" ]]; then
-            echo 'Step 7 driver did not execute to a recorded status.' >&2
-            exit 1
-          fi
