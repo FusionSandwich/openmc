@@ -1,0 +1,46 @@
+name: StellarCSG Step 1 bootstrap replay
+
+on:
+  push:
+    branches: [feature/native-stellarator-csg-openmc-0.16]
+    paths:
+      - '.github/workflows/stellarcsg-step1-bootstrap.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  validate:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 45
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Install Python dependencies
+        run: python -m pip install -e 'dev/stellarcsg[test]'
+      - name: Configure and build C++ reference kernel
+        run: |
+          cmake -S dev/stellarcsg -B build/stellarcsg -DCMAKE_BUILD_TYPE=Release -DSTELLARCSG_ENABLE_HDF5=ON -DSTELLARCSG_BUILD_TESTS=ON -DSTELLARCSG_BUILD_BENCHMARKS=ON -DSTELLARCSG_BUILD_TOOLS=ON
+          cmake --build build/stellarcsg --parallel 2
+      - name: Run C++ tests
+        run: ctest --test-dir build/stellarcsg --output-on-failure
+      - name: Run Python tests
+        run: pytest -q dev/stellarcsg/python/tests
+      - name: Run geometry benchmark
+        run: build/stellarcsg/stellarcsg_surface_benchmark | tee step1-geometry-benchmark.json
+      - name: Generate and inspect demonstration
+        run: |
+          PYTHONPATH=dev/stellarcsg/python python -m stellarcsg.cli demo --output-dir step1-demo | tee step1-demo.json
+          build/stellarcsg/stellarcsg_inspect_surface step1-demo/compiled_geometry.h5 /surfaces/plasma 600 0 0 | tee step1-python-cpp-probe.json
+      - uses: actions/upload-artifact@v4
+        with:
+          name: stellarcsg-step1-${{ github.sha }}
+          path: |
+            step1-geometry-benchmark.json
+            step1-demo.json
+            step1-python-cpp-probe.json
+            step1-demo/
+          retention-days: 90
