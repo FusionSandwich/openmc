@@ -3,20 +3,11 @@ set -euo pipefail
 
 cd /work
 export OMP_NUM_THREADS="${OMP_NUM_THREADS:-2}"
+export PYTHONPATH="/work:/work/dev/stellarcsg/python:${PYTHONPATH:-}"
+export LD_LIBRARY_PATH="/usr/local/lib:/root/DAGMC/lib:${LD_LIBRARY_PATH:-}"
 RESULTS=dev/stellarcsg/results/step7
 RUN_DIR="$RESULTS/run"
 mkdir -p "$RESULTS" "$RUN_DIR" "$RESULTS/logs"
-
-record_error() {
-  local status=$?
-  printf '%s\n' "$status" > "$RESULTS/remote-error-status.txt"
-  printf 'Step 7 remote runner failed at line %s while executing: %s\n' \
-    "${BASH_LINENO[0]:-unknown}" "${BASH_COMMAND:-unknown}" \
-    > "$RESULTS/remote-error.txt"
-  assemble_reports "REMOTE_EXECUTION_ERROR"
-  exit 0
-}
-trap record_error ERR
 
 assemble_reports() {
   local fallback_decision="${1:-REMOTE_EXECUTION_ERROR}"
@@ -122,6 +113,17 @@ Current decision: **{decision}**.
 PY
 }
 
+record_error() {
+  local status=$?
+  printf '%s\n' "$status" > "$RESULTS/remote-error-status.txt"
+  printf 'Step 7 remote runner failed at line %s while executing: %s\n' \
+    "${BASH_LINENO[0]:-unknown}" "${BASH_COMMAND:-unknown}" \
+    > "$RESULTS/remote-error.txt"
+  assemble_reports "REMOTE_EXECUTION_ERROR"
+  exit 0
+}
+trap record_error ERR
+
 {
   echo "container_image=openmc/openmc:develop-dagmc"
   echo "trigger_sha=${GITHUB_SHA:-unknown}"
@@ -132,13 +134,60 @@ PY
   command -v openmc || true
   openmc --version || true
   command -v overlap_check || true
-  find /root/DAGMC -maxdepth 3 -type f -name '*Config.cmake' -print 2>/dev/null || true
+  echo "python_path=${PYTHONPATH}"
+  echo '--- pymoab candidates before package installation ---'
+  find /openmc_venv /usr/local /usr/lib /root -maxdepth 7 \
+    \( -type d -name pymoab -o -name 'pymoab*.egg' -o -name 'pymoab*.so' \) \
+    -print 2>/dev/null || true
+  find /root/DAGMC -maxdepth 4 -type f -name '*Config.cmake' -print 2>/dev/null || true
 } | tee "$RESULTS/environment.txt"
 
-python -m pip install --upgrade pip
-python -m pip install -e .
-python -m pip install -e 'dev/stellarcsg[test,vmec]'
-python -m pip install vertices_to_h5m
+# The official DAGMC image historically installs PyMOAB with setup.py as an
+# egg. Preserve that installation by using PYTHONPATH for the checked-out
+# OpenMC and StellarCSG Python sources instead of uninstalling/reinstalling the
+# image's OpenMC package. If the egg is not already on sys.path, add it.
+if ! python -c 'import pymoab' >/dev/null 2>&1; then
+  pymoab_egg="$(find /openmc_venv /usr/local /usr/lib /root -maxdepth 7 \
+    -name 'pymoab*.egg' -print -quit 2>/dev/null || true)"
+  pymoab_dir="$(find /openmc_venv /usr/local /usr/lib /root -maxdepth 7 \
+    -type d -name pymoab -print -quit 2>/dev/null || true)"
+  if [[ -n "$pymoab_egg" ]]; then
+    export PYTHONPATH="$pymoab_egg:$PYTHONPATH"
+  elif [[ -n "$pymoab_dir" ]]; then
+    export PYTHONPATH="$(dirname "$pymoab_dir"):$PYTHONPATH"
+  fi
+fi
+
+# Last-resort replay path: rebuild the Python binding against the MOAB
+# installation already present in the official DAGMC image. This is executed
+# only when the image's preinstalled binding is not importable.
+if ! python -c 'import pymoab' >/dev/null 2>&1; then
+  echo 'PyMOAB was not importable; rebuilding bindings from MOAB 5.5.1.' \
+    | tee -a "$RESULTS/environment.txt"
+  rm -rf /tmp/moab-src /tmp/moab-build
+  git clone --depth 1 --branch 5.5.1 \
+    https://bitbucket.org/fathomteam/moab.git /tmp/moab-src
+  cmake -S /tmp/moab-src -B /tmp/moab-build \
+    -DCMAKE_BUILD_TYPE=Release \
+    -DCMAKE_INSTALL_PREFIX=/usr/local \
+    -DENABLE_HDF5=ON \
+    -DENABLE_NETCDF=ON \
+    -DENABLE_PYMOAB=ON \
+    -DBUILD_SHARED_LIBS=ON \
+    -DENABLE_FORTRAN=OFF \
+    -DENABLE_BLASLAPACK=OFF \
+    -DENABLE_TESTING=OFF
+  cmake --build /tmp/moab-build --parallel 2 --target install
+  if [[ -d /tmp/moab-build/pymoab ]]; then
+    (cd /tmp/moab-build/pymoab && bash install.sh && python setup.py install)
+  elif [[ -d /tmp/moab-src/pymoab ]]; then
+    (cd /tmp/moab-src/pymoab && python setup.py install)
+  fi
+fi
+python -c 'import pymoab; print("pymoab_import=PASS", pymoab.__file__)' \
+  | tee -a "$RESULTS/environment.txt"
+
+python -m pip install --no-cache-dir vertices_to_h5m
 python - <<'PY' | tee -a "$RESULTS/environment.txt"
 import importlib.metadata
 import openmc
