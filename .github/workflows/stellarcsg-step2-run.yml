@@ -1,0 +1,54 @@
+name: StellarCSG Step 2 corrected qualification
+on:
+  push:
+    branches:
+      - feature/native-stellarator-csg-openmc-0.16
+    paths:
+      - .github/workflows/stellarcsg-step2-run.yml
+  workflow_dispatch:
+permissions:
+  contents: write
+jobs:
+  qualify:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 45
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - run: |
+          sudo apt-get update
+          sudo apt-get install -y --no-install-recommends libhdf5-dev
+      - name: Apply staged correction
+        run: git apply --3way dev/stellarcsg/patches/step2-close-pair.patch
+      - name: Build and test release
+        run: |
+          cmake -S dev/stellarcsg -B build/step2 -DCMAKE_BUILD_TYPE=Release -DSTELLARCSG_ENABLE_HDF5=ON -DSTELLARCSG_BUILD_TESTS=ON -DSTELLARCSG_BUILD_BENCHMARKS=ON -DSTELLARCSG_BUILD_TOOLS=ON
+          cmake --build build/step2 --parallel 2
+          mkdir -p dev/stellarcsg/results/step2
+          ctest --test-dir build/step2 --output-on-failure | tee dev/stellarcsg/results/step2/ctest-release.log
+          build/step2/stellarcsg_adversarial_rays 10000 | tee dev/stellarcsg/results/step2/adversarial-10000.json
+          build/step2/stellarcsg_surface_benchmark | tee dev/stellarcsg/results/step2/microbenchmark.json
+          python -c "import json; d=json.load(open('dev/stellarcsg/results/step2/adversarial-10000.json')); assert all(v['classification_mismatches']==0 and v['distance_mismatches']==0 for v in d['cases'].values())"
+      - name: Build and test sanitizers
+        env:
+          ASAN_OPTIONS: detect_leaks=1:halt_on_error=1
+          UBSAN_OPTIONS: halt_on_error=1:print_stacktrace=1
+        run: |
+          cmake -S dev/stellarcsg -B build/step2-sanitize -DCMAKE_BUILD_TYPE=RelWithDebInfo -DSTELLARCSG_ENABLE_HDF5=ON -DSTELLARCSG_ENABLE_SANITIZERS=ON -DSTELLARCSG_BUILD_TESTS=ON -DSTELLARCSG_BUILD_BENCHMARKS=OFF -DSTELLARCSG_BUILD_TOOLS=ON
+          cmake --build build/step2-sanitize --parallel 2
+          ctest --test-dir build/step2-sanitize --output-on-failure | tee dev/stellarcsg/results/step2/ctest-sanitizer.log
+          build/step2-sanitize/stellarcsg_adversarial_rays 1000 | tee dev/stellarcsg/results/step2/adversarial-sanitizer-1000.json
+      - name: Commit code and compact evidence
+        run: |
+          printf '# Step 2 remote qualification\n\nRelease and sanitizer builds passed. The 10000-ray JSON is the controlling adversarial result.\n' > dev/stellarcsg/results/step2/README.md
+          git config user.name github-actions[bot]
+          git config user.email 41898282+github-actions[bot]@users.noreply.github.com
+          git add dev/stellarcsg/src/periodic_radial_surface.cpp dev/stellarcsg/tests/test_compiled_surface.cpp dev/stellarcsg/tools/adversarial_rays.cpp dev/stellarcsg/results/step2
+          git commit -m 'Qualify StellarCSG fast nearest-root search remotely'
+          git push origin HEAD:feature/native-stellarator-csg-openmc-0.16
+      - uses: actions/upload-artifact@v4
+        with:
+          name: stellarcsg-step2-corrected-${{ github.sha }}
+          path: dev/stellarcsg/results/step2
+          retention-days: 90
