@@ -3,7 +3,7 @@ name: Materialize StellarCSG executable implementation
 on:
   push:
     branches:
-      - codex/stellarcsg-native-csg-foundation-20260828
+      - feature/native-stellarator-csg-openmc-0.16
 
 permissions:
   contents: write
@@ -49,4 +49,4 @@ jobs:
           git add -A .github/workflows dev/stellarcsg
           git diff --cached --check
           git commit -m "Implement runnable native StellarCSG prototype"
-          git push origin HEAD:codex/stellarcsg-native-csg-foundation-20260828
+          git push origin HEAD:feature/native-stellarator-csg-openmc-0.16
