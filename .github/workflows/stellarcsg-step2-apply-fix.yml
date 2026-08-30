@@ -24,7 +24,7 @@ jobs:
           sudo apt-get install -y --no-install-recommends libhdf5-dev
       - name: Apply close-pair correction
         run: |
-          git am --3way dev/stellarcsg/patches/step2-close-pair.patch
+          git apply --3way dev/stellarcsg/patches/step2-close-pair.patch
       - name: Release build and qualification
         run: |
           cmake -S dev/stellarcsg -B build/stellarcsg-step2-fix \
@@ -67,21 +67,26 @@ jobs:
           build/stellarcsg-step2-fix-sanitize/stellarcsg_adversarial_rays 1000 \
             | tee dev/stellarcsg/results/step2/adversarial-sanitizer-1000.json
       - name: Record compact evidence
+        env:
+          TRIGGER_SHA: ${{ github.sha }}
         run: |
-          cat > dev/stellarcsg/results/step2/README.md <<EOF
-          # Step 2 remote qualification
+          python - <<'PY'
+          import os
+          from pathlib import Path
+          Path('dev/stellarcsg/results/step2/README.md').write_text(f'''# Step 2 remote qualification
 
-          The close-root-pair correction was applied and qualified on GitHub Actions.
+The close-root-pair correction was applied and qualified on GitHub Actions.
 
-          - Trigger commit: ${GITHUB_SHA}
-          - Release CTest: `ctest-release.log`
-          - 10,000 random rays plus deterministic edge fixtures: `adversarial-10000.json`
-          - ASan/UBSan evidence: `ctest-sanitizer.log` and `adversarial-sanitizer-1000.json`
-          - Microbenchmark: `microbenchmark.json`
+- Trigger commit: `{os.environ["TRIGGER_SHA"]}`
+- Release CTest: `ctest-release.log`
+- 10,000 random rays plus deterministic edge fixtures: `adversarial-10000.json`
+- ASan/UBSan evidence: `ctest-sanitizer.log` and `adversarial-sanitizer-1000.json`
+- Microbenchmark: `microbenchmark.json`
 
-          The three original failing rays are permanent regression cases in
-          `tests/test_compiled_surface.cpp`.
-          EOF
+The three original failing rays are permanent regression cases in
+`tests/test_compiled_surface.cpp`.
+''')
+          PY
           git config user.name github-actions[bot]
           git config user.email 41898282+github-actions[bot]@users.noreply.github.com
           git add dev/stellarcsg/src/periodic_radial_surface.cpp \
