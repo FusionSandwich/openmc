@@ -1,0 +1,62 @@
+name: StellarCSG Step 4 ZTorus comparison
+on:
+  push:
+    branches:
+      - feature/native-stellarator-csg-openmc-0.16
+    paths:
+      - .github/workflows/stellarcsg-step4-ztorus.yml
+  workflow_dispatch:
+permissions:
+  contents: write
+env:
+  OMP_NUM_THREADS: 2
+jobs:
+  compare:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 90
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          submodules: recursive
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Install dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y --no-install-recommends build-essential cmake ninja-build libhdf5-dev libpng-dev libnetcdf-dev libeigen3-dev
+          python -m pip install --upgrade pip
+          python -m pip install -e '.[test]'
+          python -m pip install -e 'dev/stellarcsg[test]'
+      - name: Apply comparison patch
+        run: git apply --3way dev/stellarcsg/patches/step4-ztorus-comparison.patch
+      - name: Configure and build native surface
+        run: |
+          cmake -S . -B build/step4 -G Ninja -DCMAKE_BUILD_TYPE=Release -DOPENMC_USE_STELLARATOR_CSG=ON -DOPENMC_BUILD_TESTS=ON -DOPENMC_USE_MPI=OFF -DOPENMC_USE_OPENMP=ON -DOPENMC_FORCE_VENDORED_LIBS=ON -DOPENMC_USE_DAGMC=OFF -DOPENMC_USE_LIBMESH=OFF
+          cmake --build build/step4 --parallel 2
+      - name: Re-run Step 3 native surface qualification
+        run: |
+          mkdir -p dev/stellarcsg/results/step3 dev/stellarcsg/results/step4
+          ctest --test-dir build/step4 -R stellarcsg_openmc_surface_tests --output-on-failure | tee dev/stellarcsg/results/step3/replay-after-step2.log
+          pytest -q tests/unit_tests/test_surface_periodic_spline.py dev/stellarcsg/python/tests/test_openmc_surface.py | tee dev/stellarcsg/results/step3/python-replay-after-step2.log
+      - name: Run matched ZTorus comparison
+        run: |
+          build/step4/stellarcsg_openmc_ztorus_comparison 50000 20000 | tee dev/stellarcsg/results/step4/ztorus-comparison.json
+          python -c "import json; d=json.load(open('dev/stellarcsg/results/step4/ztorus-comparison.json')); assert d['passed']; assert d['sense_mismatches']==0; assert d['ray_classification_mismatches']==0; assert d['ray_distance_mismatches']==0"
+          build/step4/bin/openmc --version > dev/stellarcsg/results/step4/openmc-version.txt
+      - name: Record compact evidence and push
+        run: |
+          printf '# Step 4 remote comparison\n\nThe native periodic-spline surface was compared against OpenMC ZTorus using identical circular-torus geometry. See ztorus-comparison.json. Timing is a geometry microbenchmark, not an end-to-end transport speed claim.\n' > dev/stellarcsg/results/step4/README.md
+          git config user.name github-actions[bot]
+          git config user.email 41898282+github-actions[bot]@users.noreply.github.com
+          git add CMakeLists.txt dev/stellarcsg/openmc_adapter/tests/test_periodic_spline_vs_ztorus.cpp dev/stellarcsg/results/step3 dev/stellarcsg/results/step4
+          git commit -m 'Compare native StellarCSG surface with OpenMC ZTorus'
+          git push origin HEAD:feature/native-stellarator-csg-openmc-0.16
+      - uses: actions/upload-artifact@v4
+        with:
+          name: stellarcsg-step4-${{ github.sha }}
+          path: |
+            dev/stellarcsg/results/step3
+            dev/stellarcsg/results/step4
+          retention-days: 90
