@@ -1,4 +1,4 @@
-name: Materialize staged StellarCSG source
+name: Materialize StellarCSG executable implementation
 
 on:
   push:
@@ -9,36 +9,44 @@ permissions:
   contents: write
 
 env:
-  EXPECTED_BUNDLE_SHA256: 73de10041ece295365226916180462eed4b8c9dba0952ded9dfc1b468fae7b2c
+  EXPECTED_BUNDLE_SHA256: 35e89d84cf821d842a0cc42537c4b3fe1ae11a099a97f92c1043c79ac8e1e6ae
 
 jobs:
   materialize:
-    if: github.event.head_commit.message == 'Stage StellarCSG materializer'
-    runs-on: ubuntu-latest
+    if: github.event.head_commit.message == 'Stage StellarCSG executable implementation v2'
+    runs-on: ubuntu-24.04
     steps:
       - uses: actions/checkout@v4
         with:
           fetch-depth: 0
           persist-credentials: true
-      - name: Verify and extract staged source
+      - name: Verify and extract implementation bundle
         shell: bash
         run: |
           set -euo pipefail
-          cat dev/stellarcsg/.materialize/part-* > "$RUNNER_TEMP/stellarcsg.b64"
+          cat dev/stellarcsg/.materialize-v2/part-* > "$RUNNER_TEMP/stellarcsg.b64"
           base64 --decode "$RUNNER_TEMP/stellarcsg.b64" > "$RUNNER_TEMP/stellarcsg.tar.gz"
           echo "${EXPECTED_BUNDLE_SHA256}  $RUNNER_TEMP/stellarcsg.tar.gz" | sha256sum --check --strict
           tar -xzf "$RUNNER_TEMP/stellarcsg.tar.gz" -C "$GITHUB_WORKSPACE"
-          rm -f \
-            dev/stellarcsg/include/stellarcsg/periodic_radial_surface.hpp \
-            dev/stellarcsg/src/periodic_radial_surface.cpp \
-            dev/stellarcsg/tests/test_reference_kernel.cpp
+          rm -rf dev/stellarcsg/.materialize dev/stellarcsg/.materialize-v2
+          rm -f .github/workflows/materialize-stellarcsg.yml
+      - name: Validate staged files before commit
+        shell: bash
+        run: |
+          set -euo pipefail
+          python -m json.tool dev/stellarcsg/implementation_manifest.json >/dev/null
+          test -s .github/workflows/stellarcsg-ci.yml
+          test -s .github/workflows/stellarcsg-openmc-adapter.yml
+          test -s dev/stellarcsg/environment.yml
+          bash -n dev/stellarcsg/scripts/run_local_validation.sh
+          test -x dev/stellarcsg/scripts/run_local_validation.sh
       - name: Commit materialized implementation
         shell: bash
         run: |
           set -euo pipefail
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add -A dev/stellarcsg
+          git add -A .github/workflows dev/stellarcsg
           git diff --cached --check
-          git commit -m "Implement conservative periodic spline OpenMC surface"
+          git commit -m "Implement runnable native StellarCSG prototype"
           git push origin HEAD:codex/stellarcsg-native-csg-foundation-20260828
