@@ -3,6 +3,7 @@
 #include "openmc/settings.h"
 #include "openmc/surface.h"
 #include "openmc/surface_periodic_spline.h"
+#include "openmc/surface_swept_spline.h"
 #include "stellarcsg/coefficient_file.hpp"
 
 #include <cmath>
@@ -42,7 +43,7 @@ TEST_CASE("native periodic spline surface", "[stellarcsg]")
   const std::string xml =
     "<geometry><surface id='901' type='periodic-spline' data_file='" +
     filename + "' dataset='/surfaces/torus' content_id='" + data.content_id +
-    "' solver='reference' units='cm'/></geometry>";
+    "' solver='layered' units='cm'/></geometry>";
   REQUIRE(document.load_string(xml.c_str()));
 
   std::set<std::pair<int, int>> periodic_pairs;
@@ -66,4 +67,29 @@ TEST_CASE("native periodic spline surface", "[stellarcsg]")
 
   openmc::free_memory_surfaces();
   std::remove(filename.c_str());
+}
+
+TEST_CASE("native swept spline surface", "[stellarcsg]")
+{
+  openmc::settings::path_input = "";
+  pugi::xml_document document;
+  const std::string filename = std::string {STELLARCSG_SOURCE_DIR}
+    + "/dev/stellarcsg/qualified/analytic_swept_coils.h5";
+  const std::string xml =
+    "<geometry><surface id='902' type='swept-spline' data_file='" +
+    filename + "' dataset='/coils/coil_001' units='cm'/></geometry>";
+  REQUIRE(document.load_string(xml.c_str()));
+  std::set<std::pair<int, int>> periodic_pairs;
+  std::unordered_map<int, double> albedo_map;
+  std::unordered_map<int, int> periodic_sense_map;
+  openmc::read_surfaces(document.child("geometry"), periodic_pairs, albedo_map,
+    periodic_sense_map);
+  REQUIRE(openmc::model::surfaces.size() == 1);
+  auto* surface = dynamic_cast<openmc::SurfaceSweptSpline*>(
+    openmc::model::surfaces.front().get());
+  REQUIRE(surface != nullptr);
+  CHECK(std::abs(surface->evaluate({525.0, 0.0, 0.0})) < 1.0e-8);
+  CHECK(std::abs(surface->distance(
+          {550.0, 0.0, 0.0}, {-1.0, 0.0, 0.0}, false) - 25.0) < 1.0e-6);
+  openmc::free_memory_surfaces();
 }

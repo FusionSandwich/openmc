@@ -3,7 +3,11 @@ from __future__ import annotations
 import numpy as np
 import pytest
 
-from stellarcsg import PeriodicRadialSurfaceData, compile_radial_build
+from stellarcsg import (
+    PeriodicRadialSurfaceData,
+    compile_normal_build,
+    compile_radial_build,
+)
 from stellarcsg.spline import (
     sample_periodic_bicubic,
     sample_periodic_cubic,
@@ -114,3 +118,25 @@ def test_nonpositive_thickness_rejected() -> None:
     )
     with pytest.raises(ValueError):
         base.with_radial_thickness("bad", 0.0)
+
+
+def test_physical_normal_build_for_exact_torus() -> None:
+    base = PeriodicRadialSurfaceData.analytic_torus(
+        name="plasma",
+        major_radius_cm=500.0,
+        minor_radius_cm=100.0,
+        n_theta=16,
+        n_phi=12,
+    )
+    boundaries = compile_normal_build(
+        base, [("first_wall", 2.0), ("blanket", 25.0)]
+    )
+    theta = np.linspace(0.0, 2.0 * np.pi, 37, endpoint=False)
+    phi = np.linspace(0.0, 2.0 * np.pi, 29, endpoint=False)
+    t, p = np.meshgrid(theta, phi, indexing="ij")
+    base_radius = boundaries[0].radius(t, p)[0]
+    first_wall_radius = boundaries[1].radius(t, p)[0]
+    blanket_radius = boundaries[2].radius(t, p)[0]
+    np.testing.assert_allclose(first_wall_radius - base_radius, 2.0, atol=2.0e-11)
+    np.testing.assert_allclose(blanket_radius - first_wall_radius, 25.0, atol=2.0e-11)
+    assert boundaries[1].source_metadata["kind"] == "physical_normal_offset"

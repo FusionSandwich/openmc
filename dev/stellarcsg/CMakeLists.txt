@@ -4,6 +4,7 @@ project(stellarcsg_reference_kernel LANGUAGES CXX)
 option(STELLARCSG_BUILD_TESTS "Build StellarCSG tests" ON)
 option(STELLARCSG_BUILD_BENCHMARKS "Build geometry microbenchmarks" ON)
 option(STELLARCSG_BUILD_TOOLS "Build local inspection tools" ON)
+option(STELLARCSG_BUILD_CAMPAIGNS "Build deterministic qualification campaigns" ON)
 option(STELLARCSG_ENABLE_HDF5 "Build the coefficient-file HDF5 adapter" ON)
 option(STELLARCSG_ENABLE_SANITIZERS "Enable ASan/UBSan for standalone tests" OFF)
 
@@ -14,6 +15,8 @@ add_library(stellarcsg_reference STATIC
   src/uniform_periodic_bicubic_spline.cpp
   src/uniform_periodic_cubic_spline.cpp
   src/compiled_periodic_surface.cpp
+  src/compiled_swept_surface.cpp
+  ../../src/external/quartic_solver.cpp
 )
 add_library(StellarCSG::reference ALIAS stellarcsg_reference)
 target_compile_features(stellarcsg_reference PUBLIC cxx_std_17)
@@ -23,10 +26,23 @@ target_include_directories(stellarcsg_reference PUBLIC
 if(STELLARCSG_ENABLE_HDF5)
   find_package(HDF5 REQUIRED COMPONENTS C HL)
   target_sources(stellarcsg_reference PRIVATE src/coefficient_file.cpp)
+  target_sources(stellarcsg_reference PRIVATE src/swept_coefficient_file.cpp)
   target_include_directories(stellarcsg_reference PUBLIC ${HDF5_INCLUDE_DIRS})
   target_link_libraries(stellarcsg_reference PUBLIC
     ${HDF5_LIBRARIES} ${HDF5_HL_LIBRARIES})
   target_compile_definitions(stellarcsg_reference PUBLIC STELLARCSG_HAS_HDF5)
+endif()
+
+if(STELLARCSG_BUILD_CAMPAIGNS)
+  add_executable(stellarcsg_periodic_root_campaign
+    qualification/periodic_root_campaign.cpp)
+  target_link_libraries(stellarcsg_periodic_root_campaign
+    PRIVATE StellarCSG::reference)
+  target_compile_features(stellarcsg_periodic_root_campaign PRIVATE cxx_std_17)
+  if(CMAKE_CXX_COMPILER_ID MATCHES "GNU|Clang")
+    target_compile_options(stellarcsg_periodic_root_campaign PRIVATE
+      -O3 -Wall -Wextra -Wpedantic -Wconversion -Wshadow)
+  endif()
 endif()
 
 if(CMAKE_CXX_COMPILER_ID MATCHES "GNU|Clang")

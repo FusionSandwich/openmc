@@ -1,0 +1,64 @@
+{
+  "schema_version": 1,
+  "case": "wistell_d_lcfs",
+  "classification": "PASS_SINGLE_CHART",
+  "source": {
+    "path": "dev/stellarcsg/test_data/wistell_d/wout_wistell-d.nc",
+    "sha256": "9231969001203a8133255ee0a275bf552b114cc12524dda0608ab2f12047f7ac",
+    "n_field_periods": 4
+  },
+  "coefficient_payload": {
+    "path": "dev/stellarcsg/qualified/wistell_d_periodic_surfaces.h5",
+    "content_id": "sha256:0d299bcfa901c5c5572abee7926ba9814b4220e96721c5e5c5c680aff3584f26",
+    "dataset": "/surfaces/wistell_d_lcfs",
+    "n_theta": 512,
+    "n_phi": 192,
+    "layer_content_ids": {
+      "wistell_d_lcfs": "sha256:0d299bcfa901c5c5572abee7926ba9814b4220e96721c5e5c5c680aff3584f26",
+      "first_wall": "sha256:c5cd5aceeb04b0a258ffb454f88754dccb2a6c8a9251ea35db21aa5121599d43",
+      "breeder": "sha256:d7fbd04b379bb490d8436741e764919af915a38b09514121bd39e50198e8a28d",
+      "back_wall": "sha256:211112395ed6c2639f5f3d592f410b5165b4f0b673840ac78e505dffde7dac34",
+      "shield": "sha256:62e7caff8b1740d1293d2595a6a982953e97e1dcd8daabcaa78c634177576326",
+      "vessel": "sha256:dff5f8a21f07b15e67f190a1ab39498d3fc6269470db864e24af514877ec1f2a"
+    }
+  },
+  "fit": {
+    "independent_points": 197633,
+    "maximum_cartesian_error_cm": 0.03438148819830644,
+    "rms_cartesian_error_cm": 0.002417201744793865,
+    "p95_cartesian_error_cm": 0.002885308623109488,
+    "approximate_hausdorff_error_cm": 0.03438148819830644,
+    "maximum_normal_angle_deg": 0.11918973558650271,
+    "rms_normal_angle_deg": 0.011365910154119809,
+    "surface_area_source_cm2": 8320219.416959814,
+    "surface_area_model_cm2": 8320218.836180063,
+    "surface_area_relative_error": -6.980341764155548e-08,
+    "volume_source_cm3": 438763734.0160188,
+    "volume_model_cm3": 438763702.81837434,
+    "volume_relative_error": -7.110351666161907e-08,
+    "source_seam_closure_cm": 4.582862941503293e-13,
+    "model_seam_closure_cm": 0.0,
+    "minimum_radius_cm": 44.510990471991214,
+    "minimum_geometric_theta_step_rad": 0.0011798043630308896,
+    "minimum_source_jacobian_cm2": 75113.64674021742,
+    "minimum_model_jacobian_cm2": 51821.71823881817,
+    "declared_fit_tolerance_cm": 0.1
+  },
+  "normal_layers": {
+    "requested": true,
+    "accepted_boundaries": [
+      "wistell_d_lcfs",
+      "first_wall",
+      "breeder",
+      "back_wall",
+      "shield",
+      "vessel"
+    ],
+    "error": null
+  },
+  "plots": [
+    "dev/stellarcsg/plots/wistell_d/poloidal_slices.png",
+    "dev/stellarcsg/plots/wistell_d/fit_error_heatmap.png",
+    "dev/stellarcsg/plots/wistell_d/views.png"
+  ]
+}

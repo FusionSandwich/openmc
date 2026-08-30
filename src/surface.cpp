@@ -2,6 +2,7 @@
 
 #ifdef OPENMC_EXPERIMENTAL_STELLARCSG
 #include "openmc/surface_periodic_spline.h"
+#include "openmc/surface_swept_spline.h"
 #endif
 
 #include <cmath>
@@ -1246,6 +1247,9 @@ void read_surfaces(pugi::xml_node node,
       } else if (surf_type == "periodic-spline") {
         model::surfaces.push_back(
           std::make_unique<SurfacePeriodicSpline>(surf_node));
+      } else if (surf_type == "swept-spline") {
+        model::surfaces.push_back(
+          std::make_unique<SurfaceSweptSpline>(surf_node));
 #endif
 
       } else {

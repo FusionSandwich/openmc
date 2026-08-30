@@ -21,8 +21,10 @@ geometry kernel.
   \(F(x,y,z)=\rho-\rho_s(\theta,\phi)\);
 - analytic gradient and outward normal;
 - finite bounding box based on the B-spline convex hull;
-- conservative correctness-reference nearest-root search including sampled,
-  sign-changing, and stationary/tangent candidates;
+- layered nearest-root search with exact circular-torus and shaped-axisymmetric
+  paths plus an independently coded broad reference oracle;
+- periodic swept cubic centerlines with rotation-minimizing frames and circular
+  or elliptical cross sections;
 - versioned HDF5 coefficient reader/writer with content-identity checking;
 - analytic torus, shaped-axisymmetric, helical, moving-axis, tangent, and HDF5
   round-trip tests;
@@ -35,23 +37,25 @@ geometry kernel.
 - reparameterization from an arbitrary input poloidal parameter to geometric
   polar angle;
 - periodic interpolation to cardinal cubic B-spline coefficients;
-- cumulative radial first-wall/blanket/shield boundary generation;
+- VMEC and MAKEGRID filament readers;
+- cumulative physical-normal first-wall/blanket/shield/vessel boundaries with
+  coordinate-fold, intersection, radius, and Jacobian rejection;
 - hash-bound multi-surface HDF5 output;
 - layer-conformal hexahedral tally meshes generated from the same surface
   coefficients;
 - HDF5 mesh metadata and legacy VTK export for ParaView;
 - command-line analytic demonstration.
 
-### Experimental OpenMC adapter
+### Experimental OpenMC integration
 
-An opt-in CMake injector adds a `periodic-spline` surface to a dedicated OpenMC
-build without editing the root OpenMC source files. It exercises the real
-OpenMC `Surface` parser and the C++ `evaluate`, `distance`, `normal`, bounding
-box, and HDF5-summary interfaces.
+The root build option `OPENMC_ENABLE_EXPERIMENTAL_STELLARCSG`, disabled by
+default, adds native `periodic-spline` and `swept-spline` surfaces. Both
+exercise the real OpenMC parser and C++ evaluate, distance, normal, bounding
+box, external-HDF5, and summary-HDF5 interfaces.
 
-The adapter currently uses the expensive reference root search. It proves the
-integration route; it is not yet suitable for production transport or speed
-claims.
+The implementation remains a research candidate: the generic periodic and
+swept paths retain expensive reference searches and are not yet suitable for
+production transport claims.
 
 ## One-command local validation
 
@@ -111,19 +115,16 @@ build/stellarcsg-demo/
 └── validation_report.json
 ```
 
-## Experimental OpenMC adapter build
+## Experimental OpenMC build
 
 ```bash
 cmake -S . -B build/openmc-stellarcsg \
   -DCMAKE_BUILD_TYPE=Release \
-  -DOPENMC_BUILD_TESTS=OFF \
+  -DOPENMC_BUILD_TESTS=ON \
   -DOPENMC_USE_OPENMP=ON \
-  -DSTELLARCSG_BUILD_OPENMC_ADAPTER_TESTS=ON \
-  -DCMAKE_PROJECT_INCLUDE="$PWD/dev/stellarcsg/openmc_adapter/enable.cmake"
-cmake --build build/openmc-stellarcsg \
-  --target stellarcsg_openmc_adapter_tests --parallel
-ctest --test-dir build/openmc-stellarcsg \
-  -R stellarcsg_openmc_adapter_tests --output-on-failure
+  -DOPENMC_ENABLE_EXPERIMENTAL_STELLARCSG=ON
+cmake --build build/openmc-stellarcsg --parallel
+ctest --test-dir build/openmc-stellarcsg -R stellarcsg --output-on-failure
 ```
 
 Python XML wrapper:
@@ -135,7 +136,7 @@ surface = PeriodicSplineSurface(
     data_file="compiled_geometry.h5",
     dataset="/surfaces/plasma",
     content_id="sha256:...",
-    solver="reference",
+    solver="layered",
 )
 cell.region = -surface
 ```
@@ -154,21 +155,22 @@ OpenMC.
 
 - The implemented plasma/layer representation is a single radial chart about a
   periodic reference axis. It is not valid for every possible toroidal surface.
-- The surface-grid compiler performs a useful first star-shapedness check but
-  does not yet provide a formal global proof of admissibility.
-- The root search is a correctness reference and cannot certify that an
-  arbitrarily narrow unsampled root is absent.
-- Normal-distance offsets are not yet compiled from ParaStell/jax-sbgeom target
-  surfaces; the present build is geometric-radial.
-- Swept finite-build magnet CSG is still deferred. Magnet tally meshes will be
-  added after the coil surface contract passes.
+- The compiler rejects surfaces outside its single-chart envelope; it does not
+  implement a general multi-chart fallback.
+- The exact-torus campaign does not certify arbitrary fitted stellarators.
+- The generic swept path has no patch BVH or interval-certified local solve and
+  has not passed a 10-million-ray oracle campaign.
+- Nested swept winding packs, coolant regions, superellipses, and rounded
+  rectangles remain deferred.
 - No matched end-to-end OpenMC custom-CSG versus DAGMC/Embree benchmark has
   been completed.
 - Stellarator-symmetry boundary conditions are separate from ordinary
   rotational periodicity and remain deferred.
 
-See [`docs/EXECUTION_STATUS.md`](docs/EXECUTION_STATUS.md) for the tests
-actually executed in this tranche.
+See [`reports/IMPLEMENTATION_STATUS.md`](reports/IMPLEMENTATION_STATUS.md) and
+[`reports/FINAL_TECHNICAL_BOUNDARIES.md`](reports/FINAL_TECHNICAL_BOUNDARIES.md)
+for the current evidence and precise boundaries. The older
+[`docs/EXECUTION_STATUS.md`](docs/EXECUTION_STATUS.md) records the first tranche.
 
 Do not use this branch for production neutronics until the adversarial-ray,
 matched-geometry, and transport-validation gates in

@@ -1,5 +1,9 @@
 # StellarCSG execution status
 
+> Historical note: this file records the first execution tranche. Current
+> results are in `../reports/IMPLEMENTATION_STATUS.md` and
+> `../reports/FINAL_TECHNICAL_BOUNDARIES.md`.
+
 **Status date:** 2026-08-30
 **Repository:** `FusionSandwich/openmc`
 **Branch:** `codex/stellarcsg-native-csg-foundation-20260828`

@@ -23,3 +23,8 @@ foreach(test ${TEST_NAMES})
   target_link_libraries(${test} Catch2::Catch2WithMain libopenmc)
   add_test(NAME ${test} COMMAND ${test} WORKING_DIRECTORY ${UNIT_TEST_BIN_OUTPUT_DIR})
 endforeach()
+
+if(OPENMC_ENABLE_EXPERIMENTAL_STELLARCSG)
+  target_compile_definitions(test_stellarcsg_surface PRIVATE
+    STELLARCSG_SOURCE_DIR="${CMAKE_SOURCE_DIR}")
+endif()

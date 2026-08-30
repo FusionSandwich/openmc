@@ -26,7 +26,7 @@ private:
   std::string resolved_data_file_;
   std::string dataset_;
   std::string content_id_;
-  std::string solver_ {"reference"};
+  std::string solver_ {"layered"};
   std::unique_ptr<stellarcsg::CompiledPeriodicSplineSurface> surface_;
 };
 

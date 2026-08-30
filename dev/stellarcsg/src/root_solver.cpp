@@ -198,7 +198,35 @@ RootSearchResult find_nearest_root_reference(const ScalarFunction& function,
             options, options.derivative_tolerance);
         }
         if (stationary) {
-          const double residual = std::abs(evaluator.f(*stationary));
+          const double stationary_value = evaluator.f(*stationary);
+          const double residual = std::abs(stationary_value);
+          // An even number of crossings can lie inside a scan interval whose
+          // endpoint signs match. Splitting at an enclosed stationary point
+          // converts that missed-root configuration into ordinary brackets.
+          if (*stationary > a && finite(fa) && finite(stationary_value)
+              && std::signbit(fa) != std::signbit(stationary_value)) {
+            ++result.diagnostics.sign_change_brackets;
+            const auto root = bisect_bracket(evaluator, false, a, *stationary,
+              fa, stationary_value, options, options.absolute_f_tolerance);
+            if (root) {
+              add_candidate(result.candidates,
+                RootCandidate {*root, std::abs(evaluator.f(*root)),
+                  RootKind::sign_change},
+                options, result.diagnostics);
+            }
+          }
+          if (*stationary < b && finite(stationary_value) && finite(fb)
+              && std::signbit(stationary_value) != std::signbit(fb)) {
+            ++result.diagnostics.sign_change_brackets;
+            const auto root = bisect_bracket(evaluator, false, *stationary, b,
+              stationary_value, fb, options, options.absolute_f_tolerance);
+            if (root) {
+              add_candidate(result.candidates,
+                RootCandidate {*root, std::abs(evaluator.f(*root)),
+                  RootKind::sign_change},
+                options, result.diagnostics);
+            }
+          }
           if (residual <= options.tangent_residual_multiplier
                             * options.absolute_f_tolerance) {
             add_candidate(result.candidates,

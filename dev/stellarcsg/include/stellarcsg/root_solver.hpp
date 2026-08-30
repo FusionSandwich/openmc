@@ -13,6 +13,21 @@ enum class RootKind {
   stationary_tangent,
 };
 
+enum class SolverPath {
+  exact_circular_torus,
+  shaped_axisymmetric_certified,
+  reference_fallback,
+  global_reference,
+};
+
+enum class SolverFallbackReason {
+  none,
+  reference_requested,
+  general_periodic_surface,
+  unresolved_tangent_or_degenerate_interval,
+  interval_budget_exhausted,
+};
+
 struct RootSearchOptions {
   int initial_subdivisions {128};
   int max_refinement_levels {7};
@@ -40,6 +55,14 @@ struct RootSearchDiagnostics {
   long stationary_brackets {0};
   long sampled_zero_candidates {0};
   long deduplicated_candidates {0};
+  long certified_excluded_intervals {0};
+  long subdivided_intervals {0};
+  long safeguarded_newton_iterations {0};
+  long unresolved_intervals {0};
+  long reference_fallback_calls {0};
+  SolverPath solver_path {SolverPath::global_reference};
+  SolverFallbackReason fallback_reason {
+    SolverFallbackReason::general_periodic_surface};
 };
 
 struct RootSearchResult {

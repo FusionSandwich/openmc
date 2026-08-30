@@ -160,11 +160,24 @@ class PeriodicRadialSurfaceData:
         R = np.hypot(xyz[..., 0], xyz[..., 1])
         Z = xyz[..., 2]
         if axis_r_cm is None:
-            axis_r = np.mean(R, axis=0)
+            next_r = np.roll(R, -1, axis=0)
+            next_z = np.roll(Z, -1, axis=0)
+            polygon_cross = R * next_z - next_r * Z
+            twice_area = np.sum(polygon_cross, axis=0)
+            if np.any(np.abs(twice_area) <= 1.0e-14):
+                raise ValueError("surface slice has a degenerate poloidal polygon")
+            axis_r = np.sum((R + next_r) * polygon_cross, axis=0) / (
+                3.0 * twice_area
+            )
         else:
             axis_r = _as_f64("axis_r_cm", axis_r_cm, 1)
         if axis_z_cm is None:
-            axis_z = np.mean(Z, axis=0)
+            if axis_r_cm is None:
+                axis_z = np.sum((Z + next_z) * polygon_cross, axis=0) / (
+                    3.0 * twice_area
+                )
+            else:
+                axis_z = np.mean(Z, axis=0)
         else:
             axis_z = _as_f64("axis_z_cm", axis_z_cm, 1)
         if axis_r.shape != (phi_array.size,) or axis_z.shape != (phi_array.size,):
@@ -181,6 +194,11 @@ class PeriodicRadialSurfaceData:
             q_z = Z[:, j] - axis_z[j]
             theta_geo = np.mod(np.arctan2(q_z, q_r), _TWO_PI)
             rho = np.hypot(q_r, q_z)
+            theta_unwrapped = np.unwrap(np.arctan2(q_z, q_r))
+            if np.any(np.diff(theta_unwrapped) <= 1.0e-12):
+                raise ValueError(
+                    f"surface slice {j} has a geometric-theta fold"
+                )
             order = np.argsort(theta_geo)
             theta_sorted = theta_geo[order]
             rho_sorted = rho[order]
@@ -190,13 +208,18 @@ class PeriodicRadialSurfaceData:
                     f"surface slice {j} is not single-valued in geometric theta"
                 )
             star_margins.append(float(np.min(gaps)))
-            theta_extended = np.concatenate(
-                (theta_sorted[-2:] - _TWO_PI, theta_sorted, theta_sorted[:2] + _TWO_PI)
+            # The VMEC parameter can cluster strongly in geometric angle. A
+            # periodic cubic interpolant avoids the O(h^2) chord error of a
+            # piecewise-linear remap without changing the transport chart.
+            from scipy.interpolate import CubicSpline
+
+            theta_periodic = np.concatenate(
+                (theta_sorted, [theta_sorted[0] + _TWO_PI])
             )
-            rho_extended = np.concatenate((rho_sorted[-2:], rho_sorted, rho_sorted[:2]))
-            sampled_radius[:, j] = np.interp(
-                theta_uniform, theta_extended, rho_extended
-            )
+            rho_periodic = np.concatenate((rho_sorted, [rho_sorted[0]]))
+            remap = CubicSpline(theta_periodic, rho_periodic, bc_type="periodic")
+            query = np.mod(theta_uniform - theta_sorted[0], _TWO_PI) + theta_sorted[0]
+            sampled_radius[:, j] = remap(query)
         if np.any(sampled_radius <= 0.0):
             raise ValueError("surface radius is not positive after reparameterization")
 
@@ -207,6 +230,9 @@ class PeriodicRadialSurfaceData:
                 "input_shape": list(xyz.shape),
                 "minimum_geometric_theta_gap_rad": min(star_margins),
                 "axis_inferred": axis_r_cm is None or axis_z_cm is None,
+                "axis_inference": "polygon_area_centroid"
+                if axis_r_cm is None and axis_z_cm is None
+                else "provided_or_mixed",
             }
         )
         return cls(
@@ -351,4 +377,115 @@ def compile_radial_build(
     for name, thickness in layers:
         current = current.with_radial_thickness(name, thickness)
         boundaries.append(current)
+    return boundaries
+
+
+def compile_normal_build(
+    base: PeriodicRadialSurfaceData,
+    layers: Iterable[tuple[str, float | np.ndarray]],
+    *,
+    sample_factor: int = 2,
+) -> list[PeriodicRadialSurfaceData]:
+    """Compile cumulative layers displaced along each physical boundary normal.
+
+    Every displaced point cloud is remapped to the stable geometric-poloidal
+    transport chart and refitted. A layer is rejected if that remapping folds,
+    crosses its parent, reaches cylindrical ``R=0``, or develops a degenerate
+    surface Jacobian.
+    """
+    if sample_factor < 1:
+        raise ValueError("sample_factor must be positive")
+    boundaries = [base]
+    current = base
+    for name, thickness in layers:
+        n_theta = current.n_theta * sample_factor
+        n_phi = current.n_phi * sample_factor
+        theta = _TWO_PI * np.arange(n_theta) / n_theta
+        phi = _TWO_PI * np.arange(n_phi) / (current.n_field_periods * n_phi)
+        t, p = np.meshgrid(theta, phi, indexing="ij")
+        radius, radius_theta, radius_phi = current.radius(t, p)
+        axis_r, axis_z, axis_r_phi, axis_z_phi = current.axis(p)
+        cos_t = np.cos(t)
+        sin_t = np.sin(t)
+        cos_p = np.cos(p)
+        sin_p = np.sin(p)
+        major_r = axis_r + radius * cos_t
+        height = axis_z + radius * sin_t
+        r_theta = radius_theta * cos_t - radius * sin_t
+        z_theta = radius_theta * sin_t + radius * cos_t
+        r_phi = axis_r_phi + radius_phi * cos_t
+        z_phi = axis_z_phi + radius_phi * sin_t
+        dtheta = np.stack(
+            (r_theta * cos_p, r_theta * sin_p, z_theta), axis=-1
+        )
+        dphi = np.stack(
+            (
+                r_phi * cos_p - major_r * sin_p,
+                r_phi * sin_p + major_r * cos_p,
+                z_phi,
+            ),
+            axis=-1,
+        )
+        outward = np.cross(dphi, dtheta)
+        jacobian = np.linalg.norm(outward, axis=-1)
+        jacobian_tolerance = 1.0e-12 * current.characteristic_length**2
+        if np.min(jacobian) <= jacobian_tolerance:
+            raise ValueError("REJECT_THETA_FOLD: surface Jacobian is degenerate")
+        outward /= jacobian[..., None]
+
+        if np.isscalar(thickness):
+            thickness_grid = np.full((n_theta, n_phi), float(thickness))
+        else:
+            thickness_samples = _as_f64("thickness_cm", thickness, 2)
+            if thickness_samples.shape != (
+                current.n_theta,
+                current.n_phi,
+            ):
+                raise ValueError(
+                    "sampled normal thickness must match the current coefficient grid"
+                )
+            thickness_coefficients = samples_to_periodic_coefficients(
+                thickness_samples
+            )
+            thickness_grid, _, _ = sample_periodic_bicubic(
+                thickness_coefficients, t, p, current.n_field_periods
+            )
+        if not np.all(np.isfinite(thickness_grid)) or np.min(thickness_grid) <= 0.0:
+            raise ValueError("normal thickness must remain finite and positive")
+
+        points = np.stack(
+            (major_r * cos_p, major_r * sin_p, height), axis=-1
+        )
+        displaced = points + thickness_grid[..., None] * outward
+        displaced_r = np.hypot(displaced[..., 0], displaced[..., 1])
+        if np.min(displaced_r) <= 1.0e-10 * current.characteristic_length:
+            raise ValueError("REJECT_R_ZERO_BOUND: displaced layer approaches R=0")
+        next_surface = PeriodicRadialSurfaceData.from_surface_grid(
+            name=name,
+            xyz_cm=displaced,
+            phi=phi,
+            n_field_periods=current.n_field_periods,
+            axis_r_cm=current.axis(phi)[0],
+            axis_z_cm=current.axis(phi)[1],
+            n_theta_coefficients=n_theta,
+            source_metadata={
+                "kind": "physical_normal_offset",
+                "parent_content_id": current.content_id,
+                "minimum_requested_thickness_cm": float(np.min(thickness_grid)),
+                "maximum_requested_thickness_cm": float(np.max(thickness_grid)),
+            },
+        )
+        parent_radius = current.radius(t, p)[0]
+        child_radius = next_surface.radius(t, p)[0]
+        minimum_radial_separation = float(np.min(child_radius - parent_radius))
+        if minimum_radial_separation <= 0.0:
+            raise ValueError("REJECT_THETA_FOLD: normal layer intersects its parent")
+        metadata = dict(next_surface.source_metadata or {})
+        metadata["kind"] = "physical_normal_offset"
+        metadata["minimum_remapped_radial_separation_cm"] = minimum_radial_separation
+        next_surface = replace(
+            next_surface, source_metadata=metadata, content_id=None
+        )
+        boundaries.append(next_surface)
+        current = next_surface
     return boundaries

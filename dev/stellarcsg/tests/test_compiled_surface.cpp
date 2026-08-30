@@ -1,5 +1,6 @@
 #include "stellarcsg/coefficient_file.hpp"
 #include "stellarcsg/compiled_periodic_surface.hpp"
+#include "stellarcsg/compiled_swept_surface.hpp"
 #include "stellarcsg/sha256.hpp"
 
 #include <cmath>
@@ -50,6 +51,9 @@ stellarcsg::PeriodicSplineSurfaceData make_torus_data()
 void test_compiled_torus()
 {
   const stellarcsg::CompiledPeriodicSplineSurface surface {make_torus_data()};
+  check(surface.specialization()
+      == stellarcsg::PeriodicSurfaceSpecialization::exact_circular_torus,
+    "constant coefficients select exact circular-torus specialization");
   check_near(surface.evaluate({6.0, 0.0, 0.0}), 0.0, 1.0e-12,
     "compiled torus surface value");
   check(surface.evaluate({5.0, 0.0, 0.0}) < 0.0,
@@ -65,12 +69,31 @@ void test_compiled_torus()
   stellarcsg::RootSearchOptions options;
   options.initial_subdivisions = 96;
   options.max_refinement_levels = 6;
-  const auto crossing = surface.distance_reference(
+  const auto crossing = surface.distance(
     {7.0, 0.0, 0.0}, {-1.0, 0.0, 0.0}, false, options);
   check(crossing.found, "compiled torus radial crossing is found");
   if (crossing.found) {
     check_near(crossing.distance, 1.0, 3.0e-8,
       "compiled torus radial crossing distance");
+  }
+  check(crossing.root_diagnostics.solver_path
+      == stellarcsg::SolverPath::exact_circular_torus,
+    "exact torus reports its analytic specialization");
+
+  const auto four_root = surface.distance(
+    {-7.0, 0.0, 0.0}, {1.0, 0.0, 0.0}, false, options);
+  check(four_root.found, "four-root torus ray is found");
+  if (four_root.found) {
+    check_near(four_root.distance, 1.0, 2.0e-10,
+      "nearest of four torus roots");
+  }
+
+  const auto tangent = surface.distance(
+    {6.0, -2.0, 0.0}, {0.0, 3.0, 0.0}, false, options);
+  check(tangent.found, "exact torus tangent ray is found");
+  if (tangent.found) {
+    check_near(tangent.distance, 2.0, 2.0e-9,
+      "exact torus tangent distance with non-unit direction");
   }
 
   const auto box = surface.bounding_box();
@@ -109,6 +132,9 @@ void test_moving_axis_and_helical_radius()
   }
 
   const stellarcsg::CompiledPeriodicSplineSurface surface {std::move(data)};
+  check(surface.specialization()
+      == stellarcsg::PeriodicSurfaceSpecialization::general_periodic,
+    "helical coefficients select the general periodic path");
   for (int k = 0; k < 20; ++k) {
     const double phi = 2.0 * 3.141592653589793238462643383279502884
                        * static_cast<double>(k) / 20.0;
@@ -116,6 +142,109 @@ void test_moving_axis_and_helical_radius()
       6.5 * std::sin(phi), 0.0};
     check(surface.evaluate(outside) > 0.0,
       "moving-axis test point remains outside");
+  }
+}
+
+void test_scale_aware_axisymmetric_detection()
+{
+  auto shaped = make_torus_data();
+  for (std::size_t i = 0; i < shaped.n_theta; ++i) {
+    const double value = 1.0 + 0.15 * std::cos(
+      2.0 * 3.141592653589793238462643383279502884
+      * static_cast<double>(i) / static_cast<double>(shaped.n_theta));
+    for (std::size_t j = 0; j < shaped.n_phi; ++j) {
+      shaped.radius_coefficients[i * shaped.n_phi + j] = value;
+    }
+  }
+  shaped.axis_r_coefficients.back() += 1.0e-14;
+  const stellarcsg::CompiledPeriodicSplineSurface surface {std::move(shaped)};
+  check(surface.specialization()
+      == stellarcsg::PeriodicSurfaceSpecialization::shaped_axisymmetric,
+    "scale-aware constancy detects shaped axisymmetry");
+  const auto crossing = surface.distance(
+    {7.0, 0.0, 0.0}, {-1.0, 0.0, 0.0}, false);
+  check(crossing.found, "shaped-axisymmetric path finds radial crossing");
+  check(crossing.root_diagnostics.solver_path
+      == stellarcsg::SolverPath::shaped_axisymmetric_certified,
+    "shaped-axisymmetric path is recorded in diagnostics");
+  check(crossing.root_diagnostics.reference_fallback_calls == 0,
+    "well-conditioned shaped crossing does not use the oracle fallback");
+}
+
+void test_close_root_pair_regressions()
+{
+  const stellarcsg::CompiledPeriodicSplineSurface surface {make_torus_data()};
+  struct Fixture { stellarcsg::Vec3 origin; stellarcsg::Vec3 direction; };
+  const std::vector<Fixture> fixtures {
+    {{5.7388633334130201, 0.00056429199550223075, -1.0075336982387282},
+      {-0.32707973244673211, 0.20756893579428687, 0.003228224149003481}},
+    {{-1.9735389719494858, -7.8905941652595448, -1.2194512625386107},
+      {1.9856556970652377, 3.4305195261866888, 0.25655687348087075}},
+    {{5.5611249013463357, -6.1748211618025977, 1.2388668479062903},
+      {-1.635175088157226, 0.50814934632868147, -0.088892115048631842}},
+    {{-7.5654802373329169, -2.7066240646838118, 1.4925058779195925},
+      {5.8450226938084944, 4.7731259362252461, -1.0750166369363239}},
+  };
+  auto options = stellarcsg::RootSearchOptions {};
+  options.initial_subdivisions = 128;
+  options.max_refinement_levels = 8;
+  options.absolute_f_tolerance = 2.0e-12;
+  options.derivative_tolerance = 2.0e-12;
+  for (const auto& fixture : fixtures) {
+    const auto exact = surface.distance(
+      fixture.origin, fixture.direction, false, options);
+    const auto oracle = surface.distance_reference(
+      fixture.origin, fixture.direction, false, options);
+    check(exact.found && oracle.found,
+      "close-root-pair regression is found by both solvers");
+    if (exact.found && oracle.found) {
+      check_near(oracle.distance, exact.distance, 2.0e-8,
+        "oracle splits a same-sign interval at its stationary point");
+    }
+  }
+}
+
+void test_exact_circular_swept_coil()
+{
+  constexpr std::size_t count = 256;
+  constexpr double major = 5.0;
+  constexpr double minor = 0.25;
+  constexpr double pi = 3.141592653589793238462643383279502884;
+  const double eigenvalue = (4.0 + 2.0 * std::cos(2.0 * pi / count)) / 6.0;
+  stellarcsg::SweptSplineSurfaceData data;
+  data.coil_id = 17;
+  data.sample_count = count;
+  data.length = 2.0 * pi * major;
+  data.characteristic_length = major + minor;
+  data.centerline_coefficients.resize(3 * count);
+  data.normal_coefficients.resize(3 * count);
+  data.binormal_coefficients.resize(3 * count);
+  data.major_radius_coefficients.assign(count, minor);
+  data.minor_radius_coefficients.assign(count, minor);
+  for (std::size_t i = 0; i < count; ++i) {
+    const double angle = 2.0 * pi * static_cast<double>(i)
+                         / static_cast<double>(count);
+    data.centerline_coefficients[3 * i] = major * std::cos(angle) / eigenvalue;
+    data.centerline_coefficients[3 * i + 1] = major * std::sin(angle) / eigenvalue;
+    data.centerline_coefficients[3 * i + 2] = 0.0;
+    data.normal_coefficients[3 * i] = 0.0;
+    data.normal_coefficients[3 * i + 1] = 0.0;
+    data.normal_coefficients[3 * i + 2] = 1.0;
+    data.binormal_coefficients[3 * i] = std::cos(angle) / eigenvalue;
+    data.binormal_coefficients[3 * i + 1] = std::sin(angle) / eigenvalue;
+    data.binormal_coefficients[3 * i + 2] = 0.0;
+  }
+  const stellarcsg::CompiledSweptSplineSurface coil {std::move(data)};
+  check(coil.exact_torus_specialization(),
+    "planar circular swept coil selects exact torus specialization");
+  check_near(coil.evaluate({major + minor, 0.0, 0.0}), 0.0, 1.0e-12,
+    "swept circular coil evaluates as exact torus");
+  const auto crossing = coil.distance_reference(
+    {major + 2.0 * minor, 0.0, 0.0}, {-2.0, 0.0, 0.0}, false);
+  check(crossing.found, "swept circular coil finds radial crossing");
+  if (crossing.found) {
+    check_near(crossing.distance, minor, 2.0e-10,
+      "swept circular coil exact torus distance");
   }
 }
 
@@ -168,6 +297,9 @@ int main()
   try {
     test_compiled_torus();
     test_moving_axis_and_helical_radius();
+    test_scale_aware_axisymmetric_detection();
+    test_close_root_pair_regressions();
+    test_exact_circular_swept_coil();
     test_sha256_known_vector();
 #ifdef STELLARCSG_HAS_HDF5
     test_hdf5_round_trip();

@@ -11,6 +11,12 @@
 
 namespace stellarcsg {
 
+enum class PeriodicSurfaceSpecialization {
+  exact_circular_torus,
+  shaped_axisymmetric,
+  general_periodic,
+};
+
 // Frozen, device-independent coefficient payload. Values are in centimetres
 // and angles are in radians. The first production schema is deliberately small
 // enough to review and replay locally.
@@ -44,6 +50,14 @@ public:
   [[nodiscard]] DistanceResult distance_reference(const Vec3& origin,
     const Vec3& direction, bool coincident,
     const RootSearchOptions& options = {}) const;
+  [[nodiscard]] DistanceResult distance(const Vec3& origin,
+    const Vec3& direction, bool coincident,
+    const RootSearchOptions& options = {}) const;
+
+  [[nodiscard]] PeriodicSurfaceSpecialization specialization() const noexcept
+  {
+    return specialization_;
+  }
 
   [[nodiscard]] const BoundingBox& bounding_box() const noexcept
   {
@@ -60,9 +74,21 @@ private:
   UniformPeriodicCubicSpline axis_z_;
   UniformPeriodicBicubicSpline radius_;
   PeriodicRadialSurface surface_;
+  PeriodicSurfaceSpecialization specialization_ {
+    PeriodicSurfaceSpecialization::general_periodic};
+  double torus_major_radius_ {0.0};
+  double torus_minor_radius_ {0.0};
+  double torus_z_offset_ {0.0};
+  double axisymmetric_radius_derivative_bound_ {0.0};
 
   [[nodiscard]] static BoundingBox conservative_bounds(
     const PeriodicSplineSurfaceData& data);
+  [[nodiscard]] DistanceResult distance_exact_torus(const Vec3& origin,
+    const Vec3& direction, bool coincident,
+    const RootSearchOptions& options) const;
+  [[nodiscard]] DistanceResult distance_shaped_axisymmetric(
+    const Vec3& origin, const Vec3& direction, bool coincident,
+    const RootSearchOptions& options) const;
 };
 
 } // namespace stellarcsg

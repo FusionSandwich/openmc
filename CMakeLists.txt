@@ -503,8 +503,11 @@ list(APPEND libopenmc_SOURCES
 if(OPENMC_ENABLE_EXPERIMENTAL_STELLARCSG)
   list(APPEND libopenmc_SOURCES
     src/surface_periodic_spline.cpp
+    src/surface_swept_spline.cpp
     dev/stellarcsg/src/coefficient_file.cpp
+    dev/stellarcsg/src/swept_coefficient_file.cpp
     dev/stellarcsg/src/compiled_periodic_surface.cpp
+    dev/stellarcsg/src/compiled_swept_surface.cpp
     dev/stellarcsg/src/periodic_radial_surface.cpp
     dev/stellarcsg/src/root_solver.cpp
     dev/stellarcsg/src/sha256.cpp

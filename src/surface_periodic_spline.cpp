@@ -62,9 +62,9 @@ SurfacePeriodicSpline::SurfacePeriodicSpline(pugi::xml_node surf_node)
     fatal_error(fmt::format(
       "Periodic-spline surface {} requires units='cm'", id_));
   }
-  if (solver_ != "reference") {
-    fatal_error(fmt::format("Periodic-spline surface {} only supports "
-                            "solver='reference'; received '{}'",
+  if (solver_ != "layered" && solver_ != "reference") {
+    fatal_error(fmt::format("Periodic-spline surface {} requires solver="
+                            "'layered' or 'reference'; received '{}'",
       id_, solver_));
   }
 
@@ -94,8 +94,9 @@ double SurfacePeriodicSpline::distance(
   options.initial_subdivisions = 96;
   options.max_refinement_levels = 7;
   options.require_refinement_stability = true;
-  const auto result = surface_->distance_reference(
-    to_vec3(r), to_vec3(u), coincident, options);
+  const auto result = solver_ == "reference"
+    ? surface_->distance_reference(to_vec3(r), to_vec3(u), coincident, options)
+    : surface_->distance(to_vec3(r), to_vec3(u), coincident, options);
   return result.found ? result.distance : INFTY;
 }
 
