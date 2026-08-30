@@ -29,7 +29,6 @@ jobs:
           echo "${EXPECTED_BUNDLE_SHA256}  $RUNNER_TEMP/stellarcsg.tar.gz" | sha256sum --check --strict
           tar -xzf "$RUNNER_TEMP/stellarcsg.tar.gz" -C "$GITHUB_WORKSPACE"
           rm -rf dev/stellarcsg/.materialize dev/stellarcsg/.materialize-v2
-          rm -f .github/workflows/materialize-stellarcsg.yml
       - name: Validate staged files before commit
         shell: bash
         run: |
@@ -40,12 +39,18 @@ jobs:
           test -s dev/stellarcsg/environment.yml
           bash -n dev/stellarcsg/scripts/run_local_validation.sh
           test -x dev/stellarcsg/scripts/run_local_validation.sh
-      - name: Commit materialized implementation
+      - name: Commit materialized implementation without workflow changes
         shell: bash
         run: |
           set -euo pipefail
+          # The default Actions token is not permitted to add workflow files.
+          # Preserve the implementation and let the connected GitHub client add
+          # audited workflows in separate commits.
+          rm -f .github/workflows/stellarcsg-ci.yml
+          rm -f .github/workflows/stellarcsg-openmc-adapter.yml
+          git restore .github/workflows/materialize-stellarcsg.yml
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add -A .github/workflows dev/stellarcsg
+          git add -A dev/stellarcsg
           git commit -m "Implement runnable native StellarCSG prototype"
           git push origin HEAD:feature/native-stellarator-csg-openmc-0.16
