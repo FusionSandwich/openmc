@@ -1,4 +1,4 @@
-name: Materialize StellarCSG executable implementation
+name: Materialize StellarCSG implementation bundles
 
 on:
   push:
@@ -9,12 +9,13 @@ permissions:
   contents: write
 
 env:
-  EXPECTED_BUNDLE_SHA256: 35e89d84cf821d842a0cc42537c4b3fe1ae11a099a97f92c1043c79ac8e1e6ae
+  EXPECTED_BUNDLE_SHA256: 95430335e053e54519ab7250d836897b9cb55a67ccea89573a71de846c6b9e0b
 
 jobs:
   materialize:
-    if: github.event.head_commit.message == 'Stage StellarCSG executable implementation v2'
+    if: github.event.head_commit.message == 'Stage StellarCSG steps 2 and 3 implementation'
     runs-on: ubuntu-24.04
+    timeout-minutes: 30
     steps:
       - uses: actions/checkout@v4
         with:
@@ -24,33 +25,39 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
-          cat dev/stellarcsg/.materialize-v2/part-* > "$RUNNER_TEMP/stellarcsg.b64"
+          cat dev/stellarcsg/.materialize-step23/part-* > "$RUNNER_TEMP/stellarcsg.b64"
           base64 --decode "$RUNNER_TEMP/stellarcsg.b64" > "$RUNNER_TEMP/stellarcsg.tar.gz"
           echo "${EXPECTED_BUNDLE_SHA256}  $RUNNER_TEMP/stellarcsg.tar.gz" | sha256sum --check --strict
           tar -xzf "$RUNNER_TEMP/stellarcsg.tar.gz" -C "$GITHUB_WORKSPACE"
-          rm -rf dev/stellarcsg/.materialize dev/stellarcsg/.materialize-v2
+          rm -rf dev/stellarcsg/.materialize-step23
       - name: Validate staged files before commit
         shell: bash
         run: |
           set -euo pipefail
-          python -m json.tool dev/stellarcsg/implementation_manifest.json >/dev/null
-          test -s .github/workflows/stellarcsg-ci.yml
-          test -s .github/workflows/stellarcsg-openmc-adapter.yml
-          test -s dev/stellarcsg/environment.yml
-          bash -n dev/stellarcsg/scripts/run_local_validation.sh
-          test -x dev/stellarcsg/scripts/run_local_validation.sh
-      - name: Commit materialized implementation without workflow changes
+          test -s include/openmc/surface_periodic_spline.h
+          test -s src/surface_periodic_spline.cpp
+          test -s dev/stellarcsg/tools/adversarial_rays.cpp
+          grep -q OPENMC_USE_STELLARATOR_CSG CMakeLists.txt
+          grep -q periodic-spline src/surface.cpp
+          grep -q 'class PeriodicSplineSurface' openmc/surface.py
+          python -m py_compile openmc/surface.py tests/unit_tests/test_surface_periodic_spline.py
+          cmake -S dev/stellarcsg -B build/materialize-check \
+            -DCMAKE_BUILD_TYPE=Release \
+            -DSTELLARCSG_ENABLE_HDF5=OFF \
+            -DSTELLARCSG_BUILD_TESTS=ON \
+            -DSTELLARCSG_BUILD_BENCHMARKS=OFF \
+            -DSTELLARCSG_BUILD_TOOLS=ON
+          cmake --build build/materialize-check --parallel 2
+          ctest --test-dir build/materialize-check --output-on-failure
+      - name: Commit materialized implementation
         shell: bash
         run: |
           set -euo pipefail
-          # The default Actions token is not permitted to add workflow files.
-          # Preserve the implementation and let the connected GitHub client add
-          # audited workflows in separate commits.
-          rm -f .github/workflows/stellarcsg-ci.yml
-          rm -f .github/workflows/stellarcsg-openmc-adapter.yml
           git restore .github/workflows/materialize-stellarcsg.yml
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add -A dev/stellarcsg
-          git commit -m "Implement runnable native StellarCSG prototype"
+          git add -A CMakeLists.txt include/openmc/surface_periodic_spline.h \
+            src/surface.cpp src/surface_periodic_spline.cpp openmc/surface.py \
+            tests/unit_tests/test_surface_periodic_spline.py dev/stellarcsg
+          git commit -m "Implement StellarCSG fast rays and native OpenMC surface"
           git push origin HEAD:feature/native-stellarator-csg-openmc-0.16
