@@ -1,0 +1,184 @@
+name: StellarCSG Step 6 swept coil and local mesh
+
+on:
+  push:
+    branches:
+      - feature/native-stellarator-csg-openmc-0.16
+    paths:
+      - .github/workflows/stellarcsg-step6-swept-coil.yml
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  qualify-swept-coil:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 60
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          submodules: false
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Install Python dependencies
+        run: |
+          python -m pip install --upgrade pip
+          python -m pip install -e 'dev/stellarcsg[test]'
+      - name: Materialize reviewed swept-coil patch
+        shell: bash
+        run: |
+          set -euo pipefail
+          base64 --decode dev/stellarcsg/patches/step6-swept-coil.patch.gz.b64 \
+            | gzip --decompress > /tmp/step6-swept-coil.patch
+          git apply --3way /tmp/step6-swept-coil.patch
+      - name: Run full StellarCSG Python suite
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p dev/stellarcsg/results/step6
+          pytest -q dev/stellarcsg/python/tests \
+            | tee dev/stellarcsg/results/step6/pytest.log
+      - name: Qualify accelerated capsule-tube intersections and coil mesh
+        shell: bash
+        run: |
+          set -euo pipefail
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          import time
+          import numpy as np
+          from stellarcsg.coil import (
+              CapsuleTube,
+              build_coil_local_mesh,
+              coil_mesh_summary,
+              rotation_minimizing_frames,
+              write_coil_mesh_hdf5,
+              write_coil_mesh_vtk,
+          )
+
+          out = Path('dev/stellarcsg/results/step6')
+          out.mkdir(parents=True, exist_ok=True)
+          count = 768
+          phi = 2.0 * np.pi * np.arange(count) / count
+          radius = 25.0 + 3.0 * np.cos(3.0 * phi)
+          centerline = np.stack((
+              radius * np.cos(phi),
+              radius * np.sin(phi),
+              4.0 * np.sin(2.0 * phi),
+          ), axis=-1)
+          tube = CapsuleTube(centerline, 0.8, leaf_size=8)
+
+          rng = np.random.default_rng(20260830)
+          ray_count = 400
+          origins = rng.uniform([-36.0, -36.0, -12.0], [36.0, 36.0, 12.0],
+                                size=(ray_count, 3))
+          directions = rng.normal(size=(ray_count, 3))
+          candidate_counts = np.asarray([
+              tube.ray_candidates(o, d).size for o, d in zip(origins, directions)
+          ])
+
+          start = time.perf_counter()
+          fast = np.asarray([tube.distance(o, d) for o, d in zip(origins, directions)])
+          fast_seconds = time.perf_counter() - start
+          start = time.perf_counter()
+          reference = np.asarray([
+              tube.distance_bruteforce(o, d) for o, d in zip(origins, directions)
+          ])
+          reference_seconds = time.perf_counter() - start
+
+          fast_hit = np.isfinite(fast)
+          reference_hit = np.isfinite(reference)
+          classification_mismatches = int(np.count_nonzero(fast_hit != reference_hit))
+          both = fast_hit & reference_hit
+          distance_errors = np.abs(fast[both] - reference[both])
+          distance_mismatches = int(np.count_nonzero(distance_errors > 3.0e-8))
+          maximum_distance_error = float(np.max(distance_errors)) if distance_errors.size else 0.0
+
+          mesh = build_coil_local_mesh(
+              centerline, 0.8, arc_bins=64, u_bins=6, v_bins=6)
+          write_coil_mesh_hdf5(out / 'coil-local-mesh.h5', mesh)
+          write_coil_mesh_vtk(out / 'coil-local-mesh.vtk', mesh)
+          centroids = mesh.element_centroids_cm()
+          centroid_values = tube.evaluate(centroids)
+          volumes = mesh.approximate_element_volumes_cm3()
+          tangents, normals, binormals = rotation_minimizing_frames(mesh.centerline_cm)
+
+          summary = {
+              'schema_version': 1,
+              'representation': 'union-of-equal-radius-capsules',
+              'scope': 'circular-cross-section prototype',
+              'centerline_segments': tube.n_segments,
+              'ray_count': ray_count,
+              'classification_mismatches': classification_mismatches,
+              'distance_mismatches': distance_mismatches,
+              'maximum_distance_error_cm': maximum_distance_error,
+              'mean_candidate_segments': float(np.mean(candidate_counts)),
+              'maximum_candidate_segments': int(np.max(candidate_counts)),
+              'candidate_fraction_mean': float(np.mean(candidate_counts) / tube.n_segments),
+              'fast_seconds': fast_seconds,
+              'bruteforce_seconds': reference_seconds,
+              'bruteforce_to_bvh_speed_ratio': reference_seconds / fast_seconds,
+              'frame_seam_normal_dot': float(np.dot(normals[-1], normals[0])),
+              'maximum_frame_orthogonality_error': float(max(
+                  np.max(np.abs(np.einsum('ij,ij->i', tangents, normals))),
+                  np.max(np.abs(np.einsum('ij,ij->i', tangents, binormals))),
+                  np.max(np.abs(np.einsum('ij,ij->i', normals, binormals))),
+              )),
+              'maximum_mesh_centroid_surface_value_cm': float(np.max(centroid_values)),
+              'minimum_mesh_element_volume_cm3': float(np.min(volumes)),
+              'mesh': coil_mesh_summary(mesh),
+              'cad_dependency_used': False,
+          }
+          summary['passed'] = bool(
+              classification_mismatches == 0
+              and distance_mismatches == 0
+              and maximum_distance_error <= 3.0e-8
+              and summary['candidate_fraction_mean'] < 0.45
+              and reference_seconds > fast_seconds
+              and summary['frame_seam_normal_dot'] > 0.95
+              and summary['maximum_frame_orthogonality_error'] < 2.0e-10
+              and summary['maximum_mesh_centroid_surface_value_cm'] < 1.0e-8
+              and summary['minimum_mesh_element_volume_cm3'] > 0.0
+          )
+          (out / 'swept-coil-qualification.json').write_text(
+              json.dumps(summary, indent=2) + '\n')
+          assert summary['passed'], summary
+          PY
+      - name: Record compact evidence and push
+        shell: bash
+        run: |
+          set -euo pipefail
+          cat > dev/stellarcsg/results/step6/README.md <<'EOF'
+          # Step 6 remote qualification
+
+          The CAD-free magnet prototype represents a closed coil as the union of
+          equal-radius capsules around a closed polyline. A segment AABB BVH
+          accelerates exact analytic ray/capsule intersections. The companion
+          hexahedral mesh is indexed by coil arc length and two local
+          cross-section coordinates.
+
+          - `pytest.log`: full StellarCSG Python suite.
+          - `swept-coil-qualification.json`: BVH/brute-force equivalence,
+            candidate reduction, timing, frame closure, and mesh checks.
+          - `coil-local-mesh.h5` and `coil-local-mesh.vtk`: replayable local
+            tally mesh generated without CAD.
+
+          Current limit: this step qualifies a circular cross-section prototype;
+          a production rectangular or multilayer winding pack is not yet claimed.
+          EOF
+          git config user.name github-actions[bot]
+          git config user.email 41898282+github-actions[bot]@users.noreply.github.com
+          git add dev/stellarcsg/python/stellarcsg/__init__.py \
+                  dev/stellarcsg/python/stellarcsg/coil.py \
+                  dev/stellarcsg/python/tests/test_coil.py \
+                  dev/stellarcsg/results/step6
+          git commit -m 'Add and qualify accelerated swept-coil prototype'
+          git push origin HEAD:feature/native-stellarator-csg-openmc-0.16
+      - uses: actions/upload-artifact@v4
+        with:
+          name: stellarcsg-step6-${{ github.sha }}
+          path: dev/stellarcsg/results/step6
+          retention-days: 90
