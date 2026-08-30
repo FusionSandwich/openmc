@@ -1,0 +1,34 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "stellarcsg"
+version = "0.1.0"
+description = "CAD-free periodic spline geometry compiler and tally-mesh tools for native stellarator CSG research"
+readme = "README.md"
+requires-python = ">=3.10"
+license = {text = "MIT"}
+authors = [{name = "StellarCSG contributors"}]
+dependencies = [
+  "numpy>=1.24",
+  "h5py>=3.8",
+  "PyYAML>=6.0",
+]
+
+[project.optional-dependencies]
+test = ["pytest>=7"]
+vmec = ["netCDF4>=1.6"]
+
+[project.scripts]
+stellarcsg = "stellarcsg.cli:main"
+
+[tool.setuptools]
+package-dir = {"" = "python"}
+
+[tool.setuptools.packages.find]
+where = ["python"]
+
+[tool.pytest.ini_options]
+testpaths = ["python/tests"]
+addopts = "-ra"

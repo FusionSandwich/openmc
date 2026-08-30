@@ -1,41 +1,118 @@
 {
-  "schema_version": 1,
+  "schema_version": 2,
   "project": "StellarCSG",
   "repository": "FusionSandwich/openmc",
   "branch": "codex/stellarcsg-native-csg-foundation-20260828",
   "frozen_base_commit": "9a62e431d3101799e6179a6d0cf3b37440062e23",
-  "created_date": "2026-08-28",
+  "previous_branch_head": "36c3a2403a20d349eb37bc0dc281d32c9fc535e4",
+  "updated_date": "2026-08-30",
+  "scope": "research prototype for CAD-free native periodic-spline CSG and companion local-tally meshes",
   "isolation": {
     "pull_request_created": false,
     "draft_pull_request_created": false,
     "default_branch_modified": false,
     "upstream_repository_modified": false,
-    "root_openmc_build_modified": false
+    "ordinary_openmc_build_modified": false,
+    "adapter_is_opt_in": true
   },
-  "implemented_components": [
-    "uniform periodic bicubic B-spline coefficient evaluator",
-    "periodic radial implicit surface evaluate/gradient/normal",
-    "finite-interval reference nearest-root search",
-    "exact torus, shaped axisymmetric, and helical tests"
-  ],
+  "implemented_components": {
+    "standalone_cpp": [
+      "uniform periodic cubic spline for moving reference axes",
+      "uniform periodic bicubic radial spline",
+      "periodic radial implicit surface evaluate/gradient/normal",
+      "finite conservative bounding box",
+      "reference nearest-positive-root search with sign-change and stationary candidates",
+      "versioned HDF5 coefficient reader and writer",
+      "Python-generated variable-length HDF5 string compatibility",
+      "cross-language HDF5 inspection tool",
+      "geometry microbenchmark"
+    ],
+    "python": [
+      "analytic torus and helical fixture compiler",
+      "compiler from periodic sampled XYZ surface grids",
+      "geometric-poloidal-angle reparameterization",
+      "cardinal periodic spline coefficient solve",
+      "hash-bound multi-surface HDF5 output",
+      "cumulative radial-build generation",
+      "conformal hexahedral local tally mesh",
+      "HDF5 and VTK mesh export",
+      "optional MOAB H5M export",
+      "OpenMC energy-resolved unstructured-mesh tally helper",
+      "command-line analytic demonstration"
+    ],
+    "openmc_adapter": [
+      "opt-in CMake injection without edits to ordinary OpenMC builds",
+      "periodic-spline Surface subclass",
+      "real OpenMC XML parser registration",
+      "evaluate, distance, normal, bounding-box, and HDF5 summary methods",
+      "adapter regression executable using the real OpenMC parser"
+    ],
+    "operations": [
+      "Linux and WSL local validation script",
+      "PowerShell validation script",
+      "Conda environment",
+      "standalone automatic GitHub Actions CI",
+      "manual full OpenMC adapter GitHub Actions workflow",
+      "local runbook and frozen development plan"
+    ]
+  },
   "verification": {
-    "gcc": "14.2.0",
-    "clang": "17.0.0",
-    "cmake": "3.31.6",
-    "gcc_ctest": "PASS",
-    "clang_asan_ubsan_ctest": "PASS",
-    "torus_exact_radial_cases": 512,
-    "torus_off_grid_tangent_cases": 12,
-    "helical_exact_radial_cases": 200
+    "environment": {
+      "gcc": "14.2.0",
+      "clang": "17.0.0",
+      "cmake": "3.31.6",
+      "python": "3.13.5",
+      "hdf5": "1.14.5"
+    },
+    "standalone_cpp_ctest": {
+      "status": "PASS",
+      "tests_passed": 2,
+      "tests_failed": 0
+    },
+    "python_pytest": {
+      "status": "PASS",
+      "tests_passed": 12,
+      "tests_skipped": 1,
+      "skip_reason": "OpenMC Python package unavailable in the isolated runtime"
+    },
+    "python_editable_install": "PASS with --no-build-isolation --no-deps in the offline runtime",
+    "python_cli_demo": "PASS",
+    "python_to_cpp_hdf5_probe": {
+      "status": "PASS",
+      "evaluate_cm_at_600_0_0": -7.999999999999943
+    },
+    "openmc_adapter_ctest": {
+      "status": "PASS",
+      "tests_passed": 1,
+      "tests_failed": 0
+    },
+    "latest_local_microbenchmark": {
+      "evaluate_ns_per_call": 214.333962,
+      "normal_ns_per_call": 198.7393,
+      "classification": "microbenchmark only; not an end-to-end speed claim"
+    },
+    "demo_mesh": {
+      "vertices": 4800,
+      "elements": 3840,
+      "all_approximate_volumes_positive": true
+    }
   },
   "deferred_components": [
-    "OpenMC Surface subclass and parser integration",
     "certified interval or patch-bounded nearest-root solver",
-    "swept-coil primitive",
-    "HDF5 coefficient schema",
-    "generic input compiler",
-    "tally mesh and parametric surface filters",
-    "DAGMC comparison benchmarks"
+    "adversarial persistent ray corpus at production scale",
+    "normal-offset and refit radial build",
+    "multi-chart or direct parametric fallback for non-star-shaped surfaces",
+    "swept finite-build magnet CSG primitive",
+    "coil-local arc/u/v tally mesh",
+    "VMEC and MAKEGRID command-line adapters",
+    "field-period stellarator-symmetry boundary condition",
+    "full OpenMC transport qualification",
+    "matched custom-CSG versus DAGMC/Embree neutronics and speed benchmark",
+    "production magnet spectra"
   ],
-  "local_verification_command": "cmake -S dev/stellarcsg -B build/stellarcsg -DSTELLARCSG_BUILD_TESTS=ON && cmake --build build/stellarcsg --parallel && ctest --test-dir build/stellarcsg --output-on-failure"
+  "local_verification_commands": {
+    "standalone": "./dev/stellarcsg/scripts/run_local_validation.sh",
+    "with_openmc_adapter": "./dev/stellarcsg/scripts/run_local_validation.sh --openmc-adapter"
+  },
+  "scientific_status": "LIMITED_RESEARCH_PROTOTYPE_ONLY"
 }
