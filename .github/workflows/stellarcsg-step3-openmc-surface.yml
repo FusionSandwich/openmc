@@ -1,0 +1,81 @@
+name: StellarCSG Step 3 native OpenMC surface
+
+on:
+  push:
+    branches: [feature/native-stellarator-csg-openmc-0.16]
+    paths:
+      - '.github/workflows/stellarcsg-step3-openmc-surface.yml'
+      - 'CMakeLists.txt'
+      - 'include/openmc/surface_periodic_spline.h'
+      - 'src/surface.cpp'
+      - 'src/surface_periodic_spline.cpp'
+      - 'openmc/surface.py'
+      - 'tests/unit_tests/test_surface_periodic_spline.py'
+      - 'dev/stellarcsg/**'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+env:
+  OMP_NUM_THREADS: 2
+
+jobs:
+  build-and-test:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 90
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          submodules: recursive
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Install system dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y --no-install-recommends \
+            build-essential cmake ninja-build libhdf5-dev libpng-dev \
+            libnetcdf-dev libeigen3-dev
+      - name: Install Python packages
+        run: |
+          python -m pip install --upgrade pip
+          python -m pip install -e '.[test]'
+          python -m pip install -e 'dev/stellarcsg[test]'
+      - name: Configure OpenMC with native StellarCSG
+        run: |
+          cmake -S . -B build/openmc-stellarcsg -G Ninja \
+            -DCMAKE_BUILD_TYPE=Release \
+            -DOPENMC_USE_STELLARATOR_CSG=ON \
+            -DOPENMC_BUILD_TESTS=ON \
+            -DOPENMC_USE_MPI=OFF \
+            -DOPENMC_USE_OPENMP=ON \
+            -DOPENMC_FORCE_VENDORED_LIBS=ON \
+            -DOPENMC_USE_DAGMC=OFF \
+            -DOPENMC_USE_LIBMESH=OFF
+      - name: Build OpenMC and StellarCSG tests
+        run: cmake --build build/openmc-stellarcsg --parallel 2
+      - name: Run native surface C++ tests
+        run: |
+          ctest --test-dir build/openmc-stellarcsg \
+            -R 'stellarcsg_openmc_surface_tests' --output-on-failure \
+            | tee step3-openmc-surface-ctest.log
+      - name: Run Python surface tests
+        run: |
+          pytest -q tests/unit_tests/test_surface_periodic_spline.py \
+            dev/stellarcsg/python/tests/test_openmc_surface.py \
+            | tee step3-python-tests.log
+      - name: Record executable configuration
+        run: |
+          build/openmc-stellarcsg/bin/openmc --version | tee step3-openmc-version.txt
+          printf '%s\n' "${{ github.sha }}" > step3-commit.txt
+      - uses: actions/upload-artifact@v4
+        with:
+          name: stellarcsg-step3-${{ github.sha }}
+          path: |
+            step3-openmc-surface-ctest.log
+            step3-python-tests.log
+            step3-openmc-version.txt
+            step3-commit.txt
+          retention-days: 90
