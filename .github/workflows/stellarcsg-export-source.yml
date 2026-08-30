@@ -3,7 +3,13 @@ name: StellarCSG branch source export
 on:
   push:
     branches:
-      - codex/stellarcsg-native-csg-foundation-20260828
+      - feature/native-stellarator-csg-openmc-0.16
+    paths:
+      - '.github/workflows/stellarcsg-export-source.yml'
+      - 'dev/stellarcsg/**'
+      - 'include/openmc/surface.h'
+      - 'src/surface.cpp'
+      - 'openmc/surface.py'
   workflow_dispatch:
 
 permissions:
@@ -11,14 +17,15 @@ permissions:
 
 jobs:
   export:
-    if: github.ref == 'refs/heads/codex/stellarcsg-native-csg-foundation-20260828'
+    if: github.ref == 'refs/heads/feature/native-stellarator-csg-openmc-0.16'
     runs-on: ubuntu-24.04
+    timeout-minutes: 20
     steps:
       - name: Check out isolated feature branch
         uses: actions/checkout@v4
         with:
           fetch-depth: 0
-          submodules: recursive
+          submodules: false
 
       - name: Record provenance
         shell: bash
@@ -27,16 +34,15 @@ jobs:
           mkdir -p _stellarcsg_export
           git rev-parse HEAD > _stellarcsg_export/HEAD.txt
           git status --short --branch > _stellarcsg_export/status.txt
-          git submodule status --recursive > _stellarcsg_export/submodules.txt
           git log -1 --format=fuller > _stellarcsg_export/commit.txt
 
       - name: Create source archive
         shell: bash
         run: |
           set -euo pipefail
-          tar --exclude=.git --exclude=_stellarcsg_export/openmc-stellarcsg-source.tar.zst \
-              --zstd -cf _stellarcsg_export/openmc-stellarcsg-source.tar.zst .
-          sha256sum _stellarcsg_export/openmc-stellarcsg-source.tar.zst \
+          tar --exclude=.git --exclude=_stellarcsg_export/openmc-stellarcsg-source.tar.gz \
+              -czf _stellarcsg_export/openmc-stellarcsg-source.tar.gz .
+          sha256sum _stellarcsg_export/openmc-stellarcsg-source.tar.gz \
             > _stellarcsg_export/SHA256SUMS.txt
 
       - name: Upload source archive
@@ -45,4 +51,4 @@ jobs:
           name: openmc-stellarcsg-source-${{ github.sha }}
           path: _stellarcsg_export/
           if-no-files-found: error
-          retention-days: 7
+          retention-days: 30
