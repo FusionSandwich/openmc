@@ -1,0 +1,47 @@
+{
+  "schema": "stellarcsg.coil-patch-kernel-report/v1",
+  "recorded_date": "2026-08-31",
+  "status": "IMPLEMENTED_BUT_OPENMC_PARITY_FAILED",
+  "implementation": {
+    "authoritative_geometry": "periodic cubic centerline with rotation-minimizing supplied frame and circular or elliptical swept section",
+    "compiled_spans": "local power polynomials with exact cubic Bezier centerline hulls",
+    "acceleration": "flattened front-to-back BVH2 over conservative span boxes",
+    "proxy": "curvature-expanded line capsule",
+    "general_narrow_phase": "projected two-variable damped Newton in span angle and cross-section angle",
+    "circular_narrow_phase": "direct centerline-perpendicular and radius equations in span angle and ray distance",
+    "fallback": "bounded span-local implicit scan only; no global ray oracle",
+    "classification": "centerline BVH plus bracketed golden/Newton refinement",
+    "cache": "thread-local exact-point one-entry classification cache"
+  },
+  "microkernel_evidence": "../benchmarks/raw/wistell_coil_microkernel_20260831.json",
+  "openmc_evidence": "../benchmarks/raw/wistell_coil_span_vs_dagmc_20260831.json",
+  "microkernel": {
+    "distance_ns_per_call": 631.624,
+    "classification_ns_per_call": 213.908,
+    "candidate_bvh_nodes_per_call": 7.978,
+    "candidate_spans_per_call": 0.728,
+    "newton_iterations_per_call": 2.015,
+    "local_subdivision_fraction": 0.037,
+    "production_global_reference_calls": 0
+  },
+  "openmc": {
+    "native_histories_per_s_median": 432436,
+    "fine_dagmc_histories_per_s_median": 910634,
+    "native_over_fine_dagmc": 0.4748735496368464,
+    "baseline_native_histories_per_s": 0.2376435,
+    "speedup_over_global_solver_baseline": 1819683.6858571768,
+    "lost_particles": 0,
+    "geometry_errors": 0,
+    "native_geometry_debug": "PASS",
+    "dagmc_geometry_debug": "FAIL_KNOWN_EXPLICIT_IMPLICIT_COMPLEMENT_OVERLAP"
+  },
+  "gates": {
+    "production_global_reference_calls_zero": "PASS",
+    "representative_source_oracle_1000": "PASS",
+    "native_geometry_debug": "PASS",
+    "nonplanar_native_at_least_fine_dagmc": "FAIL",
+    "local_subdivision_fraction_below_1e-4": "FAIL",
+    "double_down_embree_comparison": "NOT_RUN_UNAVAILABLE_IN_PINNED_IMAGE",
+    "complete_coil_set_shared_bvh": "NOT_RUN"
+  }
+}

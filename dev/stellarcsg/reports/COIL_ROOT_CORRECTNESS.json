@@ -1,0 +1,28 @@
+{
+  "schema": "stellarcsg.coil-root-correctness/v1",
+  "recorded_date": "2026-08-31",
+  "forced_general_planar_circular_coil": {
+    "rays": 100,
+    "oracle": "exact torus specialization",
+    "wrong_hit_classifications": 0,
+    "wrong_nearest_roots": 0,
+    "status": "PASS_UNIT_SCALE"
+  },
+  "wistell_d_coil_031": {
+    "rays": 1000,
+    "origin": "2.5 cm along the rotation-minimizing normal from arc coordinate zero",
+    "directions": "deterministic Fibonacci sphere",
+    "oracle": "broad global scalar root solver over the authoritative swept implicit evaluator",
+    "missed_roots": 0,
+    "false_roots": 0,
+    "wrong_nearest_roots_above_1e-6_cm": 0,
+    "production_global_reference_calls": 0,
+    "status": "PASS_INITIAL"
+  },
+  "remaining_targets": {
+    "planar_10m_rays": "NOT_RUN",
+    "real_configuration_1m_rays": "NOT_RUN",
+    "thirteen_configuration_campaign": "NOT_RUN",
+    "complete_coil_sets": "NOT_RUN"
+  }
+}

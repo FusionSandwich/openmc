@@ -12,6 +12,7 @@ namespace openmc {
 class SurfaceSweptSpline final : public Surface {
 public:
   explicit SurfaceSweptSpline(pugi::xml_node surf_node);
+  ~SurfaceSweptSpline() override;
   double evaluate(Position r) const override;
   double distance(Position r, Direction u, bool coincident) const override;
   Direction normal(Position r) const override;

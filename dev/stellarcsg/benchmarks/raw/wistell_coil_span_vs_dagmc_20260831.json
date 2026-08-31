@@ -1,0 +1,87 @@
+{
+  "schema": "stellarcsg.matched-coil-openmc/v1",
+  "recorded_date": "2026-08-31",
+  "case": "wistell_d_representative_nonplanar_coil_031",
+  "source": {
+    "coil_file_sha256": "7748369407d28a70f35b5c4a7c0ab860495a08fd0030002112ea933fe570159b",
+    "compiled_payload_sha256": "fd56565ef040ac63128693d4d735a4485897d000b9b7dd79253d1a3159101319",
+    "dataset": "/coils/coil_031",
+    "cross_section": "circular radius 1 cm",
+    "source_contract": "2.5 cm along the rotation-minimizing normal from arc coordinate zero"
+  },
+  "environment": {
+    "cpu": "Intel Core i9-10850K",
+    "threads": 1,
+    "affinity": "Docker cpuset CPU 2",
+    "container": "parastell-openmc:0.16.0",
+    "container_image_id": "sha256:ca0c3b1fba39ce27af6ebdb79df14795041922e72521f232cdd770ff1c416191",
+    "openmc_version": "0.15.1-dev601",
+    "compiler": "GCC 13.3.0 -O3",
+    "dagmc": "3.2.4 nompi_nodoubledown",
+    "double_down_embree_active": false
+  },
+  "protocol": {
+    "warmups": 1,
+    "measured_repetitions": 7,
+    "particles_per_repetition": 100000,
+    "batches": 1,
+    "seed": 918273645
+  },
+  "results": [
+    {
+      "method": "native_swept_csg",
+      "histories_per_s": [437242, 430810, 432436, 432159, 431245, 437937, 438816],
+      "transport_time_s": [0.21665, 0.22, 0.21915, 0.21899, 0.21954, 0.21564, 0.21549],
+      "median_histories_per_s": 432436,
+      "minimum_histories_per_s": 430810,
+      "maximum_histories_per_s": 438816,
+      "iqr_histories_per_s": 5887.5,
+      "coefficient_of_variation": 0.007373353511917691,
+      "leakage_fraction": 0.99997,
+      "lost_particles": 0,
+      "geometry_errors": 0
+    },
+    {
+      "method": "direct_dagmc_coarse",
+      "histories_per_s": [932251, 918082, 939582, 938249, 931929, 944189, 917960],
+      "transport_time_s": [0.094395, 0.096829, 0.093816, 0.094458, 0.095596, 0.093577, 0.096421],
+      "median_histories_per_s": 932251,
+      "minimum_histories_per_s": 917960,
+      "maximum_histories_per_s": 944189,
+      "leakage_fraction": 1.0,
+      "lost_particles": 0,
+      "geometry_errors": 0
+    },
+    {
+      "method": "direct_dagmc_fine",
+      "histories_per_s": [910031, 920409, 876754, 910634, 893160, 917139, 930594],
+      "transport_time_s": [0.097578, 0.095821, 0.10069, 0.097066, 0.096937, 0.096463, 0.094502],
+      "median_histories_per_s": 910634,
+      "minimum_histories_per_s": 876754,
+      "maximum_histories_per_s": 930594,
+      "leakage_fraction": 1.0,
+      "lost_particles": 0,
+      "geometry_errors": 0
+    }
+  ],
+  "ratios": {
+    "native_over_fine_dagmc": 0.4748735496368464,
+    "native_over_coarse_dagmc": 0.4638622002014479,
+    "fine_dagmc_over_native": 2.1058237519540466
+  },
+  "geometry_debug": {
+    "native_swept_csg": {
+      "particles": 10000,
+      "return_code": 0,
+      "lost_particles": 0,
+      "geometry_errors": 0,
+      "overlapping_cells": 0,
+      "leakage_fraction": 1.0
+    },
+    "direct_dagmc_fine": {
+      "return_code": 255,
+      "classification": "known explicit DAGMC volume versus implicit-complement overlap complaint",
+      "message": "Overlapping cells detected: 10001, 10002 on universe 1"
+    }
+  }
+}

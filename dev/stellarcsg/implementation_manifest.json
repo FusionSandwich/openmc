@@ -4,8 +4,8 @@
   "repository": "FusionSandwich/openmc",
   "branch": "codex/stellarcsg-native-csg-foundation-20260828",
   "frozen_base_commit": "9a62e431d3101799e6179a6d0cf3b37440062e23",
-  "previous_branch_head": "36c3a2403a20d349eb37bc0dc281d32c9fc535e4",
-  "updated_date": "2026-08-30",
+  "previous_branch_head": "4e97b2480489e27c1939554bbab1750ebcf551a5",
+  "updated_date": "2026-08-31",
   "scope": "research prototype for CAD-free native periodic-spline CSG and companion local-tally meshes",
   "isolation": {
     "pull_request_created": false,
@@ -25,7 +25,11 @@
       "versioned HDF5 coefficient reader and writer",
       "Python-generated variable-length HDF5 string compatibility",
       "cross-language HDF5 inspection tool",
-      "geometry microbenchmark"
+      "geometry microbenchmark",
+      "periodic parametric-patch BVH production kernel",
+      "swept-coil local-span BVH production kernel",
+      "circular-tube centerline/radius Newton specialization",
+      "independent broad root oracles and opt-in performance counters"
     ],
     "python": [
       "analytic torus and helical fixture compiler",
@@ -45,7 +49,8 @@
       "periodic-spline Surface subclass",
       "real OpenMC XML parser registration",
       "evaluate, distance, normal, bounding-box, and HDF5 summary methods",
-      "adapter regression executable using the real OpenMC parser"
+      "adapter regression executable using the real OpenMC parser",
+      "production periodic and swept local-kernel dispatch behind the experimental option"
     ],
     "operations": [
       "Linux and WSL local validation script",
@@ -71,7 +76,7 @@
     },
     "python_pytest": {
       "status": "PASS",
-      "tests_passed": 12,
+      "tests_passed": 13,
       "tests_skipped": 1,
       "skip_reason": "OpenMC Python package unavailable in the isolated runtime"
     },
@@ -81,15 +86,19 @@
       "status": "PASS",
       "evaluate_cm_at_600_0_0": -7.999999999999943
     },
-    "openmc_adapter_ctest": {
-      "status": "PASS",
-      "tests_passed": 1,
-      "tests_failed": 0
+    "openmc_enabled_ctest": {
+      "status": "PASS_STELLARCSG_WITH_UNRELATED_ENVIRONMENTAL_FAILURE",
+      "tests_passed": 12,
+      "tests_failed": 1,
+      "failure": "optional MCPL test reports failure after skipping because libmcpl is unavailable",
+      "stellarcsg_adapter_test": "PASS"
     },
-    "latest_local_microbenchmark": {
-      "evaluate_ns_per_call": 214.333962,
-      "normal_ns_per_call": 198.7393,
-      "classification": "microbenchmark only; not an end-to-end speed claim"
+    "latest_wistell_coil_microbenchmark": {
+      "distance_ns_per_call": 631.624,
+      "classification_ns_per_call": 213.908,
+      "oracle_rays": 1000,
+      "oracle_mismatches": 0,
+      "production_global_reference_calls": 0
     },
     "demo_mesh": {
       "vertices": 4800,
@@ -102,12 +111,14 @@
     "adversarial persistent ray corpus at production scale",
     "normal-offset and refit radial build",
     "multi-chart or direct parametric fallback for non-star-shaped surfaces",
-    "swept finite-build magnet CSG primitive",
+    "shared top-level BVH for complete 48-78 coil sets",
+    "high-statistics multi-configuration swept-coil root campaign",
+    "matched common full-surface accuracy axis for native and mesh coils",
     "coil-local arc/u/v tally mesh",
     "VMEC and MAKEGRID command-line adapters",
     "field-period stellarator-symmetry boundary condition",
     "full OpenMC transport qualification",
-    "matched custom-CSG versus DAGMC/Embree neutronics and speed benchmark",
+    "matched complete-coil-set CSG versus DAGMC and separately available Embree benchmark",
     "production magnet spectra"
   ],
   "local_verification_commands": {

@@ -116,6 +116,12 @@ if(STELLARCSG_BUILD_BENCHMARKS)
   target_link_libraries(stellarcsg_file_surface_benchmark
     PRIVATE StellarCSG::reference)
   target_compile_features(stellarcsg_file_surface_benchmark PRIVATE cxx_std_17)
+
+  add_executable(stellarcsg_file_swept_benchmark
+    benchmarks/benchmark_file_swept.cpp)
+  target_link_libraries(stellarcsg_file_swept_benchmark
+    PRIVATE StellarCSG::reference)
+  target_compile_features(stellarcsg_file_swept_benchmark PRIVATE cxx_std_17)
 endif()
 
 if(STELLARCSG_BUILD_TOOLS)

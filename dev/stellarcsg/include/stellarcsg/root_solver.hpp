@@ -17,6 +17,7 @@ enum class SolverPath {
   exact_circular_torus,
   shaped_axisymmetric_certified,
   general_periodic_certified,
+  general_swept_certified,
   reference_fallback,
   global_reference,
 };

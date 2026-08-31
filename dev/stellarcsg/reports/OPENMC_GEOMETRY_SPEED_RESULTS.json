@@ -11,6 +11,15 @@
   "forced_general_torus_openmc": "NOT_RUN_WITH_CURRENT_PATCH_KERNEL",
   "shaped_axisymmetric_openmc": "NOT_RUN_WITH_CURRENT_PATCH_KERNEL",
   "synthetic_helical_openmc": "NOT_RUN_WITH_CURRENT_PATCH_KERNEL",
-  "coil_cases": "NOT_RUN_WITH_LOCAL_SPAN_KERNEL",
+  "coil_wistell_d_representative_nonplanar": {
+    "evidence": "../benchmarks/raw/wistell_coil_span_vs_dagmc_20260831.json",
+    "native_csg_histories_per_s_median": 432436,
+    "coarse_direct_dagmc_histories_per_s_median": 932251,
+    "fine_direct_dagmc_histories_per_s_median": 910634,
+    "native_over_fine_mesh": 0.4748735496368464,
+    "double_down_embree_active": false,
+    "status": "FAIL_NONPLANAR_COIL_PARITY_GATE"
+  },
+  "complete_coil_set": "NOT_RUN_WITH_SHARED_TOP_LEVEL_BVH",
   "materialized_tier3": "NOT_RUN"
 }

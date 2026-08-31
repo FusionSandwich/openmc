@@ -330,9 +330,14 @@ void test_exact_circular_swept_coil()
     data.binormal_coefficients[3 * i + 1] = std::sin(angle) / eigenvalue;
     data.binormal_coefficients[3 * i + 2] = 0.0;
   }
+  auto forced_data = data;
   const stellarcsg::CompiledSweptSplineSurface coil {std::move(data)};
+  const stellarcsg::CompiledSweptSplineSurface forced_coil {
+    std::move(forced_data), true};
   check(coil.exact_torus_specialization(),
     "planar circular swept coil selects exact torus specialization");
+  check(!forced_coil.exact_torus_specialization(),
+    "planar circular swept coil can force the general span solver");
   check_near(coil.evaluate({major + minor, 0.0, 0.0}), 0.0, 1.0e-12,
     "swept circular coil evaluates as exact torus");
   const auto crossing = coil.distance_reference(
@@ -341,6 +346,25 @@ void test_exact_circular_swept_coil()
   if (crossing.found) {
     check_near(crossing.distance, minor, 2.0e-10,
       "swept circular coil exact torus distance");
+  }
+  constexpr std::size_t ray_count = 100;
+  constexpr double golden_angle = 2.3999632297286533222;
+  const stellarcsg::Vec3 origin {major + 2.0 * minor, 0.0, 0.0};
+  for (std::size_t i = 0; i < ray_count; ++i) {
+    const double z = 1.0 - 2.0 * (static_cast<double>(i) + 0.5)
+                             / static_cast<double>(ray_count);
+    const double radial = std::sqrt(std::max(0.0, 1.0 - z * z));
+    const double azimuth = golden_angle * static_cast<double>(i);
+    const stellarcsg::Vec3 direction {
+      radial * std::cos(azimuth), radial * std::sin(azimuth), z};
+    const auto exact = coil.distance(origin, direction, false);
+    const auto general = forced_coil.distance(origin, direction, false);
+    check(exact.found == general.found,
+      "forced-general circular coil preserves hit classification");
+    if (exact.found && general.found) {
+      check_near(general.distance, exact.distance, 1.0e-7,
+        "forced-general circular coil preserves nearest root");
+    }
   }
 }
 

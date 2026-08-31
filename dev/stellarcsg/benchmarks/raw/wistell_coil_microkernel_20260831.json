@@ -1,0 +1,20 @@
+{
+  "schema": "stellarcsg.coil-span-microkernel/v1",
+  "recorded_date": "2026-08-31",
+  "case": "wistell_d_coil_031_matched_source",
+  "distance_ns_per_call": 631.624,
+  "classification_ns_per_call": 213.908,
+  "span_count": 256,
+  "bvh_node_count": 127,
+  "found_fraction": 0.131,
+  "candidate_bvh_nodes_per_call": 7.978,
+  "candidate_spans_per_call": 0.728,
+  "newton_iterations_per_call": 2.015,
+  "newton_failures_per_call": 0.172,
+  "local_subdivision_calls_per_call": 0.037,
+  "production_global_reference_calls": 0,
+  "oracle_rays": 1000,
+  "oracle_mismatches": 0,
+  "affinity": "taskset CPU 2",
+  "counter_instrumentation": true
+}
