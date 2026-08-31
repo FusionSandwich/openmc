@@ -1,0 +1,32 @@
+{
+  "schema": "stellarcsg.multiconfig-coil-results/v2",
+  "recorded_date": "2026-08-31",
+  "geometry_campaign": {
+    "configurations": 13,
+    "source_filaments": 462,
+    "complete_sets_watertight": 13,
+    "complete_sets_nonoverlapping_at_1cm": 11,
+    "rejected_for_1cm_fixture_overlap": ["qa_nfp4", "qa_nfp7"],
+    "representative_coarse_fine_meshes_valid": "26/26"
+  },
+  "local_kernel_correctness": {
+    "evidence": "../benchmarks/raw/multiconfig_coil_local_kernel_20260831.json",
+    "most_nonplanar_coils": 13,
+    "timed_rays_per_case": 1000,
+    "independent_oracle_rays_per_case": 100,
+    "total_oracle_rays": 1300,
+    "oracle_mismatches": 0,
+    "distance_ns_per_call_min": 849.639,
+    "distance_ns_per_call_median": 1146.754,
+    "distance_ns_per_call_max": 7993.173,
+    "timing_warning": "Single short microbenchmark pass per case; retained for shape diversity and correctness, not stable cross-case speed ranking.",
+    "production_global_reference_calls": 0
+  },
+  "complete_wistell_d_set": {
+    "coils": 48,
+    "native_over_fine_dagmc": 5.888573780989845,
+    "status": "PASS"
+  },
+  "other_complete_sets_openmc": "NOT_RUN_WITH_SHARED_TOP_LEVEL_BVH",
+  "embree_double_down": "NOT_RUN_UNAVAILABLE_IN_PINNED_BINARY"
+}

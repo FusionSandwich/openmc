@@ -1,7 +1,7 @@
 {
   "schema": "stellarcsg.coil-patch-kernel-report/v1",
   "recorded_date": "2026-08-31",
-  "status": "IMPLEMENTED_BUT_OPENMC_PARITY_FAILED",
+  "status": "IMPLEMENTED_SINGLE_COIL_PARITY_FAILED_COMPLETE_SET_PASSED",
   "implementation": {
     "authoritative_geometry": "periodic cubic centerline with rotation-minimizing supplied frame and circular or elliptical swept section",
     "compiled_spans": "local power polynomials with exact cubic Bezier centerline hulls",
@@ -35,6 +35,21 @@
     "native_geometry_debug": "PASS",
     "dagmc_geometry_debug": "FAIL_KNOWN_EXPLICIT_IMPLICIT_COMPLEMENT_OVERLAP"
   },
+  "complete_wistell_d_set": {
+    "evidence": "../benchmarks/raw/wistell_coil_set_openmc_20260831.json",
+    "scaling_evidence": "../benchmarks/raw/wistell_coil_set_scaling_20260831.json",
+    "coils": 48,
+    "top_level_bvh_nodes": 63,
+    "distance_ns_per_call": 1060.17638,
+    "candidate_coils_per_call": 2.8582,
+    "candidate_spans_per_call": 0.76579,
+    "newton_iterations_per_call": 1.10487,
+    "local_subdivision_fraction": 0.00657,
+    "native_histories_per_s_median": 289656,
+    "fine_dagmc_histories_per_s_median": 49189.5,
+    "native_over_fine_dagmc": 5.888573780989845,
+    "production_global_reference_calls": 0
+  },
   "gates": {
     "production_global_reference_calls_zero": "PASS",
     "representative_source_oracle_1000": "PASS",
@@ -42,6 +57,6 @@
     "nonplanar_native_at_least_fine_dagmc": "FAIL",
     "local_subdivision_fraction_below_1e-4": "FAIL",
     "double_down_embree_comparison": "NOT_RUN_UNAVAILABLE_IN_PINNED_IMAGE",
-    "complete_coil_set_shared_bvh": "NOT_RUN"
+    "complete_coil_set_shared_bvh": "PASS"
   }
 }

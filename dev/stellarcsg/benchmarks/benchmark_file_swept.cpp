@@ -18,8 +18,8 @@ int main(int argc, char** argv)
   (void) argv;
   return EXIT_FAILURE;
 #else
-  if (argc != 3) {
-    std::cerr << "usage: " << argv[0] << " FILE DATASET\n";
+  if (argc != 3 && argc != 4) {
+    std::cerr << "usage: " << argv[0] << " FILE DATASET [ORACLE_RAYS]\n";
     return EXIT_FAILURE;
   }
   try {
@@ -58,7 +58,11 @@ int main(int argc, char** argv)
     const stellarcsg::Vec3 origin = center + 2.5 * source_normal;
     const stellarcsg::CompiledSweptSplineSurface surface {std::move(data)};
     constexpr std::size_t count = 1000;
-    constexpr std::size_t oracle_count = 1000;
+    const std::size_t oracle_count = argc == 4
+      ? static_cast<std::size_t>(std::stoull(argv[3])) : 1000;
+    if (oracle_count == 0) {
+      throw std::invalid_argument("ORACLE_RAYS must be positive");
+    }
     constexpr double golden_angle = 2.3999632297286533222;
     std::size_t found = 0;
     std::size_t mismatches = 0;

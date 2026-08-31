@@ -19,10 +19,23 @@
     "production_global_reference_calls": 0,
     "status": "PASS_INITIAL"
   },
+  "complete_wistell_d_48_coil_set": {
+    "evidence": "../benchmarks/raw/wistell_coil_set_scaling_20260831.json",
+    "set_vs_brute_fast_rays": 1000,
+    "set_vs_brute_fast_mismatches": 0,
+    "independent_reference_rays": 100,
+    "independent_per_coil_reference_tests": 4800,
+    "missed_roots": 0,
+    "false_roots": 0,
+    "wrong_nearest_roots": 0,
+    "maximum_distance_error_cm": 1.11617737275e-9,
+    "production_global_reference_calls": 0,
+    "status": "PASS_INITIAL"
+  },
   "remaining_targets": {
     "planar_10m_rays": "NOT_RUN",
     "real_configuration_1m_rays": "NOT_RUN",
     "thirteen_configuration_campaign": "NOT_RUN",
-    "complete_coil_sets": "NOT_RUN"
+    "complete_coil_sets": "PASS_WISTELL_D_INITIAL_100_RAYS"
   }
 }

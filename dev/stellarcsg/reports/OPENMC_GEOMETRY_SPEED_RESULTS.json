@@ -20,6 +20,18 @@
     "double_down_embree_active": false,
     "status": "FAIL_NONPLANAR_COIL_PARITY_GATE"
   },
-  "complete_coil_set": "NOT_RUN_WITH_SHARED_TOP_LEVEL_BVH",
+  "complete_coil_set": {
+    "evidence": "../benchmarks/raw/wistell_coil_set_openmc_20260831.json",
+    "coils": 48,
+    "native_csg_histories_per_s_median": 289656,
+    "coarse_direct_dagmc_histories_per_s_median": 69868.9,
+    "fine_direct_dagmc_histories_per_s_median": 49189.5,
+    "native_over_fine_mesh": 5.888573780989845,
+    "native_lost_particles": 0,
+    "native_geometry_debug": "PASS",
+    "dagmc_geometry_debug": "FAIL_KNOWN_EXPLICIT_IMPLICIT_COMPLEMENT_OVERLAP",
+    "double_down_embree": "NOT_RUN_UNAVAILABLE_IN_PINNED_BINARY",
+    "status": "PASS_COMPLETE_COIL_SET_SPEED_GATE"
+  },
   "materialized_tier3": "NOT_RUN"
 }

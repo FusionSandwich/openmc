@@ -1,0 +1,7 @@
+{
+  "schema": "stellarcsg.openmc-materialized-speed/v1",
+  "recorded_date": "2026-08-31",
+  "status": "NOT_RUN",
+  "reason": "Tier 3 materialized transport was intentionally deferred. The milestone stopped after geometry-dominant Tier 2 qualification and retained the failed single-coil and incomplete accuracy gates.",
+  "claimed_results": []
+}

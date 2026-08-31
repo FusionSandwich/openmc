@@ -1,0 +1,19 @@
+{
+  "schema": "stellarcsg.multiconfig-plasma-results/v1",
+  "recorded_date": "2026-08-31",
+  "legacy_global_solver_campaign": {
+    "external_evidence": "C:/HTS_transport/plots/stellarcsg_multiconfig_20260831/campaign_results_summary.json",
+    "cases": 10,
+    "native_csg_median_across_cases_histories_per_s": 85.553375,
+    "fine_dagmc_median_across_cases_histories_per_s": 16233.95,
+    "fine_over_native_speed_ratio_median": 192.77316613135213,
+    "status": "SUPERSEDED_FOR_WISTELL_D_ONLY"
+  },
+  "redesigned_local_patch_kernel": {
+    "wistell_d_native_histories_per_s": 26643.8,
+    "wistell_d_fine_dagmc_histories_per_s": 21511.8,
+    "native_over_fine": 1.2385667401147278,
+    "other_configurations": "NOT_RERUN_WITH_LOCAL_PATCH_KERNEL"
+  },
+  "embree_double_down": "NOT_RUN_UNAVAILABLE"
+}

@@ -129,7 +129,10 @@ int main(int argc, char** argv)
     const auto counters = stellarcsg::performance_counters_snapshot();
 
     constexpr std::size_t correctness_rays = 1000;
+    constexpr std::size_t reference_rays = 100;
     std::size_t mismatches = 0;
+    std::size_t reference_mismatches = 0;
+    double maximum_reference_error = 0.0;
     for (std::size_t i = 0; i < correctness_rays; ++i) {
       const auto direction = fibonacci_direction(i, correctness_rays);
       const auto fast = surface_set.distance(origin, direction, false);
@@ -146,6 +149,27 @@ int main(int argc, char** argv)
           || (brute_found
               && std::abs(fast.root.distance - brute_distance) > 1.0e-8)) {
         ++mismatches;
+      }
+    }
+    for (std::size_t i = 0; i < reference_rays; ++i) {
+      const auto direction = fibonacci_direction(i, reference_rays);
+      const auto fast = surface_set.distance(origin, direction, false);
+      double reference_distance = std::numeric_limits<double>::infinity();
+      bool reference_found = false;
+      for (const auto& coil : brute_surfaces) {
+        const auto candidate = coil->distance_reference(
+          origin, direction, false);
+        if (candidate.found && candidate.distance < reference_distance) {
+          reference_distance = candidate.distance;
+          reference_found = true;
+        }
+      }
+      const double error = fast.root.found && reference_found
+        ? std::abs(fast.root.distance - reference_distance) : 0.0;
+      maximum_reference_error = std::max(maximum_reference_error, error);
+      if (fast.root.found != reference_found
+          || (reference_found && error > 1.0e-6)) {
+        ++reference_mismatches;
       }
     }
 
@@ -185,9 +209,16 @@ int main(int argc, char** argv)
               << "  \"brute_fast_comparison_rays\": "
               << correctness_rays << ",\n"
               << "  \"brute_fast_mismatches\": " << mismatches << ",\n"
+              << "  \"independent_reference_rays\": "
+              << reference_rays << ",\n"
+              << "  \"independent_reference_mismatches\": "
+              << reference_mismatches << ",\n"
+              << "  \"maximum_reference_error_cm\": "
+              << maximum_reference_error << ",\n"
               << "  \"sink\": " << sink << "\n"
               << "}\n";
-    return mismatches == 0 ? EXIT_SUCCESS : EXIT_FAILURE;
+    return mismatches == 0 && reference_mismatches == 0
+      ? EXIT_SUCCESS : EXIT_FAILURE;
   } catch (const std::exception& error) {
     std::cerr << error.what() << '\n';
     return EXIT_FAILURE;
