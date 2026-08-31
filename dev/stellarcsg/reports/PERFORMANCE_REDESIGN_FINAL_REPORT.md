@@ -6,8 +6,10 @@ The production global searches were replaced with local accelerated kernels. Per
 
 The shared 48-coil WISTELL-D BVH is the strongest result: native smooth CSG reached **289,656 histories/s**, versus **49,189.5 histories/s** for the fine direct DAGMC mesh, making native **5.889× faster**. The representative single-coil gate still fails at 0.4749× fine DAGMC, so the result is specifically a set-level acceleration success, not a claim that every swept query beats mesh.
 
-Branch: `codex/stellarcsg-native-csg-foundation-20260828`  
-Evidence commit before this report: `1353d0ae5`  
+Branch: `codex/stellarcsg-native-csg-foundation-20260828`
+
+Evidence commit before this report: `1353d0ae5`
+
 No pull request was created. `develop`, `master`, and other branches were untouched. The experimental option remains default OFF.
 
 ## Commits created
