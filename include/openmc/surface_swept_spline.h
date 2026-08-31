@@ -3,6 +3,7 @@
 
 #include "openmc/surface.h"
 #include "stellarcsg/compiled_swept_surface.hpp"
+#include "stellarcsg/compiled_swept_surface_set.hpp"
 
 #include <memory>
 #include <string>
@@ -22,8 +23,12 @@ public:
 private:
   std::string data_file_;
   std::string dataset_;
+  std::string dataset_prefix_;
   std::string content_id_;
+  int dataset_start_ {0};
+  int dataset_count_ {0};
   std::unique_ptr<stellarcsg::CompiledSweptSplineSurface> surface_;
+  std::unique_ptr<stellarcsg::CompiledSweptSplineSurfaceSet> surface_set_;
 };
 
 } // namespace openmc

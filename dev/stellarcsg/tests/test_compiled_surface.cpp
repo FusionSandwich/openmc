@@ -1,6 +1,7 @@
 #include "stellarcsg/coefficient_file.hpp"
 #include "stellarcsg/compiled_periodic_surface.hpp"
 #include "stellarcsg/compiled_swept_surface.hpp"
+#include "stellarcsg/compiled_swept_surface_set.hpp"
 #include "stellarcsg/performance_counters.hpp"
 #include "stellarcsg/sha256.hpp"
 
@@ -368,6 +369,62 @@ void test_exact_circular_swept_coil()
   }
 }
 
+void test_swept_coil_set_bvh()
+{
+  constexpr std::size_t count = 64;
+  constexpr double major = 5.0;
+  constexpr double minor = 0.25;
+  constexpr double pi = 3.141592653589793238462643383279502884;
+  const double eigenvalue = (4.0 + 2.0 * std::cos(2.0 * pi / count)) / 6.0;
+  const auto make_coil = [&](int coil_id, double z_offset) {
+    stellarcsg::SweptSplineSurfaceData data;
+    data.coil_id = coil_id;
+    data.sample_count = count;
+    data.length = 2.0 * pi * major;
+    data.characteristic_length = major + std::abs(z_offset) + minor;
+    data.centerline_coefficients.resize(3 * count);
+    data.normal_coefficients.resize(3 * count);
+    data.binormal_coefficients.resize(3 * count);
+    data.major_radius_coefficients.assign(count, minor);
+    data.minor_radius_coefficients.assign(count, minor);
+    for (std::size_t i = 0; i < count; ++i) {
+      const double angle = 2.0 * pi * static_cast<double>(i)
+                           / static_cast<double>(count);
+      data.centerline_coefficients[3 * i] =
+        major * std::cos(angle) / eigenvalue;
+      data.centerline_coefficients[3 * i + 1] =
+        major * std::sin(angle) / eigenvalue;
+      data.centerline_coefficients[3 * i + 2] = z_offset;
+      data.normal_coefficients[3 * i] = 0.0;
+      data.normal_coefficients[3 * i + 1] = 0.0;
+      data.normal_coefficients[3 * i + 2] = 1.0;
+      data.binormal_coefficients[3 * i] = std::cos(angle) / eigenvalue;
+      data.binormal_coefficients[3 * i + 1] = std::sin(angle) / eigenvalue;
+      data.binormal_coefficients[3 * i + 2] = 0.0;
+    }
+    return data;
+  };
+  std::vector<stellarcsg::SweptSplineSurfaceData> data;
+  data.push_back(make_coil(10, -2.0));
+  data.push_back(make_coil(20, 0.0));
+  data.push_back(make_coil(30, 2.0));
+  const stellarcsg::CompiledSweptSplineSurfaceSet set {std::move(data)};
+  check(set.size() == 3, "coil-set BVH retains every coil");
+  check(set.coil_bvh().size() == 3, "three-coil set builds a top-level BVH");
+  check(set.evaluate({major, 0.0, 0.0}) < 0.0,
+    "coil-set union classifies a point inside one coil");
+  check(set.evaluate({0.0, 0.0, 0.0}) > 0.0,
+    "coil-set union classifies a point outside every coil");
+  const auto crossing = set.distance(
+    {major + 2.0 * minor, 0.0, 0.0}, {-1.0, 0.0, 0.0}, false);
+  check(crossing.root.found, "coil-set BVH finds the nearest crossing");
+  check(crossing.coil_id == 20, "coil-set BVH returns the stable coil ID");
+  if (crossing.root.found) {
+    check_near(crossing.root.distance, minor, 2.0e-9,
+      "coil-set BVH returns the nearest coil distance");
+  }
+}
+
 #ifdef STELLARCSG_HAS_HDF5
 void test_hdf5_round_trip()
 {
@@ -428,6 +485,7 @@ int main()
     test_scale_aware_axisymmetric_detection();
     test_close_root_pair_regressions();
     test_exact_circular_swept_coil();
+    test_swept_coil_set_bvh();
     test_sha256_known_vector();
 #ifdef STELLARCSG_HAS_HDF5
     test_hdf5_round_trip();

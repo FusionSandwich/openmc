@@ -21,6 +21,7 @@ add_library(stellarcsg_reference STATIC
   src/uniform_periodic_cubic_spline.cpp
   src/compiled_periodic_surface.cpp
   src/compiled_swept_surface.cpp
+  src/compiled_swept_surface_set.cpp
   ../../src/external/quartic_solver.cpp
 )
 add_library(StellarCSG::reference ALIAS stellarcsg_reference)
@@ -122,6 +123,12 @@ if(STELLARCSG_BUILD_BENCHMARKS)
   target_link_libraries(stellarcsg_file_swept_benchmark
     PRIVATE StellarCSG::reference)
   target_compile_features(stellarcsg_file_swept_benchmark PRIVATE cxx_std_17)
+
+  add_executable(stellarcsg_file_swept_set_benchmark
+    benchmarks/benchmark_file_swept_set.cpp)
+  target_link_libraries(stellarcsg_file_swept_set_benchmark
+    PRIVATE StellarCSG::reference)
+  target_compile_features(stellarcsg_file_swept_set_benchmark PRIVATE cxx_std_17)
 endif()
 
 if(STELLARCSG_BUILD_TOOLS)
