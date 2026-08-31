@@ -1,0 +1,58 @@
+StellarCSG generic periodic baseline profile
+Recorded: 2026-08-31
+Source commit: 379850112dad4f89645005b27e40468e7c89413a
+Case: authoritative WISTELL-D plasma, one OpenMP thread
+
+SAMPLING PROFILER STATUS
+BLOCKED_BY_ENVIRONMENT
+
+Linux perf is absent in both the pinned parastell-openmc:0.16.0 image and the
+available WSL environment. /proc/sys/kernel/perf_event_paranoid is 2. Windows
+WPR is present but cannot reliably resolve optimized Linux-container user-space
+symbols. No profiling package was installed because the baseline environment is
+frozen and source/instrumentation evidence already identifies the broad solver.
+
+MEASURED TRANSPORT
+warm-up: 89.6506 histories/s; transport 11.142 s for 1000 histories
+measured 1: 88.047 histories/s; transport 11.347 s
+measured 2: 90.1783 histories/s; transport 11.076 s
+measured median: 89.11265 histories/s
+matched fine direct mesh median: 17558.65 histories/s
+fine mesh / native: 197.0388042550637
+
+CALL GRAPH
+OpenMC tracking
+  -> SurfacePeriodicSpline::distance
+  -> CompiledPeriodicSplineSurface::distance (solver="layered")
+  -> PeriodicRadialSurface::distance_reference for general_periodic
+  -> find_nearest_root_reference
+  -> evaluate and directional_derivative across the complete ray interval
+  -> local_coordinates
+  -> axis cubic spline and radius bicubic spline samples
+
+The explicit solver="reference" route calls distance_reference directly; the
+general-periodic branch of solver="layered" also falls back to the same broad
+reference implementation. Therefore production_global_reference_calls is
+nonzero by construction on the WISTELL-D baseline.
+
+STATIC WORK ACCOUNTING
+OpenMC sets initial_subdivisions=96, max_refinement_levels=7, and requires
+refinement stability. At refinement level L, the solver allocates and evaluates
+(96*2^L + 1) function samples and the same number of derivative samples over the
+complete bounding-box ray interval. It then scans every subinterval for sign
+changes and derivative brackets, bisecting roots and stationary points. Even a
+two-level stable result starts with 97+193 global function samples and the same
+number of global derivative samples, before bisection/refinement work.
+
+The standalone compiled-surface microbenchmark measured 413.299408 ns per
+synthetic-helical evaluate and 421.32076 ns per normal call, demonstrating that
+individual spline evaluation is not itself a multi-millisecond operation. The
+repetition of those operations across a global interval and across repeated
+OpenMC surface-distance calls is the dominant design problem.
+
+DIAGNOSIS
+CONFIRMED: the generic production path invokes the correctness oracle and its
+global interval scan. Local arithmetic tuning cannot plausibly close a 197x
+matched-mesh gap. The replacement must spatially reject most of the surface,
+solve only local parametric patches, and make production_global_reference_calls
+exactly zero.

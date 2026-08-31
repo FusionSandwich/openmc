@@ -1,0 +1,171 @@
+{
+  "schema": "stellarcsg.performance-redesign-baseline/v1",
+  "recorded_date": "2026-08-31",
+  "source_commit": "379850112dad4f89645005b27e40468e7c89413a",
+  "environment": {
+    "host": "VENGEANCE",
+    "cpu": "Intel(R) Core(TM) i9-10850K CPU @ 3.60GHz",
+    "container_image": "parastell-openmc:0.16.0",
+    "container_image_id": "sha256:ca0c3b1fba39ce27af6ebdb79df14795041922e72521f232cdd770ff1c416191",
+    "openmc_version": "0.15.1-dev598",
+    "openmc_commit_reported_by_binary": "594670eee8a0c1e26a5b44d713468f74f4204ce3",
+    "libopenmc_sha256": "5a2618d9db43365f0f659731117ffee74a968adecb9cbca640fd3bb6ad78c812",
+    "threads": 1,
+    "cpu_affinity": "Docker --cpuset-cpus=2 for the exact-torus and representative-coil reproductions; CPU 2 for the standalone microbenchmark; the WISTELL-D plasma gate used OMP_NUM_THREADS=1 without a Docker CPU set",
+    "turbo": "not disabled",
+    "case_order": "fixed for this two-repetition baseline; later qualification requires randomized order and at least seven repetitions where practical"
+  },
+  "tests": {
+    "standalone_release": {
+      "configure": "cmake -S dev/stellarcsg -B build/stellarcsg-performance-baseline -DCMAKE_BUILD_TYPE=Release -DSTELLARCSG_ENABLE_HDF5=ON -DSTELLARCSG_BUILD_TESTS=ON -DSTELLARCSG_BUILD_BENCHMARKS=ON -DSTELLARCSG_BUILD_TOOLS=ON -DSTELLARCSG_BUILD_CAMPAIGNS=ON",
+      "build": "cmake --build build/stellarcsg-performance-baseline -j2",
+      "ctest": "ctest --test-dir build/stellarcsg-performance-baseline --output-on-failure",
+      "passed": 2,
+      "failed": 0,
+      "elapsed_s": 0.21
+    },
+    "python": {
+      "command": "PYTHONPATH=dev/stellarcsg/python python -m pytest dev/stellarcsg/python/tests -q",
+      "passed": 13,
+      "skipped": 1,
+      "failed": 0,
+      "elapsed_s": 3.68,
+      "skip_reason": "optional installed OpenMC Python package lacks openmc.data.endf"
+    },
+    "joint_openmc_dagmc_build": {
+      "command": "docker run --rm -v <repository>:/work -w /work/build/openmc-stellarcsg-dagmc-container parastell-openmc:0.16.0 cmake --build . --target openmc -j2",
+      "status": "PASS"
+    }
+  },
+  "standalone_microbenchmark": {
+    "case": "synthetic helical periodic surface evaluate/normal only",
+    "evaluate_raw_ns_per_call": [413.299408],
+    "normal_raw_ns_per_call": [421.32076],
+    "sink": 5056788.86386,
+    "scope_warning": "This does not exercise the global distance solver and is retained only as an evaluation-cost reference."
+  },
+  "openmc_exact_torus": {
+    "histories_per_repetition": 1000000,
+    "warmups": 1,
+    "measured_repetitions": 2,
+    "seed": 918273645,
+    "cases": [
+      {
+        "case": "builtin_torus",
+        "specialization": "OpenMC ZTorus quartic",
+        "raw": [
+          {"warmup": true, "histories_per_s": 783853.0, "initialization_s": 1.0474, "transport_s": 1.2609},
+          {"warmup": false, "histories_per_s": 726602.0, "initialization_s": 1.4853, "transport_s": 1.3584},
+          {"warmup": false, "histories_per_s": 821641.0, "initialization_s": 1.2652, "transport_s": 1.2026}
+        ],
+        "histories_per_s_median": 774121.5,
+        "lost_particles": 0,
+        "geometry_debug": "PASS"
+      },
+      {
+        "case": "periodic_torus",
+        "specialization": "PeriodicSplineSurface exact circular-torus quartic",
+        "raw": [
+          {"warmup": true, "histories_per_s": 362328.0, "initialization_s": 1.1144, "transport_s": 2.7452},
+          {"warmup": false, "histories_per_s": 346566.0, "initialization_s": 1.3892, "transport_s": 2.8714},
+          {"warmup": false, "histories_per_s": 355900.0, "initialization_s": 1.1309, "transport_s": 2.7960}
+        ],
+        "histories_per_s_median": 351233.0,
+        "ratio_to_builtin": 0.45371818248169055,
+        "ratio_to_fine_dagmc": 5.904584028188713,
+        "lost_particles": 0,
+        "geometry_debug": "PASS"
+      },
+      {
+        "case": "dagmc_torus_coarse",
+        "raw": [
+          {"warmup": true, "histories_per_s": 67849.3, "initialization_s": 1.3486, "transport_s": 14.721},
+          {"warmup": false, "histories_per_s": 71578.1, "initialization_s": 1.3656, "transport_s": 13.957},
+          {"warmup": false, "histories_per_s": 69714.9, "initialization_s": 1.2599, "transport_s": 14.329}
+        ],
+        "histories_per_s_median": 70646.5,
+        "lost_particles": 0,
+        "geometry_debug": "FAIL_EXPLICIT_DAGMC_VOLUME_VS_IMPLICIT_COMPLEMENT"
+      },
+      {
+        "case": "dagmc_torus_fine",
+        "raw": [
+          {"warmup": true, "histories_per_s": 54364.8, "initialization_s": 1.3906, "transport_s": 18.380},
+          {"warmup": false, "histories_per_s": 59851.0, "initialization_s": 1.5612, "transport_s": 16.689},
+          {"warmup": false, "histories_per_s": 59118.6, "initialization_s": 1.3419, "transport_s": 16.898}
+        ],
+        "histories_per_s_median": 59484.8,
+        "ratio_to_builtin": 0.07684158127245736,
+        "lost_particles": 0,
+        "geometry_debug": "FAIL_EXPLICIT_DAGMC_VOLUME_VS_IMPLICIT_COMPLEMENT"
+      }
+    ]
+  },
+  "openmc_wistell_d_periodic": {
+    "histories_per_repetition": 1000,
+    "warmups": 1,
+    "measured_repetitions": 2,
+    "native_csg": {
+      "raw": [
+        {"warmup": true, "histories_per_s": 89.6506, "initialization_s": 1.0171, "transport_s": 11.142, "leakage": 0.93},
+        {"warmup": false, "histories_per_s": 88.047, "initialization_s": 1.0127, "transport_s": 11.347, "leakage": 0.93},
+        {"warmup": false, "histories_per_s": 90.1783, "initialization_s": 0.95678, "transport_s": 11.076, "leakage": 0.93}
+      ],
+      "histories_per_s_median": 89.11265,
+      "lost_particles": 0,
+      "geometry_errors": 0
+    },
+    "fine_direct_dagmc": {
+      "raw": [
+        {"warmup": true, "histories_per_s": 17887.8, "initialization_s": 1.4677, "transport_s": 0.043690, "leakage": 1.0},
+        {"warmup": false, "histories_per_s": 17583.1, "initialization_s": 1.4505, "transport_s": 0.044882, "leakage": 1.0},
+        {"warmup": false, "histories_per_s": 17534.2, "initialization_s": 1.4134, "transport_s": 0.044512, "leakage": 1.0}
+      ],
+      "histories_per_s_median": 17558.65,
+      "lost_particles": 0,
+      "geometry_errors": 0
+    },
+    "fine_mesh_over_native": 197.0388042550637,
+    "qualification": "FAIL_PERFORMANCE_AND_LEAKAGE_CLOSURE"
+  },
+  "openmc_wistell_d_representative_nonplanar_coil": {
+    "selected_coil_id": 31,
+    "source_coil_count": 48,
+    "payload_sha256": "9bb178c308e7f3ec659e1651a7d57e0ecbff734d3320000df1c2bf79fcf3262b",
+    "histories_per_repetition": 3,
+    "warmups": 1,
+    "measured_repetitions": 2,
+    "native_swept_csg": {
+      "raw": [
+        {"warmup": true, "histories_per_s": 0.237379, "initialization_s": 1.0812, "transport_s": 12.626},
+        {"warmup": false, "histories_per_s": 0.237785, "initialization_s": 1.0591, "transport_s": 12.604},
+        {"warmup": false, "histories_per_s": 0.237502, "initialization_s": 1.0687, "transport_s": 12.619}
+      ],
+      "histories_per_s_median": 0.2376435,
+      "lost_particles": 0,
+      "geometry_errors": 0,
+      "leakage": 1.0
+    },
+    "fine_direct_dagmc": {
+      "raw": [
+        {"warmup": true, "histories_per_s": 230.205, "initialization_s": 1.3659, "transport_s": 0.000099005},
+        {"warmup": false, "histories_per_s": 159.173, "initialization_s": 1.3671, "transport_s": 0.000094605},
+        {"warmup": false, "histories_per_s": 240.393, "initialization_s": 1.2902, "transport_s": 0.00013721}
+      ],
+      "histories_per_s_median": 199.783,
+      "lost_particles": 0,
+      "geometry_errors": 0,
+      "leakage": 1.0
+    },
+    "fine_mesh_over_native": 840.6836290493953,
+    "qualification": "FAIL_PERFORMANCE",
+    "short_run_warning": "Three histories per repetition reproduce the orders-of-magnitude gap but are not a final stable mesh-throughput estimate."
+  },
+  "profiling": {
+    "sampling_profiler": "BLOCKED_BY_ENVIRONMENT",
+    "details": "Linux perf is not installed in the pinned image/WSL environment and /proc/sys/kernel/perf_event_paranoid is 2. Windows WPR cannot attribute optimized Linux-container user symbols reliably. No profiler was installed into the frozen environment.",
+    "periodic_profile": "PERFORMANCE_PROFILE_PERIODIC.txt",
+    "coil_profile": "PERFORMANCE_PROFILE_COIL.txt"
+  },
+  "baseline_conclusion": "Exact analytic specialization is fast. The generic periodic and swept paths are 197x and 841x slower than their matched fine direct meshes in these reproductions, confirming that the global-search algorithms must be replaced."
+}
