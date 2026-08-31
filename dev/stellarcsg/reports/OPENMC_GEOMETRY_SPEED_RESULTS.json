@@ -1,0 +1,16 @@
+{
+  "schema": "stellarcsg.openmc-geometry-speed/v1",
+  "recorded_date": "2026-08-31",
+  "periodic_wistell_d": {
+    "evidence": "../benchmarks/raw/wistell_openmc_patch_vs_fine_mesh_20260831.json",
+    "native_csg_histories_per_s_median": 26643.8,
+    "fine_direct_dagmc_histories_per_s_median": 21511.8,
+    "native_over_fine_mesh": 1.2385667401147278,
+    "status": "PASS_MINIMUM_SPEED_GATE"
+  },
+  "forced_general_torus_openmc": "NOT_RUN_WITH_CURRENT_PATCH_KERNEL",
+  "shaped_axisymmetric_openmc": "NOT_RUN_WITH_CURRENT_PATCH_KERNEL",
+  "synthetic_helical_openmc": "NOT_RUN_WITH_CURRENT_PATCH_KERNEL",
+  "coil_cases": "NOT_RUN_WITH_LOCAL_SPAN_KERNEL",
+  "materialized_tier3": "NOT_RUN"
+}

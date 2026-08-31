@@ -72,11 +72,82 @@ int main()
       return n.x + n.y + n.z;
     }, sink);
 
+  constexpr std::size_t distance_count = 20000;
+  std::size_t fallback_count = 0;
+  long fast_function_evaluations = 0;
+  long fast_subdivided_intervals = 0;
+  int first_solver_path = -1;
+  int first_fallback_reason = -1;
+  long first_unresolved_intervals = -1;
+  const auto distance_start = std::chrono::steady_clock::now();
+  for (std::size_t i = 0; i < distance_count; ++i) {
+    const double phi = two_pi * static_cast<double>(i % 10000) / 10000.0;
+    const double theta = two_pi * static_cast<double>((37 * i) % 10000) / 10000.0;
+    const double R = 500.0 + 145.0 * std::cos(theta);
+    const stellarcsg::Vec3 origin {
+      R * std::cos(phi), R * std::sin(phi), 145.0 * std::sin(theta)};
+    const stellarcsg::Vec3 direction {
+      -std::cos(theta) * std::cos(phi),
+      -std::cos(theta) * std::sin(phi), -std::sin(theta)};
+    const auto result = surface.distance(origin, direction, false);
+    if (i == 0) {
+      first_solver_path = static_cast<int>(result.root_diagnostics.solver_path);
+      first_fallback_reason = static_cast<int>(
+        result.root_diagnostics.fallback_reason);
+      first_unresolved_intervals = result.root_diagnostics.unresolved_intervals;
+    }
+    sink += result.found ? result.distance : 0.0;
+    fallback_count += result.root_diagnostics.reference_fallback_calls != 0
+      ? 1U : 0U;
+    fast_function_evaluations += result.root_diagnostics.function_evaluations;
+    fast_subdivided_intervals += result.root_diagnostics.subdivided_intervals;
+  }
+  const auto distance_stop = std::chrono::steady_clock::now();
+  const double distance_ns = std::chrono::duration<double, std::nano>(
+    distance_stop - distance_start).count() / static_cast<double>(distance_count);
+
+  constexpr std::size_t reference_count = 100;
+  const auto reference_start = std::chrono::steady_clock::now();
+  for (std::size_t i = 0; i < reference_count; ++i) {
+    const double phi = two_pi * static_cast<double>(i) / reference_count;
+    const double theta = two_pi * static_cast<double>((37 * i) % reference_count)
+                         / reference_count;
+    const double R = 500.0 + 145.0 * std::cos(theta);
+    const stellarcsg::Vec3 origin {
+      R * std::cos(phi), R * std::sin(phi), 145.0 * std::sin(theta)};
+    const stellarcsg::Vec3 direction {
+      -std::cos(theta) * std::cos(phi),
+      -std::cos(theta) * std::sin(phi), -std::sin(theta)};
+    const auto result = surface.distance_reference(origin, direction, false);
+    sink += result.found ? result.distance : 0.0;
+  }
+  const auto reference_stop = std::chrono::steady_clock::now();
+  const double reference_ns = std::chrono::duration<double, std::nano>(
+    reference_stop - reference_start).count()
+    / static_cast<double>(reference_count);
+
   std::cout << std::setprecision(12)
             << "{\n"
             << "  \"schema_version\": 1,\n"
             << "  \"evaluate_ns_per_call\": " << evaluate_ns << ",\n"
             << "  \"normal_ns_per_call\": " << normal_ns << ",\n"
+            << "  \"distance_fast_ns_per_call\": " << distance_ns << ",\n"
+            << "  \"distance_reference_ns_per_call\": " << reference_ns << ",\n"
+            << "  \"distance_speedup_vs_reference\": "
+            << reference_ns / distance_ns << ",\n"
+            << "  \"distance_fallback_fraction\": "
+            << static_cast<double>(fallback_count) / distance_count << ",\n"
+            << "  \"fast_function_evaluations_per_call\": "
+            << static_cast<double>(fast_function_evaluations) / distance_count
+            << ",\n"
+            << "  \"fast_subdivided_intervals_per_call\": "
+            << static_cast<double>(fast_subdivided_intervals) / distance_count
+            << ",\n"
+            << "  \"first_solver_path\": " << first_solver_path << ",\n"
+            << "  \"first_fallback_reason\": " << first_fallback_reason
+            << ",\n"
+            << "  \"first_unresolved_intervals\": "
+            << first_unresolved_intervals << ",\n"
             << "  \"sink\": " << sink << "\n"
             << "}\n";
   return 0;

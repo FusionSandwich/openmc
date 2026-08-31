@@ -6,6 +6,8 @@
 #include "stellarcsg/uniform_periodic_cubic_spline.hpp"
 
 #include <cstddef>
+#include <array>
+#include <cstdint>
 #include <string>
 #include <vector>
 
@@ -15,6 +17,41 @@ enum class PeriodicSurfaceSpecialization {
   exact_circular_torus,
   shaped_axisymmetric,
   general_periodic,
+};
+
+struct ParametricSurfaceSample {
+  Vec3 position {};
+  Vec3 dtheta {};
+  Vec3 dphi {};
+};
+
+struct ParametricBounds {
+  double theta_min {0.0};
+  double theta_max {0.0};
+  double phi_min {0.0};
+  double phi_max {0.0};
+};
+
+struct PeriodicPatch {
+  ParametricBounds uv {};
+  BoundingBox conservative_bbox {};
+  BoundingBox proxy_bbox {};
+  std::array<Vec3, 4> proxy_corners {};
+  // Tensor-product power coefficients for this one-cell bicubic patch.
+  // radius_power[4 * theta_power + phi_power].
+  std::array<double, 16> radius_power {};
+  double proxy_error_bound {0.0};
+  std::array<std::int32_t, 4> neighbors {{-1, -1, -1, -1}};
+};
+
+struct PeriodicPatchBVHNode {
+  BoundingBox bbox {};
+  std::uint32_t left {0};
+  std::uint32_t right {0};
+  std::uint32_t first {0};
+  std::uint16_t count {0};
+
+  [[nodiscard]] bool leaf() const noexcept { return count != 0; }
 };
 
 // Frozen, device-independent coefficient payload. Values are in centimetres
@@ -34,12 +71,13 @@ struct PeriodicSplineSurfaceData {
   std::vector<double> radius_coefficients {};
   double characteristic_length {1.0};
   double coordinate_singularity_tolerance {1.0e-12};
+  bool force_general_solver {false};
 };
 
-// Compiles coefficient arrays into allocation-free spline evaluations. The
-// current nearest-root implementation remains the conservative reference
-// search from PeriodicRadialSurface and is not yet the final fast transport
-// algorithm.
+// Compiles coefficient arrays into allocation-free spline evaluations. General
+// periodic surfaces use conservative parametric patches, a flattened BVH, and
+// local safeguarded correction. The broad interval solver is retained only as
+// an explicit offline correctness oracle/negative precursor.
 class CompiledPeriodicSplineSurface {
 public:
   explicit CompiledPeriodicSplineSurface(PeriodicSplineSurfaceData data);
@@ -67,6 +105,16 @@ public:
   {
     return data_;
   }
+  [[nodiscard]] const std::vector<PeriodicPatch>& patches() const noexcept
+  {
+    return patches_;
+  }
+  [[nodiscard]] const std::vector<PeriodicPatchBVHNode>& patch_bvh() const noexcept
+  {
+    return patch_bvh_;
+  }
+  [[nodiscard]] ParametricSurfaceSample sample_parametric(
+    double theta, double phi) const;
 
 private:
   PeriodicSplineSurfaceData data_;
@@ -80,6 +128,19 @@ private:
   double torus_minor_radius_ {0.0};
   double torus_z_offset_ {0.0};
   double axisymmetric_radius_derivative_bound_ {0.0};
+  double axis_derivative_bound_ {0.0};
+  double radius_theta_derivative_bound_ {0.0};
+  double radius_phi_derivative_bound_ {0.0};
+  double radius_coefficient_min_ {0.0};
+  double radius_coefficient_max_ {0.0};
+  std::vector<double> axis_local_derivative_bounds_ {};
+  std::vector<double> radius_local_theta_derivative_bounds_ {};
+  std::vector<double> radius_local_phi_derivative_bounds_ {};
+  bool axis_patch_aligned_ {false};
+  std::vector<std::array<double, 8>> axis_patch_power_ {};
+  std::vector<PeriodicPatch> patches_ {};
+  std::vector<std::uint32_t> patch_indices_ {};
+  std::vector<PeriodicPatchBVHNode> patch_bvh_ {};
 
   [[nodiscard]] static BoundingBox conservative_bounds(
     const PeriodicSplineSurfaceData& data);
@@ -89,6 +150,17 @@ private:
   [[nodiscard]] DistanceResult distance_shaped_axisymmetric(
     const Vec3& origin, const Vec3& direction, bool coincident,
     const RootSearchOptions& options) const;
+  [[nodiscard]] DistanceResult distance_general_periodic(
+    const Vec3& origin, const Vec3& direction, bool coincident,
+    const RootSearchOptions& options) const;
+  [[nodiscard]] DistanceResult distance_general_periodic_interval_precursor(
+    const Vec3& origin, const Vec3& direction, bool coincident,
+    const RootSearchOptions& options) const;
+  [[nodiscard]] ParametricSurfaceSample sample_patch_parametric(
+    const PeriodicPatch& patch, double theta, double phi) const;
+  void build_periodic_patches();
+  [[nodiscard]] std::uint32_t build_patch_bvh_node(
+    std::uint32_t first, std::uint32_t last);
 };
 
 } // namespace stellarcsg

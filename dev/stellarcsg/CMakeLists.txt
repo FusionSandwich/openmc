@@ -7,8 +7,13 @@ option(STELLARCSG_BUILD_TOOLS "Build local inspection tools" ON)
 option(STELLARCSG_BUILD_CAMPAIGNS "Build deterministic qualification campaigns" ON)
 option(STELLARCSG_ENABLE_HDF5 "Build the coefficient-file HDF5 adapter" ON)
 option(STELLARCSG_ENABLE_SANITIZERS "Enable ASan/UBSan for standalone tests" OFF)
+option(STELLARCSG_ENABLE_PERFORMANCE_COUNTERS
+  "Enable thread-local surface performance counters" OFF)
+option(STELLARCSG_VERIFY_FAST_WITH_ORACLE
+  "Sample fast surface results against the independent oracle" OFF)
 
 add_library(stellarcsg_reference STATIC
+  src/performance_counters.cpp
   src/periodic_radial_surface.cpp
   src/root_solver.cpp
   src/sha256.cpp
@@ -20,6 +25,14 @@ add_library(stellarcsg_reference STATIC
 )
 add_library(StellarCSG::reference ALIAS stellarcsg_reference)
 target_compile_features(stellarcsg_reference PUBLIC cxx_std_17)
+if(STELLARCSG_ENABLE_PERFORMANCE_COUNTERS)
+  target_compile_definitions(stellarcsg_reference
+    PUBLIC STELLARCSG_ENABLE_PERFORMANCE_COUNTERS)
+endif()
+if(STELLARCSG_VERIFY_FAST_WITH_ORACLE)
+  target_compile_definitions(stellarcsg_reference
+    PUBLIC STELLARCSG_VERIFY_FAST_WITH_ORACLE)
+endif()
 target_include_directories(stellarcsg_reference PUBLIC
   $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>)
 
@@ -97,6 +110,12 @@ if(STELLARCSG_BUILD_BENCHMARKS)
   target_link_libraries(stellarcsg_surface_benchmark
     PRIVATE StellarCSG::reference)
   target_compile_features(stellarcsg_surface_benchmark PRIVATE cxx_std_17)
+
+  add_executable(stellarcsg_file_surface_benchmark
+    benchmarks/benchmark_file_surface.cpp)
+  target_link_libraries(stellarcsg_file_surface_benchmark
+    PRIVATE StellarCSG::reference)
+  target_compile_features(stellarcsg_file_surface_benchmark PRIVATE cxx_std_17)
 endif()
 
 if(STELLARCSG_BUILD_TOOLS)

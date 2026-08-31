@@ -1,12 +1,14 @@
 #include "stellarcsg/coefficient_file.hpp"
 #include "stellarcsg/compiled_periodic_surface.hpp"
 #include "stellarcsg/compiled_swept_surface.hpp"
+#include "stellarcsg/performance_counters.hpp"
 #include "stellarcsg/sha256.hpp"
 
 #include <cmath>
 #include <cstdio>
 #include <cstdlib>
 #include <iostream>
+#include <iomanip>
 #include <stdexcept>
 #include <string>
 #include <vector>
@@ -28,7 +30,8 @@ void check_near(double actual, double expected, double tolerance,
 {
   if (!std::isfinite(actual) || std::abs(actual - expected) > tolerance) {
     ++failures;
-    std::cerr << "FAIL: " << message << " actual=" << actual
+    std::cerr << std::setprecision(17)
+              << "FAIL: " << message << " actual=" << actual
               << " expected=" << expected << " tolerance=" << tolerance
               << '\n';
   }
@@ -103,6 +106,73 @@ void test_compiled_torus()
     "compiled torus conservative z bounds");
 }
 
+void test_torus_forced_through_general_patch_solver()
+{
+  auto data = make_torus_data();
+  data.content_id = "compiled-torus-forced-general-v1";
+  data.force_general_solver = true;
+  const stellarcsg::CompiledPeriodicSplineSurface surface {std::move(data)};
+  check(surface.specialization()
+      == stellarcsg::PeriodicSurfaceSpecialization::general_periodic,
+    "forced-general torus disables the exact specialization");
+  check(!surface.patches().empty() && !surface.patch_bvh().empty(),
+    "forced-general torus compiles parametric patches and a BVH");
+
+  const std::vector<stellarcsg::Vec3> origins {
+    {7.0, 0.0, 0.0}, {-7.0, 0.0, 0.0}, {0.0, 7.0, 0.25},
+    {4.5, -4.8, 0.4}, {-4.7, -4.4, -0.35}};
+  const std::vector<stellarcsg::Vec3> directions {
+    {-1.0, 0.0, 0.0}, {1.0, 0.0, 0.0}, {0.0, -1.0, -0.03},
+    {-0.8, 0.6, -0.1}, {0.7, 0.7, 0.08}};
+  stellarcsg::RootSearchOptions options;
+  options.initial_subdivisions = 128;
+  options.max_refinement_levels = 8;
+  stellarcsg::reset_performance_counters();
+  for (std::size_t i = 0; i < origins.size(); ++i) {
+    const auto fast = surface.distance(origins[i], directions[i], false, options);
+    const auto oracle = surface.distance_reference(
+      origins[i], directions[i], false, options);
+    check(fast.found == oracle.found,
+      "forced-general torus patch path agrees with oracle existence");
+    if (fast.found && oracle.found) {
+      check_near(fast.distance, oracle.distance, 2.0e-8,
+        "forced-general torus patch path agrees with oracle distance");
+    }
+    check(fast.root_diagnostics.reference_fallback_calls == 0,
+      "forced-general torus never calls the global reference fallback");
+  }
+  stellarcsg::reset_performance_counters();
+  (void) surface.distance(
+    {7.0, 0.0, 0.0}, {-1.0, 0.0, 0.0}, false, options);
+  const auto counters = stellarcsg::performance_counters_snapshot();
+  check(counters.global_reference_calls == 0,
+    "production forced-general torus records zero global reference calls");
+  const auto tangent = surface.distance(
+    {6.0, -1.23456789, 0.0}, {0.0, 3.0, 0.0}, false, options);
+  check(tangent.found, "forced-general torus finds an exact tangent");
+  if (tangent.found) {
+    check_near(tangent.distance, 1.23456789, 2.0e-8,
+      "forced-general torus exact tangent distance");
+  }
+  const auto coincident_out = surface.distance(
+    {6.0, 0.0, 0.0}, {4.0, 0.0, 0.0}, true, options);
+  check(!coincident_out.found,
+    "forced-general torus coincident outward ray has no later crossing");
+  if (coincident_out.found) {
+    std::cerr << std::setprecision(17)
+              << "coincident outward distance=" << coincident_out.distance
+              << " residual=" << coincident_out.residual << '\n';
+  }
+  const auto coincident_in = surface.distance(
+    {6.0, 0.0, 0.0}, {-4.0, 0.0, 0.0}, true, options);
+  check(coincident_in.found,
+    "forced-general torus coincident inward ray finds the next crossing");
+  if (coincident_in.found) {
+    check_near(coincident_in.distance, 2.0, 2.0e-8,
+      "forced-general torus coincident inward distance");
+  }
+}
+
 void test_moving_axis_and_helical_radius()
 {
   auto data = make_torus_data();
@@ -142,6 +212,32 @@ void test_moving_axis_and_helical_radius()
       6.5 * std::sin(phi), 0.0};
     check(surface.evaluate(outside) > 0.0,
       "moving-axis test point remains outside");
+  }
+
+  const std::vector<stellarcsg::Vec3> origins {
+    {7.0, 0.0, 0.0}, {-7.0, 0.0, 0.0}, {0.0, 7.0, 0.2},
+    {4.2, -4.8, 0.7}, {-4.5, -4.7, -0.6}, {0.2, 0.1, 0.0}};
+  const std::vector<stellarcsg::Vec3> directions {
+    {-1.0, 0.0, 0.0}, {1.0, 0.0, 0.0}, {0.0, -1.0, -0.03},
+    {-0.7, 0.6, -0.2}, {0.5, 0.8, 0.1}, {1.0, 0.2, 0.03}};
+  auto options = stellarcsg::RootSearchOptions {};
+  options.initial_subdivisions = 128;
+  options.max_refinement_levels = 8;
+  for (std::size_t i = 0; i < origins.size(); ++i) {
+    const auto fast = surface.distance(origins[i], directions[i], false, options);
+    const auto oracle = surface.distance_reference(
+      origins[i], directions[i], false, options);
+    check(fast.found == oracle.found,
+      "general-periodic certified path agrees with oracle existence");
+    if (fast.found && oracle.found) {
+      check_near(fast.distance, oracle.distance, 2.0e-8,
+        "general-periodic certified path agrees with oracle distance");
+    }
+    check(fast.root_diagnostics.solver_path
+        == stellarcsg::SolverPath::general_periodic_certified
+        || fast.root_diagnostics.solver_path
+          == stellarcsg::SolverPath::reference_fallback,
+      "general-periodic path records certified solve or explicit fallback");
   }
 }
 
@@ -295,7 +391,15 @@ void test_sha256_known_vector()
 int main()
 {
   try {
+    stellarcsg::reset_performance_counters();
+    stellarcsg::add_performance_counter(
+      stellarcsg::PerformanceCounter::distance_calls, 3);
+    const auto counters = stellarcsg::performance_counters_snapshot();
+    check(counters.distance_calls
+          == (stellarcsg::performance_counters_enabled() ? 3U : 0U),
+      "thread-local performance counters honor their compile-time switch");
     test_compiled_torus();
+    test_torus_forced_through_general_patch_solver();
     test_moving_axis_and_helical_radius();
     test_scale_aware_axisymmetric_detection();
     test_close_root_pair_regressions();

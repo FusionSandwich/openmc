@@ -92,7 +92,11 @@ int main(int argc, char* argv[])
     const std::uint64_t seed = argc > 2
       ? static_cast<std::uint64_t>(std::stoull(argv[2]))
       : 0x5a17c5a5d00d1234ULL;
-    const stellarcsg::CompiledPeriodicSplineSurface surface {torus_data()};
+    const bool force_general = argc > 3 && std::string {argv[3]} == "general";
+    auto surface_data = torus_data();
+    surface_data.force_general_solver = force_general;
+    const stellarcsg::CompiledPeriodicSplineSurface surface {
+      std::move(surface_data)};
     stellarcsg::RootSearchOptions oracle_options;
     oracle_options.initial_subdivisions = 32;
     oracle_options.max_refinement_levels = 4;
@@ -205,7 +209,9 @@ int main(int argc, char* argv[])
     std::cout << std::setprecision(17)
               << "{\n"
               << "  \"schema_version\": 1,\n"
-              << "  \"case\": \"exact_circular_torus\",\n"
+              << "  \"case\": \""
+              << (force_general ? "exact_torus_forced_general_patch"
+                                : "exact_circular_torus") << "\",\n"
               << "  \"seed\": " << seed << ",\n"
               << "  \"randomized_rays\": " << ray_count << ",\n"
               << "  \"adversarial_rays\": " << adversarial_count + 3 << ",\n"

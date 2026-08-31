@@ -46,6 +46,10 @@ option(OPENMC_FORCE_VENDORED_LIBS "Explicitly use submodules defined in 'vendor'
 option(OPENMC_ENABLE_STRICT_FP "Enable strict FP flags to improve test portability"  OFF)
 option(OPENMC_ENABLE_EXPERIMENTAL_STELLARCSG
   "Enable experimental native periodic/swept spline CSG surfaces" OFF)
+option(STELLARCSG_ENABLE_PERFORMANCE_COUNTERS
+  "Enable thread-local experimental StellarCSG performance counters" OFF)
+option(STELLARCSG_VERIFY_FAST_WITH_ORACLE
+  "Sample experimental StellarCSG fast results against the oracle" OFF)
 
 message(STATUS "OPENMC_USE_OPENMP ${OPENMC_USE_OPENMP}")
 message(STATUS "OPENMC_BUILD_TESTS ${OPENMC_BUILD_TESTS}")
@@ -58,6 +62,8 @@ message(STATUS "OPENMC_USE_UWUW ${OPENMC_USE_UWUW}")
 message(STATUS "OPENMC_FORCE_VENDORED_LIBS ${OPENMC_FORCE_VENDORED_LIBS}")
 message(STATUS "OPENMC_ENABLE_STRICT_FP ${OPENMC_ENABLE_STRICT_FP}")
 message(STATUS "OPENMC_ENABLE_EXPERIMENTAL_STELLARCSG ${OPENMC_ENABLE_EXPERIMENTAL_STELLARCSG}")
+message(STATUS "STELLARCSG_ENABLE_PERFORMANCE_COUNTERS ${STELLARCSG_ENABLE_PERFORMANCE_COUNTERS}")
+message(STATUS "STELLARCSG_VERIFY_FAST_WITH_ORACLE ${STELLARCSG_VERIFY_FAST_WITH_ORACLE}")
 
 # Warnings for deprecated options
 foreach(OLD_OPT IN ITEMS "openmp" "profile" "coverage" "dagmc" "libmesh")
@@ -508,6 +514,7 @@ if(OPENMC_ENABLE_EXPERIMENTAL_STELLARCSG)
     dev/stellarcsg/src/swept_coefficient_file.cpp
     dev/stellarcsg/src/compiled_periodic_surface.cpp
     dev/stellarcsg/src/compiled_swept_surface.cpp
+    dev/stellarcsg/src/performance_counters.cpp
     dev/stellarcsg/src/periodic_radial_surface.cpp
     dev/stellarcsg/src/root_solver.cpp
     dev/stellarcsg/src/sha256.cpp
@@ -547,6 +554,14 @@ if(OPENMC_ENABLE_EXPERIMENTAL_STELLARCSG)
   target_compile_definitions(libopenmc
     PRIVATE OPENMC_EXPERIMENTAL_STELLARCSG
     PUBLIC STELLARCSG_HAS_HDF5)
+  if(STELLARCSG_ENABLE_PERFORMANCE_COUNTERS)
+    target_compile_definitions(libopenmc
+      PUBLIC STELLARCSG_ENABLE_PERFORMANCE_COUNTERS)
+  endif()
+  if(STELLARCSG_VERIFY_FAST_WITH_ORACLE)
+    target_compile_definitions(libopenmc
+      PUBLIC STELLARCSG_VERIFY_FAST_WITH_ORACLE)
+  endif()
 endif()
 
 # Set compile flags

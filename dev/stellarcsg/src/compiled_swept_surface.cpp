@@ -1,4 +1,5 @@
 #include "stellarcsg/compiled_swept_surface.hpp"
+#include "stellarcsg/performance_counters.hpp"
 
 #include <algorithm>
 #include <cmath>
@@ -206,6 +207,7 @@ SweptLocalCoordinates CompiledSweptSplineSurface::local_coordinates(
 
 double CompiledSweptSplineSurface::evaluate(const Vec3& point) const
 {
+  add_performance_counter(PerformanceCounter::evaluate_calls);
   if (exact_torus_) return exact_torus_->evaluate(point);
   const auto local = local_coordinates(point);
   const double u = local.u / local.major_radius;
@@ -215,6 +217,7 @@ double CompiledSweptSplineSurface::evaluate(const Vec3& point) const
 
 Vec3 CompiledSweptSplineSurface::normal(const Vec3& point) const
 {
+  add_performance_counter(PerformanceCounter::normal_calls);
   if (exact_torus_) return exact_torus_->normal(point);
   const double h = std::sqrt(std::numeric_limits<double>::epsilon())
                    * data_.characteristic_length;
@@ -232,19 +235,35 @@ DistanceResult CompiledSweptSplineSurface::distance_reference(
   const Vec3& origin, const Vec3& direction, bool coincident,
   const RootSearchOptions& options) const
 {
-  if (exact_torus_) return exact_torus_->distance(origin, direction, coincident, options);
+  add_performance_counter(PerformanceCounter::distance_calls);
+  add_performance_counter(PerformanceCounter::global_reference_calls);
+  if (coincident) add_performance_counter(PerformanceCounter::coincident_cases);
+  [[maybe_unused]] ScopedDistanceTimer timer;
+  if (exact_torus_) {
+    const auto result = exact_torus_->distance(origin, direction, coincident, options);
+    add_performance_counter(result.found ? PerformanceCounter::accepted_roots
+                                         : PerformanceCounter::no_hit_returns);
+    if (result.found) record_residual(result.residual, data_.characteristic_length);
+    return result;
+  }
   const double direction_norm = norm(direction);
   if (!(direction_norm > 0.0)) {
     throw std::invalid_argument("Ray direction must be non-zero");
   }
   const Vec3 u = direction / direction_norm;
   const auto interval = bounds_.ray_interval(origin, u);
-  if (!interval) return {};
+  if (!interval) {
+    add_performance_counter(PerformanceCounter::no_hit_returns);
+    return {};
+  }
   double t_min = std::max(0.0, interval->enter);
   const double push = 8.0 * options.absolute_t_tolerance;
   if (coincident || std::abs(evaluate(origin)) <= options.absolute_f_tolerance)
     t_min = std::max(t_min, push);
-  if (!(interval->exit > t_min)) return {};
+  if (!(interval->exit > t_min)) {
+    add_performance_counter(PerformanceCounter::no_hit_returns);
+    return {};
+  }
   const auto function = [&](double t) { return evaluate(origin + t * u); };
   const auto derivative = [&](double t) {
     const double h = std::sqrt(std::numeric_limits<double>::epsilon())
@@ -253,9 +272,14 @@ DistanceResult CompiledSweptSplineSurface::distance_reference(
   };
   const auto root = find_nearest_root_reference(
     function, derivative, t_min, interval->exit, options);
-  if (!root.found) return {false, std::numeric_limits<double>::infinity(),
-    RootKind::sign_change, std::numeric_limits<double>::infinity(),
-    root.diagnostics};
+  if (!root.found) {
+    add_performance_counter(PerformanceCounter::no_hit_returns);
+    return {false, std::numeric_limits<double>::infinity(),
+      RootKind::sign_change, std::numeric_limits<double>::infinity(),
+      root.diagnostics};
+  }
+  add_performance_counter(PerformanceCounter::accepted_roots);
+  record_residual(root.root.residual, data_.characteristic_length);
   return {true, root.root.t, root.root.kind, root.root.residual,
     root.diagnostics};
 }

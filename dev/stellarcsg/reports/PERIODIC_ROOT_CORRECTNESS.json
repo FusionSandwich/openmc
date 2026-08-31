@@ -1,0 +1,21 @@
+{
+  "schema": "stellarcsg.periodic-root-correctness/v1",
+  "recorded_date": "2026-08-31",
+  "forced_general_exact_torus": {
+    "evidence": "../benchmarks/raw/periodic_forced_general_100k_20260831.json",
+    "randomized_rays": 100000,
+    "adversarial_rays": 4099,
+    "missed_roots": 0,
+    "false_roots": 0,
+    "wrong_nearest_roots": 0,
+    "adversarial_failures": 0,
+    "maximum_distance_error_cm": 5.553125514978774e-9,
+    "maximum_fast_residual_cm": 9.990860164587628e-11,
+    "production_global_reference_calls": 0,
+    "qualification": "PASS_AT_100K_PLUS_ADVERSARIAL"
+  },
+  "target_10m_status": "NOT_RUN",
+  "wistell_random_oracle_campaign": "NOT_RUN",
+  "important_fix": "Periodic patch ownership canonicalizes atan2 theta/phi before membership tests; this fixed a retained near-tangent double-root seed.",
+  "scope": "This report qualifies the forced-general exact-torus corpus only. It does not claim the requested 10^7-ray or real-device oracle campaigns are complete."
+}
