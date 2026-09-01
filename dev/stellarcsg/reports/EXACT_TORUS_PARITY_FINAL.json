@@ -1,0 +1,11 @@
+{
+  "schema": "stellarcsg.exact-torus-parity-final-summary/v1",
+  "protocol": {"hardware": "Intel Core i9-10850K", "threads": 1, "docker_cpu": 2, "histories_per_repetition": 1000000, "measured_repetitions": 21, "order": "fixed-seed randomized balanced", "instrumentation": "disabled"},
+  "builtin_ztorus": {"median_histories_per_s": 696970, "mean_histories_per_s": 704088.3333333334, "iqr_histories_per_s": 42445, "lost_particles": 0},
+  "periodic_exact": {"median_histories_per_s": 711268, "mean_histories_per_s": 702026.4285714285, "iqr_histories_per_s": 29088, "lost_particles": 0},
+  "median_ratio": 1.020514512819777,
+  "bootstrap_ratio_95pct_ci": [0.9716031817616974, 1.032154518146595],
+  "bootstrap_ratio_one_sided_95pct_lower": 0.9764692315295823,
+  "gates": {"hard_ratio_at_least_0_95": "PASS", "one_sided_95pct_noninferiority_margin_0_03": "PASS", "stretch_median_at_least_0_99": "PASS"},
+  "raw": "dev/stellarcsg/benchmarks/raw/composite_blanket_interop/exact_torus_parity_21.json"
+}
