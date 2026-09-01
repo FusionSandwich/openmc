@@ -1,0 +1,86 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://openmc.org/stellarcsg/schema/local_geometry_catalog.schema.json",
+  "title": "Local stellarator model catalog",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema_version", "generated_at", "search_roots", "entries"],
+  "properties": {
+    "schema_version": {"const": "stellarcsg.local-geometry-catalog/v1"},
+    "generated_at": {"type": "string", "format": "date-time"},
+    "search_roots": {"type": "array", "items": {"type": "string"}},
+    "entries": {"type": "array", "items": {"$ref": "#/$defs/entry"}}
+  },
+  "$defs": {
+    "entry": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "configuration_name",
+        "aliases",
+        "device_class",
+        "source_repository",
+        "source_commit",
+        "local_path",
+        "sha256",
+        "file_type",
+        "bytes",
+        "nfp",
+        "modeled_angular_extent",
+        "plasma_available",
+        "coil_available",
+        "blanket_available",
+        "dagmc_h5m_available",
+        "units",
+        "license_evidence",
+        "reuse_evidence",
+        "provenance_confidence",
+        "plasma_coil_same_lineage",
+        "public_fixture_suitability",
+        "local_test_suitability",
+        "qualification_status"
+      ],
+      "properties": {
+        "configuration_name": {"type": "string", "minLength": 1},
+        "aliases": {"type": "array", "items": {"type": "string"}},
+        "device_class": {"type": "string"},
+        "source_repository": {"type": ["string", "null"]},
+        "source_commit": {"type": ["string", "null"], "pattern": "^[0-9a-f]{40}$"},
+        "local_path": {"type": "string", "minLength": 1},
+        "sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+        "file_type": {"type": "string"},
+        "bytes": {"type": "integer", "minimum": 0},
+        "nfp": {"type": ["integer", "null"], "minimum": 1},
+        "nfp_source": {"type": ["string", "null"]},
+        "modeled_angular_extent": {"type": ["string", "null"]},
+        "plasma_available": {"type": "boolean"},
+        "coil_available": {"type": "boolean"},
+        "blanket_available": {"type": "boolean"},
+        "dagmc_h5m_available": {"type": "boolean"},
+        "units": {"type": ["string", "null"]},
+        "license_evidence": {"type": ["string", "null"]},
+        "reuse_evidence": {"type": ["string", "null"]},
+        "provenance_confidence": {"enum": ["high", "medium", "low", "unknown"]},
+        "plasma_coil_same_lineage": {"type": ["boolean", "null"]},
+        "public_fixture_suitability": {"enum": ["yes", "no", "unknown"]},
+        "local_test_suitability": {"enum": ["yes", "no", "unknown"]},
+        "qualification_status": {
+          "enum": [
+            "NOT_ASSESSED",
+            "PASS_SINGLE_CHART",
+            "PASS_MULTI_CHART",
+            "REJECT_THETA_FOLD",
+            "REJECT_PHI_FOLD",
+            "REJECT_R_ZERO",
+            "REJECT_SELF_INTERSECTION",
+            "REJECT_COIL_OVERLAP",
+            "REJECT_FIT_TOLERANCE",
+            "MISSING_MATCHED_INPUT",
+            "LICENSE_BLOCKED"
+          ]
+        },
+        "notes": {"type": "array", "items": {"type": "string"}}
+      }
+    }
+  }
+}

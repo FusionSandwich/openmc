@@ -1,0 +1,263 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://openmc.org/stellarcsg/schema/dual_track_result.schema.json",
+  "title": "StellarCSG neutral dual-track benchmark result",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "run_id",
+    "case_id",
+    "component",
+    "tier",
+    "method",
+    "provenance",
+    "protocol",
+    "accuracy",
+    "performance",
+    "repetitions",
+    "gate_status"
+  ],
+  "properties": {
+    "schema_version": {"const": "stellarcsg.dual-track-result/v1"},
+    "run_id": {"type": "string", "minLength": 1},
+    "case_id": {"type": "string", "minLength": 1},
+    "component": {
+      "enum": ["plasma", "coil", "coil_set", "blanket", "combined", "analytic_control"]
+    },
+    "tier": {
+      "enum": ["geometry_only", "tier2_geometry_dominant", "tier3_materialized"]
+    },
+    "method": {"$ref": "#/$defs/method"},
+    "provenance": {"$ref": "#/$defs/provenance"},
+    "protocol": {"$ref": "#/$defs/protocol"},
+    "accuracy": {"$ref": "#/$defs/accuracy"},
+    "performance": {"$ref": "#/$defs/performance"},
+    "repetitions": {
+      "type": "array",
+      "minItems": 1,
+      "items": {"$ref": "#/$defs/repetition"}
+    },
+    "retained_failures": {
+      "type": "array",
+      "items": {"$ref": "#/$defs/failure"},
+      "default": []
+    },
+    "gate_status": {"enum": ["PASS", "FAIL", "BLOCKED", "NOT_RUN"]},
+    "notes": {"type": "array", "items": {"type": "string"}}
+  },
+  "$defs": {
+    "sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+    "nonnegative": {"type": "number", "minimum": 0},
+    "nullable_nonnegative": {"type": ["number", "null"], "minimum": 0},
+    "method": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "surface_method",
+        "coil_method",
+        "classification_method",
+        "specialization_enabled",
+        "surface_family_enabled"
+      ],
+      "properties": {
+        "surface_method": {
+          "enum": [
+            "none",
+            "builtin_ztorus",
+            "ordinary_dagmc",
+            "double_down_embree",
+            "legacy_periodic_patch_v1",
+            "exact_torus",
+            "revolved_profile_v1",
+            "bezier_atlas_v2",
+            "structured_sector_v1",
+            "algebraic_proxy_v1"
+          ]
+        },
+        "coil_method": {
+          "enum": [
+            "none",
+            "builtin_ztorus",
+            "ordinary_dagmc",
+            "double_down_embree",
+            "legacy_swept_span_v1",
+            "exact_planar_swept",
+            "shared_coil_set_bvh",
+            "coil_biarc_v1",
+            "coil_bezier_tube_v2",
+            "optional_embree_curve_reference"
+          ]
+        },
+        "classification_method": {"type": "string", "minLength": 1},
+        "specialization_enabled": {"type": "boolean"},
+        "surface_family_enabled": {"type": "boolean"}
+      }
+    },
+    "provenance": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "track",
+        "build_commit",
+        "harness_commit",
+        "source_geometry_hash",
+        "compiled_geometry_hash",
+        "binary_hash",
+        "hardware",
+        "cpu_affinity",
+        "thread_count",
+        "build_flags",
+        "libraries"
+      ],
+      "properties": {
+        "track": {"enum": ["track_a", "track_b", "neutral_control"]},
+        "build_commit": {"type": "string", "pattern": "^[0-9a-f]{40}$"},
+        "harness_commit": {"type": "string", "pattern": "^[0-9a-f]{40}$"},
+        "source_geometry_hash": {"$ref": "#/$defs/sha256"},
+        "compiled_geometry_hash": {"$ref": "#/$defs/sha256"},
+        "source_bank_hash": {"anyOf": [{"$ref": "#/$defs/sha256"}, {"type": "null"}]},
+        "binary_hash": {"$ref": "#/$defs/sha256"},
+        "h5m_hash": {"anyOf": [{"$ref": "#/$defs/sha256"}, {"type": "null"}]},
+        "hardware": {"type": "string", "minLength": 1},
+        "cpu_affinity": {"type": "string", "minLength": 1},
+        "thread_count": {"type": "integer", "minimum": 1},
+        "build_flags": {"type": "array", "items": {"type": "string"}},
+        "libraries": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": ["name", "version", "sha256"],
+            "properties": {
+              "name": {"type": "string"},
+              "version": {"type": "string"},
+              "sha256": {"$ref": "#/$defs/sha256"}
+            }
+          }
+        }
+      }
+    },
+    "protocol": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "warmups",
+        "measured_repetitions",
+        "order_policy",
+        "particles",
+        "batches",
+        "seed",
+        "tolerance_cm"
+      ],
+      "properties": {
+        "warmups": {"type": "integer", "minimum": 1},
+        "measured_repetitions": {"type": "integer", "minimum": 7},
+        "order_policy": {"enum": ["randomized", "balanced"]},
+        "particles": {"type": "integer", "minimum": 1},
+        "batches": {"type": "integer", "minimum": 1},
+        "seed": {"type": "integer", "minimum": 1},
+        "tolerance_cm": {"type": "number", "exclusiveMinimum": 0},
+        "common_source_bank": {"type": "boolean", "const": true}
+      }
+    },
+    "accuracy": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "classification_disagreements",
+        "wrong_roots",
+        "missed_roots",
+        "false_hits",
+        "lost_particles"
+      ],
+      "properties": {
+        "classification_disagreements": {"type": "integer", "minimum": 0},
+        "wrong_roots": {"type": "integer", "minimum": 0},
+        "missed_roots": {"type": "integer", "minimum": 0},
+        "false_hits": {"type": "integer", "minimum": 0},
+        "lost_particles": {"type": "integer", "minimum": 0},
+        "root_distance_max_cm": {"$ref": "#/$defs/nullable_nonnegative"},
+        "hausdorff_two_sided_cm": {"$ref": "#/$defs/nullable_nonnegative"},
+        "surface_distance_rms_cm": {"$ref": "#/$defs/nullable_nonnegative"},
+        "surface_distance_p95_cm": {"$ref": "#/$defs/nullable_nonnegative"},
+        "normal_angle_max_deg": {"$ref": "#/$defs/nullable_nonnegative"},
+        "surface_area_relative_error": {"$ref": "#/$defs/nullable_nonnegative"},
+        "volume_relative_error": {"$ref": "#/$defs/nullable_nonnegative"},
+        "field_period_seam_error_cm": {"$ref": "#/$defs/nullable_nonnegative"},
+        "minimum_nested_separation_cm": {"type": ["number", "null"]},
+        "minimum_coil_clearance_cm": {"type": ["number", "null"]},
+        "leakage_current_relative_closure": {"$ref": "#/$defs/nullable_nonnegative"}
+      }
+    },
+    "performance": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["summary", "counters"],
+      "properties": {
+        "summary": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["median", "mean", "iqr", "coefficient_of_variation", "bootstrap_ratio_interval_95"],
+          "properties": {
+            "median": {"$ref": "#/$defs/nonnegative"},
+            "mean": {"$ref": "#/$defs/nonnegative"},
+            "iqr": {"$ref": "#/$defs/nonnegative"},
+            "coefficient_of_variation": {"$ref": "#/$defs/nonnegative"},
+            "bootstrap_ratio_interval_95": {
+              "type": "array",
+              "prefixItems": [{"type": "number"}, {"type": "number"}],
+              "items": false
+            },
+            "units": {"enum": ["histories/s", "ns/distance_call"]}
+          }
+        },
+        "counters": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "distance_calls_per_history": {"$ref": "#/$defs/nullable_nonnegative"},
+            "classification_calls_per_history": {"$ref": "#/$defs/nullable_nonnegative"},
+            "crossings_per_history": {"$ref": "#/$defs/nullable_nonnegative"},
+            "geometry_cpu_fraction": {"type": ["number", "null"], "minimum": 0, "maximum": 1},
+            "candidate_nodes_median": {"$ref": "#/$defs/nullable_nonnegative"},
+            "candidate_patches_median": {"$ref": "#/$defs/nullable_nonnegative"},
+            "candidate_patches_p99": {"$ref": "#/$defs/nullable_nonnegative"},
+            "newton_corrections_median": {"$ref": "#/$defs/nullable_nonnegative"},
+            "newton_corrections_p99": {"$ref": "#/$defs/nullable_nonnegative"},
+            "local_fallback_frequency": {"type": ["number", "null"], "minimum": 0, "maximum": 1},
+            "production_broad_oracle_calls": {"type": ["integer", "null"], "minimum": 0},
+            "initialization_seconds": {"$ref": "#/$defs/nullable_nonnegative"},
+            "active_transport_seconds": {"$ref": "#/$defs/nullable_nonnegative"},
+            "total_wall_seconds": {"$ref": "#/$defs/nullable_nonnegative"},
+            "peak_rss_bytes": {"type": ["integer", "null"], "minimum": 0}
+          }
+        }
+      }
+    },
+    "repetition": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["index", "order_index", "histories_per_s", "active_transport_seconds", "total_wall_seconds"],
+      "properties": {
+        "index": {"type": "integer", "minimum": 0},
+        "order_index": {"type": "integer", "minimum": 0},
+        "histories_per_s": {"$ref": "#/$defs/nonnegative"},
+        "active_transport_seconds": {"$ref": "#/$defs/nonnegative"},
+        "total_wall_seconds": {"$ref": "#/$defs/nonnegative"},
+        "peak_rss_bytes": {"type": ["integer", "null"], "minimum": 0}
+      }
+    },
+    "failure": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["failure_id", "kind", "seed", "artifact"],
+      "properties": {
+        "failure_id": {"type": "string"},
+        "kind": {"enum": ["wrong_root", "missed_root", "false_hit", "lost_particle", "fallback", "other"]},
+        "seed": {"type": "integer", "minimum": 0},
+        "artifact": {"type": "string", "minLength": 1}
+      }
+    }
+  }
+}
