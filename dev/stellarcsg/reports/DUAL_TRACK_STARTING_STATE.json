@@ -1,0 +1,122 @@
+{
+  "schema": "stellarcsg.dual-track-starting-state/v1",
+  "recorded_at": "2026-09-01T00:22:00-04:00",
+  "repository": "FusionSandwich/openmc",
+  "branch": "codex/stellarcsg-legacy-v2-20260901",
+  "starting_sha": "3041a938c3fb0bc349654f37b0b3ebcd3cd5a9bb",
+  "current_sha_after_neutral_harness_cherry_picks": "18f5f1e37ae6f89a90e02cc3d631841d19474861",
+  "git_status": "clean",
+  "qualified_ancestor": true,
+  "archives": {
+    "archive/stellarcsg-composite-3041a938-20260901": "3041a938c3fb0bc349654f37b0b3ebcd3cd5a9bb",
+    "archive/stellarcsg-qualified-c67b68fd-20260831": "c67b68fdaf7be2049308db7da449f14a25123847",
+    "archive/stellarcsg-torus-fastpath-c0290b-20260901": "c0290b257e879d16762b072e0b6ee3e43a519e8e"
+  },
+  "neutral_harness": {
+    "source_branch": "codex/stellarcsg-ab-benchmark-20260901",
+    "source_commits": [
+      "6ad611c7948cd615cc76fec144d82d10d1ba92d4",
+      "7f41b6bf6c41ef13b843200669cc98e4329ef7b9"
+    ],
+    "content_policy": "cherry-picked byte-for-byte; no algorithm code included"
+  },
+  "host": {
+    "operating_system": "Microsoft Windows 11 Home 10.0.26200",
+    "container_operating_system": "Ubuntu 24.04.2 LTS",
+    "cpu": "Intel(R) Core(TM) i9-10850K CPU @ 3.60GHz",
+    "physical_cores": 10,
+    "logical_processors": 20,
+    "cpu_affinity_mask": "0xFFFFF",
+    "total_ram_gib": 31.91,
+    "free_ram_gib_at_audit": 5.24,
+    "system_and_target_drive_free_gib": 73.6,
+    "data_drive_free_gib": 102.11,
+    "significant_processes": [
+      "Codex/ChatGPT desktop",
+      "OneDrive synchronization",
+      "Docker Desktop backend",
+      "Chrome",
+      "unrelated Git/Python test processes"
+    ],
+    "timing_policy": "Accept performance samples only after unrelated CPU and synchronization load is quiescent; one thread and fixed affinity first."
+  },
+  "toolchain": {
+    "windows_git": "2.55.0.windows.3",
+    "windows_cmake": "4.4.0",
+    "windows_python": "3.12.10",
+    "windows_docker": "29.7.2",
+    "container_image": "parastell-openmc:0.16.0",
+    "container_image_id": "sha256:ca0c3b1fba39ce27af6ebdb79df14795041922e72521f232cdd770ff1c416191",
+    "container_image_bytes": 4008320326,
+    "c_compiler": "conda-forge GCC 15.2.0",
+    "cxx_compiler": "Ubuntu G++ 13.3.0",
+    "linker": "GNU ld 2.42",
+    "cmake": "4.2.3",
+    "python": "3.12.13",
+    "openmc_python_package": "0.15.3",
+    "openmc_source_commit": "3041a938c3fb0bc349654f37b0b3ebcd3cd5a9bb",
+    "h5py": "3.13.0",
+    "hdf5": "1.14.3",
+    "dagmc": "3.2.4",
+    "moab": "5.5.1",
+    "double_down": "1.1.0 with retained Embree-4 context patch",
+    "embree": "4.3.0"
+  },
+  "libraries": {
+    "embree_sha256": "1b059d513d488cbc9d96e53522d2a3b7ac05f5969b69d334c367e76603ad8ee9",
+    "double_down_sha256": "be101019145963ec399ee7b8fce18e12a26b0ef50c9524bf68f5696e23e84632",
+    "dagmc_obb_sha256": "9e28c2e28282781f35a73e4bd507afbaba2a57e460eeceece37ff223455f6ee0",
+    "dagmc_double_down_sha256": "16140ca391793c7778cc3c4a2e1a4f27db6f29773ce86be741cfce31f92d2cfe"
+  },
+  "build_flags": {
+    "common": [
+      "Release",
+      "-O3",
+      "-DNDEBUG",
+      "OpenMP ON",
+      "MPI OFF",
+      "strict FP OFF",
+      "profiling OFF"
+    ],
+    "experimental_default": "OPENMC_ENABLE_EXPERIMENTAL_STELLARCSG=OFF",
+    "research_builds": "OPENMC_ENABLE_EXPERIMENTAL_STELLARCSG=ON",
+    "ordinary_dagmc": "DAGMC ON, DOUBLE_DOWN OFF",
+    "double_down": "DAGMC ON, DOUBLE_DOWN ON, Embree 4.3.0"
+  },
+  "source_data": [
+    {
+      "path": "dev/stellarcsg/test_data/wistell_d/wout_wistell-d.nc",
+      "bytes": 4626928,
+      "sha256": "9231969001203a8133255ee0a275bf552b114cc12524dda0608ab2f12047f7ac"
+    },
+    {
+      "path": "dev/stellarcsg/test_data/wistell_d/coils.wistell-d",
+      "bytes": 1737790,
+      "sha256": "7748369407d28a70f35b5c4a7c0ab860495a08fd0030002112ea933fe570159b"
+    },
+    {
+      "path": "dev/stellarcsg/qualified/wistell_d_periodic_surfaces.h5",
+      "bytes": 4791296,
+      "sha256": "52695c3c6a7329faccdd009f1179c50c91e24c8902447356d3b2cd77c7f9ca36"
+    },
+    {
+      "path": "dev/stellarcsg/qualified/wistell_d_swept_coils.h5",
+      "bytes": 1280000,
+      "sha256": "caeed2e41da2082b93d32758e40932d9ac268966998dc2664e8164cb8cb7a89b"
+    }
+  ],
+  "acquisition_and_build_preflight": {
+    "software_download_install_or_upgrade_planned": false,
+    "planned_network_bytes": 0,
+    "planned_generated_bytes_upper_bound": 8589934592,
+    "target": "ignored build directories in this isolated worktree",
+    "why_existing_outputs_are_insufficient": "Fresh branch-bound binary hashes and baseline evidence are required before algorithm changes.",
+    "rollback": "Remove only verified generated build directories in this competition worktree; preserve dependencies, source fixtures, reports, archives, and all other worktrees."
+  },
+  "preservation": {
+    "qualified_branch_modified": false,
+    "archive_branches_modified": false,
+    "default_branches_modified": false,
+    "pull_request_created": false
+  }
+}
