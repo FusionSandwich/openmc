@@ -1,0 +1,179 @@
+{
+  "schema": "stellarcsg.native-csg-blanket-family/v1",
+  "method": "direct native physical-normal periodic CSG; no ParaStell/CAD/Gmsh/MOAB/DAGMC in generation",
+  "layers": [
+    {
+      "name": "tungsten_armor",
+      "thickness_cm": 0.5
+    },
+    {
+      "name": "first_wall",
+      "thickness_cm": 10.0
+    },
+    {
+      "name": "breeding_blanket",
+      "thickness_cm": 55.0
+    },
+    {
+      "name": "back_wall",
+      "thickness_cm": 10.0
+    },
+    {
+      "name": "shield",
+      "thickness_cm": 30.0
+    },
+    {
+      "name": "vacuum_vessel",
+      "thickness_cm": 30.0
+    }
+  ],
+  "total_requested_thickness_cm": 135.5,
+  "source": {
+    "wistell_payload": "dev/stellarcsg/qualified/wistell_d_periodic_surfaces.h5",
+    "wistell_payload_sha256": "52695c3c6a7329faccdd009f1179c50c91e24c8902447356d3b2cd77c7f9ca36"
+  },
+  "families": {
+    "exact_torus": [
+      {
+        "name": "torus_lcfs",
+        "content_id": "sha256:d61f73428c69f035995624becf4fec0526d5570be98e01d1f9c9f5f51c96424e",
+        "volume_cm3": 98696044.01089358,
+        "minimum_jacobian_cm2": 40000.747133302655,
+        "minimum_sampled_separation_cm": null,
+        "maximum_sampled_separation_cm": null,
+        "field_period_seam_closure_cm": 0.0
+      },
+      {
+        "name": "tungsten_armor",
+        "content_id": "sha256:8e7a0d5b983a873d1b2f827ad6c7fdae7c1c0ff6d4ebdd97fb95e48560218ad7",
+        "volume_cm3": 99685471.8521027,
+        "minimum_jacobian_cm2": 40150.50462331399,
+        "minimum_sampled_separation_cm": 0.49999999999944916,
+        "maximum_sampled_separation_cm": 0.5000000000003557,
+        "field_period_seam_closure_cm": 0.0
+      },
+      {
+        "name": "first_wall",
+        "content_id": "sha256:e00156c81e3f641c0daeea5a47eb9c5a41bd4b7145cb14b1ead1556488129f9c",
+        "volume_cm3": 120510337.13840117,
+        "minimum_jacobian_cm2": 43040.662268440814,
+        "minimum_sampled_separation_cm": 9.999999999999597,
+        "maximum_sampled_separation_cm": 10.000000000000375,
+        "field_period_seam_closure_cm": 0.0
+      },
+      {
+        "name": "breeding_blanket",
+        "content_id": "sha256:fb8cfd49269bcf570de6a26d9a0317dbec7b2fdac5ee8a31fc5f3a05ee1cbe81",
+        "volume_cm3": 270330931.9469375,
+        "minimum_jacobian_cm2": 55361.79641679428,
+        "minimum_sampled_separation_cm": 54.99999999999964,
+        "maximum_sampled_separation_cm": 55.000000000000334,
+        "field_period_seam_closure_cm": 0.0
+      },
+      {
+        "name": "back_wall",
+        "content_id": "sha256:fbc3908524fe0597b068e3c586acc2881f5a07f70e36997f52fbf61aaf489b8e",
+        "volume_cm3": 303986282.95465225,
+        "minimum_jacobian_cm2": 56952.05118925048,
+        "minimum_sampled_separation_cm": 9.999999999999606,
+        "maximum_sampled_separation_cm": 10.00000000000039,
+        "field_period_seam_closure_cm": 0.0
+      },
+      {
+        "name": "shield",
+        "content_id": "sha256:d420bf28b4f608ab75b271a09c88e6dee9357ca08724114baa33f33b4ab22516",
+        "volume_cm3": 416795861.25910336,
+        "minimum_jacobian_cm2": 60522.90516261543,
+        "minimum_sampled_separation_cm": 29.999999999999584,
+        "maximum_sampled_separation_cm": 30.00000000000036,
+        "field_period_seam_closure_cm": 0.0
+      },
+      {
+        "name": "vacuum_vessel",
+        "content_id": "sha256:67d7b962a5aa397537e8d5580fe6b6b407f85b9ddd8daaa68e655c771a75d60a",
+        "volume_cm3": 547370727.4855156,
+        "minimum_jacobian_cm2": 62293.893619974886,
+        "minimum_sampled_separation_cm": 29.999999999999638,
+        "maximum_sampled_separation_cm": 30.0000000000004,
+        "field_period_seam_closure_cm": 0.0
+      }
+    ],
+    "WISTELL-D": [
+      {
+        "name": "wistell_d_lcfs",
+        "content_id": "sha256:0d299bcfa901c5c5572abee7926ba9814b4220e96721c5e5c5c680aff3584f26",
+        "volume_cm3": 438763890.30112725,
+        "minimum_jacobian_cm2": 51829.88113400782,
+        "minimum_sampled_separation_cm": null,
+        "maximum_sampled_separation_cm": null,
+        "field_period_seam_closure_cm": 0.0
+      },
+      {
+        "name": "tungsten_armor",
+        "content_id": "sha256:d522e2e835ff7148b0b2fe8757490d801160cd6f1a80f0eae5aed1d999791452",
+        "volume_cm3": 442355770.4035826,
+        "minimum_jacobian_cm2": 52389.746941747595,
+        "minimum_sampled_separation_cm": 0.36671413036728956,
+        "maximum_sampled_separation_cm": 2.8546954454918962,
+        "field_period_seam_closure_cm": 0.0
+      },
+      {
+        "name": "first_wall",
+        "content_id": "sha256:f51cc11732432e40371b26c17b693c85eca677f24d5ee60e065790c3a334d5c3",
+        "volume_cm3": 515973731.7805988,
+        "minimum_jacobian_cm2": 63482.14408203368,
+        "minimum_sampled_separation_cm": 7.391370939285407,
+        "maximum_sampled_separation_cm": 50.059437144435265,
+        "field_period_seam_closure_cm": 0.0
+      },
+      {
+        "name": "breeding_blanket",
+        "content_id": "sha256:b1f5a1a632a7c8e114754544f8562fabdcb18830fc24d5db78c49c869694225f",
+        "volume_cm3": 981331883.3943433,
+        "minimum_jacobian_cm2": 120910.42946161344,
+        "minimum_sampled_separation_cm": 39.92888619484856,
+        "maximum_sampled_separation_cm": 158.3092135724624,
+        "field_period_seam_closure_cm": 0.0
+      },
+      {
+        "name": "back_wall",
+        "content_id": "sha256:40a6efbec8a7258181d272a6ec2e6320ec03f7b406279eedf114d4a3f1b487c9",
+        "volume_cm3": 1076767845.571485,
+        "minimum_jacobian_cm2": 130700.23843468858,
+        "minimum_sampled_separation_cm": 6.764880555159918,
+        "maximum_sampled_separation_cm": 23.76895704390822,
+        "field_period_seam_closure_cm": 0.0
+      },
+      {
+        "name": "shield",
+        "content_id": "sha256:582308d24d29f664432473062612ac6b30b5b8d4464d4b1accb6a4b07c8b893c",
+        "volume_cm3": 1383430541.1506603,
+        "minimum_jacobian_cm2": 156766.85214439797,
+        "minimum_sampled_separation_cm": 19.823568858029752,
+        "maximum_sampled_separation_cm": 62.7333067686853,
+        "field_period_seam_closure_cm": 0.0
+      },
+      {
+        "name": "vacuum_vessel",
+        "content_id": "sha256:d20417e4bb324f2c1e401730fa55f24cda8d1fb22e7ceb3e5a69b04fffb5ef80",
+        "volume_cm3": 1720516690.430227,
+        "minimum_jacobian_cm2": 165064.85291300705,
+        "minimum_sampled_separation_cm": 19.10598705682225,
+        "maximum_sampled_separation_cm": 54.70270223519479,
+        "field_period_seam_closure_cm": 0.0
+      }
+    ]
+  },
+  "payload": "dev/stellarcsg/qualified/composite_blanket_families.h5",
+  "plots": [
+    "dev/stellarcsg/plots/composite_blanket_interop/blanket_family_poloidal_sections.png",
+    "dev/stellarcsg/plots/composite_blanket_interop/blanket_normal_offset_thickness_maps.png"
+  ],
+  "gates": {
+    "strict_nesting": "PASS",
+    "positive_jacobian": "PASS",
+    "field_period_seam_closure": "PASS",
+    "self_intersection": "PASS_SAMPLED_AND_COMPILER_CHECKS",
+    "coil_clearance": "NOT_RUN_REQUIRES_COMBINED_ENVELOPE"
+  }
+}
