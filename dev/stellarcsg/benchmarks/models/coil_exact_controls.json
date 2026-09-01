@@ -1,0 +1,25 @@
+{
+  "schema": "stellarcsg.coil-exact-controls/v1",
+  "C0": {
+    "description": "planar circular centerline with circular cross section",
+    "major_radius_cm": 500.0,
+    "minor_radius_cm": 25.0,
+    "source_point_cm": [500.0, 0.0, 0.0],
+    "outer_boundary": "sphere radius 1000 cm",
+    "seed": 918273645,
+    "histories": 1000000,
+    "cases": {
+      "C0a": {"method": "ordinary built-in CSG", "model": "builtin_coil/model.xml", "surface": "ZTorus"},
+      "C0b": {"method": "native custom CSG exact specialization", "model": "swept_coil/model.xml", "solver": "auto"},
+      "C0c": {"method": "native custom CSG forced-general", "model": "swept_coil_forced_general/model.xml", "solver": "general"},
+      "C0d": {"method": "ordinary DAGMC", "geometry": "dev/stellarcsg/qualified/dagmc_exact_torus_fine.h5m"},
+      "C0e": {"method": "Double Down/Embree DAGMC", "geometry": "dev/stellarcsg/qualified/dagmc_exact_torus_fine.h5m"}
+    },
+    "invariants": [
+      "identical source and outer boundary",
+      "shared openmc::torus_distance root control for C0a and C0b",
+      "production global oracle calls equal zero",
+      "lost particles equal zero"
+    ]
+  }
+}
