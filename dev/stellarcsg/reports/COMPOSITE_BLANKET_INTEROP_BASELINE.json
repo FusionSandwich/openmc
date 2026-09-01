@@ -1,0 +1,76 @@
+{
+  "schema": "stellarcsg.composite-blanket-interop-baseline/v1",
+  "recorded_at": "2026-08-31T22:52:00-04:00",
+  "source_sha": "c0290b257e879d16762b072e0b6ee3e43a519e8e",
+  "branch": "codex/stellarcsg-composite-blanket-interoperability-20260901",
+  "status": "CORRECTNESS_REPRODUCED_PERFORMANCE_RETAINED_TIMING_DEFERRED",
+  "correctness": {
+    "standalone_release_ctest": {"passed": 2, "failed": 0},
+    "gcc_asan_ubsan_ctest": {"passed": 2, "failed": 0},
+    "python_pytest": {"passed": 14, "failed": 0},
+    "openmc_obb_adapter_ctest": {"passed": 1, "failed": 0},
+    "openmc_double_down_adapter_ctest": {"passed": 1, "failed": 0},
+    "default_experimental_off_build": "PASS",
+    "default_off_builtin_torus_smoke": {"status": "PASS", "histories": 1000000, "lost_particles": 0},
+    "ordinary_dagmc_linked_native_smoke": {"status": "PASS", "histories": 10000, "lost_particles": 0},
+    "double_down_embree_linked_native_smoke": {"status": "PASS", "histories": 10000, "lost_particles": 0}
+  },
+  "binaries": {
+    "ordinary_dagmc_openmc_sha256": "e50fe6f5148de059208159739e4fe0a3be72eff0c74add5a1eb7142ae5ce5a65",
+    "double_down_openmc_sha256": "8908cc37fcce95b3c3f24432bdeb3b4ebc0bafc81c4ac6bf0ae1114bd0b0a639",
+    "default_off_openmc_sha256": "030705771f56096e1f4371c2572c15d53c4772305be8299254060d8edbefc3f6",
+    "double_down_runtime_linkage": ["libdagmc.so", "libdd.so", "libembree4.so.4", "libMOAB.so.5"]
+  },
+  "accepted_exact_torus_reference": {
+    "protocol": "one pinned CPU, one OpenMP thread, 1000000 histories, one warm-up, seven randomized measured repetitions",
+    "builtin_raw_histories_per_s": [744125, 752371, 758942, 757541, 749465, 697720, 749597],
+    "periodic_raw_histories_per_s": [755835, 730255, 756749, 725579, 721668, 726744, 733008],
+    "builtin_median_histories_per_s": 749597,
+    "periodic_median_histories_per_s": 730255,
+    "periodic_over_builtin": 0.9741968017481394,
+    "hard_gate": 0.95,
+    "hard_gate_status": "PASS",
+    "raw_path": "dev/stellarcsg/benchmarks/raw/torus_class/exact_torus_fastpath_openmc_20260901.json"
+  },
+  "retained_single_planar_coil_reference": {
+    "protocol": "one OpenMP thread, 1000000 histories, five measured repetitions",
+    "builtin_median_histories_per_s": 929676,
+    "swept_median_histories_per_s": 384171,
+    "swept_over_builtin": 0.41323106114388236,
+    "classification": "pre-native-adapter-fastpath reference; standalone compiled swept surface already selected exact torus internally",
+    "raw_path": "dev/stellarcsg/reports/OPENMC_SPEED_RESULTS.json"
+  },
+  "retained_wistell_48_coil_reference": {
+    "protocol": "one pinned CPU, one OpenMP thread, 100000 histories, seven measured repetitions",
+    "native_raw_histories_per_s": [282641, 290018, 293974, 285629, 276564, 289656, 294127],
+    "native_median_histories_per_s": 289656,
+    "ordinary_dagmc_coarse_median_histories_per_s": 69868.9,
+    "ordinary_dagmc_fine_median_histories_per_s": 49189.5,
+    "native_over_fine_dagmc": 5.888573780989845,
+    "lost_particles": 0,
+    "raw_path": "dev/stellarcsg/benchmarks/raw/wistell_coil_set_openmc_20260831.json"
+  },
+  "current_timing_rerun": {
+    "status": "DEFERRED_CONTAMINATION_GUARD",
+    "reason": "An unrelated WSL DPA calculation and four broad filesystem searches remained active. No contaminated performance sample was accepted.",
+    "required_follow_up": ["exact torus paired rerun", "single planar coil rerun", "48-coil native rerun"]
+  },
+  "call_graph": {
+    "periodic_spline": {
+      "construction": "read HDF5 -> compile -> detect exact circular torus -> cache major/minor/z parameters",
+      "evaluate": "native exact algebra when specialized; otherwise CompiledPeriodicSplineSurface::evaluate",
+      "distance": "native exact openmc::torus_distance when specialized; otherwise compiled patch solver or explicit reference solver",
+      "normal": "native exact algebra when specialized; otherwise compiled surface normal"
+    },
+    "swept_spline": {
+      "construction": "read one swept payload or dataset collection -> compile surface or top-level coil-set BVH",
+      "evaluate": "adapter virtual call -> compiled swept surface/set; an exact planar circle currently delegates through an internal CompiledPeriodicSplineSurface",
+      "distance": "adapter creates RootSearchOptions per call -> compiled swept surface/set; exact planar circle currently reaches the quartic kernel only through two compiled wrappers",
+      "normal": "adapter -> compiled swept surface/set; exact planar circle currently reaches torus algebra through the internal wrapper"
+    },
+    "ztorus": "SurfaceZTorus::distance subtracts its center and calls the shared openmc::torus_distance quartic kernel.",
+    "ordinary_csg": "Cell::contains/Region::evaluate obtains half-space senses from Surface::evaluate; Region::distance dispatches to each candidate Surface::distance; universe fills apply supported cell transforms.",
+    "dagmc": "DAGMCUniverse owns DAGMC cells and delegates geometry queries to DAGMC/MOAB; a CSG cell may fill a DAGMC universe, while transformed DAGMC cells are explicitly rejected by the current architecture."
+  },
+  "baseline_freeze_boundary": "No source implementation changed before this record. Performance reruns remain mandatory before accepting performance-dependent gates."
+}

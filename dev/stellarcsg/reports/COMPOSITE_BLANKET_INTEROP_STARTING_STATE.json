@@ -1,0 +1,155 @@
+{
+  "schema": "stellarcsg.composite-blanket-interop-starting-state/v1",
+  "recorded_at": "2026-08-31T22:30:00-04:00",
+  "repository": "FusionSandwich/openmc",
+  "remote": "https://github.com/FusionSandwich/openmc.git",
+  "work_branch": "codex/stellarcsg-composite-blanket-interoperability-20260901",
+  "work_branch_starting_sha": "c0290b257e879d16762b072e0b6ee3e43a519e8e",
+  "fastpath_archive": {
+    "ref": "archive/stellarcsg-torus-fastpath-c0290b-20260901",
+    "local_tracking_sha": "c0290b257e879d16762b072e0b6ee3e43a519e8e",
+    "remote_sha": "c0290b257e879d16762b072e0b6ee3e43a519e8e"
+  },
+  "qualified_archive": {
+    "ref": "archive/stellarcsg-qualified-c67b68fd-20260831",
+    "remote_sha": "c67b68fdaf7be2049308db7da449f14a25123847"
+  },
+  "starting_head_descends_from_fastpath": true,
+  "git_status_before_edits": "clean",
+  "preservation": {
+    "default_branches_modified": false,
+    "qualified_branch_modified": false,
+    "archive_branches_modified": false,
+    "pull_request_created": false,
+    "experimental_option_default": "OPENMC_ENABLE_EXPERIMENTAL_STELLARCSG=OFF"
+  },
+  "host": {
+    "computer": "VENGEANCE",
+    "operating_system": "Microsoft Windows 11 Home 10.0.26200",
+    "cpu": "Intel(R) Core(TM) i9-10850K CPU @ 3.60GHz",
+    "physical_cores": 10,
+    "logical_processors": 20,
+    "total_ram_gib": 31.91,
+    "free_ram_gib_at_audit": 5.56,
+    "system_drive_free_gib": 77.91,
+    "data_drive_free_gib": 102.72,
+    "running_containers": 0,
+    "unrelated_compute_observed": "An existing WSL-hosted DPA response-library process and several unrelated broad filesystem searches were present; they are not controlled by this task and must finish before qualified performance timing.",
+    "significant_processes": [
+      "Codex/ChatGPT desktop processes",
+      "OneDrive synchronization",
+      "Docker Desktop backend",
+      "Chrome",
+      "unrelated WSL DPA response-library process",
+      "unrelated repository/filesystem searches"
+    ],
+    "timing_policy": "Accept performance samples only with no unrelated Docker or CPU-intensive user workload; use Docker --cpuset-cpus=2 and OMP_NUM_THREADS=1 for primitive qualification."
+  },
+  "toolchains": {
+    "windows": {
+      "git": "2.55.0.windows.3",
+      "cmake": "4.4.0",
+      "python": "3.12.10",
+      "docker": "29.7.2"
+    },
+    "pinned_container": {
+      "image": "parastell-openmc:0.16.0",
+      "image_id": "sha256:ca0c3b1fba39ce27af6ebdb79df14795041922e72521f232cdd770ff1c416191",
+      "os": "Ubuntu 24.04.2 LTS",
+      "cmake": "4.2.3",
+      "c_compiler": "conda-forge GCC 15.2.0",
+      "cxx_compiler": "Ubuntu G++ 13.3.0",
+      "python": "3.12.13",
+      "openmc_python": "0.16.0",
+      "hdf5_python": "h5py 3.13.0",
+      "dagmc": "3.2.4",
+      "moab": "5.5.1"
+    }
+  },
+  "matched_dependencies": {
+    "source_worktree": "C:/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/openmc-stellarcsg-torus-class",
+    "embree": {
+      "version": "4.3.0",
+      "path": "build/torus-class-deps/prefix/embree/lib/libembree4.so.4",
+      "sha256": "1b059d513d488cbc9d96e53522d2a3b7ac05f5969b69d334c367e76603ad8ee9"
+    },
+    "double_down": {
+      "version": "1.1.0 with retained Embree-4 context patch",
+      "path": "build/torus-class-deps/prefix/double-down/lib/libdd.so",
+      "sha256": "be101019145963ec399ee7b8fce18e12a26b0ef50c9524bf68f5696e23e84632"
+    },
+    "dagmc_obb": {
+      "version": "3.2.4",
+      "path": "build/torus-class-deps/prefix/dagmc-obb/lib/libdagmc.so",
+      "sha256": "9e28c2e28282781f35a73e4bd507afbaba2a57e460eeceece37ff223455f6ee0"
+    },
+    "dagmc_double_down": {
+      "version": "3.2.4",
+      "path": "build/torus-class-deps/prefix/dagmc-doubledown/lib/libdagmc.so",
+      "sha256": "16140ca391793c7778cc3c4a2e1a4f27db6f29773ce86be741cfce31f92d2cfe"
+    },
+    "moab": {
+      "version": "5.5.1",
+      "path": "/opt/conda/envs/parastell_damage/lib/libMOAB.so.5"
+    },
+    "openmc_obb_lib_sha256": "41093aadd48aa46cb17127c898723c885096e6fd1fe5308a78a624bd80cf0cdc",
+    "openmc_double_down_lib_sha256": "144e979d7302258131df03cdd6d1e25c6d9e989b903129bde96c7242e31fbf59"
+  },
+  "build_flags": {
+    "common": ["Release", "-O3", "-DNDEBUG", "OpenMP ON", "MPI OFF", "strict FP OFF", "profiling OFF"],
+    "experimental_enabled_research_builds": true,
+    "ordinary_dagmc_build": "DAGMC ON, DOUBLE_DOWN OFF",
+    "double_down_build": "DAGMC ON, DOUBLE_DOWN ON, Embree 4.3.0",
+    "default_off_validation": "OPENMC_ENABLE_EXPERIMENTAL_STELLARCSG=OFF"
+  },
+  "existing_local_capabilities": {
+    "container_images": [
+      "parastell-openmc:0.16.0",
+      "silkeh/clang:18",
+      "python:3.12-slim"
+    ],
+    "source_checkouts": [
+      "openmc-stellarcsg",
+      "openmc-stellarcsg-torus-class",
+      "openmc-stellarcsg-composite",
+      "parastell",
+      "wistell-d-openmc",
+      "blanket"
+    ],
+    "caches": [
+      "C:/Users/joshu/.cache/codex-runtimes",
+      "C:/Users/joshu/AppData/Local/pip/cache"
+    ],
+    "why_sufficient": "All compilers, Python libraries, OpenMC/DAGMC binaries, matched Double Down/Embree dependencies, benchmark fixtures, and cross sections needed for the baseline are already local."
+  },
+  "acquisition_and_build_preflight": {
+    "software_download_install_or_upgrade_planned": false,
+    "planned_network_bytes": 0,
+    "planned_generated_bytes_upper_bound": 8589934592,
+    "targets": [
+      "ignored build/composite-blanket-* directories in this isolated worktree",
+      "dev/stellarcsg/benchmarks/raw/composite_blanket_interop",
+      "dev/stellarcsg/plots/composite_blanket_interop",
+      "dev/stellarcsg/reports/COMPOSITE_* and phase reports"
+    ],
+    "reason": "Fresh tests, native composite models, and matched local benchmark evidence cannot be represented by the preserved reports alone.",
+    "rollback": "Remove only verified generated build directories and this isolated worktree after preserving committed reports; do not alter shared dependency prefixes, archives, qualified worktrees, or Docker images.",
+    "gate": "Stop and amend this manifest before any download, installation, environment change, or software acquisition."
+  },
+  "retained_inputs": [
+    {"path": "dev/stellarcsg/test_data/wistell_d/wout_wistell-d.nc", "bytes": 4626928, "sha256": "9231969001203a8133255ee0a275bf552b114cc12524dda0608ab2f12047f7ac"},
+    {"path": "dev/stellarcsg/test_data/wistell_d/coils.wistell-d", "bytes": 1737790, "sha256": "7748369407d28a70f35b5c4a7c0ab860495a08fd0030002112ea933fe570159b"},
+    {"path": "dev/stellarcsg/qualified/analytic_periodic_surfaces.h5", "bytes": 426240, "sha256": "4c3fde17b07c0b363f716911ac954d5984ed7751b9afa90d7dba4fd54932ded8"},
+    {"path": "dev/stellarcsg/qualified/analytic_swept_coils.h5", "bytes": 95232, "sha256": "39f77da5ab1fe427cce58b153e9b52cf8915e9973a9b8f3dfad5ab3b00a9e46d"},
+    {"path": "dev/stellarcsg/qualified/wistell_d_periodic_surfaces.h5", "bytes": 4791296, "sha256": "52695c3c6a7329faccdd009f1179c50c91e24c8902447356d3b2cd77c7f9ca36"},
+    {"path": "dev/stellarcsg/qualified/wistell_d_swept_coils.h5", "bytes": 1280000, "sha256": "caeed2e41da2082b93d32758e40932d9ac268966998dc2664e8164cb8cb7a89b"},
+    {"path": "dev/stellarcsg/qualified/dagmc_exact_torus_coarse.h5m", "bytes": 395172, "sha256": "393ec6ef79718aa0c90996e74cc68303fc000ea0c9b258dcdf19fc7d57215a0b"},
+    {"path": "dev/stellarcsg/qualified/dagmc_exact_torus_fine.h5m", "bytes": 2215788, "sha256": "2377cfa960399ce18ece599a736d8e9adb602a632339f541f4fb73530afdcb56"}
+  ],
+  "accepted_fastpath_nonregression_target": {
+    "builtin_median_histories_per_s": 749597,
+    "periodic_median_histories_per_s": 730255,
+    "ratio": 0.9741968017481394,
+    "hard_minimum_ratio": 0.95
+  }
+}
