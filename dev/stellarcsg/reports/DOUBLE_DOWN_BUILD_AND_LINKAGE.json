@@ -1,0 +1,220 @@
+{
+  "schema": "stellarcsg.double-down-build-and-linkage/v1",
+  "recorded_date": "2026-08-31",
+  "status": "PASS",
+  "repository": {
+    "branch": "codex/stellarcsg-torus-class-fastpath-20260901",
+    "source_commit": "5faf87421d5d2066278c7ae02e38138fc22ec894",
+    "qualified_ancestor": "c67b68fdaf7be2049308db7da449f14a25123847",
+    "algorithm_source_modified_before_build": false
+  },
+  "host_policy": {
+    "execution": "local Docker only",
+    "container_cpu_limit": 2,
+    "container_memory_limit_bytes": 2621440000,
+    "qualified_timing_collected": false,
+    "reason_timing_not_qualified": "Unrelated user Docker workloads were active; these builds and smokes establish correctness and linkage only."
+  },
+  "container": {
+    "image": "parastell-openmc:0.16.0",
+    "image_id": "sha256:ca0c3b1fba39ce27af6ebdb79df14795041922e72521f232cdd770ff1c416191",
+    "cmake": "4.2.3",
+    "c_compiler": "GNU 13.3.0",
+    "cxx_compiler": "GNU 13.3.0",
+    "build_type": "Release",
+    "release_flags": "-O3 -DNDEBUG"
+  },
+  "source_snapshots": {
+    "embree": {
+      "version": "4.3.0",
+      "archive_bytes": 71028239,
+      "archive_sha256": "baf0a57a45837fc055ba828a139467bce0bc0c6a9a5f2dccb05163d012c12308"
+    },
+    "double_down": {
+      "version": "1.1.0",
+      "archive_bytes": 9336620,
+      "archive_sha256": "427e5e4ba59c53bddb1991cb34d86a52c11162175bfc6f802abccb5745cea3ba"
+    },
+    "dagmc": {
+      "version": "3.2.4",
+      "archive_bytes": 19540954,
+      "archive_sha256": "ace39cb6cc05f1de316815512a0afe9f96c771449f8f0b12d65dfed915fb9788",
+      "generated_header_version": "3.2"
+    },
+    "pyne": {
+      "upstream_commit": "e55e52e24a5394aebec78a15e94842fba86f68c9",
+      "archive_bytes": 9382643,
+      "archive_sha256": "30207b34a555c62bf1d641d69a3ab320d4413097b72c502a4cf3303560df1c7e",
+      "local_content_commit": "a992a3002f977a8eeb834f8cfb0745ff11f67a82"
+    },
+    "moab": {
+      "version": "5.5.1",
+      "origin": "/opt/conda/envs/parastell_damage",
+      "runtime_evidence": [
+        "pymoab.__version__ == 5.5.1",
+        "libMOAB.so.5 contains version string MOAB 5.5.1"
+      ]
+    }
+  },
+  "embree_build": {
+    "prefix": "build/torus-class-deps/prefix/embree",
+    "max_isa": "AVX2",
+    "geometry_triangle": true,
+    "geometry_user": true,
+    "geometry_curve": false,
+    "geometry_grid": false,
+    "geometry_instance": false,
+    "geometry_point": false,
+    "geometry_quad": false,
+    "geometry_subdivision": false,
+    "ray_packets": true,
+    "filter_functions": true,
+    "tasking": "INTERNAL",
+    "ispc": false,
+    "tutorials": false,
+    "library": {
+      "path": "build/torus-class-deps/prefix/embree/lib/libembree4.so.4",
+      "bytes": 12827056,
+      "sha256": "1b059d513d488cbc9d96e53522d2a3b7ac05f5969b69d334c367e76603ad8ee9"
+    },
+    "configuration_correction": {
+      "initial_geometry_user": false,
+      "initial_double_down_tests": "1/5 passed; four tests reported RTC_GEOMETRY_TYPE_USER is not supported",
+      "action": "Rebuilt the same Embree source with EMBREE_GEOMETRY_USER=ON",
+      "outcome": "Untouched Double Down 1.1.0 then passed 5/5 tests"
+    }
+  },
+  "double_down_builds": {
+    "untouched_upstream": {
+      "source": "build/torus-class-deps/src/double-down",
+      "prefix": "build/torus-class-deps/prefix/double-down-upstream",
+      "tests": {"passed": 5, "failed": 0, "elapsed_s": 6.11}
+    },
+    "embree4_context_corrected": {
+      "source": "build/torus-class-deps/src/double-down-embree4-context",
+      "prefix": "build/torus-class-deps/prefix/double-down",
+      "version": "1.1.0",
+      "patch": {
+        "path": "C:/HTS_transport/bateman-openmc-dd-embree-20260831/double-down-v1.1.0-embree4-context.patch",
+        "sha256": "1aa9e7c1838e97eab302712c368e81a03230f8dde4ca4d5c08246dc58b26af6d",
+        "exact_reverse_apply_check": "PASS",
+        "rationale": [
+          "Carries Double Down's extended double-precision ray and MOAB metadata through the documented Embree 4 ray-query context instead of a non-standard RTCRayHit layout.",
+          "Sets the Embree callback validity lane explicitly.",
+          "Passes the complete negative-direction MBRayHit rather than the address of its embedded MBRay."
+        ]
+      },
+      "tests": {"passed": 5, "failed": 0, "elapsed_s": 6.02},
+      "library": {
+        "path": "build/torus-class-deps/prefix/double-down/lib/libdd.so",
+        "bytes": 153224,
+        "sha256": "be101019145963ec399ee7b8fce18e12a26b0ef50c9524bf68f5696e23e84632",
+        "resolved_moab": "/opt/conda/envs/parastell_damage/lib/libMOAB.so.5",
+        "resolved_embree": "build/torus-class-deps/prefix/embree/lib/libembree4.so.4"
+      }
+    },
+    "superseded_valid_only_patch": {
+      "path": "C:/HTS_transport/bateman-openmc-dd-embree-20260831/double-down-v1.1.0-embree4-valid.patch",
+      "sha256": "0b1b26f006a3c1cb3c0408c68d4b1cacf722bc280232e9eb7b182187e13a885b",
+      "applied": false,
+      "reason": "Its validity-lane changes are a strict subset of the selected context patch."
+    }
+  },
+  "matched_dagmc_builds": {
+    "common": {
+      "source": "build/torus-class-deps/src/dagmc",
+      "compiler": "GNU 13.3.0",
+      "build_type": "Release",
+      "release_flags": "-O3 -DNDEBUG",
+      "moab": "/opt/conda/envs/parastell_damage/lib/libMOAB.so.5",
+      "git_submodule": false,
+      "build_shared_libs": true,
+      "build_static_libs": false,
+      "build_tests": true,
+      "build_tally": true,
+      "build_rpath": true
+    },
+    "ordinary_obb": {
+      "prefix": "build/torus-class-deps/prefix/dagmc-obb",
+      "double_down": false,
+      "tests": {"passed": 24, "failed": 0, "elapsed_s": 28.45},
+      "library": {
+        "path": "build/torus-class-deps/prefix/dagmc-obb/lib/libdagmc.so",
+        "bytes": 249600,
+        "sha256": "9e28c2e28282781f35a73e4bd507afbaba2a57e460eeceece37ff223455f6ee0",
+        "needed": ["libMOAB.so.5", "libstdc++.so.6", "libgcc_s.so.1", "libc.so.6"],
+        "has_libdd": false,
+        "has_embree": false
+      }
+    },
+    "double_down_embree": {
+      "prefix": "build/torus-class-deps/prefix/dagmc-doubledown",
+      "double_down": true,
+      "double_down_dir": "build/torus-class-deps/prefix/double-down/lib/cmake/dd",
+      "tests": {"passed": 24, "failed": 0, "elapsed_s": 29.55},
+      "library": {
+        "path": "build/torus-class-deps/prefix/dagmc-doubledown/lib/libdagmc.so",
+        "bytes": 249680,
+        "sha256": "16140ca391793c7778cc3c4a2e1a4f27db6f29773ce86be741cfce31f92d2cfe",
+        "needed": ["libMOAB.so.5", "libdd.so", "libstdc++.so.6", "libgcc_s.so.1", "libc.so.6"],
+        "resolved_libdd": "build/torus-class-deps/prefix/double-down/lib/libdd.so",
+        "resolved_embree_transitively": "build/torus-class-deps/prefix/embree/lib/libembree4.so.4"
+      }
+    }
+  },
+  "matched_openmc_builds": {
+    "common": {
+      "version": "0.15.1-dev609",
+      "commit": "5faf87421d5d2066278c7ae02e38138fc22ec894",
+      "compiler": "GNU 13.3.0",
+      "build_type": "Release",
+      "openmp": true,
+      "mpi": false,
+      "dagmc": true,
+      "experimental_stellarcsg": true,
+      "strict_fp": false,
+      "profile": false
+    },
+    "ordinary_obb": {
+      "build": "build/torus-class-openmc-obb",
+      "dagmc_dir": "build/torus-class-deps/prefix/dagmc-obb/lib/cmake/dagmc",
+      "executable_bytes": 26872,
+      "executable_sha256": "c1be8b1fabd7f5c6930c35d4816ff7b2d9cf97c7e7b18b6a64d777ee6886b37f",
+      "resolved_dagmc": "build/torus-class-deps/prefix/dagmc-obb/lib/libdagmc.so",
+      "resolved_libdd": null,
+      "resolved_embree": null
+    },
+    "double_down_embree": {
+      "build": "build/torus-class-openmc-doubledown",
+      "dagmc_dir": "build/torus-class-deps/prefix/dagmc-doubledown/lib/cmake/dagmc",
+      "executable_bytes": 26872,
+      "executable_sha256": "1aca469301ae347c86a69f296a3f76bcea6eb7bc6fb54c3a11fda7c480f7d8d4",
+      "resolved_dagmc": "build/torus-class-deps/prefix/dagmc-doubledown/lib/libdagmc.so",
+      "resolved_libdd": "build/torus-class-deps/prefix/double-down/lib/libdd.so",
+      "resolved_embree": "build/torus-class-deps/prefix/embree/lib/libembree4.so.4"
+    }
+  },
+  "native_csg_link_effect_smoke": {
+    "case": "exact periodic-spline torus",
+    "histories": 2000,
+    "threads": 1,
+    "same_input": "build/torus-class-native-link-smoke/model.xml",
+    "ordinary_obb_executable": {
+      "normal_return_code": 0,
+      "debug_return_code": 0,
+      "debug_overlap_summary": "PASS",
+      "lost_particles": 0
+    },
+    "double_down_executable": {
+      "normal_return_code": 0,
+      "debug_return_code": 0,
+      "debug_overlap_summary": "PASS",
+      "lost_particles": 0
+    },
+    "timing_note": "Observed rates are intentionally excluded from qualified results because the host was concurrently loaded."
+  },
+  "nonfatal_setup_notes": [
+    "Windows tar could not materialize DAGMC's FindDAGMC.cmake symlink in OneDrive. The partial 456-item extraction was preserved as build/torus-class-deps/src/dagmc-windows-tar-partial-20260831 and a complete extraction was performed in the pinned Linux container.",
+    "The container lacked pkg-config; MOAB identity was confirmed from pymoab and the library's embedded version string instead."
+  ]
+}
