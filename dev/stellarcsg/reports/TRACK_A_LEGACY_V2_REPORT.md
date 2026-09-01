@@ -19,4 +19,3 @@ The periodic bootstrap 95% interval is 0.97833–1.05872 and the one-sided 95% l
 The build executable SHA-256 is `931099326a5d033f5f1564208b94486dd05e7cd1c92d654659b7cff0b21b791e`; `libopenmc.so` is `0c9dbf6324fa1f92cc6016536966c0eb0f35c7fb60997dbd7903cda4800fae96`. Linux could not resolve the Windows worktree Git pointer, so the embedded version is not authoritative; the branch commit and binary hashes are.
 
 One C0 run had a 99.08 s initialization outlier caused by host activity. Active transport throughput is reported separately. The combined cases remain one-repetition diagnostics. Functional gates beyond the reproduced baseline are explicitly `NOT_RUN` in the gate-status JSON.
-
