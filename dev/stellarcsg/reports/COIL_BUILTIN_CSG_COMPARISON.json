@@ -1,0 +1,22 @@
+{
+  "schema": "stellarcsg.coil-builtin-csg-comparison/v1",
+  "C0": {
+    "geometry": "planar circular centerline, 500 cm major radius, 25 cm circular section",
+    "threads": 1,
+    "histories_per_repetition": 1000000,
+    "measured_repetitions": 7,
+    "builtin_ztorus": {"raw_histories_per_s": [768924, 701689, 679383, 690710, 690434, 683388, 689080], "median_histories_per_s": 690434, "lost_particles": 0},
+    "swept_exact": {"raw_histories_per_s": [724869, 709831, 688637, 699517, 737194, 752548, 730706], "median_histories_per_s": 724869, "ratio_to_builtin": 1.0498744268098037, "lost_particles": 0, "specialization": "native adapter exact planar torus; shared openmc::torus_distance"},
+    "swept_forced_general": {"raw_histories_per_s": [69357.9, 66603.1, 66631.1, 68453.7, 70324.9, 68902.7, 68707.9], "median_histories_per_s": 68707.9, "ratio_to_builtin": 0.09951407375650677, "lost_particles": 0, "specialization": "disabled"},
+    "root_correctness": {"wrong_roots": 0, "direct_exact_comparison": "PASS_BITWISE_EQUAL_TO_OPENMC_TORUS_KERNEL", "production_global_oracle_calls": 0},
+    "gates": {"exact_over_builtin_at_least_0_95": "PASS", "forced_general_over_builtin_preferred_0_75": "FAIL"}
+  },
+  "C1_elliptical_cross_section": "NOT_RUN",
+  "C2_finite_straight_tube": "NOT_APPLICABLE_CLOSED_CENTERLINE_CONTRACT",
+  "C3_exact_racetrack": "NOT_RUN",
+  "C4_capsule_chain": "NOT_RUN",
+  "ordinary_dagmc_C0": "NOT_RUN_IN_THIS_CAMPAIGN",
+  "double_down_embree_C0": "NOT_RUN_IN_THIS_CAMPAIGN",
+  "raw": "dev/stellarcsg/benchmarks/raw/composite_blanket_interop/c0_coil_controls.json",
+  "plot": "dev/stellarcsg/plots/composite_blanket_interop/c0_coil_throughput.png"
+}

@@ -1,0 +1,291 @@
+{
+  "schema": "stellarcsg.c0-coil-controls/v1",
+  "hardware": "Intel Core i9-10850K",
+  "threads": 1,
+  "cpu_affinity": "Docker CPU 2",
+  "histories": 1000000,
+  "measured_repetitions": 7,
+  "seed": 918273645,
+  "randomized_order": [
+    "C0c_swept_general",
+    "C0b_swept_exact",
+    "C0a_builtin_ztorus",
+    "C0b_swept_exact",
+    "C0b_swept_exact",
+    "C0a_builtin_ztorus",
+    "C0c_swept_general",
+    "C0a_builtin_ztorus",
+    "C0a_builtin_ztorus",
+    "C0b_swept_exact",
+    "C0a_builtin_ztorus",
+    "C0b_swept_exact",
+    "C0a_builtin_ztorus",
+    "C0c_swept_general",
+    "C0c_swept_general",
+    "C0a_builtin_ztorus",
+    "C0c_swept_general",
+    "C0b_swept_exact",
+    "C0a_builtin_ztorus",
+    "C0b_swept_exact",
+    "C0b_swept_exact",
+    "C0c_swept_general",
+    "C0c_swept_general",
+    "C0c_swept_general"
+  ],
+  "cases": [
+    {
+      "case": "C0a_builtin_ztorus",
+      "method": "ordinary built-in CSG",
+      "specialization": "built-in ZTorus",
+      "raw_histories_per_s": [
+        768924.0,
+        701689.0,
+        679383.0,
+        690710.0,
+        690434.0,
+        683388.0,
+        689080.0
+      ],
+      "median_histories_per_s": 690434.0,
+      "iqr_histories_per_s": 9965.5,
+      "lost_particles": 0,
+      "raw": [
+        {
+          "run": 0,
+          "warmup": true,
+          "histories_per_s": 780863.0,
+          "initialization_time_s": 0.047416,
+          "transport_time_s": 1.2677,
+          "lost_particles": 0
+        },
+        {
+          "run": 1,
+          "warmup": false,
+          "histories_per_s": 768924.0,
+          "initialization_time_s": 0.041484,
+          "transport_time_s": 1.287,
+          "lost_particles": 0
+        },
+        {
+          "run": 2,
+          "warmup": false,
+          "histories_per_s": 701689.0,
+          "initialization_time_s": 0.047762,
+          "transport_time_s": 1.4103,
+          "lost_particles": 0
+        },
+        {
+          "run": 3,
+          "warmup": false,
+          "histories_per_s": 679383.0,
+          "initialization_time_s": 0.046763,
+          "transport_time_s": 1.4584,
+          "lost_particles": 0
+        },
+        {
+          "run": 4,
+          "warmup": false,
+          "histories_per_s": 690710.0,
+          "initialization_time_s": 0.048154,
+          "transport_time_s": 1.4343,
+          "lost_particles": 0
+        },
+        {
+          "run": 5,
+          "warmup": false,
+          "histories_per_s": 690434.0,
+          "initialization_time_s": 0.040841,
+          "transport_time_s": 1.4341,
+          "lost_particles": 0
+        },
+        {
+          "run": 6,
+          "warmup": false,
+          "histories_per_s": 683388.0,
+          "initialization_time_s": 0.046363,
+          "transport_time_s": 1.4472,
+          "lost_particles": 0
+        },
+        {
+          "run": 7,
+          "warmup": false,
+          "histories_per_s": 689080.0,
+          "initialization_time_s": 0.052395,
+          "transport_time_s": 1.4364,
+          "lost_particles": 0
+        }
+      ],
+      "ratio_to_builtin": 1.0
+    },
+    {
+      "case": "C0b_swept_exact",
+      "method": "native exact-planar specialization",
+      "specialization": "exact planar torus",
+      "raw_histories_per_s": [
+        724869.0,
+        709831.0,
+        688637.0,
+        699517.0,
+        737194.0,
+        752548.0,
+        730706.0
+      ],
+      "median_histories_per_s": 724869.0,
+      "iqr_histories_per_s": 29276.0,
+      "lost_particles": 0,
+      "raw": [
+        {
+          "run": 0,
+          "warmup": true,
+          "histories_per_s": 768255.0,
+          "initialization_time_s": 0.060225,
+          "transport_time_s": 1.2872,
+          "lost_particles": 0
+        },
+        {
+          "run": 1,
+          "warmup": false,
+          "histories_per_s": 724869.0,
+          "initialization_time_s": 0.054967,
+          "transport_time_s": 1.367,
+          "lost_particles": 0
+        },
+        {
+          "run": 2,
+          "warmup": false,
+          "histories_per_s": 709831.0,
+          "initialization_time_s": 0.056812,
+          "transport_time_s": 1.3944,
+          "lost_particles": 0
+        },
+        {
+          "run": 3,
+          "warmup": false,
+          "histories_per_s": 688637.0,
+          "initialization_time_s": 0.059917,
+          "transport_time_s": 1.4388,
+          "lost_particles": 0
+        },
+        {
+          "run": 4,
+          "warmup": false,
+          "histories_per_s": 699517.0,
+          "initialization_time_s": 0.058542,
+          "transport_time_s": 1.4157,
+          "lost_particles": 0
+        },
+        {
+          "run": 5,
+          "warmup": false,
+          "histories_per_s": 737194.0,
+          "initialization_time_s": 0.060558,
+          "transport_time_s": 1.3424,
+          "lost_particles": 0
+        },
+        {
+          "run": 6,
+          "warmup": false,
+          "histories_per_s": 752548.0,
+          "initialization_time_s": 0.055851,
+          "transport_time_s": 1.3146,
+          "lost_particles": 0
+        },
+        {
+          "run": 7,
+          "warmup": false,
+          "histories_per_s": 730706.0,
+          "initialization_time_s": 0.059326,
+          "transport_time_s": 1.3555,
+          "lost_particles": 0
+        }
+      ],
+      "ratio_to_builtin": 1.0498744268098037
+    },
+    {
+      "case": "C0c_swept_general",
+      "method": "native forced-general span solver",
+      "specialization": "disabled",
+      "raw_histories_per_s": [
+        69357.9,
+        66603.1,
+        66631.1,
+        68453.7,
+        70324.9,
+        68902.7,
+        68707.9
+      ],
+      "median_histories_per_s": 68707.9,
+      "iqr_histories_per_s": 1587.8999999999942,
+      "lost_particles": 0,
+      "raw": [
+        {
+          "run": 0,
+          "warmup": true,
+          "histories_per_s": 69708.5,
+          "initialization_time_s": 0.07397,
+          "transport_time_s": 14.333,
+          "lost_particles": 0
+        },
+        {
+          "run": 1,
+          "warmup": false,
+          "histories_per_s": 69357.9,
+          "initialization_time_s": 0.060392,
+          "transport_time_s": 14.403,
+          "lost_particles": 0
+        },
+        {
+          "run": 2,
+          "warmup": false,
+          "histories_per_s": 66603.1,
+          "initialization_time_s": 0.077709,
+          "transport_time_s": 15.0,
+          "lost_particles": 0
+        },
+        {
+          "run": 3,
+          "warmup": false,
+          "histories_per_s": 66631.1,
+          "initialization_time_s": 0.064841,
+          "transport_time_s": 14.994,
+          "lost_particles": 0
+        },
+        {
+          "run": 4,
+          "warmup": false,
+          "histories_per_s": 68453.7,
+          "initialization_time_s": 0.065892,
+          "transport_time_s": 14.595,
+          "lost_particles": 0
+        },
+        {
+          "run": 5,
+          "warmup": false,
+          "histories_per_s": 70324.9,
+          "initialization_time_s": 0.059818,
+          "transport_time_s": 14.206,
+          "lost_particles": 0
+        },
+        {
+          "run": 6,
+          "warmup": false,
+          "histories_per_s": 68902.7,
+          "initialization_time_s": 0.062081,
+          "transport_time_s": 14.499,
+          "lost_particles": 0
+        },
+        {
+          "run": 7,
+          "warmup": false,
+          "histories_per_s": 68707.9,
+          "initialization_time_s": 0.067815,
+          "transport_time_s": 14.539,
+          "lost_particles": 0
+        }
+      ],
+      "ratio_to_builtin": 0.09951407375650677
+    }
+  ],
+  "root_oracle": "permanent adapter test compares exact swept roots directly with openmc::torus_distance",
+  "production_global_oracle_calls": 0
+}
