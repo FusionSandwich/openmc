@@ -1,0 +1,95 @@
+{
+  "schema": "stellarcsg.torus-class-baseline/v1",
+  "recorded_date": "2026-09-01",
+  "status": "PASS_PRECHANGE_BASELINE_FROZEN",
+  "source": {
+    "research_branch": "codex/stellarcsg-torus-class-fastpath-20260901",
+    "commit": "5faf87421d5d2066278c7ae02e38138fc22ec894",
+    "qualified_starting_commit": "c67b68fdaf7be2049308db7da449f14a25123847",
+    "archive_ref": "archive/stellarcsg-qualified-c67b68fd-20260831",
+    "archive_commit": "c67b68fdaf7be2049308db7da449f14a25123847",
+    "algorithm_changes_before_measurement": false
+  },
+  "environment": {
+    "host": "CORSAIR VENGEANCE i7200",
+    "cpu": "Intel(R) Core(TM) i9-10850K CPU @ 3.60GHz",
+    "physical_cores": 10,
+    "logical_processors": 20,
+    "container_image": "parastell-openmc:0.16.0",
+    "container_image_id": "sha256:ca0c3b1fba39ce27af6ebdb79df14795041922e72521f232cdd770ff1c416191",
+    "openmc_version": "0.15.1-dev609",
+    "openmc_commit_reported_by_binary": "5faf87421d5d2066278c7ae02e38138fc22ec894",
+    "compiler": "GCC/G++ 13.3.0",
+    "build_type": "Release",
+    "threads": 1,
+    "cpu_affinity": "Docker --cpuset-cpus=2",
+    "memory_limit": "1 GiB; swap disabled",
+    "unrelated_containers_during_measurement": 0,
+    "order": [
+      "periodic_torus", "builtin_torus", "builtin_torus", "periodic_torus",
+      "builtin_torus", "periodic_torus", "periodic_torus", "builtin_torus",
+      "periodic_torus", "builtin_torus", "builtin_torus", "periodic_torus",
+      "builtin_torus", "periodic_torus"
+    ]
+  },
+  "current_machine_exact_torus": {
+    "executable": "build/torus-class-openmc-obb/bin/openmc",
+    "histories_per_repetition": 1000000,
+    "batches": 5,
+    "particles_per_batch": 200000,
+    "seed": 918273645,
+    "warmups_per_case": 1,
+    "measured_repetitions_per_case": 7,
+    "builtin_torus": {
+      "warmup_histories_per_s": 801908.0,
+      "raw_histories_per_s": [793337.0, 799357.0, 774555.0, 782555.0, 788791.0, 773037.0, 762976.0],
+      "raw_initialization_s": [0.14115, 0.14598, 0.13925, 0.14106, 0.15382, 0.14294, 0.15025],
+      "raw_transport_s": [1.2457, 1.2272, 1.2769, 1.2639, 1.2535, 1.2804, 1.2963],
+      "median_histories_per_s": 782555.0,
+      "lost_particles": 0,
+      "geometry_debug": "PASS",
+      "overlap_checks_per_cell": 1036642
+    },
+    "periodic_spline_exact_torus": {
+      "warmup_histories_per_s": 353958.0,
+      "raw_histories_per_s": [348925.0, 354951.0, 344174.0, 351321.0, 352789.0, 350821.0, 347503.0],
+      "raw_initialization_s": [0.16205, 0.14758, 0.14834, 0.15407, 0.15415, 0.14849, 0.16726],
+      "raw_transport_s": [2.8509, 2.8032, 2.8913, 2.8323, 2.8216, 2.8367, 2.8640],
+      "median_histories_per_s": 350821.0,
+      "ratio_to_builtin": 0.448308423912184,
+      "lost_particles": 0,
+      "geometry_debug": "PASS",
+      "overlap_checks_per_cell": 1036642
+    }
+  },
+  "retained_qualified_evidence": {
+    "source_report": "dev/stellarcsg/reports/PERFORMANCE_REDESIGN_BASELINE.json and later qualified raw reports",
+    "openmc_histories_per_s_medians": {
+      "builtin_ztorus": 774121.5,
+      "periodic_spline_exact_torus": 351233.0,
+      "wistell_d_plasma_native_csg": 26643.8,
+      "wistell_d_plasma_fine_dagmc": 21511.8,
+      "representative_nonplanar_coil_native_csg": 432436.0,
+      "representative_nonplanar_coil_fine_dagmc": 910634.0,
+      "complete_48_coil_native_csg": 289656.0,
+      "complete_48_coil_fine_dagmc": 49189.5
+    },
+    "derived_ratios": {
+      "spline_torus_over_builtin": 0.45371818248169055,
+      "wistell_plasma_over_fine_dagmc": 1.2385667401147278,
+      "single_coil_over_fine_dagmc": 0.4748735549002036,
+      "complete_coil_set_over_fine_dagmc": 5.888571384481389
+    },
+    "correctness": {
+      "forced_general_exact_torus_random_rays": 100000,
+      "forced_general_exact_torus_adversarial_rays": 4099,
+      "wrong_nearest_roots": 0,
+      "missed_roots": 0,
+      "false_roots": 0,
+      "current_source_rerun_elapsed_s": 13.4293,
+      "current_source_rerun_max_distance_error_cm": 5.553125514978774e-9,
+      "current_source_rerun_max_residual_cm": 9.990860164587628e-11
+    }
+  },
+  "interpretation": "The machine-specific rerun reproduces the qualified regression: the generic periodic-spline adapter's exact circular-torus specialization achieves only 44.83% of the built-in ZTorus rate before any algorithm edit. Identical histories, source, scheduling, executable, and geometry-debug coverage isolate avoidable adapter/framework overhead as the Phase B target."
+}

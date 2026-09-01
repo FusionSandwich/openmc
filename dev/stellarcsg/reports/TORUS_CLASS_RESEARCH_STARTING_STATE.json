@@ -1,0 +1,221 @@
+{
+  "schema": "stellarcsg.torus-class-research-starting-state/v1",
+  "recorded_at": "2026-08-31T20:00:00-04:00",
+  "repository": "FusionSandwich/openmc",
+  "remote": "https://github.com/FusionSandwich/openmc.git",
+  "research_branch": "codex/stellarcsg-torus-class-fastpath-20260901",
+  "research_starting_sha": "5faf87421d5d2066278c7ae02e38138fc22ec894",
+  "qualified_branch": "codex/stellarcsg-native-csg-foundation-20260828",
+  "qualified_branch_sha_after_ff_only": "5faf87421d5d2066278c7ae02e38138fc22ec894",
+  "qualified_snapshot_sha": "c67b68fdaf7be2049308db7da449f14a25123847",
+  "archive_branch": "archive/stellarcsg-qualified-c67b68fd-20260831",
+  "archive_local_sha": "c67b68fdaf7be2049308db7da449f14a25123847",
+  "archive_remote_sha": "c67b68fdaf7be2049308db7da449f14a25123847",
+  "qualified_descends_from_snapshot": true,
+  "git_status_before_research_edits": "clean",
+  "qualified_advance": {
+    "classification": "documentation-only handoff commits retained rather than reset",
+    "commits": [
+      "9dd225fe2 Add preservation-safe torus-class performance implementation prompt",
+      "2f3aa1c9c Add open-ended StellarCSG goals and research handoff",
+      "5faf87421 Index StellarCSG torus-class implementation and open research handoffs"
+    ]
+  },
+  "host": {
+    "computer": "VENGEANCE",
+    "operating_system": "Windows 11 10.0.26200 64-bit with WSL 2.7.10.0",
+    "wsl_kernel": "6.18.33.2-microsoft-standard-WSL2",
+    "cpu": "Intel(R) Core(TM) i9-10850K CPU @ 3.60GHz",
+    "physical_cores": 10,
+    "logical_processors": 20,
+    "total_ram_gib": 31.91,
+    "available_ram_gib_at_audit": 7.71,
+    "wsl_total_ram_gib": 23,
+    "wsl_available_ram_gib": 19,
+    "system_drive_free_gib": 92.47,
+    "data_drive_free_gib": 122.53,
+    "significant_running_processes": [
+      "Docker Desktop and BuildKit services",
+      "an unrelated 4-CPU/4-GiB ParaStell OpenMC campaign container",
+      "an unrelated WSL LAMMPS response-library case",
+      "an unrelated local pytest process",
+      "six persistent ssh-poly helper services"
+    ],
+    "benchmark_policy": "Do not accept performance samples while unrelated compute jobs are active; retain such runs only as explicitly contaminated diagnostics."
+  },
+  "toolchains": {
+    "windows": {
+      "git": "2.55.0.windows.3",
+      "cmake": "4.4.0",
+      "python": "3.12.10",
+      "docker": "29.7.2",
+      "native_ninja": "not on PATH",
+      "native_conda": "not on PATH"
+    },
+    "wsl_debian": {
+      "gcc": "14.2.0",
+      "gxx": "14.2.0",
+      "cmake": "3.31.6",
+      "python": "3.13.5",
+      "git": "2.47.3"
+    },
+    "pinned_container": {
+      "image": "parastell-openmc:0.16.0",
+      "image_id": "sha256:ca0c3b1fba39ce27af6ebdb79df14795041922e72521f232cdd770ff1c416191",
+      "repo_digest": "parastell-openmc@sha256:ca0c3b1fba39ce27af6ebdb79df14795041922e72521f232cdd770ff1c416191",
+      "image_bytes": 4008320326,
+      "os": "Ubuntu 24.04.2 LTS",
+      "gcc": "conda-forge gcc 15.2.0-19",
+      "gxx": "Ubuntu g++ 13.3.0",
+      "cmake": "4.2.3",
+      "python": "3.12.13",
+      "openmc": "0.16.0",
+      "openmc_commit": "617d35a5063c57796b43428bc401e627d2011046",
+      "dagmc": "3.2.4 nompi_nodoubledown",
+      "moab_pymoab": "5.5.1",
+      "cadquery": "2.7.0",
+      "h5py": "3.13.0",
+      "double_down": "not linked",
+      "embree": "not linked"
+    }
+  },
+  "build_flags": {
+    "experimental_option_default": "OPENMC_ENABLE_EXPERIMENTAL_STELLARCSG=OFF",
+    "standalone_release": {
+      "CMAKE_BUILD_TYPE": "Release",
+      "STELLARCSG_BUILD_BENCHMARKS": true,
+      "STELLARCSG_BUILD_CAMPAIGNS": true,
+      "STELLARCSG_BUILD_TESTS": true,
+      "STELLARCSG_BUILD_TOOLS": true,
+      "STELLARCSG_ENABLE_HDF5": true,
+      "STELLARCSG_ENABLE_SANITIZERS": false
+    },
+    "joint_openmc_dagmc": {
+      "CMAKE_BUILD_TYPE": "Release",
+      "OPENMC_BUILD_TESTS": false,
+      "OPENMC_ENABLE_EXPERIMENTAL_STELLARCSG": true,
+      "OPENMC_ENABLE_PROFILE": false,
+      "OPENMC_ENABLE_STRICT_FP": false,
+      "OPENMC_USE_DAGMC": true,
+      "OPENMC_USE_LIBMESH": false,
+      "OPENMC_USE_MPI": false,
+      "OPENMC_USE_OPENMP": true,
+      "OPENMC_USE_UWUW": false
+    }
+  },
+  "existing_local_capabilities": {
+    "container_images": [
+      "parastell-openmc:0.16.0 (16.2 GB displayed virtual size)",
+      "connoramoreno/openmc:latest (4.71 GB displayed virtual size)",
+      "okelly/openmc:latest (4.58 GB displayed virtual size)",
+      "silkeh/clang:18 (1.79 GB displayed virtual size)"
+    ],
+    "dependency_source_and_build_candidates": [
+      {
+        "path": "C:/HTS_transport/alliance-parastell-openmc-dd-20260828",
+        "size_gib": 9.13,
+        "purpose": "retained x86_64 matched ordinary/Double Down build campaign"
+      },
+      {
+        "path": "C:/HTS_transport/bateman-openmc-dd-embree-20260831",
+        "size_gib": 0.16,
+        "purpose": "retained arm64 Double Down/Embree patches and diagnostics; not accepted as a matched local comparator"
+      },
+      {
+        "path": "D:/Scratch/parastell",
+        "size_gib": 0.38,
+        "purpose": "local ParaStell checkout"
+      }
+    ],
+    "python_environments": [
+      "/opt/openmc-fes-venv",
+      "/home/sman/dagmc-scaling-envs/pydagmc",
+      "/home/sman/.venvs/parastell-spectral",
+      "/home/sman/.virtualenvs/fluxforge-optimization-workflows"
+    ],
+    "cache_sizes_gib": {
+      "user_cache": 1.98,
+      "pip_cache": 1.61,
+      "codex_data": 15.51
+    },
+    "why_current_local_capabilities_are_initially_sufficient": "The clean baseline, kernel profiling, compiler experiments, and source-level Double Down audit can use retained sources, the pinned local image, and WSL compilers without downloading or installing software."
+  },
+  "acquisition_and_build_preflight": {
+    "software_download_or_install_planned_now": false,
+    "git_bundle": {
+      "planned_bytes_upper_bound": 134217728,
+      "target": "dev/stellarcsg/recovery/pre_torus_class_research.bundle",
+      "reason": "local recovery artifact required by the execution prompt",
+      "rollback": "remove only this untracked bundle after verifying its exact path; retain the committed manifest and hash"
+    },
+    "baseline_build": {
+      "planned_bytes_upper_bound": 4294967296,
+      "target": "research-worktree-local ignored build directories and/or bind-mounted paths inside the existing pinned image",
+      "reason": "fresh reproduction cannot rely only on retained timing reports",
+      "rollback": "remove only generated build directories after checking CMakeCache.txt and preserving reports"
+    },
+    "local_submodule_materialization": {
+      "planned_network_acquisition_bytes": 0,
+      "planned_worktree_bytes_upper_bound": 20971520,
+      "target": "vendor/Catch2, vendor/fmt, and vendor/pugixml in the isolated research worktree",
+      "source": "already-local submodule object stores and populated qualified-worktree checkouts",
+      "commits": {
+        "Catch2": "5a40b2275caa05cf809bf04df848764a9d7df2e2",
+        "fmt": "0c9fce2ffefecfdce794e1859584e25877b7b592",
+        "pugixml": "ee86beb30e4973f5feffe3ce63bfa4fbadf72f38"
+      },
+      "reason": "linked Git worktrees do not automatically materialize populated submodule working trees, while a fresh OpenMC build requires these pinned sources",
+      "rollback": "deinitialize only these three submodules in the isolated research worktree; shared object stores and the qualified worktree remain untouched"
+    },
+    "matched_dagmc_build": {
+      "planned_network_acquisition_bytes": 0,
+      "planned_build_bytes_upper_bound": 17179869184,
+      "target": "research-worktree-local ignored build/torus-class-deps sources/builds plus embree, dagmc-obb, and dagmc-doubledown prefixes",
+      "reason": "the pinned image is explicitly nompi_nodoubledown and therefore cannot provide the mandatory matched traversal comparison",
+      "rollback": "remove only verified generated _deps build/prefix directories; do not alter retained source snapshots or Docker images",
+      "local_hash_locked_sources": [
+        {"path": "C:/HTS_transport/bateman-openmc-dd-embree-20260831/incoming/embree-v4.3.0.tar.gz", "bytes": 71028239, "sha256": "baf0a57a45837fc055ba828a139467bce0bc0c6a9a5f2dccb05163d012c12308"},
+        {"path": "C:/HTS_transport/alliance-parastell-openmc-dd-20260828/incoming/double-down-v1.1.0.tar.gz", "bytes": 9336620, "sha256": "427e5e4ba59c53bddb1991cb34d86a52c11162175bfc6f802abccb5745cea3ba"},
+        {"path": "C:/HTS_transport/alliance-parastell-openmc-dd-20260828/incoming/dagmc-v3.2.4.tar.gz", "bytes": 19540954, "sha256": "ace39cb6cc05f1de316815512a0afe9f96c771449f8f0b12d65dfed915fb9788"},
+        {"path": "C:/HTS_transport/alliance-parastell-openmc-dd-20260828/incoming/pyne-e55e52e.tar.gz", "bytes": 9382643, "sha256": "30207b34a555c62bf1d641d69a3ab320d4413097b72c502a4cf3303560df1c7e"}
+      ],
+      "execution_limit": "At most 2 build CPUs and 4 GiB hard container memory while unrelated local compute remains active; increase only after a fresh process/memory check.",
+      "gate": "If a required dependency is absent or a download/install becomes necessary, stop before acquisition and amend this preflight with exact source, bytes, target, and rollback."
+    }
+  },
+  "recovery_bundle": {
+    "status": "created and verified; ignored rather than committed because it duplicates approximately 95.3 MiB of Git history",
+    "path": "dev/stellarcsg/recovery/pre_torus_class_research.bundle",
+    "bytes": 99943008,
+    "sha256": "0441fd3f81d9f2e4dbbfe7af332b6b5510b12a6295989dbad08303220a2da9d2",
+    "bundle_verify": "PASS",
+    "complete_history": true,
+    "committed": false,
+    "manifest": "dev/stellarcsg/recovery/pre_torus_class_research.bundle.manifest.json",
+    "hash_sidecar": "dev/stellarcsg/recovery/pre_torus_class_research.bundle.sha256"
+  },
+  "retained_benchmark_inputs": [
+    {"path": "dev/stellarcsg/test_data/wistell_d/wout_wistell-d.nc", "bytes": 4626928, "sha256": "9231969001203a8133255ee0a275bf552b114cc12524dda0608ab2f12047f7ac"},
+    {"path": "dev/stellarcsg/test_data/wistell_d/coils.wistell-d", "bytes": 1737790, "sha256": "7748369407d28a70f35b5c4a7c0ab860495a08fd0030002112ea933fe570159b"},
+    {"path": "dev/stellarcsg/test_data/wistell_d/blanket_boundary.npy", "bytes": 3744, "sha256": "fdb85b2c0c8cd72f5d000302e0b67349ebf72679f98f9c4d7739e5d8484cdde3"},
+    {"path": "dev/stellarcsg/test_data/wistell_d/magnet_boundary.npy", "bytes": 3744, "sha256": "3579e5d8fe97dd74c8700e5676964159f00f07989ca6436528f60462889f05bd"},
+    {"path": "dev/stellarcsg/test_data/wistell_d/nwl.npy", "bytes": 3744, "sha256": "56baa090d61b67273efba61213849b7516beabb2a57fc2ad4751a6f3a32b2db4"},
+    {"path": "dev/stellarcsg/test_data/wistell_d/MANIFEST.json", "bytes": 3343, "sha256": "db97637cbbb3bbff31751e62628f0b2cf4829e051eca0acaf7ec3ce01947d2e9"},
+    {"path": "dev/stellarcsg/test_data/parastell_generic/wout_vmec.nc", "bytes": 8730304, "sha256": "1cebb8d46e60d77df4a6904662a9c9f943137a9fb59f7290e5309af15fa04797"},
+    {"path": "dev/stellarcsg/test_data/parastell_generic/coils.example", "bytes": 501321, "sha256": "69f508b216f0b674368ca8731d390c9d514736ff092f0ebecd854e8772ae04ab"},
+    {"path": "dev/stellarcsg/test_data/parastell_generic/MANIFEST.json", "bytes": 1414, "sha256": "465a2ceddce7fc136d9ea777326d583e92037b4d847808ff9fa199a01beb1f01"},
+    {"path": "dev/stellarcsg/qualified/analytic_periodic_surfaces.h5", "bytes": 426240, "sha256": "4c3fde17b07c0b363f716911ac954d5984ed7751b9afa90d7dba4fd54932ded8"},
+    {"path": "dev/stellarcsg/qualified/analytic_swept_coils.h5", "bytes": 95232, "sha256": "39f77da5ab1fe427cce58b153e9b52cf8915e9973a9b8f3dfad5ab3b00a9e46d"},
+    {"path": "dev/stellarcsg/qualified/parastell_generic_swept_coils.h5", "bytes": 1069056, "sha256": "3c3f05a3e816426af8d44d053f620b30bef4181e2465b4264defd05bf91fe68f"},
+    {"path": "dev/stellarcsg/qualified/wistell_d_periodic_surfaces.h5", "bytes": 4791296, "sha256": "52695c3c6a7329faccdd009f1179c50c91e24c8902447356d3b2cd77c7f9ca36"},
+    {"path": "dev/stellarcsg/qualified/wistell_d_swept_coils.h5", "bytes": 1280000, "sha256": "caeed2e41da2082b93d32758e40932d9ac268966998dc2664e8164cb8cb7a89b"},
+    {"path": "dev/stellarcsg/qualified/dagmc_exact_torus_coarse.h5m", "bytes": 395172, "sha256": "393ec6ef79718aa0c90996e74cc68303fc000ea0c9b258dcdf19fc7d57215a0b"},
+    {"path": "dev/stellarcsg/qualified/dagmc_exact_torus_fine.h5m", "bytes": 2215788, "sha256": "2377cfa960399ce18ece599a736d8e9adb602a632339f541f4fb73530afdcb56"},
+    {"path": "dev/stellarcsg/benchmarks/models/builtin_coil/model.xml", "bytes": 551, "sha256": "57c7ef835b8c9bd7b16b3d58c3690b975ec04a9a3bcf5e576cad83d9e700dbeb"},
+    {"path": "dev/stellarcsg/benchmarks/models/builtin_torus/model.xml", "bytes": 579, "sha256": "6f1cbd10e82f0cf86259c5ad6c95942fb5766dfb1b4fb69c18f8aa9498685e1a"},
+    {"path": "dev/stellarcsg/benchmarks/models/periodic_torus/model.xml", "bytes": 793, "sha256": "9d10b776a6715c46dd98f7c1f1f3937594199b7abfe8021b77deb7ac3c8a5e70"},
+    {"path": "dev/stellarcsg/benchmarks/models/swept_coil/model.xml", "bytes": 749, "sha256": "b608b2aedbb28268097ce245bbaf58b78ce53f2b3e6f6ba1ac0c75ad3d631fef"},
+    {"path": "C:/HTS_transport/plots/stellarcsg_multiconfig_20260831/wistell_d/csg_surface.h5", "bytes": 800256, "sha256": "223293dba92e73675224c5fc258250a5cabb779b3369c86f3b65ff76a269abd8"},
+    {"path": "C:/HTS_transport/plots/stellarcsg_multiconfig_20260831/wistell_d/dagmc/plasma_fine.h5m", "bytes": 5534904, "sha256": "861997912a5d8a64d7f527817e8d4b6f0ed1e6a1cdac27110c7ea3b4441cdbd8"}
+  ]
+}

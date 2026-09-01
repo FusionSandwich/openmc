@@ -1,0 +1,17 @@
+{
+  "schema": "stellarcsg.git-recovery-bundle/v1",
+  "created_date": "2026-08-31",
+  "path": "dev/stellarcsg/recovery/pre_torus_class_research.bundle",
+  "bytes": 99943008,
+  "sha256": "0441fd3f81d9f2e4dbbfe7af332b6b5510b12a6295989dbad08303220a2da9d2",
+  "git_hash_algorithm": "sha1",
+  "complete_history": true,
+  "bundle_verify": "PASS",
+  "refs": {
+    "refs/heads/codex/stellarcsg-native-csg-foundation-20260828": "5faf87421d5d2066278c7ae02e38138fc22ec894",
+    "refs/heads/archive/stellarcsg-qualified-c67b68fd-20260831": "c67b68fdaf7be2049308db7da449f14a25123847"
+  },
+  "committed": false,
+  "commit_decision": "The 99,943,008-byte bundle is intentionally ignored to avoid adding approximately 95.3 MiB of duplicate Git history. Its small manifest and SHA-256 sidecar are committed.",
+  "recreate": "git bundle create dev/stellarcsg/recovery/pre_torus_class_research.bundle codex/stellarcsg-native-csg-foundation-20260828 archive/stellarcsg-qualified-c67b68fd-20260831"
+}
