@@ -85,10 +85,12 @@ def test_swept_spline_xml_and_hdf5_roundtrip(tmp_path):
         data_file='coils.h5',
         dataset='/coils/coil_001',
         content_id=CONTENT_ID,
+        solver='general',
     )
     restored = openmc.Surface.from_xml_element(surface.to_xml_element())
     assert isinstance(restored, openmc.SweptSplineSurface)
     assert restored.dataset == '/coils/coil_001'
+    assert restored.solver == 'general'
 
     path = tmp_path / 'summary-swept.h5'
     with h5py.File(path, 'w') as h5:
@@ -99,10 +101,51 @@ def test_swept_spline_xml_and_hdf5_roundtrip(tmp_path):
         group['data_file'] = np.bytes_('coils.h5')
         group['dataset'] = np.bytes_('/coils/coil_001')
         group['content_id'] = np.bytes_(CONTENT_ID)
+        group['solver'] = np.bytes_('general')
     with h5py.File(path, 'r') as h5:
         summary = openmc.Surface.from_hdf5(h5['surface 81'])
     assert isinstance(summary, openmc.SweptSplineSurface)
     assert summary.content_id == CONTENT_ID
+    assert summary.solver == 'general'
+
+
+def test_swept_spline_rejects_invalid_solver():
+    with pytest.raises(ValueError, match="'auto' or 'general'"):
+        openmc.SweptSplineSurface(
+            data_file='coils.h5', dataset='/coils/coil_001',
+            content_id=CONTENT_ID, solver='unchecked'
+        )
+
+
+@pytest.mark.parametrize('boundary_type', [
+    'transmission', 'vacuum', 'reflective', 'white'
+])
+def test_custom_surfaces_preserve_boundary_types(boundary_type):
+    surface = openmc.PeriodicSplineSurface(
+        surface_id=91, data_file='coefficients.h5',
+        dataset='/surfaces/plasma', content_id=CONTENT_ID,
+        boundary_type=boundary_type,
+    )
+    restored = openmc.Surface.from_xml_element(surface.to_xml_element())
+    assert restored.boundary_type == boundary_type
+
+
+def test_custom_and_ordinary_boolean_regions_serialize():
+    custom = openmc.PeriodicSplineSurface(
+        surface_id=92, data_file='coefficients.h5',
+        dataset='/surfaces/plasma', content_id=CONTENT_ID,
+    )
+    coil = openmc.SweptSplineSurface(
+        surface_id=93, data_file='coils.h5', dataset='/coils/coil_001',
+        content_id=CONTENT_ID,
+    )
+    sphere = openmc.Sphere(surface_id=94, r=1000.0)
+    cylinder = openmc.ZCylinder(surface_id=95, r=200.0)
+    region = ((-custom & +cylinder) | (-coil & -sphere)) & ~(+custom & +sphere)
+    encoded = str(region)
+    restored = openmc.Region.from_expression(encoded, region.get_surfaces())
+    assert str(restored) == encoded
+    assert set(restored.get_surfaces()) == {92, 93, 94, 95}
 
 
 def test_swept_spline_rejects_transforms():

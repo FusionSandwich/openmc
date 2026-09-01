@@ -1,0 +1,32 @@
+{
+  "schema": "stellarcsg.openmc-csg-interoperability/v1",
+  "source_sha": "e24319443",
+  "tests": {"python_targeted_passed": 12, "python_targeted_failed": 0, "openmc_adapter_passed": 1, "openmc_adapter_failed": 0},
+  "matrix": [
+    {"capability": "custom & plane/cylinder/sphere/built-in torus", "periodic_spline": "PASS_SERIALIZATION", "swept_spline": "PASS_SERIALIZATION"},
+    {"capability": "custom & custom, union, complement, deep nesting", "periodic_spline": "PASS_SERIALIZATION", "swept_spline": "PASS_SERIALIZATION"},
+    {"capability": "region XML expression round trip", "periodic_spline": "PASS", "swept_spline": "PASS"},
+    {"capability": "transmission boundary", "periodic_spline": "PASS", "swept_spline": "PASS"},
+    {"capability": "vacuum/reflective/white boundary metadata", "periodic_spline": "PASS_SERIALIZATION", "swept_spline": "PASS_SERIALIZATION"},
+    {"capability": "exact normal used by reflection", "periodic_spline": "PASS_EXACT_TORUS_ADAPTER", "swept_spline": "PASS_EXACT_PLANAR_ADAPTER"},
+    {"capability": "periodic boundary pairing", "periodic_spline": "NOT_RUN_NOT_STELLARATOR_SYMMETRY", "swept_spline": "NOT_APPLICABLE"},
+    {"capability": "rigid translation/rotation", "periodic_spline": "UNSUPPORTED_EXPLICIT_REJECTION", "swept_spline": "UNSUPPORTED_EXPLICIT_REJECTION"},
+    {"capability": "non-rigid scale/shear", "periodic_spline": "UNSUPPORTED_EXPLICIT_REJECTION", "swept_spline": "UNSUPPORTED_EXPLICIT_REJECTION"},
+    {"capability": "summary HDF5 and XML reconstruction", "periodic_spline": "PASS", "swept_spline": "PASS"},
+    {"capability": "bounding box", "periodic_spline": "PASS", "swept_spline": "PASS"},
+    {"capability": "geometry debug", "periodic_spline": "PASS_EXACT_TORUS", "swept_spline": "PASS_PLANAR_AND_48_COIL"},
+    {"capability": "native CSG outer cell filled by DAGMC universe", "periodic_spline": "PASS_OBB_AND_DOUBLE_DOWN", "swept_spline": "PASS_BY_SHARED_SURFACE_CELL_CONTRACT"},
+    {"capability": "transformed DAGMC cell", "periodic_spline": "NOT_APPLICABLE", "swept_spline": "NOT_APPLICABLE_ARCHITECTURE_REJECTS_DAGMC_CELL_TRANSFORM"},
+    {"capability": "plot generation", "periodic_spline": "NOT_RUN", "swept_spline": "NOT_RUN"},
+    {"capability": "stochastic volume", "periodic_spline": "NOT_RUN", "swept_spline": "NOT_RUN"},
+    {"capability": "surface/cell filters and restart", "periodic_spline": "NOT_RUN", "swept_spline": "NOT_RUN"}
+  ],
+  "hybrid_smoke": {
+    "model": "native exact periodic blanket vessel as CSG outer region; identical fine DAGMC torus universe fill",
+    "histories": 10000,
+    "threads": 1,
+    "ordinary_dagmc_linked": {"status": "PASS", "lost_particles": 0, "diagnostic_histories_per_s": 38688.1},
+    "double_down_embree_linked": {"status": "PASS", "banner_verified": true, "lost_particles": 0, "diagnostic_histories_per_s": 69137.6}
+  },
+  "qualification_boundary": "PASS means executed behavior; PASS_SERIALIZATION proves API/XML region construction only and is not relabeled as transport qualification."
+}

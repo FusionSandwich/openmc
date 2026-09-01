@@ -2739,7 +2739,7 @@ class SweptSplineSurface(Surface):
     _type = 'swept-spline'
     _coeff_keys = ()
 
-    def __init__(self, data_file, dataset, content_id, **kwargs):
+    def __init__(self, data_file, dataset, content_id, solver='auto', **kwargs):
         super().__init__(**kwargs)
         check_type('data_file', data_file, (str, Path))
         check_type('dataset', dataset, str)
@@ -2748,9 +2748,12 @@ class SweptSplineSurface(Surface):
             raise ValueError('dataset must be an absolute HDF5 group path')
         if not content_id:
             raise ValueError('content_id cannot be empty')
+        if solver not in ('auto', 'general'):
+            raise ValueError("solver must be 'auto' or 'general'")
         self.data_file = str(data_file)
         self.dataset = dataset
         self.content_id = content_id
+        self.solver = solver
 
     def _get_base_coeffs(self):
         return ()
@@ -2796,6 +2799,7 @@ class SweptSplineSurface(Surface):
         element.set('data_file', self.data_file)
         element.set('dataset', self.dataset)
         element.set('content_id', self.content_id)
+        element.set('solver', self.solver)
         element.set('units', 'cm')
         return element
 
@@ -2807,6 +2811,7 @@ class SweptSplineSurface(Surface):
             data_file=get_text(elem, 'data_file'),
             dataset=get_text(elem, 'dataset'),
             content_id=get_text(elem, 'content_id'),
+            solver=get_text(elem, 'solver', 'auto'),
             surface_id=int(get_text(elem, 'id')),
             boundary_type=get_text(elem, 'boundary', 'transmission'),
             name=get_text(elem, 'name'),
@@ -2817,10 +2822,9 @@ class SweptSplineSurface(Surface):
         def text(name):
             value = group[name][()]
             return value.decode() if isinstance(value, bytes) else str(value)
-        return cls(
-            data_file=text('data_file'), dataset=text('dataset'),
-            content_id=text('content_id'), **kwargs
-        )
+        solver = text('solver') if 'solver' in group else 'auto'
+        return cls(data_file=text('data_file'), dataset=text('dataset'),
+                   content_id=text('content_id'), solver=solver, **kwargs)
 
 
 class Halfspace(Region):
