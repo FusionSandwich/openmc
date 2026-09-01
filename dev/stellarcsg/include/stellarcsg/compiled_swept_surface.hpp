@@ -84,6 +84,12 @@ public:
   {
     return static_cast<bool>(exact_torus_);
   }
+  [[nodiscard]] ExactCircularTorusParameters exact_circular_torus_parameters()
+    const noexcept
+  {
+    return exact_torus_ ? exact_torus_->exact_circular_torus_parameters()
+                        : ExactCircularTorusParameters {};
+  }
   [[nodiscard]] const std::vector<SweptSpan>& spans() const noexcept
   {
     return spans_;

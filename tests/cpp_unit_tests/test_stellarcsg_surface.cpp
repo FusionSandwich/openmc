@@ -6,6 +6,7 @@
 #include "openmc/surface_swept_spline.h"
 #include "stellarcsg/coefficient_file.hpp"
 
+#include <array>
 #include <cmath>
 #include <cstdio>
 #include <set>
@@ -94,12 +95,58 @@ TEST_CASE("native swept spline surface", "[stellarcsg]")
   auto* surface = dynamic_cast<openmc::SurfaceSweptSpline*>(
     openmc::model::surfaces.front().get());
   REQUIRE(surface != nullptr);
+  CHECK(surface->uses_native_exact_torus());
+  CHECK(surface->solver() == "auto");
   CHECK(std::abs(surface->evaluate({525.0, 0.0, 0.0})) < 1.0e-8);
+  const std::array<openmc::Position, 5> origins {{
+    {550.0, 0.0, 0.0}, {-550.0, 0.0, 0.0}, {500.0, -100.0, 0.0},
+    {525.0, -50.0, 0.0}, {500.0, 0.0, 50.0}
+  }};
+  const std::array<openmc::Direction, 5> directions {{
+    {-1.0, 0.0, 0.0}, {1.0, 0.0, 0.0}, {0.0, 1.0, 0.0},
+    {0.0, 1.0, 0.0}, {0.0, 0.0, -1.0}
+  }};
+  for (std::size_t i = 0; i < origins.size(); ++i) {
+    const auto& origin = origins[i];
+    const auto& direction = directions[i];
+    const double actual = surface->distance(origin, direction, false);
+    const double expected = openmc::torus_distance(origin.x, origin.y,
+      origin.z, direction.x, direction.y, direction.z,
+      500.0, 25.0, 25.0, false);
+    CHECK(actual == expected);
+  }
+  const auto normal = surface->normal({525.0, 0.0, 0.0});
+  CHECK(std::abs(normal.x - 1.0) < 1.0e-14);
+  CHECK(std::abs(normal.y) < 1.0e-14);
+  CHECK(std::abs(normal.z) < 1.0e-14);
+  openmc::free_memory_surfaces();
+}
+
+TEST_CASE("native swept spline forced-general planar coil", "[stellarcsg]")
+{
+  openmc::settings::path_input = "";
+  pugi::xml_document document;
+  const std::string filename = std::string {STELLARCSG_SOURCE_DIR}
+    + "/dev/stellarcsg/qualified/analytic_swept_coils.h5";
+  const std::string xml =
+    "<geometry><surface id='904' type='swept-spline' data_file='" +
+    filename + "' dataset='/coils/coil_001' solver='general' "
+    "units='cm'/></geometry>";
+  REQUIRE(document.load_string(xml.c_str()));
+  std::set<std::pair<int, int>> periodic_pairs;
+  std::unordered_map<int, double> albedo_map;
+  std::unordered_map<int, int> periodic_sense_map;
+  openmc::read_surfaces(document.child("geometry"), periodic_pairs, albedo_map,
+    periodic_sense_map);
+  REQUIRE(openmc::model::surfaces.size() == 1);
+  auto* surface = dynamic_cast<openmc::SurfaceSweptSpline*>(
+    openmc::model::surfaces.front().get());
+  REQUIRE(surface != nullptr);
+  CHECK_FALSE(surface->uses_native_exact_torus());
+  CHECK(surface->solver() == "general");
   const double distance = surface->distance(
     {550.0, 0.0, 0.0}, {-1.0, 0.0, 0.0}, false);
-  CHECK(std::isfinite(distance));
-  CHECK(distance > 0.0);
-  CHECK(distance <= 25.0);
+  CHECK(std::abs(distance - 25.0) < 2.0e-7);
   openmc::free_memory_surfaces();
 }
 
