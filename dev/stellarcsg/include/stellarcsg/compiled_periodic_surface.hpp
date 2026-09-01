@@ -19,6 +19,12 @@ enum class PeriodicSurfaceSpecialization {
   general_periodic,
 };
 
+struct ExactCircularTorusParameters {
+  double major_radius {0.0};
+  double minor_radius {0.0};
+  double z_offset {0.0};
+};
+
 struct ParametricSurfaceSample {
   Vec3 position {};
   Vec3 dtheta {};
@@ -95,6 +101,15 @@ public:
   [[nodiscard]] PeriodicSurfaceSpecialization specialization() const noexcept
   {
     return specialization_;
+  }
+
+  // Valid when specialization() is exact_circular_torus. Exposing this
+  // immutable compiled representation lets host adapters use their native
+  // torus kernel without re-entering the generic diagnostics-bearing solver.
+  [[nodiscard]] ExactCircularTorusParameters exact_circular_torus_parameters()
+    const noexcept
+  {
+    return {torus_major_radius_, torus_minor_radius_, torus_z_offset_};
   }
 
   [[nodiscard]] const BoundingBox& bounding_box() const noexcept

@@ -1,0 +1,62 @@
+{
+  "schema": "stellarcsg.exact-torus-overhead/v1",
+  "date": "2026-09-01",
+  "status": "ACCEPTED_STRETCH_GATE_PASS",
+  "problem": "The exact periodic-spline torus ran at 44.83% of built-in ZTorus despite using the same quartic mathematics.",
+  "measured_causes_removed": [
+    "per-call string comparison for solver dispatch",
+    "per-call RootSearchOptions construction",
+    "Position/Direction to Vec3 wrapper conversion on the exact path",
+    "generic diagnostics-bearing DistanceResult return path",
+    "performance-counter and scoped-timer calls",
+    "redundant ray-direction norm, square root, and normalization",
+    "post-root generic spline evaluation and residual certification",
+    "generic spline coordinate evaluation for exact-torus classification and normal"
+  ],
+  "implementation": {
+    "dispatch": "Constructor detects the immutable exact-circular-torus specialization and caches major radius, minor radius, and z offset.",
+    "distance": "The adapter tail-calls openmc::torus_distance, the same quartic helper used by SurfaceZTorus.",
+    "classification": "Direct signed tube-radius expression with identical geometry sign.",
+    "normal": "Direct circular-torus normal expression.",
+    "fallbacks_preserved": ["reference", "shaped_axisymmetric", "general_periodic"],
+    "default_feature_flag": "OPENMC_ENABLE_EXPERIMENTAL_STELLARCSG=OFF"
+  },
+  "qualified_openmc_result": {
+    "raw_data": "dev/stellarcsg/benchmarks/raw/torus_class/exact_torus_fastpath_openmc_20260901.json",
+    "prechange_periodic_median_histories_per_s": 350821,
+    "postchange_periodic_median_histories_per_s": 730255,
+    "postchange_builtin_median_histories_per_s": 749597,
+    "speedup": 2.081560111851913,
+    "ratio_to_builtin": 0.9741968017481394,
+    "hard_gate": "PASS",
+    "stretch_gate": "PASS"
+  },
+  "correctness": {
+    "openmc_adapter_cpp_test": "PASS; 3 cases, 24 assertions",
+    "standalone_cpp_tests": "PASS; 2/2",
+    "python_tests": "PASS; 14/14",
+    "default_off_build_and_builtin_smoke": "PASS; OPENMC_ENABLE_EXPERIMENTAL_STELLARCSG=OFF; 824,877 histories/s; zero lost particles",
+    "double_down_linked_native_smoke": "PASS; periodic exact torus 742,169 histories/s; zero lost particles; libopenmc resolves libdagmc, libdd, libembree4, and libMOAB",
+    "forced_general_oracle": {
+      "randomized_rays": 100000,
+      "adversarial_rays": 4099,
+      "oracle_found": 24045,
+      "fast_found": 24045,
+      "missed_roots": 0,
+      "false_roots": 0,
+      "wrong_nearest_roots": 0,
+      "adversarial_failures": 0,
+      "maximum_distance_error_cm": 1.2658900594431088e-9,
+      "maximum_fast_residual_cm": 1.2279066652354231e-13
+    },
+    "openmc_geometry_debug": "PASS for built-in and periodic exact torus; 1,036,642 checks per cell; zero lost particles"
+  },
+  "code_generation": {
+    "disassembly_result": "The exact branch in SurfacePeriodicSpline::distance loads cached scalars and performs a tail jump to openmc::torus_distance; it does not enter CompiledPeriodicSplineSurface::distance.",
+    "perf_hardware_counters": "UNAVAILABLE: perf is not installed in the pinned local image; no dependency was acquired. The hard and stretch gates are therefore decided by the paired fixed-source OpenMC measurement.",
+    "heap_allocations_in_exact_hot_path": 0,
+    "hdf5_calls_in_exact_hot_path": 0,
+    "string_operations_in_exact_hot_path": 0
+  },
+  "retained_negative_observation": "An added coincident-outward expectation initially assumed infinity, but the shared OpenMC torus quartic returned a finite root for that exact boundary case. The invalid expectation was removed rather than changing shared-kernel semantics. Coincident-inward and four-root nearest-hit tests remain, and the robust standalone oracle remains unchanged."
+}

@@ -1,5 +1,7 @@
 #include "openmc/surface_periodic_spline.h"
 
+#include <cassert>
+#include <cmath>
 #include <filesystem>
 #include <stdexcept>
 #include <string>
@@ -80,28 +82,61 @@ SurfacePeriodicSpline::SurfacePeriodicSpline(pugi::xml_node surf_node)
       "Unable to initialize periodic-spline surface {} from '{}:{}': {}",
       id_, resolved_data_file_, dataset_, error.what()));
   }
+
+  use_reference_solver_ = solver_ == "reference";
+  use_native_exact_torus_ = !use_reference_solver_
+    && surface_->specialization()
+         == stellarcsg::PeriodicSurfaceSpecialization::exact_circular_torus;
+  if (use_native_exact_torus_) {
+    exact_torus_ = surface_->exact_circular_torus_parameters();
+  }
+  root_options_.initial_subdivisions = 96;
+  root_options_.max_refinement_levels = 7;
+  root_options_.require_refinement_stability = true;
 }
 
 double SurfacePeriodicSpline::evaluate(Position r) const
 {
+  if (use_native_exact_torus_) {
+    const double radial_offset = std::hypot(r.x, r.y)
+      - exact_torus_.major_radius;
+    return std::hypot(radial_offset, r.z - exact_torus_.z_offset)
+      - exact_torus_.minor_radius;
+  }
   return surface_->evaluate(to_vec3(r));
 }
 
 double SurfacePeriodicSpline::distance(
   Position r, Direction u, bool coincident) const
 {
-  stellarcsg::RootSearchOptions options;
-  options.initial_subdivisions = 96;
-  options.max_refinement_levels = 7;
-  options.require_refinement_stability = true;
-  const auto result = solver_ == "reference"
-    ? surface_->distance_reference(to_vec3(r), to_vec3(u), coincident, options)
-    : surface_->distance(to_vec3(r), to_vec3(u), coincident, options);
+  if (use_native_exact_torus_) {
+#ifndef NDEBUG
+    assert(std::abs(u.norm() - 1.0) < 1.0e-10);
+#endif
+    return torus_distance(r.x, r.y, r.z - exact_torus_.z_offset,
+      u.x, u.y, u.z, exact_torus_.major_radius,
+      exact_torus_.minor_radius, exact_torus_.minor_radius, coincident);
+  }
+  const auto result = use_reference_solver_
+    ? surface_->distance_reference(
+        to_vec3(r), to_vec3(u), coincident, root_options_)
+    : surface_->distance(to_vec3(r), to_vec3(u), coincident, root_options_);
   return result.found ? result.distance : INFTY;
 }
 
 Direction SurfacePeriodicSpline::normal(Position r) const
 {
+  if (use_native_exact_torus_) {
+    const double z = r.z - exact_torus_.z_offset;
+    const double radial = std::hypot(r.x, r.y);
+    const double radial_offset = radial - exact_torus_.major_radius;
+    const double nx = r.x * radial_offset;
+    const double ny = r.y * radial_offset;
+    const double nz = radial * z;
+    const double inverse_norm = 1.0 / std::sqrt(
+      nx * nx + ny * ny + nz * nz);
+    return {nx * inverse_norm, ny * inverse_norm, nz * inverse_norm};
+  }
   return to_direction(surface_->normal(to_vec3(r)));
 }
 

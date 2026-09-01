@@ -27,6 +27,10 @@ private:
   std::string dataset_;
   std::string content_id_;
   std::string solver_ {"layered"};
+  bool use_reference_solver_ {false};
+  bool use_native_exact_torus_ {false};
+  stellarcsg::ExactCircularTorusParameters exact_torus_ {};
+  stellarcsg::RootSearchOptions root_options_ {};
   std::unique_ptr<stellarcsg::CompiledPeriodicSplineSurface> surface_;
 };
 

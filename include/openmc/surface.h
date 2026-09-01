@@ -375,6 +375,11 @@ public:
   double x0_, y0_, z0_, A_, B_, C_;
 };
 
+// Shared quartic kernel used by the three built-in torus surfaces and by
+// exact torus specializations of experimental data-driven surfaces.
+double torus_distance(double x1, double x2, double x3, double u1, double u2,
+  double u3, double A, double B, double C, bool coincident);
+
 //==============================================================================
 // Non-member functions
 //==============================================================================

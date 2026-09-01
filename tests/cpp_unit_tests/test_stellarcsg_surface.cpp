@@ -59,6 +59,12 @@ TEST_CASE("native periodic spline surface", "[stellarcsg]")
   CHECK(std::abs(surface->distance(
           {7.0, 0.0, 0.0}, {-1.0, 0.0, 0.0}, false) -
         1.0) < 3.0e-8);
+  CHECK(std::abs(surface->distance(
+          {-7.0, 0.0, 0.0}, {1.0, 0.0, 0.0}, false) -
+        1.0) < 3.0e-8);
+  CHECK(std::abs(surface->distance(
+          {6.0, 0.0, 0.0}, {-1.0, 0.0, 0.0}, true) -
+        2.0) < 3.0e-8);
   const auto normal = surface->normal({6.0, 0.0, 0.0});
   CHECK(std::abs(normal.x - 1.0) < 1.0e-12);
   const auto box = surface->bounding_box(false);

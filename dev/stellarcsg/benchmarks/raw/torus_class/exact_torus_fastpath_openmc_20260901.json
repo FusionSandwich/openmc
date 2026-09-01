@@ -1,0 +1,59 @@
+{
+  "schema": "stellarcsg.exact-torus-fastpath-openmc/v1",
+  "date": "2026-09-01",
+  "source_commit_before_algorithm_commit": "76bc3d945cc831b2620be1d9fec68a6672739a22",
+  "hardware": "Intel Core i9-10850K; Docker CPU 2 pinned",
+  "threads": 1,
+  "histories_per_repetition": 1000000,
+  "measured_repetitions": 7,
+  "warmups_per_case": 1,
+  "seed": 918273645,
+  "container_image_id": "sha256:ca0c3b1fba39ce27af6ebdb79df14795041922e72521f232cdd770ff1c416191",
+  "build": {
+    "openmc": "0.15.1-dev609",
+    "compiler": "GCC/G++ 13.3.0",
+    "type": "Release",
+    "dagmc_backend": "ordinary OBB build; native cases exercise no DAGMC geometry",
+    "openmc_launcher_sha256": "c1be8b1fabd7f5c6930c35d4816ff7b2d9cf97c7e7b18b6a64d777ee6886b37f",
+    "libopenmc_after_sha256": "41093aadd48aa46cb17127c898723c885096e6fd1fe5308a78a624bd80cf0cdc"
+  },
+  "prechange": {
+    "builtin_torus_raw_histories_per_s": [793337, 799357, 774555, 782555, 788791, 773037, 762976],
+    "builtin_torus_median_histories_per_s": 782555,
+    "periodic_exact_torus_raw_histories_per_s": [348925, 354951, 344174, 351321, 352789, 350821, 347503],
+    "periodic_exact_torus_median_histories_per_s": 350821,
+    "periodic_over_builtin": 0.4483020362786002
+  },
+  "postchange": {
+    "randomized_order": [
+      "periodic_torus", "builtin_torus", "builtin_torus", "periodic_torus",
+      "builtin_torus", "periodic_torus", "periodic_torus", "builtin_torus",
+      "periodic_torus", "builtin_torus", "builtin_torus", "periodic_torus",
+      "builtin_torus", "periodic_torus"
+    ],
+    "builtin_torus": {
+      "warmup_histories_per_s": 729806,
+      "raw_histories_per_s": [744125, 752371, 758942, 757541, 749465, 697720, 749597],
+      "raw_initialization_s": [0.14459, 0.15782, 0.13730, 0.14978, 0.14571, 0.17565, 0.14700],
+      "raw_transport_s": [1.3310, 1.3149, 1.3034, 1.3046, 1.3185, 1.4056, 1.3206],
+      "median_histories_per_s": 749597,
+      "lost_particles": 0,
+      "geometry_debug": "PASS",
+      "overlap_checks_per_cell": 1036642
+    },
+    "periodic_exact_torus": {
+      "warmup_histories_per_s": 753273,
+      "raw_histories_per_s": [755835, 730255, 756749, 725579, 721668, 726744, 733008],
+      "raw_initialization_s": [0.15121, 0.14712, 0.14962, 0.15991, 0.14716, 0.17845, 0.14774],
+      "raw_transport_s": [1.3092, 1.3549, 1.3069, 1.3638, 1.3718, 1.3632, 1.3500],
+      "median_histories_per_s": 730255,
+      "lost_particles": 0,
+      "geometry_debug": "PASS",
+      "overlap_checks_per_cell": 1036642
+    },
+    "periodic_over_builtin": 0.9741968017481394,
+    "periodic_speedup_over_prechange": 2.081560111851913,
+    "hard_gate_0_85": "PASS",
+    "stretch_gate_0_95": "PASS"
+  }
+}
