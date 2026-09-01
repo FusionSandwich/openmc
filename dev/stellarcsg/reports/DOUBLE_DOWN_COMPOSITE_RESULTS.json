@@ -1,0 +1,18 @@
+{
+  "schema": "stellarcsg.double-down-composite-results/v1",
+  "dependencies": {"embree": "4.3.0", "double_down": "1.1.0 with Embree-4 context patch", "dagmc": "3.2.4", "moab": "5.5.1"},
+  "runtime_linkage": {"status": "PASS", "libraries": ["libdagmc.so", "libdd.so", "libembree4.so.4", "libMOAB.so.5"], "double_down_banner": "Using the DOUBLE-DOWN interface to Embree."},
+  "adapter_tests": {"passed": 1, "failed": 0},
+  "native_swept_smoke": {"status": "PASS", "histories": 10000, "lost_particles": 0},
+  "hybrid_native_outer_dagmc_fill_smoke": {
+    "geometry_hash": "2377cfa960399ce18ece599a736d8e9adb602a632339f541f4fb73530afdcb56",
+    "histories": 10000,
+    "threads": 1,
+    "ordinary_dagmc_linked_diagnostic_histories_per_s": 38688.1,
+    "double_down_embree_diagnostic_histories_per_s": 69137.6,
+    "lost_particles": 0,
+    "status": "PASS_SMOKE_NOT_QUALIFIED_RATIO"
+  },
+  "matched_seven_repetition_campaigns_sections_5_to_8": "NOT_RUN",
+  "guardrail": "One-shot smoke rates are not reported as a qualified Double Down speedup, and retained ordinary DAGMC measurements are not relabeled as Double Down."
+}
