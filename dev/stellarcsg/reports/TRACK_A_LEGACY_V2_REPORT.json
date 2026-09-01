@@ -1,0 +1,93 @@
+{
+  "schema": "stellarcsg.track-a-legacy-v2-report/v1",
+  "phase": "baseline_reproduction",
+  "branch": "codex/stellarcsg-legacy-v2-20260901",
+  "build_commit": "31f702931aee3383fa03b479b5f5a4eeb8598663",
+  "qualified_source_ancestor": "3041a938c3fb0bc349654f37b0b3ebcd3cd5a9bb",
+  "neutral_harness_source_commits": [
+    "6ad611c7948cd615cc76fec144d82d10d1ba92d4",
+    "7f41b6bf6c41ef13b843200669cc98e4329ef7b9"
+  ],
+  "binary_sha256": "931099326a5d033f5f1564208b94486dd05e7cd1c92d654659b7cff0b21b791e",
+  "libopenmc_sha256": "0c9dbf6324fa1f92cc6016536966c0eb0f35c7fb60997dbd7903cda4800fae96",
+  "build": {
+    "type": "Release",
+    "compiler": "GNU 13.3.0",
+    "openmp": true,
+    "mpi": false,
+    "dagmc": false,
+    "experimental_stellarcsg": true,
+    "ordinary_default_off": true,
+    "embedded_version_limitation": "Linux cannot resolve the Windows worktree .git pointer, so this build reports 0.0.0; external commit and binary hashes are authoritative."
+  },
+  "tests": {
+    "standalone_ctest": {
+      "passed": 2,
+      "failed": 0
+    },
+    "python_stellarcsg_and_neutral": {
+      "passed": 21,
+      "failed": 0,
+      "detail": "14 qualified StellarCSG tests plus 7 neutral harness/accuracy tests"
+    },
+    "openmc_custom_surface_api": {
+      "passed": 12,
+      "failed": 0
+    },
+    "total_checks": {
+      "passed": 35,
+      "failed": 0
+    }
+  },
+  "exact_periodic": {
+    "builtin_median_histories_per_s": 722938,
+    "periodic_median_histories_per_s": 734820,
+    "ratio": 1.0164357109461668,
+    "bootstrap_ratio_95pct_ci": [
+      0.9783312340626454,
+      1.0587249725066037
+    ],
+    "one_sided_95pct_lower": 0.9811096547749869,
+    "lost_particles": 0,
+    "gate": "PASS"
+  },
+  "exact_planar_swept": {
+    "builtin_median_histories_per_s": 735064,
+    "exact_swept_median_histories_per_s": 771724,
+    "ratio": 1.0498732083192757,
+    "lost_particles": 0,
+    "gate": "PASS"
+  },
+  "forced_general_swept": {
+    "median_histories_per_s": 69320.6,
+    "ratio_to_builtin": 0.09430552985862456,
+    "lost_particles": 0,
+    "minimum_ratio": 0.25,
+    "gate": "FAIL"
+  },
+  "combined_smoke": {
+    "qualification": "diagnostic only",
+    "cases": [
+      {
+        "coils": 12,
+        "histories_per_s": 3436.33,
+        "lost_particles": 0
+      },
+      {
+        "coils": 48,
+        "histories_per_s": 2440.47,
+        "lost_particles": 0
+      }
+    ]
+  },
+  "instrumentation": {
+    "production_broad_oracle_calls": 0,
+    "c0_initialization_outlier_seconds": 99.08,
+    "timing_note": "One initialization sample was contaminated by host activity; active transport throughput is retained separately."
+  },
+  "raw_paths": [
+    "dev/stellarcsg/benchmarks/raw/dual_track/track_a_baseline_20260901/c0_coil_controls.json",
+    "dev/stellarcsg/benchmarks/raw/dual_track/track_a_baseline_20260901/exact_torus_parity_21.json",
+    "dev/stellarcsg/benchmarks/raw/dual_track/track_a_baseline_20260901/combined_native_smoke.json"
+  ]
+}

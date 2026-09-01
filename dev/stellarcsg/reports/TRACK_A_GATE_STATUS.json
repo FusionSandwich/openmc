@@ -1,0 +1,79 @@
+{
+  "schema": "stellarcsg.track-a-gate-status/v1",
+  "phase": "baseline_reproduction",
+  "gates": [
+    {
+      "gate": "starting state and archive preservation",
+      "status": "PASS"
+    },
+    {
+      "gate": "standalone and Python regression",
+      "status": "PASS",
+      "detail": "35 passed, 0 failed"
+    },
+    {
+      "gate": "exact periodic / ZTorus >= 0.95",
+      "status": "PASS",
+      "value": 1.0164357109461668
+    },
+    {
+      "gate": "exact planar swept / ZTorus >= 0.95",
+      "status": "PASS",
+      "value": 1.0498732083192757
+    },
+    {
+      "gate": "forced-general >= 0.25",
+      "status": "FAIL",
+      "value": 0.09430552985862456
+    },
+    {
+      "gate": "C1 exact elliptical",
+      "status": "NOT_RUN"
+    },
+    {
+      "gate": "C3 racetrack control",
+      "status": "NOT_RUN"
+    },
+    {
+      "gate": "C4 capsule-chain control",
+      "status": "NOT_RUN"
+    },
+    {
+      "gate": "layer-count scaling 1/2/4/6/8/12",
+      "status": "NOT_RUN"
+    },
+    {
+      "gate": "coil-constrained nonuniform blanket",
+      "status": "NOT_RUN"
+    },
+    {
+      "gate": "rigid transforms",
+      "status": "NOT_RUN"
+    },
+    {
+      "gate": "boundary transport vacuum/reflective/white/transmission",
+      "status": "NOT_RUN"
+    },
+    {
+      "gate": "stochastic volumes, plots, filters, restart",
+      "status": "NOT_RUN"
+    },
+    {
+      "gate": "matched ordinary DAGMC versus Double Down",
+      "status": "NOT_RUN"
+    },
+    {
+      "gate": "qualified combined 12/48 medians",
+      "status": "NOT_RUN",
+      "detail": "one-repetition diagnostics passed with zero lost particles"
+    },
+    {
+      "gate": "Tier 3 materialized tally closure",
+      "status": "NOT_RUN"
+    },
+    {
+      "gate": "multi-configuration campaign",
+      "status": "NOT_RUN"
+    }
+  ]
+}

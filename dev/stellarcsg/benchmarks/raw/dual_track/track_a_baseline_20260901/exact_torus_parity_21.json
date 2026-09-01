@@ -1,0 +1,394 @@
+{
+  "schema": "stellarcsg.exact-torus-parity-final/v1",
+  "hardware": "Intel Core i9-10850K",
+  "cpu_affinity": "Docker CPU 2",
+  "threads": 1,
+  "histories_per_repetition": 1000000,
+  "measured_repetitions": 21,
+  "randomized_order": [
+    "builtin_ztorus",
+    "builtin_ztorus",
+    "builtin_ztorus",
+    "periodic_exact",
+    "periodic_exact",
+    "builtin_ztorus",
+    "builtin_ztorus",
+    "periodic_exact",
+    "builtin_ztorus",
+    "builtin_ztorus",
+    "periodic_exact",
+    "builtin_ztorus",
+    "periodic_exact",
+    "periodic_exact",
+    "periodic_exact",
+    "builtin_ztorus",
+    "builtin_ztorus",
+    "builtin_ztorus",
+    "builtin_ztorus",
+    "periodic_exact",
+    "periodic_exact",
+    "periodic_exact",
+    "periodic_exact",
+    "periodic_exact",
+    "builtin_ztorus",
+    "builtin_ztorus",
+    "periodic_exact",
+    "builtin_ztorus",
+    "builtin_ztorus",
+    "periodic_exact",
+    "builtin_ztorus",
+    "periodic_exact",
+    "builtin_ztorus",
+    "periodic_exact",
+    "periodic_exact",
+    "periodic_exact",
+    "periodic_exact",
+    "builtin_ztorus",
+    "builtin_ztorus",
+    "periodic_exact",
+    "builtin_ztorus",
+    "builtin_ztorus",
+    "periodic_exact",
+    "periodic_exact"
+  ],
+  "cases": {
+    "builtin_ztorus": {
+      "raw_histories_per_s": [
+        650392.0,
+        692274.0,
+        719153.0,
+        785244.0,
+        673470.0,
+        676426.0,
+        747829.0,
+        682914.0,
+        712079.0,
+        727091.0,
+        722938.0,
+        803019.0,
+        716280.0,
+        745497.0,
+        703182.0,
+        748126.0,
+        760997.0,
+        751816.0,
+        776577.0,
+        735113.0,
+        705624.0
+      ],
+      "median_histories_per_s": 722938.0,
+      "mean_histories_per_s": 725525.7619047619,
+      "iqr_histories_per_s": 44944.0,
+      "lost_particles": 0,
+      "raw": [
+        {
+          "run": 0,
+          "warmup": true,
+          "histories_per_s": 703559.0,
+          "lost_particles": 0
+        },
+        {
+          "run": 1,
+          "warmup": false,
+          "histories_per_s": 650392.0,
+          "lost_particles": 0
+        },
+        {
+          "run": 2,
+          "warmup": false,
+          "histories_per_s": 692274.0,
+          "lost_particles": 0
+        },
+        {
+          "run": 3,
+          "warmup": false,
+          "histories_per_s": 719153.0,
+          "lost_particles": 0
+        },
+        {
+          "run": 4,
+          "warmup": false,
+          "histories_per_s": 785244.0,
+          "lost_particles": 0
+        },
+        {
+          "run": 5,
+          "warmup": false,
+          "histories_per_s": 673470.0,
+          "lost_particles": 0
+        },
+        {
+          "run": 6,
+          "warmup": false,
+          "histories_per_s": 676426.0,
+          "lost_particles": 0
+        },
+        {
+          "run": 7,
+          "warmup": false,
+          "histories_per_s": 747829.0,
+          "lost_particles": 0
+        },
+        {
+          "run": 8,
+          "warmup": false,
+          "histories_per_s": 682914.0,
+          "lost_particles": 0
+        },
+        {
+          "run": 9,
+          "warmup": false,
+          "histories_per_s": 712079.0,
+          "lost_particles": 0
+        },
+        {
+          "run": 10,
+          "warmup": false,
+          "histories_per_s": 727091.0,
+          "lost_particles": 0
+        },
+        {
+          "run": 11,
+          "warmup": false,
+          "histories_per_s": 722938.0,
+          "lost_particles": 0
+        },
+        {
+          "run": 12,
+          "warmup": false,
+          "histories_per_s": 803019.0,
+          "lost_particles": 0
+        },
+        {
+          "run": 13,
+          "warmup": false,
+          "histories_per_s": 716280.0,
+          "lost_particles": 0
+        },
+        {
+          "run": 14,
+          "warmup": false,
+          "histories_per_s": 745497.0,
+          "lost_particles": 0
+        },
+        {
+          "run": 15,
+          "warmup": false,
+          "histories_per_s": 703182.0,
+          "lost_particles": 0
+        },
+        {
+          "run": 16,
+          "warmup": false,
+          "histories_per_s": 748126.0,
+          "lost_particles": 0
+        },
+        {
+          "run": 17,
+          "warmup": false,
+          "histories_per_s": 760997.0,
+          "lost_particles": 0
+        },
+        {
+          "run": 18,
+          "warmup": false,
+          "histories_per_s": 751816.0,
+          "lost_particles": 0
+        },
+        {
+          "run": 19,
+          "warmup": false,
+          "histories_per_s": 776577.0,
+          "lost_particles": 0
+        },
+        {
+          "run": 20,
+          "warmup": false,
+          "histories_per_s": 735113.0,
+          "lost_particles": 0
+        },
+        {
+          "run": 21,
+          "warmup": false,
+          "histories_per_s": 705624.0,
+          "lost_particles": 0
+        }
+      ]
+    },
+    "periodic_exact": {
+      "raw_histories_per_s": [
+        662289.0,
+        776541.0,
+        676678.0,
+        738494.0,
+        672504.0,
+        729343.0,
+        713356.0,
+        747208.0,
+        675628.0,
+        719923.0,
+        769666.0,
+        733306.0,
+        747058.0,
+        731626.0,
+        773402.0,
+        777554.0,
+        812445.0,
+        682384.0,
+        755566.0,
+        734820.0,
+        819366.0
+      ],
+      "median_histories_per_s": 734820.0,
+      "mean_histories_per_s": 735674.1428571428,
+      "iqr_histories_per_s": 56310.0,
+      "lost_particles": 0,
+      "raw": [
+        {
+          "run": 0,
+          "warmup": true,
+          "histories_per_s": 705005.0,
+          "lost_particles": 0
+        },
+        {
+          "run": 1,
+          "warmup": false,
+          "histories_per_s": 662289.0,
+          "lost_particles": 0
+        },
+        {
+          "run": 2,
+          "warmup": false,
+          "histories_per_s": 776541.0,
+          "lost_particles": 0
+        },
+        {
+          "run": 3,
+          "warmup": false,
+          "histories_per_s": 676678.0,
+          "lost_particles": 0
+        },
+        {
+          "run": 4,
+          "warmup": false,
+          "histories_per_s": 738494.0,
+          "lost_particles": 0
+        },
+        {
+          "run": 5,
+          "warmup": false,
+          "histories_per_s": 672504.0,
+          "lost_particles": 0
+        },
+        {
+          "run": 6,
+          "warmup": false,
+          "histories_per_s": 729343.0,
+          "lost_particles": 0
+        },
+        {
+          "run": 7,
+          "warmup": false,
+          "histories_per_s": 713356.0,
+          "lost_particles": 0
+        },
+        {
+          "run": 8,
+          "warmup": false,
+          "histories_per_s": 747208.0,
+          "lost_particles": 0
+        },
+        {
+          "run": 9,
+          "warmup": false,
+          "histories_per_s": 675628.0,
+          "lost_particles": 0
+        },
+        {
+          "run": 10,
+          "warmup": false,
+          "histories_per_s": 719923.0,
+          "lost_particles": 0
+        },
+        {
+          "run": 11,
+          "warmup": false,
+          "histories_per_s": 769666.0,
+          "lost_particles": 0
+        },
+        {
+          "run": 12,
+          "warmup": false,
+          "histories_per_s": 733306.0,
+          "lost_particles": 0
+        },
+        {
+          "run": 13,
+          "warmup": false,
+          "histories_per_s": 747058.0,
+          "lost_particles": 0
+        },
+        {
+          "run": 14,
+          "warmup": false,
+          "histories_per_s": 731626.0,
+          "lost_particles": 0
+        },
+        {
+          "run": 15,
+          "warmup": false,
+          "histories_per_s": 773402.0,
+          "lost_particles": 0
+        },
+        {
+          "run": 16,
+          "warmup": false,
+          "histories_per_s": 777554.0,
+          "lost_particles": 0
+        },
+        {
+          "run": 17,
+          "warmup": false,
+          "histories_per_s": 812445.0,
+          "lost_particles": 0
+        },
+        {
+          "run": 18,
+          "warmup": false,
+          "histories_per_s": 682384.0,
+          "lost_particles": 0
+        },
+        {
+          "run": 19,
+          "warmup": false,
+          "histories_per_s": 755566.0,
+          "lost_particles": 0
+        },
+        {
+          "run": 20,
+          "warmup": false,
+          "histories_per_s": 734820.0,
+          "lost_particles": 0
+        },
+        {
+          "run": 21,
+          "warmup": false,
+          "histories_per_s": 819366.0,
+          "lost_particles": 0
+        }
+      ]
+    }
+  },
+  "median_ratio": 1.0164357109461668,
+  "bootstrap_ratio_95pct_ci": [
+    0.9783312340626454,
+    1.0587249725066037
+  ],
+  "bootstrap_ratio_one_sided_95pct_lower": 0.9811096547749869,
+  "noninferiority_margin": 0.03,
+  "gates": {
+    "hard_ratio_at_least_0_95": "PASS",
+    "one_sided_95pct_excludes_slowdown_over_3pct": "PASS",
+    "stretch_median_at_least_0_99": "PASS"
+  }
+}

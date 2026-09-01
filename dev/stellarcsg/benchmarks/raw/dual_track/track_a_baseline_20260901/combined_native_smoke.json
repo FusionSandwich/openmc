@@ -1,0 +1,57 @@
+{
+  "schema": "stellarcsg.combined-native-smoke/v1",
+  "threads": 1,
+  "histories_per_run": 10000,
+  "cases": [
+    {
+      "case": "wistell_combined_12",
+      "coil_count": 12,
+      "measured_repetitions": 1,
+      "raw": [
+        {
+          "run": 0,
+          "warmup": true,
+          "histories_per_s": 3569.85,
+          "initialization_time_s": 9.032,
+          "transport_time_s": 2.7865,
+          "lost_particles": 0
+        },
+        {
+          "run": 1,
+          "warmup": false,
+          "histories_per_s": 3436.33,
+          "initialization_time_s": 8.9302,
+          "transport_time_s": 2.898,
+          "lost_particles": 0
+        }
+      ],
+      "median_histories_per_s": 3436.33,
+      "lost_particles": 0
+    },
+    {
+      "case": "wistell_combined_48",
+      "coil_count": 48,
+      "measured_repetitions": 1,
+      "raw": [
+        {
+          "run": 0,
+          "warmup": true,
+          "histories_per_s": 2887.21,
+          "initialization_time_s": 9.3895,
+          "transport_time_s": 3.4506,
+          "lost_particles": 0
+        },
+        {
+          "run": 1,
+          "warmup": false,
+          "histories_per_s": 2440.47,
+          "initialization_time_s": 12.49,
+          "transport_time_s": 4.0854,
+          "lost_particles": 0
+        }
+      ],
+      "median_histories_per_s": 2440.47,
+      "lost_particles": 0
+    }
+  ]
+}
