@@ -1,0 +1,25 @@
+<?xml version="1.0"?>
+<model>
+  <materials/>
+  <geometry>
+    <surface id="1" type="periodic-spline" data_file="@ROOT@/dev/stellarcsg/qualified/composite_blanket_families.h5" dataset="/surfaces/wistell_d_wistell_d_lcfs" solver="layered" units="cm"/>
+    <surface id="2" type="periodic-spline" data_file="@ROOT@/dev/stellarcsg/qualified/composite_blanket_families.h5" dataset="/surfaces/wistell_d_tungsten_armor" solver="layered" units="cm"/>
+    <surface id="3" type="periodic-spline" data_file="@ROOT@/dev/stellarcsg/qualified/composite_blanket_families.h5" dataset="/surfaces/wistell_d_first_wall" solver="layered" units="cm"/>
+    <surface id="4" type="periodic-spline" data_file="@ROOT@/dev/stellarcsg/qualified/composite_blanket_families.h5" dataset="/surfaces/wistell_d_breeding_blanket" solver="layered" units="cm"/>
+    <surface id="5" type="periodic-spline" data_file="@ROOT@/dev/stellarcsg/qualified/composite_blanket_families.h5" dataset="/surfaces/wistell_d_back_wall" solver="layered" units="cm"/>
+    <surface id="6" type="periodic-spline" data_file="@ROOT@/dev/stellarcsg/qualified/composite_blanket_families.h5" dataset="/surfaces/wistell_d_shield" solver="layered" units="cm"/>
+    <surface id="7" type="periodic-spline" data_file="@ROOT@/dev/stellarcsg/qualified/composite_blanket_families.h5" dataset="/surfaces/wistell_d_vacuum_vessel" solver="layered" units="cm"/>
+    <surface id="50" type="swept-spline" data_file="@ROOT@/dev/stellarcsg/qualified/wistell_d_swept_coils.h5" dataset_prefix="/coils/coil_" dataset_start="1000" dataset_count="12" units="cm"/>
+    <surface id="60" type="sphere" coeffs="0 0 0 2000" boundary="vacuum"/>
+    <cell id="1" material="void" region="-1 50"/>
+    <cell id="2" material="void" region="1 -2 50"/>
+    <cell id="3" material="void" region="2 -3 50"/>
+    <cell id="4" material="void" region="3 -4 50"/>
+    <cell id="5" material="void" region="4 -5 50"/>
+    <cell id="6" material="void" region="5 -6 50"/>
+    <cell id="7" material="void" region="6 -7 50"/>
+    <cell id="50" material="void" region="-50 -60"/>
+    <cell id="60" material="void" region="7 50 -60"/>
+  </geometry>
+  <settings><run_mode>fixed source</run_mode><batches>1</batches><particles>10000</particles><seed>918273645</seed><source><space type="point"><parameters>1208.99654782 0 0</parameters></space></source></settings>
+</model>

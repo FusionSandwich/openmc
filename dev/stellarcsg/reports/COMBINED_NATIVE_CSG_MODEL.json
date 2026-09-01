@@ -1,0 +1,50 @@
+{
+  "schema": "stellarcsg.combined-native-csg-model/v1",
+  "tier": "Tier 2 collisionless geometry smoke",
+  "source": {"point_cm": [1208.99654782, 0.0, 0.0], "seed": 918273645},
+  "geometry": {
+    "plasma": "native WISTELL-D PeriodicSplineSurface",
+    "blanket_boundaries": 7,
+    "blanket_layers": 6,
+    "coils": "native SweptSplineSurfaceSet",
+    "cell_partition": "ordinary OpenMC Boolean half-spaces with coil cut-outs from every blanket shell",
+    "outer_boundary": "vacuum sphere radius 2000 cm"
+  },
+  "field_period_smoke": {
+    "coil_count": 12,
+    "histories": 10000,
+    "threads": 1,
+    "warmup_histories_per_s": 3564.33,
+    "measured_histories_per_s": 3331.0,
+    "initialization_time_s": 8.3044,
+    "transport_time_s": 2.9884,
+    "lost_particles": 0,
+    "status": "PASS_SMOKE"
+  },
+  "full_device_smoke": {
+    "coil_count": 48,
+    "histories": 10000,
+    "threads": 1,
+    "warmup_histories_per_s": 2750.89,
+    "measured_histories_per_s": 2762.19,
+    "initialization_time_s": 8.4332,
+    "transport_time_s": 3.6071,
+    "lost_particles": 0,
+    "status": "PASS_SMOKE"
+  },
+  "coil_clearance": {
+    "method": "signed nearest sampled vessel-surface distance at 12288 retained coil centerline points minus local maximum tube radius",
+    "minimum_cm": -37.14630933245735,
+    "p01_cm": -29.54163236,
+    "p05_cm": -22.17412788,
+    "median_cm": 40.69618826,
+    "negative_sample_count": 1574,
+    "sample_count": 12288,
+    "classification": "FULL_UNIFORM_BUILD_INTERSECTS_WINDING_ENVELOPE"
+  },
+  "performance_qualification": "NOT_RUN_HOST_ACTIVITY_AND_ONLY_ONE_MEASURED_REPETITION",
+  "tier3_materialized": "NOT_RUN",
+  "nonuniform_coil_constrained_build": "NOT_RUN_REQUIRED_FOLLOW_UP",
+  "raw": "dev/stellarcsg/benchmarks/raw/composite_blanket_interop/combined_native_smoke.json",
+  "plot": "dev/stellarcsg/plots/composite_blanket_interop/combined_wistell_wireframe.png"
+}
