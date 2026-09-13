@@ -44,6 +44,16 @@ def main():
     out = args.output.resolve()
     out.mkdir(parents=True, exist_ok=False)
     executable = args.executable.resolve()
+    expected_library = executable.parent.parent / 'lib/libopenmc.so'
+    assert executable.is_file() and expected_library.is_file(), 'Declared native build is incomplete'
+    execution_environment = {**os.environ, 'LD_LIBRARY_PATH': str(expected_library.parent)
+        + (':' + os.environ['LD_LIBRARY_PATH'] if os.environ.get('LD_LIBRARY_PATH') else '')}
+    linkage = subprocess.run(['/usr/bin/ldd', str(executable)],
+        env=execution_environment, text=True, capture_output=True, timeout=20)
+    (out / 'executable-ldd.log').write_text(linkage.stdout + linkage.stderr)
+    assert linkage.returncode == 0 and 'not found' not in linkage.stdout
+    assert 'libopenmc.so => '+str(expected_library)+' ' in linkage.stdout, 'Unbound native library'
+    binary_before = dict(executable=digest(executable), library=digest(expected_library))
     assert args.histories >= 10 and args.histories % 10 == 0
     openmc.reset_auto_ids()
     n_coils = {'torus': 0, 'plasma': 0, 'coil': 1, 'two-coils': 2, 'combined': 2}[args.case]
@@ -164,14 +174,18 @@ def main():
     (out / 'attempt-start.json').write_text(json.dumps(dict(
         source_sha=args.source_sha, case=args.case, histories=args.histories,
         shared=args.shared, threads=args.threads, executable=str(executable),
-        executable_sha256=digest(executable), timeout_seconds=args.timeout,
+        executable_sha256=binary_before['executable'], library=str(expected_library),
+        library_sha256=binary_before['library'], timeout_seconds=args.timeout,
+        executable_linkage_sha256=digest(out / 'executable-ldd.log'),
         source_bank_sha256=digest(out / 'source_bank.h5')), indent=2)+'\n')
+    assert binary_before == dict(executable=digest(executable), library=digest(expected_library)), \
+        'Native build changed during model preparation'
     start = time.perf_counter()
     with (out / 'transport.log').open('x') as log:
         try:
             result = subprocess.run([str(executable), '-s', str(args.threads)], cwd=out, stdout=log,
                                     stderr=subprocess.STDOUT, timeout=args.timeout,
-                                    env={**os.environ, **({'STELLARCSG_REPORT_SHARED': '1'}
+                                    env={**execution_environment, **({'STELLARCSG_REPORT_SHARED': '1'}
                                          if args.shared else {})})
         except subprocess.TimeoutExpired:
             (out / 'attempt-timeout.json').write_text(json.dumps(dict(
@@ -179,13 +193,19 @@ def main():
                 completed_histories=None, lost_particles=None))+'\n')
             raise
     elapsed = time.perf_counter()-start
+    binary_after = dict(executable=digest(executable), library=digest(expected_library))
     receipt = dict(case=args.case, diagnostic=True, qualification='NOT_RUN',
                    source_sha=args.source_sha, source_root=str(root), shared=args.shared,
-                   executable_sha256=digest(executable), returncode=result.returncode,
+                   executable_sha256=binary_before['executable'], library=str(expected_library),
+                   library_sha256=binary_before['library'],
+                   binary_hashes_before=binary_before, binary_hashes_after=binary_after,
+                   binary_preserved=binary_before == binary_after, returncode=result.returncode,
+                   executable_linkage_sha256=digest(out / 'executable-ldd.log'),
                    threads=args.threads, source_bank_sha256=digest(out / 'source_bank.h5'),
                    wall_seconds=elapsed, requested_histories=args.histories,
                    box_gaps_cm=gaps, physics='synthetic one-group pure absorber, not nuclear validation')
     (out / 'attempt.json').write_text(json.dumps(receipt, indent=2)+'\n')
+    assert receipt['binary_preserved'], 'Native executable or library changed during transport'
     assert result.returncode == 0, 'Transport failed; retained transport.log'
     log = (out / 'transport.log').read_text()
     assert 'lost particle' not in log.lower(), 'Lost-particle diagnostic retained'
@@ -215,12 +235,16 @@ def main():
     for i in range(n_coils):
         assert (101+i, 11+i) in pairs
         assert all(material == 11+i for cell, material in pairs if cell == 101+i)
-    receipt.update(state='PASS', lost_particles=0, retained_tracks=len(tracks),
+    receipt.update(state='PASS', lost_particles=0,
+                   lostcount_evidence='Inferred from successful process, requested histories in statepoint, '
+                       'and absence of lost-particle log diagnostics; not an independent lost-particle counter.',
+                   track_evidence='Only the requested first-batch sample is retained; observed identity and '
+                       'transitions do not establish nearest-root or crossing completeness.',
+                   retained_tracks=len(tracks),
                    retained_cell_transitions=transitions, cell_material_pairs=sorted(pairs))
     # Fresh output directory: lib.init must not overwrite the transport summary.
     if coils and (root / 'openmc/lib/libopenmc.so').is_file():
         importlib.import_module('openmc.lib')
-        expected_library = executable.parent.parent / 'lib/libopenmc.so'
         assert digest(openmc.lib._filename) == digest(expected_library)
         probe = out / 'cell-probe'
         probe.mkdir()
