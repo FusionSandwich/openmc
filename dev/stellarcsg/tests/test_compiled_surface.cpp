@@ -339,6 +339,30 @@ void test_exact_circular_swept_coil()
     "planar circular swept coil selects exact torus specialization");
   check(!forced_coil.exact_torus_specialization(),
     "planar circular swept coil can force the general span solver");
+  // A public query counts once even when a swept surface delegates to the
+  // exact periodic implementation. Nested accounting corrupts calls/history
+  // and the distance latency histogram used in profile comparisons.
+  if (stellarcsg::performance_counters_enabled()) {
+    for (bool reference : {false, true}) {
+      stellarcsg::reset_performance_counters();
+      const auto hit = reference
+        ? coil.distance_reference({5.5, 0.0, 0.0}, {-1.0, 0.0, 0.0}, false)
+        : coil.distance({5.5, 0.0, 0.0}, {-1.0, 0.0, 0.0}, false);
+      const auto measured = stellarcsg::performance_counters_snapshot();
+      std::uint64_t timed_queries = 0;
+      for (auto count_in_bin : measured.distance_time_histogram)
+        timed_queries += count_in_bin;
+      check(hit.found && measured.distance_calls == 1
+          && measured.accepted_roots == 1 && timed_queries == 1,
+        "exact swept dispatch accounts for one distance query and result");
+    }
+    stellarcsg::reset_performance_counters();
+    (void) coil.evaluate({5.5, 0.0, 0.0});
+    (void) coil.normal({5.25, 0.0, 0.0});
+    const auto measured = stellarcsg::performance_counters_snapshot();
+    check(measured.evaluate_calls == 1 && measured.normal_calls == 1,
+      "exact swept dispatch accounts for one evaluate and normal query");
+  }
   check_near(coil.evaluate({major + minor, 0.0, 0.0}), 0.0, 1.0e-12,
     "swept circular coil evaluates as exact torus");
   const auto crossing = coil.distance_reference(
@@ -365,6 +389,52 @@ void test_exact_circular_swept_coil()
     if (exact.found && general.found) {
       check_near(general.distance, exact.distance, 1.0e-7,
         "forced-general circular coil preserves nearest root");
+    }
+  }
+}
+
+void test_swept_inside_proxy_near_entry()
+{
+  constexpr std::size_t count = 64;
+  constexpr double pi = 3.141592653589793238462643383279502884;
+  for (bool nonplanar : {false, true}) {
+    stellarcsg::SweptSplineSurfaceData data;
+    data.coil_id = 71;
+    data.sample_count = count;
+    data.length = 10.0 * pi;
+    data.characteristic_length = 9.0;
+    data.major_radius_coefficients.assign(count, 0.25);
+    data.minor_radius_coefficients.assign(count, 0.25);
+    for (std::size_t i = 0; i < count; ++i) {
+      const double q = 2.0 * pi * static_cast<double>(i) / count;
+      for (double value : {5.0 * std::cos(q), 5.0 * std::sin(q),
+             nonplanar ? 0.4 * std::sin(3.0 * q) : 0.0})
+        data.centerline_coefficients.push_back(value);
+      for (double value : {0.0, 0.0, 1.0})
+        data.normal_coefficients.push_back(value);
+      for (double value : {1.0, 0.0, 0.0})
+        data.binormal_coefficients.push_back(value);
+    }
+    // Evaluate the original cardinal basis at a seam, independently of the
+    // production frame, projection, and candidate-pruning implementation.
+    const auto control = [&](std::size_t i) {
+      return stellarcsg::Vec3 {data.centerline_coefficients[3 * i],
+        data.centerline_coefficients[3 * i + 1],
+        data.centerline_coefficients[3 * i + 2]};
+    };
+    const auto center = (control(count - 1) + 4.0 * control(0) + control(1)) / 6.0;
+    const stellarcsg::CompiledSweptSplineSurface coil {data, true};
+    for (double speed : {0.1, 1.0, 3.0}) {
+      const auto result = coil.distance(
+        center + stellarcsg::Vec3 {0.252, 0.0, 0.0}, {-speed, 0.0, 0.0}, false);
+      // c'(0) has zero x component. The point c(0)+(.25,0,0) lies on the
+      // actual circular section, providing a known 0.002 cm hit upper bound.
+      // The retained baseline incorrectly selected the 0.502 cm far exit.
+      check(result.found && result.distance <= 0.002 + 2.0e-10,
+        "inside-proxy ray does not skip the independently known near entry");
+      if (result.found)
+        check_near(result.distance, 0.002, 2.0e-10,
+          "inside-proxy entry distance is invariant under direction scaling");
     }
   }
 }
@@ -485,6 +555,7 @@ int main()
     test_scale_aware_axisymmetric_detection();
     test_close_root_pair_regressions();
     test_exact_circular_swept_coil();
+    test_swept_inside_proxy_near_entry();
     test_swept_coil_set_bvh();
     test_sha256_known_vector();
 #ifdef STELLARCSG_HAS_HDF5

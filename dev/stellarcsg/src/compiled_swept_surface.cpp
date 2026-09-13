@@ -662,6 +662,8 @@ SweptLocalCoordinates CompiledSweptSplineSurface::local_coordinates(
 
 double CompiledSweptSplineSurface::evaluate(const Vec3& point) const
 {
+  // The delegated kernel owns accounting for this public query.
+  if (exact_torus_) return exact_torus_->evaluate(point);
   add_performance_counter(PerformanceCounter::evaluate_calls);
   auto& cache = swept_evaluation_cache;
   if (cache.valid && cache.instance_id == instance_id_
@@ -671,23 +673,18 @@ double CompiledSweptSplineSurface::evaluate(const Vec3& point) const
     return cache.value;
   }
   add_performance_counter(PerformanceCounter::cache_misses);
-  double value;
-  if (exact_torus_) {
-    value = exact_torus_->evaluate(point);
-  } else {
-    const auto local = local_coordinates(point);
-    const double u = local.u / local.major_radius;
-    const double v = local.v / local.minor_radius;
-    value = u * u + v * v - 1.0;
-  }
+  const auto local = local_coordinates(point);
+  const double u = local.u / local.major_radius;
+  const double v = local.v / local.minor_radius;
+  const double value = u * u + v * v - 1.0;
   cache = {instance_id_, point, value, true};
   return value;
 }
 
 Vec3 CompiledSweptSplineSurface::normal(const Vec3& point) const
 {
-  add_performance_counter(PerformanceCounter::normal_calls);
   if (exact_torus_) return exact_torus_->normal(point);
+  add_performance_counter(PerformanceCounter::normal_calls);
   const auto local = local_coordinates(point);
   const double angle = wrap(local.arc_coordinate * two_pi / data_.length);
   const double step = two_pi / static_cast<double>(spans_.size());
@@ -710,17 +707,13 @@ DistanceResult CompiledSweptSplineSurface::distance_reference(
   const Vec3& origin, const Vec3& direction, bool coincident,
   const RootSearchOptions& options) const
 {
+  if (exact_torus_) {
+    return exact_torus_->distance(origin, direction, coincident, options);
+  }
   add_performance_counter(PerformanceCounter::distance_calls);
   add_performance_counter(PerformanceCounter::global_reference_calls);
   if (coincident) add_performance_counter(PerformanceCounter::coincident_cases);
   [[maybe_unused]] ScopedDistanceTimer timer;
-  if (exact_torus_) {
-    const auto result = exact_torus_->distance(origin, direction, coincident, options);
-    add_performance_counter(result.found ? PerformanceCounter::accepted_roots
-                                         : PerformanceCounter::no_hit_returns);
-    if (result.found) record_residual(result.residual, data_.characteristic_length);
-    return result;
-  }
   const double direction_norm = norm(direction);
   if (!(direction_norm > 0.0)) {
     throw std::invalid_argument("Ray direction must be non-zero");
@@ -763,12 +756,12 @@ DistanceResult CompiledSweptSplineSurface::distance(
   const Vec3& origin, const Vec3& direction, bool coincident,
   const RootSearchOptions& options) const
 {
-  add_performance_counter(PerformanceCounter::distance_calls);
-  if (coincident) add_performance_counter(PerformanceCounter::coincident_cases);
-  [[maybe_unused]] ScopedDistanceTimer timer;
   if (exact_torus_) {
     return exact_torus_->distance(origin, direction, coincident, options);
   }
+  add_performance_counter(PerformanceCounter::distance_calls);
+  if (coincident) add_performance_counter(PerformanceCounter::coincident_cases);
+  [[maybe_unused]] ScopedDistanceTimer timer;
   const double direction_norm = norm(direction);
   if (!(direction_norm > 0.0) || !std::isfinite(direction_norm)) {
     throw std::invalid_argument("Ray direction must be finite and non-zero");
@@ -969,16 +962,21 @@ DistanceResult CompiledSweptSplineSurface::distance(
         const double b = dot(ray_direction, segment);
         const double c = norm_squared(segment);
         const double e = dot(segment, w0);
-        std::array<double, 6> proxy_t {};
+        // A ray can start inside a capsule proxy but outside the smooth tube.
+        // In that case every forward proxy boundary can seed the far tube
+        // exit. Also seed the start of the admissible box interval so the
+        // near entry is not lost solely because it precedes the proxy exit.
+        std::array<double, 7> proxy_t {};
         std::size_t proxy_count = 0;
         const auto add_proxy_t = [&](double t) {
-          if (!(t > minimum_t) || !(t < best_t) || !std::isfinite(t)) return;
+          if (t < minimum_t || !std::isfinite(t)) return;
           for (std::size_t existing = 0; existing < proxy_count; ++existing) {
             if (std::abs(proxy_t[existing] - t)
                 <= 1.0e-9 * data_.characteristic_length) return;
           }
           if (proxy_count < proxy_t.size()) proxy_t[proxy_count++] = t;
         };
+        add_proxy_t(std::max(minimum_t, interval->enter));
         if (c > 0.0) {
           const double f0 = e / c;
           const double f1 = b / c;
@@ -1023,7 +1021,8 @@ DistanceResult CompiledSweptSplineSurface::distance(
         add_performance_counter(PerformanceCounter::proxy_seeds, proxy_count);
         bool solved = false;
         for (std::size_t seed = 0; seed < proxy_count; ++seed) {
-          if (proxy_t[seed] >= best_t) break;
+          // Proxy roots are initial guesses, not lower bounds on corrected
+          // roots. A guess beyond best_t may converge to an earlier hit.
           const Vec3 proxy_point = origin + proxy_t[seed] * ray_direction;
           const double fraction = c > 0.0
             ? std::clamp(dot(proxy_point - span.proxy_start, segment) / c,
