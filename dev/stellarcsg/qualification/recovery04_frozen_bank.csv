@@ -6,7 +6,7 @@ a03,torus,c5aec2165cdec18c,,near_entry_002,0,expected_hit,0.002,,5.2439745444536
 a04,torus,c5aec2165cdec18c,,near_entry_502,0,expected_hit,0.502,,5.7439745444536614,0,0,-1,0,0
 a05,torus,c5aec2165cdec18c,,competing_roots,0,reference_required,,,-8,0,0,1,0,0
 a06,torus,c5aec2165cdec18c,,seam,0,reference_required,,,5.2419745444536616,0,0,0,1,0
-a07,torus,c5aec2165cdec18c,,grazing,0,reference_required,,,4.9919745444536616,-2,0.2500001,0,1,0
+a07,torus,c5aec2165cdec18c,,grazing,0,reference_required,,,4.9919745444536616,-2,0.25001,0,1,0
 a08,torus,c5aec2165cdec18c,,tangent,0,reference_required,,,4.9919745444536616,-2,0.25,0,1,0
 a09,torus,c5aec2165cdec18c,,direction_scaling,0,reference_required,,scale_1,7,0,0,-2,0,0
 a10,torus,c5aec2165cdec18c,,direction_scaling,0,reference_required,,scale_2,7,0,0,-4,0,0

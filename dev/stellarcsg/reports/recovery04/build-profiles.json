@@ -1,0 +1,100 @@
+{
+  "acquisition_bytes": 0,
+  "dependency_environment_changes": false,
+  "attempts": [
+    {
+      "command": [
+        "cmake",
+        "-S",
+        "/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-recovery-bank-04/dev/stellarcsg",
+        "-B",
+        "/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-fast-recovery-04/build/recovery-04-profiles/old-on",
+        "-G",
+        "Ninja",
+        "-DCMAKE_BUILD_TYPE=Release",
+        "-DSTELLARCSG_ENABLE_HDF5=ON",
+        "-DSTELLARCSG_ENABLE_PERFORMANCE_COUNTERS=ON"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "cmake",
+        "--build",
+        "/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-fast-recovery-04/build/recovery-04-profiles/old-on",
+        "--target",
+        "stellarcsg_reference",
+        "--parallel",
+        "1"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "g++",
+        "-std=c++17",
+        "-O3",
+        "-DNDEBUG",
+        "-DSTELLARCSG_HAS_HDF5",
+        "-DSTELLARCSG_ENABLE_PERFORMANCE_COUNTERS",
+        "-I/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-recovery-bank-04/dev/stellarcsg/include",
+        "-I/usr/include/hdf5/serial",
+        "/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-fast-recovery-04/dev/stellarcsg/qualification/recovery04_frozen_bank.cpp",
+        "/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-fast-recovery-04/build/recovery-04-profiles/old-on/libstellarcsg_reference.a",
+        "-L/usr/lib/x86_64-linux-gnu/hdf5/serial",
+        "-lhdf5_hl",
+        "-lhdf5",
+        "-o",
+        "/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-fast-recovery-04/build/recovery-04-profiles/old_bank"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "cmake",
+        "-S",
+        "/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-fast-recovery-04/dev/stellarcsg",
+        "-B",
+        "/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-fast-recovery-04/build/recovery-04-profiles/seed-on",
+        "-G",
+        "Ninja",
+        "-DCMAKE_BUILD_TYPE=Release",
+        "-DSTELLARCSG_ENABLE_HDF5=ON",
+        "-DSTELLARCSG_ENABLE_PERFORMANCE_COUNTERS=ON"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "cmake",
+        "--build",
+        "/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-fast-recovery-04/build/recovery-04-profiles/seed-on",
+        "--target",
+        "stellarcsg_reference",
+        "--parallel",
+        "1"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "g++",
+        "-std=c++17",
+        "-O3",
+        "-DNDEBUG",
+        "-DSTELLARCSG_HAS_HDF5",
+        "-DSTELLARCSG_ENABLE_PERFORMANCE_COUNTERS",
+        "-I/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-fast-recovery-04/dev/stellarcsg/include",
+        "-I/usr/include/hdf5/serial",
+        "/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-fast-recovery-04/dev/stellarcsg/qualification/recovery04_frozen_bank.cpp",
+        "/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-fast-recovery-04/build/recovery-04-profiles/seed-on/libstellarcsg_reference.a",
+        "-L/usr/lib/x86_64-linux-gnu/hdf5/serial",
+        "-lhdf5_hl",
+        "-lhdf5",
+        "-o",
+        "/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-fast-recovery-04/build/recovery-04-profiles/seed_bank"
+      ],
+      "exit_code": 0
+    }
+  ]
+}

@@ -130,7 +130,7 @@ int freeze_bank(const std::string& filename, const std::string& wistell_file,
     make_query("a06", "seam", {knot_radius+.25,0,0}, {0,1,0}, torus_hash, false, "reference_required"),
     // The q=0 centerline tangent is +y.  At z=minor_radius this is a
     // tangency of the spline tube itself, unlike a radial x-axis crossing.
-    make_query("a07", "grazing", {knot_radius,-2,.2500001}, {0,1,0}, torus_hash, false, "reference_required"),
+    make_query("a07", "grazing", {knot_radius,-2,.25001}, {0,1,0}, torus_hash, false, "reference_required"),
     make_query("a08", "tangent", {knot_radius,-2,.25}, {0,1,0}, torus_hash, false, "reference_required"),
     make_query("a09", "direction_scaling", {7,0,0}, {-2,0,0}, torus_hash, false, "reference_required", NAN, "scale_1"),
     make_query("a10", "direction_scaling", {7,0,0}, {-4,0,0}, torus_hash, false, "reference_required", NAN, "scale_2"),

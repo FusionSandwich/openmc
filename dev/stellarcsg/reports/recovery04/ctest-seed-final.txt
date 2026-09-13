@@ -1,0 +1,56 @@
+Start testing: Sep 13 19:47 EDT
+----------------------------------------------------------
+1/3 Testing: stellarcsg_swept_seed_regression
+1/3 Test: stellarcsg_swept_seed_regression
+Command: "/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-fast-recovery-04/build/recovery-04-seed/stellarcsg_swept_seed_regression"
+Directory: /mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-fast-recovery-04/build/recovery-04-seed
+"stellarcsg_swept_seed_regression" start time: Sep 13 19:47 EDT
+Output:
+----------------------------------------------------------
+shape=0 scale=0.5 distance=0.0019999999909989796 pass=1
+shape=0 scale=1 distance=0.0019999999909989796 pass=1
+shape=0 scale=2 distance=0.0019999999909989796 pass=1
+shape=1 scale=0.5 distance=0.0019999999909989796 pass=1
+shape=1 scale=1 distance=0.0019999999909989796 pass=1
+shape=1 scale=2 distance=0.0019999999909989796 pass=1
+<end of output>
+Test time =   0.03 sec
+----------------------------------------------------------
+Test Passed.
+"stellarcsg_swept_seed_regression" end time: Sep 13 19:47 EDT
+"stellarcsg_swept_seed_regression" time elapsed: 00:00:00
+----------------------------------------------------------
+
+2/3 Testing: stellarcsg_reference_tests
+2/3 Test: stellarcsg_reference_tests
+Command: "/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-fast-recovery-04/build/recovery-04-seed/stellarcsg_reference_tests"
+Directory: /mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-fast-recovery-04/build/recovery-04-seed
+"stellarcsg_reference_tests" start time: Sep 13 19:47 EDT
+Output:
+----------------------------------------------------------
+All StellarCSG reference-kernel tests passed
+<end of output>
+Test time =   0.04 sec
+----------------------------------------------------------
+Test Passed.
+"stellarcsg_reference_tests" end time: Sep 13 19:47 EDT
+"stellarcsg_reference_tests" time elapsed: 00:00:00
+----------------------------------------------------------
+
+3/3 Testing: stellarcsg_compiled_surface_tests
+3/3 Test: stellarcsg_compiled_surface_tests
+Command: "/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-fast-recovery-04/build/recovery-04-seed/stellarcsg_compiled_surface_tests"
+Directory: /mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-fast-recovery-04/build/recovery-04-seed
+"stellarcsg_compiled_surface_tests" start time: Sep 13 19:47 EDT
+Output:
+----------------------------------------------------------
+All StellarCSG compiled-surface tests passed
+<end of output>
+Test time =   0.19 sec
+----------------------------------------------------------
+Test Passed.
+"stellarcsg_compiled_surface_tests" end time: Sep 13 19:47 EDT
+"stellarcsg_compiled_surface_tests" time elapsed: 00:00:00
+----------------------------------------------------------
+
+End testing: Sep 13 19:47 EDT

@@ -972,12 +972,15 @@ DistanceResult CompiledSweptSplineSurface::distance(
         std::array<double, 7> proxy_t {};
         std::size_t proxy_count = 0;
         const auto add_proxy_t = [&](double t) {
-          if (t < minimum_t || !std::isfinite(t)) return;
+          if (t < minimum_t || !std::isfinite(t))
+            return;
           for (std::size_t existing = 0; existing < proxy_count; ++existing) {
-            if (std::abs(proxy_t[existing] - t)
-                <= 1.0e-9 * data_.characteristic_length) return;
+            if (std::abs(proxy_t[existing] - t) <=
+                1.0e-9 * data_.characteristic_length)
+              return;
           }
-          if (proxy_count < proxy_t.size()) proxy_t[proxy_count++] = t;
+          if (proxy_count < proxy_t.size())
+            proxy_t[proxy_count++] = t;
         };
         // Inside the expanded capsule, the forward exit can seed a later
         // tube root. A start seed repairs this case without seeding every
@@ -985,14 +988,14 @@ DistanceResult CompiledSweptSplineSurface::distance(
         // that all earlier roots in this span have been resolved.
         const double start_t = std::max(minimum_t, interval->enter);
         const Vec3 start_point = origin + start_t * ray_direction;
-        const double start_fraction = c > 0.0
-          ? std::clamp(dot(start_point - span.proxy_start, segment) / c,
-              0.0, 1.0)
-          : 0.5;
+        const double start_fraction =
+          c > 0.0 ? std::clamp(dot(start_point - span.proxy_start, segment) / c,
+                      0.0, 1.0)
+                  : 0.5;
         const Vec3 capsule_point = span.proxy_start + start_fraction * segment;
         const double seed_radius = span.proxy_radius + projected_tolerance;
-        if (norm_squared(start_point - capsule_point)
-            <= seed_radius * seed_radius) {
+        if (norm_squared(start_point - capsule_point) <=
+            seed_radius * seed_radius) {
           add_proxy_t(start_t);
         }
         if (c > 0.0) {
@@ -1002,8 +1005,8 @@ DistanceResult CompiledSweptSplineSurface::distance(
           const Vec3 radial_direction = ray_direction - f1 * segment;
           const double qa = norm_squared(radial_direction);
           const double qb = 2.0 * dot(radial_origin, radial_direction);
-          const double qc = norm_squared(radial_origin)
-                            - span.proxy_radius * span.proxy_radius;
+          const double qc =
+            norm_squared(radial_origin) - span.proxy_radius * span.proxy_radius;
           const double discriminant = qb * qb - 4.0 * qa * qc;
           if (qa > 0.0 && discriminant >= 0.0) {
             const double root = std::sqrt(discriminant);
@@ -1041,24 +1044,26 @@ DistanceResult CompiledSweptSplineSurface::distance(
         for (std::size_t seed = 0; seed < proxy_count; ++seed) {
           // A proxy root is a guess, not a lower bound on its corrected root.
           const Vec3 proxy_point = origin + proxy_t[seed] * ray_direction;
-          const double fraction = c > 0.0
-            ? std::clamp(dot(proxy_point - span.proxy_start, segment) / c,
-                0.0, 1.0)
-            : 0.5;
-          const double angle = span.angle_min
-            + fraction * (span.angle_max - span.angle_min);
+          const double fraction =
+            c > 0.0
+              ? std::clamp(
+                  dot(proxy_point - span.proxy_start, segment) / c, 0.0, 1.0)
+              : 0.5;
+          const double angle =
+            span.angle_min + fraction * (span.angle_max - span.angle_min);
           const auto frame_value = frame_in_span(span, angle);
           const Vec3 transverse = proxy_point - frame_value.center;
           const double alpha = std::atan2(
             dot(transverse, frame_value.binormal) / frame_value.minor_radius,
             dot(transverse, frame_value.normal) / frame_value.major_radius);
-          solved = solve_seed(
-            span, span_id, proxy_t[seed], angle, alpha) || solved;
+          solved =
+            solve_seed(span, span_id, proxy_t[seed], angle, alpha) || solved;
         }
 
         if (!solved && proxy_count != 0) {
           if (unresolved_count == unresolved.size()) {
-            throw std::runtime_error("Swept query unresolved-span capacity exhausted");
+            throw std::runtime_error(
+              "Swept query unresolved-span capacity exhausted");
           }
           unresolved[unresolved_count++] = {
             span_id, std::max(minimum_t, interval->enter), interval->exit};
@@ -1066,47 +1071,49 @@ DistanceResult CompiledSweptSplineSurface::distance(
       }
       continue;
     }
-    const auto left = span_bvh_[node.left].bbox.ray_interval(origin, ray_direction);
-    const auto right = span_bvh_[node.right].bbox.ray_interval(origin, ray_direction);
-    const bool use_left = left && left->exit > minimum_t && left->enter < best_t;
-    const bool use_right = right && right->exit > minimum_t && right->enter < best_t;
+    const auto left =
+      span_bvh_[node.left].bbox.ray_interval(origin, ray_direction);
+    const auto right =
+      span_bvh_[node.right].bbox.ray_interval(origin, ray_direction);
+    const bool use_left =
+      left && left->exit > minimum_t && left->enter < best_t;
+    const bool use_right =
+      right && right->exit > minimum_t && right->enter < best_t;
     if (use_left && use_right) {
       const bool left_first = left->enter <= right->enter;
       if (stack_size + 2 > stack.size()) {
         throw std::runtime_error("Swept query BVH stack capacity exhausted");
       }
-      stack[stack_size++] = left_first
-        ? StackEntry {node.right, right->enter}
-        : StackEntry {node.left, left->enter};
-      stack[stack_size++] = left_first
-        ? StackEntry {node.left, left->enter}
-        : StackEntry {node.right, right->enter};
+      stack[stack_size++] = left_first ? StackEntry {node.right, right->enter}
+                                       : StackEntry {node.left, left->enter};
+      stack[stack_size++] = left_first ? StackEntry {node.left, left->enter}
+                                       : StackEntry {node.right, right->enter};
     } else if (use_left || use_right) {
       if (stack_size + 1 > stack.size()) {
         throw std::runtime_error("Swept query BVH stack capacity exhausted");
       }
-      stack[stack_size++] = use_left
-        ? StackEntry {node.left, left->enter}
-        : StackEntry {node.right, right->enter};
+      stack[stack_size++] = use_left ? StackEntry {node.left, left->enter}
+                                     : StackEntry {node.right, right->enter};
     }
   }
   if (!std::isfinite(best_t)) {
-    for (std::size_t unresolved_index = 0;
-         unresolved_index < unresolved_count; ++unresolved_index) {
+    for (std::size_t unresolved_index = 0; unresolved_index < unresolved_count;
+         ++unresolved_index) {
       const auto item = unresolved[unresolved_index];
       const auto& span = spans_[item.span];
       add_performance_counter(PerformanceCounter::local_subdivision_calls);
       constexpr int scan_segments = 8;
       double previous_t = item.enter;
-      double previous_value = evaluate_in_span(
-        origin + previous_t * ray_direction, span);
-      for (int segment_index = 1;
-           segment_index <= scan_segments; ++segment_index) {
-        const double current_t = item.enter + (item.exit - item.enter)
-          * static_cast<double>(segment_index)
-            / static_cast<double>(scan_segments);
-        const double current_value = evaluate_in_span(
-          origin + current_t * ray_direction, span);
+      double previous_value =
+        evaluate_in_span(origin + previous_t * ray_direction, span);
+      for (int segment_index = 1; segment_index <= scan_segments;
+           ++segment_index) {
+        const double current_t =
+          item.enter + (item.exit - item.enter) *
+                         static_cast<double>(segment_index) /
+                         static_cast<double>(scan_segments);
+        const double current_value =
+          evaluate_in_span(origin + current_t * ray_direction, span);
         add_performance_counter(PerformanceCounter::local_subdivision_nodes);
         if (std::signbit(previous_value) != std::signbit(current_value)) {
           double a = previous_t;

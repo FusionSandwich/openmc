@@ -12,9 +12,11 @@ int main()
     const auto point = sample(data, 0) + Vec3 {.252, 0, 0};
     for (double scale : {.5, 1., 2.}) {
       const auto hit = coil.distance(point, Vec3 {-scale, 0, 0}, false);
-      const bool pass = hit.found && hit.distance > 0 && hit.distance <= .002 + 2e-10;
-      std::cout << std::setprecision(17) << "shape=" << shape << " scale=" << scale
-                << " distance=" << hit.distance << " pass=" << pass << '\n';
+      const bool pass =
+        hit.found && hit.distance > 0 && hit.distance <= .002 + 2e-10;
+      std::cout << std::setprecision(17) << "shape=" << shape
+                << " scale=" << scale << " distance=" << hit.distance
+                << " pass=" << pass << '\n';
       failures += pass ? 0 : 1;
     }
   }

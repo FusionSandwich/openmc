@@ -1,0 +1,115 @@
+{
+  "acquisition_bytes": 0,
+  "dependency_environment_changes": false,
+  "parallel_compilers": 1,
+  "source_sha256": "ee717bf84154d23c21aaeea0bf31afb8c9ba48aa1d9b54812273ef0c8371d8f3",
+  "attempts": [
+    {
+      "command": [
+        "cmake",
+        "-S",
+        "/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-cont-a/dev/stellarcsg",
+        "-B",
+        "/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-fast-recovery-04/build/recovery-04-A",
+        "-G",
+        "Ninja",
+        "-DCMAKE_BUILD_TYPE=Release",
+        "-DSTELLARCSG_ENABLE_HDF5=ON"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "cmake",
+        "--build",
+        "/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-fast-recovery-04/build/recovery-04-A",
+        "--target",
+        "stellarcsg_reference",
+        "--parallel",
+        "1"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "cmake",
+        "--build",
+        "/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-fast-recovery-04/build/recovery-04-seed",
+        "--target",
+        "stellarcsg_recovery04_bank",
+        "--parallel",
+        "1"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "g++",
+        "-std=c++17",
+        "-O3",
+        "-DNDEBUG",
+        "-DSTELLARCSG_HAS_HDF5",
+        "-I/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-fast-recovery-04/dev/stellarcsg/include",
+        "-I/usr/include/hdf5/serial",
+        "/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-fast-recovery-04/dev/stellarcsg/qualification/recovery04_frozen_bank.cpp",
+        "/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-fast-recovery-04/build/recovery-04-baseline/libstellarcsg_reference.a",
+        "-L/usr/lib/x86_64-linux-gnu/hdf5/serial",
+        "-lhdf5_hl",
+        "-lhdf5",
+        "-o",
+        "/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-fast-recovery-04/build/recovery-04-controls/old"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "g++",
+        "-std=c++17",
+        "-O3",
+        "-DNDEBUG",
+        "-DSTELLARCSG_HAS_HDF5",
+        "-I/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-cont-a/dev/stellarcsg/include",
+        "-I/usr/include/hdf5/serial",
+        "/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-fast-recovery-04/dev/stellarcsg/qualification/recovery04_frozen_bank.cpp",
+        "/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-fast-recovery-04/build/recovery-04-A/libstellarcsg_reference.a",
+        "-L/usr/lib/x86_64-linux-gnu/hdf5/serial",
+        "-lhdf5_hl",
+        "-lhdf5",
+        "-o",
+        "/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-fast-recovery-04/build/recovery-04-controls/previous_A"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "g++",
+        "-std=c++17",
+        "-O3",
+        "-DNDEBUG",
+        "-DSTELLARCSG_HAS_HDF5",
+        "-I/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-fast-03/dev/stellarcsg/include",
+        "-I/usr/include/hdf5/serial",
+        "/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-fast-recovery-04/dev/stellarcsg/qualification/recovery04_frozen_bank.cpp",
+        "/mnt/d/codex-verification/stellarcsg-20260913-03/kernel-off/libstellarcsg_reference.a",
+        "-L/usr/lib/x86_64-linux-gnu/hdf5/serial",
+        "-lhdf5_hl",
+        "-lhdf5",
+        "-lgmpxx",
+        "-lgmp",
+        "-o",
+        "/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-fast-recovery-04/build/recovery-04-controls/exact_reference"
+      ],
+      "exit_code": 0
+    }
+  ],
+  "library_hashes": {
+    "/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-fast-recovery-04/build/recovery-04-baseline/libstellarcsg_reference.a": "f3c702c3ecb17900409fe560251440646a975025cd1e63b5f8f6f31da1cdaad4",
+    "/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-fast-recovery-04/build/recovery-04-A/libstellarcsg_reference.a": "e9809a10a0d5520d89085b63e5f85394ee569b431aedb46def74df38609baf02",
+    "/mnt/d/codex-verification/stellarcsg-20260913-03/kernel-off/libstellarcsg_reference.a": "05aac9abab48fbfc89506fe99b294b88475f2a79245369cc791dff8da49762cf"
+  },
+  "binary_hashes": {
+    "old": "639aa2f5321383927056f36779b2e06f812f57d8ca8b4eed926990671dbd5867",
+    "previous_A": "b7e91a518a0b80533b48d6864c387ebab752a616f8dc63b56c9c68459ddb6b9b",
+    "exact_reference": "ac526ab00b0444d64d5e04b80bb5abea140381ffcf5673c40641f877795215d9"
+  }
+}

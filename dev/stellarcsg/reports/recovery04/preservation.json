@@ -1,0 +1,24 @@
+{
+  "date": "2026-09-13",
+  "starting_map": "starting-refs.txt",
+  "local_original_heads_verified": 17,
+  "local_original_head_changes": 0,
+  "same_original_heads_matching_live_origin": 17,
+  "remote_extra_refs_verified": {
+    "HEAD": "refs/heads/develop",
+    "refs/heads/develop": "9a62e431d3101799e6179a6d0cf3b37440062e23",
+    "refs/heads/master": "55b52b7ef3c9415ce045712132bf31c2a013d8c8",
+    "refs/heads/archive/stellarcsg-composite-3041a938-20260901": "3041a938c3fb0bc349654f37b0b3ebcd3cd5a9bb",
+    "refs/heads/archive/stellarcsg-torus-fastpath-c0290b-20260901": "c0290b257e879d16762b072e0b6ee3e43a519e8e"
+  },
+  "preserved_fast_archive": "c67b68fdaf7be2049308db7da449f14a25123847",
+  "allowed_new_heads": [
+    "JS/stellarcsg-fast-recovery-20260913-04",
+    "JS/stellarcsg-recovery-bank-20260913-04"
+  ],
+  "pr_created": false,
+  "push_performed": false,
+  "dependency_acquisition_bytes": 0,
+  "ssh_performed": false,
+  "openmc_experimental_default": "OFF"
+}

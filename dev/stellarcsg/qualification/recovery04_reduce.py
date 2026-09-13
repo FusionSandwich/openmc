@@ -9,6 +9,7 @@ from __future__ import annotations
 
 import argparse
 import csv
+import hashlib
 import json
 import math
 from collections import defaultdict
@@ -120,14 +121,15 @@ def load_frozen_bank(hashes: dict[str, Any]) -> tuple[dict[str, dict[str, str]],
     except OSError as error:
         return {}, [f"cannot_read_frozen_bank:{error}"]
     errors = []
+    if hashlib.sha256(csv_paths[0].read_bytes()).hexdigest() != hashes[str(csv_paths[0])]:
+        errors.append('frozen_bank_hash_changed')
     if len(rows) != QUERY_COUNT:
         errors.append(f"frozen_bank_row_count_not_160:{len(rows)}")
     ids = [row.get("id") for row in rows]
     if len(set(ids)) != QUERY_COUNT or any(not value for value in ids):
         errors.append("frozen_bank_ids_not_unique_160")
-    tuple_keys = ("geometry", "coefficient_hash", "source_sha256", "category", "heldout", "expected",
-                  "expected_distance", "group", "ox", "oy", "oz", "dx", "dy", "dz")
-    tuples = [tuple(row.get(key) for key in tuple_keys) for row in rows]
+    tuples = [(row['geometry'], row['category'].startswith('coincident_'),
+               *(float(row[key]) for key in ('ox', 'oy', 'oz', 'dx', 'dy', 'dz'))) for row in rows]
     if len(set(tuples)) != QUERY_COUNT:
         errors.append("frozen_bank_full_query_tuples_not_unique_160")
     return {row["id"]: row for row in rows if row.get("id")}, errors
@@ -166,9 +168,9 @@ def summarize_lane(attempts: list[dict[str, Any]]) -> dict[str, Any]:
             exclusions += excluded
             if value is not None:
                 means.append(value)
-        per_query = [median([value for q in rows if (value := finite(q.get(field))) is not None])
-                     for rows in by_query.values() if any(finite(q.get(field)) is not None for q in rows)]
-        result["metrics"][metric] = {"median_of_bank_means": median(means) if primary_complete and means else None,
+        per_query = [value for rows in by_query.values() for q in rows
+                     if (value := finite(q.get(field))) is not None]
+        result["metrics"][metric] = {"median_of_bank_means": median(means) if primary_complete and means and exclusions == 0 else None,
             "pooled_perquery_median": percentile(per_query, .50),
             "pooled_perquery_p95": percentile(per_query, .95),
             "pooled_perquery_p99": percentile(per_query, .99),
@@ -227,8 +229,10 @@ def exact_reference_comparison(lanes: dict[str, list[dict[str, Any]]]) -> dict[s
                 oracle = reference.get(query["id"])
                 if not oracle:
                     mismatches.add(query["id"]); continue
-                if query.get("reference_state") == "BLOCKED" or oracle.get("reference_state") == "BLOCKED":
+                if oracle.get('candidate_state') == 'BLOCKED' or oracle.get("reference_state") == "BLOCKED":
                     blocked.add(query["id"]); continue
+                if query.get('candidate_state') == 'BLOCKED':
+                    mismatches.add(query['id']); continue
                 found_a = query.get("candidate_found")
                 found_b = oracle.get("reference_found") if oracle.get("reference_available") else oracle.get("candidate_found")
                 if found_a != found_b:

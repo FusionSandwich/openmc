@@ -1,1 +1,3 @@
 .git_archival.txt  export-subst
+dev/stellarcsg/qualification/recovery04*.csv -text
+dev/stellarcsg/reports/recovery04/** -text

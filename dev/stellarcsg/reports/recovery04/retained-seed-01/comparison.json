@@ -1,0 +1,1151 @@
+{
+  "schema": "stellarcsg.recovery04.retained-replay/v1",
+  "command": [
+    "/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-fast-recovery-04/build/recovery-04-seed/stellarcsg_retained_replay",
+    "/mnt/d/codex-verification/stellarcsg-20260913-02/exact-coil-replay-input-01.txt"
+  ],
+  "exit_code": 1,
+  "hashes": {
+    "/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-fast-recovery-04/build/recovery-04-seed/stellarcsg_retained_replay": "5f4046f2c01f50262e583747de1526f2e2d21ad492b0d00c125645c2830d4f5c",
+    "/mnt/d/codex-verification/stellarcsg-20260913-02/exact-coil-replay-input-01.txt": "8125a247c8d4fd433c6ddd5639bd26eef23c27ef855a9a225533f078ac8c6ce9",
+    "/mnt/d/codex-verification/stellarcsg-20260913-03/monotone-replay-01.jsonl": "8270ef38a866907a7e0d9f574e789274fbbda42840562f99bde79c1a54c3de10",
+    "/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-fast-recovery-04/dev/stellarcsg/reports/recovery04/retained-seed-01/capture.jsonl": "ca220c6989cbd961b232956bbf37ca95b38902f4c976d0e66abf265dbe85c813"
+  },
+  "candidate_metamorphic_states": {
+    "PASS": 382,
+    "FAIL": 2
+  },
+  "reference_states": {
+    "PASS": 256,
+    "BLOCKED": 128
+  },
+  "admitted_reference_cases": 256,
+  "admitted_wrong_root_or_metamorphism_count": 2,
+  "mismatches": [
+    {
+      "shape": 0,
+      "index": 3,
+      "fields": [
+        "distance",
+        "scaled_distance",
+        "disposition"
+      ],
+      "candidate": {
+        "kind": "ray",
+        "shape": 0,
+        "index": 3,
+        "origin": [
+          -1.9999999999999998,
+          5.241974544453661,
+          0
+        ],
+        "direction": [
+          1,
+          0,
+          0
+        ],
+        "found": true,
+        "distance": 2.000000049429005,
+        "scaled_distance": 2.000000049429005,
+        "rigid_distance": 1.9999999143955463,
+        "state": "FAIL"
+      },
+      "reference": {
+        "kind": "ray",
+        "shape": 0,
+        "index": 3,
+        "origin": [
+          -1.9999999999999998,
+          5.241974544453661,
+          0
+        ],
+        "direction": [
+          1,
+          0,
+          0
+        ],
+        "found": true,
+        "distance": 1.9999999119428042,
+        "scaled_distance": 1.9999999119428042,
+        "rigid_distance": 1.999999911942804,
+        "state": "PASS"
+      }
+    },
+    {
+      "shape": 1,
+      "index": 3,
+      "fields": [
+        "distance",
+        "scaled_distance",
+        "disposition"
+      ],
+      "candidate": {
+        "kind": "ray",
+        "shape": 1,
+        "index": 3,
+        "origin": [
+          -1.9999999999999998,
+          5.241974544453661,
+          -0.39425871143096114
+        ],
+        "direction": [
+          1,
+          0,
+          0
+        ],
+        "found": true,
+        "distance": 2.00000004956397,
+        "scaled_distance": 2.00000004956397,
+        "rigid_distance": 1.9999999143954703,
+        "state": "FAIL"
+      },
+      "reference": {
+        "kind": "ray",
+        "shape": 1,
+        "index": 3,
+        "origin": [
+          -1.9999999999999998,
+          5.241974544453661,
+          -0.39425871143096114
+        ],
+        "direction": [
+          1,
+          0,
+          0
+        ],
+        "found": true,
+        "distance": 1.9999999119428042,
+        "scaled_distance": 1.9999999119428042,
+        "rigid_distance": 1.9999999119428038,
+        "state": "PASS"
+      }
+    }
+  ],
+  "reference_blocked_cases": [
+    {
+      "shape": 2,
+      "index": 0,
+      "reference_state": "BLOCKED",
+      "reference_reason": "STELLARCSG_UNRESOLVED_CIRCULAR_TUBE: embedded circular-tube separation certificate failed",
+      "candidate_state": "PASS",
+      "candidate_distance": 1.8766931631731458
+    },
+    {
+      "shape": 2,
+      "index": 1,
+      "reference_state": "BLOCKED",
+      "reference_reason": "STELLARCSG_UNRESOLVED_CIRCULAR_TUBE: embedded circular-tube separation certificate failed",
+      "candidate_state": "PASS",
+      "candidate_distance": 1.87670095284166
+    },
+    {
+      "shape": 2,
+      "index": 2,
+      "reference_state": "BLOCKED",
+      "reference_reason": "STELLARCSG_UNRESOLVED_CIRCULAR_TUBE: embedded circular-tube separation certificate failed",
+      "candidate_state": "PASS",
+      "candidate_distance": 1.8767010314466968
+    },
+    {
+      "shape": 2,
+      "index": 3,
+      "reference_state": "BLOCKED",
+      "reference_reason": "STELLARCSG_UNRESOLVED_CIRCULAR_TUBE: embedded circular-tube separation certificate failed",
+      "candidate_state": "PASS",
+      "candidate_distance": 1.8767010315253803
+    },
+    {
+      "shape": 2,
+      "index": 4,
+      "reference_state": "BLOCKED",
+      "reference_reason": "STELLARCSG_UNRESOLVED_CIRCULAR_TUBE: embedded circular-tube separation certificate failed",
+      "candidate_state": "PASS",
+      "candidate_distance": 1.8767010316040644
+    },
+    {
+      "shape": 2,
+      "index": 5,
+      "reference_state": "BLOCKED",
+      "reference_reason": "STELLARCSG_UNRESOLVED_CIRCULAR_TUBE: embedded circular-tube separation certificate failed",
+      "candidate_state": "PASS",
+      "candidate_distance": 1.8767011102091056
+    },
+    {
+      "shape": 2,
+      "index": 6,
+      "reference_state": "BLOCKED",
+      "reference_reason": "STELLARCSG_UNRESOLVED_CIRCULAR_TUBE: embedded circular-tube separation certificate failed",
+      "candidate_state": "PASS",
+      "candidate_distance": 1.8767088999176793
+    },
+    {
+      "shape": 2,
+      "index": 7,
+      "reference_state": "BLOCKED",
+      "reference_reason": "STELLARCSG_UNRESOLVED_CIRCULAR_TUBE: embedded circular-tube separation certificate failed",
+      "candidate_state": "PASS",
+      "candidate_distance": 0.2500000000000002
+    },
+    {
+      "shape": 2,
+      "index": 8,
+      "reference_state": "BLOCKED",
+      "reference_reason": "STELLARCSG_UNRESOLVED_CIRCULAR_TUBE: embedded circular-tube separation certificate failed",
+      "candidate_state": "PASS",
+      "candidate_distance": 0.0019999999909989796
+    },
+    {
+      "shape": 2,
+      "index": 9,
+      "reference_state": "BLOCKED",
+      "reference_reason": "STELLARCSG_UNRESOLVED_CIRCULAR_TUBE: embedded circular-tube separation certificate failed",
+      "candidate_state": "PASS",
+      "candidate_distance": 4.523314055221249
+    },
+    {
+      "shape": 2,
+      "index": 10,
+      "reference_state": "BLOCKED",
+      "reference_reason": "STELLARCSG_UNRESOLVED_CIRCULAR_TUBE: embedded circular-tube separation certificate failed",
+      "candidate_state": "PASS",
+      "candidate_distance": 0.7423733794655818
+    },
+    {
+      "shape": 2,
+      "index": 11,
+      "reference_state": "BLOCKED",
+      "reference_reason": "STELLARCSG_UNRESOLVED_CIRCULAR_TUBE: embedded circular-tube separation certificate failed",
+      "candidate_state": "PASS",
+      "candidate_distance": 0.3532940390657815
+    },
+    {
+      "shape": 2,
+      "index": 12,
+      "reference_state": "BLOCKED",
+      "reference_reason": "STELLARCSG_UNRESOLVED_CIRCULAR_TUBE: embedded circular-tube separation certificate failed",
+      "candidate_state": "PASS",
+      "candidate_distance": 0.20255265676535605
+    },
+    {
+      "shape": 2,
+      "index": 13,
+      "reference_state": "BLOCKED",
+      "reference_reason": "STELLARCSG_UNRESOLVED_CIRCULAR_TUBE: embedded circular-tube separation certificate failed",
+      "candidate_state": "PASS",
+      "candidate_distance": 0.07842116462350668
+    },
+    {
+      "shape": 2,
+      "index": 14,
+      "reference_state": "BLOCKED",
+      "reference_reason": "STELLARCSG_UNRESOLVED_CIRCULAR_TUBE: embedded circular-tube separation certificate failed",
+      "candidate_state": "PASS",
+      "candidate_distance": 0.18621628352717168
+    },
+    {
+      "shape": 2,
+      "index": 15,
+      "reference_state": "BLOCKED",
+      "reference_reason": "STELLARCSG_UNRESOLVED_CIRCULAR_TUBE: embedded circular-tube separation certificate failed",
+      "candidate_state": "PASS",
+      "candidate_distance": 0.18549031822263742
+    },
+    {
+      "shape": 2,
+      "index": 16,
+      "reference_state": "BLOCKED",
+      "reference_reason": "STELLARCSG_UNRESOLVED_CIRCULAR_TUBE: embedded circular-tube separation certificate failed",
+      "candidate_state": "PASS",
+      "candidate_distance": 0.09679018628043974
+    },
+    {
+      "shape": 2,
+      "index": 17,
+      "reference_state": "BLOCKED",
+      "reference_reason": "STELLARCSG_UNRESOLVED_CIRCULAR_TUBE: embedded circular-tube separation certificate failed",
+      "candidate_state": "PASS",
+      "candidate_distance": 0.37235997433806234
+    },
+    {
+      "shape": 2,
+      "index": 18,
+      "reference_state": "BLOCKED",
+      "reference_reason": "STELLARCSG_UNRESOLVED_CIRCULAR_TUBE: embedded circular-tube separation certificate failed",
+      "candidate_state": "PASS",
+      "candidate_distance": 0.20890614327115878
+    },
+    {
+      "shape": 2,
+      "index": 19,
+      "reference_state": "BLOCKED",
+      "reference_reason": "STELLARCSG_UNRESOLVED_CIRCULAR_TUBE: embedded circular-tube separation certificate failed",
+      "candidate_state": "PASS",
+      "candidate_distance": 0.2209697748794557
+    },
+    {
+      "shape": 2,
+      "index": 20,
+      "reference_state": "BLOCKED",
+      "reference_reason": "STELLARCSG_UNRESOLVED_CIRCULAR_TUBE: embedded circular-tube separation certificate failed",
+      "candidate_state": "PASS",
+      "candidate_distance": 0.3953040681219598
+    },
+    {
+      "shape": 2,
+      "index": 21,
+      "reference_state": "BLOCKED",
+      "reference_reason": "STELLARCSG_UNRESOLVED_CIRCULAR_TUBE: embedded circular-tube separation certificate failed",
+      "candidate_state": "PASS",
+      "candidate_distance": 0.25728293650806144
+    },
+    {
+      "shape": 2,
+      "index": 22,
+      "reference_state": "BLOCKED",
+      "reference_reason": "STELLARCSG_UNRESOLVED_CIRCULAR_TUBE: embedded circular-tube separation certificate failed",
+      "candidate_state": "PASS",
+      "candidate_distance": 0.4212296658815343
+    },
+    {
+      "shape": 2,
+      "index": 23,
+      "reference_state": "BLOCKED",
+      "reference_reason": "STELLARCSG_UNRESOLVED_CIRCULAR_TUBE: embedded circular-tube separation certificate failed",
+      "candidate_state": "PASS",
+      "candidate_distance": 0.18468438564479175
+    },
+    {
+      "shape": 2,
+      "index": 24,
+      "reference_state": "BLOCKED",
+      "reference_reason": "STELLARCSG_UNRESOLVED_CIRCULAR_TUBE: embedded circular-tube separation certificate failed",
+      "candidate_state": "PASS",
+      "candidate_distance": 0.27694592511344585
+    },
+    {
+      "shape": 2,
+      "index": 25,
+      "reference_state": "BLOCKED",
+      "reference_reason": "STELLARCSG_UNRESOLVED_CIRCULAR_TUBE: embedded circular-tube separation certificate failed",
+      "candidate_state": "PASS",
+      "candidate_distance": 0.002634251442135182
+    },
+    {
+      "shape": 2,
+      "index": 26,
+      "reference_state": "BLOCKED",
+      "reference_reason": "STELLARCSG_UNRESOLVED_CIRCULAR_TUBE: embedded circular-tube separation certificate failed",
+      "candidate_state": "PASS",
+      "candidate_distance": 0.1735188293160224
+    },
+    {
+      "shape": 2,
+      "index": 27,
+      "reference_state": "BLOCKED",
+      "reference_reason": "STELLARCSG_UNRESOLVED_CIRCULAR_TUBE: embedded circular-tube separation certificate failed",
+      "candidate_state": "PASS",
+      "candidate_distance": 0.26348719211523713
+    },
+    {
+      "shape": 2,
+      "index": 28,
+      "reference_state": "BLOCKED",
+      "reference_reason": "STELLARCSG_UNRESOLVED_CIRCULAR_TUBE: embedded circular-tube separation certificate failed",
+      "candidate_state": "PASS",
+      "candidate_distance": 0.314592488049673
+    },
+    {
+      "shape": 2,
+      "index": 29,
+      "reference_state": "BLOCKED",
+      "reference_reason": "STELLARCSG_UNRESOLVED_CIRCULAR_TUBE: embedded circular-tube separation certificate failed",
+      "candidate_state": "PASS",
+      "candidate_distance": 0.2772333499571473
+    },
+    {
+      "shape": 2,
+      "index": 30,
+      "reference_state": "BLOCKED",
+      "reference_reason": "STELLARCSG_UNRESOLVED_CIRCULAR_TUBE: embedded circular-tube separation certificate failed",
+      "candidate_state": "PASS",
+      "candidate_distance": 0.015039123246615693
+    },
+    {
+      "shape": 2,
+      "index": 31,
+      "reference_state": "BLOCKED",
+      "reference_reason": "STELLARCSG_UNRESOLVED_CIRCULAR_TUBE: embedded circular-tube separation certificate failed",
+      "candidate_state": "PASS",
+      "candidate_distance": 0.46321021906171983
+    },
+    {
+      "shape": 2,
+      "index": 32,
+      "reference_state": "BLOCKED",
+      "reference_reason": "STELLARCSG_UNRESOLVED_CIRCULAR_TUBE: embedded circular-tube separation certificate failed",
+      "candidate_state": "PASS",
+      "candidate_distance": 0.10473990131424564
+    },
+    {
+      "shape": 2,
+      "index": 33,
+      "reference_state": "BLOCKED",
+      "reference_reason": "STELLARCSG_UNRESOLVED_CIRCULAR_TUBE: embedded circular-tube separation certificate failed",
+      "candidate_state": "PASS",
+      "candidate_distance": 0.08761622002855705
+    },
+    {
+      "shape": 2,
+      "index": 34,
+      "reference_state": "BLOCKED",
+      "reference_reason": "STELLARCSG_UNRESOLVED_CIRCULAR_TUBE: embedded circular-tube separation certificate failed",
+      "candidate_state": "PASS",
+      "candidate_distance": 0.013650529584187847
+    },
+    {
+      "shape": 2,
+      "index": 35,
+      "reference_state": "BLOCKED",
+      "reference_reason": "STELLARCSG_UNRESOLVED_CIRCULAR_TUBE: embedded circular-tube separation certificate failed",
+      "candidate_state": "PASS",
+      "candidate_distance": 0.15120191770927582
+    },
+    {
+      "shape": 2,
+      "index": 36,
+      "reference_state": "BLOCKED",
+      "reference_reason": "STELLARCSG_UNRESOLVED_CIRCULAR_TUBE: embedded circular-tube separation certificate failed",
+      "candidate_state": "PASS",
+      "candidate_distance": 0.15588572894151606
+    },
+    {
+      "shape": 2,
+      "index": 37,
+      "reference_state": "BLOCKED",
+      "reference_reason": "STELLARCSG_UNRESOLVED_CIRCULAR_TUBE: embedded circular-tube separation certificate failed",
+      "candidate_state": "PASS",
+      "candidate_distance": 0.22481643296424306
+    },
+    {
+      "shape": 2,
+      "index": 38,
+      "reference_state": "BLOCKED",
+      "reference_reason": "STELLARCSG_UNRESOLVED_CIRCULAR_TUBE: embedded circular-tube separation certificate failed",
+      "candidate_state": "PASS",
+      "candidate_distance": 0.1303228314986131
+    },
+    {
+      "shape": 2,
+      "index": 39,
+      "reference_state": "BLOCKED",
+      "reference_reason": "STELLARCSG_UNRESOLVED_CIRCULAR_TUBE: embedded circular-tube separation certificate failed",
+      "candidate_state": "PASS",
+      "candidate_distance": 0.20460251596007764
+    },
+    {
+      "shape": 2,
+      "index": 40,
+      "reference_state": "BLOCKED",
+      "reference_reason": "STELLARCSG_UNRESOLVED_CIRCULAR_TUBE: embedded circular-tube separation certificate failed",
+      "candidate_state": "PASS",
+      "candidate_distance": 0.2535061026870428
+    },
+    {
+      "shape": 2,
+      "index": 41,
+      "reference_state": "BLOCKED",
+      "reference_reason": "STELLARCSG_UNRESOLVED_CIRCULAR_TUBE: embedded circular-tube separation certificate failed",
+      "candidate_state": "PASS",
+      "candidate_distance": 0.16696851314901653
+    },
+    {
+      "shape": 2,
+      "index": 42,
+      "reference_state": "BLOCKED",
+      "reference_reason": "STELLARCSG_UNRESOLVED_CIRCULAR_TUBE: embedded circular-tube separation certificate failed",
+      "candidate_state": "PASS",
+      "candidate_distance": 0.1409823582101847
+    },
+    {
+      "shape": 2,
+      "index": 43,
+      "reference_state": "BLOCKED",
+      "reference_reason": "STELLARCSG_UNRESOLVED_CIRCULAR_TUBE: embedded circular-tube separation certificate failed",
+      "candidate_state": "PASS",
+      "candidate_distance": 0.0664921343758483
+    },
+    {
+      "shape": 2,
+      "index": 44,
+      "reference_state": "BLOCKED",
+      "reference_reason": "STELLARCSG_UNRESOLVED_CIRCULAR_TUBE: embedded circular-tube separation certificate failed",
+      "candidate_state": "PASS",
+      "candidate_distance": 0.23612231890338392
+    },
+    {
+      "shape": 2,
+      "index": 45,
+      "reference_state": "BLOCKED",
+      "reference_reason": "STELLARCSG_UNRESOLVED_CIRCULAR_TUBE: embedded circular-tube separation certificate failed",
+      "candidate_state": "PASS",
+      "candidate_distance": 0.278889132132341
+    },
+    {
+      "shape": 2,
+      "index": 46,
+      "reference_state": "BLOCKED",
+      "reference_reason": "STELLARCSG_UNRESOLVED_CIRCULAR_TUBE: embedded circular-tube separation certificate failed",
+      "candidate_state": "PASS",
+      "candidate_distance": 0.20799685059892042
+    },
+    {
+      "shape": 2,
+      "index": 47,
+      "reference_state": "BLOCKED",
+      "reference_reason": "STELLARCSG_UNRESOLVED_CIRCULAR_TUBE: embedded circular-tube separation certificate failed",
+      "candidate_state": "PASS",
+      "candidate_distance": 0.31929669985297254
+    },
+    {
+      "shape": 2,
+      "index": 48,
+      "reference_state": "BLOCKED",
+      "reference_reason": "STELLARCSG_UNRESOLVED_CIRCULAR_TUBE: embedded circular-tube separation certificate failed",
+      "candidate_state": "PASS",
+      "candidate_distance": 0.07226785983674895
+    },
+    {
+      "shape": 2,
+      "index": 49,
+      "reference_state": "BLOCKED",
+      "reference_reason": "STELLARCSG_UNRESOLVED_CIRCULAR_TUBE: embedded circular-tube separation certificate failed",
+      "candidate_state": "PASS",
+      "candidate_distance": 0.04235088821290052
+    },
+    {
+      "shape": 2,
+      "index": 50,
+      "reference_state": "BLOCKED",
+      "reference_reason": "STELLARCSG_UNRESOLVED_CIRCULAR_TUBE: embedded circular-tube separation certificate failed",
+      "candidate_state": "PASS",
+      "candidate_distance": 0.07873392882175875
+    },
+    {
+      "shape": 2,
+      "index": 51,
+      "reference_state": "BLOCKED",
+      "reference_reason": "STELLARCSG_UNRESOLVED_CIRCULAR_TUBE: embedded circular-tube separation certificate failed",
+      "candidate_state": "PASS",
+      "candidate_distance": 0.1740555572358045
+    },
+    {
+      "shape": 2,
+      "index": 52,
+      "reference_state": "BLOCKED",
+      "reference_reason": "STELLARCSG_UNRESOLVED_CIRCULAR_TUBE: embedded circular-tube separation certificate failed",
+      "candidate_state": "PASS",
+      "candidate_distance": 0.07743186897967283
+    },
+    {
+      "shape": 2,
+      "index": 53,
+      "reference_state": "BLOCKED",
+      "reference_reason": "STELLARCSG_UNRESOLVED_CIRCULAR_TUBE: embedded circular-tube separation certificate failed",
+      "candidate_state": "PASS",
+      "candidate_distance": 0.24637263409397367
+    },
+    {
+      "shape": 2,
+      "index": 54,
+      "reference_state": "BLOCKED",
+      "reference_reason": "STELLARCSG_UNRESOLVED_CIRCULAR_TUBE: embedded circular-tube separation certificate failed",
+      "candidate_state": "PASS",
+      "candidate_distance": 0.08663778927337482
+    },
+    {
+      "shape": 2,
+      "index": 55,
+      "reference_state": "BLOCKED",
+      "reference_reason": "STELLARCSG_UNRESOLVED_CIRCULAR_TUBE: embedded circular-tube separation certificate failed",
+      "candidate_state": "PASS",
+      "candidate_distance": 0.04802410933398088
+    },
+    {
+      "shape": 2,
+      "index": 56,
+      "reference_state": "BLOCKED",
+      "reference_reason": "STELLARCSG_UNRESOLVED_CIRCULAR_TUBE: embedded circular-tube separation certificate failed",
+      "candidate_state": "PASS",
+      "candidate_distance": 0.3706583518208184
+    },
+    {
+      "shape": 2,
+      "index": 57,
+      "reference_state": "BLOCKED",
+      "reference_reason": "STELLARCSG_UNRESOLVED_CIRCULAR_TUBE: embedded circular-tube separation certificate failed",
+      "candidate_state": "PASS",
+      "candidate_distance": 0.08014536159191657
+    },
+    {
+      "shape": 2,
+      "index": 58,
+      "reference_state": "BLOCKED",
+      "reference_reason": "STELLARCSG_UNRESOLVED_CIRCULAR_TUBE: embedded circular-tube separation certificate failed",
+      "candidate_state": "PASS",
+      "candidate_distance": 0.21893412080722133
+    },
+    {
+      "shape": 2,
+      "index": 59,
+      "reference_state": "BLOCKED",
+      "reference_reason": "STELLARCSG_UNRESOLVED_CIRCULAR_TUBE: embedded circular-tube separation certificate failed",
+      "candidate_state": "PASS",
+      "candidate_distance": 0.1964910833028459
+    },
+    {
+      "shape": 2,
+      "index": 60,
+      "reference_state": "BLOCKED",
+      "reference_reason": "STELLARCSG_UNRESOLVED_CIRCULAR_TUBE: embedded circular-tube separation certificate failed",
+      "candidate_state": "PASS",
+      "candidate_distance": 0.20250003825775517
+    },
+    {
+      "shape": 2,
+      "index": 61,
+      "reference_state": "BLOCKED",
+      "reference_reason": "STELLARCSG_UNRESOLVED_CIRCULAR_TUBE: embedded circular-tube separation certificate failed",
+      "candidate_state": "PASS",
+      "candidate_distance": 0.11709303541714362
+    },
+    {
+      "shape": 2,
+      "index": 62,
+      "reference_state": "BLOCKED",
+      "reference_reason": "STELLARCSG_UNRESOLVED_CIRCULAR_TUBE: embedded circular-tube separation certificate failed",
+      "candidate_state": "PASS",
+      "candidate_distance": 0.16623373185249682
+    },
+    {
+      "shape": 2,
+      "index": 63,
+      "reference_state": "BLOCKED",
+      "reference_reason": "STELLARCSG_UNRESOLVED_CIRCULAR_TUBE: embedded circular-tube separation certificate failed",
+      "candidate_state": "PASS",
+      "candidate_distance": 0.4472431569087858
+    },
+    {
+      "shape": 2,
+      "index": 64,
+      "reference_state": "BLOCKED",
+      "reference_reason": "STELLARCSG_UNRESOLVED_CIRCULAR_TUBE: embedded circular-tube separation certificate failed",
+      "candidate_state": "PASS",
+      "candidate_distance": 0.46677828545511324
+    },
+    {
+      "shape": 2,
+      "index": 65,
+      "reference_state": "BLOCKED",
+      "reference_reason": "STELLARCSG_UNRESOLVED_CIRCULAR_TUBE: embedded circular-tube separation certificate failed",
+      "candidate_state": "PASS",
+      "candidate_distance": 0.010021828700072271
+    },
+    {
+      "shape": 2,
+      "index": 66,
+      "reference_state": "BLOCKED",
+      "reference_reason": "STELLARCSG_UNRESOLVED_CIRCULAR_TUBE: embedded circular-tube separation certificate failed",
+      "candidate_state": "PASS",
+      "candidate_distance": 0.31257078476565353
+    },
+    {
+      "shape": 2,
+      "index": 67,
+      "reference_state": "BLOCKED",
+      "reference_reason": "STELLARCSG_UNRESOLVED_CIRCULAR_TUBE: embedded circular-tube separation certificate failed",
+      "candidate_state": "PASS",
+      "candidate_distance": 0.03385904184013119
+    },
+    {
+      "shape": 2,
+      "index": 68,
+      "reference_state": "BLOCKED",
+      "reference_reason": "STELLARCSG_UNRESOLVED_CIRCULAR_TUBE: embedded circular-tube separation certificate failed",
+      "candidate_state": "PASS",
+      "candidate_distance": 0.09371053560752964
+    },
+    {
+      "shape": 2,
+      "index": 69,
+      "reference_state": "BLOCKED",
+      "reference_reason": "STELLARCSG_UNRESOLVED_CIRCULAR_TUBE: embedded circular-tube separation certificate failed",
+      "candidate_state": "PASS",
+      "candidate_distance": 0.4701822179127246
+    },
+    {
+      "shape": 2,
+      "index": 70,
+      "reference_state": "BLOCKED",
+      "reference_reason": "STELLARCSG_UNRESOLVED_CIRCULAR_TUBE: embedded circular-tube separation certificate failed",
+      "candidate_state": "PASS",
+      "candidate_distance": 0.1342990038972132
+    },
+    {
+      "shape": 2,
+      "index": 71,
+      "reference_state": "BLOCKED",
+      "reference_reason": "STELLARCSG_UNRESOLVED_CIRCULAR_TUBE: embedded circular-tube separation certificate failed",
+      "candidate_state": "PASS",
+      "candidate_distance": 0.40205805152288177
+    },
+    {
+      "shape": 2,
+      "index": 72,
+      "reference_state": "BLOCKED",
+      "reference_reason": "STELLARCSG_UNRESOLVED_CIRCULAR_TUBE: embedded circular-tube separation certificate failed",
+      "candidate_state": "PASS",
+      "candidate_distance": 0.18181864945118295
+    },
+    {
+      "shape": 2,
+      "index": 73,
+      "reference_state": "BLOCKED",
+      "reference_reason": "STELLARCSG_UNRESOLVED_CIRCULAR_TUBE: embedded circular-tube separation certificate failed",
+      "candidate_state": "PASS",
+      "candidate_distance": 0.07106570390892476
+    },
+    {
+      "shape": 2,
+      "index": 74,
+      "reference_state": "BLOCKED",
+      "reference_reason": "STELLARCSG_UNRESOLVED_CIRCULAR_TUBE: embedded circular-tube separation certificate failed",
+      "candidate_state": "PASS",
+      "candidate_distance": 0.3601219130253743
+    },
+    {
+      "shape": 2,
+      "index": 75,
+      "reference_state": "BLOCKED",
+      "reference_reason": "STELLARCSG_UNRESOLVED_CIRCULAR_TUBE: embedded circular-tube separation certificate failed",
+      "candidate_state": "PASS",
+      "candidate_distance": 0.2891001213862296
+    },
+    {
+      "shape": 2,
+      "index": 76,
+      "reference_state": "BLOCKED",
+      "reference_reason": "STELLARCSG_UNRESOLVED_CIRCULAR_TUBE: embedded circular-tube separation certificate failed",
+      "candidate_state": "PASS",
+      "candidate_distance": 0.0849088703533844
+    },
+    {
+      "shape": 2,
+      "index": 77,
+      "reference_state": "BLOCKED",
+      "reference_reason": "STELLARCSG_UNRESOLVED_CIRCULAR_TUBE: embedded circular-tube separation certificate failed",
+      "candidate_state": "PASS",
+      "candidate_distance": 0.21776709664521382
+    },
+    {
+      "shape": 2,
+      "index": 78,
+      "reference_state": "BLOCKED",
+      "reference_reason": "STELLARCSG_UNRESOLVED_CIRCULAR_TUBE: embedded circular-tube separation certificate failed",
+      "candidate_state": "PASS",
+      "candidate_distance": 0.0005945656436026237
+    },
+    {
+      "shape": 2,
+      "index": 79,
+      "reference_state": "BLOCKED",
+      "reference_reason": "STELLARCSG_UNRESOLVED_CIRCULAR_TUBE: embedded circular-tube separation certificate failed",
+      "candidate_state": "PASS",
+      "candidate_distance": 0.43933162641982554
+    },
+    {
+      "shape": 2,
+      "index": 80,
+      "reference_state": "BLOCKED",
+      "reference_reason": "STELLARCSG_UNRESOLVED_CIRCULAR_TUBE: embedded circular-tube separation certificate failed",
+      "candidate_state": "PASS",
+      "candidate_distance": 0.1331086525398569
+    },
+    {
+      "shape": 2,
+      "index": 81,
+      "reference_state": "BLOCKED",
+      "reference_reason": "STELLARCSG_UNRESOLVED_CIRCULAR_TUBE: embedded circular-tube separation certificate failed",
+      "candidate_state": "PASS",
+      "candidate_distance": 0.34043532797516657
+    },
+    {
+      "shape": 2,
+      "index": 82,
+      "reference_state": "BLOCKED",
+      "reference_reason": "STELLARCSG_UNRESOLVED_CIRCULAR_TUBE: embedded circular-tube separation certificate failed",
+      "candidate_state": "PASS",
+      "candidate_distance": 0.47920786462198045
+    },
+    {
+      "shape": 2,
+      "index": 83,
+      "reference_state": "BLOCKED",
+      "reference_reason": "STELLARCSG_UNRESOLVED_CIRCULAR_TUBE: embedded circular-tube separation certificate failed",
+      "candidate_state": "PASS",
+      "candidate_distance": 0.01939678125405962
+    },
+    {
+      "shape": 2,
+      "index": 84,
+      "reference_state": "BLOCKED",
+      "reference_reason": "STELLARCSG_UNRESOLVED_CIRCULAR_TUBE: embedded circular-tube separation certificate failed",
+      "candidate_state": "PASS",
+      "candidate_distance": 0.17632166316808093
+    },
+    {
+      "shape": 2,
+      "index": 85,
+      "reference_state": "BLOCKED",
+      "reference_reason": "STELLARCSG_UNRESOLVED_CIRCULAR_TUBE: embedded circular-tube separation certificate failed",
+      "candidate_state": "PASS",
+      "candidate_distance": 0.03104245663559181
+    },
+    {
+      "shape": 2,
+      "index": 86,
+      "reference_state": "BLOCKED",
+      "reference_reason": "STELLARCSG_UNRESOLVED_CIRCULAR_TUBE: embedded circular-tube separation certificate failed",
+      "candidate_state": "PASS",
+      "candidate_distance": 0.4033151934709773
+    },
+    {
+      "shape": 2,
+      "index": 87,
+      "reference_state": "BLOCKED",
+      "reference_reason": "STELLARCSG_UNRESOLVED_CIRCULAR_TUBE: embedded circular-tube separation certificate failed",
+      "candidate_state": "PASS",
+      "candidate_distance": 0.029981838127060022
+    },
+    {
+      "shape": 2,
+      "index": 88,
+      "reference_state": "BLOCKED",
+      "reference_reason": "STELLARCSG_UNRESOLVED_CIRCULAR_TUBE: embedded circular-tube separation certificate failed",
+      "candidate_state": "PASS",
+      "candidate_distance": 0.18543752593679413
+    },
+    {
+      "shape": 2,
+      "index": 89,
+      "reference_state": "BLOCKED",
+      "reference_reason": "STELLARCSG_UNRESOLVED_CIRCULAR_TUBE: embedded circular-tube separation certificate failed",
+      "candidate_state": "PASS",
+      "candidate_distance": 0.169411089763655
+    },
+    {
+      "shape": 2,
+      "index": 90,
+      "reference_state": "BLOCKED",
+      "reference_reason": "STELLARCSG_UNRESOLVED_CIRCULAR_TUBE: embedded circular-tube separation certificate failed",
+      "candidate_state": "PASS",
+      "candidate_distance": 0.10056980300380648
+    },
+    {
+      "shape": 2,
+      "index": 91,
+      "reference_state": "BLOCKED",
+      "reference_reason": "STELLARCSG_UNRESOLVED_CIRCULAR_TUBE: embedded circular-tube separation certificate failed",
+      "candidate_state": "PASS",
+      "candidate_distance": 0.09793115059431534
+    },
+    {
+      "shape": 2,
+      "index": 92,
+      "reference_state": "BLOCKED",
+      "reference_reason": "STELLARCSG_UNRESOLVED_CIRCULAR_TUBE: embedded circular-tube separation certificate failed",
+      "candidate_state": "PASS",
+      "candidate_distance": 0.49243198741661887
+    },
+    {
+      "shape": 2,
+      "index": 93,
+      "reference_state": "BLOCKED",
+      "reference_reason": "STELLARCSG_UNRESOLVED_CIRCULAR_TUBE: embedded circular-tube separation certificate failed",
+      "candidate_state": "PASS",
+      "candidate_distance": 0.10415879459801625
+    },
+    {
+      "shape": 2,
+      "index": 94,
+      "reference_state": "BLOCKED",
+      "reference_reason": "STELLARCSG_UNRESOLVED_CIRCULAR_TUBE: embedded circular-tube separation certificate failed",
+      "candidate_state": "PASS",
+      "candidate_distance": 0.4534877547595798
+    },
+    {
+      "shape": 2,
+      "index": 95,
+      "reference_state": "BLOCKED",
+      "reference_reason": "STELLARCSG_UNRESOLVED_CIRCULAR_TUBE: embedded circular-tube separation certificate failed",
+      "candidate_state": "PASS",
+      "candidate_distance": 0.16015606683181918
+    },
+    {
+      "shape": 2,
+      "index": 96,
+      "reference_state": "BLOCKED",
+      "reference_reason": "STELLARCSG_UNRESOLVED_CIRCULAR_TUBE: embedded circular-tube separation certificate failed",
+      "candidate_state": "PASS",
+      "candidate_distance": 0.1605285491560877
+    },
+    {
+      "shape": 2,
+      "index": 97,
+      "reference_state": "BLOCKED",
+      "reference_reason": "STELLARCSG_UNRESOLVED_CIRCULAR_TUBE: embedded circular-tube separation certificate failed",
+      "candidate_state": "PASS",
+      "candidate_distance": 0.44377220529637945
+    },
+    {
+      "shape": 2,
+      "index": 98,
+      "reference_state": "BLOCKED",
+      "reference_reason": "STELLARCSG_UNRESOLVED_CIRCULAR_TUBE: embedded circular-tube separation certificate failed",
+      "candidate_state": "PASS",
+      "candidate_distance": 0.12749996869747332
+    },
+    {
+      "shape": 2,
+      "index": 99,
+      "reference_state": "BLOCKED",
+      "reference_reason": "STELLARCSG_UNRESOLVED_CIRCULAR_TUBE: embedded circular-tube separation certificate failed",
+      "candidate_state": "PASS",
+      "candidate_distance": 0.3548871869417274
+    },
+    {
+      "shape": 2,
+      "index": 100,
+      "reference_state": "BLOCKED",
+      "reference_reason": "STELLARCSG_UNRESOLVED_CIRCULAR_TUBE: embedded circular-tube separation certificate failed",
+      "candidate_state": "PASS",
+      "candidate_distance": 0.37653066294473325
+    },
+    {
+      "shape": 2,
+      "index": 101,
+      "reference_state": "BLOCKED",
+      "reference_reason": "STELLARCSG_UNRESOLVED_CIRCULAR_TUBE: embedded circular-tube separation certificate failed",
+      "candidate_state": "PASS",
+      "candidate_distance": 0.2862719610662048
+    },
+    {
+      "shape": 2,
+      "index": 102,
+      "reference_state": "BLOCKED",
+      "reference_reason": "STELLARCSG_UNRESOLVED_CIRCULAR_TUBE: embedded circular-tube separation certificate failed",
+      "candidate_state": "PASS",
+      "candidate_distance": 0.4897855910583491
+    },
+    {
+      "shape": 2,
+      "index": 103,
+      "reference_state": "BLOCKED",
+      "reference_reason": "STELLARCSG_UNRESOLVED_CIRCULAR_TUBE: embedded circular-tube separation certificate failed",
+      "candidate_state": "PASS",
+      "candidate_distance": 0.22531282029873187
+    },
+    {
+      "shape": 2,
+      "index": 104,
+      "reference_state": "BLOCKED",
+      "reference_reason": "STELLARCSG_UNRESOLVED_CIRCULAR_TUBE: embedded circular-tube separation certificate failed",
+      "candidate_state": "PASS",
+      "candidate_distance": 0.13725021173894203
+    },
+    {
+      "shape": 2,
+      "index": 105,
+      "reference_state": "BLOCKED",
+      "reference_reason": "STELLARCSG_UNRESOLVED_CIRCULAR_TUBE: embedded circular-tube separation certificate failed",
+      "candidate_state": "PASS",
+      "candidate_distance": 0.46299708203776757
+    },
+    {
+      "shape": 2,
+      "index": 106,
+      "reference_state": "BLOCKED",
+      "reference_reason": "STELLARCSG_UNRESOLVED_CIRCULAR_TUBE: embedded circular-tube separation certificate failed",
+      "candidate_state": "PASS",
+      "candidate_distance": 0.1520605180576679
+    },
+    {
+      "shape": 2,
+      "index": 107,
+      "reference_state": "BLOCKED",
+      "reference_reason": "STELLARCSG_UNRESOLVED_CIRCULAR_TUBE: embedded circular-tube separation certificate failed",
+      "candidate_state": "PASS",
+      "candidate_distance": 0.07494347699068961
+    },
+    {
+      "shape": 2,
+      "index": 108,
+      "reference_state": "BLOCKED",
+      "reference_reason": "STELLARCSG_UNRESOLVED_CIRCULAR_TUBE: embedded circular-tube separation certificate failed",
+      "candidate_state": "PASS",
+      "candidate_distance": 0.43079121724300373
+    },
+    {
+      "shape": 2,
+      "index": 109,
+      "reference_state": "BLOCKED",
+      "reference_reason": "STELLARCSG_UNRESOLVED_CIRCULAR_TUBE: embedded circular-tube separation certificate failed",
+      "candidate_state": "PASS",
+      "candidate_distance": 0.19094878931518228
+    },
+    {
+      "shape": 2,
+      "index": 110,
+      "reference_state": "BLOCKED",
+      "reference_reason": "STELLARCSG_UNRESOLVED_CIRCULAR_TUBE: embedded circular-tube separation certificate failed",
+      "candidate_state": "PASS",
+      "candidate_distance": 0.37565670414135716
+    },
+    {
+      "shape": 2,
+      "index": 111,
+      "reference_state": "BLOCKED",
+      "reference_reason": "STELLARCSG_UNRESOLVED_CIRCULAR_TUBE: embedded circular-tube separation certificate failed",
+      "candidate_state": "PASS",
+      "candidate_distance": 0.3090771916108076
+    },
+    {
+      "shape": 2,
+      "index": 112,
+      "reference_state": "BLOCKED",
+      "reference_reason": "STELLARCSG_UNRESOLVED_CIRCULAR_TUBE: embedded circular-tube separation certificate failed",
+      "candidate_state": "PASS",
+      "candidate_distance": 0.1537963633505237
+    },
+    {
+      "shape": 2,
+      "index": 113,
+      "reference_state": "BLOCKED",
+      "reference_reason": "STELLARCSG_UNRESOLVED_CIRCULAR_TUBE: embedded circular-tube separation certificate failed",
+      "candidate_state": "PASS",
+      "candidate_distance": 0.06742635441990824
+    },
+    {
+      "shape": 2,
+      "index": 114,
+      "reference_state": "BLOCKED",
+      "reference_reason": "STELLARCSG_UNRESOLVED_CIRCULAR_TUBE: embedded circular-tube separation certificate failed",
+      "candidate_state": "PASS",
+      "candidate_distance": 0.17268235939873228
+    },
+    {
+      "shape": 2,
+      "index": 115,
+      "reference_state": "BLOCKED",
+      "reference_reason": "STELLARCSG_UNRESOLVED_CIRCULAR_TUBE: embedded circular-tube separation certificate failed",
+      "candidate_state": "PASS",
+      "candidate_distance": 0.49242872178583447
+    },
+    {
+      "shape": 2,
+      "index": 116,
+      "reference_state": "BLOCKED",
+      "reference_reason": "STELLARCSG_UNRESOLVED_CIRCULAR_TUBE: embedded circular-tube separation certificate failed",
+      "candidate_state": "PASS",
+      "candidate_distance": 0.05613161891710663
+    },
+    {
+      "shape": 2,
+      "index": 117,
+      "reference_state": "BLOCKED",
+      "reference_reason": "STELLARCSG_UNRESOLVED_CIRCULAR_TUBE: embedded circular-tube separation certificate failed",
+      "candidate_state": "PASS",
+      "candidate_distance": 0.1402471243932373
+    },
+    {
+      "shape": 2,
+      "index": 118,
+      "reference_state": "BLOCKED",
+      "reference_reason": "STELLARCSG_UNRESOLVED_CIRCULAR_TUBE: embedded circular-tube separation certificate failed",
+      "candidate_state": "PASS",
+      "candidate_distance": 0.22881544897882178
+    },
+    {
+      "shape": 2,
+      "index": 119,
+      "reference_state": "BLOCKED",
+      "reference_reason": "STELLARCSG_UNRESOLVED_CIRCULAR_TUBE: embedded circular-tube separation certificate failed",
+      "candidate_state": "PASS",
+      "candidate_distance": 0.38828877838490594
+    },
+    {
+      "shape": 2,
+      "index": 120,
+      "reference_state": "BLOCKED",
+      "reference_reason": "STELLARCSG_UNRESOLVED_CIRCULAR_TUBE: embedded circular-tube separation certificate failed",
+      "candidate_state": "PASS",
+      "candidate_distance": 0.1376803925434493
+    },
+    {
+      "shape": 2,
+      "index": 121,
+      "reference_state": "BLOCKED",
+      "reference_reason": "STELLARCSG_UNRESOLVED_CIRCULAR_TUBE: embedded circular-tube separation certificate failed",
+      "candidate_state": "PASS",
+      "candidate_distance": 0.39450913848586316
+    },
+    {
+      "shape": 2,
+      "index": 122,
+      "reference_state": "BLOCKED",
+      "reference_reason": "STELLARCSG_UNRESOLVED_CIRCULAR_TUBE: embedded circular-tube separation certificate failed",
+      "candidate_state": "PASS",
+      "candidate_distance": 0.4881552761206019
+    },
+    {
+      "shape": 2,
+      "index": 123,
+      "reference_state": "BLOCKED",
+      "reference_reason": "STELLARCSG_UNRESOLVED_CIRCULAR_TUBE: embedded circular-tube separation certificate failed",
+      "candidate_state": "PASS",
+      "candidate_distance": 0.009880530672916752
+    },
+    {
+      "shape": 2,
+      "index": 124,
+      "reference_state": "BLOCKED",
+      "reference_reason": "STELLARCSG_UNRESOLVED_CIRCULAR_TUBE: embedded circular-tube separation certificate failed",
+      "candidate_state": "PASS",
+      "candidate_distance": 0.055108010539642205
+    },
+    {
+      "shape": 2,
+      "index": 125,
+      "reference_state": "BLOCKED",
+      "reference_reason": "STELLARCSG_UNRESOLVED_CIRCULAR_TUBE: embedded circular-tube separation certificate failed",
+      "candidate_state": "PASS",
+      "candidate_distance": 0.2617221948278681
+    },
+    {
+      "shape": 2,
+      "index": 126,
+      "reference_state": "BLOCKED",
+      "reference_reason": "STELLARCSG_UNRESOLVED_CIRCULAR_TUBE: embedded circular-tube separation certificate failed",
+      "candidate_state": "PASS",
+      "candidate_distance": 0.03156114517379318
+    },
+    {
+      "shape": 2,
+      "index": 127,
+      "reference_state": "BLOCKED",
+      "reference_reason": "STELLARCSG_UNRESOLVED_CIRCULAR_TUBE: embedded circular-tube separation certificate failed",
+      "candidate_state": "PASS",
+      "candidate_distance": 0.12120559460581093
+    }
+  ],
+  "warning": "Candidate PASS is a retained harness metamorphic result, not a root-completeness certificate. Reference BLOCKED remains BLOCKED even if the candidate returns a value."
+}

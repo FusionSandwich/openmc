@@ -10,6 +10,9 @@ def validate_bank(path: Path) -> None:
     rows = list(csv.DictReader(path.open(newline="", encoding="ascii")))
     assert len(rows) == 160
     assert len({row["id"] for row in rows}) == 160
+    assert len({(row['geometry'], row['category'].startswith('coincident_'),
+                 *(float(row[key]) for key in ('ox', 'oy', 'oz', 'dx', 'dy', 'dz')))
+                for row in rows}) == 160
     assert any(row["geometry"] == "wistell_coil031" for row in rows)
     required = {"clear_miss", "transverse", "inside", "near_entry_002",
                 "near_entry_502", "competing_roots", "seam", "grazing",

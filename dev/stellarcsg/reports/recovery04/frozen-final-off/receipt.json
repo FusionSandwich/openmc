@@ -1,0 +1,493 @@
+{
+  "schema": "stellarcsg.recovery04.measure/v1",
+  "hashes": {
+    "/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-fast-recovery-04/dev/stellarcsg/qualification/recovery04_frozen_bank.csv": "7348483e39128259a844d22a7618869a3f111604ea48d01e196a87fe0d396af7",
+    "/mnt/c/HTS_transport/plots/stellarcsg_multiconfig_20260831/wistell_d/magnets/swept_coils_1cm.h5": "9bb178c308e7f3ec659e1651a7d57e0ecbff734d3320000df1c2bf79fcf3262b",
+    "/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-fast-recovery-04/build/recovery-04-controls/old": "639aa2f5321383927056f36779b2e06f812f57d8ca8b4eed926990671dbd5867",
+    "/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-fast-recovery-04/build/recovery-04-seed/stellarcsg_recovery04_bank": "908900465f2b032a537a1fcc3703220b85fb6b34cd94d3f5bd9eec496faf694e",
+    "/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-fast-recovery-04/build/recovery-04-controls/previous_A": "b7e91a518a0b80533b48d6864c387ebab752a616f8dc63b56c9c68459ddb6b9b",
+    "/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-fast-recovery-04/build/recovery-04-controls/exact_reference": "ac526ab00b0444d64d5e04b80bb5abea140381ffcf5673c40641f877795215d9"
+  },
+  "affinity": [
+    0
+  ],
+  "attempts": [
+    {
+      "lane": "old",
+      "repeat": 0,
+      "command": [
+        "/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-fast-recovery-04/build/recovery-04-controls/old",
+        "--replay",
+        "/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-fast-recovery-04/dev/stellarcsg/qualification/recovery04_frozen_bank.csv",
+        "--wistell-h5",
+        "/mnt/c/HTS_transport/plots/stellarcsg_multiconfig_20260831/wistell_d/magnets/swept_coils_1cm.h5",
+        "--skip-reference"
+      ],
+      "started": 1789342395.0988579,
+      "exit_code": 1,
+      "finished": 1789342396.1716106,
+      "stdout": "old-0.jsonl",
+      "stderr": "old-0.stderr"
+    },
+    {
+      "lane": "experimental",
+      "repeat": 0,
+      "command": [
+        "/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-fast-recovery-04/build/recovery-04-seed/stellarcsg_recovery04_bank",
+        "--replay",
+        "/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-fast-recovery-04/dev/stellarcsg/qualification/recovery04_frozen_bank.csv",
+        "--wistell-h5",
+        "/mnt/c/HTS_transport/plots/stellarcsg_multiconfig_20260831/wistell_d/magnets/swept_coils_1cm.h5",
+        "--skip-reference"
+      ],
+      "started": 1789342396.1761484,
+      "exit_code": 0,
+      "finished": 1789342396.3191142,
+      "stdout": "experimental-0.jsonl",
+      "stderr": "experimental-0.stderr"
+    },
+    {
+      "lane": "previous_A",
+      "repeat": 0,
+      "command": [
+        "/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-fast-recovery-04/build/recovery-04-controls/previous_A",
+        "--replay",
+        "/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-fast-recovery-04/dev/stellarcsg/qualification/recovery04_frozen_bank.csv",
+        "--wistell-h5",
+        "/mnt/c/HTS_transport/plots/stellarcsg_multiconfig_20260831/wistell_d/magnets/swept_coils_1cm.h5",
+        "--skip-reference"
+      ],
+      "started": 1789342396.324008,
+      "exit_code": 0,
+      "finished": 1789342396.451172,
+      "stdout": "previous_A-0.jsonl",
+      "stderr": "previous_A-0.stderr"
+    },
+    {
+      "lane": "exact_reference",
+      "repeat": 0,
+      "command": [
+        "/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-fast-recovery-04/build/recovery-04-controls/exact_reference",
+        "--replay",
+        "/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-fast-recovery-04/dev/stellarcsg/qualification/recovery04_frozen_bank.csv",
+        "--wistell-h5",
+        "/mnt/c/HTS_transport/plots/stellarcsg_multiconfig_20260831/wistell_d/magnets/swept_coils_1cm.h5",
+        "--skip-reference"
+      ],
+      "started": 1789342396.4559987,
+      "exit_code": 0,
+      "finished": 1789342401.0953195,
+      "stdout": "exact_reference-0.jsonl",
+      "stderr": "exact_reference-0.stderr"
+    },
+    {
+      "lane": "exact_reference",
+      "repeat": 1,
+      "command": [
+        "/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-fast-recovery-04/build/recovery-04-controls/exact_reference",
+        "--replay",
+        "/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-fast-recovery-04/dev/stellarcsg/qualification/recovery04_frozen_bank.csv",
+        "--wistell-h5",
+        "/mnt/c/HTS_transport/plots/stellarcsg_multiconfig_20260831/wistell_d/magnets/swept_coils_1cm.h5",
+        "--skip-reference"
+      ],
+      "started": 1789342401.0998306,
+      "exit_code": 0,
+      "finished": 1789342405.6355433,
+      "stdout": "exact_reference-1.jsonl",
+      "stderr": "exact_reference-1.stderr"
+    },
+    {
+      "lane": "previous_A",
+      "repeat": 1,
+      "command": [
+        "/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-fast-recovery-04/build/recovery-04-controls/previous_A",
+        "--replay",
+        "/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-fast-recovery-04/dev/stellarcsg/qualification/recovery04_frozen_bank.csv",
+        "--wistell-h5",
+        "/mnt/c/HTS_transport/plots/stellarcsg_multiconfig_20260831/wistell_d/magnets/swept_coils_1cm.h5",
+        "--skip-reference"
+      ],
+      "started": 1789342405.640677,
+      "exit_code": 0,
+      "finished": 1789342405.7620978,
+      "stdout": "previous_A-1.jsonl",
+      "stderr": "previous_A-1.stderr"
+    },
+    {
+      "lane": "experimental",
+      "repeat": 1,
+      "command": [
+        "/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-fast-recovery-04/build/recovery-04-seed/stellarcsg_recovery04_bank",
+        "--replay",
+        "/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-fast-recovery-04/dev/stellarcsg/qualification/recovery04_frozen_bank.csv",
+        "--wistell-h5",
+        "/mnt/c/HTS_transport/plots/stellarcsg_multiconfig_20260831/wistell_d/magnets/swept_coils_1cm.h5",
+        "--skip-reference"
+      ],
+      "started": 1789342405.7669122,
+      "exit_code": 0,
+      "finished": 1789342405.859405,
+      "stdout": "experimental-1.jsonl",
+      "stderr": "experimental-1.stderr"
+    },
+    {
+      "lane": "old",
+      "repeat": 1,
+      "command": [
+        "/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-fast-recovery-04/build/recovery-04-controls/old",
+        "--replay",
+        "/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-fast-recovery-04/dev/stellarcsg/qualification/recovery04_frozen_bank.csv",
+        "--wistell-h5",
+        "/mnt/c/HTS_transport/plots/stellarcsg_multiconfig_20260831/wistell_d/magnets/swept_coils_1cm.h5",
+        "--skip-reference"
+      ],
+      "started": 1789342405.8634691,
+      "exit_code": 1,
+      "finished": 1789342405.9473965,
+      "stdout": "old-1.jsonl",
+      "stderr": "old-1.stderr"
+    },
+    {
+      "lane": "old",
+      "repeat": 2,
+      "command": [
+        "/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-fast-recovery-04/build/recovery-04-controls/old",
+        "--replay",
+        "/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-fast-recovery-04/dev/stellarcsg/qualification/recovery04_frozen_bank.csv",
+        "--wistell-h5",
+        "/mnt/c/HTS_transport/plots/stellarcsg_multiconfig_20260831/wistell_d/magnets/swept_coils_1cm.h5",
+        "--skip-reference"
+      ],
+      "started": 1789342405.9519188,
+      "exit_code": 1,
+      "finished": 1789342406.0265357,
+      "stdout": "old-2.jsonl",
+      "stderr": "old-2.stderr"
+    },
+    {
+      "lane": "experimental",
+      "repeat": 2,
+      "command": [
+        "/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-fast-recovery-04/build/recovery-04-seed/stellarcsg_recovery04_bank",
+        "--replay",
+        "/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-fast-recovery-04/dev/stellarcsg/qualification/recovery04_frozen_bank.csv",
+        "--wistell-h5",
+        "/mnt/c/HTS_transport/plots/stellarcsg_multiconfig_20260831/wistell_d/magnets/swept_coils_1cm.h5",
+        "--skip-reference"
+      ],
+      "started": 1789342406.031271,
+      "exit_code": 0,
+      "finished": 1789342406.1232305,
+      "stdout": "experimental-2.jsonl",
+      "stderr": "experimental-2.stderr"
+    },
+    {
+      "lane": "previous_A",
+      "repeat": 2,
+      "command": [
+        "/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-fast-recovery-04/build/recovery-04-controls/previous_A",
+        "--replay",
+        "/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-fast-recovery-04/dev/stellarcsg/qualification/recovery04_frozen_bank.csv",
+        "--wistell-h5",
+        "/mnt/c/HTS_transport/plots/stellarcsg_multiconfig_20260831/wistell_d/magnets/swept_coils_1cm.h5",
+        "--skip-reference"
+      ],
+      "started": 1789342406.1267712,
+      "exit_code": 0,
+      "finished": 1789342406.2232282,
+      "stdout": "previous_A-2.jsonl",
+      "stderr": "previous_A-2.stderr"
+    },
+    {
+      "lane": "exact_reference",
+      "repeat": 2,
+      "command": [
+        "/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-fast-recovery-04/build/recovery-04-controls/exact_reference",
+        "--replay",
+        "/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-fast-recovery-04/dev/stellarcsg/qualification/recovery04_frozen_bank.csv",
+        "--wistell-h5",
+        "/mnt/c/HTS_transport/plots/stellarcsg_multiconfig_20260831/wistell_d/magnets/swept_coils_1cm.h5",
+        "--skip-reference"
+      ],
+      "started": 1789342406.2271044,
+      "exit_code": 0,
+      "finished": 1789342410.7647474,
+      "stdout": "exact_reference-2.jsonl",
+      "stderr": "exact_reference-2.stderr"
+    },
+    {
+      "lane": "exact_reference",
+      "repeat": 3,
+      "command": [
+        "/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-fast-recovery-04/build/recovery-04-controls/exact_reference",
+        "--replay",
+        "/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-fast-recovery-04/dev/stellarcsg/qualification/recovery04_frozen_bank.csv",
+        "--wistell-h5",
+        "/mnt/c/HTS_transport/plots/stellarcsg_multiconfig_20260831/wistell_d/magnets/swept_coils_1cm.h5",
+        "--skip-reference"
+      ],
+      "started": 1789342410.7688823,
+      "exit_code": 0,
+      "finished": 1789342415.284575,
+      "stdout": "exact_reference-3.jsonl",
+      "stderr": "exact_reference-3.stderr"
+    },
+    {
+      "lane": "previous_A",
+      "repeat": 3,
+      "command": [
+        "/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-fast-recovery-04/build/recovery-04-controls/previous_A",
+        "--replay",
+        "/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-fast-recovery-04/dev/stellarcsg/qualification/recovery04_frozen_bank.csv",
+        "--wistell-h5",
+        "/mnt/c/HTS_transport/plots/stellarcsg_multiconfig_20260831/wistell_d/magnets/swept_coils_1cm.h5",
+        "--skip-reference"
+      ],
+      "started": 1789342415.2889311,
+      "exit_code": 0,
+      "finished": 1789342415.3630779,
+      "stdout": "previous_A-3.jsonl",
+      "stderr": "previous_A-3.stderr"
+    },
+    {
+      "lane": "experimental",
+      "repeat": 3,
+      "command": [
+        "/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-fast-recovery-04/build/recovery-04-seed/stellarcsg_recovery04_bank",
+        "--replay",
+        "/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-fast-recovery-04/dev/stellarcsg/qualification/recovery04_frozen_bank.csv",
+        "--wistell-h5",
+        "/mnt/c/HTS_transport/plots/stellarcsg_multiconfig_20260831/wistell_d/magnets/swept_coils_1cm.h5",
+        "--skip-reference"
+      ],
+      "started": 1789342415.3667824,
+      "exit_code": 0,
+      "finished": 1789342415.4415576,
+      "stdout": "experimental-3.jsonl",
+      "stderr": "experimental-3.stderr"
+    },
+    {
+      "lane": "old",
+      "repeat": 3,
+      "command": [
+        "/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-fast-recovery-04/build/recovery-04-controls/old",
+        "--replay",
+        "/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-fast-recovery-04/dev/stellarcsg/qualification/recovery04_frozen_bank.csv",
+        "--wistell-h5",
+        "/mnt/c/HTS_transport/plots/stellarcsg_multiconfig_20260831/wistell_d/magnets/swept_coils_1cm.h5",
+        "--skip-reference"
+      ],
+      "started": 1789342415.445927,
+      "exit_code": 1,
+      "finished": 1789342415.5211794,
+      "stdout": "old-3.jsonl",
+      "stderr": "old-3.stderr"
+    },
+    {
+      "lane": "old",
+      "repeat": 4,
+      "command": [
+        "/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-fast-recovery-04/build/recovery-04-controls/old",
+        "--replay",
+        "/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-fast-recovery-04/dev/stellarcsg/qualification/recovery04_frozen_bank.csv",
+        "--wistell-h5",
+        "/mnt/c/HTS_transport/plots/stellarcsg_multiconfig_20260831/wistell_d/magnets/swept_coils_1cm.h5",
+        "--skip-reference"
+      ],
+      "started": 1789342415.525119,
+      "exit_code": 1,
+      "finished": 1789342415.5963016,
+      "stdout": "old-4.jsonl",
+      "stderr": "old-4.stderr"
+    },
+    {
+      "lane": "experimental",
+      "repeat": 4,
+      "command": [
+        "/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-fast-recovery-04/build/recovery-04-seed/stellarcsg_recovery04_bank",
+        "--replay",
+        "/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-fast-recovery-04/dev/stellarcsg/qualification/recovery04_frozen_bank.csv",
+        "--wistell-h5",
+        "/mnt/c/HTS_transport/plots/stellarcsg_multiconfig_20260831/wistell_d/magnets/swept_coils_1cm.h5",
+        "--skip-reference"
+      ],
+      "started": 1789342415.600603,
+      "exit_code": 0,
+      "finished": 1789342415.6751916,
+      "stdout": "experimental-4.jsonl",
+      "stderr": "experimental-4.stderr"
+    },
+    {
+      "lane": "previous_A",
+      "repeat": 4,
+      "command": [
+        "/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-fast-recovery-04/build/recovery-04-controls/previous_A",
+        "--replay",
+        "/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-fast-recovery-04/dev/stellarcsg/qualification/recovery04_frozen_bank.csv",
+        "--wistell-h5",
+        "/mnt/c/HTS_transport/plots/stellarcsg_multiconfig_20260831/wistell_d/magnets/swept_coils_1cm.h5",
+        "--skip-reference"
+      ],
+      "started": 1789342415.679356,
+      "exit_code": 0,
+      "finished": 1789342415.754768,
+      "stdout": "previous_A-4.jsonl",
+      "stderr": "previous_A-4.stderr"
+    },
+    {
+      "lane": "exact_reference",
+      "repeat": 4,
+      "command": [
+        "/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-fast-recovery-04/build/recovery-04-controls/exact_reference",
+        "--replay",
+        "/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-fast-recovery-04/dev/stellarcsg/qualification/recovery04_frozen_bank.csv",
+        "--wistell-h5",
+        "/mnt/c/HTS_transport/plots/stellarcsg_multiconfig_20260831/wistell_d/magnets/swept_coils_1cm.h5",
+        "--skip-reference"
+      ],
+      "started": 1789342415.7588904,
+      "exit_code": 0,
+      "finished": 1789342420.3426263,
+      "stdout": "exact_reference-4.jsonl",
+      "stderr": "exact_reference-4.stderr"
+    },
+    {
+      "lane": "exact_reference",
+      "repeat": 5,
+      "command": [
+        "/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-fast-recovery-04/build/recovery-04-controls/exact_reference",
+        "--replay",
+        "/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-fast-recovery-04/dev/stellarcsg/qualification/recovery04_frozen_bank.csv",
+        "--wistell-h5",
+        "/mnt/c/HTS_transport/plots/stellarcsg_multiconfig_20260831/wistell_d/magnets/swept_coils_1cm.h5",
+        "--skip-reference"
+      ],
+      "started": 1789342420.3466952,
+      "exit_code": 0,
+      "finished": 1789342424.8310132,
+      "stdout": "exact_reference-5.jsonl",
+      "stderr": "exact_reference-5.stderr"
+    },
+    {
+      "lane": "previous_A",
+      "repeat": 5,
+      "command": [
+        "/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-fast-recovery-04/build/recovery-04-controls/previous_A",
+        "--replay",
+        "/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-fast-recovery-04/dev/stellarcsg/qualification/recovery04_frozen_bank.csv",
+        "--wistell-h5",
+        "/mnt/c/HTS_transport/plots/stellarcsg_multiconfig_20260831/wistell_d/magnets/swept_coils_1cm.h5",
+        "--skip-reference"
+      ],
+      "started": 1789342424.8357596,
+      "exit_code": 0,
+      "finished": 1789342424.9185524,
+      "stdout": "previous_A-5.jsonl",
+      "stderr": "previous_A-5.stderr"
+    },
+    {
+      "lane": "experimental",
+      "repeat": 5,
+      "command": [
+        "/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-fast-recovery-04/build/recovery-04-seed/stellarcsg_recovery04_bank",
+        "--replay",
+        "/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-fast-recovery-04/dev/stellarcsg/qualification/recovery04_frozen_bank.csv",
+        "--wistell-h5",
+        "/mnt/c/HTS_transport/plots/stellarcsg_multiconfig_20260831/wistell_d/magnets/swept_coils_1cm.h5",
+        "--skip-reference"
+      ],
+      "started": 1789342424.9231644,
+      "exit_code": 0,
+      "finished": 1789342424.999415,
+      "stdout": "experimental-5.jsonl",
+      "stderr": "experimental-5.stderr"
+    },
+    {
+      "lane": "old",
+      "repeat": 5,
+      "command": [
+        "/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-fast-recovery-04/build/recovery-04-controls/old",
+        "--replay",
+        "/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-fast-recovery-04/dev/stellarcsg/qualification/recovery04_frozen_bank.csv",
+        "--wistell-h5",
+        "/mnt/c/HTS_transport/plots/stellarcsg_multiconfig_20260831/wistell_d/magnets/swept_coils_1cm.h5",
+        "--skip-reference"
+      ],
+      "started": 1789342425.0034516,
+      "exit_code": 1,
+      "finished": 1789342425.1052253,
+      "stdout": "old-5.jsonl",
+      "stderr": "old-5.stderr"
+    },
+    {
+      "lane": "old",
+      "repeat": 6,
+      "command": [
+        "/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-fast-recovery-04/build/recovery-04-controls/old",
+        "--replay",
+        "/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-fast-recovery-04/dev/stellarcsg/qualification/recovery04_frozen_bank.csv",
+        "--wistell-h5",
+        "/mnt/c/HTS_transport/plots/stellarcsg_multiconfig_20260831/wistell_d/magnets/swept_coils_1cm.h5",
+        "--skip-reference"
+      ],
+      "started": 1789342425.1091802,
+      "exit_code": 1,
+      "finished": 1789342425.1831732,
+      "stdout": "old-6.jsonl",
+      "stderr": "old-6.stderr"
+    },
+    {
+      "lane": "experimental",
+      "repeat": 6,
+      "command": [
+        "/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-fast-recovery-04/build/recovery-04-seed/stellarcsg_recovery04_bank",
+        "--replay",
+        "/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-fast-recovery-04/dev/stellarcsg/qualification/recovery04_frozen_bank.csv",
+        "--wistell-h5",
+        "/mnt/c/HTS_transport/plots/stellarcsg_multiconfig_20260831/wistell_d/magnets/swept_coils_1cm.h5",
+        "--skip-reference"
+      ],
+      "started": 1789342425.187002,
+      "exit_code": 0,
+      "finished": 1789342425.2630699,
+      "stdout": "experimental-6.jsonl",
+      "stderr": "experimental-6.stderr"
+    },
+    {
+      "lane": "previous_A",
+      "repeat": 6,
+      "command": [
+        "/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-fast-recovery-04/build/recovery-04-controls/previous_A",
+        "--replay",
+        "/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-fast-recovery-04/dev/stellarcsg/qualification/recovery04_frozen_bank.csv",
+        "--wistell-h5",
+        "/mnt/c/HTS_transport/plots/stellarcsg_multiconfig_20260831/wistell_d/magnets/swept_coils_1cm.h5",
+        "--skip-reference"
+      ],
+      "started": 1789342425.2670236,
+      "exit_code": 0,
+      "finished": 1789342425.3431242,
+      "stdout": "previous_A-6.jsonl",
+      "stderr": "previous_A-6.stderr"
+    },
+    {
+      "lane": "exact_reference",
+      "repeat": 6,
+      "command": [
+        "/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-fast-recovery-04/build/recovery-04-controls/exact_reference",
+        "--replay",
+        "/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-fast-recovery-04/dev/stellarcsg/qualification/recovery04_frozen_bank.csv",
+        "--wistell-h5",
+        "/mnt/c/HTS_transport/plots/stellarcsg_multiconfig_20260831/wistell_d/magnets/swept_coils_1cm.h5",
+        "--skip-reference"
+      ],
+      "started": 1789342425.3467627,
+      "exit_code": 0,
+      "finished": 1789342429.8838978,
+      "stdout": "exact_reference-6.jsonl",
+      "stderr": "exact_reference-6.stderr"
+    }
+  ],
+  "note": "One unique bank per fresh process; reference calls disabled. Per-call timer overhead is included; setup, classification and normal calls are outside distance timers."
+}
