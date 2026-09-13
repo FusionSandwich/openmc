@@ -1,5 +1,320 @@
 # StellarCSG continuation — 2026-09-13
 
+## Follow-up 02: implemented and executed, not final qualification
+
+This section supersedes the gate/status claims in the preserved first-session
+record below. Raw evidence is additive under
+`D:/codex-verification/stellarcsg-20260913-02/` (`RAW2` below); the older
+`stellarcsg-20260913-01a09` directory remains unchanged. The user's follow-up
+governs; historical handoffs are references, not new execution authority.
+
+### Verified continuation and ownership
+
+Root directory: `C:/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS`.
+Origin remains `https://github.com/FusionSandwich/openmc.git`; the outer unborn
+repository was not used. Four actual slots were used: coordinator/integrator,
+independent numerical reviewer, coil implementer, and plasma implementer.
+Freed slots were reused for native/cache review, attribution checks, and
+matched-runtime preparation. No claim of 8–12 available slots is made.
+After the user's model-cost clarification, a Luna worker checked literal
+receipt/report consistency; Astra retained orchestration and scientific review.
+
+| Role | Worktree | Branch | Full source/tip SHA |
+|---|---|---|---|
+| Frozen A control | stellarcsg-cont-a | JS/stellarcsg-a-20260913-01a09 | 4e1efc947c5aa713a36c81d650a35ca71e60d2e1 |
+| Preserved B start | stellarcsg-cont-b | JS/stellarcsg-b-20260913-01a09 | 4774434f10ab922411a0b3eefc243d07ea4adb17 |
+| Preserved neutral start | stellarcsg-cont-neutral | JS/stellarcsg-neutral-20260913-01a09 | 6949794947d06a37e4d9ea30b04138b2c6823132 |
+| Integrated implementation | stellarcsg-next-b | JS/stellarcsg-transport-20260913-02 | 5614f9cacfd9bb1acba4cf6683d9b1da16c06067 |
+| Independent coil lane | stellarcsg-next-coil | JS/stellarcsg-coil-20260913-02 | d57c1cc302bd34c83e785299d7a12c88804b2665 |
+| Plasma experiment lane | stellarcsg-next-plasma | JS/stellarcsg-plasma-20260913-02 | 221faceda4972f2718ed3cba6545b5064e389eb2 |
+| Neutral evidence before this record commit | stellarcsg-next-neutral | JS/stellarcsg-neutral-20260913-02 | 287448682bb24d2a91643c549d60f85e45d85619 |
+
+All new lanes descend from the verified B/neutral starts; no old branch was
+advanced. Final record-commit SHA, clean/dirty/upstream map and push results
+are in `RAW2/finish-map.json` and `push-*.log`, avoiding a self-referential SHA.
+All 14 protected references matched before/after audit, including baseline
+`3041a938c3fb0bc349654f37b0b3ebcd3cd5a9bb`, its archive and `develop`.
+The original three continuation worktrees were clean. Final checks are retained
+separately in `protected-refs-final.json` and `remote-refs-final.txt`.
+
+Coordinator owned shared headers/CMake, actual root OpenMC wrappers, Python
+surface API, neutral synchronization, Git operations and execution. Workers
+owned separate CPP/test files in separate worktrees/build directories. The
+numerical reviewer did not own the production algorithm. A remains a frozen
+legacy control with its known remaining candidate-completeness limits; the B
+repair was not relabeled as A. Common neutral fixtures, harness and contract
+were synchronized after the isolated plasma ablation (`neutral-sync-02.json`).
+
+### Nearest-hit repair and independent disposition
+
+Coil production commit: `935a28e8367b2c9b8d029cd3ca9fe96a92532cfe`;
+integrated as `da7a5417f1ca697c439bb5c5892058c48b29a7eb`.
+The supported general path is a constant-radius circular tube around a regular
+periodic cubic centerline, subject to explicit sufficient curvature/separation
+certificates and a 512-control resource bound. The authoritative controls are
+the exact input binary64 B-spline coefficients, not rounded power coefficients
+or a triangulation. Elliptical/frame-dependent and variable-radius general
+queries explicitly reject unsupported operation. Certificate failure is not a
+proof of invalid geometry or self-intersection.
+
+`compiled_swept_surface.cpp` now uses exact rational polynomial construction,
+conservative interval exclusions and local square-free Sturm isolation for
+all candidate span resultants, including exceptional/gcd cases. It compares
+root enclosures before accepting the nearest hit. Seed-only pruning, fixed
+eight-sample completeness, first-success fallback and silent unresolved-list
+truncation no longer determine this path. Exact stationary-point projection
+and conservative public bounds were also repaired. Exhaustion, ambiguous
+associations and unsupported states throw; the active wrapper converts them
+to explicit fatal diagnostics, never ordinary infinity/no-hit. No independent
+Python broad oracle runs in the production hot path. GMP was already installed;
+no software was acquired. Main-build GMP linkage is conditional on the
+experimental option, which remains OFF by default.
+
+The reproduced rounded crossing/coincidence failure led to a bounded,
+unique-root association window: negative candidates are retained; an enclosure
+must lie wholly inside the window; missing, competing or straddling associations
+fail explicitly. This is a restricted query contract, not universal proof for
+arbitrary rounded tangent starts. Universal coincidence remains BLOCKED.
+The old median uint32 BVH depth issue was not reproduced; depth/capacity checks
+were added without presenting it as a discovered failure. Auto exact-torus
+dispatch remains preserved; its historical near-circle recognition tolerance
+is not an exact coefficient-identity guarantee. Strict torus tests force general.
+
+| Independent check | Result |
+|---|---|
+| All original 384 rays, unchanged input values | 256 PASS / 0 FAIL / 128 BLOCKED |
+| Original 23 ambiguous cases, exact independent isolation | 23 PASS |
+| Those 23 versus production at unchanged 2e-8 cm threshold | 20 PASS / 0 FAIL / 3 BLOCKED |
+| Original two rigid nominal tangencies | 2 PASS |
+| Exact oracle arithmetic controls | 8 PASS |
+| Input replay identity | 387 records / 2,739 binary64 values identical |
+
+All 128 blocked rays are stress shape 2, whose sufficient embedded-tube
+separation certificate fails. This neither establishes self-intersection nor
+an engineering-device failure probability. Its formerly ambiguous indices
+7, 8 and 9 remain BLOCKED in production comparison although independent
+algebraic isolation succeeds. Every ID and reason is retained in
+`exact-coil-replay-01.jsonl` and `exact-coil-oracle23-01.json`.
+The exact Fraction oracle does not reuse production pruning/classification;
+it handles coefficient zeros without float trimming, degeneracies, near-real
+recovery and exact discriminants. Earlier failures remain in
+`exact-oracle-blocked23-final-02.json`.
+
+Both nominal tangent distance errors fell from about 1.375e-7 cm to
+1.862e-12 cm without loosening 2e-8. Independently reconstructed C++ transformed
+inputs match all 396 binary values; geometric perturbation was a few 1e-16 cm,
+while old root error dominated. See `exact-coil-rigid-tangencies-01.json` and
+the original `exact-rigid-tangencies-01.json`. The independent reviewer accepts
+the ordinary supported circular path as implemented/tested, with the limitations
+above; this is not global arbitrary-geometry qualification.
+
+### Actual transport and coil identity
+
+Root implementation commits `64b308f1a`, `ac57816288c4012bd1a6d57f63aeeaf87b4df509`
+and `223ea7a1c57439ff6141604b72b0ce026846cd5f` introduce collection `member_id`
+surfaces backed by one immutable geometry context. Member hits feed distinct
+OpenMC cells 101/102 and materials 11/12; parent cell 201 independently measures
+the union. Parsed payload arrays, scalar attributes and coil IDs bind context
+identity. The dataset suffix must match payload coil_id. Query keys contain
+owning context, every ray component, coincidence flag and coincident member.
+Only that member receives coincidence semantics. Explicit wrapper error
+propagation covers distance, classification and normal queries.
+
+The final cache has 32 distance entries and 32 classification entries per
+thread, owns context lifetimes, and publishes only successful results. It
+reuses identical numerical queries without approximating nearby rays. It may
+retain multiple geometry contexts per thread; broadly distributed-source miss
+cost and memory scaling are not qualified. Native controls exercise 40 one-ULP
+queries/eviction (48 misses, 112 hits), two threads (96/224), changed contexts,
+real hits/classification signs, wrapper lifetimes, and coincidence/member-key
+discrimination: 5/5 PASS in `shared-cache-controls-03/receipt.json`.
+Classification-cache eviction is statically reviewed, NOT_RUN dynamically.
+The earlier three native negative controls also PASS: valid-hash ID permutation
+rejected, missing coincidence fatal, and member/lifetime queries. Failed test
+launchers caused by Windows Git pointers remain retained separately.
+
+The demonstration has helical plasma and two transformed nonplanar circular
+coils of radius 0.25 cm. Conservative AABB gaps are 33.5397532 cm between coils
+and 4.5539315/4.5623131 cm from plasma. There is no blanket. Physics is an
+explicit synthetic one-group pure absorber (Sigma=0.1/cm), not fusion nuclear
+heating/damage validation. Asymmetric source illumination and distinct material
+scores test attribution. The explicit bank repeats three deterministic point/
+direction source definitions; this cache-friendly verification workload is
+not representative throughput qualification.
+
+| Actual run | Completed histories | Evidence directory under RAW2 |
+|---|---:|---|
+| Checkpoint torus, plasma, one coil, two coils, combined separate-cell controls | 5 x 10,000 | transport-control-*-01 |
+| Shared combined before full isolation repair | 10,000 | transport-shared-pre-isolation-01 |
+| Exact repaired shared, one-entry cache | 100 | transport-shared-exact-100-01 |
+| Exact repaired shared, bounded cache | 100 | transport-shared-cache-100-01 |
+| Exact repaired shared, one thread | 10,000 | transport-shared-exact-10000-02 |
+| Exact repaired shared, two threads | 10,000 | transport-shared-exact-10000-thread2-01 |
+| Exact repaired separate-surface control | 100 | transport-separate-exact-100-01 |
+| Native ZTorus timing-host sentinels | 8 x 10,000 | plasma-ablation-01 |
+
+All listed runs returned zero with requested counts in statepoints and no
+lost-particle diagnostic. Zero lost is inferred from those checks, not an
+independent instrumentation counter. The final 10,000-history runs retained
+100 tracks and 204 observed cell transitions each; this is a sample, not total
+crossing completeness. Six deterministic native C-API cell/material boundary
+checks also pass. One-thread coil fluxes are 0.35563450348552317 and
+0.10319611144207044; union flux 0.45883061492759103; closure error
+2.55e-15. Two-thread closure is 2.44e-15, with scores differing only at rounding
+level. Source-bank SHA256 for both runs is
+`4b86725ecc02d547f4fb1ab6feb200aa1183710208607ff3d11bb28a67985b0c`.
+Native material bins match the respective cell bins, with nonzero scores for
+both coils. Independent comparisons are in `transport-attribution-review-final.json`.
+
+Cold versus cached 100-history source bank, tallies, global tallies and retained
+tracks are identical (`preservation-review-01.json`). Cold active time was
+76.9323 seconds (~1.30 histories/s); bounded-cache active time 2.1227 seconds.
+The final repeated-source 10k runs took 55.9900 active / 56.1618 total seconds
+on one thread and 31.9646 / 32.1122 seconds on two. These single-run diagnostic
+times are not accepted speed ratios. Exact rational coil work remains a severe
+cold-query bottleneck; caching does not establish near-torus performance.
+The first 10k launcher failed before execution because a SHA-file argument was
+missing; `transport-shared-exact-10000-01.log` is retained. The successful retry
+used a literal verified SHA and a new directory. No particle failures were
+discarded to obtain the listed PASS diagnostics.
+
+### Implemented plasma ablation and matched comparison blocker
+
+Plasma production commit `1620263e1866e035ca293d270b10a193330dc104` reuses an
+unchanged converged parametric sample and removes two redundant evaluations
+in a bracket already collapsed to one point. Exhausted iterations still
+resample changed parameters. It preserves the authoritative radial spline,
+tolerances, traversal and torus specializations; it is not a Cartesian Bezier
+fit or a new atlas. The change targets repeated correction cost seen in the
+retained profile. The measured counter reduction is 22,152 to 21,200 evaluations
+per helical bank (-4.30%), and 8,118 to 7,856 for WISTELL-D (-3.23%).
+
+Four isolated builds (`plasma-{baseline,candidate}-{on,off}`) passed both CTests.
+512 distinct ray records (256 each helical/WISTELL-D) are bit-identical across
+old/new and counters ON/OFF. Helical has no sampled oracle failures/blocks;
+WISTELL-D grazing IDs 144, 150, 156, 180 and 186 remain BLOCKED, unchanged.
+The oracle is sampled validation, not nearest-root proof for all plasma rays.
+
+`plasma-ablation-01` retains one warm-up and seven balanced measured repetitions
+for eight kernel methods plus the native sentinel: 72 attempted runs, all valid,
+144 output hashes, durable start/finish journals and source/library drift checks.
+Each kernel run contains 128 banks of 256 frozen rays. CPU affinity 0, one
+thread; all other owned builds/tests/oracles were paused for that slot.
+Ordinary desktop interference is uncontrolled. The sentinel median is
+185,377 histories/s with 9.9% CV; its low first measured run is retained.
+
+| Counters OFF | Baseline ns/query | Changed ns/query | Baseline / changed ratio, paired bootstrap 95% interval |
+|---|---:|---:|---|
+| Helical | 31942.48 | 30882.13 | 1.0343 [1.0137, 1.0629] |
+| WISTELL-D | 18292.82 | 18124.48 | 1.0093 [0.9480, 1.1705] |
+
+ON ratios are 1.0272 [1.0073, 1.0459] and 0.9856 [0.9777, 1.0548].
+ON/OFF overhead intervals include 1; apparent negative overhead is timing noise.
+Helical shows a modest measured improvement, WISTELL-D is inconclusive. Neither
+is an A/B transport or Embree ratio. The older 512-ray profile is a different
+bank and must not be used as this ablation's denominator. Raw grazing/slow tails
+are retained. [Measured figure](../plots/dual_track/continuation_20260913/plasma_ablation_02.png)
+and adjacent JSON are generated from these retained data, not illustrative data.
+
+Today's OpenMC-Dev-D cannot bind DAGMC/MOAB/Double Down/Embree libraries or
+pymoab. Docker's daemon pipe is absent and its distro is stopped. Existing
+stopped runtime disks and a local Embree source archive were identified, but
+do not constitute a linked executable. No large disk/runtime was started under
+low host RAM; no install, download, unrelated distro job or remote compute was
+performed. The exact blocker is a currently accessible, verified DAGMC/DD
+runtime plus an eligible common H5M geometry-error ladder. Identical H5M bytes,
+two-sided finite-surface errors, normals/volume/area/seams and accuracy selection
+have NOT_RUN for this new model. Old ordinary-DAGMC 5.8886x evidence is not
+Double Down evidence and is not imported here. The amended contract now names
+native ZTorus as the forced-general denominator; coil/set denominators remain
+matched fine Double Down/Embree, with separate >1 advantage requirements.
+
+### Final gate scope, validation and restart
+
+| Gate | State | Scope or blocking issue |
+|---|---|---|
+| Ordinary supported circular nearest-hit invariant | PASS | Exact candidate/root treatment, retained independent review |
+| All retained stress geometry admitted and tracked | BLOCKED | 128 rays fail sufficient geometry certificate |
+| Universal native coincidence and elliptical general sections | BLOCKED | Restricted association contract / unsupported section |
+| Plasma + finite coils actual shared attribution diagnostic | PASS | Two 10k repaired runs, cell/material/union checks |
+| Implemented helical plasma distance improvement | PASS | Fixed-ray ablation; modest effect, sampled correctness |
+| WISTELL-D plasma improvement/closure qualification | BLOCKED | Five oracle blocks; performance interval includes no gain |
+| Fresh exact >=0.95 / forced-general >=0.25 ZTorus gates | NOT_RUN | No eligible repeated torus-equivalent campaign |
+| Coil and 48-coil >=0.50 fine Embree gates | BLOCKED | Bound comparator and matched accuracy ladder absent |
+| Near-torus >=0.8 aspiration / proposed >=2x Embree ambition | NOT_RUN | Not achieved; severe cold exact-coil cost |
+| Broad 1/12/48 scaling and supplied WISTELL-D finite set | NOT_RUN | No eligible campaign in this follow-up |
+| Materialized fusion heating/damage S4 | NOT_RUN | Synthetic MG only; verified physics not supplied here |
+
+Integrated native builds completed 142/142 then incremental builds through
+`native-build-05.log`. Integrated standalone CTest: 4/4 PASS in 10.00 s;
+selected root Python: 93 PASS, one transport-volume test deselected, five
+inherited warnings; development Python after neutral sync: 77 PASS. Earlier
+69-test run and all lane tests are retained. No entire OpenMC suite claim.
+Independent native negative controls: 3/3 PASS; cache controls: 5/5 PASS.
+clang-format 18 was unavailable; no version substitution or dependency upgrade.
+Whitespace checks pass. User-wide resource/cache/toolchain review is retained
+in preflight/resources receipts. Existing GCC 14.2, CMake 3.31.6, Python 3.13.5,
+HDF5 and GMP were reused. Maximum compiler concurrency was two one-thread
+processes; most builds used one. All execution was local in OpenMC-Dev-D.
+
+`integration-source-binary-final.json` binds the final source to native build
+production commit `223ea7a1c57439ff6141604b72b0ce026846cd5f`: subsequent changes
+do not alter compiled production files. Executable SHA256 is
+`05d1779730120d8f3f08bee477147d44c0dbc0941137582fa780d57ee82097c1`;
+library SHA256 is
+`189d72a5161897b84fbb4c9f84f5150eeb134c348d248ad9749f144c576a020e`.
+The unchanged executable depends on the changing shared library, so both are
+required. Actual ldd, CMake cache, per-source hashes and pre/post transport
+binding are retained. Linux embedded version 0.0.0 is not provenance. The
+unrelated editable Python installation is never used without explicit path
+binding. No new proprietary supplied geometry was committed; synthetic inputs
+and derived measurements are redistributable, supplied-input restrictions are
+unchanged.
+
+Reproduce from WSL OpenMC-Dev-D with fresh output names. These existing-build
+commands require no acquisition; re-review live resources before a rebuild:
+
+```bash
+BASE=/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS
+B="$BASE/stellarcsg-next-b"
+N="$BASE/stellarcsg-next-neutral"
+RAW2=/mnt/d/codex-verification/stellarcsg-20260913-02
+export OMP_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1
+export PYTHONPATH="$B/dev/stellarcsg/python:$B"
+export LD_LIBRARY_PATH="$RAW2/native/lib"
+/usr/bin/ctest --test-dir "$RAW2/integration-tests" --output-on-failure
+/opt/openmc-venv/bin/python -m pytest -q -p no:cacheprovider "$B/dev/stellarcsg/python/tests"
+/opt/openmc-venv/bin/python -m pytest -q -p no:cacheprovider \
+  "$B/tests/unit_tests/test_surface.py" "$B/tests/unit_tests/test_stellarcsg_surface.py" \
+  "$B/tests/unit_tests/test_geometry.py" "$B/tests/unit_tests/test_stellarcsg_shared_member.py" \
+  -k 'not test_volume'
+/opt/openmc-venv/bin/python "$B/dev/stellarcsg/qualification/native_transport_smoke.py" \
+  --output "$RAW2/transport-shared-exact-10000-restart-01" \
+  --executable "$RAW2/native/bin/openmc" --source-root "$B" \
+  --source-sha 5614f9cacfd9bb1acba4cf6683d9b1da16c06067 \
+  --case combined --histories 10000 --threads 1 --shared --timeout 180
+```
+
+The exact ablation invocation is `plasma-ablation-command-01.json`; change its
+output directory, refresh the host/resource snapshot and obtain an exclusive
+owned timing slot before replay. Exact oracle/replay compile flags and all
+hashes are in `exact-coil-replay-provenance-01.json`; 384-case replay correctly
+returns nonzero while BLOCKED geometries remain. Retain that status.
+
+Recommended continuation: use the improved existing radial plasma kernel for
+further measured work. Keep the reviewed circular algebraic coil path as a
+correctness reference and restricted diagnostic implementation, not a fast
+production recommendation. Next numerical work is a conditioning-aware native
+crossing receipt/association contract and certified bounded fast local solves
+that avoid repeated exact rational cost. Next comparison work is to bind an
+already-local DAGMC/DD runtime under sufficient resources and prepare the
+frozen finite-surface H5M error ladder; this alone blocks matched timing.
+Do not broaden to catalog/48-coil production first. No background completion
+is promised. Final process and agent state is recorded in `finish-map.json`;
+all owned work is collected before returning.
+
+## Preserved first-session record (historical, superseded above)
+
 Coordinator record. This is a partial implementation/qualification campaign, not
 a declaration of production readiness. The user's explicit request governs;
 the Downloads handoff is reference material. No remote compute is authorized
