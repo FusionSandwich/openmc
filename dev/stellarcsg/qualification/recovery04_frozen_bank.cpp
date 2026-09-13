@@ -128,15 +128,17 @@ int freeze_bank(const std::string& filename, const std::string& wistell_file,
     make_query("a04", "near_entry_502", {knot_radius+.752,0,0}, {-1,0,0}, torus_hash, false, "expected_hit", .502),
     make_query("a05", "competing_roots", {-8,0,0}, {1,0,0}, torus_hash, false, "reference_required"),
     make_query("a06", "seam", {knot_radius+.25,0,0}, {0,1,0}, torus_hash, false, "reference_required"),
-    make_query("a07", "grazing", {3, -.25,0}, {1,0,0}, torus_hash, false, "reference_required"),
-    make_query("a08", "tangent", {3, .25,0}, {1,0,0}, torus_hash, false, "reference_required"),
+    // The q=0 centerline tangent is +y.  At z=minor_radius this is a
+    // tangency of the spline tube itself, unlike a radial x-axis crossing.
+    make_query("a07", "grazing", {knot_radius,-2,.2500001}, {0,1,0}, torus_hash, false, "reference_required"),
+    make_query("a08", "tangent", {knot_radius,-2,.25}, {0,1,0}, torus_hash, false, "reference_required"),
     make_query("a09", "direction_scaling", {7,0,0}, {-2,0,0}, torus_hash, false, "reference_required", NAN, "scale_1"),
     make_query("a10", "direction_scaling", {7,0,0}, {-4,0,0}, torus_hash, false, "reference_required", NAN, "scale_2"),
     make_query("a11", "rigid_transform", {15.2,-7,8.6}, {-0.6,0,-.8}, rigid_hash, false, "reference_required", NAN, "rigid_base"),
     make_query("a12", "coincident_out", {knot_radius+.25,0,0}, {1,0,0}, torus_hash, false, "reference_required"),
     make_query("a13", "coincident_in", {knot_radius+.25,0,0}, {-1,0,0}, torus_hash, false, "reference_required"),
-    make_query("a14", "near_tangent_plus", {3,.2500001,0}, {1,0,0}, torus_hash, false, "reference_required"),
-    make_query("a15", "near_tangent_minus", {3,.2499999,0}, {1,0,0}, torus_hash, false, "reference_required")
+    make_query("a14", "near_tangent_plus", {knot_radius,-2,.2500001}, {0,1,0}, torus_hash, false, "reference_required"),
+    make_query("a15", "near_tangent_minus", {knot_radius,-2,.2499999}, {0,1,0}, torus_hash, false, "reference_required")
   }};
   for (auto q : anchors) {
     if (q.id == "a11") q.geometry = "torus_rigid";
@@ -182,47 +184,79 @@ std::vector<Query> read_bank(const std::string& filename)
 }
 
 void number_or_null(double x) { if (std::isfinite(x)) std::cout << x; else std::cout << "null"; }
+void counter_or_null(bool available, std::uint64_t value)
+{ if (available) std::cout << value; else std::cout << "null"; }
 
-int replay_bank(const std::string& filename, const std::string& wistell_file, const std::string& wistell_dataset)
+int replay_bank(const std::string& filename, const std::string& wistell_file,
+  const std::string& wistell_dataset, bool with_reference)
 {
   const auto bank = read_bank(filename); const auto plain = torus_data(false), rigid = torus_data(true);
   std::map<std::string, stellarcsg::CompiledSweptSplineSurface> surfaces;
+  // Separate instances make each timed operation cold with respect to the
+  // thread-local one-entry evaluate cache while retaining identical payloads.
+  std::map<std::string, stellarcsg::CompiledSweptSplineSurface> evaluators, normalizers;
+  std::map<std::string, std::string> coefficient_hashes;
   surfaces.emplace("torus", stellarcsg::CompiledSweptSplineSurface {plain, true});
   surfaces.emplace("torus_rigid", stellarcsg::CompiledSweptSplineSurface {rigid, true});
-  if (!wistell_file.empty()) surfaces.emplace("wistell_coil031", stellarcsg::CompiledSweptSplineSurface {
-    stellarcsg::read_swept_spline_surface_hdf5(wistell_file, wistell_dataset), true});
+  evaluators.emplace("torus", stellarcsg::CompiledSweptSplineSurface {plain, true});
+  evaluators.emplace("torus_rigid", stellarcsg::CompiledSweptSplineSurface {rigid, true});
+  normalizers.emplace("torus", stellarcsg::CompiledSweptSplineSurface {plain, true});
+  normalizers.emplace("torus_rigid", stellarcsg::CompiledSweptSplineSurface {rigid, true});
+  coefficient_hashes.emplace("torus", hash_data(plain));
+  coefficient_hashes.emplace("torus_rigid", hash_data(rigid));
+  if (!wistell_file.empty()) {
+    const auto wistell = stellarcsg::read_swept_spline_surface_hdf5(wistell_file, wistell_dataset);
+    coefficient_hashes.emplace("wistell_coil031", hash_data(wistell));
+    surfaces.emplace("wistell_coil031", stellarcsg::CompiledSweptSplineSurface {wistell, true});
+    evaluators.emplace("wistell_coil031", stellarcsg::CompiledSweptSplineSurface {wistell, true});
+    normalizers.emplace("wistell_coil031", stellarcsg::CompiledSweptSplineSurface {wistell, true});
+  }
   const std::string wistell_source_sha = wistell_file.empty() ? "" : file_sha256(wistell_file);
   int candidate_failures=0, reference_disagreements=0, blocked=0;
+  const bool counters_available = stellarcsg::performance_counters_enabled();
   std::cout << std::setprecision(17);
-  for (const auto& q : bank) {
+  for (std::size_t query_index = 0; query_index < bank.size(); ++query_index) {
+    const auto& q = bank[query_index];
     const std::string surface_key = q.geometry == "torus_rigid" ? "torus_rigid" : q.geometry;
-    auto it = surfaces.find(surface_key); if (it == surfaces.end() || (q.geometry == "wistell_coil031" && q.source_sha256 != wistell_source_sha)) { ++blocked; std::cout << "{\"kind\":\"query\",\"id\":\"" << q.id << "\",\"state\":\"BLOCKED\",\"reason\":\"surface_unavailable_or_fixture_hash_mismatch\"}\n"; continue; }
+    auto it = surfaces.find(surface_key); if (it == surfaces.end() || coefficient_hashes[surface_key] != q.coefficient_hash || (q.geometry == "wistell_coil031" && q.source_sha256 != wistell_source_sha)) { ++blocked; std::cout << "{\"kind\":\"query\",\"id\":\"" << q.id << "\",\"state\":\"BLOCKED\",\"reason\":\"surface_unavailable_or_coefficient_or_fixture_hash_mismatch\"}\n"; continue; }
     auto& surface = it->second; const auto before = stellarcsg::performance_counters_snapshot();
-    bool threw=false; std::string error; stellarcsg::DistanceResult candidate {}, reference {};
+    bool candidate_blocked=false, reference_blocked=false, evaluate_blocked=false, normal_blocked=false;
+    std::string candidate_error, reference_error, evaluate_error, normal_error;
+    stellarcsg::DistanceResult candidate {}, reference {};
     double distance_ns=NAN, reference_ns=NAN, evaluate_ns=NAN, normal_ns=NAN;
+    try { auto t=Clock::now(); candidate=surface.distance(q.origin,q.direction,q.category.find("coincident_") == 0); distance_ns=std::chrono::duration<double,std::nano>(Clock::now()-t).count(); }
+    catch (const std::exception& e) { candidate_blocked=true; candidate_error=e.what(); ++blocked; }
+    const auto after_candidate = stellarcsg::performance_counters_snapshot();
     try {
-      auto t=Clock::now(); candidate=surface.distance(q.origin,q.direction,false); distance_ns=std::chrono::duration<double,std::nano>(Clock::now()-t).count();
-      t=Clock::now(); reference=surface.distance_reference(q.origin,q.direction,false); reference_ns=std::chrono::duration<double,std::nano>(Clock::now()-t).count();
-      t=Clock::now(); (void)surface.evaluate(q.origin); evaluate_ns=std::chrono::duration<double,std::nano>(Clock::now()-t).count();
-      const Vec3 p=candidate.found ? q.origin+candidate.distance*q.direction : q.origin;
-      t=Clock::now(); (void)surface.normal(p); normal_ns=std::chrono::duration<double,std::nano>(Clock::now()-t).count();
-    } catch (const std::exception& e) { threw=true; error=e.what(); ++blocked; }
-    const auto after=stellarcsg::performance_counters_snapshot(); bool candidate_ok=!threw;
-    if (!threw && q.expected=="expected_hit") candidate_ok=candidate.found;
-    if (!threw && q.expected=="expected_miss") candidate_ok=!candidate.found;
-    if (!threw && std::isfinite(q.expected_distance) && candidate.found)
+      // A distinct point per query keeps the one-entry evaluation cache from
+      // turning evaluate/normal timing into a repeated-origin measurement.
+      const double offset = 1.0e-3*static_cast<double>(query_index + 1);
+      const Vec3 evaluate_point = q.origin + Vec3 {offset, -2*offset, 3*offset};
+      const auto t=Clock::now(); (void)evaluators.at(surface_key).evaluate(evaluate_point); evaluate_ns=std::chrono::duration<double,std::nano>(Clock::now()-t).count();
+    } catch (const std::exception& e) { evaluate_blocked=true; evaluate_error=e.what(); }
+    try {
+      const Vec3 normal_point = candidate.found ? q.origin + candidate.distance*stellarcsg::normalized(q.direction) : q.origin;
+      const auto t=Clock::now(); (void)normalizers.at(surface_key).normal(normal_point); normal_ns=std::chrono::duration<double,std::nano>(Clock::now()-t).count();
+    } catch (const std::exception& e) { normal_blocked=true; normal_error=e.what(); }
+    if (with_reference) try { const auto t=Clock::now(); reference=surface.distance_reference(q.origin,q.direction,q.category.find("coincident_") == 0); reference_ns=std::chrono::duration<double,std::nano>(Clock::now()-t).count(); }
+    catch (const std::exception& e) { reference_blocked=true; reference_error=e.what(); }
+    bool candidate_ok=!candidate_blocked;
+    if (!candidate_blocked && q.expected=="expected_hit") candidate_ok=candidate.found;
+    if (!candidate_blocked && q.expected=="expected_miss") candidate_ok=!candidate.found;
+    if (!candidate_blocked && std::isfinite(q.expected_distance) && candidate.found)
       candidate_ok=candidate_ok && std::abs(candidate.distance-q.expected_distance) <= 3e-7*std::max(1.,q.expected_distance);
-    if (!candidate_ok && !threw) ++candidate_failures;
-    bool reference_ok=!threw && candidate.found==reference.found;
-    if (reference_ok && candidate.found) reference_ok=std::abs(candidate.distance-reference.distance)<=3e-7*std::max(1.,reference.distance);
-    if (!reference_ok && !threw) ++reference_disagreements;
+    if (!candidate_ok && !candidate_blocked) ++candidate_failures;
+    bool reference_ok=with_reference && !candidate_blocked && !reference_blocked && candidate.found==reference.found;
+    if (reference_ok && candidate.found) reference_ok=std::abs(candidate.distance-reference.distance)<=2e-8;
+    if (with_reference && !reference_ok && !candidate_blocked && !reference_blocked) ++reference_disagreements;
     std::cout << "{\"kind\":\"query\",\"id\":\"" << q.id << "\",\"category\":\"" << q.category
       << "\",\"heldout\":" << (q.heldout?"true":"false") << ",\"coefficient_hash\":\"" << q.coefficient_hash << "\",\"source_sha256\":\"" << q.source_sha256
       << "\",\"expected\":\"" << q.expected << "\",\"candidate_found\":" << (candidate.found?"true":"false") << ",\"candidate_distance\":"; number_or_null(candidate.found?candidate.distance:NAN);
-    std::cout << ",\"reference_found\":" << (reference.found?"true":"false") << ",\"reference_distance\":"; number_or_null(reference.found?reference.distance:NAN);
+    std::cout << ",\"reference_available\":" << (with_reference?"true":"false") << ",\"reference_found\":" << (reference.found?"true":"false") << ",\"reference_distance\":"; number_or_null(with_reference && reference.found?reference.distance:NAN);
     std::cout << ",\"candidate_distance_ns\":"; number_or_null(distance_ns); std::cout << ",\"reference_distance_ns\":"; number_or_null(reference_ns); std::cout << ",\"evaluate_ns\":"; number_or_null(evaluate_ns); std::cout << ",\"normal_ns\":"; number_or_null(normal_ns);
-    std::cout << ",\"candidate_ok\":" << (candidate_ok?"true":"false") << ",\"reference_agrees\":" << (reference_ok?"true":"false") << ",\"counter_distance_calls\":" << (after.distance_calls-before.distance_calls) << ",\"counter_cache_hits\":" << (after.cache_hits-before.cache_hits) << ",\"counter_cache_misses\":" << (after.cache_misses-before.cache_misses);
-    if (threw) std::cout << ",\"state\":\"BLOCKED\",\"reason\":\"" << error << "\""; else std::cout << ",\"state\":\"" << (candidate_ok?"PASS":"FAIL") << "\""; std::cout << "}\n";
+    std::cout << ",\"candidate_ok\":" << (candidate_ok?"true":"false") << ",\"reference_agrees\":"; if (with_reference && !reference_blocked) std::cout << (reference_ok?"true":"false"); else std::cout << "null"; std::cout << ",\"counter_distance_calls\":"; counter_or_null(counters_available, after_candidate.distance_calls-before.distance_calls); std::cout << ",\"counter_cache_hits\":"; counter_or_null(counters_available, after_candidate.cache_hits-before.cache_hits); std::cout << ",\"counter_cache_misses\":"; counter_or_null(counters_available, after_candidate.cache_misses-before.cache_misses); std::cout << ",\"candidate_spans\":"; counter_or_null(counters_available, after_candidate.candidate_patches_or_segments-before.candidate_patches_or_segments); std::cout << ",\"candidate_newton\":"; counter_or_null(counters_available, after_candidate.newton_iterations-before.newton_iterations); std::cout << ",\"candidate_subdivision\":"; counter_or_null(counters_available, after_candidate.local_subdivision_nodes-before.local_subdivision_nodes);
+    std::cout << ",\"candidate_state\":\"" << (candidate_blocked?"BLOCKED":candidate_ok?"PASS":"FAIL") << "\",\"reference_state\":\"" << (!with_reference?"SKIPPED":reference_blocked?"BLOCKED":reference_ok?"AGREE":"DISAGREE") << "\",\"telemetry_state\":\"" << (evaluate_blocked || normal_blocked?"BLOCKED":"PASS") << "\"";
+    if (candidate_blocked) std::cout << ",\"candidate_error\":\"" << candidate_error << "\""; if (reference_blocked) std::cout << ",\"reference_error\":\"" << reference_error << "\""; if (evaluate_blocked) std::cout << ",\"evaluate_error\":\"" << evaluate_error << "\""; if (normal_blocked) std::cout << ",\"normal_error\":\"" << normal_error << "\""; std::cout << ",\"state\":\"" << (candidate_blocked?"BLOCKED":candidate_ok?"PASS":"FAIL") << "\"}\n";
   }
   std::cout << "{\"kind\":\"summary\",\"query_count\":160,\"candidate_failures\":" << candidate_failures << ",\"candidate_nearest_failures\":" << candidate_failures << ",\"reference_disagreements\":" << reference_disagreements << ",\"blocked\":" << blocked << ",\"cache_policy\":\"unique_queries_fresh_process\",\"claim\":\"bounded_replay_not_completeness\"}\n";
   return candidate_failures ? 1 : blocked ? 2 : 0;
@@ -232,9 +266,9 @@ int replay_bank(const std::string& filename, const std::string& wistell_file, co
 
 int main(int argc, char** argv)
 {
-  try { std::string mode, bank, h5, dataset="/coils/coil_031";
-    for (int i=1;i<argc;++i) { const std::string a=argv[i]; if (a=="--freeze"||a=="--replay") { mode=a; bank=argv[++i]; } else if (a=="--wistell-h5") h5=argv[++i]; else if (a=="--wistell-dataset") dataset=argv[++i]; else throw std::runtime_error("unknown argument: "+a); }
-    if (mode=="--freeze") return freeze_bank(bank,h5,dataset); if (mode=="--replay") return replay_bank(bank,h5,dataset);
+  try { std::string mode, bank, h5, dataset="/coils/coil_031"; bool with_reference=true;
+    for (int i=1;i<argc;++i) { const std::string a=argv[i]; if (a=="--freeze"||a=="--replay") { if (++i == argc) throw std::runtime_error("missing bank path"); mode=a; bank=argv[i]; } else if (a=="--wistell-h5") { if (++i == argc) throw std::runtime_error("missing HDF5 path"); h5=argv[i]; } else if (a=="--wistell-dataset") { if (++i == argc) throw std::runtime_error("missing dataset"); dataset=argv[i]; } else if (a=="--skip-reference") with_reference=false; else if (a=="--with-reference") with_reference=true; else throw std::runtime_error("unknown argument: "+a); }
+    if (mode=="--freeze") return freeze_bank(bank,h5,dataset); if (mode=="--replay") return replay_bank(bank,h5,dataset,with_reference);
     throw std::runtime_error("usage: recovery04_frozen_bank --freeze BANK --wistell-h5 FILE | --replay BANK [--wistell-h5 FILE]");
   } catch (const std::exception& e) { std::cerr << "recovery04: " << e.what() << '\n'; return 2; }
 }
