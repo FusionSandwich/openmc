@@ -77,18 +77,20 @@ std::shared_ptr<const SweptSharedContext> shared_context(
 
 const std::vector<stellarcsg::DistanceResult>& shared_distances(
   const std::shared_ptr<const SweptSharedContext>& context,
-  Position r, Direction u, bool coincident)
+  Position r, Direction u, bool coincident, std::size_t coincident_member)
 {
   struct Cache {
     std::shared_ptr<const SweptSharedContext> owner;
     Position r;
     Direction u;
     bool coincident {false};
+    std::size_t coincident_member {static_cast<std::size_t>(-1)};
     bool ready {false};
     std::vector<stellarcsg::DistanceResult> results;
   };
   static thread_local Cache cache;
   if (cache.ready && cache.owner == context && cache.coincident == coincident
+      && cache.coincident_member == coincident_member
       && cache.r.x == r.x && cache.r.y == r.y && cache.r.z == r.z
       && cache.u.x == u.x && cache.u.y == u.y && cache.u.z == u.z) {
     if (context->report_counters)
@@ -100,10 +102,11 @@ const std::vector<stellarcsg::DistanceResult>& shared_distances(
   cache.r = r;
   cache.u = u;
   cache.coincident = coincident;
+  cache.coincident_member = coincident_member;
   if (context->report_counters)
     context->traversals.fetch_add(1, std::memory_order_relaxed);
   context->surfaces->distance_members(convert(r), convert(u), coincident,
-    context->options, cache.results);
+    context->options, cache.results, coincident_member);
   cache.ready = true;
   return cache.results;
 }
@@ -269,7 +272,8 @@ double SurfaceSweptSpline::distance(Position r, Direction u, bool coincident) co
       throw std::runtime_error("Unresolved swept intersection interval");
     return result.found ? result.distance : INFTY;
   }
-  const auto& results = shared_distances(shared_context_, r, u, coincident);
+  const auto& results = shared_distances(shared_context_, r, u, coincident,
+    coincident && member_id_ >= 0 ? member_index_ : static_cast<std::size_t>(-1));
   if (member_id_ >= 0) {
     const auto& result = results.at(member_index_);
     return result.found ? result.distance : INFTY;

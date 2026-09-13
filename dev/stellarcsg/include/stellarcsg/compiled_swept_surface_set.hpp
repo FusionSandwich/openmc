@@ -38,7 +38,8 @@ public:
   [[nodiscard]] std::size_t member_index(int coil_id) const;
   void distance_members(const Vec3& origin, const Vec3& direction,
     bool coincident, const RootSearchOptions& options,
-    std::vector<DistanceResult>& results) const;
+    std::vector<DistanceResult>& results,
+    std::size_t coincident_member = static_cast<std::size_t>(-1)) const;
   [[nodiscard]] Vec3 normal(const Vec3& point) const;
   [[nodiscard]] SweptCoilSetDistanceResult distance(const Vec3& origin,
     const Vec3& direction, bool coincident,

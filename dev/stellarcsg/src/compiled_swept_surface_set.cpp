@@ -216,13 +216,30 @@ std::size_t CompiledSweptSplineSurfaceSet::member_index(int coil_id) const
 
 void CompiledSweptSplineSurfaceSet::distance_members(const Vec3& origin,
   const Vec3& direction, bool coincident, const RootSearchOptions& options,
-  std::vector<DistanceResult>& results) const
+  std::vector<DistanceResult>& results, std::size_t coincident_member) const
 {
   if (!std::isfinite(origin.x) || !std::isfinite(origin.y)
       || !std::isfinite(origin.z) || !std::isfinite(direction.x)
       || !std::isfinite(direction.y) || !std::isfinite(direction.z)
-      || !(norm(direction) > 0.0) || !std::isfinite(norm(direction)))
+      || !(std::hypot(direction.x, direction.y, direction.z) > 0.0)
+      || !std::isfinite(std::hypot(direction.x, direction.y, direction.z)))
     throw std::invalid_argument("Shared swept ray must be finite and nonzero");
+  if (coincident && coincident_member == static_cast<std::size_t>(-1)) {
+    // A union has no declared crossed member. The separated-box domain can
+    // identify it uniquely; overlapping/missing bounds require explicit
+    // unresolved status rather than suppressing roots of unrelated coils.
+    for (std::size_t i = 0; i != coils_.size(); ++i) {
+      if (contains(coils_[i]->bounding_box(), origin)) {
+        if (coincident_member != static_cast<std::size_t>(-1))
+          throw std::runtime_error("Ambiguous coincident member of swept union");
+        coincident_member = i;
+      }
+    }
+    if (coincident_member == static_cast<std::size_t>(-1))
+      throw std::runtime_error("Missing coincident member of swept union");
+  }
+  if (coincident && coincident_member >= coils_.size())
+    throw std::invalid_argument("Coincident swept member index is out of range");
   results.assign(coils_.size(), DistanceResult {});
   std::array<std::uint32_t, 64> stack {};
   std::size_t size = 0;
@@ -230,16 +247,20 @@ void CompiledSweptSplineSurfaceSet::distance_members(const Vec3& origin,
   while (size != 0) {
     const auto& node = bvh_[stack[--size]];
     add_performance_counter(PerformanceCounter::candidate_bvh_nodes);
-    if (!ray_may_intersect(node.bbox, origin, direction)) continue;
+    // The crossed member may need a small negative root to associate a
+    // rounded origin. A forward-only slab cannot exclude that member.
+    if (!coincident && !ray_may_intersect(node.bbox, origin, direction)) continue;
     if (node.leaf()) {
       for (std::uint32_t local = 0; local < node.count; ++local) {
         const auto index = indices_[node.first + local];
-        if (!ray_may_intersect(coils_[index]->bounding_box(), origin, direction))
+        if (!(coincident && index == coincident_member)
+            && !ray_may_intersect(coils_[index]->bounding_box(), origin, direction))
           continue;
         // Every potentially intersected member is resolved. Exceptions and
         // unresolved diagnostics must reach the caller; never publish a cache
         // containing partial results after a failed member solve.
-        results[index] = coils_[index]->distance(origin, direction, coincident, options);
+        results[index] = coils_[index]->distance(origin, direction,
+          coincident && index == coincident_member, options);
         if (results[index].root_diagnostics.unresolved_intervals != 0)
           throw std::runtime_error("Unresolved member in shared swept query");
       }
