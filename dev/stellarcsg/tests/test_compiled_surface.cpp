@@ -369,6 +369,94 @@ void test_exact_circular_swept_coil()
   }
 }
 
+void test_swept_ray_start_inside_capsule()
+{
+  constexpr std::size_t count = 64;
+  constexpr double pi = 3.141592653589793238462643383279502884;
+  constexpr double radius = 0.25;
+  const auto rotate = [](stellarcsg::Vec3 p) {
+    return stellarcsg::Vec3 {0.6 * p.x - 0.8 * p.z, p.y,
+      0.8 * p.x + 0.6 * p.z};
+  };
+  for (double amplitude : {0.0, 0.4}) {
+    stellarcsg::SweptSplineSurfaceData data;
+    data.coil_id = 31;
+    data.sample_count = count;
+    data.length = 10.0 * pi;
+    data.characteristic_length = 9.0;
+    data.major_radius_coefficients.assign(count, radius);
+    data.minor_radius_coefficients.assign(count, radius);
+    for (std::size_t i = 0; i < count; ++i) {
+      const double angle = 2.0 * pi * static_cast<double>(i) / count;
+      for (double value : {5.0 * std::cos(angle), 5.0 * std::sin(angle),
+                           amplitude * std::sin(3.0 * angle)})
+        data.centerline_coefficients.push_back(value);
+      for (double value : {0.0, 0.0, 1.0})
+        data.normal_coefficients.push_back(value);
+      for (double value : {1.0, 0.0, 0.0})
+        data.binormal_coefficients.push_back(value);
+    }
+    // At the periodic seam, the cardinal cubic has weights (1,4,1)/6.
+    // Symmetry makes its tangent perpendicular to +x. Thus c(0)+r*x is
+    // an independently known finite-tube boundary point, without invoking
+    // production local_coordinates/evaluate or their pruning logic.
+    stellarcsg::Vec3 center;
+    for (std::size_t i : {count - 1, std::size_t {0}, std::size_t {1}}) {
+      const double weight = i == 0 ? 4.0 / 6.0 : 1.0 / 6.0;
+      center += weight * stellarcsg::Vec3 {data.centerline_coefficients[3 * i],
+        data.centerline_coefficients[3 * i + 1],
+        data.centerline_coefficients[3 * i + 2]};
+    }
+    for (bool transformed : {false, true}) {
+      auto placed = data;
+      const stellarcsg::Vec3 translation {11.0, -7.0, 3.0};
+      if (transformed) {
+        for (std::size_t i = 0; i < count; ++i) {
+          for (auto* coefficients : {&placed.centerline_coefficients,
+                                     &placed.normal_coefficients,
+                                     &placed.binormal_coefficients}) {
+            auto value = rotate({(*coefficients)[3 * i],
+              (*coefficients)[3 * i + 1], (*coefficients)[3 * i + 2]});
+            if (coefficients == &placed.centerline_coefficients)
+              value += translation;
+            (*coefficients)[3 * i] = value.x;
+            (*coefficients)[3 * i + 1] = value.y;
+            (*coefficients)[3 * i + 2] = value.z;
+          }
+        }
+      }
+      const stellarcsg::CompiledSweptSplineSurface surface {placed, true};
+      check(!surface.exact_torus_specialization(),
+        "inside-capsule regression explicitly uses the general swept solver");
+      const auto placed_center = transformed ? rotate(center) + translation : center;
+      const auto radial = transformed ? rotate({1.0, 0.0, 0.0})
+                                      : stellarcsg::Vec3 {1.0, 0.0, 0.0};
+      for (double offset : {0.0002, 0.002}) {
+        for (double direction_scale : {1.0, 3.0}) {
+          const auto result = surface.distance(
+            placed_center + (radius + offset) * radial,
+            -direction_scale * radial, false);
+          check(result.found, "ray inside capsule finds nearby smooth tube entry");
+          if (result.found) {
+            check_near(result.distance, offset, 2.0e-9,
+              "inside-capsule ray returns near entry instead of far exit");
+          }
+        }
+      }
+      const auto inside = surface.distance(
+        placed_center + 0.1 * radial, -radial, false);
+      check(inside.found, "ray inside actual tube retains its exit candidate");
+      if (inside.found) check_near(inside.distance, 0.35, 2.0e-9,
+        "inside-tube ray preserves correct forward exit");
+      const auto coincident = surface.distance(
+        placed_center + radius * radial, -radial, true);
+      check(coincident.found, "coincident tube start retains next crossing");
+      if (coincident.found) check_near(coincident.distance, 0.5, 2.0e-9,
+        "extra initial seed preserves coincidence exclusion");
+    }
+  }
+}
+
 void test_swept_coil_set_bvh()
 {
   constexpr std::size_t count = 64;
@@ -485,6 +573,7 @@ int main()
     test_scale_aware_axisymmetric_detection();
     test_close_root_pair_regressions();
     test_exact_circular_swept_coil();
+    test_swept_ray_start_inside_capsule();
     test_swept_coil_set_bvh();
     test_sha256_known_vector();
 #ifdef STELLARCSG_HAS_HDF5

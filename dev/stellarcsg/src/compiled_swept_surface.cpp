@@ -1022,6 +1022,31 @@ DistanceResult CompiledSweptSplineSurface::distance(
         add_performance_counter(PerformanceCounter::proxy_intersections);
         add_performance_counter(PerformanceCounter::proxy_seeds, proxy_count);
         bool solved = false;
+        // If the admissible ray start is inside the expanded capsule, its
+        // entry seed lies behind the ray. Correct from the start as well as
+        // the capsule exit, which can otherwise converge to a farther tube
+        // crossing while missing a nearby entry. This extra local seed does
+        // not certify completeness of this span or the remaining traversal.
+        const Vec3 initial_point = origin + minimum_t * ray_direction;
+        const double initial_fraction = c > 0.0
+          ? std::clamp(dot(initial_point - span.proxy_start, segment) / c,
+              0.0, 1.0)
+          : 0.5;
+        const Vec3 capsule_axis_point =
+          span.proxy_start + initial_fraction * segment;
+        const double seed_radius = span.proxy_radius + projected_tolerance;
+        if (norm_squared(initial_point - capsule_axis_point)
+            <= seed_radius * seed_radius) {
+          const double angle = span.angle_min
+            + initial_fraction * (span.angle_max - span.angle_min);
+          const auto frame_value = frame_in_span(span, angle);
+          const Vec3 transverse = initial_point - frame_value.center;
+          const double alpha = std::atan2(
+            dot(transverse, frame_value.binormal) / frame_value.minor_radius,
+            dot(transverse, frame_value.normal) / frame_value.major_radius);
+          add_performance_counter(PerformanceCounter::proxy_seeds);
+          solved = solve_seed(span, span_id, minimum_t, angle, alpha);
+        }
         for (std::size_t seed = 0; seed < proxy_count; ++seed) {
           if (proxy_t[seed] >= best_t) break;
           const Vec3 proxy_point = origin + proxy_t[seed] * ray_direction;
