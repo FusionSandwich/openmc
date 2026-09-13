@@ -1,6 +1,7 @@
 // Absolute-cost control for OpenMC's native ZTorus quartic query kernel.
 // This does not compare to swept geometry and makes no qualification claim.
 #include "openmc/surface.h"
+#include "openmc/constants.h"
 
 #include <array>
 #include <chrono>
@@ -64,7 +65,7 @@ int main(int argc, char** argv)
     for (const auto& ray : bank) {
       const double distance = openmc::torus_distance(ray.x, ray.y, ray.z, ray.u, ray.v, ray.w,
         A, B, C, false);
-      checksum += std::isfinite(distance) ? distance : 0.;
+      checksum += std::isfinite(distance) && distance < openmc::INFTY ? distance : 0.;
     }
   const auto ended = std::chrono::steady_clock::now();
   const auto total_ns = std::chrono::duration_cast<std::chrono::nanoseconds>(ended - started).count();
