@@ -11,6 +11,30 @@ import matplotlib.pyplot as plt
 import numpy as np
 
 
+def counter_observations(phase):
+    """Describe measured counter coverage without converting absence to zero."""
+    counters = phase["counters"]
+    if counters is None:
+        return dict(counters_per_call=None, counter_coverage={
+            "state": "unavailable", "reason": "performance counters disabled"})
+    available = {"distance_calls", "evaluate_calls", "normal_calls"}
+    if phase["operation"] == "evaluate":
+        available.update({"cache_hits", "cache_misses"})
+    values = {}
+    for name, value in counters.items():
+        if isinstance(value, int):
+            observed = phase["operation"] == "distance" or name in available
+            values[name] = value / phase["calls"] if observed else None
+    return dict(counters_per_call=values, counter_coverage={
+        "scope": "existing instrumented events, not complete nested search accounting",
+        "available": sorted(name for name, value in values.items() if value is not None),
+        "unavailable": sorted(name for name, value in values.items() if value is None),
+        "unavailable_reason": (
+            "evaluate/normal local-coordinate search and solve work is not instrumented; "
+            "raw zero counters do not measure absence of that work"),
+    })
+
+
 def main():
     parser = argparse.ArgumentParser()
     parser.add_argument("--raw", type=Path, required=True)
@@ -45,7 +69,6 @@ def main():
                                for p in profiles])
             boot = np.median(rng.choice(values, (10000, 7)), axis=1)
             interval = np.quantile(boot, [0.025, 0.975]).tolist()
-            counters = phase["counters"]
             metrics["phases"].append(dict(
                 method=case["method"], operation=phase["operation"],
                 median_ns=float(np.median(values)),
@@ -55,8 +78,7 @@ def main():
                 samples_ns=values.tolist(),
                 bound_check_state=phase.get("bound_check_state", "NOT_RUN"),
                 calls_per_repetition=phase["calls"],
-                counters_per_call={k: v/phase["calls"] for k, v in counters.items()
-                                   if isinstance(v, int)} if counters else None))
+                **counter_observations(phase)))
             axis.scatter(pi + np.linspace(-.10, .10, 7), values/1000,
                          s=27, color="#1967a3", alpha=.7)
             axis.plot([pi-.2, pi+.2], [np.median(values)/1000]*2,
