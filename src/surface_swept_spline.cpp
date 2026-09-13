@@ -1,6 +1,7 @@
 #include "openmc/surface_swept_spline.h"
 
 #include <cassert>
+#include <array>
 #include <cmath>
 #include <filesystem>
 #include <cstdlib>
@@ -88,15 +89,22 @@ const std::vector<stellarcsg::DistanceResult>& shared_distances(
     bool ready {false};
     std::vector<stellarcsg::DistanceResult> results;
   };
-  static thread_local Cache cache;
-  if (cache.ready && cache.owner == context && cache.coincident == coincident
+  // Bound retained query/geometry state. This also reuses identical source
+  // histories; it does not approximate nearby rays or numerical results.
+  static thread_local std::array<Cache, 32> entries;
+  static thread_local std::size_t next = 0;
+  for (const auto& cache : entries) {
+    if (cache.ready && cache.owner == context && cache.coincident == coincident
       && cache.coincident_member == coincident_member
       && cache.r.x == r.x && cache.r.y == r.y && cache.r.z == r.z
       && cache.u.x == u.x && cache.u.y == u.y && cache.u.z == u.z) {
-    if (context->report_counters)
-      context->cache_hits.fetch_add(1, std::memory_order_relaxed);
-    return cache.results;
+      if (context->report_counters)
+        context->cache_hits.fetch_add(1, std::memory_order_relaxed);
+      return cache.results;
+    }
   }
+  auto& cache = entries[next];
+  next = (next + 1) % entries.size();
   cache.ready = false;
   cache.owner = context;
   cache.r = r;
@@ -109,6 +117,34 @@ const std::vector<stellarcsg::DistanceResult>& shared_distances(
     context->options, cache.results, coincident_member);
   cache.ready = true;
   return cache.results;
+}
+
+double shared_evaluate(const std::shared_ptr<const SweptSharedContext>& context,
+  std::size_t member, Position r)
+{
+  struct Cache {
+    std::shared_ptr<const SweptSharedContext> owner;
+    Position r;
+    std::size_t member {};
+    double value {};
+    bool ready {false};
+  };
+  static thread_local std::array<Cache, 32> entries;
+  static thread_local std::size_t next = 0;
+  for (const auto& cache : entries) {
+    if (cache.ready && cache.owner == context && cache.member == member
+        && cache.r.x == r.x && cache.r.y == r.y && cache.r.z == r.z)
+      return cache.value;
+  }
+  auto& cache = entries[next];
+  next = (next + 1) % entries.size();
+  cache.ready = false;
+  cache.owner = context;
+  cache.r = r;
+  cache.member = member;
+  cache.value = context->surfaces->member(member).evaluate(convert(r));
+  cache.ready = true;
+  return cache.value;
 }
 }
 
@@ -239,7 +275,7 @@ double SurfaceSweptSpline::evaluate(Position r) const
       return 1.0;
   }
   if (member_id_ >= 0)
-    return surface_set_->member(member_index_).evaluate(convert(r));
+    return shared_evaluate(shared_context_, member_index_, r);
   if (use_native_exact_torus_) {
     const double radial_offset = std::hypot(r.x, r.y)
       - exact_torus_.major_radius;

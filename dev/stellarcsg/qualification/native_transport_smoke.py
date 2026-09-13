@@ -36,6 +36,7 @@ def main():
     parser.add_argument('--case', choices=['torus', 'plasma', 'coil', 'two-coils', 'combined'], required=True)
     parser.add_argument('--histories', type=int, default=10000)
     parser.add_argument('--threads', type=int, default=1)
+    parser.add_argument('--timeout', type=float, default=180.)
     parser.add_argument('--shared', action='store_true')
     args = parser.parse_args()
     root = args.source_root.resolve()
@@ -160,12 +161,23 @@ def main():
             tallies.append(tally)
     model = openmc.Model(openmc.Geometry(cells), materials, settings, tallies)
     model.export_to_xml(out)
+    (out / 'attempt-start.json').write_text(json.dumps(dict(
+        source_sha=args.source_sha, case=args.case, histories=args.histories,
+        shared=args.shared, threads=args.threads, executable=str(executable),
+        executable_sha256=digest(executable), timeout_seconds=args.timeout,
+        source_bank_sha256=digest(out / 'source_bank.h5')), indent=2)+'\n')
     start = time.perf_counter()
     with (out / 'transport.log').open('x') as log:
-        result = subprocess.run([str(executable), '-s', str(args.threads)], cwd=out, stdout=log,
-                                stderr=subprocess.STDOUT, timeout=180,
-                                env={**os.environ, **({'STELLARCSG_REPORT_SHARED': '1'}
-                                     if args.shared else {})})
+        try:
+            result = subprocess.run([str(executable), '-s', str(args.threads)], cwd=out, stdout=log,
+                                    stderr=subprocess.STDOUT, timeout=args.timeout,
+                                    env={**os.environ, **({'STELLARCSG_REPORT_SHARED': '1'}
+                                         if args.shared else {})})
+        except subprocess.TimeoutExpired:
+            (out / 'attempt-timeout.json').write_text(json.dumps(dict(
+                state='BLOCKED', timeout_seconds=args.timeout,
+                completed_histories=None, lost_particles=None))+'\n')
+            raise
     elapsed = time.perf_counter()-start
     receipt = dict(case=args.case, diagnostic=True, qualification='NOT_RUN',
                    source_sha=args.source_sha, source_root=str(root), shared=args.shared,
