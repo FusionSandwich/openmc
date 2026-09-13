@@ -74,6 +74,11 @@ endif()
 
 if(STELLARCSG_BUILD_TESTS)
   enable_testing()
+  add_executable(stellarcsg_swept_seed_regression tests/test_swept_seed_regression.cpp)
+  target_link_libraries(stellarcsg_swept_seed_regression PRIVATE StellarCSG::reference)
+  add_test(NAME stellarcsg_swept_seed_regression COMMAND stellarcsg_swept_seed_regression)
+  add_executable(stellarcsg_retained_replay tests/test_swept_capture_replay.cpp)
+  target_link_libraries(stellarcsg_retained_replay PRIVATE StellarCSG::reference)
 
   add_executable(stellarcsg_reference_tests
     tests/test_reference_kernel.cpp)
@@ -106,6 +111,10 @@ if(STELLARCSG_BUILD_TESTS)
 endif()
 
 if(STELLARCSG_BUILD_BENCHMARKS)
+  if(STELLARCSG_ENABLE_HDF5)
+    add_executable(stellarcsg_recovery04_bank qualification/recovery04_frozen_bank.cpp)
+    target_link_libraries(stellarcsg_recovery04_bank PRIVATE StellarCSG::reference)
+  endif()
   add_executable(stellarcsg_surface_benchmark
     benchmarks/benchmark_compiled_surface.cpp)
   target_link_libraries(stellarcsg_surface_benchmark

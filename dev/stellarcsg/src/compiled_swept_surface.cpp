@@ -969,16 +969,32 @@ DistanceResult CompiledSweptSplineSurface::distance(
         const double b = dot(ray_direction, segment);
         const double c = norm_squared(segment);
         const double e = dot(segment, w0);
-        std::array<double, 6> proxy_t {};
+        std::array<double, 7> proxy_t {};
         std::size_t proxy_count = 0;
         const auto add_proxy_t = [&](double t) {
-          if (!(t > minimum_t) || !(t < best_t) || !std::isfinite(t)) return;
+          if (t < minimum_t || !std::isfinite(t)) return;
           for (std::size_t existing = 0; existing < proxy_count; ++existing) {
             if (std::abs(proxy_t[existing] - t)
                 <= 1.0e-9 * data_.characteristic_length) return;
           }
           if (proxy_count < proxy_t.size()) proxy_t[proxy_count++] = t;
         };
+        // Inside the expanded capsule, the forward exit can seed a later
+        // tube root. A start seed repairs this case without seeding every
+        // box miss. Neither seed success nor capsule membership is a proof
+        // that all earlier roots in this span have been resolved.
+        const double start_t = std::max(minimum_t, interval->enter);
+        const Vec3 start_point = origin + start_t * ray_direction;
+        const double start_fraction = c > 0.0
+          ? std::clamp(dot(start_point - span.proxy_start, segment) / c,
+              0.0, 1.0)
+          : 0.5;
+        const Vec3 capsule_point = span.proxy_start + start_fraction * segment;
+        const double seed_radius = span.proxy_radius + projected_tolerance;
+        if (norm_squared(start_point - capsule_point)
+            <= seed_radius * seed_radius) {
+          add_proxy_t(start_t);
+        }
         if (c > 0.0) {
           const double f0 = e / c;
           const double f1 = b / c;
@@ -1023,7 +1039,7 @@ DistanceResult CompiledSweptSplineSurface::distance(
         add_performance_counter(PerformanceCounter::proxy_seeds, proxy_count);
         bool solved = false;
         for (std::size_t seed = 0; seed < proxy_count; ++seed) {
-          if (proxy_t[seed] >= best_t) break;
+          // A proxy root is a guess, not a lower bound on its corrected root.
           const Vec3 proxy_point = origin + proxy_t[seed] * ray_direction;
           const double fraction = c > 0.0
             ? std::clamp(dot(proxy_point - span.proxy_start, segment) / c,
@@ -1040,8 +1056,10 @@ DistanceResult CompiledSweptSplineSurface::distance(
             span, span_id, proxy_t[seed], angle, alpha) || solved;
         }
 
-        if (!solved && proxy_count != 0
-            && unresolved_count < unresolved.size()) {
+        if (!solved && proxy_count != 0) {
+          if (unresolved_count == unresolved.size()) {
+            throw std::runtime_error("Swept query unresolved-span capacity exhausted");
+          }
           unresolved[unresolved_count++] = {
             span_id, std::max(minimum_t, interval->enter), interval->exit};
         }
@@ -1054,7 +1072,9 @@ DistanceResult CompiledSweptSplineSurface::distance(
     const bool use_right = right && right->exit > minimum_t && right->enter < best_t;
     if (use_left && use_right) {
       const bool left_first = left->enter <= right->enter;
-      if (stack_size + 2 > stack.size()) break;
+      if (stack_size + 2 > stack.size()) {
+        throw std::runtime_error("Swept query BVH stack capacity exhausted");
+      }
       stack[stack_size++] = left_first
         ? StackEntry {node.right, right->enter}
         : StackEntry {node.left, left->enter};
@@ -1062,7 +1082,9 @@ DistanceResult CompiledSweptSplineSurface::distance(
         ? StackEntry {node.left, left->enter}
         : StackEntry {node.right, right->enter};
     } else if (use_left || use_right) {
-      if (stack_size + 1 > stack.size()) break;
+      if (stack_size + 1 > stack.size()) {
+        throw std::runtime_error("Swept query BVH stack capacity exhausted");
+      }
       stack[stack_size++] = use_left
         ? StackEntry {node.left, left->enter}
         : StackEntry {node.right, right->enter};
