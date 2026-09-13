@@ -1,5 +1,284 @@
 # StellarCSG continuation — 2026-09-13
 
+## Follow-up 03: filtered exact coil distance and distributed transport
+
+This section supersedes only overlapping status claims below. It is an
+implemented, tested fast-path experiment, **not final qualification**. The two
+September 13 fast-path handoffs were read as reference material; the user's
+existing implementation request governs. All fresh raw evidence is under
+`D:/codex-verification/stellarcsg-20260913-03/` (`RAW3`), with Linux mapping
+`/mnt/d/codex-verification/stellarcsg-20260913-03`. Earlier raw records remain.
+
+### Continuation, ownership and resources
+
+Origin is `https://github.com/FusionSandwich/openmc.git`. The outer unborn Git
+repository was not used. Original/checkpoint/default/archive branches were not
+advanced. Eighteen pre-existing refs match `protected-refs-before.txt` versus
+`protected-refs-final.json`; remote baseline/archive/02/develop checks are in
+`remote-protected-final.txt`. Experimental geometry and counters remain OFF by
+default. No dependency was downloaded, upgraded or installed, and no PR created.
+
+| Role | Worktree | Branch | Starting / implementation SHA |
+|---|---|---|---|
+| Preserved integrated B | stellarcsg-next-b | JS/stellarcsg-transport-20260913-02 | 5614f9cacfd9bb1acba4cf6683d9b1da16c06067 |
+| Preserved coil lane | stellarcsg-next-coil | JS/stellarcsg-coil-20260913-02 | d57c1cc302bd34c83e785299d7a12c88804b2665 |
+| Preserved plasma lane | stellarcsg-next-plasma | JS/stellarcsg-plasma-20260913-02 | 221faceda4972f2718ed3cba6545b5064e389eb2 |
+| Preserved neutral | stellarcsg-next-neutral | JS/stellarcsg-neutral-20260913-02 | 6f13c5501a138d2e66bf288760891c3602cd6444 |
+| New implementation | stellarcsg-fast-03 | JS/stellarcsg-fast-20260913-03 | 5614f9ca… → 5ed327ade33b31ecdb5e3b4b4111c55f321991fd |
+| New neutral record | stellarcsg-neutral-03 | JS/stellarcsg-neutral-20260913-03 | 6f13c550… → final record SHA in RAW3/finish-map.json |
+
+All paths are children of `C:/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS`.
+The starting worktrees were clean; final dirty/upstream/full-SHA states and push
+receipts are in `finish-map.json` and `push-*.log`. Frozen A was not modified or
+relabeled with B's algorithm. Existing neutral contract/harness were reused;
+there was no new denominator interpretation or production algorithm transfer to A.
+
+Four slots were available. The configured coordinator retained orchestration,
+production CPP, shared headers/CMake, Git and native execution. Requested worker
+routing was Sol High for independent mathematical review and arithmetic/monotone
+regressions, Terra Medium for the specified frozen-query harness, and Luna Low
+for literal inventory (Spark was not exposed as a collaboration model). Separate
+files had single owners; workers made no commits or production-algorithm edits.
+Resolved model/cost totals were not exposed, so no measured cost saving is claimed.
+
+The Luna inventory attempted an SSH hostname lookup for the local WSL distro;
+it failed before a connection/job. That receipt was rejected, retained as
+`runtime-comparator-agent-error-01.json`, and moved out of the accidentally used
+old arena. The old arena is clean. Coordinator reran the check with the explicit
+local WSL runner. No remote computation or successful SSH connection occurred.
+
+Host: i9-10850K, 10 physical/20 logical cores, 32 GiB RAM; initial free RAM about
+3.5 GiB, C: about 68 GB and D: about 60 GB free. Current observations, environments,
+caches and processes are retained in `preflight-*`. Existing WSL `OpenMC-Dev-D`,
+GCC 14.2, CMake 3.31.6, `/opt/openmc-venv/bin/python`, GMP, HDF5 and local vendor
+sources were reused. Native vendors were copied to the new checkout only, with
+zero acquisition bytes (`native-vendor-local-reuse.json`). Builds used one
+compiler, at most two aggregate diagnostic CPU tasks, and separate output dirs.
+
+### Implementation and independent correctness review
+
+`0b56166ba` adds outward-rounded span boxes, a bounded balanced BVH and a strict
+floating Bernstein-sign exclusion of the exact circular-tube resultant.
+`dc76fbd121f223a6b9f3212c7ceafb71292ce10b` adds bounded **exact-rational** monotone
+isolation before gcd/Sturm factorization. `e189ea20a39161153336383913a80f8bb1019ada`
+freezes unique source/query banks; final `5ed327ade…` fixes the native timing
+helper's finite no-hit checksum. Native production binaries bind to dc76fbd…;
+the final helper-only child does not change production code.
+
+The authoritative boundary remains the exact input binary64 cubic B-spline
+centerline with constant circular radius, within the existing regularity,
+curvature/separation and 512-control certificate domain. There is no fitted
+Cartesian patch or triangle replacement. Elliptical/frame-dependent and variable
+radius general coils remain explicitly unsupported. Certificate rejection does
+not establish invalid geometry or self-intersection.
+
+The private floating filter uses exact-to-outward bounds, guarded binary64
+interval operations, strict compiler flags, rounding/FTZ/DAZ checks, and retains
+uncertain candidates. Unknown arithmetic environments disable the floating
+filter. The bounded BVH has a defensible depth bound; unexpected traversal
+capacity retains all spans, never silently truncates. Traversal order never
+prunes by a seed or current best hit. Polynomial exclusion includes closed knots
+and retains degenerate A=B=0 cases. The initial independent review identified
+and fixed the missing strict-compiler guard and MXCSR rounding-bit check.
+
+The local solver partitions the entire closed span using exact Bernstein
+bounds. Strict derivative sign plus exact endpoint signs proves absence or a
+unique root. Acceptance also requires a nonzero A enclosure and a distance
+interval meeting unchanged tolerances. All local roots are buffered until the
+whole span is resolved. Node/depth/bisection/denominator/precision/capacity
+uncertainty discards the complete local buffer and invokes the preserved solver
+for the whole span. Shared capacity exhaustion still throws. There is no first
+successful-root return and no unresolved-to-infinity conversion in the wrapper.
+Coincident queries always retain the existing exact association path.
+
+Independent Sol review accepted this proof within the declared ordinary-query
+circular domain. It independently added public tests for earlier entry despite
+opposite local-parameter order, budgets 0/1/64, exact stationary tangency,
+A=B=0 fallback and coincidence exclusion. A budget-zero accounting issue was
+fixed before final tests. Universal rounded/coincident semantics and arbitrary
+geometry are not newly proved. Tangencies and singularities remain explicit
+exact fallbacks, not cases removed to improve timing.
+
+| Fresh validation | Result / raw evidence |
+|---|---|
+| Counters OFF CTests | 7/7 PASS, 10.70 s, ctest-monotone-off-02.log |
+| Counters ON CTests | 7/7 PASS, 10.39 s, ctest-monotone-on-01.log |
+| Frozen 64-ray expanded bank against preserved mode 0 | PASS, 64 comparisons, identical returned distances |
+| Original 384-ray capture, also scaled directions and rigid transforms | 256 PASS / 0 FAIL / 128 BLOCKED; identical to retained exact reference |
+| Replay geometry and ray identity | PASS; three geometry records match, original ray inputs retained |
+| Native incremental build | PASS, native-build-monotone-01.log |
+
+`monotone-validation-02.json` and `monotone-replay-01.jsonl` retain all dispositions.
+Exit 2 from the replay means BLOCKED cases remain, not an execution failure.
+The first analysis incorrectly counted three geometry records as rays; its
+failed script was preserved and only the analysis was corrected. All 128 blocks
+remain stress shape 2's certificate failures. The original 23-case independent
+oracle and two tangent investigations were completed in follow-up 02; they were
+not rerun as a new independent oracle here. Current production outputs match
+those retained outputs: the three stress IDs 7/8/9 remain blocked; the two
+nominal tangencies do not regress. No geometry-domain qualification is inferred
+from the 256 sampled passes.
+
+### Cold-query experiment and bottleneck
+
+One warm-up plus seven balanced repetitions per mode and per counters build:
+48 retained kernel attempts, all valid; one CPU affinity 0, no application
+memoization. The bank contains 16 fixed distinct queries: ten hits/six misses
+(3 box misses, 3 local physical misses, 3 inside exits, 3 near entries,
+2 seam/grazing rays, 2 transformed rays). The 64-ray expansion is a correctness
+check, not a timed population selected for speed. All failed and slow captures
+remain. Hash/source drift checks pass. Ordinary desktop interference is
+uncontrolled; no owned heavy task competed during either timing block.
+
+| Counters OFF mode | Median of seven bank-mean costs, ms/query | Baseline / changed median ratio, paired bootstrap 95% interval |
+|---|---:|---|
+| 0: preserved exact reference | 82.4534045 | 1 |
+| 1: outward BVH only | 81.3006140 | 1.0142 [0.9970, 1.0185] |
+| 2: BVH + polynomial exclusion + bounded exact local solve | 2.1309001 | 38.6942 [38.5265, 39.0040] |
+
+The ratio is median baseline per-repetition bank-mean ns/query divided by median
+changed bank-mean ns/query. Bootstrap resamples matched repetition indices using
+the existing neutral function. This is **cold fixed-bank cost**, not transport
+throughput, an A/B comparison, a torus-equivalent control, or an Embree ratio.
+Broad-phase-only improvement is inconclusive in aggregate; hits dominate.
+Mode-2 pooled P95/P99 are 6.466/6.774 ms, retained as this finite bank's tails.
+
+Instrumented mode 0 spends 99.410% of observed query time in its nested Sturm
+region. Mode 2 resolves all 196 attempted candidate spans over measured runs
+with the monotone solver; zero Sturm fallbacks occur on this bank. It spends
+83.891% in monotone work and 98.213% in the encompassing exact-query region.
+These nested fractions must not be added. Modes 0/1 have 245 exact candidate
+spans, mode 2 has 196 after 49 polynomial exclusions. Difficult tests separately
+exercise exact fallback; zero observed timed fallback is not a universal rate.
+
+ON mode-2 median is 2.1372751 ms. The descriptive ON/OFF median ratio is 1.0030,
+but separate blocks cannot qualify paired instrumentation overhead. Missing
+OFF timer values remain null. ZTorus absolute-query sentinel before/after medians
+are 176.632/172.328 ns, CV 1.61%/2.55%, identical checksums. This different geometry
+is a host sentinel only. No near-torus speed claim follows. The first sentinel
+attempt overflowed its checksum by adding OpenMC's finite INFTY and produced
+invalid JSON; it was retained, corrected and restarted before any coil campaign.
+
+[Measured figure and data](../plots/dual_track/continuation_20260913/fast_path_03/fast_path_03.png)
+and adjacent `fast_path_03.json` are regenerated by `qualification/plot_fast_path_03.py`.
+`cold-{off,on}-16-01/campaign.json`, attempt journals and `timing-block-02.json`
+contain the raw populations, schedule, binary hashes and exact invocations.
+An independent review confirmed the ratio, mixture, nested timer interpretation
+and the distinction from transport performance.
+
+### Actual distributed native transport
+
+The native example now freezes 10,000 distinct source definitions, spreading
+coil sources over arc, section angle and offset with a small directional tilt,
+plus a plasma ring with isotropic directions. FileSource samples from that bank;
+this does not claim that every sampled history is distinct. Asymmetric weights
+are 3:1:1 (coil A/coil B/plasma). The authoritative radii remain 0.25 cm. The
+helical plasma and two transformed finite circular coils have conservative
+positive AABB gaps 33.53975, 4.55393 and 4.56231 cm. Synthetic one-group absorption
+isolates geometry; there is no engineering blanket or fusion-material claim.
+
+| Distributed diagnostic | Completed histories | Result |
+|---|---:|---|
+| Exclusion-only first attempt | 100 | Transport completed; tally closure passed; track-coverage validation FAIL |
+| Monotone solver, corrected retained-track request | 100 | PASS, both coils/materials, zero tally closure error |
+| Monotone solver extension | 1,000 | PASS, both coils/materials, closure error 5.5511e-17 |
+
+The first attempt retained only ten first-batch tracks, omitting coil B from the
+track sample despite its nonzero tally. The script now retains the first 100
+histories across batches; all attempts remain. The 100-history before/after
+source-bank bytes and all three tally accumulators are exactly identical
+(`transport-comparison-01.json`). Single-run wall times were 32.850/15.105 s;
+track output differs, so these are diagnostic timings, not an accepted speed ratio.
+
+The 1,000-history statepoint reports coil fluxes 0.2986766336 and 0.0955864092,
+identical material-bin values; union flux is 0.3942630428. The 100 retained tracks collectively
+include correct (cell,material) pairs (101,11), (102,12), (103,13) and void (202,-1),
+with 182 retained cell transitions. Deterministic inside/outside cell probes pass.
+The shared context reports 4,143 traversals/1,802 cache hits; identical statistics
+are printed by both wrappers and must not be summed. This is legitimate reuse
+within the distributed workload, not a three-ray source-bank timing artifact.
+
+Initialization/active/total times are 0.16425/141.72/141.90 s; active rate
+7.05622 histories/s, one thread. No lost-particle diagnostic was observed, exit
+code is 0, requested histories are present. The reported zero loss is inferred
+from these checks, not an independent internal lost-particle counter. Retained
+tracks and tallies do not prove general nearest-root/crossing completeness.
+All transport receipts explicitly retain diagnostic=true, qualification=NOT_RUN.
+
+The changed distance path is much cheaper on the cold bank, while transport
+remains slow. Classification/normals and the coincident exact path were not
+optimized in this pass. Their separate full-transport CPU fractions are still
+unmeasured; no Amdahl attribution is fabricated. Native library SHA256 is
+`451b21536d4178a81c4ec5c9a44f6e04eac194c58c87a639d643441ff2717d48`.
+`source-build-binding-final.json` binds source/header/config/binary hashes;
+PYTHONPATH and linked library were explicitly bound, not the unrelated editable
+HPGe installation. The old exclusion library is retained separately.
+
+### Current gates, remaining limits and restart
+
+The already implemented plasma reuse change and its modest helical gain from
+follow-up 02 are preserved, not remeasured or replaced with a claimed new Bezier
+atlas. WISTELL-D's five existing grazing oracle blocks remain. Today's correct
+local comparator check cannot bind DAGMC/MOAB/Double Down/Embree or pymoab;
+Docker pipes are absent. See `runtime-comparator-refresh.json` and the corrected
+local check log. Stopped runtime disks were not launched and dependencies were
+not acquired. No matched H5M accuracy ladder or matched timing ran in this pass.
+
+| Gate | State |
+|---|---|
+| B supported ordinary circular nearest-hit implementation and independent review | PASS |
+| New bounded solver regressions and unchanged admitted replay | PASS |
+| Full original corpus including rejected stress geometry | BLOCKED |
+| Distributed plasma + two finite coils, actual per-coil diagnostic attribution | PASS |
+| Repeated cold-query experiment with frozen bank/hash checks | PASS |
+| General elliptical/frame-dependent or universal coincidence qualification | BLOCKED |
+| Plasma improvement from follow-up 02 | PASS (retained experiment, no fresh claim) |
+| WISTELL-D grazing/geometry qualification | BLOCKED |
+| Exact-control >=0.95 / forced-general >=0.25 and >=0.8 aspiration, fresh matched transport | NOT_RUN |
+| Fine Embree nonplanar coil/set >=0.50, advantage and proposed >=2x objective | BLOCKED |
+| 48-coil scaling and materialized production physics | NOT_RUN |
+| Near-torus objective / final engineering qualification | NOT_RUN |
+
+Recommendation: retain the improved radial plasma kernel and this filtered
+exact circular-tube kernel for the next restricted diagnostic. They are not
+qualified global winners. Next actionable optimization is measured profiling
+of classification, normals and coincident-query fallback on this same bank,
+then a bounded change with the same attribution and earlier-hit checks. The
+full supplied WISTELL-D finite assembly, matched fine Embree advantage and
+near-torus target have not been achieved.
+
+Restart locally (use a NEW output suffix; never overwrite prior evidence):
+```bash
+B=/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-fast-03
+N=/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-neutral-03
+R=/mnt/d/codex-verification/stellarcsg-20260913-03
+# Windows entry: C:/Windows/System32/wsl.exe -d OpenMC-Dev-D --exec /bin/bash -lc ...
+# Refresh live host/environment preflight before any rebuild; no dependency change needed.
+/usr/bin/cmake --build "$R/kernel-off" -j1
+/usr/bin/ctest --test-dir "$R/kernel-off" --output-on-failure
+/usr/bin/cmake --build "$R/native" -j1
+# Bind the freshly built library for the Python deterministic cell probe too.
+cp "$R/native/lib/libopenmc.so" "$B/openmc/lib/libopenmc.so"
+PYTHONPATH="$B/dev/stellarcsg/python:$B" /opt/openmc-venv/bin/python \
+  "$B/dev/stellarcsg/qualification/native_transport_smoke.py" \
+  --source-root "$B" --source-sha dc76fbd121f223a6b9f3212c7ceafb71292ce10b \
+  --executable "$R/native/bin/openmc" --case combined --shared --distributed \
+  --histories 1000 --threads 1 --timeout 240 --output "$R/transport-distributed-next-02"
+# Exclusive host slot; no concurrent builds/tests/transport/oracles:
+/opt/openmc-venv/bin/python "$B/dev/stellarcsg/qualification/swept_filtered_campaign.py" \
+  --binary "$R/kernel-off/stellarcsg_swept_filtered_tests" --count 16 --repeats 7 \
+  --cpu 0 --timeout 120 --output "$R/cold-off-16-next-02"
+```
+Bind the actual new source SHA after any source edits; do not reuse the historical
+SHA in the example for a changed binary. Full compile/replay/analysis commands
+are retained in `validate-monotone-01.py`, `analyze-monotone-02.py`,
+`run-timing-block-02.py`, `compare-transport-01.py` and build logs. The original
+failed scripts are retained, not the recommended next invocation. New branches
+only are pushed; final push/state/process receipts are in RAW3. No owned jobs,
+remote jobs or automations remain at the recorded checkpoint. Only synthetic
+fixtures and derived measurements were committed; supplied geometry
+redistribution permissions were not expanded.
+
 ## Follow-up 02: implemented and executed, not final qualification
 
 This section supersedes the gate/status claims in the preserved first-session

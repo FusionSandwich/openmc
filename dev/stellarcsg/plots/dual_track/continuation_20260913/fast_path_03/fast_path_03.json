@@ -1,0 +1,257 @@
+{
+  "campaign_sha256": {
+    "off": "4c9c683eff9c1f49bae117c22e88b6064879d77b7a838dddcc40c0759313e434",
+    "on": "e9fa4d3b7e49817287034df43f176c7b0c204f2ae5e7a6b87afb5b7b0db99d32"
+  },
+  "measured": {
+    "off": {
+      "0": {
+        "values_ns": [
+          83103631.1875,
+          83497212.8125,
+          81342113.25,
+          81057026.5625,
+          82631257.8125,
+          82096222.3125,
+          82453404.5
+        ],
+        "median_ns": 82453404.5,
+        "iqr_ns": [
+          81719167.78125,
+          82867444.5
+        ],
+        "filter_metrics": {
+          "floating_excluded_spans": 0,
+          "polynomial_excluded_spans": 0,
+          "exact_candidate_spans": 245,
+          "monotone_attempted_spans": 0,
+          "monotone_resolved_spans": 0,
+          "sturm_fallback_spans": 196,
+          "exact_time_fraction": null,
+          "exact_path_observed": true,
+          "monotone_time_fraction": null,
+          "fallback_time_fraction": null
+        }
+      },
+      "1": {
+        "values_ns": [
+          83355869.0625,
+          86256419.0625,
+          80957787.8125,
+          81300614,
+          81268126.5625,
+          82188573.25,
+          80860110.625
+        ],
+        "median_ns": 81300614,
+        "iqr_ns": [
+          81112957.1875,
+          82772221.15625
+        ],
+        "filter_metrics": {
+          "floating_excluded_spans": 6923,
+          "polynomial_excluded_spans": 0,
+          "exact_candidate_spans": 245,
+          "monotone_attempted_spans": 0,
+          "monotone_resolved_spans": 0,
+          "sturm_fallback_spans": 196,
+          "exact_time_fraction": null,
+          "exact_path_observed": true,
+          "monotone_time_fraction": null,
+          "fallback_time_fraction": null
+        }
+      },
+      "2": {
+        "values_ns": [
+          2138237.5,
+          2354187.5,
+          2097287.5625,
+          2096487.5,
+          2137700,
+          2130900.0625,
+          2113975.125
+        ],
+        "median_ns": 2130900.0625,
+        "iqr_ns": [
+          2105631.34375,
+          2137968.75
+        ],
+        "filter_metrics": {
+          "floating_excluded_spans": 6923,
+          "polynomial_excluded_spans": 49,
+          "exact_candidate_spans": 196,
+          "monotone_attempted_spans": 196,
+          "monotone_resolved_spans": 196,
+          "sturm_fallback_spans": 0,
+          "exact_time_fraction": null,
+          "exact_path_observed": true,
+          "monotone_time_fraction": null,
+          "fallback_time_fraction": null
+        }
+      }
+    },
+    "on": {
+      "0": {
+        "values_ns": [
+          81489946.125,
+          83304752.875,
+          82292979.6875,
+          81061054.625,
+          82372707.5625,
+          83416094.5625,
+          82431064.8125
+        ],
+        "median_ns": 82372707.5625,
+        "iqr_ns": [
+          81891462.90625,
+          82867908.84375
+        ],
+        "filter_metrics": {
+          "floating_excluded_spans": 0,
+          "polynomial_excluded_spans": 0,
+          "exact_candidate_spans": 245,
+          "monotone_attempted_spans": 0,
+          "monotone_resolved_spans": 0,
+          "sturm_fallback_spans": 196,
+          "exact_time_fraction": 0.9999846669301621,
+          "exact_path_observed": true,
+          "exact_query_nanoseconds": 9221756204,
+          "exact_candidate_nanoseconds": 9208742901,
+          "candidate_time_fraction_within_exact": 0.9985888476433203,
+          "monotone_time_fraction": 0.0,
+          "monotone_nanoseconds": 0,
+          "fallback_time_fraction": 0.9941019287639447,
+          "sturm_nanoseconds": 9167506195
+        }
+      },
+      "1": {
+        "values_ns": [
+          80916683.625,
+          81753714.875,
+          81760285.875,
+          85297661.125,
+          81808294.9375,
+          81695457.125,
+          81427765.75
+        ],
+        "median_ns": 81753714.875,
+        "iqr_ns": [
+          81561611.4375,
+          81784290.40625
+        ],
+        "filter_metrics": {
+          "floating_excluded_spans": 6923,
+          "polynomial_excluded_spans": 0,
+          "exact_candidate_spans": 245,
+          "monotone_attempted_spans": 0,
+          "monotone_resolved_spans": 0,
+          "sturm_fallback_spans": 196,
+          "exact_time_fraction": 0.9999339174311198,
+          "exact_path_observed": true,
+          "exact_query_nanoseconds": 9193950213,
+          "exact_candidate_nanoseconds": 9191516913,
+          "candidate_time_fraction_within_exact": 0.9997353368308913,
+          "monotone_time_fraction": 0.0,
+          "monotone_nanoseconds": 0,
+          "fallback_time_fraction": 0.9952276875198979,
+          "sturm_nanoseconds": 9150678510
+        }
+      },
+      "2": {
+        "values_ns": [
+          2101968.8125,
+          2138162.5625,
+          2154350.125,
+          2222262.625,
+          2114750,
+          2137275.0625,
+          2125725.0625
+        ],
+        "median_ns": 2137275.0625,
+        "iqr_ns": [
+          2120237.53125,
+          2146256.34375
+        ],
+        "filter_metrics": {
+          "floating_excluded_spans": 6923,
+          "polynomial_excluded_spans": 49,
+          "exact_candidate_spans": 196,
+          "monotone_attempted_spans": 196,
+          "monotone_resolved_spans": 196,
+          "sturm_fallback_spans": 0,
+          "exact_time_fraction": 0.9821321916209345,
+          "exact_path_observed": true,
+          "exact_query_nanoseconds": 235625208,
+          "exact_candidate_nanoseconds": 233657408,
+          "candidate_time_fraction_within_exact": 0.9916486015367252,
+          "monotone_time_fraction": 0.8389146152762038,
+          "monotone_nanoseconds": 201265606,
+          "fallback_time_fraction": 0.0,
+          "sturm_nanoseconds": 0
+        }
+      }
+    }
+  },
+  "sentinel": {
+    "before": {
+      "values_ns": [
+        176.8546859375,
+        177.70859375,
+        176.63234375,
+        172.69703125,
+        174.60828125,
+        180.45171875,
+        172.60953125
+      ],
+      "median_ns": 176.63234375,
+      "cv": 0.016106740463864008
+    },
+    "after": {
+      "values_ns": [
+        183.3029765625,
+        178.4076625,
+        172.32781875,
+        172.20625625,
+        171.4818828125,
+        173.02031875,
+        172.16875625
+      ],
+      "median_ns": 172.32781875,
+      "cv": 0.02551194154115282
+    }
+  },
+  "ratios": [
+    {
+      "baseline_mode": 0,
+      "changed_mode": 1,
+      "valid_pairs": 7,
+      "definition": "mode 0 ns/query divided by changed ns/query; >1 favors changed",
+      "paired_bootstrap_ratio_interval_95": [
+        0.9969739638271796,
+        1.0184740310711538
+      ]
+    },
+    {
+      "baseline_mode": 0,
+      "changed_mode": 2,
+      "valid_pairs": 7,
+      "definition": "mode 0 ns/query divided by changed ns/query; >1 favors changed",
+      "paired_bootstrap_ratio_interval_95": [
+        38.52654742343178,
+        39.00396155323729
+      ]
+    }
+  ],
+  "ratio_definition": "median baseline bank-mean ns/query / median changed bank-mean ns/query",
+  "instrumentation_note": "ON/OFF are separate blocks; their median ratio is descriptive, not paired overhead qualification",
+  "scope": "16 unique circular nonplanar tube rays, no application memoization; 7 repetitions per mode; no transport or matched Embree ratio",
+  "off_median_ratios": {
+    "1": 1.014179357858232,
+    "2": 38.69416776085903
+  },
+  "on_off_descriptive_ratios": {
+    "0": 0.9990213025406367,
+    "1": 1.0055731544044673,
+    "2": 1.002991693562823
+  }
+}
