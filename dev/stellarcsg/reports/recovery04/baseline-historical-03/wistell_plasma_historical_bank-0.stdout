@@ -1,0 +1,21 @@
+{
+  "distance_ns_per_call": 13256.8,
+  "patch_count": 393216,
+  "bvh_node_count": 262143,
+  "found_fraction": 1,
+  "fallback_fraction": 0,
+  "candidate_bvh_nodes_per_call": 0,
+  "candidate_patches_per_call": 0,
+  "newton_iterations_per_call": 0,
+  "newton_failures_per_call": 0,
+  "proxy_seeds_per_call": 0,
+  "proxy_intersections_per_call": 0,
+  "tangent_cases_per_call": 0,
+  "local_subdivision_nodes_per_call": 0,
+  "local_subdivision_calls_per_call": 0,
+  "global_reference_calls": 0,
+  "function_evaluations_per_call": 0,
+  "subdivisions_per_call": 0,
+  "exclusions_per_call": 393209.304,
+  "sink": 167402.255928
+}

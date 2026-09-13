@@ -1,0 +1,16 @@
+{
+  "distance_ns_per_call": 603.2,
+  "classification_ns_per_call": 211.6,
+  "span_count": 256,
+  "bvh_node_count": 127,
+  "found_fraction": 0.131,
+  "candidate_nodes_per_call": 0,
+  "candidate_spans_per_call": 0,
+  "newton_iterations_per_call": 0,
+  "newton_failures_per_call": 0,
+  "local_subdivision_calls_per_call": 0,
+  "production_global_reference_calls": 0,
+  "oracle_rays": 1,
+  "oracle_mismatches": 0,
+  "sink": 4970.97467877
+}
