@@ -38,6 +38,8 @@ def main():
     parser.add_argument('--threads', type=int, default=1)
     parser.add_argument('--timeout', type=float, default=180.)
     parser.add_argument('--shared', action='store_true')
+    parser.add_argument('--distributed', action='store_true',
+                        help='Freeze at least 10000 distinct spatial/angular source definitions')
     args = parser.parse_args()
     root = args.source_root.resolve()
     assert Path(openmc.__file__).resolve() == root / 'openmc/__init__.py'
@@ -150,9 +152,32 @@ def main():
     # Freeze an explicit physical source bank shared by separate/shared paths.
     rng = np.random.default_rng(713)
     strengths = np.array([source.strength for source in sources])
-    choices = rng.choice(len(sources), args.histories, p=strengths/strengths.sum())
-    bank = [openmc.SourceParticle(r=sources[i].space.xyz,
-             u=sources[i].angle.reference_uvw, E=14.e6) for i in choices]
+    bank_count = max(10000, args.histories) if args.distributed else args.histories
+    choices = rng.choice(len(sources), bank_count, p=strengths/strengths.sum())
+    if args.distributed:
+        positions = np.empty((bank_count, 3))
+        directions = np.empty((bank_count, 3))
+        for i, coil in enumerate(coils):
+            mask = choices == i
+            count = int(np.count_nonzero(mask))
+            center, tangent, normal, binormal = coil.frame(rng.uniform(0., coil.length_cm, count))
+            angle = rng.uniform(0., 2*np.pi, count)
+            radial = np.cos(angle)[:, None]*normal + np.sin(angle)[:, None]*binormal
+            positions[mask] = center + rng.uniform(.75, 1.25, count)[:, None]*radial
+            direction = -radial + rng.uniform(-.02, .02, count)[:, None]*tangent
+            directions[mask] = direction/np.linalg.norm(direction, axis=1)[:, None]
+        if has_plasma:
+            mask = choices == n_coils
+            count = int(np.count_nonzero(mask))
+            angle = rng.uniform(0., 2*np.pi, count)
+            positions[mask] = np.column_stack((10*np.cos(angle), 10*np.sin(angle), np.zeros(count)))
+            direction = rng.normal(size=(count, 3))
+            directions[mask] = direction/np.linalg.norm(direction, axis=1)[:, None]
+        assert np.unique(np.column_stack((positions, directions)), axis=0).shape[0] == bank_count
+        bank = [openmc.SourceParticle(r=r, u=u, E=14.e6) for r, u in zip(positions, directions)]
+    else:
+        bank = [openmc.SourceParticle(r=sources[i].space.xyz,
+                 u=sources[i].angle.reference_uvw, E=14.e6) for i in choices]
     openmc.write_source_file(bank, out / 'source_bank.h5')
     settings.source = openmc.FileSource(out / 'source_bank.h5')
     settings.max_lost_particles = 1
@@ -173,6 +198,7 @@ def main():
     model.export_to_xml(out)
     (out / 'attempt-start.json').write_text(json.dumps(dict(
         source_sha=args.source_sha, case=args.case, histories=args.histories,
+        distributed=args.distributed, source_bank_particles=bank_count,
         shared=args.shared, threads=args.threads, executable=str(executable),
         executable_sha256=binary_before['executable'], library=str(expected_library),
         library_sha256=binary_before['library'], timeout_seconds=args.timeout,
@@ -195,6 +221,9 @@ def main():
     elapsed = time.perf_counter()-start
     binary_after = dict(executable=digest(executable), library=digest(expected_library))
     receipt = dict(case=args.case, diagnostic=True, qualification='NOT_RUN',
+                   distributed=args.distributed, source_bank_particles=bank_count,
+                   source_population='uniform coil arc/section angle and source offset, small directional tilt; '
+                       'plasma ring with isotropic directions' if args.distributed else 'repeated point/direction definitions',
                    source_sha=args.source_sha, source_root=str(root), shared=args.shared,
                    executable_sha256=binary_before['executable'], library=str(expected_library),
                    library_sha256=binary_before['library'],
