@@ -104,7 +104,7 @@ def optional_filter_metrics(rows: list[dict]) -> dict:
     diagnostics = [row.get("diagnostics", {}) for row in rows if isinstance(row.get("diagnostics"), dict)]
     result = {}
     for name in ("floating_excluded_spans", "polynomial_excluded_spans", "exact_candidate_spans",
-                 "long_monotone_attempted_spans", "monotone_resolved_spans", "sturm_fallback_spans"):
+                 "monotone_attempted_spans", "monotone_resolved_spans", "sturm_fallback_spans"):
         values = [item[name] for item in diagnostics if finite(item.get(name))]
         if values:
             result[name] = sum(values)
@@ -118,7 +118,7 @@ def optional_filter_metrics(rows: list[dict]) -> dict:
                        if finite(item.get("exact_candidate_spans"))]
     total_query_ns = [row["ns"] for row in rows if finite(row.get("ns"))]
     timer_available = any("exact_query_nanoseconds" in item for item in diagnostics)
-    result["fallback_time_fraction"] = (sum(exact)/sum(total_query_ns)
+    result["exact_time_fraction"] = (sum(exact)/sum(total_query_ns)
                                         if timer_available and total_query_ns else None)
     result["exact_path_observed"] = (any(value > 0 for value in exact)
                                      or any(value > 0 for value in candidate_spans))
@@ -132,6 +132,12 @@ def optional_filter_metrics(rows: list[dict]) -> dict:
                                          if monotone_timer_available and total_query_ns else None)
     if monotone:
         result["monotone_nanoseconds"] = sum(monotone)
+    sturm = [item["sturm_nanoseconds"] for item in diagnostics
+             if finite(item.get("sturm_nanoseconds"))]
+    result["fallback_time_fraction"] = (sum(sturm)/sum(total_query_ns)
+        if any("sturm_nanoseconds" in item for item in diagnostics) and total_query_ns else None)
+    if sturm:
+        result["sturm_nanoseconds"] = sum(sturm)
     return result
 
 
@@ -163,6 +169,7 @@ def main() -> int:
     artifacts = {"binary": artifact(binary), "campaign_script": artifact(Path(__file__)),
                  "neutral_harness": artifact(HARNESS_PATH),
                  "source_cpp": artifact(source_root / "tests" / "test_swept_filtered.cpp"),
+                 "production_cpp": artifact(source_root / "src" / "compiled_swept_surface.cpp"),
                  "root_solver_header": artifact(source_root / "include" / "stellarcsg" / "root_solver.hpp"),
                  "compiled_swept_header": artifact(source_root / "include" / "stellarcsg" / "compiled_swept_surface.hpp"),
                  "floating_filter_header": artifact(source_root / "src" / "swept_floating_filter.hpp")}

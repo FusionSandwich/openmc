@@ -137,11 +137,16 @@ void diagnostics_json(const stellarcsg::RootSearchDiagnostics& value)
   std::cout << "{\"floating_excluded_spans\":" << value.floating_excluded_spans
     << ",\"polynomial_excluded_spans\":" << value.polynomial_excluded_spans
     << ",\"exact_candidate_spans\":" << value.exact_candidate_spans
+    << ",\"monotone_attempted_spans\":" << value.monotone_attempted_spans
+    << ",\"monotone_resolved_spans\":" << value.monotone_resolved_spans
+    << ",\"sturm_fallback_spans\":" << value.sturm_fallback_spans
     << ",\"certified_excluded_intervals\":" << value.certified_excluded_intervals
     << ",\"subdivided_intervals\":" << value.subdivided_intervals;
 #ifdef STELLARCSG_ENABLE_PERFORMANCE_COUNTERS
   std::cout << ",\"exact_candidate_nanoseconds\":" << value.exact_candidate_nanoseconds;
   std::cout << ",\"exact_query_nanoseconds\":" << value.exact_query_nanoseconds;
+  std::cout << ",\"monotone_nanoseconds\":" << value.monotone_nanoseconds;
+  std::cout << ",\"sturm_nanoseconds\":" << value.sturm_nanoseconds;
 #endif
   std::cout << '}';
 }

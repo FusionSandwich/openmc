@@ -182,7 +182,11 @@ def main():
     settings.source = openmc.FileSource(out / 'source_bank.h5')
     settings.max_lost_particles = 1
     settings.rel_max_lost_particles = 1.e-12
-    settings.track = [(1, 1, i) for i in range(1, min(101, settings.particles+1))]
+    # Retain the first 100 histories across batches, not just the first batch.
+    # A 100-history distributed pilot otherwise records only ten histories and
+    # can omit a scored minority coil by chance.
+    settings.track = [(1 + i//settings.particles, 1, 1 + i%settings.particles)
+                      for i in range(min(100, args.histories))]
     settings.output = {'summary': True, 'tallies': True}
     tallies = openmc.Tallies()
     if coils:
@@ -267,7 +271,7 @@ def main():
     receipt.update(state='PASS', lost_particles=0,
                    lostcount_evidence='Inferred from successful process, requested histories in statepoint, '
                        'and absence of lost-particle log diagnostics; not an independent lost-particle counter.',
-                   track_evidence='Only the requested first-batch sample is retained; observed identity and '
+                   track_evidence='Only the requested first 100 histories (or all if fewer) are retained; observed identity and '
                        'transitions do not establish nearest-root or crossing completeness.',
                    retained_tracks=len(tracks),
                    retained_cell_transitions=transitions, cell_material_pairs=sorted(pairs))

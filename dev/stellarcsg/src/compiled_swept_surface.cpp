@@ -382,6 +382,73 @@ bool ray_box(const Box& box,const Q& radius,const std::array<Q,3>& o,
 
 struct RayCandidate { Interval physical_t; double residual; RootKind kind;
   std::size_t knot; int branch; };
+// Classify an exact closed partition before publishing any candidate. A failed
+// bounded attempt leaves the original gcd/Sturm solver responsible for the
+// entire span, including any roots found in the abandoned local partition.
+bool monotone_span(const Poly& p, const Poly& a_poly, const Poly& b_poly,
+  const Interval& norm, const RootSearchOptions& options, std::size_t span_id,
+  std::size_t span_count, std::vector<RayCandidate>& local)
+{
+  struct Part { Q lo, hi; unsigned depth; };
+  if (options.circular_local_node_budget <= 0) return false;
+  const auto budget = std::min(options.circular_local_node_budget, 64);
+  std::vector<Part> pending {{0, 1, 0}};
+  const Poly dp = derivative(p);
+  int visited = 0;
+  while (!pending.empty()) {
+    if (++visited > budget) return false;
+    auto part = pending.back();
+    pending.pop_back();
+    const auto enclosure = hull(p, part.lo, part.hi);
+    if (enclosure.lo > 0 || enclosure.hi < 0) continue;
+    const auto slope = hull(dp, part.lo, part.hi);
+    if (slope.lo <= 0 && slope.hi >= 0) {
+      if (part.depth >= 10) return false;
+      const Q middle = (part.lo+part.hi)/2;
+      pending.push_back({middle, part.hi, part.depth+1});
+      pending.push_back({part.lo, middle, part.depth+1});
+      continue;
+    }
+    Q left_value = value(p, part.lo), right_value = value(p, part.hi);
+    if (left_value != 0 && right_value != 0 && sgn(left_value) == sgn(right_value))
+      continue;
+    if (left_value == 0) part.hi = part.lo;
+    else if (right_value == 0) part.lo = part.hi;
+    bool resolved = false;
+    for (unsigned iteration = 0; iteration < 80; ++iteration) {
+      const auto denominator = range(a_poly, {part.lo, part.hi});
+      if (denominator.lo > 0 || denominator.hi < 0) {
+        const Interval physical = (range(b_poly, {part.lo, part.hi})/denominator)*norm;
+        if (physical.hi <= 0) { resolved = true; break; }
+        const double upper = physical.hi.get_d();
+        if (!std::isfinite(upper)) return false;
+        const double width = options.absolute_t_tolerance
+          + options.relative_t_tolerance*std::abs(upper);
+        if (!std::isfinite(width)) return false;
+        if (physical.lo > 0 && physical.hi-physical.lo <= Q(width)) {
+          if (local.size() >= 32) return false;
+          const auto knot = part.lo == part.hi && (part.lo == 0 || part.lo == 1)
+            ? (span_id+(part.lo == 1 ? 1 : 0))%span_count : span_count;
+          // P=A^2 H(u,B/A). At stationarity H_u=0, so P'=A^2 H_lambda
+          // (B/A)'. Strict P' and A!=0 exclude physical tangency/singular roots.
+          local.push_back({physical, 0.0, RootKind::sign_change, knot, 0});
+          resolved = true;
+          break;
+        }
+      }
+      if (part.lo == part.hi) return false;
+      const Q middle = (part.lo+part.hi)/2;
+      const Q middle_value = value(p, middle);
+      if (middle_value == 0) { part.lo = middle; part.hi = middle; }
+      else if (sgn(middle_value) == sgn(left_value)) {
+        part.lo = middle;
+        left_value = middle_value;
+      } else part.hi = middle;
+    }
+    if (!resolved) return false;
+  }
+  return true;
+}
 struct ExactTimer {
   long long& destination;
 #ifdef STELLARCSG_ENABLE_PERFORMANCE_COUNTERS
@@ -413,6 +480,8 @@ DistanceResult distance(const CircularTubeCompletenessData& data,
     throw std::invalid_argument("Circular tube distance tolerances are invalid");
   if (options.circular_filter_mode < 0 || options.circular_filter_mode > 2)
     throw std::invalid_argument("Circular filter mode must be 0, 1, or 2");
+  if (options.circular_local_node_budget < 0)
+    throw std::invalid_argument("Circular local node budget must be nonnegative");
   RootSearchDiagnostics diagnostics;
   diagnostics.solver_path=SolverPath::general_swept_certified;
   diagnostics.fallback_reason=SolverFallbackReason::none;
@@ -492,6 +561,25 @@ DistanceResult distance(const CircularTubeCompletenessData& data,
     if (resultant_bounds.lo>0||resultant_bounds.hi<0) {
       ++diagnostics.certified_excluded_intervals; continue;
     }
+    if (options.circular_filter_mode == 2 && !coincident
+        && options.circular_local_node_budget > 0) {
+      ++diagnostics.monotone_attempted_spans;
+      std::vector<RayCandidate> local;
+      bool resolved;
+      {
+        ExactTimer timer {diagnostics.monotone_nanoseconds};
+        resolved = monotone_span(resultant, A, B, norm_bounds, options,
+          selected.ids[selected_index], data.spans.size(), local);
+      }
+      if (resolved) {
+        if (candidates.size()+local.size() > 8192) unresolved("ray candidate budget");
+        candidates.insert(candidates.end(), local.begin(), local.end());
+        ++diagnostics.monotone_resolved_spans;
+        continue;
+      }
+    }
+    ++diagnostics.sturm_fallback_spans;
+    ExactTimer sturm_timer {diagnostics.sturm_nanoseconds};
     add_performance_counter(PerformanceCounter::local_subdivision_calls);
     Poly squarefree=exact_divide(resultant,gcd(resultant,derivative(resultant)));
     const Poly degenerate=gcd(squarefree,A);

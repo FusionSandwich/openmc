@@ -43,6 +43,8 @@ struct RootSearchOptions {
   bool require_refinement_stability {true};
   // Circular tube ablation: 0 exact, 1 outward BVH, 2 BVH plus polynomial exclusion.
   int circular_filter_mode {2};
+  // Bounded local attempt; zero forces the preserved full span solver.
+  int circular_local_node_budget {64};
 };
 
 struct RootCandidate {
@@ -55,9 +57,14 @@ struct RootSearchDiagnostics {
   long floating_excluded_spans {0};
   long polynomial_excluded_spans {0};
   long exact_candidate_spans {0};
+  long monotone_attempted_spans {0};
+  long monotone_resolved_spans {0};
+  long sturm_fallback_spans {0};
   // Timing fields are populated only in performance-counter builds.
   long long exact_candidate_nanoseconds {0};
   long long exact_query_nanoseconds {0};
+  long long monotone_nanoseconds {0};
+  long long sturm_nanoseconds {0};
   int refinement_levels {0};
   long function_evaluations {0};
   long derivative_evaluations {0};
