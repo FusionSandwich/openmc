@@ -447,7 +447,12 @@ def main():
                     for t, span, u, kind in roots]
                 row["exact_diagnostics"] = diagnostics
                 row["isolation_state"] = "PASS"
-                if (observed_distance is not None) != bool(nearest):
+                if item.get("state") == "BLOCKED":
+                    row["comparison_state"] = "BLOCKED"
+                    row["strict_2e8_absolute_state"] = "BLOCKED"
+                    row["disposition"] = ("production_" + item.get("block_stage", "query")
+                                          + "_blocked: " + item.get("error", "unspecified"))
+                elif (observed_distance is not None) != bool(nearest):
                     row["comparison_state"] = "FAIL"
                     row["strict_2e8_absolute_state"] = "FAIL"
                     row["disposition"] = "production_hit_classification_disagrees_with_exact_input_geometry"
