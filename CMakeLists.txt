@@ -507,6 +507,17 @@ list(APPEND libopenmc_SOURCES
   src/external/Faddeeva.cc)
 
 if(OPENMC_ENABLE_EXPERIMENTAL_STELLARCSG)
+  if(CMAKE_CXX_COMPILER_ID MATCHES "GNU|Clang")
+    set_property(SOURCE dev/stellarcsg/src/compiled_swept_surface.cpp APPEND PROPERTY
+      COMPILE_OPTIONS -fno-fast-math -ffp-contract=off)
+    set_property(SOURCE dev/stellarcsg/src/compiled_swept_surface.cpp APPEND PROPERTY
+      COMPILE_DEFINITIONS STELLARCSG_FILTER_STRICT_FP)
+  elseif(MSVC)
+    set_property(SOURCE dev/stellarcsg/src/compiled_swept_surface.cpp APPEND PROPERTY
+      COMPILE_OPTIONS /fp:strict)
+    set_property(SOURCE dev/stellarcsg/src/compiled_swept_surface.cpp APPEND PROPERTY
+      COMPILE_DEFINITIONS STELLARCSG_FILTER_STRICT_FP)
+  endif()
   list(APPEND libopenmc_SOURCES
     src/surface_periodic_spline.cpp
     src/surface_swept_spline.cpp

@@ -41,6 +41,8 @@ struct RootSearchOptions {
   double tangent_residual_multiplier {16.0};
   double duplicate_t_multiplier {8.0};
   bool require_refinement_stability {true};
+  // Circular tube ablation: 0 exact, 1 outward BVH, 2 BVH plus polynomial exclusion.
+  int circular_filter_mode {2};
 };
 
 struct RootCandidate {
@@ -50,6 +52,12 @@ struct RootCandidate {
 };
 
 struct RootSearchDiagnostics {
+  long floating_excluded_spans {0};
+  long polynomial_excluded_spans {0};
+  long exact_candidate_spans {0};
+  // Timing fields are populated only in performance-counter builds.
+  long long exact_candidate_nanoseconds {0};
+  long long exact_query_nanoseconds {0};
   int refinement_levels {0};
   long function_evaluations {0};
   long derivative_evaluations {0};

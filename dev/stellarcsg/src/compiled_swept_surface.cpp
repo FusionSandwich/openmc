@@ -1,5 +1,6 @@
 #include "stellarcsg/compiled_swept_surface.hpp"
 #include "stellarcsg/performance_counters.hpp"
+#include "swept_floating_filter.hpp"
 
 #include <algorithm>
 #include <array>
@@ -257,8 +258,22 @@ Box cross_box(const Box& a,const Box& b)
 struct CircularTubeCompletenessData {
   std::vector<circular_detail::Span> spans;
   circular_detail::Q radius;
+  circular_filter::Data floating;
 };
 namespace circular_detail {
+circular_filter::Interval enclose(const Q& value)
+{
+  const double rounded = value.get_d();
+  if (!std::isfinite(rounded)) return circular_filter::unknown();
+  // GMP conversion truncates toward zero. Verify enclosure by exact comparison
+  // rather than relying on a guessed epsilon or current hardware rounding.
+  double lo = rounded, hi = rounded;
+  if (Q(lo) > value) lo = std::nextafter(lo, -circular_filter::inf);
+  if (Q(hi) < value) hi = std::nextafter(hi, circular_filter::inf);
+  if (!std::isfinite(lo) || !std::isfinite(hi) || Q(lo) > value || Q(hi) < value)
+    return circular_filter::unknown();
+  return {lo, hi};
+}
 std::shared_ptr<const CircularTubeCompletenessData> compile(
   const SweptSplineSurfaceData& data)
 {
@@ -322,6 +337,20 @@ std::shared_ptr<const CircularTubeCompletenessData> compile(
         unresolved("embedded circular-tube separation certificate failed");
     }
   }
+  out->floating.radius_squared = enclose(out->radius*out->radius);
+  for (const auto& span : out->spans) {
+    circular_filter::Span converted;
+    for (std::size_t axis = 0; axis < 3; ++axis) {
+      converted.box[axis] = {enclose(span.bounds[axis].lo-out->radius).lo,
+        enclose(span.bounds[axis].hi+out->radius).hi};
+      for (std::size_t i = 0; i < span.c[axis].size(); ++i)
+        converted.c[axis][i] = enclose(span.c[axis][i]);
+      for (std::size_t i = 0; i < span.d[axis].size(); ++i)
+        converted.d[axis][i] = enclose(span.d[axis][i]);
+    }
+    out->floating.spans.push_back(std::move(converted));
+  }
+  circular_filter::build(out->floating);
   return out;
 }
 
@@ -353,16 +382,80 @@ bool ray_box(const Box& box,const Q& radius,const std::array<Q,3>& o,
 
 struct RayCandidate { Interval physical_t; double residual; RootKind kind;
   std::size_t knot; int branch; };
+struct ExactTimer {
+  long long& destination;
+#ifdef STELLARCSG_ENABLE_PERFORMANCE_COUNTERS
+  std::chrono::steady_clock::time_point start {std::chrono::steady_clock::now()};
+  bool active {true};
+#endif
+  void finish() {
+#ifdef STELLARCSG_ENABLE_PERFORMANCE_COUNTERS
+    if (active) destination += std::chrono::duration_cast<std::chrono::nanoseconds>(
+      std::chrono::steady_clock::now()-start).count();
+    active = false;
+#endif
+  }
+  ~ExactTimer() { finish(); }
+};
 DistanceResult distance(const CircularTubeCompletenessData& data,
   const Vec3& origin,const Vec3& direction,bool coincident,const RootSearchOptions& options,
   double characteristic)
 {
-  const auto o=exact_vector(origin),d=exact_vector(direction);
-  Q norm2=0; for (const auto& v:d) norm2+=v*v;
-  if (norm2<=0) throw std::invalid_argument("Ray direction must be nonzero");
+  const std::array<double, 3> floating_o {origin.x, origin.y, origin.z};
+  const std::array<double, 3> floating_d {direction.x, direction.y, direction.z};
+  for (std::size_t i = 0; i < 3; ++i)
+    if (!std::isfinite(floating_o[i]) || !std::isfinite(floating_d[i]))
+      throw std::invalid_argument("Circular tube queries require finite coordinates");
+  if (direction.x == 0.0 && direction.y == 0.0 && direction.z == 0.0)
+    throw std::invalid_argument("Ray direction must be nonzero");
   if (!std::isfinite(options.absolute_t_tolerance)||options.absolute_t_tolerance<=0
       ||!std::isfinite(options.relative_t_tolerance)||options.relative_t_tolerance<0)
     throw std::invalid_argument("Circular tube distance tolerances are invalid");
+  if (options.circular_filter_mode < 0 || options.circular_filter_mode > 2)
+    throw std::invalid_argument("Circular filter mode must be 0, 1, or 2");
+  RootSearchDiagnostics diagnostics;
+  diagnostics.solver_path=SolverPath::general_swept_certified;
+  diagnostics.fallback_reason=SolverFallbackReason::none;
+  auto selected = circular_filter::all_spans(data.floating);
+  if (options.circular_filter_mode && data.floating.valid
+      && circular_filter::supported_environment()) {
+    selected = circular_filter::candidates(data.floating, floating_o, floating_d, coincident);
+    diagnostics.floating_excluded_spans = static_cast<long>(data.spans.size()-selected.count);
+    if (options.circular_filter_mode == 2) {
+      std::size_t retained = 0;
+      for (std::size_t i = 0; i < selected.count; ++i) {
+        const auto id = selected.ids[i];
+        if (circular_filter::excludes_resultant(data.floating.spans[id],
+              data.floating.radius_squared, floating_o, floating_d))
+          ++diagnostics.polynomial_excluded_spans;
+        else selected.ids[retained++] = id;
+      }
+      selected.count = retained;
+    }
+    if (selected.count == 0) {
+      if (!coincident) {
+        diagnostics.certified_excluded_intervals = static_cast<long>(data.spans.size());
+        add_performance_counter(PerformanceCounter::no_hit_returns);
+        return {false, std::numeric_limits<double>::infinity(), RootKind::sign_change,
+          std::numeric_limits<double>::infinity(), diagnostics};
+      }
+      // Preserve the existing exact origin-association diagnostic on an empty
+      // coincident population; it is never an ordinary no-hit certificate.
+      selected = circular_filter::all_spans(data.floating);
+      diagnostics.floating_excluded_spans = 0;
+      diagnostics.polynomial_excluded_spans = 0;
+    }
+  }
+  diagnostics.certified_excluded_intervals = diagnostics.floating_excluded_spans
+    + diagnostics.polynomial_excluded_spans;
+  // The outer timer includes ray setup and destruction of exact temporaries.
+#ifdef STELLARCSG_ENABLE_PERFORMANCE_COUNTERS
+  const auto exact_start = std::chrono::steady_clock::now();
+#endif
+  auto result = [&]() -> DistanceResult {
+  const auto o=exact_vector(origin),d=exact_vector(direction);
+  Q norm2=0; for (const auto& v:d) norm2+=v*v;
+  if (norm2<=0) throw std::invalid_argument("Ray direction must be nonzero");
   const Interval norm_bounds=sqrt_bounds({norm2,norm2});
   // Ordinary queries isolate every forward root of the supplied binary64 ray.
   // Coincidence is a separate, restricted query contract: the caller asserts
@@ -380,14 +473,14 @@ DistanceResult distance(const CircularTubeCompletenessData& data,
       *coordinate_scale;
   bool exact_origin_root=false;
   std::vector<RayCandidate> candidates;
-  RootSearchDiagnostics diagnostics;
-  diagnostics.solver_path=SolverPath::general_swept_certified;
-  diagnostics.fallback_reason=SolverFallbackReason::none;
-  for (const auto& span:data.spans) {
+  for (std::size_t selected_index = 0; selected_index < selected.count; ++selected_index) {
+    const auto& span = data.spans[selected.ids[selected_index]];
     const Q lambda_minimum=coincident?-coincidence_window/norm_bounds.lo:Q(0);
     if (!ray_box(span.bounds,data.radius,o,d,lambda_minimum)) {
       ++diagnostics.certified_excluded_intervals; continue;
     }
+    ++diagnostics.exact_candidate_spans;
+    ExactTimer candidate_timer {diagnostics.exact_candidate_nanoseconds};
     add_performance_counter(PerformanceCounter::candidate_patches_or_segments);
     const auto w=subtract_point(span.c,o);
     const Poly A=dot_direction(span.d,d), B=dot(w,span.d), D=dot_direction(w,d);
@@ -528,6 +621,13 @@ DistanceResult distance(const CircularTubeCompletenessData& data,
     residual_bound=std::nextafter(residual_bound,std::numeric_limits<double>::infinity());
   add_performance_counter(PerformanceCounter::accepted_roots);
   return {true,returned,kind,residual_bound,diagnostics};
+  }();
+#ifdef STELLARCSG_ENABLE_PERFORMANCE_COUNTERS
+  result.root_diagnostics.exact_query_nanoseconds =
+    std::chrono::duration_cast<std::chrono::nanoseconds>(
+      std::chrono::steady_clock::now()-exact_start).count();
+#endif
+  return result;
 }
 
 struct Projection {
