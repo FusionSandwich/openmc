@@ -9,6 +9,7 @@ import json
 import math
 import os
 import random
+import re
 import statistics
 import subprocess
 import time
@@ -25,10 +26,10 @@ def sha256_file(path: Path) -> str:
 
 
 def summary(values: list[float]) -> dict[str, float]:
-    if not values:
-        raise ValueError("cannot summarize an empty sample")
+    if not values or any(not math.isfinite(value) or value <= 0 for value in values):
+        raise ValueError("samples must be finite and positive")
     ordered = sorted(values)
-    quartiles = statistics.quantiles(ordered, n=4, method="inclusive")
+    quartiles = statistics.quantiles(ordered, n=4, method="inclusive") if len(ordered) > 1 else ordered * 3
     mean = statistics.fmean(ordered)
     return {
         "median": statistics.median(ordered),
@@ -45,8 +46,10 @@ def paired_bootstrap_ratio(
 ) -> list[float]:
     if len(numerator) != len(denominator) or not numerator:
         raise ValueError("paired samples must be nonempty and equal length")
-    if any(value <= 0 for value in denominator):
-        raise ValueError("ratio denominator must be positive")
+    if any(not math.isfinite(value) or value <= 0 for value in numerator + denominator):
+        raise ValueError("ratio samples must be finite and positive")
+    if samples < 1:
+        raise ValueError("bootstrap samples must be positive")
     rng = random.Random(seed)
     size = len(numerator)
     ratios = []
@@ -97,6 +100,9 @@ def validate_campaign(campaign: dict[str, Any]) -> None:
     if int(protocol["thread_count"]) < 1:
         raise ValueError("thread_count must be positive")
     common = campaign["common_artifacts"]
+    for required in ("source_geometry", "source_bank", "settings"):
+        if required not in common:
+            raise ValueError(f"missing common artifact: {required}")
     for name, artifact in common.items():
         path = Path(artifact["path"])
         actual = sha256_file(path)
@@ -105,6 +111,28 @@ def validate_campaign(campaign: dict[str, Any]) -> None:
     ids = []
     for method in campaign["methods"]:
         ids.append(method["id"])
+        if not isinstance(method["command"], list) or not method["command"]:
+            raise ValueError("command must be a nonempty argument list")
+        if not Path(method["command"][0]).is_absolute():
+            raise ValueError("command executable must be an absolute path")
+        for required in ("binary", "compiled_geometry"):
+            if required not in method["artifacts"]:
+                raise ValueError(f"{method['id']} missing artifact: {required}")
+        executable = Path(method["command"][0]).resolve(strict=True)
+        binary = Path(method["artifacts"]["binary"]["path"]).resolve(strict=True)
+        if executable != binary:
+            raise ValueError(f"{method['id']} binary artifact does not bind command executable")
+        for required in ("build_commit", "harness_commit", "hardware", "cpu_affinity", "thread_count", "libraries"):
+            if required not in method["metadata"]:
+                raise ValueError(f"{method['id']} missing metadata: {required}")
+        if method["metadata"]["thread_count"] != protocol["thread_count"]:
+            raise ValueError("method thread_count differs from common protocol")
+        for name in ("build_commit", "harness_commit"):
+            if not re.fullmatch(r"[0-9a-f]{40}", method["metadata"][name]):
+                raise ValueError(f"{name} must be a full commit SHA")
+        for library in method["metadata"]["libraries"]:
+            if sha256_file(Path(library["path"])) != library["sha256"]:
+                raise ValueError(f"{method['id']} linked library hash mismatch: {library['path']}")
         for name, artifact in method["artifacts"].items():
             path = Path(artifact["path"])
             actual = sha256_file(path)
@@ -114,6 +142,20 @@ def validate_campaign(campaign: dict[str, Any]) -> None:
                 )
     if campaign["sentinel_method"] not in ids:
         raise ValueError("sentinel_method must name one compared method")
+    sentinel = next(method for method in campaign["methods"] if method["id"] == campaign["sentinel_method"])
+    if sentinel["metadata"].get("surface_method") != "builtin_ztorus":
+        raise ValueError("sentinel must declare builtin_ztorus")
+    metadata = [method["metadata"] for method in campaign["methods"]]
+    for field in ("hardware", "cpu_affinity", "harness_commit"):
+        if len({str(item[field]) for item in metadata}) != 1:
+            raise ValueError(f"unmatched {field}")
+    dagmc = [method for method in campaign["methods"]
+             if method["metadata"].get("surface_method") in ("ordinary_dagmc", "double_down_embree")]
+    if dagmc:
+        if any("h5m" not in method["artifacts"] for method in dagmc):
+            raise ValueError("DAGMC methods require an h5m artifact")
+        if len({method["artifacts"]["h5m"]["sha256"] for method in dagmc}) != 1:
+            raise ValueError("ordinary DAGMC and Double Down require identical H5M bytes")
     schedule(ids, int(protocol["measured_repetitions"]), protocol["order_policy"], int(protocol["seed"]))
 
 
@@ -123,28 +165,41 @@ def invoke(method: dict[str, Any]) -> dict[str, Any]:
         method["command"],
         cwd=method.get("cwd"),
         env={**os.environ, **method.get("environment", {})},
-        check=True,
+        check=False,
         capture_output=True,
         text=True,
+        timeout=method.get("timeout_seconds", 300),
     )
     wall = time.perf_counter() - started
-    payload = json.loads(completed.stdout)
-    if "histories_per_s" not in payload:
-        raise ValueError(f"{method['id']} output lacks histories_per_s")
-    payload["harness_wall_seconds"] = wall
-    payload["stderr"] = completed.stderr
-    return payload
+    result = {"harness_wall_seconds": wall, "stdout": completed.stdout,
+              "stderr": completed.stderr, "return_code": completed.returncode,
+              "valid": False, "invalid_reasons": [], "payload": None}
+    if completed.returncode:
+        result["invalid_reasons"].append(f"command exited with code {completed.returncode}")
+    try:
+        payload = json.loads(completed.stdout)
+        if not isinstance(payload, dict):
+            raise ValueError("command output must be an object")
+        result["payload"] = payload
+        for name in ("histories_per_s", "active_transport_seconds", "total_wall_seconds"):
+            value = payload.get(name)
+            if isinstance(value, bool) or not isinstance(value, (int, float)) or not math.isfinite(value) or value <= 0:
+                raise ValueError(f"{name} must be finite and positive")
+        if payload["total_wall_seconds"] < payload["active_transport_seconds"]:
+            raise ValueError("total wall time is smaller than active transport time")
+        if payload.get("contaminated") or payload.get("valid") is False:
+            raise ValueError(f"command marked attempt invalid: {payload.get('invalid_reason', 'unspecified')}")
+    except (ValueError, TypeError, OverflowError) as error:
+        result["invalid_reasons"].append(str(error))
+    result["valid"] = not result["invalid_reasons"]
+    return result
 
 
-def run_campaign(campaign: dict[str, Any]) -> dict[str, Any]:
+def run_campaign(campaign: dict[str, Any], *, journal_path: Path | None = None) -> dict[str, Any]:
     validate_campaign(campaign)
     methods = {method["id"]: method for method in campaign["methods"]}
     protocol = campaign["protocol"]
     method_ids = list(methods)
-    for _ in range(int(protocol["warmups"])):
-        for method_id in method_ids:
-            invoke(methods[method_id])
-
     repetitions: dict[str, list[dict[str, Any]]] = {method_id: [] for method_id in method_ids}
     orders = schedule(
         method_ids,
@@ -152,30 +207,82 @@ def run_campaign(campaign: dict[str, Any]) -> dict[str, Any]:
         protocol["order_policy"],
         int(protocol["seed"]),
     )
-    for repetition_index, row in enumerate(orders):
-        for order_index, method_id in enumerate(row):
-            payload = invoke(methods[method_id])
-            payload.update({"index": repetition_index, "order_index": order_index})
-            repetitions[method_id].append(payload)
+    attempts = []
+    # Exclusive creation prevents a restarted campaign from overwriting evidence.
+    journal = journal_path.open("x", encoding="utf-8") if journal_path else None
+
+    def retain(record):
+        if journal:
+            journal.write(json.dumps(record, allow_nan=False) + "\n")
+            journal.flush()
+            os.fsync(journal.fileno())
+
+    def attempt(method_id, phase, index, order_index):
+        identity = {"method_id": method_id, "phase": phase, "index": index,
+                    "order_index": order_index, "attempt_id": len(attempts)}
+        retain({"event": "started", **identity})
+        try:
+            validate_campaign(campaign)
+            result = invoke(methods[method_id])
+        except (OSError, ValueError, subprocess.SubprocessError) as error:
+            result = {"valid": False, "invalid_reasons": [str(error)], "payload": None}
+            if isinstance(error, subprocess.TimeoutExpired):
+                result.update(stdout=str(error.stdout or ""), stderr=str(error.stderr or ""))
+        try:
+            validate_campaign(campaign)
+        except (OSError, ValueError) as error:
+            result["valid"] = False
+            result["invalid_reasons"].append(f"post-attempt drift: {error}")
+        # Preserve nonstandard JSON tokens in stdout; parsed nonfinite values cannot
+        # enter the strict journal or summary.
+        result = json.loads(json.dumps(result), parse_constant=lambda token: None)
+        result.update(identity)
+        attempts.append(result)
+        if phase == "measured":
+            repetitions[method_id].append(result)
+        retain({"event": "finished", **result})
+
+    try:
+        retain({"event": "campaign", "schema": "stellarcsg.neutral-command-campaign/v2", "campaign": campaign})
+        for index in range(int(protocol["warmups"])):
+            for order_index, method_id in enumerate(method_ids):
+                attempt(method_id, "warmup", index, order_index)
+        for repetition_index, row in enumerate(orders):
+            for order_index, method_id in enumerate(row):
+                attempt(method_id, "measured", repetition_index, order_index)
+    finally:
+        if journal:
+            journal.close()
 
     sentinel = campaign["sentinel_method"]
-    sentinel_values = [float(row["histories_per_s"]) for row in repetitions[sentinel]]
     aggregates: dict[str, Any] = {}
     for method_id, rows in repetitions.items():
-        values = [float(row["histories_per_s"]) for row in rows]
+        pairs = [(row, control) for row, control in zip(rows, repetitions[sentinel])
+                 if row["valid"] and control["valid"]]
+        values = [float(row["payload"]["histories_per_s"]) for row, _ in pairs]
+        sentinel_values = [float(row["payload"]["histories_per_s"]) for _, row in pairs]
         aggregates[method_id] = {
-            **summary(values),
-            "ratio_to_sentinel": statistics.median(values) / statistics.median(sentinel_values),
+            **(summary(values) if values else {}),
+            "valid_pair_count": len(pairs),
+            "pairing": "same scheduled repetition index; common source does not imply identical trajectories",
+            "ratio_numerator": method_id,
+            "ratio_denominator": sentinel,
+            "ratio_to_sentinel": statistics.median(values) / statistics.median(sentinel_values) if values else None,
             "bootstrap_ratio_interval_95": paired_bootstrap_ratio(
                 values, sentinel_values, seed=int(protocol["seed"])
-            ),
+            ) if len(pairs) >= 7 else None,
         }
     return {
-        "schema": "stellarcsg.neutral-command-campaign/v1",
+        "schema": "stellarcsg.neutral-command-campaign/v2",
+        "gate_status": "NOT_RUN" if all(row["valid"] for row in attempts) else "BLOCKED",
+        "qualification_note": "Timing envelope only; independent geometry eligibility and gate evaluation are required.",
+        "durable_journal": str(journal_path) if journal_path else None,
         "case_id": campaign["case_id"],
         "protocol": protocol,
         "common_artifacts": campaign["common_artifacts"],
         "method_metadata": {method_id: methods[method_id]["metadata"] for method_id in method_ids},
+        "methods": campaign["methods"],
+        "attempts": attempts,
         "execution_order": orders,
         "repetitions": repetitions,
         "aggregates": aggregates,
@@ -204,9 +311,12 @@ def main() -> None:
     else:
         if args.output is None:
             parser.error("--output is required unless --dry-run is used")
-        result = run_campaign(campaign)
         args.output.parent.mkdir(parents=True, exist_ok=True)
-        args.output.write_text(json.dumps(result, indent=2) + "\n", encoding="utf-8")
+        if args.output.exists():
+            raise FileExistsError(args.output)
+        result = run_campaign(campaign, journal_path=args.output.with_suffix(args.output.suffix + ".attempts.jsonl"))
+        with args.output.open("x", encoding="utf-8") as stream:
+            stream.write(json.dumps(result, indent=2, allow_nan=False) + "\n")
     print(json.dumps(result, indent=2))
 
 
