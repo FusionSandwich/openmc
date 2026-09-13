@@ -107,7 +107,7 @@ tested case regardless of speed.
 |---|---|
 | Exact periodic torus | ratio to built-in ZTorus >= 0.95; zero wrong roots/lost particles |
 | Exact planar swept coil | ratio to built-in ZTorus >= 0.95; zero wrong roots/lost particles |
-| Forced-general torus | ratio >= 0.25; zero wrong/missed/false roots; zero production broad-oracle calls |
+| Forced-general torus | throughput / native ZTorus throughput >= 0.25; zero wrong/missed/false roots; zero production broad-oracle calls |
 | Shaped axisymmetric | ratio >= 0.50; zero wrong roots |
 | Synthetic helical | ratio >= 0.25 and faster than matched fine Double Down/Embree at common error |
 | WISTELL-D plasma | faster than matched fine Double Down/Embree; zero lost particles; accuracy and closure pass |
@@ -121,11 +121,13 @@ track remains in the comparison.
 The two coil denominators above reflect the user's explicit clarification on
 2026-09-13. The separate Embree-advantage requirement remains in force even
 though it is stronger than the 0.50 continuation threshold. The ZTorus host
-sentinel is not the denominator for those coil gates. Remaining unspecified
-denominators (forced-general, shaped axisymmetric and synthetic helical), the
+sentinel is not the denominator for those coil gates. The 2026-09-13 follow-up
+explicitly defines native ZTorus as the forced-general torus denominator;
+this amendment preserves the 0.25 minimum and keeps the 0.8 aspiration separate.
+Remaining unspecified denominators (shaped axisymmetric and synthetic helical), the
 quantitative meaning of sublinear set scaling, and unstated accuracy thresholds
-must be frozen explicitly before qualification. Historical forced-general
-results used ZTorus; this is provenance, not a definition of the other gates.
+must be frozen explicitly before qualification. No denominator is inferred
+for the remaining cases from historical forced-general results.
 
 ## Durable command evidence
 
