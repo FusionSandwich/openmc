@@ -1306,8 +1306,9 @@ DistanceResult CompiledPeriodicSplineSurface::distance_general_periodic(
     int stagnant_iterations = 0;
     constexpr int maximum_iterations = 10;
     int iterations = 0;
+    ParametricSurfaceSample sample;
     for (; iterations < maximum_iterations; ++iterations) {
-      const auto sample = sample_patch_parametric(patch, theta, phi);
+      sample = sample_patch_parametric(patch, theta, phi);
       const Vec3 offset = sample.position - origin;
       const double h1 = dot(basis1, offset);
       const double h2 = dot(basis2, offset);
@@ -1368,7 +1369,11 @@ DistanceResult CompiledPeriodicSplineSurface::distance_general_periodic(
       add_performance_counter(PerformanceCounter::newton_failures);
       return false;
     }
-    const auto sample = sample_patch_parametric(patch, theta, phi);
+    // A converged/stagnant iteration leaves theta and phi at the sampled
+    // coordinates. Reuse that exact sample; only iteration exhaustion can
+    // leave coordinates advanced past it (including nonfinite input paths).
+    if (iterations == maximum_iterations)
+      sample = sample_patch_parametric(patch, theta, phi);
     const double t = dot(ray_direction, sample.position - origin);
     if (!(t > minimum_t) || !(t < best_t + options.absolute_t_tolerance)) {
       add_performance_counter(PerformanceCounter::rejected_roots);
@@ -1532,31 +1537,10 @@ DistanceResult CompiledPeriodicSplineSurface::distance_general_periodic(
       lower_t = stationary_t;
       upper_t = stationary_t;
     }
-    constexpr double golden = 0.6180339887498948482;
-    double a = lower_t;
-    double b = upper_t;
-    double c = b - golden * (b - a);
-    double d = a + golden * (b - a);
-    double fc = std::abs(evaluate(origin + c * ray_direction));
-    double fd = std::abs(evaluate(origin + d * ray_direction));
-    constexpr int iterations = 64;
-    for (int iteration = 0; iteration < iterations && b > a; ++iteration) {
-      add_performance_counter(PerformanceCounter::local_subdivision_nodes);
-      if (fc < fd) {
-        b = d;
-        d = c;
-        fd = fc;
-        c = b - golden * (b - a);
-        fc = std::abs(evaluate(origin + c * ray_direction));
-      } else {
-        a = c;
-        c = d;
-        fc = fd;
-        d = a + golden * (b - a);
-        fd = std::abs(evaluate(origin + d * ray_direction));
-      }
-    }
-    const double t = 0.5 * (a + b);
+    // Both successful bracket branches above collapse the interval to one
+    // point. The former golden-section loop therefore never iterated, but
+    // evaluated this same point twice before the residual check below.
+    const double t = 0.5 * (lower_t + upper_t);
     const Vec3 point = origin + t * ray_direction;
     const double residual = std::abs(evaluate(point));
     if (residual > options.tangent_residual_multiplier
