@@ -10,6 +10,634 @@
 #include <numeric>
 #include <stdexcept>
 #include <utility>
+#include <gmpxx.h>
+
+// Exact local algebra is deliberately confined to the constant circular tube
+// path. Coefficient and root decisions use rational values of the supplied
+// binary64 B-spline controls; proxies never determine the authoritative shape.
+namespace stellarcsg {
+namespace circular_detail {
+using Q = mpq_class;
+using Poly = std::vector<Q>;
+struct Interval { Q lo; Q hi; };
+
+[[noreturn]] void unresolved(const char* reason)
+{
+  throw std::runtime_error(std::string("STELLARCSG_UNRESOLVED_CIRCULAR_TUBE: ") + reason);
+}
+
+Interval operator+(const Interval& a, const Interval& b)
+{ return {a.lo + b.lo, a.hi + b.hi}; }
+Interval operator-(const Interval& a, const Interval& b)
+{ return {a.lo - b.hi, a.hi - b.lo}; }
+Interval operator*(const Interval& a, const Interval& b)
+{
+  const std::array<Q, 4> p {a.lo*b.lo, a.lo*b.hi, a.hi*b.lo, a.hi*b.hi};
+  return {*std::min_element(p.begin(), p.end()), *std::max_element(p.begin(), p.end())};
+}
+Interval operator/(const Interval& a, const Interval& b)
+{
+  if (b.lo <= 0 && b.hi >= 0) unresolved("interval division contains zero");
+  return a * Interval {Q(1)/b.hi, Q(1)/b.lo};
+}
+Interval square(const Interval& a)
+{
+  Q upper = std::max(Q(a.lo*a.lo), Q(a.hi*a.hi));
+  Q lower = a.lo <= 0 && a.hi >= 0 ? Q(0)
+    : std::min(Q(a.lo*a.lo), Q(a.hi*a.hi));
+  return {lower, upper};
+}
+void trim(Poly& p) { while (p.size() > 1 && p.back() == 0) p.pop_back(); }
+bool zero(const Poly& p) { return p.size() == 1 && p[0] == 0; }
+Poly add(Poly a, const Poly& b, int sign = 1)
+{
+  a.resize(std::max(a.size(), b.size()));
+  for (std::size_t i=0; i<b.size(); ++i) a[i] += sign*b[i];
+  trim(a); return a;
+}
+Poly multiply(const Poly& a, const Poly& b)
+{
+  Poly out(a.size()+b.size()-1);
+  for (std::size_t i=0; i<a.size(); ++i)
+    for (std::size_t j=0; j<b.size(); ++j) out[i+j] += a[i]*b[j];
+  trim(out); return out;
+}
+Poly scale(Poly a, const Q& b) { for (auto& x:a) x*=b; trim(a); return a; }
+Poly derivative(const Poly& p)
+{
+  if (p.size()==1) return {0};
+  Poly out(p.size()-1);
+  for (std::size_t i=1; i<p.size(); ++i) out[i-1]=p[i]*Q(static_cast<unsigned long>(i));
+  trim(out); return out;
+}
+Q value(const Poly& p, const Q& x)
+{ Q out=0; for (auto i=p.rbegin(); i!=p.rend(); ++i) out=out*x+*i; return out; }
+Interval range(const Poly& p, const Interval& x)
+{ Interval out {0,0}; for (auto i=p.rbegin(); i!=p.rend(); ++i) out=out*x+Interval{*i,*i}; return out; }
+std::pair<Poly,Poly> divide(Poly a, const Poly& b)
+{
+  if (zero(b)) unresolved("zero polynomial divisor");
+  Poly quotient(a.size()>=b.size() ? a.size()-b.size()+1 : 1);
+  while (!zero(a) && a.size()>=b.size()) {
+    const auto offset=a.size()-b.size();
+    const Q factor=a.back()/b.back(); quotient[offset]+=factor;
+    for (std::size_t j=0; j<b.size(); ++j) a[offset+j]-=factor*b[j];
+    trim(a);
+  }
+  trim(quotient); return {quotient,a};
+}
+Poly monic(Poly p) { if (!zero(p)) p=scale(p,Q(1)/p.back()); return p; }
+Poly gcd(Poly a, Poly b)
+{ while (!zero(b)) { Poly r=divide(a,b).second; a=std::move(b); b=std::move(r); } return monic(a); }
+Poly exact_divide(const Poly& a, const Poly& b)
+{
+  auto result=divide(a,b);
+  if (!zero(result.second)) unresolved("non-exact polynomial division");
+  return result.first;
+}
+
+// Convert power coefficients to Bernstein coefficients on [a,b]. All
+// arithmetic here is exact, including the bounds used to reject candidates.
+std::vector<Q> bernstein(const Poly& p, const Q& a=0, const Q& b=1)
+{
+  const std::size_t n=p.size()-1;
+  Poly local {0};
+  for (auto i=p.rbegin(); i!=p.rend(); ++i) {
+    local=multiply(local,Poly{a,b-a}); local[0]+=*i;
+  }
+  local.resize(n+1);
+  std::vector<Q> out(n+1);
+  for (std::size_t i=0; i<=n; ++i) {
+    Q ratio=1;
+    for (std::size_t k=0; k<=i; ++k) {
+      if (k) ratio*=Q(static_cast<unsigned long>(i-k+1),static_cast<unsigned long>(n-k+1));
+      out[i]+=local[k]*ratio;
+    }
+  }
+  return out;
+}
+Interval hull(const Poly& p, const Q& a=0, const Q& b=1)
+{
+  const auto v=bernstein(p,a,b);
+  return {*std::min_element(v.begin(),v.end()),*std::max_element(v.begin(),v.end())};
+}
+
+struct Sturm {
+  Poly p;
+  std::vector<Poly> sequence;
+  explicit Sturm(Poly polynomial):p(monic(std::move(polynomial)))
+  {
+    sequence.push_back(p);
+    Poly d=derivative(p);
+    if (zero(d)) return;
+    sequence.push_back(d);
+    while (true) {
+      Poly r=scale(divide(sequence[sequence.size()-2],sequence.back()).second,Q(-1));
+      if (zero(r)) break;
+      // Positive rescaling controls rational growth without changing signs.
+      Q magnitude=abs(r.back()); r=scale(r,Q(1)/magnitude);
+      sequence.push_back(std::move(r));
+    }
+  }
+  int variations(const Q& x, int side) const
+  {
+    int previous=0, count=0;
+    for (std::size_t i=0; i<sequence.size(); ++i) {
+      int sign=sgn(value(sequence[i],x));
+      if (i==0 && sign==0 && sequence.size()>1) sign=side*sgn(value(sequence[1],x));
+      if (!sign) continue;
+      if (previous && previous!=sign) ++count;
+      previous=sign;
+    }
+    return count;
+  }
+  int count_open(const Q& a,const Q& b) const
+  { return variations(a,+1)-variations(b,-1); }
+};
+struct Root {
+  std::shared_ptr<const Sturm> sturm;
+  Q lo,hi;
+  unsigned refinements {0};
+  bool exact() const { return lo==hi; }
+  void refine()
+  {
+    if (exact()) return;
+    if (++refinements>256) unresolved("algebraic root refinement budget");
+    const Q middle=(lo+hi)/2;
+    if (value(sturm->p,middle)==0) { lo=middle; hi=middle; }
+    else if (sturm->count_open(lo,middle)>0) hi=middle;
+    else lo=middle;
+  }
+};
+std::vector<Root> roots(Poly p)
+{
+  trim(p);
+  if (zero(p)) unresolved("identically zero root polynomial");
+  if (p.size()==1) return {};
+  const auto bounds=hull(p);
+  if (bounds.lo>0 || bounds.hi<0) return {};
+  p=exact_divide(p,gcd(p,derivative(p)));
+  auto sturm=std::make_shared<Sturm>(p);
+  std::vector<Root> out;
+  if (value(p,0)==0) out.push_back({sturm,0,0});
+  if (value(p,1)==0) out.push_back({sturm,1,1});
+  struct Box { Q a,b; int count; };
+  std::vector<Box> stack {{0,1,sturm->count_open(0,1)}};
+  unsigned visits=0;
+  while (!stack.empty()) {
+    if (++visits>4096) unresolved("root isolation budget");
+    Box item=std::move(stack.back()); stack.pop_back();
+    if (!item.count) continue;
+    if (item.count==1) { out.push_back({sturm,item.a,item.b}); continue; }
+    const Q middle=(item.a+item.b)/2;
+    if (value(p,middle)==0) out.push_back({sturm,middle,middle});
+    stack.push_back({item.a,middle,sturm->count_open(item.a,middle)});
+    stack.push_back({middle,item.b,sturm->count_open(middle,item.b)});
+  }
+  return out;
+}
+int sign_at(const Poly& p,Root& root)
+{
+  if (root.exact()) return sgn(value(p,root.lo));
+  auto bounds=range(p,{root.lo,root.hi});
+  if (bounds.lo>0) return 1;
+  if (bounds.hi<0) return -1;
+  const Poly common=gcd(root.sturm->p,p);
+  if (common.size()>1 && Sturm(common).count_open(root.lo,root.hi)>0) return 0;
+  while (true) {
+    root.refine(); bounds=range(p,{root.lo,root.hi});
+    if (bounds.lo>0) return 1;
+    if (bounds.hi<0) return -1;
+    if (root.exact()) return sgn(value(p,root.lo));
+  }
+}
+Interval sqrt_bounds(const Interval& x)
+{
+  if (x.lo<0) unresolved("negative square-root interval");
+  // Scale precision with the argument, including subnormal ray directions.
+  const Q positive=x.hi>0?x.hi:Q(1);
+  const long exponent=static_cast<long>(mpz_sizeinbase(positive.get_num().get_mpz_t(),2))
+    -static_cast<long>(mpz_sizeinbase(positive.get_den().get_mpz_t(),2));
+  const unsigned bits=static_cast<unsigned>(std::max(96L,96L-exponent/2));
+  const mpz_class denominator=mpz_class(1)<<bits;
+  const auto lower_sqrt=[&](const Q& a) {
+    mpz_class scaled=(a.get_num()*(mpz_class(1)<<(2*bits)))/a.get_den();
+    mpz_class integer; mpz_sqrt(integer.get_mpz_t(),scaled.get_mpz_t());
+    Q result(integer,denominator); result.canonicalize(); return result;
+  };
+  Q lo=lower_sqrt(x.lo), hi=lower_sqrt(x.hi);
+  if (hi*hi<x.hi) hi+=Q(1,denominator);
+  return {lo,hi};
+}
+
+using VectorPoly=std::array<Poly,3>;
+using Box=std::array<Interval,3>;
+struct Span { VectorPoly c,d,dd,n; Box bounds,tangent_bounds; };
+Poly dot(const VectorPoly& a,const VectorPoly& b)
+{ Poly out {0}; for (std::size_t i=0;i<3;++i) out=add(out,multiply(a[i],b[i])); return out; }
+Box bounds(const VectorPoly& p,const Q& a=0,const Q& b=1)
+{ return {hull(p[0],a,b),hull(p[1],a,b),hull(p[2],a,b)}; }
+Interval dot_box(const Box& a,const Box& b)
+{ Interval out {0,0}; for (std::size_t i=0;i<3;++i) out=out+a[i]*b[i]; return out; }
+Interval norm_squared_box(const Box& a)
+{ Interval out {0,0}; for (const auto& x:a) out=out+square(x); return out; }
+Q box_distance_squared(const Box& a,const Box& b)
+{
+  Q out=0;
+  for (std::size_t i=0;i<3;++i) {
+    Q gap=std::max(Q(0),std::max(Q(a[i].lo-b[i].hi),Q(b[i].lo-a[i].hi)));
+    out+=gap*gap;
+  }
+  return out;
+}
+Box cross_box(const Box& a,const Box& b)
+{ return {a[1]*b[2]-a[2]*b[1],a[2]*b[0]-a[0]*b[2],a[0]*b[1]-a[1]*b[0]}; }
+} // namespace circular_detail
+
+struct CircularTubeCompletenessData {
+  std::vector<circular_detail::Span> spans;
+  circular_detail::Q radius;
+};
+namespace circular_detail {
+std::shared_ptr<const CircularTubeCompletenessData> compile(
+  const SweptSplineSurfaceData& data)
+{
+  if (data.sample_count>512) unresolved("geometry certificate sample budget (512)");
+  auto out=std::make_shared<CircularTubeCompletenessData>();
+  out->radius=Q(data.major_radius_coefficients.front());
+  const std::array<std::array<int,4>,4> numerator {{
+    {{1,4,1,0}},{{-3,0,3,0}},{{3,-6,3,0}},{{-1,3,-3,1}}}};
+  for (std::size_t i=0;i<data.sample_count;++i) {
+    Span span;
+    for (std::size_t axis=0;axis<3;++axis) {
+      span.c[axis].resize(4); span.n[axis].resize(4);
+      for (std::size_t power=0;power<4;++power) {
+        for (std::size_t k=0;k<4;++k) {
+          const auto index=(i+k+data.sample_count-1)%data.sample_count;
+          span.c[axis][power]+=Q(data.centerline_coefficients[3*index+axis])*numerator[power][k]/6;
+          span.n[axis][power]+=Q(data.normal_coefficients[3*index+axis])*numerator[power][k]/6;
+        }
+      }
+      trim(span.c[axis]); trim(span.n[axis]);
+      span.d[axis]=derivative(span.c[axis]); span.dd[axis]=derivative(span.d[axis]);
+    }
+    span.bounds=bounds(span.c); span.tangent_bounds=bounds(span.d);
+    struct Part { Q a,b; unsigned depth; };
+    std::vector<Part> pending {{0,1,0}};
+    while (!pending.empty()) {
+      const auto part=pending.back(); pending.pop_back();
+      const auto d=bounds(span.d,part.a,part.b), dd=bounds(span.dd,part.a,part.b);
+      const auto n=bounds(span.n,part.a,part.b);
+      const Q speed2=norm_squared_box(d).lo;
+      const Q cross2=norm_squared_box(cross_box(d,dd)).hi;
+      const Q frame2=norm_squared_box(cross_box(d,n)).lo;
+      if (speed2>0 && frame2>0 && out->radius*out->radius*cross2<speed2*speed2*speed2) continue;
+      if (part.depth>=10) unresolved("regularity, frame, or curvature certificate failed");
+      const Q midpoint=(part.a+part.b)/2;
+      pending.push_back({part.a,midpoint,part.depth+1});
+      pending.push_back({midpoint,part.b,part.depth+1});
+    }
+    out->spans.push_back(std::move(span));
+  }
+  // Thickness is limited by curvature and half the doubly-critical self
+  // distance. No near-diagonal pairs are omitted: a positive independent
+  // tangent-dot enclosure on a connecting arc excludes perpendicular chords
+  // by integrating C'(u). Otherwise disjoint center hulls must prove >2r.
+  const auto n=out->spans.size();
+  for (std::size_t i=0;i<n;++i) {
+    for (std::size_t j=i;j<n;++j) {
+      if (box_distance_squared(out->spans[i].bounds,out->spans[j].bounds)
+          >4*out->radius*out->radius) continue;
+      const auto forward=j-i, reverse=n-forward;
+      const auto start=forward<=reverse?i:j, steps=std::min(forward,reverse);
+      Box cone=out->spans[start].tangent_bounds;
+      for (std::size_t step=1;step<=steps;++step) {
+        const auto& next=out->spans[(start+step)%n].tangent_bounds;
+        for (std::size_t axis=0;axis<3;++axis) {
+          cone[axis].lo=std::min(cone[axis].lo,next[axis].lo);
+          cone[axis].hi=std::max(cone[axis].hi,next[axis].hi);
+        }
+      }
+      if (dot_box(cone,cone).lo<=0)
+        unresolved("embedded circular-tube separation certificate failed");
+    }
+  }
+  return out;
+}
+
+std::array<Q,3> exact_vector(const Vec3& p)
+{
+  if (!std::isfinite(p.x)||!std::isfinite(p.y)||!std::isfinite(p.z))
+    throw std::invalid_argument("Circular tube queries require finite coordinates");
+  return {Q(p.x),Q(p.y),Q(p.z)};
+}
+VectorPoly subtract_point(VectorPoly p,const std::array<Q,3>& point)
+{ for (std::size_t i=0;i<3;++i) p[i][0]-=point[i]; return p; }
+Poly dot_direction(const VectorPoly& p,const std::array<Q,3>& d)
+{ Poly out {0}; for (std::size_t i=0;i<3;++i) out=add(out,scale(p[i],d[i])); return out; }
+bool ray_box(const Box& box,const Q& radius,const std::array<Q,3>& o,
+  const std::array<Q,3>& d,const Q& minimum=0)
+{
+  Q enter=minimum,exit=0; bool bounded=false;
+  for (std::size_t i=0;i<3;++i) {
+    const Q lo=box[i].lo-radius, hi=box[i].hi+radius;
+    if (d[i]==0) { if (o[i]<lo||o[i]>hi) return false; continue; }
+    Q a=(lo-o[i])/d[i], b=(hi-o[i])/d[i];
+    if (a>b) std::swap(a,b);
+    enter=std::max(enter,a);
+    exit=bounded?std::min(exit,b):b; bounded=true;
+    if (exit<enter) return false;
+  }
+  return bounded && exit>=minimum;
+}
+
+struct RayCandidate { Interval physical_t; double residual; RootKind kind;
+  std::size_t knot; int branch; };
+DistanceResult distance(const CircularTubeCompletenessData& data,
+  const Vec3& origin,const Vec3& direction,bool coincident,const RootSearchOptions& options,
+  double characteristic)
+{
+  const auto o=exact_vector(origin),d=exact_vector(direction);
+  Q norm2=0; for (const auto& v:d) norm2+=v*v;
+  if (norm2<=0) throw std::invalid_argument("Ray direction must be nonzero");
+  if (!std::isfinite(options.absolute_t_tolerance)||options.absolute_t_tolerance<=0
+      ||!std::isfinite(options.relative_t_tolerance)||options.relative_t_tolerance<0)
+    throw std::invalid_argument("Circular tube distance tolerances are invalid");
+  const Interval norm_bounds=sqrt_bounds({norm2,norm2});
+  // Ordinary queries isolate every forward root of the supplied binary64 ray.
+  // Coincidence is a separate, restricted query contract: the caller asserts
+  // that exactly one boundary root is associated with the origin in the window
+  // below. We replace only that root by zero. Missing/ambiguous associations
+  // fail explicitly. This is not a proof that arbitrary rounded OpenMC points
+  // satisfy the assertion; tangent/changed-direction crossing semantics still
+  // require separate qualification. A position-error bound alone cannot bound
+  // ray-root displacement near a tangent.
+  const Q minimum=0;
+  const Q coordinate_scale(std::max({characteristic,std::abs(origin.x),
+    std::abs(origin.y),std::abs(origin.z)}));
+  const Q coincidence_window=Q(options.absolute_t_tolerance)
+    +(Q(options.relative_t_tolerance)+Q(16*std::numeric_limits<double>::epsilon()))
+      *coordinate_scale;
+  bool exact_origin_root=false;
+  std::vector<RayCandidate> candidates;
+  RootSearchDiagnostics diagnostics;
+  diagnostics.solver_path=SolverPath::general_swept_certified;
+  diagnostics.fallback_reason=SolverFallbackReason::none;
+  for (const auto& span:data.spans) {
+    const Q lambda_minimum=coincident?-coincidence_window/norm_bounds.lo:Q(0);
+    if (!ray_box(span.bounds,data.radius,o,d,lambda_minimum)) {
+      ++diagnostics.certified_excluded_intervals; continue;
+    }
+    add_performance_counter(PerformanceCounter::candidate_patches_or_segments);
+    const auto w=subtract_point(span.c,o);
+    const Poly A=dot_direction(span.d,d), B=dot(w,span.d), D=dot_direction(w,d);
+    Poly E=dot(w,w); E[0]-=data.radius*data.radius; trim(E);
+    Poly resultant=add(add(scale(multiply(B,B),norm2),
+      scale(multiply(multiply(A,B),D),Q(-2))),multiply(multiply(A,A),E));
+    if (zero(resultant)) unresolved("ray lies on a degenerate tube interval");
+    const auto resultant_bounds=hull(resultant);
+    if (resultant_bounds.lo>0||resultant_bounds.hi<0) {
+      ++diagnostics.certified_excluded_intervals; continue;
+    }
+    add_performance_counter(PerformanceCounter::local_subdivision_calls);
+    Poly squarefree=exact_divide(resultant,gcd(resultant,derivative(resultant)));
+    const Poly degenerate=gcd(squarefree,A);
+    const Poly regular=exact_divide(squarefree,degenerate);
+    const auto retain=[&](Root& root,const auto& lambda_interval,RootKind kind,int branch) {
+      for (;;) {
+        const Interval physical=lambda_interval(root)*norm_bounds;
+        if (!coincident&&physical.hi<=minimum) return;
+        if (coincident&&physical.hi < -coincidence_window) return;
+        const double upper=physical.hi.get_d();
+        if (!std::isfinite(upper)) unresolved("unrepresentable ray distance");
+        const Q tolerance(options.absolute_t_tolerance
+          +options.relative_t_tolerance*std::abs(upper));
+        if ((coincident||physical.lo>minimum) && physical.hi-physical.lo<=tolerance) {
+          if (candidates.size()>=8192) unresolved("ray candidate budget");
+          const auto index=static_cast<std::size_t>(&span-data.spans.data());
+          const auto knot=root.exact()&&(root.lo==0||root.lo==1)
+            ?(index+(root.lo==1?1:0))%data.spans.size():data.spans.size();
+          candidates.push_back({physical,0.0,kind,knot,branch}); return;
+        }
+        if (root.exact()) unresolved("distance interval meets admissibility threshold");
+        root.refine(); ++diagnostics.subdivided_intervals;
+      }
+    };
+    for (auto root:roots(regular)) {
+      if (sign_at(A,root)==0) unresolved("uncancelled singular resultant root");
+      if (sign_at(B,root)==0) { exact_origin_root=true; continue; }
+      while (true) {
+        const auto denominator=range(A,{root.lo,root.hi});
+        if (denominator.lo>0||denominator.hi<0) break;
+        root.refine();
+      }
+      const Poly radial_derivative=add(scale(B,norm2),multiply(A,D),-1);
+      const RootKind kind=sign_at(radial_derivative,root)==0
+        ?RootKind::stationary_tangent:RootKind::sign_change;
+      retain(root,[&](const Root& r) {
+        return range(B,{r.lo,r.hi})/range(A,{r.lo,r.hi});
+      },kind,0);
+    }
+    for (auto root:roots(degenerate)) {
+      if (sign_at(B,root)!=0) unresolved("invalid degenerate resultant root");
+      const Poly discriminant=add(multiply(D,D),scale(E,norm2),-1);
+      const int discriminant_sign=sign_at(discriminant,root);
+      if (discriminant_sign<0) continue;
+      if (sign_at(E,root)==0) {
+        exact_origin_root=true;
+        // The exact quadratic roots are 0 and 2D/Q. Handle zero algebraically
+        // instead of inferring its sign from a cancellation-prone square root.
+        if (sign_at(D,root)==0) continue;
+        retain(root,[&](const Root& r) {
+          return range(scale(D,Q(2)/norm2),{r.lo,r.hi});
+        },RootKind::sign_change,1);
+      } else if (discriminant_sign==0) {
+        retain(root,[&](const Root& r) {
+          return range(scale(D,Q(1)/norm2),{r.lo,r.hi});
+        },RootKind::stationary_tangent,2);
+      } else {
+        while (range(discriminant,{root.lo,root.hi}).lo<=0) root.refine();
+        for (int sign:{-1,1}) {
+          auto branch=root;
+          retain(branch,[&](const Root& r) {
+            const Interval square_root=sqrt_bounds(range(discriminant,{r.lo,r.hi}));
+            return (range(D,{r.lo,r.hi})+Interval{Q(sign),Q(sign)}*square_root)
+              /Interval{norm2,norm2};
+          },RootKind::sign_change,sign<0?3:4);
+        }
+      }
+    }
+  }
+  if (coincident) {
+    std::vector<std::size_t> nearby;
+    for (std::size_t i=0;i<candidates.size();++i) {
+      const auto& t=candidates[i].physical_t;
+      if (t.lo<=coincidence_window&&t.hi>=-coincidence_window) {
+        if (t.lo < -coincidence_window||t.hi>coincidence_window)
+          unresolved("root enclosure straddles the coincidence window boundary");
+        nearby.push_back(i);
+      }
+    }
+    // Only exact shared-knot and quadratic-branch identity proves duplicates.
+    // Overlapping numerical enclosures alone never establish root identity.
+    if (!nearby.empty()) {
+      const auto& first=candidates[nearby.front()];
+      bool one_root=true;
+      for (auto i:nearby) {
+        if (i==nearby.front()) continue;
+        const auto& candidate=candidates[i];
+        if (first.knot==data.spans.size()||candidate.knot!=first.knot
+            ||candidate.branch!=first.branch) one_root=false;
+      }
+      if (exact_origin_root||!one_root)
+        unresolved("multiple roots in the coincidence uncertainty interval");
+      for (auto i:nearby) candidates[i].physical_t={-1,-1};
+    }
+    else if (!exact_origin_root)
+      unresolved("coincidence assertion has no origin-associated root");
+    candidates.erase(std::remove_if(candidates.begin(),candidates.end(),
+      [](const RayCandidate& candidate) { return candidate.physical_t.hi<=0; }),candidates.end());
+    for (const auto& candidate:candidates)
+      if (candidate.physical_t.lo<=0) unresolved("unresolved forward root sign after coincidence");
+  }
+  if (candidates.empty()) {
+    add_performance_counter(PerformanceCounter::no_hit_returns);
+    return {false,std::numeric_limits<double>::infinity(),RootKind::sign_change,
+      std::numeric_limits<double>::infinity(),diagnostics};
+  }
+  // Every candidate span has been exhausted. The minimum of the root lower
+  // bounds and the minimum of their upper bounds enclose the nearest root.
+  Q lo=candidates.front().physical_t.lo,hi=candidates.front().physical_t.hi;
+  RootKind kind=candidates.front().kind;
+  for (const auto& candidate:candidates) {
+    lo=std::min(lo,candidate.physical_t.lo);
+    if (candidate.physical_t.hi<hi) { hi=candidate.physical_t.hi; kind=candidate.kind; }
+  }
+  const Q midpoint=(lo+hi)/2;
+  const double returned=midpoint.get_d();
+  const Q rounded(returned);
+  const Q error=std::max(abs(rounded-lo),abs(hi-rounded));
+  const Q requested(options.absolute_t_tolerance
+    +options.relative_t_tolerance*std::abs(returned));
+  if (error>requested) unresolved("requested distance precision is below output resolution");
+  // Distance-to-a-closed-curve is 1-Lipschitz. This bounds the dimensionless
+  // circular implicit residual at the rounded ray point, not just interval width.
+  const Q residual=(2*data.radius*error+error*error)/(data.radius*data.radius);
+  double residual_bound=residual.get_d();
+  if (Q(residual_bound)<residual)
+    residual_bound=std::nextafter(residual_bound,std::numeric_limits<double>::infinity());
+  add_performance_counter(PerformanceCounter::accepted_roots);
+  return {true,returned,kind,residual_bound,diagnostics};
+}
+
+struct Projection {
+  std::size_t span;
+  Root root;
+  Poly squared_distance;
+  Interval squared_bounds;
+};
+struct Nearest {
+  std::size_t span;
+  double parameter;
+  Vec3 center,tangent,normal;
+  double classification;
+};
+Nearest nearest(const CircularTubeCompletenessData& data,const Vec3& point,
+  double characteristic,bool require_projection=true)
+{
+  const auto p=exact_vector(point);
+  const Box point_box {{{p[0],p[0]},{p[1],p[1]},{p[2],p[2]}}};
+  std::vector<Projection> candidates;
+  Q best_upper;
+  bool have_upper=false;
+  const Q position_tolerance=std::min(Q(1.0e-12*std::max(1.0,characteristic)),
+    Q(data.radius*Q(1.0e-10)));
+  const auto retain=[&](std::size_t index,Root root,const Poly& squared) {
+    Interval interval;
+    for (;;) {
+      interval=range(squared,{root.lo,root.hi});
+      const auto box=bounds(data.spans[index].c,root.lo,root.hi);
+      Q widest=0;
+      for (const auto& axis:box) widest=std::max(widest,Q(axis.hi-axis.lo));
+      if (root.exact()||widest<=position_tolerance) break;
+      root.refine();
+    }
+    if (!have_upper||interval.hi<best_upper) { best_upper=interval.hi; have_upper=true; }
+    if (candidates.size()>=8192) unresolved("projection candidate budget");
+    candidates.push_back({index,std::move(root),squared,interval});
+  };
+  for (std::size_t index=0;index<data.spans.size();++index) {
+    const auto& span=data.spans[index];
+    if (have_upper&&box_distance_squared(span.bounds,point_box)>best_upper) continue;
+    const auto w=subtract_point(span.c,p);
+    const Poly squared=dot(w,w), stationary=dot(w,span.d);
+    retain(index,{nullptr,0,0},squared);
+    retain(index,{nullptr,1,1},squared);
+    for (auto root:roots(stationary)) retain(index,std::move(root),squared);
+  }
+  if (candidates.empty()) unresolved("empty projection candidate set");
+  std::size_t best=0;
+  int classification_sign=1;
+  const Q radius2=data.radius*data.radius;
+  for (std::size_t i=0;i<candidates.size();++i) {
+    auto& candidate=candidates[i];
+    if (candidate.squared_bounds.hi<candidates[best].squared_bounds.hi) best=i;
+    if (classification_sign<0||candidate.squared_bounds.lo>radius2) continue;
+    Poly difference=candidate.squared_distance; difference[0]-=radius2; trim(difference);
+    classification_sign=std::min(classification_sign,sign_at(difference,candidate.root));
+  }
+  if (require_projection) {
+    best=0;
+    std::vector<std::size_t> tied;
+    const auto same_exact_point=[&](const Projection& a,const Projection& b) {
+      if (!a.root.exact()||!b.root.exact()) return false;
+      for (std::size_t axis=0;axis<3;++axis)
+        if (value(data.spans[a.span].c[axis],a.root.lo)
+            !=value(data.spans[b.span].c[axis],b.root.lo)) return false;
+      return true;
+    };
+    for (std::size_t i=1;i<candidates.size();++i) {
+      for (;;) {
+        auto& a=candidates[best]; auto& b=candidates[i];
+        a.squared_bounds=range(a.squared_distance,{a.root.lo,a.root.hi});
+        b.squared_bounds=range(b.squared_distance,{b.root.lo,b.root.hi});
+        if (a.squared_bounds.hi<b.squared_bounds.lo||same_exact_point(a,b)) break;
+        if (b.squared_bounds.hi<a.squared_bounds.lo) { best=i; tied.clear(); break; }
+        if (a.root.exact()||b.root.exact()) {
+          const bool a_exact=a.root.exact();
+          const Q exact_distance=a_exact?value(a.squared_distance,a.root.lo)
+            :value(b.squared_distance,b.root.lo);
+          auto& variable=a_exact?b:a;
+          Poly difference=variable.squared_distance; difference[0]-=exact_distance;
+          const int sign=sign_at(difference,variable.root);
+          if (!sign) { tied.push_back(i); break; }
+          if ((a_exact&&sign<0)||(!a_exact&&sign>0)) { best=i; tied.clear(); }
+          break;
+        }
+        a.root.refine(); b.root.refine();
+      }
+    }
+    if (!tied.empty()) unresolved("nonunique nearest center outside the tubular neighborhood");
+  }
+
+  auto& chosen=candidates[best];
+  const Q parameter=(chosen.root.lo+chosen.root.hi)/2;
+  const auto& span=data.spans[chosen.span];
+  const auto sample=[&](const VectorPoly& poly) {
+    return Vec3 {value(poly[0],parameter).get_d(),value(poly[1],parameter).get_d(),
+      value(poly[2],parameter).get_d()};
+  };
+  const Vec3 center=sample(span.c),tangent=normalized(sample(span.d));
+  const Vec3 supplied=sample(span.n);
+  const Vec3 normal=normalized(supplied-dot(supplied,tangent)*tangent);
+  Q approximate=(value(chosen.squared_distance,parameter)-radius2)/radius2;
+  double classification=std::abs(approximate.get_d());
+  if (classification_sign==0) classification=0;
+  else classification=classification_sign*std::max(classification,std::numeric_limits<double>::denorm_min());
+  return {chosen.span,parameter.get_d(),center,tangent,normal,classification};
+}
+} // namespace circular_detail
+} // namespace stellarcsg
 
 namespace stellarcsg {
 namespace {
@@ -57,15 +685,20 @@ void validate(const SweptSplineSurfaceData& data)
       || data.minor_radius_coefficients.size() != data.sample_count) {
     throw std::invalid_argument("Swept-spline coefficient dimensions are inconsistent");
   }
-  if (!(data.length > 0.0) || !(data.characteristic_length > 0.0)) {
+  if (!(data.length > 0.0) || !(data.characteristic_length > 0.0)
+      || !std::isfinite(data.length) || !std::isfinite(data.characteristic_length)) {
     throw std::invalid_argument("Swept-spline length scales must be positive");
   }
   for (const double radius : data.major_radius_coefficients) {
-    if (!(radius > 0.0)) throw std::invalid_argument("Major radii must be positive");
+    if (!(radius > 0.0)||!std::isfinite(radius)) throw std::invalid_argument("Major radii must be finite and positive");
   }
   for (const double radius : data.minor_radius_coefficients) {
-    if (!(radius > 0.0)) throw std::invalid_argument("Minor radii must be positive");
+    if (!(radius > 0.0)||!std::isfinite(radius)) throw std::invalid_argument("Minor radii must be finite and positive");
   }
+  for (const auto* values:{&data.centerline_coefficients,&data.normal_coefficients,
+                          &data.binormal_coefficients})
+    for (double value:*values) if (!std::isfinite(value))
+      throw std::invalid_argument("Swept vector coefficients must be finite");
 }
 
 double wrap(double angle)
@@ -236,6 +869,29 @@ CompiledSweptSplineSurface::CompiledSweptSplineSurface(
     torus.characteristic_length = mean_radius + mean_cross;
     exact_torus_ = std::make_unique<CompiledPeriodicSplineSurface>(std::move(torus));
   }
+  const bool exact_constant_radius=std::all_of(
+    data_.major_radius_coefficients.begin(),data_.major_radius_coefficients.end(),
+    [&](double r) { return r==circular_radius_; })&&std::all_of(
+    data_.minor_radius_coefficients.begin(),data_.minor_radius_coefficients.end(),
+    [&](double r) { return r==circular_radius_; });
+  if (!exact_torus_&&exact_constant_radius)
+    circular_completeness_=circular_detail::compile(data_);
+  if (circular_completeness_) {
+    bounds_=empty_box();
+    for (const auto& span:circular_completeness_->spans) {
+      std::array<double,3> lo,hi;
+      for (std::size_t axis=0;axis<3;++axis) {
+        const circular_detail::Q lower=span.bounds[axis].lo-circular_completeness_->radius;
+        const circular_detail::Q upper=span.bounds[axis].hi+circular_completeness_->radius;
+        lo[axis]=lower.get_d(); hi[axis]=upper.get_d();
+        if (circular_detail::Q(lo[axis])>lower)
+          lo[axis]=std::nextafter(lo[axis],-std::numeric_limits<double>::infinity());
+        if (circular_detail::Q(hi[axis])<upper)
+          hi[axis]=std::nextafter(hi[axis],std::numeric_limits<double>::infinity());
+      }
+      extend(bounds_,{lo[0],lo[1],lo[2]}); extend(bounds_,{hi[0],hi[1],hi[2]});
+    }
+  } else if (exact_torus_) bounds_=exact_torus_->bounding_box();
 }
 
 SweptLocalCoordinates CompiledSweptSplineSurface::frame(double angle) const
@@ -605,6 +1261,18 @@ double CompiledSweptSplineSurface::evaluate_in_span(
 SweptLocalCoordinates CompiledSweptSplineSurface::local_coordinates(
   const Vec3& point) const
 {
+  if (circular_completeness_) {
+    const auto result=circular_detail::nearest(*circular_completeness_,point,
+      data_.characteristic_length);
+    const double fraction=(static_cast<double>(result.span)+result.parameter)
+      /static_cast<double>(data_.sample_count);
+    const auto binormal=cross(result.tangent,result.normal);
+    const auto offset=point-result.center;
+    return {data_.coil_id,fraction*data_.length,dot(offset,result.normal),
+      dot(offset,binormal),result.center,result.tangent,result.normal,binormal,
+      circular_radius_,circular_radius_};
+  }
+  if (!exact_torus_) circular_detail::unresolved("nonconstant or elliptical sections are unsupported");
   struct StackEntry { std::uint32_t node; double lower_bound; };
   std::array<StackEntry, 64> stack {};
   std::size_t stack_size = 0;
@@ -675,10 +1343,9 @@ double CompiledSweptSplineSurface::evaluate(const Vec3& point) const
   if (exact_torus_) {
     value = exact_torus_->evaluate(point);
   } else {
-    const auto local = local_coordinates(point);
-    const double u = local.u / local.major_radius;
-    const double v = local.v / local.minor_radius;
-    value = u * u + v * v - 1.0;
+    if (!circular_completeness_) circular_detail::unresolved("nonconstant or elliptical sections are unsupported");
+    value=circular_detail::nearest(*circular_completeness_,point,
+      data_.characteristic_length,false).classification;
   }
   cache = {instance_id_, point, value, true};
   return value;
@@ -688,22 +1355,12 @@ Vec3 CompiledSweptSplineSurface::normal(const Vec3& point) const
 {
   add_performance_counter(PerformanceCounter::normal_calls);
   if (exact_torus_) return exact_torus_->normal(point);
-  const auto local = local_coordinates(point);
-  const double angle = wrap(local.arc_coordinate * two_pi / data_.length);
-  const double step = two_pi / static_cast<double>(spans_.size());
-  const std::size_t span_id = std::min(
-    static_cast<std::size_t>(angle / step), spans_.size() - 1);
-  const auto& span = spans_[span_id];
-  const double alpha = std::atan2(
-    local.v / local.minor_radius, local.u / local.major_radius);
-  Vec3 position;
-  Vec3 dangle;
-  Vec3 dalpha;
-  surface_derivatives(span, angle, alpha, position, dangle, dalpha);
-  Vec3 result = normalized(cross(dangle, dalpha));
-  if (dot(result, point - local.center) < 0.0)
-    result = -1.0 * result;
-  return result;
+  if (circular_completeness_) {
+    const auto closest=circular_detail::nearest(*circular_completeness_,point,
+      data_.characteristic_length);
+    return normalized(point-closest.center);
+  }
+  circular_detail::unresolved("nonconstant or elliptical sections are unsupported");
 }
 
 DistanceResult CompiledSweptSplineSurface::distance_reference(
@@ -769,392 +1426,9 @@ DistanceResult CompiledSweptSplineSurface::distance(
   if (exact_torus_) {
     return exact_torus_->distance(origin, direction, coincident, options);
   }
-  const double direction_norm = norm(direction);
-  if (!(direction_norm > 0.0) || !std::isfinite(direction_norm)) {
-    throw std::invalid_argument("Ray direction must be finite and non-zero");
-  }
-  const Vec3 ray_direction = direction / direction_norm;
-  RootSearchDiagnostics diagnostics;
-  diagnostics.solver_path = SolverPath::general_swept_certified;
-  if (span_bvh_.empty()) return {};
-  const auto root_interval = span_bvh_.front().bbox.ray_interval(
-    origin, ray_direction);
-  if (!root_interval || root_interval->exit < 0.0) {
-    add_performance_counter(PerformanceCounter::no_hit_returns);
-    return {};
-  }
-  const double crossing_push = std::max({
-    64.0 * options.absolute_t_tolerance,
-    8.0 * options.absolute_f_tolerance * data_.characteristic_length,
-    64.0 * std::numeric_limits<double>::epsilon()
-      * data_.characteristic_length});
-  const double minimum_t = coincident ? crossing_push : 0.0;
-  Vec3 basis1 = std::abs(ray_direction.z) < 0.9
-    ? normalized(cross(ray_direction, Vec3 {0.0, 0.0, 1.0}))
-    : normalized(cross(ray_direction, Vec3 {0.0, 1.0, 0.0}));
-  const Vec3 basis2 = cross(ray_direction, basis1);
-  const double projected_tolerance = std::max(
-    options.absolute_f_tolerance * data_.characteristic_length,
-    64.0 * std::numeric_limits<double>::epsilon()
-      * data_.characteristic_length);
-  double best_t = std::numeric_limits<double>::infinity();
-  double best_residual = std::numeric_limits<double>::infinity();
-  std::uint32_t best_span = std::numeric_limits<std::uint32_t>::max();
-  std::uint64_t candidates = 0;
-  std::uint64_t iterations_total = 0;
-
-  const auto solve_seed = [&](const SweptSpan& span, std::uint32_t span_id,
-                            double ray_seed, double angle_seed,
-                            double alpha_seed) {
-    double angle = std::clamp(angle_seed, span.angle_min, span.angle_max);
-    const double span_width = span.angle_max - span.angle_min;
-    if (circular_cross_section_) {
-      double t = ray_seed;
-      double residual = std::numeric_limits<double>::infinity();
-      const double circular_tolerance = std::max(
-        options.absolute_f_tolerance * std::max(1.0, circular_radius_),
-        64.0 * std::numeric_limits<double>::epsilon()
-          * data_.characteristic_length);
-      int iterations = 0;
-      for (; iterations < 8; ++iterations) {
-        Vec3 center;
-        Vec3 center_d;
-        Vec3 center_dd;
-        center_derivatives(span, angle, center, center_d, center_dd);
-        const double speed = norm(center_d);
-        const Vec3 tangent = center_d / speed;
-        const Vec3 tangent_d = (center_dd
-          - tangent * dot(tangent, center_dd)) / speed;
-        const Vec3 radial = origin + t * ray_direction - center;
-        const double radial_length = norm(radial);
-        if (!(radial_length > 0.0)) break;
-        const double h1 = dot(radial, tangent);
-        const double h2 = radial_length - circular_radius_;
-        residual = std::hypot(h1, h2);
-        if (residual <= circular_tolerance) break;
-        const double j11 = -speed + dot(radial, tangent_d);
-        const double j12 = dot(ray_direction, tangent);
-        const double j21 = -dot(radial, center_d) / radial_length;
-        const double j22 = dot(radial, ray_direction) / radial_length;
-        const double determinant = j11 * j22 - j12 * j21;
-        const double scale = std::max(
-          1.0, std::hypot(j11, j21) * std::hypot(j12, j22));
-        if (std::abs(determinant)
-            <= 128.0 * std::numeric_limits<double>::epsilon() * scale) break;
-        double delta_angle = (-h1 * j22 + h2 * j12) / determinant;
-        double delta_t = (-j11 * h2 + j21 * h1) / determinant;
-        const double trust = std::max({1.0,
-          std::abs(delta_angle) / (0.5 * span_width),
-          std::abs(delta_t) / (2.0 * span.proxy_radius)});
-        delta_angle /= trust;
-        delta_t /= trust;
-        angle = std::clamp(
-          angle + delta_angle, span.angle_min, span.angle_max);
-        t = std::max(minimum_t, t + delta_t);
-      }
-      iterations_total += static_cast<std::uint64_t>(iterations);
-      add_performance_counter(PerformanceCounter::newton_iterations,
-        static_cast<std::uint64_t>(iterations));
-      if (residual > circular_tolerance) {
-        add_performance_counter(PerformanceCounter::newton_failures);
-        return false;
-      }
-      if (!(t > minimum_t) || !(t < best_t + options.absolute_t_tolerance)) {
-        add_performance_counter(PerformanceCounter::rejected_roots);
-        return false;
-      }
-      if (std::abs(t - best_t) <= options.duplicate_t_multiplier
-                                    * options.absolute_t_tolerance
-          && span_id >= best_span) {
-        add_performance_counter(PerformanceCounter::deduplicated_roots);
-        return true;
-      }
-      best_t = t;
-      best_residual = residual;
-      best_span = span_id;
-      return true;
-    }
-    double alpha = alpha_seed;
-    double residual = std::numeric_limits<double>::infinity();
-    int iterations = 0;
-    for (; iterations < 12; ++iterations) {
-      Vec3 position;
-      Vec3 dangle;
-      Vec3 dalpha;
-      surface_derivatives(
-        span, angle, alpha, position, dangle, dalpha);
-      const Vec3 offset = position - origin;
-      const double h1 = dot(basis1, offset);
-      const double h2 = dot(basis2, offset);
-      residual = std::hypot(h1, h2);
-      if (residual <= projected_tolerance) break;
-      const double j11 = dot(basis1, dangle);
-      const double j12 = dot(basis1, dalpha);
-      const double j21 = dot(basis2, dangle);
-      const double j22 = dot(basis2, dalpha);
-      const double determinant = j11 * j22 - j12 * j21;
-      const double scale = std::max(
-        1.0, std::hypot(j11, j21) * std::hypot(j12, j22));
-      if (std::abs(determinant)
-          <= 128.0 * std::numeric_limits<double>::epsilon() * scale) break;
-      double delta_angle = (-h1 * j22 + h2 * j12) / determinant;
-      double delta_alpha = (-j11 * h2 + j21 * h1) / determinant;
-      const double trust = std::max({1.0,
-        std::abs(delta_angle) / (0.5 * span_width),
-        std::abs(delta_alpha) / (0.5 * 3.14159265358979323846)});
-      delta_angle /= trust;
-      delta_alpha /= trust;
-      angle = std::clamp(
-        angle + delta_angle, span.angle_min, span.angle_max);
-      alpha = wrap(alpha + delta_alpha);
-    }
-    if (residual > projected_tolerance) {
-      const Vec3 position = surface_point(span, angle, alpha);
-      const Vec3 offset = position - origin;
-      residual = std::hypot(dot(basis1, offset), dot(basis2, offset));
-    }
-    iterations_total += static_cast<std::uint64_t>(iterations);
-    add_performance_counter(PerformanceCounter::newton_iterations,
-      static_cast<std::uint64_t>(iterations));
-    if (residual > projected_tolerance) {
-      add_performance_counter(PerformanceCounter::newton_failures);
-      return false;
-    }
-    const Vec3 position = surface_point(span, angle, alpha);
-    const double t = dot(ray_direction, position - origin);
-    if (!(t > minimum_t) || !(t < best_t + options.absolute_t_tolerance)) {
-      add_performance_counter(PerformanceCounter::rejected_roots);
-      return false;
-    }
-    if (std::abs(t - best_t) <= options.duplicate_t_multiplier
-                                  * options.absolute_t_tolerance
-        && span_id >= best_span) {
-      add_performance_counter(PerformanceCounter::deduplicated_roots);
-      return true;
-    }
-    best_t = t;
-    best_residual = residual;
-    best_span = span_id;
-    return true;
-  };
-
-  struct StackEntry { std::uint32_t node; double near_t; };
-  struct UnresolvedSpan {
-    std::uint32_t span;
-    double enter;
-    double exit;
-  };
-  std::array<StackEntry, 64> stack {};
-  std::array<UnresolvedSpan, 64> unresolved {};
-  std::size_t unresolved_count = 0;
-  std::size_t stack_size = 0;
-  stack[stack_size++] = {0U, root_interval->enter};
-  while (stack_size != 0) {
-    const auto entry = stack[--stack_size];
-    if (entry.near_t >= best_t) continue;
-    const auto& node = span_bvh_[entry.node];
-    add_performance_counter(PerformanceCounter::candidate_bvh_nodes);
-    if (node.leaf()) {
-      for (std::uint32_t local = 0; local < node.count; ++local) {
-        const std::uint32_t span_id = span_indices_[node.first + local];
-        const auto& span = spans_[span_id];
-        const auto interval = span.conservative_bbox.ray_interval(
-          origin, ray_direction);
-        if (!interval || interval->exit <= minimum_t
-            || interval->enter >= best_t) continue;
-        ++candidates;
-        add_performance_counter(PerformanceCounter::candidate_patches_or_segments);
-        const Vec3 segment = span.proxy_end - span.proxy_start;
-        const Vec3 w0 = origin - span.proxy_start;
-        const double b = dot(ray_direction, segment);
-        const double c = norm_squared(segment);
-        const double e = dot(segment, w0);
-        std::array<double, 6> proxy_t {};
-        std::size_t proxy_count = 0;
-        const auto add_proxy_t = [&](double t) {
-          if (!(t > minimum_t) || !(t < best_t) || !std::isfinite(t)) return;
-          for (std::size_t existing = 0; existing < proxy_count; ++existing) {
-            if (std::abs(proxy_t[existing] - t)
-                <= 1.0e-9 * data_.characteristic_length) return;
-          }
-          if (proxy_count < proxy_t.size()) proxy_t[proxy_count++] = t;
-        };
-        if (c > 0.0) {
-          const double f0 = e / c;
-          const double f1 = b / c;
-          const Vec3 radial_origin = w0 - f0 * segment;
-          const Vec3 radial_direction = ray_direction - f1 * segment;
-          const double qa = norm_squared(radial_direction);
-          const double qb = 2.0 * dot(radial_origin, radial_direction);
-          const double qc = norm_squared(radial_origin)
-                            - span.proxy_radius * span.proxy_radius;
-          const double discriminant = qb * qb - 4.0 * qa * qc;
-          if (qa > 0.0 && discriminant >= 0.0) {
-            const double root = std::sqrt(discriminant);
-            for (double t : {(-qb - root) / (2.0 * qa),
-                             (-qb + root) / (2.0 * qa)}) {
-              const double fraction = f0 + f1 * t;
-              if (fraction >= 0.0 && fraction <= 1.0) add_proxy_t(t);
-            }
-          }
-        }
-        for (const Vec3 endpoint : {span.proxy_start, span.proxy_end}) {
-          const Vec3 sphere_offset = origin - endpoint;
-          const double qb = 2.0 * dot(sphere_offset, ray_direction);
-          const double qc = norm_squared(sphere_offset)
-                            - span.proxy_radius * span.proxy_radius;
-          const double discriminant = qb * qb - 4.0 * qc;
-          if (discriminant >= 0.0) {
-            const double root = std::sqrt(discriminant);
-            add_proxy_t(0.5 * (-qb - root));
-            add_proxy_t(0.5 * (-qb + root));
-          }
-        }
-        for (std::size_t insertion = 1; insertion < proxy_count; ++insertion) {
-          const double value = proxy_t[insertion];
-          std::size_t position = insertion;
-          while (position > 0 && proxy_t[position - 1] > value) {
-            proxy_t[position] = proxy_t[position - 1];
-            --position;
-          }
-          proxy_t[position] = value;
-        }
-        add_performance_counter(PerformanceCounter::proxy_intersections);
-        add_performance_counter(PerformanceCounter::proxy_seeds, proxy_count);
-        bool solved = false;
-        // If the admissible ray start is inside the expanded capsule, its
-        // entry seed lies behind the ray. Correct from the start as well as
-        // the capsule exit, which can otherwise converge to a farther tube
-        // crossing while missing a nearby entry. This extra local seed does
-        // not certify completeness of this span or the remaining traversal.
-        const Vec3 initial_point = origin + minimum_t * ray_direction;
-        const double initial_fraction = c > 0.0
-          ? std::clamp(dot(initial_point - span.proxy_start, segment) / c,
-              0.0, 1.0)
-          : 0.5;
-        const Vec3 capsule_axis_point =
-          span.proxy_start + initial_fraction * segment;
-        const double seed_radius = span.proxy_radius + projected_tolerance;
-        if (norm_squared(initial_point - capsule_axis_point)
-            <= seed_radius * seed_radius) {
-          const double angle = span.angle_min
-            + initial_fraction * (span.angle_max - span.angle_min);
-          const auto frame_value = frame_in_span(span, angle);
-          const Vec3 transverse = initial_point - frame_value.center;
-          const double alpha = std::atan2(
-            dot(transverse, frame_value.binormal) / frame_value.minor_radius,
-            dot(transverse, frame_value.normal) / frame_value.major_radius);
-          add_performance_counter(PerformanceCounter::proxy_seeds);
-          solved = solve_seed(span, span_id, minimum_t, angle, alpha);
-        }
-        for (std::size_t seed = 0; seed < proxy_count; ++seed) {
-          if (proxy_t[seed] >= best_t) break;
-          const Vec3 proxy_point = origin + proxy_t[seed] * ray_direction;
-          const double fraction = c > 0.0
-            ? std::clamp(dot(proxy_point - span.proxy_start, segment) / c,
-                0.0, 1.0)
-            : 0.5;
-          const double angle = span.angle_min
-            + fraction * (span.angle_max - span.angle_min);
-          const auto frame_value = frame_in_span(span, angle);
-          const Vec3 transverse = proxy_point - frame_value.center;
-          const double alpha = std::atan2(
-            dot(transverse, frame_value.binormal) / frame_value.minor_radius,
-            dot(transverse, frame_value.normal) / frame_value.major_radius);
-          solved = solve_seed(
-            span, span_id, proxy_t[seed], angle, alpha) || solved;
-        }
-
-        if (!solved && proxy_count != 0
-            && unresolved_count < unresolved.size()) {
-          unresolved[unresolved_count++] = {
-            span_id, std::max(minimum_t, interval->enter), interval->exit};
-        }
-      }
-      continue;
-    }
-    const auto left = span_bvh_[node.left].bbox.ray_interval(origin, ray_direction);
-    const auto right = span_bvh_[node.right].bbox.ray_interval(origin, ray_direction);
-    const bool use_left = left && left->exit > minimum_t && left->enter < best_t;
-    const bool use_right = right && right->exit > minimum_t && right->enter < best_t;
-    if (use_left && use_right) {
-      const bool left_first = left->enter <= right->enter;
-      if (stack_size + 2 > stack.size()) break;
-      stack[stack_size++] = left_first
-        ? StackEntry {node.right, right->enter}
-        : StackEntry {node.left, left->enter};
-      stack[stack_size++] = left_first
-        ? StackEntry {node.left, left->enter}
-        : StackEntry {node.right, right->enter};
-    } else if (use_left || use_right) {
-      if (stack_size + 1 > stack.size()) break;
-      stack[stack_size++] = use_left
-        ? StackEntry {node.left, left->enter}
-        : StackEntry {node.right, right->enter};
-    }
-  }
-  if (!std::isfinite(best_t)) {
-    for (std::size_t unresolved_index = 0;
-         unresolved_index < unresolved_count; ++unresolved_index) {
-      const auto item = unresolved[unresolved_index];
-      const auto& span = spans_[item.span];
-      add_performance_counter(PerformanceCounter::local_subdivision_calls);
-      constexpr int scan_segments = 8;
-      double previous_t = item.enter;
-      double previous_value = evaluate_in_span(
-        origin + previous_t * ray_direction, span);
-      for (int segment_index = 1;
-           segment_index <= scan_segments; ++segment_index) {
-        const double current_t = item.enter + (item.exit - item.enter)
-          * static_cast<double>(segment_index)
-            / static_cast<double>(scan_segments);
-        const double current_value = evaluate_in_span(
-          origin + current_t * ray_direction, span);
-        add_performance_counter(PerformanceCounter::local_subdivision_nodes);
-        if (std::signbit(previous_value) != std::signbit(current_value)) {
-          double a = previous_t;
-          double right = current_t;
-          double fa = previous_value;
-          for (int iteration = 0; iteration < 40; ++iteration) {
-            const double midpoint = 0.5 * (a + right);
-            const double fm = evaluate_in_span(
-              origin + midpoint * ray_direction, span);
-            if (std::signbit(fa) != std::signbit(fm)) right = midpoint;
-            else { a = midpoint; fa = fm; }
-          }
-          const double t = 0.5 * (a + right);
-          const double authoritative_residual = std::abs(
-            evaluate(origin + t * ray_direction));
-          if (t > minimum_t && t < best_t
-              && authoritative_residual
-                <= 100.0 * options.absolute_f_tolerance) {
-            best_t = t;
-            best_residual = authoritative_residual;
-            best_span = item.span;
-          }
-          break;
-        }
-        previous_t = current_t;
-        previous_value = current_value;
-      }
-      if (std::isfinite(best_t)) break;
-    }
-  }
-  record_candidate_count(candidates);
-  record_newton_count(iterations_total);
-  diagnostics.safeguarded_newton_iterations =
-    static_cast<long>(iterations_total);
-  diagnostics.certified_excluded_intervals =
-    static_cast<long>(spans_.size()) - static_cast<long>(candidates);
-  if (!std::isfinite(best_t)) {
-    add_performance_counter(PerformanceCounter::no_hit_returns);
-    return {false, std::numeric_limits<double>::infinity(),
-      RootKind::sign_change, std::numeric_limits<double>::infinity(),
-      diagnostics};
-  }
-  add_performance_counter(PerformanceCounter::accepted_roots);
-  record_residual(best_residual, data_.characteristic_length);
-  return {true, best_t, RootKind::sign_change, best_residual, diagnostics};
+  if (circular_completeness_) return circular_detail::distance(
+    *circular_completeness_,origin,direction,coincident,options,data_.characteristic_length);
+  circular_detail::unresolved("nonconstant or elliptical sections are unsupported");
 }
 
 } // namespace stellarcsg
