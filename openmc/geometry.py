@@ -697,10 +697,18 @@ class Geometry:
         # Get redundant surfaces
         redundancies = defaultdict(list)
         for surf in self.get_all_surfaces().values():
-            coeffs = tuple(round(surf._coefficients[k],
-                                 self.surface_precision)
-                           for k in surf._coeff_keys)
-            key = (surf._type, surf._boundary_type) + coeffs
+            if isinstance(surf, (openmc.PeriodicSplineSurface,
+                                 openmc.SweptSplineSurface)):
+                # External payloads have no polynomial coefficient tuple.
+                # Empty tuples must never collapse distinct coil/plasma
+                # definitions, solver policies, or boundary albedos.
+                key = (surf._type, surf._boundary_type, surf.albedo,
+                       surf._definition_key())
+            else:
+                coeffs = tuple(round(surf._coefficients[k],
+                                     self.surface_precision)
+                               for k in surf._coeff_keys)
+                key = (surf._type, surf._boundary_type) + coeffs
             redundancies[key].append(surf)
 
         redundant_surfaces = {replace.id: keep

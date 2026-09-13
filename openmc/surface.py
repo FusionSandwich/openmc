@@ -329,6 +329,9 @@ class Surface(IDManagerMixin, ABC):
             surface
 
         """
+        if isinstance(other, (PeriodicSplineSurface, SweptSplineSurface)):
+            return other.is_equal(self)
+
         coeffs1 = self.normalize(self._get_base_coeffs())
         coeffs2 = self.normalize(other._get_base_coeffs())
 
@@ -2637,6 +2640,16 @@ class PeriodicSplineSurface(Surface):
     def _get_base_coeffs(self):
         return ()
 
+    def _definition_key(self):
+        # Keep path spelling: a relative file is resolved from the transport
+        # input directory, which need not be the current Python directory.
+        return (self.data_file, self.dataset, self.content_id, self.solver)
+
+    def is_equal(self, other):
+        """Compare declared payloads; differing definitions are not equated."""
+        return (type(self) is type(other)
+                and self._definition_key() == other._definition_key())
+
     def evaluate(self, point):
         raise NotImplementedError(
             'PeriodicSplineSurface evaluation is provided by an experimental '
@@ -2734,29 +2747,79 @@ class SweptSplineSurface(Surface):
 
     The external HDF5 group contains an equal-arc-length centerline,
     rotation-minimizing frame, and circular or elliptical cross-section data.
+
+    A collection uses ``dataset_prefix``, ``dataset_start`` and
+    ``dataset_count`` to load groups named ``prefix + format(index, '03d')``.
+    It represents the union of those coils as one logical surface, with shared
+    C++ acceleration. Separate coil materials and cell/tally identities are
+    not provided by a collection. Each payload retains its own content ID;
+    ``content_id`` must be omitted for a collection.
     """
 
     _type = 'swept-spline'
     _coeff_keys = ()
 
-    def __init__(self, data_file, dataset, content_id, solver='auto', **kwargs):
+    def __init__(self, data_file, dataset=None, content_id=None, solver='auto',
+                 *, dataset_prefix=None, dataset_start=0, dataset_count=None,
+                 **kwargs):
         super().__init__(**kwargs)
         check_type('data_file', data_file, (str, Path))
-        check_type('dataset', dataset, str)
-        check_type('content_id', content_id, str)
-        if not dataset.startswith('/'):
-            raise ValueError('dataset must be an absolute HDF5 group path')
-        if not content_id:
-            raise ValueError('content_id cannot be empty')
         if solver not in ('auto', 'general'):
             raise ValueError("solver must be 'auto' or 'general'")
+        collection = (dataset_prefix is not None or dataset_count is not None
+                      or dataset_start != 0)
+        if collection:
+            if dataset is not None or content_id is not None:
+                raise ValueError('collection must omit dataset and content_id')
+            check_type('dataset_prefix', dataset_prefix, str)
+            if (not dataset_prefix.startswith('/') or '\x00' in dataset_prefix
+                    or any(part in ('.', '..') for part in dataset_prefix.split('/'))):
+                raise ValueError('dataset_prefix must be an absolute HDF5 group prefix')
+            for label, value in (('dataset_start', dataset_start),
+                                 ('dataset_count', dataset_count)):
+                if (isinstance(value, (bool, np.bool_))
+                        or not isinstance(value, (int, np.integer))):
+                    raise ValueError(f'{label} must be an integer')
+            dataset_start, dataset_count = int(dataset_start), int(dataset_count)
+            if dataset_start < 0 or dataset_count <= 0:
+                raise ValueError('dataset_start must be nonnegative and dataset_count positive')
+            if dataset_count > 2147483647 or dataset_start + dataset_count - 1 > 2147483647:
+                raise ValueError('collection indices must fit the C++ signed 32-bit integer range')
+            if solver != 'auto':
+                raise ValueError("collection requires solver='auto'")
+        else:
+            check_type('dataset', dataset, str)
+            check_type('content_id', content_id, str)
+            if not dataset.startswith('/'):
+                raise ValueError('dataset must be an absolute HDF5 group path')
+            if not content_id:
+                raise ValueError('content_id cannot be empty')
         self.data_file = str(data_file)
         self.dataset = dataset
         self.content_id = content_id
         self.solver = solver
+        self.dataset_prefix = dataset_prefix
+        self.dataset_start = int(dataset_start)
+        self.dataset_count = int(dataset_count) if collection else None
+
+    @property
+    def is_collection(self):
+        """Whether this surface is a union using shared coil acceleration."""
+        return self.dataset_prefix is not None
 
     def _get_base_coeffs(self):
         return ()
+
+    def _definition_key(self):
+        # This compares declarations, not physical equivalence of differently
+        # compiled payloads. File contents are verified by the C++ reader.
+        return (self.data_file, self.dataset, self.content_id, self.solver,
+                self.dataset_prefix, self.dataset_start, self.dataset_count)
+
+    def is_equal(self, other):
+        """Compare declared single-coil or collection payload definitions."""
+        return (type(self) is type(other)
+                and self._definition_key() == other._definition_key())
 
     def evaluate(self, point):
         raise NotImplementedError(
@@ -2769,19 +2832,26 @@ class SweptSplineSurface(Surface):
         if side != '-':
             raise ValueError("side must be '+' or '-'")
         import h5py
+        lower = np.full(3, np.inf)
+        upper = np.full(3, -np.inf)
+        if self.is_collection:
+            datasets = (f'{self.dataset_prefix}{index:03d}' for index in range(
+                self.dataset_start, self.dataset_start + self.dataset_count))
+        else:
+            datasets = (self.dataset,)
         with h5py.File(self.data_file, 'r') as h5:
-            group = h5[self.dataset]
-            if group.attrs['units'] not in ('cm', b'cm'):
-                raise ValueError("swept-spline payload units must be 'cm'")
-            centerline = group['centerline_coefficients'][...]
-            radius = max(
-                float(np.max(group['major_radius_coefficients'][...])),
-                float(np.max(group['minor_radius_coefficients'][...])),
-            )
-        return BoundingBox(
-            np.min(centerline, axis=0) - radius,
-            np.max(centerline, axis=0) + radius,
-        )
+            for dataset in datasets:
+                group = h5[dataset]
+                if group.attrs['units'] not in ('cm', b'cm'):
+                    raise ValueError("swept-spline payload units must be 'cm'")
+                centerline = group['centerline_coefficients'][...]
+                radius = max(
+                    float(np.max(group['major_radius_coefficients'][...])),
+                    float(np.max(group['minor_radius_coefficients'][...])),
+                )
+                lower = np.minimum(lower, np.min(centerline, axis=0) - radius)
+                upper = np.maximum(upper, np.max(centerline, axis=0) + radius)
+        return BoundingBox(lower, upper)
 
     def translate(self, vector, inplace=False):
         raise NotImplementedError(
@@ -2797,8 +2867,13 @@ class SweptSplineSurface(Surface):
         element = super().to_xml_element()
         element.attrib.pop('coeffs', None)
         element.set('data_file', self.data_file)
-        element.set('dataset', self.dataset)
-        element.set('content_id', self.content_id)
+        if self.is_collection:
+            element.set('dataset_prefix', self.dataset_prefix)
+            element.set('dataset_start', str(self.dataset_start))
+            element.set('dataset_count', str(self.dataset_count))
+        else:
+            element.set('dataset', self.dataset)
+            element.set('content_id', self.content_id)
         element.set('solver', self.solver)
         element.set('units', 'cm')
         return element
@@ -2811,20 +2886,32 @@ class SweptSplineSurface(Surface):
             data_file=get_text(elem, 'data_file'),
             dataset=get_text(elem, 'dataset'),
             content_id=get_text(elem, 'content_id'),
+            dataset_prefix=get_text(elem, 'dataset_prefix'),
+            dataset_start=int(get_text(elem, 'dataset_start', '0')),
+            dataset_count=(int(get_text(elem, 'dataset_count'))
+                           if get_text(elem, 'dataset_count') is not None else None),
             solver=get_text(elem, 'solver', 'auto'),
             surface_id=int(get_text(elem, 'id')),
             boundary_type=get_text(elem, 'boundary', 'transmission'),
+            albedo=float(get_text(elem, 'albedo', '1.0')),
             name=get_text(elem, 'name'),
         )
 
     @classmethod
     def _from_hdf5(cls, group, **kwargs):
         def text(name):
+            if name not in group:
+                return None
             value = group[name][()]
             return value.decode() if isinstance(value, bytes) else str(value)
         solver = text('solver') if 'solver' in group else 'auto'
         return cls(data_file=text('data_file'), dataset=text('dataset'),
-                   content_id=text('content_id'), solver=solver, **kwargs)
+                   content_id=text('content_id'), solver=solver,
+                   dataset_prefix=text('dataset_prefix'),
+                   dataset_start=(group['dataset_start'][()]
+                                  if 'dataset_start' in group else 0),
+                   dataset_count=(group['dataset_count'][()]
+                                  if 'dataset_count' in group else None), **kwargs)
 
 
 class Halfspace(Region):
