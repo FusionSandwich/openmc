@@ -16,6 +16,7 @@ import shutil
 import statistics
 import subprocess
 import time
+import xml.etree.ElementTree as ET
 
 
 HARNESS_PATH = Path(__file__).parents[1] / "benchmarks/dual_track_harness.py"
@@ -107,6 +108,16 @@ def main():
     replay_source = args.candidate_source / "dev/stellarcsg/tests/test_periodic_optimization.cpp"
     common = [artifact(__file__), artifact(HARNESS_PATH), artifact(replay_source),
               artifact(args.wistell_file), artifact(args.sentinel_model)]
+    sentinel_model = ET.parse(args.sentinel_model).getroot()
+    if sentinel_model.findtext("settings/energy_mode") != "multi-group":
+        raise ValueError("this bounded campaign requires the verified multi-group torus sentinel")
+    data_paths = sentinel_model.findall("materials/cross_sections")
+    if len(data_paths) != 1 or not data_paths[0].text:
+        raise ValueError("sentinel must declare one existing absolute multi-group data file")
+    sentinel_data = Path(data_paths[0].text)
+    if not sentinel_data.is_absolute():
+        raise ValueError("sentinel data path must be absolute")
+    common.append(artifact(sentinel_data))
     frozen = {}
     for case in ("helical", "wistell"):
         path = args.build_root / f"plasma-baseline-on-{case}-correctness-01.jsonl"
