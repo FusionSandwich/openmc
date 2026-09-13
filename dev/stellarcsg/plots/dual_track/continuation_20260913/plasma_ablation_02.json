@@ -1,0 +1,758 @@
+{
+  "schema": "stellarcsg.plasma-ablation-plot/v1",
+  "qualification": "NOT_RUN",
+  "source": {
+    "path": "/mnt/d/codex-verification/stellarcsg-20260913-02/plasma-ablation-01/campaign.json",
+    "sha256": "0c46ef30ccba12ad93fa24b741396e45e65cec8dbdc243528fbe879a3d685ed9",
+    "journal_sha256": "b40962a927b90aff5e8cc89d2006f77fdd6da786954bf8c0de0994410e40339e",
+    "generator_sha256": "fe80ba881612dc7882f7003d996283a9c0ae6a6a1f82164d553e3a9ca09e1496"
+  },
+  "audit": {
+    "attempts": 72,
+    "warmup_attempts": 9,
+    "measured_attempts": 63,
+    "durable_started_records": 72,
+    "durable_finished_records": 72,
+    "output_hashes_verified": 144,
+    "sentinel_histories_including_warmup": 80000,
+    "sentinel_measured_histories": 70000,
+    "frozen_kernel_records_unchanged": true
+  },
+  "methods": {
+    "helical-baseline-on": {
+      "command": [
+        "/mnt/d/codex-verification/stellarcsg-20260913-02/plasma-baseline-on/periodic_optimization_replay_v2",
+        "128"
+      ],
+      "artifacts": [
+        {
+          "path": "/mnt/d/codex-verification/stellarcsg-20260913-02/plasma-baseline-on/periodic_optimization_replay_v2",
+          "resolved_path": "/mnt/d/codex-verification/stellarcsg-20260913-02/plasma-baseline-on/periodic_optimization_replay_v2",
+          "sha256": "6920f2ca85ccbd4195ad3d23064d27117f05c43aad65bc9a016b999801b932c2"
+        },
+        {
+          "path": "/mnt/d/codex-verification/stellarcsg-20260913-02/plasma-baseline-on/libstellarcsg_reference.a",
+          "resolved_path": "/mnt/d/codex-verification/stellarcsg-20260913-02/plasma-baseline-on/libstellarcsg_reference.a",
+          "sha256": "a6058c2c426c2a636dd2ac757a8d655cc64cd7cb9566eacd18dd61d8f2e2bab0"
+        },
+        {
+          "path": "/mnt/d/codex-verification/stellarcsg-20260913-02/plasma-baseline-on/CMakeCache.txt",
+          "resolved_path": "/mnt/d/codex-verification/stellarcsg-20260913-02/plasma-baseline-on/CMakeCache.txt",
+          "sha256": "83872880cb02aad2fbd96b409a83532f25240a77525df31ac7781b1052dc0bd2"
+        },
+        {
+          "path": "/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-cont-b/dev/stellarcsg/src/compiled_periodic_surface.cpp",
+          "resolved_path": "/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-cont-b/dev/stellarcsg/src/compiled_periodic_surface.cpp",
+          "sha256": "8cb39a306f0d1c201a99e2802de7efb56638f60f1804779b30483669f7b096f1"
+        }
+      ],
+      "declared_source_commit": "4774434f10ab922411a0b3eefc243d07ea4adb17",
+      "linked_library_count": 40,
+      "linked_library_manifest_sha256": "62aecffebc3c99e8973ce077c4ae61e08e59174bb43c5e47ea1de8a1fe752678"
+    },
+    "helical-baseline-off": {
+      "command": [
+        "/mnt/d/codex-verification/stellarcsg-20260913-02/plasma-baseline-off/periodic_optimization_replay_v2",
+        "128"
+      ],
+      "artifacts": [
+        {
+          "path": "/mnt/d/codex-verification/stellarcsg-20260913-02/plasma-baseline-off/periodic_optimization_replay_v2",
+          "resolved_path": "/mnt/d/codex-verification/stellarcsg-20260913-02/plasma-baseline-off/periodic_optimization_replay_v2",
+          "sha256": "a8c41dc25cf3c03f209fae8f41b67bd0d12804e231d7e3f0c5d2411b1678562d"
+        },
+        {
+          "path": "/mnt/d/codex-verification/stellarcsg-20260913-02/plasma-baseline-off/libstellarcsg_reference.a",
+          "resolved_path": "/mnt/d/codex-verification/stellarcsg-20260913-02/plasma-baseline-off/libstellarcsg_reference.a",
+          "sha256": "c6117cbe045af6cc34c51e95c26a0461cfe8a64866b09ac86dfa2ff321785280"
+        },
+        {
+          "path": "/mnt/d/codex-verification/stellarcsg-20260913-02/plasma-baseline-off/CMakeCache.txt",
+          "resolved_path": "/mnt/d/codex-verification/stellarcsg-20260913-02/plasma-baseline-off/CMakeCache.txt",
+          "sha256": "18ace22fd4141556d8a6fb4697a09ddb8b72d930aed5affb0962e8cc2c5fe2e9"
+        },
+        {
+          "path": "/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-cont-b/dev/stellarcsg/src/compiled_periodic_surface.cpp",
+          "resolved_path": "/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-cont-b/dev/stellarcsg/src/compiled_periodic_surface.cpp",
+          "sha256": "8cb39a306f0d1c201a99e2802de7efb56638f60f1804779b30483669f7b096f1"
+        }
+      ],
+      "declared_source_commit": "4774434f10ab922411a0b3eefc243d07ea4adb17",
+      "linked_library_count": 40,
+      "linked_library_manifest_sha256": "62aecffebc3c99e8973ce077c4ae61e08e59174bb43c5e47ea1de8a1fe752678"
+    },
+    "helical-candidate-on": {
+      "command": [
+        "/mnt/d/codex-verification/stellarcsg-20260913-02/plasma-candidate-on/periodic_optimization_replay_v2",
+        "128"
+      ],
+      "artifacts": [
+        {
+          "path": "/mnt/d/codex-verification/stellarcsg-20260913-02/plasma-candidate-on/periodic_optimization_replay_v2",
+          "resolved_path": "/mnt/d/codex-verification/stellarcsg-20260913-02/plasma-candidate-on/periodic_optimization_replay_v2",
+          "sha256": "d134885746356ef21570e9f72362bc8fd748cdbcba510e3f0fb3343abb889f2c"
+        },
+        {
+          "path": "/mnt/d/codex-verification/stellarcsg-20260913-02/plasma-candidate-on/libstellarcsg_reference.a",
+          "resolved_path": "/mnt/d/codex-verification/stellarcsg-20260913-02/plasma-candidate-on/libstellarcsg_reference.a",
+          "sha256": "5a57c699632a12187295ba4caea8daddd22b7453890b55ecdadfe989d85b5607"
+        },
+        {
+          "path": "/mnt/d/codex-verification/stellarcsg-20260913-02/plasma-candidate-on/CMakeCache.txt",
+          "resolved_path": "/mnt/d/codex-verification/stellarcsg-20260913-02/plasma-candidate-on/CMakeCache.txt",
+          "sha256": "59ae65676d847135cb2db264f7b15a5bc793d83a6764b7469faf477f48663b1b"
+        },
+        {
+          "path": "/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-next-plasma/dev/stellarcsg/src/compiled_periodic_surface.cpp",
+          "resolved_path": "/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-next-plasma/dev/stellarcsg/src/compiled_periodic_surface.cpp",
+          "sha256": "1d0256e959ab8578000520f9a76847336c4dc8938553a1b813a03b3a40596ec4"
+        }
+      ],
+      "declared_source_commit": "1620263e1866e035ca293d270b10a193330dc104",
+      "linked_library_count": 40,
+      "linked_library_manifest_sha256": "62aecffebc3c99e8973ce077c4ae61e08e59174bb43c5e47ea1de8a1fe752678"
+    },
+    "helical-candidate-off": {
+      "command": [
+        "/mnt/d/codex-verification/stellarcsg-20260913-02/plasma-candidate-off/periodic_optimization_replay_v2",
+        "128"
+      ],
+      "artifacts": [
+        {
+          "path": "/mnt/d/codex-verification/stellarcsg-20260913-02/plasma-candidate-off/periodic_optimization_replay_v2",
+          "resolved_path": "/mnt/d/codex-verification/stellarcsg-20260913-02/plasma-candidate-off/periodic_optimization_replay_v2",
+          "sha256": "50e0eecfd088b7e22f251374e9c2452901feeddd2837c42f13582f31fe302b1a"
+        },
+        {
+          "path": "/mnt/d/codex-verification/stellarcsg-20260913-02/plasma-candidate-off/libstellarcsg_reference.a",
+          "resolved_path": "/mnt/d/codex-verification/stellarcsg-20260913-02/plasma-candidate-off/libstellarcsg_reference.a",
+          "sha256": "dbabcc1c2d02cbc79ab8caaa00bd46ed29f966ea68b037d264d29a2e435e6e21"
+        },
+        {
+          "path": "/mnt/d/codex-verification/stellarcsg-20260913-02/plasma-candidate-off/CMakeCache.txt",
+          "resolved_path": "/mnt/d/codex-verification/stellarcsg-20260913-02/plasma-candidate-off/CMakeCache.txt",
+          "sha256": "6ad10088045f63c3e4bb5d14fceb8b9d2e984f720862eecdeeaff07a41715e80"
+        },
+        {
+          "path": "/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-next-plasma/dev/stellarcsg/src/compiled_periodic_surface.cpp",
+          "resolved_path": "/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-next-plasma/dev/stellarcsg/src/compiled_periodic_surface.cpp",
+          "sha256": "1d0256e959ab8578000520f9a76847336c4dc8938553a1b813a03b3a40596ec4"
+        }
+      ],
+      "declared_source_commit": "1620263e1866e035ca293d270b10a193330dc104",
+      "linked_library_count": 40,
+      "linked_library_manifest_sha256": "62aecffebc3c99e8973ce077c4ae61e08e59174bb43c5e47ea1de8a1fe752678"
+    },
+    "wistell-baseline-on": {
+      "command": [
+        "/mnt/d/codex-verification/stellarcsg-20260913-02/plasma-baseline-on/periodic_optimization_replay_v2",
+        "/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-next-plasma/dev/stellarcsg/qualified/wistell_d_periodic_surfaces.h5",
+        "/surfaces/wistell_d_lcfs",
+        "128"
+      ],
+      "artifacts": [
+        {
+          "path": "/mnt/d/codex-verification/stellarcsg-20260913-02/plasma-baseline-on/periodic_optimization_replay_v2",
+          "resolved_path": "/mnt/d/codex-verification/stellarcsg-20260913-02/plasma-baseline-on/periodic_optimization_replay_v2",
+          "sha256": "6920f2ca85ccbd4195ad3d23064d27117f05c43aad65bc9a016b999801b932c2"
+        },
+        {
+          "path": "/mnt/d/codex-verification/stellarcsg-20260913-02/plasma-baseline-on/libstellarcsg_reference.a",
+          "resolved_path": "/mnt/d/codex-verification/stellarcsg-20260913-02/plasma-baseline-on/libstellarcsg_reference.a",
+          "sha256": "a6058c2c426c2a636dd2ac757a8d655cc64cd7cb9566eacd18dd61d8f2e2bab0"
+        },
+        {
+          "path": "/mnt/d/codex-verification/stellarcsg-20260913-02/plasma-baseline-on/CMakeCache.txt",
+          "resolved_path": "/mnt/d/codex-verification/stellarcsg-20260913-02/plasma-baseline-on/CMakeCache.txt",
+          "sha256": "83872880cb02aad2fbd96b409a83532f25240a77525df31ac7781b1052dc0bd2"
+        },
+        {
+          "path": "/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-cont-b/dev/stellarcsg/src/compiled_periodic_surface.cpp",
+          "resolved_path": "/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-cont-b/dev/stellarcsg/src/compiled_periodic_surface.cpp",
+          "sha256": "8cb39a306f0d1c201a99e2802de7efb56638f60f1804779b30483669f7b096f1"
+        }
+      ],
+      "declared_source_commit": "4774434f10ab922411a0b3eefc243d07ea4adb17",
+      "linked_library_count": 40,
+      "linked_library_manifest_sha256": "62aecffebc3c99e8973ce077c4ae61e08e59174bb43c5e47ea1de8a1fe752678"
+    },
+    "wistell-baseline-off": {
+      "command": [
+        "/mnt/d/codex-verification/stellarcsg-20260913-02/plasma-baseline-off/periodic_optimization_replay_v2",
+        "/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-next-plasma/dev/stellarcsg/qualified/wistell_d_periodic_surfaces.h5",
+        "/surfaces/wistell_d_lcfs",
+        "128"
+      ],
+      "artifacts": [
+        {
+          "path": "/mnt/d/codex-verification/stellarcsg-20260913-02/plasma-baseline-off/periodic_optimization_replay_v2",
+          "resolved_path": "/mnt/d/codex-verification/stellarcsg-20260913-02/plasma-baseline-off/periodic_optimization_replay_v2",
+          "sha256": "a8c41dc25cf3c03f209fae8f41b67bd0d12804e231d7e3f0c5d2411b1678562d"
+        },
+        {
+          "path": "/mnt/d/codex-verification/stellarcsg-20260913-02/plasma-baseline-off/libstellarcsg_reference.a",
+          "resolved_path": "/mnt/d/codex-verification/stellarcsg-20260913-02/plasma-baseline-off/libstellarcsg_reference.a",
+          "sha256": "c6117cbe045af6cc34c51e95c26a0461cfe8a64866b09ac86dfa2ff321785280"
+        },
+        {
+          "path": "/mnt/d/codex-verification/stellarcsg-20260913-02/plasma-baseline-off/CMakeCache.txt",
+          "resolved_path": "/mnt/d/codex-verification/stellarcsg-20260913-02/plasma-baseline-off/CMakeCache.txt",
+          "sha256": "18ace22fd4141556d8a6fb4697a09ddb8b72d930aed5affb0962e8cc2c5fe2e9"
+        },
+        {
+          "path": "/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-cont-b/dev/stellarcsg/src/compiled_periodic_surface.cpp",
+          "resolved_path": "/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-cont-b/dev/stellarcsg/src/compiled_periodic_surface.cpp",
+          "sha256": "8cb39a306f0d1c201a99e2802de7efb56638f60f1804779b30483669f7b096f1"
+        }
+      ],
+      "declared_source_commit": "4774434f10ab922411a0b3eefc243d07ea4adb17",
+      "linked_library_count": 40,
+      "linked_library_manifest_sha256": "62aecffebc3c99e8973ce077c4ae61e08e59174bb43c5e47ea1de8a1fe752678"
+    },
+    "wistell-candidate-on": {
+      "command": [
+        "/mnt/d/codex-verification/stellarcsg-20260913-02/plasma-candidate-on/periodic_optimization_replay_v2",
+        "/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-next-plasma/dev/stellarcsg/qualified/wistell_d_periodic_surfaces.h5",
+        "/surfaces/wistell_d_lcfs",
+        "128"
+      ],
+      "artifacts": [
+        {
+          "path": "/mnt/d/codex-verification/stellarcsg-20260913-02/plasma-candidate-on/periodic_optimization_replay_v2",
+          "resolved_path": "/mnt/d/codex-verification/stellarcsg-20260913-02/plasma-candidate-on/periodic_optimization_replay_v2",
+          "sha256": "d134885746356ef21570e9f72362bc8fd748cdbcba510e3f0fb3343abb889f2c"
+        },
+        {
+          "path": "/mnt/d/codex-verification/stellarcsg-20260913-02/plasma-candidate-on/libstellarcsg_reference.a",
+          "resolved_path": "/mnt/d/codex-verification/stellarcsg-20260913-02/plasma-candidate-on/libstellarcsg_reference.a",
+          "sha256": "5a57c699632a12187295ba4caea8daddd22b7453890b55ecdadfe989d85b5607"
+        },
+        {
+          "path": "/mnt/d/codex-verification/stellarcsg-20260913-02/plasma-candidate-on/CMakeCache.txt",
+          "resolved_path": "/mnt/d/codex-verification/stellarcsg-20260913-02/plasma-candidate-on/CMakeCache.txt",
+          "sha256": "59ae65676d847135cb2db264f7b15a5bc793d83a6764b7469faf477f48663b1b"
+        },
+        {
+          "path": "/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-next-plasma/dev/stellarcsg/src/compiled_periodic_surface.cpp",
+          "resolved_path": "/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-next-plasma/dev/stellarcsg/src/compiled_periodic_surface.cpp",
+          "sha256": "1d0256e959ab8578000520f9a76847336c4dc8938553a1b813a03b3a40596ec4"
+        }
+      ],
+      "declared_source_commit": "1620263e1866e035ca293d270b10a193330dc104",
+      "linked_library_count": 40,
+      "linked_library_manifest_sha256": "62aecffebc3c99e8973ce077c4ae61e08e59174bb43c5e47ea1de8a1fe752678"
+    },
+    "wistell-candidate-off": {
+      "command": [
+        "/mnt/d/codex-verification/stellarcsg-20260913-02/plasma-candidate-off/periodic_optimization_replay_v2",
+        "/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-next-plasma/dev/stellarcsg/qualified/wistell_d_periodic_surfaces.h5",
+        "/surfaces/wistell_d_lcfs",
+        "128"
+      ],
+      "artifacts": [
+        {
+          "path": "/mnt/d/codex-verification/stellarcsg-20260913-02/plasma-candidate-off/periodic_optimization_replay_v2",
+          "resolved_path": "/mnt/d/codex-verification/stellarcsg-20260913-02/plasma-candidate-off/periodic_optimization_replay_v2",
+          "sha256": "50e0eecfd088b7e22f251374e9c2452901feeddd2837c42f13582f31fe302b1a"
+        },
+        {
+          "path": "/mnt/d/codex-verification/stellarcsg-20260913-02/plasma-candidate-off/libstellarcsg_reference.a",
+          "resolved_path": "/mnt/d/codex-verification/stellarcsg-20260913-02/plasma-candidate-off/libstellarcsg_reference.a",
+          "sha256": "dbabcc1c2d02cbc79ab8caaa00bd46ed29f966ea68b037d264d29a2e435e6e21"
+        },
+        {
+          "path": "/mnt/d/codex-verification/stellarcsg-20260913-02/plasma-candidate-off/CMakeCache.txt",
+          "resolved_path": "/mnt/d/codex-verification/stellarcsg-20260913-02/plasma-candidate-off/CMakeCache.txt",
+          "sha256": "6ad10088045f63c3e4bb5d14fceb8b9d2e984f720862eecdeeaff07a41715e80"
+        },
+        {
+          "path": "/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-next-plasma/dev/stellarcsg/src/compiled_periodic_surface.cpp",
+          "resolved_path": "/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-next-plasma/dev/stellarcsg/src/compiled_periodic_surface.cpp",
+          "sha256": "1d0256e959ab8578000520f9a76847336c4dc8938553a1b813a03b3a40596ec4"
+        }
+      ],
+      "declared_source_commit": "1620263e1866e035ca293d270b10a193330dc104",
+      "linked_library_count": 40,
+      "linked_library_manifest_sha256": "62aecffebc3c99e8973ce077c4ae61e08e59174bb43c5e47ea1de8a1fe752678"
+    },
+    "native-ztorus-host-sentinel": {
+      "command": [
+        "/mnt/d/codex-verification/stellarcsg-20260913-01a09/b-openmc/bin/openmc"
+      ],
+      "artifacts": [
+        {
+          "path": "/mnt/d/codex-verification/stellarcsg-20260913-01a09/b-openmc/bin/openmc",
+          "resolved_path": "/mnt/d/codex-verification/stellarcsg-20260913-01a09/b-openmc/bin/openmc",
+          "sha256": "874bd283c398163fbe901d160462be50870b50180b1b5a24e8f3c139cf73595a"
+        }
+      ],
+      "declared_source_commit": null,
+      "linked_library_count": 43,
+      "linked_library_manifest_sha256": "2788632a29ce9cf21afdc9469f3351d2545c01e8b6782b73da8bda85d22d129a"
+    }
+  },
+  "comparisons": [
+    {
+      "case": "helical",
+      "counters": "on",
+      "valid_pairs": 7,
+      "baseline_ns": {
+        "median": 32025.063598632816,
+        "mean": 32125.631744384766,
+        "iqr": 419.80603027344114,
+        "coefficient_of_variation": 0.009869325107778722
+      },
+      "candidate_ns": {
+        "median": 31177.85632324219,
+        "mean": 31259.1304234096,
+        "iqr": 649.9145812988281,
+        "coefficient_of_variation": 0.014128337621818676
+      },
+      "ratio_definition": "baseline ns/query divided by candidate ns/query; >1 means faster candidate",
+      "speed_ratio": 1.0271733651796662,
+      "paired_bootstrap_interval_95": [
+        1.0072710539701826,
+        1.045877754550671
+      ]
+    },
+    {
+      "case": "helical",
+      "counters": "off",
+      "valid_pairs": 7,
+      "baseline_ns": {
+        "median": 31942.481414794922,
+        "mean": 32619.285130092077,
+        "iqr": 500.9865417480469,
+        "coefficient_of_variation": 0.04337206831049301
+      },
+      "candidate_ns": {
+        "median": 30882.126892089847,
+        "mean": 31077.042279924666,
+        "iqr": 585.9667205810547,
+        "coefficient_of_variation": 0.01410517955061613
+      },
+      "ratio_definition": "baseline ns/query divided by candidate ns/query; >1 means faster candidate",
+      "speed_ratio": 1.0343355406319723,
+      "paired_bootstrap_interval_95": [
+        1.0136683586039585,
+        1.0629421523091258
+      ]
+    },
+    {
+      "case": "wistell",
+      "counters": "on",
+      "valid_pairs": 7,
+      "baseline_ns": {
+        "median": 17703.39715576172,
+        "mean": 18133.110094342912,
+        "iqr": 738.4252166748047,
+        "coefficient_of_variation": 0.05408657154849458
+      },
+      "candidate_ns": {
+        "median": 17962.744750976562,
+        "mean": 17962.488481794084,
+        "iqr": 1529.424057006836,
+        "coefficient_of_variation": 0.061702318811637555
+      },
+      "ratio_definition": "baseline ns/query divided by candidate ns/query; >1 means faster candidate",
+      "speed_ratio": 0.9855619172453729,
+      "paired_bootstrap_interval_95": [
+        0.9777301592064005,
+        1.054799466074892
+      ]
+    },
+    {
+      "case": "wistell",
+      "counters": "off",
+      "valid_pairs": 7,
+      "baseline_ns": {
+        "median": 18292.816772460938,
+        "mean": 18537.594233921594,
+        "iqr": 1811.211181640625,
+        "coefficient_of_variation": 0.05973648165980793
+      },
+      "candidate_ns": {
+        "median": 18124.481811523438,
+        "mean": 17860.66339983259,
+        "iqr": 1851.9624633789062,
+        "coefficient_of_variation": 0.05961509204868054
+      },
+      "ratio_definition": "baseline ns/query divided by candidate ns/query; >1 means faster candidate",
+      "speed_ratio": 1.0092877116536636,
+      "paired_bootstrap_interval_95": [
+        0.9479953231578607,
+        1.1704984084384276
+      ]
+    }
+  ],
+  "counter_overhead": [
+    {
+      "case": "helical",
+      "version": "baseline",
+      "ratio": 1.002585340279783,
+      "interval_95": [
+        0.9778899051353341,
+        1.0184427435616439
+      ],
+      "definition": "counter ON ns/query divided by OFF; >1 is overhead"
+    },
+    {
+      "case": "helical",
+      "version": "candidate",
+      "ratio": 1.0095760707216086,
+      "interval_95": [
+        0.9998733219273467,
+        1.0203802567038107
+      ],
+      "definition": "counter ON ns/query divided by OFF; >1 is overhead"
+    },
+    {
+      "case": "wistell",
+      "version": "baseline",
+      "ratio": 0.967778630047475,
+      "interval_95": [
+        0.9007314554835079,
+        1.0283990659223192
+      ],
+      "definition": "counter ON ns/query divided by OFF; >1 is overhead"
+    },
+    {
+      "case": "wistell",
+      "version": "candidate",
+      "ratio": 0.9910763208444369,
+      "interval_95": [
+        0.9421350543289044,
+        1.0808925991635352
+      ],
+      "definition": "counter ON ns/query divided by OFF; >1 is overhead"
+    }
+  ],
+  "measured_ns_per_query": {
+    "helical-baseline-on": [
+      32215.647644042972,
+      31950.406951904293,
+      31661.494232177734,
+      31905.869598388672,
+      32480.24096679688,
+      32640.699218749996,
+      32025.063598632816
+    ],
+    "helical-baseline-off": [
+      32173.689025878906,
+      31892.06381225586,
+      31906.913574218754,
+      36024.253662109375,
+      31768.332977294926,
+      31942.481414794922,
+      32627.261444091797
+    ],
+    "helical-candidate-on": [
+      31177.85632324219,
+      30736.792999267574,
+      31320.813964843746,
+      30759.388275146484,
+      31793.88851928711,
+      31055.485046386715,
+      31969.687835693363
+    ],
+    "helical-candidate-off": [
+      31168.426391601562,
+      30763.28530883789,
+      30695.23715209961,
+      30643.58013916016,
+      31924.61056518555,
+      30882.126892089847,
+      31462.029510498047
+    ],
+    "wistell-baseline-on": [
+      18339.955322265625,
+      17222.226684570312,
+      17703.39715576172,
+      17562.71728515625,
+      17520.896026611328,
+      18220.508422851562,
+      20362.069763183594
+    ],
+    "wistell-baseline-off": [
+      19451.85317993164,
+      18292.816772460938,
+      17144.666046142578,
+      17214.52084350586,
+      20266.03466796875,
+      19389.179077148438,
+      18004.08905029297
+    ],
+    "wistell-candidate-on": [
+      18568.12612915039,
+      17228.66586303711,
+      16654.718536376953,
+      17962.744750976562,
+      16783.66146850586,
+      18503.04931640625,
+      20036.45330810547
+    ],
+    "wistell-candidate-off": [
+      18991.748809814453,
+      18286.832427978516,
+      16956.22006225586,
+      16610.779388427734,
+      16618.436248779297,
+      18124.481811523438,
+      19436.145050048828
+    ]
+  },
+  "separate_diagnostic_tails_ns": {
+    "helical-baseline-on": {
+      "min": [
+        1300,
+        1300,
+        1300,
+        1300,
+        1300,
+        1300,
+        1300
+      ],
+      "p95": [
+        77300,
+        74000,
+        74900,
+        74200,
+        75100,
+        75000,
+        74900
+      ],
+      "max": [
+        96300,
+        94800,
+        103800,
+        94100,
+        134900,
+        99100,
+        107600
+      ]
+    },
+    "helical-baseline-off": {
+      "min": [
+        1200,
+        1100,
+        1100,
+        1200,
+        1100,
+        1100,
+        1200
+      ],
+      "p95": [
+        75300,
+        74000,
+        73900,
+        75900,
+        75000,
+        73500,
+        78100
+      ],
+      "max": [
+        127600,
+        154400,
+        96100,
+        98900,
+        93800,
+        94300,
+        126300
+      ]
+    },
+    "helical-candidate-on": {
+      "min": [
+        1200,
+        1200,
+        1300,
+        1300,
+        1300,
+        1200,
+        1500
+      ],
+      "p95": [
+        73800,
+        73200,
+        73800,
+        72100,
+        73300,
+        72900,
+        76000
+      ],
+      "max": [
+        95300,
+        95200,
+        105800,
+        106600,
+        111600,
+        98000,
+        127400
+      ]
+    },
+    "helical-candidate-off": {
+      "min": [
+        1700,
+        1100,
+        1200,
+        1100,
+        1200,
+        1100,
+        1300
+      ],
+      "p95": [
+        73400,
+        74900,
+        75100,
+        71700,
+        72000,
+        72600,
+        74700
+      ],
+      "max": [
+        101200,
+        95900,
+        92400,
+        125600,
+        94100,
+        92300,
+        93400
+      ]
+    },
+    "wistell-baseline-on": {
+      "min": [
+        1900,
+        1500,
+        1500,
+        1400,
+        1800,
+        2100,
+        2100
+      ],
+      "p95": [
+        81900,
+        73800,
+        74500,
+        74500,
+        82200,
+        90000,
+        85600
+      ],
+      "max": [
+        110000,
+        101700,
+        102600,
+        104300,
+        114500,
+        131700,
+        152900
+      ]
+    },
+    "wistell-baseline-off": {
+      "min": [
+        1900,
+        2300,
+        1400,
+        1700,
+        2000,
+        2200,
+        1600
+      ],
+      "p95": [
+        82700,
+        81900,
+        73400,
+        76200,
+        84800,
+        87600,
+        77200
+      ],
+      "max": [
+        125300,
+        127900,
+        102800,
+        105500,
+        134500,
+        122900,
+        107400
+      ]
+    },
+    "wistell-candidate-on": {
+      "min": [
+        2700,
+        1800,
+        1500,
+        1800,
+        1500,
+        1900,
+        2100
+      ],
+      "p95": [
+        121200,
+        78100,
+        74700,
+        77700,
+        74400,
+        78400,
+        94400
+      ],
+      "max": [
+        1517200,
+        108500,
+        103500,
+        106100,
+        117500,
+        121800,
+        146700
+      ]
+    },
+    "wistell-candidate-off": {
+      "min": [
+        2000,
+        1600,
+        1400,
+        1300,
+        1300,
+        1600,
+        2200
+      ],
+      "p95": [
+        83400,
+        81700,
+        75400,
+        73200,
+        73500,
+        78300,
+        108300
+      ],
+      "max": [
+        125100,
+        106400,
+        106600,
+        123000,
+        101500,
+        105600,
+        159600
+      ]
+    }
+  },
+  "sentinel": {
+    "median": 185377.0,
+    "mean": 179353.42857142858,
+    "iqr": 8118.0,
+    "coefficient_of_variation": 0.09913255250160086
+  },
+  "interpretation": {
+    "helical_off": "3.4% faster in this replay; 95% paired bootstrap interval above 1",
+    "wistell_off": "inconclusive; five inherited unresolved oracle rays remain BLOCKED"
+  },
+  "limitations": [
+    "Seven repetitions: continuation ablation, not decisive or transport qualification.",
+    "Counter-overhead ratios include timing noise; values below 1 do not establish negative instrumentation cost.",
+    "Tails are single 256-query diagnostic passes, outside main timed loops; no tail confidence claim.",
+    "Native sentinel CV is 9.9%; first measured sentinel is slower. Retained without selective exclusion.",
+    "Nine methods rotated over seven measured rounds: partial position balance, not a full nine-round cycle.",
+    "Uncontrolled desktop activity and cache effects remain possible.",
+    "Hashes bind executables and runtime artifacts; source SHA association relies on coordinator build receipts.",
+    "No native-torus or Embree performance ratio is inferred."
+  ]
+}
