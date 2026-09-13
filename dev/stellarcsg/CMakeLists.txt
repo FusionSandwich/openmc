@@ -26,6 +26,12 @@ add_library(stellarcsg_reference STATIC
 )
 add_library(StellarCSG::reference ALIAS stellarcsg_reference)
 target_compile_features(stellarcsg_reference PUBLIC cxx_std_17)
+find_path(STELLARCSG_GMP_INCLUDE_DIR gmpxx.h REQUIRED)
+find_library(STELLARCSG_GMPXX_LIBRARY gmpxx REQUIRED)
+find_library(STELLARCSG_GMP_LIBRARY gmp REQUIRED)
+target_include_directories(stellarcsg_reference PRIVATE ${STELLARCSG_GMP_INCLUDE_DIR})
+target_link_libraries(stellarcsg_reference PUBLIC
+  ${STELLARCSG_GMPXX_LIBRARY} ${STELLARCSG_GMP_LIBRARY})
 if(STELLARCSG_ENABLE_PERFORMANCE_COUNTERS)
   target_compile_definitions(stellarcsg_reference
     PUBLIC STELLARCSG_ENABLE_PERFORMANCE_COUNTERS)
@@ -74,6 +80,9 @@ endif()
 
 if(STELLARCSG_BUILD_TESTS)
   enable_testing()
+  add_executable(stellarcsg_swept_completeness_tests tests/test_swept_completeness.cpp)
+  target_link_libraries(stellarcsg_swept_completeness_tests PRIVATE StellarCSG::reference)
+  add_test(NAME stellarcsg_swept_completeness_tests COMMAND stellarcsg_swept_completeness_tests)
 
   add_executable(stellarcsg_reference_tests
     tests/test_reference_kernel.cpp)
