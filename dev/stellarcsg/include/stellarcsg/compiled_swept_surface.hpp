@@ -14,6 +14,8 @@
 
 namespace stellarcsg {
 
+struct CircularTubeCompletenessData;
+
 struct SweptSplineSurfaceData {
   int coil_id {0};
   std::string content_id {};
@@ -100,6 +102,7 @@ public:
   }
 
 private:
+  std::shared_ptr<const CircularTubeCompletenessData> circular_completeness_;
   SweptSplineSurfaceData data_;
   UniformPeriodicCubicSpline center_x_;
   UniformPeriodicCubicSpline center_y_;

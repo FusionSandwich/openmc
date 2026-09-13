@@ -552,6 +552,12 @@ target_include_directories(libopenmc
 if(OPENMC_ENABLE_EXPERIMENTAL_STELLARCSG)
   target_include_directories(libopenmc PUBLIC
     $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/dev/stellarcsg/include>)
+  find_path(STELLARCSG_GMP_INCLUDE_DIR gmpxx.h REQUIRED)
+  find_library(STELLARCSG_GMPXX_LIBRARY gmpxx REQUIRED)
+  find_library(STELLARCSG_GMP_LIBRARY gmp REQUIRED)
+  target_include_directories(libopenmc PRIVATE ${STELLARCSG_GMP_INCLUDE_DIR})
+  target_link_libraries(libopenmc
+    ${STELLARCSG_GMPXX_LIBRARY} ${STELLARCSG_GMP_LIBRARY})
   target_compile_definitions(libopenmc
     PRIVATE OPENMC_EXPERIMENTAL_STELLARCSG
     PUBLIC STELLARCSG_HAS_HDF5)

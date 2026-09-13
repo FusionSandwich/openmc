@@ -2750,10 +2750,11 @@ class SweptSplineSurface(Surface):
 
     A collection uses ``dataset_prefix``, ``dataset_start`` and
     ``dataset_count`` to load groups named ``prefix + format(index, '03d')``.
-    It represents the union of those coils as one logical surface, with shared
-    C++ acceleration. Separate coil materials and cell/tally identities are
-    not provided by a collection. Each payload retains its own content ID;
-    ``content_id`` must be omitted for a collection.
+    With ``member_id`` it represents that single coil while sharing C++
+    acceleration with other members, so distinct cells/materials/tallies can
+    be assigned. Without ``member_id`` it represents the entire union.
+    Each group's coil ID must match its declared dataset suffix. Each payload
+    retains its own content ID; omit ``content_id`` for a collection.
     """
 
     _type = 'swept-spline'
@@ -2761,6 +2762,7 @@ class SweptSplineSurface(Surface):
 
     def __init__(self, data_file, dataset=None, content_id=None, solver='auto',
                  *, dataset_prefix=None, dataset_start=0, dataset_count=None,
+                 member_id=None,
                  **kwargs):
         super().__init__(**kwargs)
         check_type('data_file', data_file, (str, Path))
@@ -2801,10 +2803,21 @@ class SweptSplineSurface(Surface):
         self.dataset_prefix = dataset_prefix
         self.dataset_start = int(dataset_start)
         self.dataset_count = int(dataset_count) if collection else None
+        if member_id is not None:
+            if (not collection or isinstance(member_id, (bool, np.bool_))
+                    or not isinstance(member_id, (int, np.integer))
+                    or not dataset_start <= member_id < dataset_start + dataset_count):
+                raise ValueError('member_id must select an ID in the declared collection')
+        self.member_id = int(member_id) if member_id is not None else None
 
     @property
     def is_collection(self):
-        """Whether this surface is a union using shared coil acceleration."""
+        """Whether this surface uses a shared coil collection.
+
+        With ``member_id`` it denotes only that coil, preserving separate cell
+        and material attribution while sharing immutable acceleration data.
+        Without it the surface denotes the whole union.
+        """
         return self.dataset_prefix is not None
 
     def _get_base_coeffs(self):
@@ -2814,7 +2827,8 @@ class SweptSplineSurface(Surface):
         # This compares declarations, not physical equivalence of differently
         # compiled payloads. File contents are verified by the C++ reader.
         return (self.data_file, self.dataset, self.content_id, self.solver,
-                self.dataset_prefix, self.dataset_start, self.dataset_count)
+                self.dataset_prefix, self.dataset_start, self.dataset_count,
+                self.member_id)
 
     def is_equal(self, other):
         """Compare declared single-coil or collection payload definitions."""
@@ -2835,13 +2849,17 @@ class SweptSplineSurface(Surface):
         lower = np.full(3, np.inf)
         upper = np.full(3, -np.inf)
         if self.is_collection:
-            datasets = (f'{self.dataset_prefix}{index:03d}' for index in range(
-                self.dataset_start, self.dataset_start + self.dataset_count))
+            indices = ([self.member_id] if self.member_id is not None else
+                       range(self.dataset_start, self.dataset_start + self.dataset_count))
+            datasets = (f'{self.dataset_prefix}{index:03d}' for index in indices)
         else:
             datasets = (self.dataset,)
         with h5py.File(self.data_file, 'r') as h5:
             for dataset in datasets:
                 group = h5[dataset]
+                if (self.member_id is not None
+                        and group.attrs.get('coil_id') != self.member_id):
+                    raise ValueError('member coil_id must match its declared dataset suffix')
                 if group.attrs['units'] not in ('cm', b'cm'):
                     raise ValueError("swept-spline payload units must be 'cm'")
                 centerline = group['centerline_coefficients'][...]
@@ -2871,6 +2889,8 @@ class SweptSplineSurface(Surface):
             element.set('dataset_prefix', self.dataset_prefix)
             element.set('dataset_start', str(self.dataset_start))
             element.set('dataset_count', str(self.dataset_count))
+            if self.member_id is not None:
+                element.set('member_id', str(self.member_id))
         else:
             element.set('dataset', self.dataset)
             element.set('content_id', self.content_id)
@@ -2890,6 +2910,8 @@ class SweptSplineSurface(Surface):
             dataset_start=int(get_text(elem, 'dataset_start', '0')),
             dataset_count=(int(get_text(elem, 'dataset_count'))
                            if get_text(elem, 'dataset_count') is not None else None),
+            member_id=(int(get_text(elem, 'member_id'))
+                       if get_text(elem, 'member_id') is not None else None),
             solver=get_text(elem, 'solver', 'auto'),
             surface_id=int(get_text(elem, 'id')),
             boundary_type=get_text(elem, 'boundary', 'transmission'),
@@ -2911,7 +2933,9 @@ class SweptSplineSurface(Surface):
                    dataset_start=(group['dataset_start'][()]
                                   if 'dataset_start' in group else 0),
                    dataset_count=(group['dataset_count'][()]
-                                  if 'dataset_count' in group else None), **kwargs)
+                                  if 'dataset_count' in group else None),
+                   member_id=(group['member_id'][()]
+                              if 'member_id' in group else None), **kwargs)
 
 
 class Halfspace(Region):

@@ -59,9 +59,13 @@ CompiledSweptSplineSurfaceSet::CompiledSweptSplineSurfaceSet(
   if (coils.empty()) {
     throw std::invalid_argument("Swept-spline surface set cannot be empty");
   }
+  if (coils.size() > std::numeric_limits<std::uint32_t>::max() / 2)
+    throw std::invalid_argument("Shared swept set exceeds uint32 BVH capacity");
   coils_.reserve(coils.size());
   coil_ids_.reserve(coils.size());
   for (auto& data : coils) {
+    if (std::find(coil_ids_.begin(), coil_ids_.end(), data.coil_id) != coil_ids_.end())
+      throw std::invalid_argument("Shared swept set contains duplicate coil IDs");
     coil_ids_.push_back(data.coil_id);
     coils_.push_back(
       std::make_unique<CompiledSweptSplineSurface>(std::move(data)));
@@ -173,62 +177,94 @@ Vec3 CompiledSweptSplineSurfaceSet::normal(const Vec3& point) const
   return coils_[best_coil]->normal(point);
 }
 
+// Outward rounding of each slab arithmetic operation; only exact zero is
+// parallel. Near-zero directions cannot justify discarding a distant hit.
+static bool ray_may_intersect(
+  const BoundingBox& box, const Vec3& origin, const Vec3& direction)
+{
+  const double infinity = std::numeric_limits<double>::infinity();
+  double enter = 0.0;
+  double exit = infinity;
+  for (int i = 0; i != 3; ++i) {
+    const double o = i == 0 ? origin.x : i == 1 ? origin.y : origin.z;
+    const double d = i == 0 ? direction.x : i == 1 ? direction.y : direction.z;
+    const double lo = i == 0 ? box.lower.x : i == 1 ? box.lower.y : box.lower.z;
+    const double hi = i == 0 ? box.upper.x : i == 1 ? box.upper.y : box.upper.z;
+    if (d == 0.0) {
+      if (o < lo || o > hi) return false;
+      continue;
+    }
+    double a = std::nextafter(lo - o, -infinity);
+    double b = std::nextafter(hi - o, infinity);
+    if (d < 0.0) std::swap(a, b);
+    a = std::nextafter(a / d, -infinity);
+    b = std::nextafter(b / d, infinity);
+    enter = std::max(enter, a);
+    exit = std::min(exit, b);
+    if (enter > exit) return false;
+  }
+  return true;
+}
+
+std::size_t CompiledSweptSplineSurfaceSet::member_index(int coil_id) const
+{
+  const auto found = std::find(coil_ids_.begin(), coil_ids_.end(), coil_id);
+  if (found == coil_ids_.end())
+    throw std::invalid_argument("Requested coil ID is absent from shared set");
+  return static_cast<std::size_t>(found - coil_ids_.begin());
+}
+
+void CompiledSweptSplineSurfaceSet::distance_members(const Vec3& origin,
+  const Vec3& direction, bool coincident, const RootSearchOptions& options,
+  std::vector<DistanceResult>& results) const
+{
+  if (!std::isfinite(origin.x) || !std::isfinite(origin.y)
+      || !std::isfinite(origin.z) || !std::isfinite(direction.x)
+      || !std::isfinite(direction.y) || !std::isfinite(direction.z)
+      || !(norm(direction) > 0.0) || !std::isfinite(norm(direction)))
+    throw std::invalid_argument("Shared swept ray must be finite and nonzero");
+  results.assign(coils_.size(), DistanceResult {});
+  std::array<std::uint32_t, 64> stack {};
+  std::size_t size = 0;
+  stack[size++] = 0U;
+  while (size != 0) {
+    const auto& node = bvh_[stack[--size]];
+    add_performance_counter(PerformanceCounter::candidate_bvh_nodes);
+    if (!ray_may_intersect(node.bbox, origin, direction)) continue;
+    if (node.leaf()) {
+      for (std::uint32_t local = 0; local < node.count; ++local) {
+        const auto index = indices_[node.first + local];
+        if (!ray_may_intersect(coils_[index]->bounding_box(), origin, direction))
+          continue;
+        // Every potentially intersected member is resolved. Exceptions and
+        // unresolved diagnostics must reach the caller; never publish a cache
+        // containing partial results after a failed member solve.
+        results[index] = coils_[index]->distance(origin, direction, coincident, options);
+        if (results[index].root_diagnostics.unresolved_intervals != 0)
+          throw std::runtime_error("Unresolved member in shared swept query");
+      }
+    } else {
+      // Median uint32 tree depth is bounded, but never silently truncate.
+      if (size + 2 > stack.size())
+        throw std::runtime_error("Shared swept traversal capacity exhausted");
+      stack[size++] = node.left;
+      stack[size++] = node.right;
+    }
+  }
+}
+
 SweptCoilSetDistanceResult CompiledSweptSplineSurfaceSet::distance(
   const Vec3& origin, const Vec3& direction, bool coincident,
   const RootSearchOptions& options) const
 {
-  const double direction_norm = norm(direction);
-  if (!(direction_norm > 0.0) || !std::isfinite(direction_norm)) {
-    throw std::invalid_argument("Ray direction must be finite and non-zero");
-  }
-  const Vec3 ray_direction = direction / direction_norm;
-  const auto root_interval = bounds_.ray_interval(origin, ray_direction);
-  if (!root_interval || root_interval->exit < 0.0) return {};
-  struct StackEntry { std::uint32_t node; double near_t; };
-  std::array<StackEntry, 64> stack {};
-  std::size_t stack_size = 0;
-  stack[stack_size++] = {0U, root_interval->enter};
-  double best_t = std::numeric_limits<double>::infinity();
+  std::vector<DistanceResult> members;
+  distance_members(origin, direction, coincident, options, members);
   SweptCoilSetDistanceResult result;
-  while (stack_size != 0) {
-    const auto entry = stack[--stack_size];
-    if (entry.near_t >= best_t) continue;
-    const auto& node = bvh_[entry.node];
-    add_performance_counter(PerformanceCounter::candidate_bvh_nodes);
-    if (node.leaf()) {
-      for (std::uint32_t local = 0; local < node.count; ++local) {
-        const auto coil_index = indices_[node.first + local];
-        const auto interval = coils_[coil_index]->bounding_box().ray_interval(
-          origin, ray_direction);
-        if (!interval || interval->exit < 0.0 || interval->enter >= best_t)
-          continue;
-        const auto candidate = coils_[coil_index]->distance(
-          origin, ray_direction, coincident, options);
-        if (candidate.found && candidate.distance < best_t) {
-          best_t = candidate.distance;
-          result.root = candidate;
-          result.coil_id = coil_ids_[coil_index];
-          result.coil_index = coil_index;
-        }
-      }
-      continue;
-    }
-    const auto left = bvh_[node.left].bbox.ray_interval(origin, ray_direction);
-    const auto right = bvh_[node.right].bbox.ray_interval(origin, ray_direction);
-    const bool use_left = left && left->exit >= 0.0 && left->enter < best_t;
-    const bool use_right = right && right->exit >= 0.0 && right->enter < best_t;
-    if (use_left && use_right) {
-      const bool left_first = left->enter <= right->enter;
-      stack[stack_size++] = left_first
-        ? StackEntry {node.right, right->enter}
-        : StackEntry {node.left, left->enter};
-      stack[stack_size++] = left_first
-        ? StackEntry {node.left, left->enter}
-        : StackEntry {node.right, right->enter};
-    } else if (use_left || use_right) {
-      stack[stack_size++] = use_left
-        ? StackEntry {node.left, left->enter}
-        : StackEntry {node.right, right->enter};
+  for (std::size_t i = 0; i != members.size(); ++i) {
+    if (members[i].found && members[i].distance < result.root.distance) {
+      result.root = members[i];
+      result.coil_id = coil_ids_[i];
+      result.coil_index = i;
     }
   }
   return result;

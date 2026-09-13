@@ -31,6 +31,14 @@ public:
     std::vector<SweptSplineSurfaceData> coils);
 
   [[nodiscard]] double evaluate(const Vec3& point) const;
+  [[nodiscard]] const CompiledSweptSplineSurface& member(std::size_t index) const
+  {
+    return *coils_.at(index);
+  }
+  [[nodiscard]] std::size_t member_index(int coil_id) const;
+  void distance_members(const Vec3& origin, const Vec3& direction,
+    bool coincident, const RootSearchOptions& options,
+    std::vector<DistanceResult>& results) const;
   [[nodiscard]] Vec3 normal(const Vec3& point) const;
   [[nodiscard]] SweptCoilSetDistanceResult distance(const Vec3& origin,
     const Vec3& direction, bool coincident,

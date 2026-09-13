@@ -10,6 +10,8 @@
 
 namespace openmc {
 
+struct SweptSharedContext;
+
 class SurfaceSweptSpline final : public Surface {
 public:
   explicit SurfaceSweptSpline(pugi::xml_node surf_node);
@@ -33,11 +35,14 @@ private:
   std::string solver_ {"auto"};
   int dataset_start_ {0};
   int dataset_count_ {0};
+  int member_id_ {-1};
+  std::size_t member_index_ {0};
   bool use_native_exact_torus_ {false};
   stellarcsg::ExactCircularTorusParameters exact_torus_ {};
   stellarcsg::RootSearchOptions root_options_ {};
   std::unique_ptr<stellarcsg::CompiledSweptSplineSurface> surface_;
-  std::unique_ptr<stellarcsg::CompiledSweptSplineSurfaceSet> surface_set_;
+  std::shared_ptr<const stellarcsg::CompiledSweptSplineSurfaceSet> surface_set_;
+  std::shared_ptr<const SweptSharedContext> shared_context_;
 };
 
 } // namespace openmc
