@@ -2,6 +2,7 @@
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "https://openmc.org/stellarcsg/schema/dual_track_result.schema.json",
   "title": "StellarCSG neutral dual-track benchmark result",
+  "$comment": "Qualification schema v1 retained for historical records. The neutral-contract/v2 command harness emits a separate timing envelope, not this qualification record. Schema validity alone does not establish correctness, matched identity, sufficient valid repetitions, or any gate PASS.",
   "type": "object",
   "additionalProperties": false,
   "required": [

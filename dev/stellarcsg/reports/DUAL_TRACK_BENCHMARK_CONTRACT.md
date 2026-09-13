@@ -1,5 +1,9 @@
 # StellarCSG neutral dual-track benchmark contract
 
+Contract revision: `stellarcsg.neutral-contract/v2` (2026-09-13).
+The v1 records remain immutable. This amendment clarifies identity matching and
+retention; it does not retroactively qualify old measurements.
+
 ## Scope and immutability
 
 This contract belongs to the neutral branch. It defines evidence accepted for
@@ -38,14 +42,37 @@ constant. Methods run in randomized or balanced order after at least one
 warm-up. A qualification block has at least seven measured repetitions;
 decisive gates use 11--21. All repetitions are retained.
 
-Each block reruns built-in `ZTorus` as a host-performance sentinel. Results
-from differing source hashes, compiled hashes, H5M files, binaries, library
-hashes, affinities, thread counts, or tolerances are unmatched and cannot
-support an A/B ratio.
+Each block reruns built-in `ZTorus` as a host-performance sentinel. Shared source
+geometry, source bank, settings (including materials, physics, tallies and
+tolerances), hardware, affinity and thread count must match across methods.
+Each method records its own compiled geometry, executable and linked-library
+hashes; these are expected to differ between methods. Within each declared
+method and repetition block these identities must remain unchanged, including
+warmups. Any unexplained drift invalidates the block. Ordinary DAGMC and Double
+Down/Embree additionally require identical H5M bytes. An equivalent compiled
+payload across different CSG methods is allowed but is not required.
+
+The command harness verifies declared artifact hashes immediately before and
+after each invocation. Linked-library metadata includes local paths and hashes
+for these checks. The binary artifact must resolve to the actual command
+executable. Interpreter-driven commands declare the interpreter as binary and
+the invoked script as an additional artifact. Hashing and durable journal
+writes are outside the command's
+active transport interval; record them as harness overhead, and account for
+possible cache effects when interpreting timing. A declared affinity or method
+name is not proof of runtime binding: the campaign owner must independently
+verify actual executable linkage, source snapshot, affinity and method dispatch.
 
 Report the median, mean, IQR, coefficient of variation, and a paired/bootstrap
 95% interval for the method/sentinel or method/reference ratio. Initialization,
 active transport, and total wall time remain separate.
+
+Pair samples by scheduled repetition index, taking the ratio of medians and
+resampling complete pairs with replacement. Matching sources does not imply
+identical geometry-dependent particle trajectories. Record the numerator and
+denominator explicitly. A comparison requires at least seven valid complete
+pairs; any invalid attempt still makes the original block ineligible. Retain it
+and start a new block rather than silently replacing failed repetitions.
 
 ## Required performance observations
 
@@ -84,12 +111,41 @@ tested case regardless of speed.
 | Shaped axisymmetric | ratio >= 0.50; zero wrong roots |
 | Synthetic helical | ratio >= 0.25 and faster than matched fine Double Down/Embree at common error |
 | WISTELL-D plasma | faster than matched fine Double Down/Embree; zero lost particles; accuracy and closure pass |
-| Representative non-planar coil | ratio >= 0.50 and faster than matched fine Double Down/Embree |
-| Complete 48-coil set | ratio >= 0.50, sublinear set scaling, and faster than matched fine Double Down/Embree |
+| Representative non-planar coil | coil throughput / matched fine Double Down/Embree throughput >= 0.50, and separately > 1.0 against that reference |
+| Complete 48-coil set | 48-coil throughput / matched fine Double Down/Embree throughput >= 0.50, sublinear set scaling, and separately > 1.0 against that reference |
 | Blanket/combined | positive-clearance nonuniform blanket; no intersections/lost particles; repeated medians and closure |
 
 Gate states are exactly `PASS`, `FAIL`, `BLOCKED`, or `NOT_RUN`. A failed
 track remains in the comparison.
+
+The two coil denominators above reflect the user's explicit clarification on
+2026-09-13. The separate Embree-advantage requirement remains in force even
+though it is stronger than the 0.50 continuation threshold. The ZTorus host
+sentinel is not the denominator for those coil gates. Remaining unspecified
+denominators (forced-general, shaped axisymmetric and synthetic helical), the
+quantitative meaning of sublinear set scaling, and unstated accuracy thresholds
+must be frozen explicitly before qualification. Historical forced-general
+results used ZTorus; this is provenance, not a definition of the other gates.
+
+## Durable command evidence
+
+`dual_track_harness.py` writes a `stellarcsg.neutral-command-campaign/v2`
+envelope and a neighboring exclusive-create `*.attempts.jsonl` journal. The
+journal retains the campaign declaration, each attempt's start, and each
+completed warmup/measured attempt including stdout, stderr, return status and
+invalid reasons. Flush and filesystem synchronization occur after each record.
+An unmatched start after interruption is unresolved evidence, never a pass.
+Process timeouts default to 300 seconds and may be declared per method. No
+existing output or journal is overwritten; use a new output path for a retry.
+
+The envelope is timing evidence, not a
+`stellarcsg.dual-track-result/v1` qualification record. It therefore does not
+claim to validate against the qualification schema. It emits `NOT_RUN` for gate
+status when command checks pass and `BLOCKED` when any attempt is invalid.
+Separate geometry eligibility, retained adversarial seeds, accurate method
+matching, sentinel validation and independent gate evaluation are still
+required before a qualification result can be produced. Programmatic calls
+without `journal_path` are diagnostic only and declare a null durable journal.
 
 ## Model campaign staging
 
