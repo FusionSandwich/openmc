@@ -58,6 +58,7 @@ class CoilMember:
     crosses_upper_seam_candidate: bool
     retained_span_count: int
     diagnostic_source_anchor_cm: tuple[float, float, float]
+    coefficient_hull_radius_cm: float
 
     def as_dict(self) -> dict[str, object]:
         return {
@@ -77,6 +78,7 @@ class CoilMember:
                 "retained_span_count": self.retained_span_count,
             },
             "diagnostic_source_anchor_cm": list(self.diagnostic_source_anchor_cm),
+            "coefficient_hull_radius_cm": self.coefficient_hull_radius_cm,
         }
 
 
@@ -163,7 +165,7 @@ class OnePeriodModelPlan:
         write_surface(surface_file, self.plasma)
         plasma_path, payload_path = surface_file.resolve(), self.swept_coils_file.resolve()
         _write_xml(output / "materials.xml", _materials_xml(self.members))
-        _write_xml(output / "geometry.xml", _geometry_xml(self.members, plasma_path, payload_path, self.plasma.content_id))
+        _write_xml(output / "geometry.xml", _geometry_xml(self.members, self.plasma, plasma_path, payload_path))
         _write_xml(output / "settings.xml", _settings_xml(self.members))
         _write_xml(output / "tallies.xml", _tallies_xml(self.members))
         receipt = {"status": "DIAGNOSTIC_CLIPPED_NATIVE_SWEPT_MODEL_NOT_TRANSPORT_QUALIFIED",
@@ -197,7 +199,7 @@ def _read_payload_members(path: Path, manifest: dict[str, object]) -> tuple[Coil
             centerline = np.asarray(group["centerline_coefficients"], dtype=float)
             if units != "cm" or not content_id or coil_id <= 0:
                 raise ValueError(f"payload member lacks cm units, content ID, or coil ID: {dataset}")
-            if major.size == 0 or minor.size == 0 or not np.isfinite(major).all() or not np.isfinite(minor).all() or np.min(major) <= 0 or np.min(minor) <= 0:
+            if major.size == 0 or minor.size == 0 or major.shape != minor.shape or not np.isfinite(major).all() or not np.isfinite(minor).all() or np.min(major) <= 0 or np.min(minor) <= 0:
                 raise ValueError(f"payload member has invalid section coefficients: {dataset}")
             if coil_id != int(record["coil_id"]):
                 raise ValueError(f"manifest/payload coil ID mismatch for {dataset}")
@@ -216,6 +218,7 @@ def _read_payload_members(path: Path, manifest: dict[str, object]) -> tuple[Coil
                 crosses_upper_seam_candidate=bool(record.get("crosses_90_plane_candidate")),
                 retained_span_count=int(record.get("retained_span_count", 0)),
                 diagnostic_source_anchor_cm=tuple(float(value) for value in anchor),
+                coefficient_hull_radius_cm=float(np.max(np.linalg.norm(centerline, axis=1)) + radius),
             ))
     return tuple(members)
 
@@ -234,13 +237,20 @@ def _materials_xml(members: tuple[CoilMember, ...]) -> ET.Element:
     return root
 
 
-def _geometry_xml(members: tuple[CoilMember, ...], plasma_file: Path, coil_file: Path, plasma_content_id: str) -> ET.Element:
+def _geometry_xml(members: tuple[CoilMember, ...], plasma: PeriodicRadialSurfaceData, plasma_file: Path, coil_file: Path) -> ET.Element:
     root = ET.Element("geometry")
     ET.SubElement(root, "surface", id="1", type="periodic-spline", name="plasma_boundary",
-                  data_file=str(plasma_file), dataset="/surfaces/plasma_boundary", content_id=plasma_content_id,
-                  solver="reference", units="cm")
+                  data_file=str(plasma_file), dataset="/surfaces/plasma_boundary", content_id=str(plasma.content_id),
+                  solver="layered", units="cm")
     ET.SubElement(root, "surface", id="2", type="x-plane", name="sector_x0_vacuum", coeffs="0", boundary="vacuum")
     ET.SubElement(root, "surface", id="3", type="y-plane", name="sector_y0_vacuum", coeffs="0", boundary="vacuum")
+    plasma_bound = math.hypot(
+        float(np.max(np.abs(plasma.axis_r_coefficients)) + np.max(plasma.radius_coefficients)),
+        float(np.max(np.abs(plasma.axis_z_coefficients)) + np.max(plasma.radius_coefficients)),
+    )
+    outer_radius = max(plasma_bound, *(member.coefficient_hull_radius_cm for member in members)) + 1.0
+    ET.SubElement(root, "surface", id="4", type="sphere", name="diagnostic_bounding_world_vacuum",
+                  coeffs=f"0 0 0 {outer_radius:.12g}", boundary="vacuum")
     coil_ids: list[str] = []
     for member in members:
         surface_id = 10000 + member.coil_id
@@ -250,11 +260,11 @@ def _geometry_xml(members: tuple[CoilMember, ...], plasma_file: Path, coil_file:
     outside_all = " ".join(coil_ids)
     for member in members:
         surface_id = str(10000 + member.coil_id)
-        region = " ".join([f"-{surface_id}", "2", "3"])
+        region = " ".join([f"-{surface_id}", "2", "3", "-4"])
         ET.SubElement(root, "cell", id=str(2000 + member.coil_id), name=member.cell_id,
                       material=str(1000 + member.coil_id), region=region)
-    ET.SubElement(root, "cell", id="10", name="plasma_diagnostic_void", region=" ".join(["-1", "2", "3", outside_all]))
-    ET.SubElement(root, "cell", id="11", name="sector_exterior_diagnostic_void", region=" ".join(["1", "2", "3", outside_all]))
+    ET.SubElement(root, "cell", id="10", name="plasma_diagnostic_void", material="void", region=" ".join(["-1", "2", "3", "-4", outside_all]))
+    ET.SubElement(root, "cell", id="11", name="sector_exterior_diagnostic_void", material="void", region=" ".join(["1", "2", "3", "-4", outside_all]))
     return root
 
 
@@ -263,23 +273,26 @@ def _settings_xml(members: tuple[CoilMember, ...]) -> ET.Element:
     ET.SubElement(root, "run_mode").text = "fixed source"
     ET.SubElement(root, "particles").text = "100"
     ET.SubElement(root, "batches").text = "1"
-    anchor = np.asarray(members[len(members) // 2].diagnostic_source_anchor_cm, dtype=float)
-    # A small box about one retained centerline point produces distributed,
-    # hit-rich starts away from the origin axis and sector seams.
-    padding = np.full(3, 0.05)
-    source = ET.SubElement(root, "source", particle="neutron")
-    space = ET.SubElement(source, "space", type="box")
-    ET.SubElement(space, "parameters").text = " ".join(f"{value:.12g}" for value in np.r_[anchor - padding, anchor + padding])
-    ET.SubElement(source, "angle", type="isotropic")
-    energy = ET.SubElement(source, "energy", type="discrete")
-    ET.SubElement(energy, "parameters").text = "14000000.0"
+    for member in members:
+        anchor = np.asarray(member.diagnostic_source_anchor_cm, dtype=float)
+        # Small distributed source boxes are centered on actual retained
+        # centerline coefficients away from the origin axis and sector seams.
+        padding = np.full(3, 0.05)
+        source = ET.SubElement(root, "source", particle="neutron", strength=f"{1.0 / len(members):.12g}")
+        space = ET.SubElement(source, "space", type="box")
+        ET.SubElement(space, "parameters").text = " ".join(f"{value:.12g}" for value in np.r_[anchor - padding, anchor + padding])
+        ET.SubElement(source, "angle", type="isotropic")
+        energy = ET.SubElement(source, "energy", type="discrete")
+        ET.SubElement(energy, "parameters").text = "14000000 1"
     return root
 
 
 def _tallies_xml(members: tuple[CoilMember, ...]) -> ET.Element:
     root = ET.Element("tallies")
+    filter_element = ET.SubElement(root, "filter", id="1", type="cell")
+    ET.SubElement(filter_element, "bins").text = " ".join(["10", *[str(2000 + member.coil_id) for member in members]])
     tally = ET.SubElement(root, "tally", id="1", name="diagnostic_member_identity")
-    ET.SubElement(tally, "filter", type="cell", bins=" ".join(["10", *[str(2000 + member.coil_id) for member in members]]))
+    ET.SubElement(tally, "filters").text = "1"
     ET.SubElement(tally, "scores").text = "flux"
     return root
 
@@ -309,8 +322,11 @@ def prepare_one_period_model(
     manifest = json.loads(manifest_path.read_text(encoding="utf-8"))
     source_hashes = {"vmec": _sha256(vmec_path), "makegrid_filaments": _sha256(filament_path),
         "swept_coil_payload": _sha256(payload_path), "sector_manifest": _sha256(manifest_path)}
-    expected_hashes = {str(value).lower() for value in dict(manifest.get("sources", {})).values()}
-    if expected_hashes and not {source_hashes["vmec"], source_hashes["makegrid_filaments"], source_hashes["swept_coil_payload"]} <= expected_hashes:
+    manifest_sources = dict(manifest.get("sources", {}))
+    expected_hashes = {str(value).lower() for value in manifest_sources.values()}
+    if not manifest_sources or any(len(value) != 64 or any(character not in "0123456789abcdef" for character in value) for value in expected_hashes):
+        raise ValueError("REJECT_MANIFEST_HASHES_MISSING_OR_INVALID: source hashes must be nonempty SHA-256 values")
+    if not {source_hashes["vmec"], source_hashes["makegrid_filaments"], source_hashes["swept_coil_payload"]} <= expected_hashes:
         raise ValueError("REJECT_SOURCE_HASH_MISMATCH: supplied VMEC, MAKEGRID, or swept payload differs from the sector manifest")
     vmec = VmecBoundary.from_wout(vmec_path)
     filament_nfp, _ = read_makegrid_filaments(filament_path)

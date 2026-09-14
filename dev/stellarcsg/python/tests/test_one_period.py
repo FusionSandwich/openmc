@@ -99,7 +99,7 @@ def test_native_swept_diagnostic_xml_has_no_surrogate_or_openmc_dependency(tmp_p
     plasma = geometry.find("surface[@type='periodic-spline']")
     assert plasma is not None
     assert plasma.attrib["dataset"] == "/surfaces/plasma_boundary"
-    assert plasma.attrib["solver"] == "reference"
+    assert plasma.attrib["solver"] == "layered"
     assert Path(plasma.attrib["data_file"]).is_absolute()
     swept = geometry.find("surface[@type='swept-spline']")
     assert swept is not None
@@ -107,15 +107,23 @@ def test_native_swept_diagnostic_xml_has_no_surrogate_or_openmc_dependency(tmp_p
     assert swept.attrib["content_id"] == "sha256:synthetic"
     assert swept.attrib["units"] == "cm"
     assert Path(swept.attrib["data_file"]).is_absolute()
-    assert not geometry.findall("surface[@type='sphere']")
+    world = geometry.find("surface[@id='4']")
+    assert world is not None and world.attrib["type"] == "sphere" and world.attrib["boundary"] == "vacuum"
+    assert all("-4" in cell.attrib["region"].split() for cell in geometry.findall("cell"))
     for plane in geometry.findall("surface[@type='x-plane']") + geometry.findall("surface[@type='y-plane']"):
         assert plane.attrib["boundary"] == "vacuum"
     material = ET.parse(files["materials"]).find("material")
     assert material is not None and material.find("nuclide").attrib["name"] == "H1"
     assert material.find("density").attrib["value"] == "1e-6"
-    space = ET.parse(files["settings"]).find("source/space")
-    assert space is not None and space.attrib["type"] == "box"
-    assert "0 0 0" not in (space.findtext("parameters") or "")
+    settings = ET.parse(files["settings"])
+    sources = settings.findall("source")
+    assert len(sources) == len(plan.members)
+    assert sum(float(source.attrib["strength"]) for source in sources) == pytest.approx(1.0)
+    assert all(source.find("space").attrib["type"] == "box" for source in sources)
+    assert all(source.findtext("energy/parameters") == "14000000 1" for source in sources)
+    tallies = ET.parse(files["tallies"]).getroot()
+    assert tallies.find("filter[@id='1']/bins") is not None
+    assert tallies.findtext("tally/filters") == "1"
     receipt = json.loads(files["receipt"].read_text())
     assert receipt["periodic_boundaries"] == "NOT_USED"
     assert "proxy" not in receipt["coil_geometry"]
