@@ -205,7 +205,7 @@ def compare_attempts(attempts: list[dict[str, object]], tolerance: float, requir
 
 def run_campaign(*, model: Path, lanes: dict[str, Path], libraries: dict[str, Path], output: Path,
                  histories: int, seeds: list[int], timeout: int, debug: bool, tolerance: float,
-                 cross_sections: Path = DEFAULT_CROSS_SECTIONS, baseline_lane: str = "exact") -> dict[str, object]:
+                 cross_sections: Path = DEFAULT_CROSS_SECTIONS, baseline_lane: str = "exact", track: bool = False) -> dict[str, object]:
     if output.exists():
         raise FileExistsError("--output must not already exist")
     if histories <= 0 or timeout <= 0 or tolerance < 0 or not seeds or len(set(seeds)) != len(seeds):
@@ -243,8 +243,10 @@ def run_campaign(*, model: Path, lanes: dict[str, Path], libraries: dict[str, Pa
             command = [str(lanes[lane])]
             if debug:
                 command.append("-g")
+            if track:
+                command.append("-t")
             attempt: dict[str, object] = {"lane": lane, "seed": seed, "command": command, "input_sha256": input_hashes,
-                                            "environment": {key: env[key] for key in ("OMP_NUM_THREADS", "LD_LIBRARY_PATH", "OPENMC_CROSS_SECTIONS")}, "started_unix": time.time()}
+                                            "environment": {key: env[key] for key in ("OMP_NUM_THREADS", "LD_LIBRARY_PATH", "OPENMC_CROSS_SECTIONS")}, "track_diagnostic": track, "started_unix": time.time()}
             began = time.monotonic()
             try:
                 with stdout.open("w") as out, stderr.open("w") as err:
@@ -292,10 +294,11 @@ def main() -> int:
     parser.add_argument("--absolute-tolerance", type=float, default=1.0e-12)
     parser.add_argument("--cross-sections", type=Path, default=DEFAULT_CROSS_SECTIONS)
     parser.add_argument("--baseline-lane", default="exact")
+    parser.add_argument("--track", action="store_true", help="diagnostic all-track output; excluded from timing comparisons")
     args = parser.parse_args()
     result = run_campaign(model=args.model, lanes=parse_named_paths(args.lane, "--lane"), libraries=parse_named_paths(args.library, "--library"),
                           output=args.output, histories=args.histories, seeds=args.seeds, timeout=args.timeout, debug=args.debug,
-                          tolerance=args.absolute_tolerance, cross_sections=args.cross_sections, baseline_lane=args.baseline_lane)
+                          tolerance=args.absolute_tolerance, cross_sections=args.cross_sections, baseline_lane=args.baseline_lane, track=args.track)
     print(json.dumps({"output": str(args.output), "attempts": len(result["attempts"]), "candidate_disagreement_count": result["candidate_disagreement_count"]}, sort_keys=True))
     return 0
 
