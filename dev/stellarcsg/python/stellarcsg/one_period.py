@@ -1,8 +1,8 @@
 """Explicit one-field-period model preparation for finite stellarator coils.
 
-This module prepares immutable geometry and identity metadata.  It does not
-claim that the resulting plan is a transport-qualified OpenMC model: current
-native adapters do not yet materialize swept-coil member cells.
+This module prepares immutable geometry and identity metadata. Its XML export
+uses native swept-spline surface records, but remains a diagnostic clipped
+sector model rather than a transport qualification.
 """
 
 from __future__ import annotations
@@ -13,6 +13,7 @@ import json
 import math
 from pathlib import Path
 from typing import Any, Literal
+import xml.etree.ElementTree as ET
 
 import h5py
 import numpy as np
@@ -56,8 +57,7 @@ class CoilMember:
     crosses_lower_seam_candidate: bool
     crosses_upper_seam_candidate: bool
     retained_span_count: int
-    proxy_center_cm: tuple[float, float, float]
-    proxy_enclosing_radius_cm: float
+    diagnostic_source_anchor_cm: tuple[float, float, float]
 
     def as_dict(self) -> dict[str, object]:
         return {
@@ -76,12 +76,7 @@ class CoilMember:
                 "crosses_upper_seam_candidate": self.crosses_upper_seam_candidate,
                 "retained_span_count": self.retained_span_count,
             },
-            "diagnostic_proxy_only": {
-                "shape": "enclosing sphere around complete supplied curve",
-                "center_cm": list(self.proxy_center_cm),
-                "radius_cm": self.proxy_enclosing_radius_cm,
-                "source_fidelity": "NOT_MEASURED; not a swept-coil representation",
-            },
+            "diagnostic_source_anchor_cm": list(self.diagnostic_source_anchor_cm),
         }
 
 
@@ -97,6 +92,7 @@ class OnePeriodModelPlan:
     seam_diagnostic: dict[str, object]
     symmetry_policy: SymmetryPolicy
     approximation_record: dict[str, object] | None
+    swept_coils_file: Path
 
     def as_dict(self) -> dict[str, object]:
         return {
@@ -120,7 +116,8 @@ class OnePeriodModelPlan:
                     "surface_dataset": member.dataset,
                     "surface_content_id": member.content_id,
                     "region": ["inside this complete finite swept coil", "x >= 0", "y >= 0"],
-                    "status": "IDENTITY_BLUEPRINT_ONLY_NO_SWEEPED_OPENMC_ADAPTER",
+                    "surface_type": "swept-spline",
+                    "status": "NATIVE_INDIVIDUAL_SWEPT_SURFACE_DIAGNOSTIC",
                 }
                 for member in self.members
             ],
@@ -131,8 +128,10 @@ class OnePeriodModelPlan:
             "transport_limitations": [
                 "This is a preparation plan, not a qualified transport model.",
                 "Finite coil curves are retained whole and their future material cells must be intersected with the sector halfspaces.",
-                "No periodic boundary condition, material composition, source, tally, or particle-navigation acceptance is exported here.",
-                "The swept-coil Python/OpenMC material-cell adapter is not yet integrated; this export must not be passed to ordinary OpenMC as an executable geometry.",
+                "The native individual swept-spline records retain the supplied coil payload directly.",
+                "The plasma fit uses the requested source grid; its input-to-model geometric fidelity is NOT_MEASURED.",
+                "No periodic boundary condition is emitted. A seam mismatch is retained as an approximation record, never corrected by forced copies.",
+                "The clipped diagnostic XML is not a qualified transport model: material physics, overlap clearance, particle navigation, and tally results require separate acceptance.",
             ],
         }
 
@@ -146,74 +145,36 @@ class OnePeriodModelPlan:
             raise FileExistsError("one-period export refuses to overwrite an existing receipt")
         write_surface(surface_file, self.plasma)
         payload = self.as_dict()
-        payload["plasma"]["data_file"] = surface_file.name
+        payload["plasma"]["data_file"] = str(surface_file.resolve())
+        payload["swept_coils_file"] = str(self.swept_coils_file.resolve())
         plan_file.write_text(json.dumps(payload, indent=2, sort_keys=True) + "\n", encoding="utf-8")
         return {"plasma_surface": surface_file, "model_plan": plan_file}
 
     def export_openmc_diagnostic(self, directory: str | Path, *, diagnostic_clipped: bool) -> dict[str, Path]:
-        """Export an executable *diagnostic* clipped XML model with proxy coils.
-
-        The current adapter can read the plasma surface but cannot materialize
-        swept-coil HDF5 surfaces.  Each member is therefore an explicitly
-        recorded enclosing-sphere proxy.  This method refuses ordinary or
-        periodic export; it is useful only for XML and identity plumbing.
-        """
+        """Export a nonperiodic diagnostic model using native swept surfaces."""
         if not diagnostic_clipped:
             raise ValueError("REJECT_DIAGNOSTIC_OPT_IN: pass diagnostic_clipped=True; periodic production export is unavailable")
-        try:
-            import openmc
-            from .openmc_surface import PeriodicSplineSurface
-        except ImportError as error:
-            raise ImportError("diagnostic XML export requires the local OpenMC Python package") from error
         output = Path(directory)
         output.mkdir(parents=True, exist_ok=True)
-        if any((output / name).exists() for name in ("plasma_boundary.h5", "model.xml", "materials.xml", "geometry.xml", "settings.xml", "tallies.xml", "diagnostic_receipt.json")):
+        names = ("plasma_boundary.h5", "materials.xml", "geometry.xml", "settings.xml", "tallies.xml", "diagnostic_receipt.json")
+        if any((output / name).exists() for name in names):
             raise FileExistsError("diagnostic export refuses to overwrite existing files")
         surface_file = output / "plasma_boundary.h5"
         write_surface(surface_file, self.plasma)
-        plasma = PeriodicSplineSurface(data_file=surface_file.name, dataset="/surfaces/plasma_boundary",
-            content_id=self.plasma.content_id, surface_id=1, boundary_type="transmission", name="plasma_boundary")
-        x0 = openmc.XPlane(x0=0.0, surface_id=2, boundary_type="transmission", name="sector_x0_nonperiodic")
-        y0 = openmc.YPlane(y0=0.0, surface_id=3, boundary_type="transmission", name="sector_y0_nonperiodic")
-        outer = openmc.Sphere(r=max(2.0 * member.proxy_enclosing_radius_cm + np.linalg.norm(member.proxy_center_cm) for member in self.members),
-            surface_id=4, boundary_type="vacuum", name="diagnostic_outer_vacuum")
-        sector = +x0 & +y0 & -outer
-        materials = openmc.Materials()
-        coil_cells, occupied = [], None
-        for index, member in enumerate(self.members, 1):
-            material = openmc.Material(material_id=1000 + member.coil_id, name=member.material_id)
-            material.volume = None  # Identity only: composition is intentionally unspecified.
-            materials.append(material)
-            sphere = openmc.Sphere(x0=member.proxy_center_cm[0], y0=member.proxy_center_cm[1], z0=member.proxy_center_cm[2],
-                r=member.proxy_enclosing_radius_cm, surface_id=10000 + member.coil_id,
-                boundary_type="transmission", name=f"{member.cell_id}_proxy")
-            region = -sphere & sector
-            if occupied is not None:
-                region &= ~occupied
-            cell = openmc.Cell(cell_id=2000 + member.coil_id, name=f"{member.cell_id}_DIAGNOSTIC_PROXY", fill=material, region=region)
-            coil_cells.append(cell)
-            occupied = -sphere if occupied is None else occupied | -sphere
-        vacuum_region = sector if occupied is None else sector & ~occupied
-        plasma_cell = openmc.Cell(cell_id=10, name="plasma_diagnostic_vacuum", fill=None, region=-plasma & vacuum_region)
-        exterior_cell = openmc.Cell(cell_id=11, name="sector_exterior_diagnostic_vacuum", fill=None, region=+plasma & vacuum_region)
-        outside_cell = openmc.Cell(cell_id=12, name="outside_clipped_sector_vacuum", fill=None, region=(~(+x0 & +y0)) & -outer)
-        model = openmc.Model(materials=materials, geometry=openmc.Geometry([plasma_cell, exterior_cell, outside_cell, *coil_cells]))
-        model.settings = openmc.Settings()
-        model.settings.run_mode = "fixed source"
-        model.settings.particles = 1
-        model.settings.batches = 1
-        model.settings.source = openmc.IndependentSource(space=openmc.stats.Point((0.0, 0.0, 0.0)))
-        tally = openmc.Tally(name="diagnostic_member_identity")
-        tally.filters = [openmc.CellFilter([plasma_cell, *coil_cells])]
-        tally.scores = ["flux"]
-        model.tallies = openmc.Tallies([tally])
-        model.export_to_xml(output)
-        receipt = {"status": "DIAGNOSTIC_CLIPPED_PROXY_MODEL_NOT_TRANSPORT_QUALIFIED",
-            "periodic_boundaries": "NOT_USED", "sector_boundary_type": "transmission",
-            "coil_geometry": "disjoint enclosing-sphere proxies, not source swept coils",
-            "source_hashes": self.source_hashes, "members": len(self.members)}
+        plasma_path, payload_path = surface_file.resolve(), self.swept_coils_file.resolve()
+        _write_xml(output / "materials.xml", _materials_xml(self.members))
+        _write_xml(output / "geometry.xml", _geometry_xml(self.members, plasma_path, payload_path, self.plasma.content_id))
+        _write_xml(output / "settings.xml", _settings_xml(self.members))
+        _write_xml(output / "tallies.xml", _tallies_xml(self.members))
+        receipt = {"status": "DIAGNOSTIC_CLIPPED_NATIVE_SWEPT_MODEL_NOT_TRANSPORT_QUALIFIED",
+            "periodic_boundaries": "NOT_USED", "sector_boundary_type": "vacuum",
+            "coil_geometry": "native individual swept-spline HDF5 surfaces from the supplied payload",
+            "swept_coils_file": str(payload_path), "plasma_surface_file": str(plasma_path),
+            "source_hashes": self.source_hashes, "members": len(self.members),
+            "model_gaps": self.as_dict()["transport_limitations"]}
         (output / "diagnostic_receipt.json").write_text(json.dumps(receipt, indent=2, sort_keys=True) + "\n", encoding="utf-8")
-        return {"plasma_surface": surface_file, "model_xml": output / "model.xml", "receipt": output / "diagnostic_receipt.json"}
+        return {"plasma_surface": surface_file, "materials": output / "materials.xml", "geometry": output / "geometry.xml",
+                "settings": output / "settings.xml", "tallies": output / "tallies.xml", "receipt": output / "diagnostic_receipt.json"}
 
 
 def _read_payload_members(path: Path, manifest: dict[str, object]) -> tuple[CoilMember, ...]:
@@ -242,7 +203,11 @@ def _read_payload_members(path: Path, manifest: dict[str, object]) -> tuple[Coil
                 raise ValueError(f"manifest/payload coil ID mismatch for {dataset}")
             if centerline.ndim != 2 or centerline.shape[1] != 3 or centerline.shape[0] != major.size or not np.isfinite(centerline).all():
                 raise ValueError(f"payload member has invalid centerline coefficients: {dataset}")
-            proxy_center = np.mean(centerline, axis=0)
+            # A source box around an actual centerline coefficient is a
+            # hit-rich diagnostic origin, not a replacement coil geometry.
+            radius = float(max(np.max(major), np.max(minor)))
+            eligible = centerline[(centerline[:, 0] > 2.0 * radius) & (centerline[:, 1] > 2.0 * radius)]
+            anchor = eligible[len(eligible) // 2] if len(eligible) else centerline[len(centerline) // 2]
             members.append(CoilMember(
                 coil_id=coil_id, dataset=dataset, content_id=content_id,
                 section_major_radius_cm=float(np.max(major)), section_minor_radius_cm=float(np.max(minor)),
@@ -250,10 +215,73 @@ def _read_payload_members(path: Path, manifest: dict[str, object]) -> tuple[Coil
                 crosses_lower_seam_candidate=bool(record.get("crosses_0_plane_candidate")),
                 crosses_upper_seam_candidate=bool(record.get("crosses_90_plane_candidate")),
                 retained_span_count=int(record.get("retained_span_count", 0)),
-                proxy_center_cm=tuple(float(value) for value in proxy_center),
-                proxy_enclosing_radius_cm=float(np.max(np.linalg.norm(centerline - proxy_center, axis=1)) + max(np.max(major), np.max(minor))),
+                diagnostic_source_anchor_cm=tuple(float(value) for value in anchor),
             ))
     return tuple(members)
+
+
+def _write_xml(path: Path, root: ET.Element) -> None:
+    ET.indent(root, space="  ")
+    ET.ElementTree(root).write(path, encoding="utf-8", xml_declaration=True)
+
+
+def _materials_xml(members: tuple[CoilMember, ...]) -> ET.Element:
+    root = ET.Element("materials")
+    for member in members:
+        material = ET.SubElement(root, "material", id=str(1000 + member.coil_id), name=member.material_id + "_DIAGNOSTIC_H1")
+        ET.SubElement(material, "density", units="atom/b-cm", value="1e-6")
+        ET.SubElement(material, "nuclide", name="H1", ao="1.0")
+    return root
+
+
+def _geometry_xml(members: tuple[CoilMember, ...], plasma_file: Path, coil_file: Path, plasma_content_id: str) -> ET.Element:
+    root = ET.Element("geometry")
+    ET.SubElement(root, "surface", id="1", type="periodic-spline", name="plasma_boundary",
+                  data_file=str(plasma_file), dataset="/surfaces/plasma_boundary", content_id=plasma_content_id,
+                  solver="reference", units="cm")
+    ET.SubElement(root, "surface", id="2", type="x-plane", name="sector_x0_vacuum", coeffs="0", boundary="vacuum")
+    ET.SubElement(root, "surface", id="3", type="y-plane", name="sector_y0_vacuum", coeffs="0", boundary="vacuum")
+    coil_ids: list[str] = []
+    for member in members:
+        surface_id = 10000 + member.coil_id
+        coil_ids.append(str(surface_id))
+        ET.SubElement(root, "surface", id=str(surface_id), type="swept-spline", name=member.cell_id,
+                      data_file=str(coil_file), dataset=member.dataset, content_id=member.content_id, units="cm")
+    outside_all = " ".join(coil_ids)
+    for member in members:
+        surface_id = str(10000 + member.coil_id)
+        region = " ".join([f"-{surface_id}", "2", "3"])
+        ET.SubElement(root, "cell", id=str(2000 + member.coil_id), name=member.cell_id,
+                      material=str(1000 + member.coil_id), region=region)
+    ET.SubElement(root, "cell", id="10", name="plasma_diagnostic_void", region=" ".join(["-1", "2", "3", outside_all]))
+    ET.SubElement(root, "cell", id="11", name="sector_exterior_diagnostic_void", region=" ".join(["1", "2", "3", outside_all]))
+    return root
+
+
+def _settings_xml(members: tuple[CoilMember, ...]) -> ET.Element:
+    root = ET.Element("settings")
+    ET.SubElement(root, "run_mode").text = "fixed source"
+    ET.SubElement(root, "particles").text = "100"
+    ET.SubElement(root, "batches").text = "1"
+    anchor = np.asarray(members[len(members) // 2].diagnostic_source_anchor_cm, dtype=float)
+    # A small box about one retained centerline point produces distributed,
+    # hit-rich starts away from the origin axis and sector seams.
+    padding = np.full(3, 0.05)
+    source = ET.SubElement(root, "source", particle="neutron")
+    space = ET.SubElement(source, "space", type="box")
+    ET.SubElement(space, "parameters").text = " ".join(f"{value:.12g}" for value in np.r_[anchor - padding, anchor + padding])
+    ET.SubElement(source, "angle", type="isotropic")
+    energy = ET.SubElement(source, "energy", type="discrete")
+    ET.SubElement(energy, "parameters").text = "14000000.0"
+    return root
+
+
+def _tallies_xml(members: tuple[CoilMember, ...]) -> ET.Element:
+    root = ET.Element("tallies")
+    tally = ET.SubElement(root, "tally", id="1", name="diagnostic_member_identity")
+    ET.SubElement(tally, "filter", type="cell", bins=" ".join(["10", *[str(2000 + member.coil_id) for member in members]]))
+    ET.SubElement(tally, "scores").text = "flux"
+    return root
 
 
 def _source_seam(vmec: VmecBoundary, sample_count: int) -> dict[str, object]:
@@ -312,4 +340,5 @@ def prepare_one_period_model(
         plasma=plasma, members=_read_payload_members(payload_path, manifest), n_field_periods=vmec.n_field_periods,
         sector_degrees=(0.0, 90.0), source_hashes=source_hashes,
         seam_diagnostic=seam, symmetry_policy=symmetry_policy, approximation_record=approximation,
+        swept_coils_file=payload_path.resolve(),
     )

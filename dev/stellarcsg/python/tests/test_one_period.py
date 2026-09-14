@@ -2,6 +2,8 @@ from __future__ import annotations
 
 import hashlib
 import json
+from pathlib import Path
+import xml.etree.ElementTree as ET
 
 import h5py
 import numpy as np
@@ -84,3 +86,36 @@ def test_one_period_rejects_manifest_source_hash_mismatch(tmp_path) -> None:
     with pytest.raises(ValueError, match="REJECT_SOURCE_HASH_MISMATCH"):
         prepare_one_period_model(vmec_file=vmec, filament_file=filament, swept_coils_file=coils,
             sector_manifest_file=manifest)
+
+
+def test_native_swept_diagnostic_xml_has_no_surrogate_or_openmc_dependency(tmp_path) -> None:
+    vmec, filament, coils, manifest = _inputs(tmp_path, rotation_error=2.0e-4)
+    plan = prepare_one_period_model(vmec_file=vmec, filament_file=filament, swept_coils_file=coils,
+        sector_manifest_file=manifest, symmetry_policy="record-approximation")
+    files = plan.export_openmc_diagnostic(tmp_path / "diagnostic", diagnostic_clipped=True)
+    with h5py.File(files["plasma_surface"], "r") as handle:
+        assert "/surfaces/plasma_boundary" in handle
+    geometry = ET.parse(files["geometry"]).getroot()
+    plasma = geometry.find("surface[@type='periodic-spline']")
+    assert plasma is not None
+    assert plasma.attrib["dataset"] == "/surfaces/plasma_boundary"
+    assert plasma.attrib["solver"] == "reference"
+    assert Path(plasma.attrib["data_file"]).is_absolute()
+    swept = geometry.find("surface[@type='swept-spline']")
+    assert swept is not None
+    assert swept.attrib["dataset"] == "/coils/coil_001"
+    assert swept.attrib["content_id"] == "sha256:synthetic"
+    assert swept.attrib["units"] == "cm"
+    assert Path(swept.attrib["data_file"]).is_absolute()
+    assert not geometry.findall("surface[@type='sphere']")
+    for plane in geometry.findall("surface[@type='x-plane']") + geometry.findall("surface[@type='y-plane']"):
+        assert plane.attrib["boundary"] == "vacuum"
+    material = ET.parse(files["materials"]).find("material")
+    assert material is not None and material.find("nuclide").attrib["name"] == "H1"
+    assert material.find("density").attrib["value"] == "1e-6"
+    space = ET.parse(files["settings"]).find("source/space")
+    assert space is not None and space.attrib["type"] == "box"
+    assert "0 0 0" not in (space.findtext("parameters") or "")
+    receipt = json.loads(files["receipt"].read_text())
+    assert receipt["periodic_boundaries"] == "NOT_USED"
+    assert "proxy" not in receipt["coil_geometry"]
