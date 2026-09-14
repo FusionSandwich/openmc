@@ -10,6 +10,7 @@ import numpy as np
 import pytest
 from scipy.io import netcdf_file
 
+import stellarcsg.one_period as one_period
 from stellarcsg.one_period import prepare_one_period_model
 
 
@@ -56,6 +57,8 @@ def test_one_period_plan_records_explicit_symmetry_approximation(tmp_path) -> No
     plan = prepare_one_period_model(vmec_file=vmec, filament_file=filament, swept_coils_file=coils,
         sector_manifest_file=manifest, symmetry_policy="record-approximation", seam_tolerance_cm=1.0e-8)
     assert plan.approximation_record is not None
+    assert plan.sampled_fit_evidence["accepted"]
+    assert plan.sampled_fit_evidence["attempts"]
     assert plan.members[0].material_id == "winding-pack-001"
     assert plan.members[0].crosses_lower_seam_candidate
     assert plan.source_hashes["vmec"] == hashlib.sha256(vmec.read_bytes()).hexdigest()
@@ -86,6 +89,26 @@ def test_one_period_rejects_manifest_source_hash_mismatch(tmp_path) -> None:
     with pytest.raises(ValueError, match="REJECT_SOURCE_HASH_MISMATCH"):
         prepare_one_period_model(vmec_file=vmec, filament_file=filament, swept_coils_file=coils,
             sector_manifest_file=manifest)
+
+
+@pytest.mark.parametrize(("tolerance", "refinements"), ((0.0, 0), (float("nan"), 0), (0.01, -1), (0.01, True)))
+def test_one_period_rejects_invalid_sampled_fit_controls(tmp_path, tolerance, refinements) -> None:
+    vmec, filament, coils, manifest = _inputs(tmp_path)
+    with pytest.raises(ValueError):
+        prepare_one_period_model(vmec_file=vmec, filament_file=filament, swept_coils_file=coils,
+            sector_manifest_file=manifest, sampled_fit_tolerance_fraction=tolerance, max_fit_refinements=refinements)
+
+
+def test_one_period_rejects_coarse_sampled_fit(tmp_path, monkeypatch) -> None:
+    vmec, filament, coils, manifest = _inputs(tmp_path)
+    monkeypatch.setattr(one_period, "_sampled_fit_metrics", lambda vmec, plasma: {
+        "validation_theta": 96, "validation_phi": 48, "max_abs_residual_cm": 2.0,
+        "rms_abs_residual_cm": 1.0, "max_relative_local_rho": 0.02,
+        "minimum_validation_rho_cm": 1.0})
+    with pytest.raises(ValueError, match="REJECT_SAMPLED_PLASMA_FIT"):
+        prepare_one_period_model(vmec_file=vmec, filament_file=filament, swept_coils_file=coils,
+            sector_manifest_file=manifest, n_theta=4, n_phi=4,
+            sampled_fit_tolerance_fraction=1.0e-12, max_fit_refinements=0)
 
 
 def test_native_swept_diagnostic_xml_has_no_surrogate_or_openmc_dependency(tmp_path) -> None:
@@ -122,8 +145,9 @@ def test_native_swept_diagnostic_xml_has_no_surrogate_or_openmc_dependency(tmp_p
     assert all(source.find("space").attrib["type"] == "box" for source in sources)
     assert all(source.findtext("energy/parameters") == "14000000 1" for source in sources)
     tallies = ET.parse(files["tallies"]).getroot()
-    assert tallies.find("filter[@id='1']/bins") is not None
+    assert "11" in (tallies.findtext("filter[@id='1']/bins") or "").split()
     assert tallies.findtext("tally/filters") == "1"
+    assert tallies.find("tally[@id='2']").attrib["name"] == "global_flux_closure"
     receipt = json.loads(files["receipt"].read_text())
     assert receipt["periodic_boundaries"] == "NOT_USED"
     assert "proxy" not in receipt["coil_geometry"]

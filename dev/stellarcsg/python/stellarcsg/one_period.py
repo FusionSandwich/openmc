@@ -95,6 +95,7 @@ class OnePeriodModelPlan:
     symmetry_policy: SymmetryPolicy
     approximation_record: dict[str, object] | None
     swept_coils_file: Path
+    sampled_fit_evidence: dict[str, object]
 
     def as_dict(self) -> dict[str, object]:
         return {
@@ -127,6 +128,7 @@ class OnePeriodModelPlan:
             "seam_diagnostic": self.seam_diagnostic,
             "symmetry_policy": self.symmetry_policy,
             "approximation_record": self.approximation_record,
+            "sampled_fit_evidence": self.sampled_fit_evidence,
             "transport_limitations": [
                 "This is a preparation plan, not a qualified transport model.",
                 "Finite coil curves are retained whole and their future material cells must be intersected with the sector halfspaces.",
@@ -290,10 +292,12 @@ def _settings_xml(members: tuple[CoilMember, ...]) -> ET.Element:
 def _tallies_xml(members: tuple[CoilMember, ...]) -> ET.Element:
     root = ET.Element("tallies")
     filter_element = ET.SubElement(root, "filter", id="1", type="cell")
-    ET.SubElement(filter_element, "bins").text = " ".join(["10", *[str(2000 + member.coil_id) for member in members]])
+    ET.SubElement(filter_element, "bins").text = " ".join(["10", "11", *[str(2000 + member.coil_id) for member in members]])
     tally = ET.SubElement(root, "tally", id="1", name="diagnostic_member_identity")
     ET.SubElement(tally, "filters").text = "1"
     ET.SubElement(tally, "scores").text = "flux"
+    global_tally = ET.SubElement(root, "tally", id="2", name="global_flux_closure")
+    ET.SubElement(global_tally, "scores").text = "flux"
     return root
 
 
@@ -307,16 +311,44 @@ def _source_seam(vmec: VmecBoundary, sample_count: int) -> dict[str, object]:
             "max_source_plasma_seam_error_cm": float(np.max(error)), "mean_source_plasma_seam_error_cm": float(np.mean(error))}
 
 
+def _sampled_fit_metrics(vmec: VmecBoundary, plasma: PeriodicRadialSurfaceData) -> dict[str, float | int]:
+    """Measure a fixed off-grid residual; this is not a Hausdorff bound."""
+    n_theta, n_phi = 96, 48
+    theta = 2.0 * np.pi * (np.arange(n_theta) + 0.5) / n_theta
+    phi = (2.0 * np.pi / vmec.n_field_periods) * (np.arange(n_phi) + 0.5) / n_phi
+    validation_theta, validation_phi = np.meshgrid(theta, phi, indexing="ij")
+    points = vmec.position_cm(validation_theta, validation_phi)
+    residual = np.abs(plasma.evaluate(points))
+    axis_r, axis_z, _, _ = plasma.axis(validation_phi)
+    R = np.hypot(points[..., 0], points[..., 1])
+    rho = np.hypot(R - axis_r, points[..., 2] - axis_z)
+    if np.any(rho <= 0.0) or not np.isfinite(residual).all():
+        raise ValueError("REJECT_SAMPLED_PLASMA_FIT: invalid independent validation metric")
+    return {
+        "validation_theta": n_theta,
+        "validation_phi": n_phi,
+        "max_abs_residual_cm": float(np.max(residual)),
+        "rms_abs_residual_cm": float(np.sqrt(np.mean(residual**2))),
+        "max_relative_local_rho": float(np.max(residual / rho)),
+        "minimum_validation_rho_cm": float(np.min(rho)),
+    }
+
+
 def prepare_one_period_model(
     *, vmec_file: str | Path, filament_file: str | Path, swept_coils_file: str | Path,
     sector_manifest_file: str | Path, symmetry_policy: SymmetryPolicy = "reject",
     seam_tolerance_cm: float = 1.0e-8, n_theta: int = 64, n_phi: int = 32,
+    sampled_fit_tolerance_fraction: float = 0.01, max_fit_refinements: int = 2,
 ) -> OnePeriodModelPlan:
     """Prepare a single sector, explicitly rejecting unapproved symmetry changes."""
     if symmetry_policy not in {"reject", "record-approximation"}:
         raise ValueError("symmetry_policy must be 'reject' or 'record-approximation'")
     if seam_tolerance_cm <= 0 or not math.isfinite(seam_tolerance_cm):
         raise ValueError("seam_tolerance_cm must be finite and positive")
+    if sampled_fit_tolerance_fraction <= 0 or not math.isfinite(sampled_fit_tolerance_fraction):
+        raise ValueError("sampled_fit_tolerance_fraction must be finite and positive")
+    if isinstance(max_fit_refinements, bool) or not isinstance(max_fit_refinements, int) or max_fit_refinements < 0:
+        raise ValueError("max_fit_refinements must be a nonnegative integer")
     vmec_path, filament_path = Path(vmec_file), Path(filament_file)
     payload_path, manifest_path = Path(swept_coils_file), Path(sector_manifest_file)
     manifest = json.loads(manifest_path.read_text(encoding="utf-8"))
@@ -335,11 +367,28 @@ def prepare_one_period_model(
         raise ValueError("REJECT_NFP_MISMATCH: VMEC, MAKEGRID, and sector manifest must agree")
     if manifest.get("sector_degrees") != [0, 90] or vmec.n_field_periods != 4:
         raise ValueError("REJECT_SECTOR_ASSUMPTION: this initial importer requires WISTELL-D NFP=4 and [0, 90] degrees")
-    grid, phi, _, _ = vmec.surface_grid_cm(n_theta, n_phi)
-    plasma = PeriodicRadialSurfaceData.from_surface_grid(
-        name="plasma_boundary", xyz_cm=grid, phi=phi, n_field_periods=vmec.n_field_periods,
-        source_metadata={"importer": "stellarcsg.one_period", "vmec_source_units": "m", "transport_units": "cm"},
-    )
+    attempts: list[dict[str, object]] = []
+    plasma: PeriodicRadialSurfaceData | None = None
+    for refinement in range(max_fit_refinements + 1):
+        attempt_theta, attempt_phi = n_theta * (2**refinement), n_phi * (2**refinement)
+        grid, phi, _, _ = vmec.surface_grid_cm(attempt_theta, attempt_phi)
+        candidate = PeriodicRadialSurfaceData.from_surface_grid(
+            name="plasma_boundary", xyz_cm=grid, phi=phi, n_field_periods=vmec.n_field_periods,
+            source_metadata={"importer": "stellarcsg.one_period", "vmec_source_units": "m", "transport_units": "cm",
+                             "fit_grid_theta": attempt_theta, "fit_grid_phi": attempt_phi,
+                             "sampled_fit_tolerance_fraction": sampled_fit_tolerance_fraction},
+        )
+        metrics = _sampled_fit_metrics(vmec, candidate)
+        attempts.append({"refinement": refinement, "fit_theta": attempt_theta, "fit_phi": attempt_phi,
+                         "content_id": candidate.content_id, **metrics})
+        if float(metrics["max_relative_local_rho"]) <= sampled_fit_tolerance_fraction:
+            plasma = candidate
+            break
+    fit_evidence: dict[str, object] = {"method": "independent VMEC samples evaluated by compiled radial surface; not a Hausdorff certificate",
+        "tolerance_fraction": sampled_fit_tolerance_fraction, "attempts": attempts,
+        "accepted": plasma is not None}
+    if plasma is None:
+        raise ValueError("REJECT_SAMPLED_PLASMA_FIT: " + json.dumps(fit_evidence, sort_keys=True))
     seam = _source_seam(vmec, n_theta)
     rotation_errors = [float(item["max_aligned_control_error_cm"]) for item in manifest.get("rotation_diagnostic", [])]
     seam["max_manifest_coil_rotation_error_cm"] = max(rotation_errors, default=0.0)
@@ -356,5 +405,5 @@ def prepare_one_period_model(
         plasma=plasma, members=_read_payload_members(payload_path, manifest), n_field_periods=vmec.n_field_periods,
         sector_degrees=(0.0, 90.0), source_hashes=source_hashes,
         seam_diagnostic=seam, symmetry_policy=symmetry_policy, approximation_record=approximation,
-        swept_coils_file=payload_path.resolve(),
+        swept_coils_file=payload_path.resolve(), sampled_fit_evidence=fit_evidence,
     )

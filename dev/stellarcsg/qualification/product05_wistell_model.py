@@ -18,11 +18,14 @@ def main() -> int:
     parser.add_argument("--output", type=Path, required=True)
     parser.add_argument("--symmetry-policy", choices=("reject", "record-approximation"), default="reject")
     parser.add_argument("--seam-tolerance-cm", type=float, default=1.0e-8)
+    parser.add_argument("--fit-tolerance-fraction", type=float, default=0.01)
+    parser.add_argument("--max-fit-refinements", type=int, default=2)
     parser.add_argument("--diagnostic-clipped", action="store_true", help="write a nonperiodic vacuum-sector XML model using native swept-coil surfaces")
     args = parser.parse_args()
     plan = prepare_one_period_model(vmec_file=args.vmec, filament_file=args.filaments,
         swept_coils_file=args.swept_coils, sector_manifest_file=args.sector_manifest,
-        symmetry_policy=args.symmetry_policy, seam_tolerance_cm=args.seam_tolerance_cm)
+        symmetry_policy=args.symmetry_policy, seam_tolerance_cm=args.seam_tolerance_cm,
+        sampled_fit_tolerance_fraction=args.fit_tolerance_fraction, max_fit_refinements=args.max_fit_refinements)
     files = plan.export_openmc_diagnostic(args.output, diagnostic_clipped=True) if args.diagnostic_clipped else plan.export(args.output)
     print(json.dumps({"status": "DIAGNOSTIC_CLIPPED_NATIVE_SWEPT_MODEL_NOT_TRANSPORT_QUALIFIED" if args.diagnostic_clipped else "PREPARED_NOT_TRANSPORT_QUALIFIED", "files": {k: str(v) for k, v in files.items()},
                       "members": len(plan.members), "approximation_record": plan.approximation_record}, sort_keys=True))
