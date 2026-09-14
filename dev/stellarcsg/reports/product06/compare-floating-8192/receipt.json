@@ -1,0 +1,1090 @@
+{
+  "attempts": [
+    {
+      "clean_navigation": true,
+      "command": [
+        "/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-run-compare-06/build/native-old-control-06/openmc"
+      ],
+      "completion": "COMPLETE",
+      "environment": {
+        "LD_LIBRARY_PATH": "/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-run-compare-06/build/native-old-control-06",
+        "OMP_NUM_THREADS": "1",
+        "OPENMC_CROSS_SECTIONS": "/mnt/c/Users/joshu/Documents/2026_DPA/openc-hts-dpa/.data/openmc/cross_sections.xml"
+      },
+      "exit_code": 0,
+      "finished_unix": 1789348301.9420955,
+      "hdf_bindings_unchanged": true,
+      "input_sha256": {
+        "geometry.xml": "7ceff2f576353e94ea949fbe1a42526548df69e22e8feb6915b827c31b3dab13",
+        "materials.xml": "6e51f0455b6254195a72ad5936c08f3d98735f102901b893470dd1ce655592ac",
+        "settings.xml": "e3a7fc23cecbd920adbde7403842596b864aefb30ec4c013d448a83ffd0f7741",
+        "tallies.xml": "69f01d0e89553061b75da6d035b35290a8bf262bee2877f72e3a48b21c1c0e73"
+      },
+      "lane": "old",
+      "navigation_warnings": [],
+      "runtime_seconds": 5.4347734870000295,
+      "seed": 17,
+      "started_unix": 1789348296.2592592,
+      "statepoint": {
+        "cell_bins": [
+          10,
+          11,
+          2001,
+          2002,
+          2003,
+          2008,
+          2009,
+          2016,
+          2017,
+          2024,
+          2025,
+          2032,
+          2033,
+          2040,
+          2041,
+          2046,
+          2047,
+          2048
+        ],
+        "cell_flux": [
+          30.17120746540198,
+          689.2799117447959,
+          0.09753930740006217,
+          0.09927674976910776,
+          0.10097916381859988,
+          0.10352998698103943,
+          0.09725351742607956,
+          0.10018198373070611,
+          0.08750895817104572,
+          0.0974220815420088,
+          0.09439314547993895,
+          0.09971501038988693,
+          0.10716792061084683,
+          0.08683189545008209,
+          0.10276705000782176,
+          0.09428360259873969,
+          0.09355226606967108,
+          0.08898626031065784
+        ],
+        "closure_checked": true,
+        "current_batch": 1,
+        "flux_closure_absolute": 1.8189894035458565e-12,
+        "global_flux": 721.0025081099559,
+        "histories_per_active_second": 8423.338605145058,
+        "leakage": 1.0,
+        "metric_errors": [],
+        "metrics_valid": true,
+        "n_batches": 1,
+        "n_particles": 8192,
+        "n_realizations": 1,
+        "runtime_seconds": {
+          "accumulating tallies": 6.2e-06,
+          "active batches": 0.972535996,
+          "reading cross sections": 0.0245793,
+          "simulation": 0.971640996,
+          "total": 5.343123987,
+          "total initialization": 4.368411891,
+          "transport": 0.955823196,
+          "writing statepoints": 0.0175803
+        },
+        "statepoint_sha256": "a8e2f79089ec3b84e521d8f0b765649dd15bcc4a7fed8655bea59d20c419a57c"
+      },
+      "stderr": "stderr.txt",
+      "stdout": "stdout.txt",
+      "warnings": [
+        " WARNING: Could not compute uncertainties -- only one active batch simulated!"
+      ]
+    },
+    {
+      "clean_navigation": true,
+      "command": [
+        "/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-run-compare-06/build/native-recovered-06/bin/openmc"
+      ],
+      "completion": "COMPLETE",
+      "environment": {
+        "LD_LIBRARY_PATH": "/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-run-compare-06/build/native-recovered-06/lib",
+        "OMP_NUM_THREADS": "1",
+        "OPENMC_CROSS_SECTIONS": "/mnt/c/Users/joshu/Documents/2026_DPA/openc-hts-dpa/.data/openmc/cross_sections.xml"
+      },
+      "exit_code": 0,
+      "finished_unix": 1789348307.809994,
+      "hdf_bindings_unchanged": true,
+      "input_sha256": {
+        "geometry.xml": "7ceff2f576353e94ea949fbe1a42526548df69e22e8feb6915b827c31b3dab13",
+        "materials.xml": "6e51f0455b6254195a72ad5936c08f3d98735f102901b893470dd1ce655592ac",
+        "settings.xml": "e3a7fc23cecbd920adbde7403842596b864aefb30ec4c013d448a83ffd0f7741",
+        "tallies.xml": "69f01d0e89553061b75da6d035b35290a8bf262bee2877f72e3a48b21c1c0e73"
+      },
+      "lane": "recovered",
+      "navigation_warnings": [],
+      "runtime_seconds": 5.4355760789999295,
+      "seed": 17,
+      "started_unix": 1789348302.1052544,
+      "statepoint": {
+        "cell_bins": [
+          10,
+          11,
+          2001,
+          2002,
+          2003,
+          2008,
+          2009,
+          2016,
+          2017,
+          2024,
+          2025,
+          2032,
+          2033,
+          2040,
+          2041,
+          2046,
+          2047,
+          2048
+        ],
+        "cell_flux": [
+          30.171207465401988,
+          689.2799117447983,
+          0.09753930739967745,
+          0.0992767497687472,
+          0.10097916381843478,
+          0.10352998698076749,
+          0.09725351742577308,
+          0.10018198373042378,
+          0.08750895817089732,
+          0.09742208154151451,
+          0.0943931454800215,
+          0.09971501038993635,
+          0.107167920610624,
+          0.08683189545008023,
+          0.10276705000763861,
+          0.09428360259852875,
+          0.09355226606952281,
+          0.08898626031051153
+        ],
+        "closure_checked": true,
+        "current_batch": 1,
+        "flux_closure_absolute": 9.094947017729282e-13,
+        "global_flux": 721.0025081099543,
+        "histories_per_active_second": 8041.308326518771,
+        "leakage": 1.0,
+        "metric_errors": [],
+        "metrics_valid": true,
+        "n_batches": 1,
+        "n_particles": 8192,
+        "n_realizations": 1,
+        "runtime_seconds": {
+          "accumulating tallies": 9.3e-06,
+          "active batches": 1.018739696,
+          "reading cross sections": 0.026176399,
+          "simulation": 1.017948496,
+          "total": 5.338234979999999,
+          "total initialization": 4.317186084,
+          "transport": 1.001493496,
+          "writing statepoints": 0.0179764
+        },
+        "statepoint_sha256": "2b8873172ac9b88cea0e9062454cf759b59ff735647c4a624af7b4a278499f58"
+      },
+      "stderr": "stderr.txt",
+      "stdout": "stdout.txt",
+      "warnings": [
+        " WARNING: Could not compute uncertainties -- only one active batch simulated!"
+      ]
+    },
+    {
+      "clean_navigation": true,
+      "command": [
+        "/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-run-compare-06/build/native-recovered-06/bin/openmc"
+      ],
+      "completion": "COMPLETE",
+      "environment": {
+        "LD_LIBRARY_PATH": "/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-run-compare-06/build/native-recovered-06/lib",
+        "OMP_NUM_THREADS": "1",
+        "OPENMC_CROSS_SECTIONS": "/mnt/c/Users/joshu/Documents/2026_DPA/openc-hts-dpa/.data/openmc/cross_sections.xml"
+      },
+      "exit_code": 0,
+      "finished_unix": 1789348313.983591,
+      "hdf_bindings_unchanged": true,
+      "input_sha256": {
+        "geometry.xml": "7ceff2f576353e94ea949fbe1a42526548df69e22e8feb6915b827c31b3dab13",
+        "materials.xml": "6e51f0455b6254195a72ad5936c08f3d98735f102901b893470dd1ce655592ac",
+        "settings.xml": "e16e20fcaa6f37b7ffe93d22a66eaa3b9a2b27586532cc069a5095e926bdce09",
+        "tallies.xml": "69f01d0e89553061b75da6d035b35290a8bf262bee2877f72e3a48b21c1c0e73"
+      },
+      "lane": "recovered",
+      "navigation_warnings": [],
+      "runtime_seconds": 5.736525373999939,
+      "seed": 19,
+      "started_unix": 1789348307.9581451,
+      "statepoint": {
+        "cell_bins": [
+          10,
+          11,
+          2001,
+          2002,
+          2003,
+          2008,
+          2009,
+          2016,
+          2017,
+          2024,
+          2025,
+          2032,
+          2033,
+          2040,
+          2041,
+          2046,
+          2047,
+          2048
+        ],
+        "cell_flux": [
+          31.70978672405394,
+          690.0177596688359,
+          0.10590993119520259,
+          0.08896914254110624,
+          0.09883883542330064,
+          0.09456825918966053,
+          0.10075047123273813,
+          0.10402386712162205,
+          0.10529360431226424,
+          0.095258455910738,
+          0.1070257300148603,
+          0.08833341876105912,
+          0.10525024633444864,
+          0.10282400380455509,
+          0.08644993892473699,
+          0.09377845084157495,
+          0.10222968467600427,
+          0.1022975276393577
+        ],
+        "closure_checked": true,
+        "current_batch": 1,
+        "flux_closure_absolute": 3.524291969370097e-12,
+        "global_flux": 723.3093479608167,
+        "histories_per_active_second": 7702.872271027479,
+        "leakage": 1.0,
+        "metric_errors": [],
+        "metrics_valid": true,
+        "n_batches": 1,
+        "n_particles": 8192,
+        "n_realizations": 1,
+        "runtime_seconds": {
+          "accumulating tallies": 6.7e-06,
+          "active batches": 1.063499395,
+          "reading cross sections": 0.0298672,
+          "simulation": 1.062657695,
+          "total": 5.665265074,
+          "total initialization": 4.599007379,
+          "transport": 1.047148295,
+          "writing statepoints": 0.0173634
+        },
+        "statepoint_sha256": "b6e26fea70d736d78c17634861853d2ea9f9cc91868ee8ed18c96da0c84aac67"
+      },
+      "stderr": "stderr.txt",
+      "stdout": "stdout.txt",
+      "warnings": [
+        " WARNING: Could not compute uncertainties -- only one active batch simulated!"
+      ]
+    },
+    {
+      "clean_navigation": true,
+      "command": [
+        "/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-run-compare-06/build/native-old-control-06/openmc"
+      ],
+      "completion": "COMPLETE",
+      "environment": {
+        "LD_LIBRARY_PATH": "/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-run-compare-06/build/native-old-control-06",
+        "OMP_NUM_THREADS": "1",
+        "OPENMC_CROSS_SECTIONS": "/mnt/c/Users/joshu/Documents/2026_DPA/openc-hts-dpa/.data/openmc/cross_sections.xml"
+      },
+      "exit_code": 0,
+      "finished_unix": 1789348320.3984914,
+      "hdf_bindings_unchanged": true,
+      "input_sha256": {
+        "geometry.xml": "7ceff2f576353e94ea949fbe1a42526548df69e22e8feb6915b827c31b3dab13",
+        "materials.xml": "6e51f0455b6254195a72ad5936c08f3d98735f102901b893470dd1ce655592ac",
+        "settings.xml": "e16e20fcaa6f37b7ffe93d22a66eaa3b9a2b27586532cc069a5095e926bdce09",
+        "tallies.xml": "69f01d0e89553061b75da6d035b35290a8bf262bee2877f72e3a48b21c1c0e73"
+      },
+      "lane": "old",
+      "navigation_warnings": [],
+      "runtime_seconds": 5.988125379000053,
+      "seed": 19,
+      "started_unix": 1789348314.1404846,
+      "statepoint": {
+        "cell_bins": [
+          10,
+          11,
+          2001,
+          2002,
+          2003,
+          2008,
+          2009,
+          2016,
+          2017,
+          2024,
+          2025,
+          2032,
+          2033,
+          2040,
+          2041,
+          2046,
+          2047,
+          2048
+        ],
+        "cell_flux": [
+          31.70978672405394,
+          690.0177596688328,
+          0.10590993119552435,
+          0.08896914254128649,
+          0.09883883542356212,
+          0.09456825918993604,
+          0.10075047123293401,
+          0.10402386712189292,
+          0.1052936043125309,
+          0.09525845591103012,
+          0.10702573001491655,
+          0.08833341876115688,
+          0.1052502463346837,
+          0.10282400380459028,
+          0.0864499389249131,
+          0.0937784508417214,
+          0.10222968467623715,
+          0.1022975276395868
+        ],
+        "closure_checked": true,
+        "current_batch": 1,
+        "flux_closure_absolute": 2.9558577807620168e-12,
+        "global_flux": 723.3093479608161,
+        "histories_per_active_second": 8253.480198761012,
+        "leakage": 1.0,
+        "metric_errors": [],
+        "metrics_valid": true,
+        "n_batches": 1,
+        "n_particles": 8192,
+        "n_realizations": 1,
+        "runtime_seconds": {
+          "accumulating tallies": 5.7e-06,
+          "active batches": 0.992550997,
+          "reading cross sections": 0.0309454,
+          "simulation": 0.991808397,
+          "total": 5.918616579,
+          "total initialization": 4.923629882,
+          "transport": 0.976670397,
+          "writing statepoints": 0.016715
+        },
+        "statepoint_sha256": "955f236b845175542ca3e71a2222d0477b6cac570427479b9c58e0d3993d1962"
+      },
+      "stderr": "stderr.txt",
+      "stdout": "stdout.txt",
+      "warnings": [
+        " WARNING: Could not compute uncertainties -- only one active batch simulated!"
+      ]
+    },
+    {
+      "clean_navigation": true,
+      "command": [
+        "/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-run-compare-06/build/native-old-control-06/openmc"
+      ],
+      "completion": "COMPLETE",
+      "environment": {
+        "LD_LIBRARY_PATH": "/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-run-compare-06/build/native-old-control-06",
+        "OMP_NUM_THREADS": "1",
+        "OPENMC_CROSS_SECTIONS": "/mnt/c/Users/joshu/Documents/2026_DPA/openc-hts-dpa/.data/openmc/cross_sections.xml"
+      },
+      "exit_code": 0,
+      "finished_unix": 1789348326.563715,
+      "hdf_bindings_unchanged": true,
+      "input_sha256": {
+        "geometry.xml": "7ceff2f576353e94ea949fbe1a42526548df69e22e8feb6915b827c31b3dab13",
+        "materials.xml": "6e51f0455b6254195a72ad5936c08f3d98735f102901b893470dd1ce655592ac",
+        "settings.xml": "9c69d2d3fcd7f2dbc1ef24b1939b24ae3f38f78eceba85d435cf2cd43806e047",
+        "tallies.xml": "69f01d0e89553061b75da6d035b35290a8bf262bee2877f72e3a48b21c1c0e73"
+      },
+      "lane": "old",
+      "navigation_warnings": [],
+      "runtime_seconds": 5.686926193999966,
+      "seed": 23,
+      "started_unix": 1789348320.5646036,
+      "statepoint": {
+        "cell_bins": [
+          10,
+          11,
+          2001,
+          2002,
+          2003,
+          2008,
+          2009,
+          2016,
+          2017,
+          2024,
+          2025,
+          2032,
+          2033,
+          2040,
+          2041,
+          2046,
+          2047,
+          2048
+        ],
+        "cell_flux": [
+          32.1102292225384,
+          680.3632261507571,
+          0.09577585253076941,
+          0.09985815573373959,
+          0.11193748930278524,
+          0.09855252355123313,
+          0.11143463145322026,
+          0.09874409584057153,
+          0.13505039581793873,
+          0.09570750478049722,
+          0.10571253745297883,
+          0.10205768027940099,
+          0.09844922293400153,
+          0.10241876963042082,
+          0.09653772262952243,
+          0.10159119809461727,
+          0.08369915210524069,
+          0.09145365800214872
+        ],
+        "closure_checked": true,
+        "current_batch": 1,
+        "flux_closure_absolute": 1.3642420526593924e-12,
+        "global_flux": 714.1024359634359,
+        "histories_per_active_second": 7712.414284263421,
+        "leakage": 1.0,
+        "metric_errors": [],
+        "metrics_valid": true,
+        "n_batches": 1,
+        "n_particles": 8192,
+        "n_realizations": 1,
+        "runtime_seconds": {
+          "accumulating tallies": 5.9e-06,
+          "active batches": 1.062183604,
+          "reading cross sections": 0.039326901,
+          "simulation": 1.061359504,
+          "total": 5.584626094,
+          "total initialization": 4.52012619,
+          "transport": 1.043273304,
+          "writing statepoints": 0.0197717
+        },
+        "statepoint_sha256": "00a6e56541221c3c5273895363e34c9caa933cbabc8396d61b3629de10ec8c1a"
+      },
+      "stderr": "stderr.txt",
+      "stdout": "stdout.txt",
+      "warnings": [
+        " WARNING: Could not compute uncertainties -- only one active batch simulated!"
+      ]
+    },
+    {
+      "clean_navigation": true,
+      "command": [
+        "/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-run-compare-06/build/native-recovered-06/bin/openmc"
+      ],
+      "completion": "COMPLETE",
+      "environment": {
+        "LD_LIBRARY_PATH": "/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-run-compare-06/build/native-recovered-06/lib",
+        "OMP_NUM_THREADS": "1",
+        "OPENMC_CROSS_SECTIONS": "/mnt/c/Users/joshu/Documents/2026_DPA/openc-hts-dpa/.data/openmc/cross_sections.xml"
+      },
+      "exit_code": 0,
+      "finished_unix": 1789348332.404585,
+      "hdf_bindings_unchanged": true,
+      "input_sha256": {
+        "geometry.xml": "7ceff2f576353e94ea949fbe1a42526548df69e22e8feb6915b827c31b3dab13",
+        "materials.xml": "6e51f0455b6254195a72ad5936c08f3d98735f102901b893470dd1ce655592ac",
+        "settings.xml": "9c69d2d3fcd7f2dbc1ef24b1939b24ae3f38f78eceba85d435cf2cd43806e047",
+        "tallies.xml": "69f01d0e89553061b75da6d035b35290a8bf262bee2877f72e3a48b21c1c0e73"
+      },
+      "lane": "recovered",
+      "navigation_warnings": [],
+      "runtime_seconds": 5.385966017999976,
+      "seed": 23,
+      "started_unix": 1789348326.7508247,
+      "statepoint": {
+        "cell_bins": [
+          10,
+          11,
+          2001,
+          2002,
+          2003,
+          2008,
+          2009,
+          2016,
+          2017,
+          2024,
+          2025,
+          2032,
+          2033,
+          2040,
+          2041,
+          2046,
+          2047,
+          2048
+        ],
+        "cell_flux": [
+          32.1102292225384,
+          680.3632261507609,
+          0.09577585253047485,
+          0.09985815573346613,
+          0.11193748930250481,
+          0.09855252355096311,
+          0.11143463145289641,
+          0.09874409584025465,
+          0.13505039581759817,
+          0.09570750478026102,
+          0.10571253745297082,
+          0.10205768027938408,
+          0.09844922293372768,
+          0.10241876963023593,
+          0.09653772262936451,
+          0.10159119809439979,
+          0.0836991521051438,
+          0.09145365800211451
+        ],
+        "closure_checked": true,
+        "current_batch": 1,
+        "flux_closure_absolute": 1.3642420526593924e-12,
+        "global_flux": 714.1024359634364,
+        "histories_per_active_second": 8081.658657524586,
+        "leakage": 1.0,
+        "metric_errors": [],
+        "metrics_valid": true,
+        "n_batches": 1,
+        "n_particles": 8192,
+        "n_realizations": 1,
+        "runtime_seconds": {
+          "accumulating tallies": 5.8e-06,
+          "active batches": 1.013653304,
+          "reading cross sections": 0.025904401,
+          "simulation": 1.012836604,
+          "total": 5.300678918,
+          "total initialization": 4.284864114,
+          "transport": 0.996418803,
+          "writing statepoints": 0.018107501
+        },
+        "statepoint_sha256": "fb4c80dbbbef0fca6cefe2ff85d61a9578b235caf8cfcb2183e83af9d666b3b6"
+      },
+      "stderr": "stderr.txt",
+      "stdout": "stdout.txt",
+      "warnings": [
+        " WARNING: Could not compute uncertainties -- only one active batch simulated!"
+      ]
+    }
+  ],
+  "candidate_disagreement_count": 4,
+  "claim_boundary": "Exit code, closure, and lane agreement are recorded evidence only; none qualifies transport, periodic symmetry, or recovered throughput.",
+  "comparisons": [
+    {
+      "baseline_lane": "old",
+      "candidate_disagreement_count": 2,
+      "differences": [
+        {
+          "baseline": 721.0025081099559,
+          "candidate": 721.0025081099543,
+          "lane": "recovered",
+          "metric": "global_flux"
+        },
+        {
+          "baseline": 689.2799117447959,
+          "bin": 1,
+          "candidate": 689.2799117447983,
+          "lane": "recovered",
+          "metric": "cell_flux"
+        }
+      ],
+      "raw_differences": [
+        {
+          "lane": "recovered",
+          "metric": "global_flux",
+          "relative": -2.207503732927232e-15,
+          "signed": -1.5916157281026244e-12
+        },
+        {
+          "lane": "recovered",
+          "metric": "leakage",
+          "relative": 0.0,
+          "signed": 0.0
+        },
+        {
+          "bin": 0,
+          "lane": "recovered",
+          "metric": "cell_flux",
+          "relative": 2.355035795550761e-16,
+          "signed": 7.105427357601002e-15
+        },
+        {
+          "bin": 1,
+          "lane": "recovered",
+          "metric": "cell_flux",
+          "relative": 3.4636488768555235e-15,
+          "signed": 2.3874235921539366e-12
+        },
+        {
+          "bin": 2,
+          "lane": "recovered",
+          "metric": "cell_flux",
+          "relative": -3.94425636046691e-12,
+          "signed": -3.8472003360823237e-13
+        },
+        {
+          "bin": 3,
+          "lane": "recovered",
+          "metric": "cell_flux",
+          "relative": -3.631855453299938e-12,
+          "signed": -3.605588050348274e-13
+        },
+        {
+          "bin": 4,
+          "lane": "recovered",
+          "metric": "cell_flux",
+          "relative": -1.6350307856199263e-12,
+          "signed": -1.651040415495686e-13
+        },
+        {
+          "bin": 5,
+          "lane": "recovered",
+          "metric": "cell_flux",
+          "relative": -2.626766773685938e-12,
+          "signed": -2.719491298819321e-13
+        },
+        {
+          "bin": 6,
+          "lane": "recovered",
+          "metric": "cell_flux",
+          "relative": -3.151321145589634e-12,
+          "signed": -3.0647706594777446e-13
+        },
+        {
+          "bin": 7,
+          "lane": "recovered",
+          "metric": "cell_flux",
+          "relative": -2.8181685433689642e-12,
+          "signed": -2.823297151621773e-13
+        },
+        {
+          "bin": 8,
+          "lane": "recovered",
+          "metric": "cell_flux",
+          "relative": -1.6957713602178369e-12,
+          "signed": -1.4839518502895999e-13
+        },
+        {
+          "bin": 9,
+          "lane": "recovered",
+          "metric": "cell_flux",
+          "relative": -5.073788594073424e-12,
+          "signed": -4.942990461387353e-13
+        },
+        {
+          "bin": 10,
+          "lane": "recovered",
+          "metric": "cell_flux",
+          "relative": 8.746287587824285e-13,
+          "signed": 8.25589596686882e-14
+        },
+        {
+          "bin": 11,
+          "lane": "recovered",
+          "metric": "cell_flux",
+          "relative": 4.956004335796501e-13,
+          "signed": 4.941880238362728e-14
+        },
+        {
+          "bin": 12,
+          "lane": "recovered",
+          "metric": "cell_flux",
+          "relative": -2.0793128910212594e-12,
+          "signed": -2.2283563883007673e-13
+        },
+        {
+          "bin": 13,
+          "lane": "recovered",
+          "metric": "cell_flux",
+          "relative": -2.1416364995927073e-14,
+          "signed": -1.8596235662471372e-15
+        },
+        {
+          "bin": 14,
+          "lane": "recovered",
+          "metric": "cell_flux",
+          "relative": -1.7821389802060867e-12,
+          "signed": -1.8314516569972739e-13
+        },
+        {
+          "bin": 15,
+          "lane": "recovered",
+          "metric": "cell_flux",
+          "relative": -2.2373177187185616e-12,
+          "signed": -2.1094237467877974e-13
+        },
+        {
+          "bin": 16,
+          "lane": "recovered",
+          "metric": "cell_flux",
+          "relative": -1.5848925009285021e-12,
+          "signed": -1.4827028493868966e-13
+        },
+        {
+          "bin": 17,
+          "lane": "recovered",
+          "metric": "cell_flux",
+          "relative": -1.6442259327113662e-12,
+          "signed": -1.4631351685778782e-13
+        }
+      ],
+      "seed": 17,
+      "status": "CANDIDATE_DISAGREEMENT"
+    },
+    {
+      "baseline_lane": "old",
+      "candidate_disagreement_count": 1,
+      "differences": [
+        {
+          "baseline": 690.0177596688328,
+          "bin": 1,
+          "candidate": 690.0177596688359,
+          "lane": "recovered",
+          "metric": "cell_flux"
+        }
+      ],
+      "raw_differences": [
+        {
+          "lane": "recovered",
+          "metric": "global_flux",
+          "relative": 7.85879776351064e-16,
+          "signed": 5.684341886080801e-13
+        },
+        {
+          "lane": "recovered",
+          "metric": "leakage",
+          "relative": 0.0,
+          "signed": 0.0
+        },
+        {
+          "bin": 0,
+          "lane": "recovered",
+          "metric": "cell_flux",
+          "relative": 0.0,
+          "signed": 0.0
+        },
+        {
+          "bin": 1,
+          "lane": "recovered",
+          "metric": "cell_flux",
+          "relative": 4.448500890697118e-15,
+          "signed": 3.069544618483633e-12
+        },
+        {
+          "bin": 2,
+          "lane": "recovered",
+          "metric": "cell_flux",
+          "relative": -3.038020199731518e-12,
+          "signed": -3.217565103241782e-13
+        },
+        {
+          "bin": 3,
+          "lane": "recovered",
+          "metric": "cell_flux",
+          "relative": -2.025923852916205e-12,
+          "signed": -1.8024470804789416e-13
+        },
+        {
+          "bin": 4,
+          "lane": "recovered",
+          "metric": "cell_flux",
+          "relative": -2.645431818035163e-12,
+          "signed": -2.614714000870322e-13
+        },
+        {
+          "bin": 5,
+          "lane": "recovered",
+          "metric": "cell_flux",
+          "relative": -2.9134058690366674e-12,
+          "signed": -2.755157213485404e-13
+        },
+        {
+          "bin": 6,
+          "lane": "recovered",
+          "metric": "cell_flux",
+          "relative": -1.9442586472317044e-12,
+          "signed": -1.9588497490730106e-13
+        },
+        {
+          "bin": 7,
+          "lane": "recovered",
+          "metric": "cell_flux",
+          "relative": -2.6038895681077388e-12,
+          "signed": -2.7086666243292257e-13
+        },
+        {
+          "bin": 8,
+          "lane": "recovered",
+          "metric": "cell_flux",
+          "relative": -2.5325535626613517e-12,
+          "signed": -2.666616927271548e-13
+        },
+        {
+          "bin": 9,
+          "lane": "recovered",
+          "metric": "cell_flux",
+          "relative": -3.0665367475567303e-12,
+          "signed": -2.921135555666865e-13
+        },
+        {
+          "bin": 10,
+          "lane": "recovered",
+          "metric": "cell_flux",
+          "relative": -5.25543474239631e-13,
+          "signed": -5.6246673985071993e-14
+        },
+        {
+          "bin": 11,
+          "lane": "recovered",
+          "metric": "cell_flux",
+          "relative": -1.1068179685245591e-12,
+          "signed": -9.776901510605285e-14
+        },
+        {
+          "bin": 12,
+          "lane": "recovered",
+          "metric": "cell_flux",
+          "relative": -2.233362657805961e-12,
+          "signed": -2.3506196988876127e-13
+        },
+        {
+          "bin": 13,
+          "lane": "recovered",
+          "metric": "cell_flux",
+          "relative": -3.4227484418425577e-13,
+          "signed": -3.519406988061746e-14
+        },
+        {
+          "bin": 14,
+          "lane": "recovered",
+          "metric": "cell_flux",
+          "relative": -2.037122633876314e-12,
+          "signed": -1.7610912728116546e-13
+        },
+        {
+          "bin": 15,
+          "lane": "recovered",
+          "metric": "cell_flux",
+          "relative": -1.5616838774938509e-12,
+          "signed": -1.4645229473586596e-13
+        },
+        {
+          "bin": 16,
+          "lane": "recovered",
+          "metric": "cell_flux",
+          "relative": -2.2780384967485584e-12,
+          "signed": -2.328831572029344e-13
+        },
+        {
+          "bin": 17,
+          "lane": "recovered",
+          "metric": "cell_flux",
+          "relative": -2.2394922577067907e-12,
+          "signed": -2.2909452113140105e-13
+        }
+      ],
+      "seed": 19,
+      "status": "CANDIDATE_DISAGREEMENT"
+    },
+    {
+      "baseline_lane": "old",
+      "candidate_disagreement_count": 1,
+      "differences": [
+        {
+          "baseline": 680.3632261507571,
+          "bin": 1,
+          "candidate": 680.3632261507609,
+          "lane": "recovered",
+          "metric": "cell_flux"
+        }
+      ],
+      "raw_differences": [
+        {
+          "lane": "recovered",
+          "metric": "global_flux",
+          "relative": 6.368096900172856e-16,
+          "signed": 4.547473508864641e-13
+        },
+        {
+          "lane": "recovered",
+          "metric": "leakage",
+          "relative": 0.0,
+          "signed": 0.0
+        },
+        {
+          "bin": 0,
+          "lane": "recovered",
+          "metric": "cell_flux",
+          "relative": 0.0,
+          "signed": 0.0
+        },
+        {
+          "bin": 1,
+          "lane": "recovered",
+          "metric": "cell_flux",
+          "relative": 5.5142099111365294e-15,
+          "signed": 3.751665644813329e-12
+        },
+        {
+          "bin": 2,
+          "lane": "recovered",
+          "metric": "cell_flux",
+          "relative": -3.075472976095215e-12,
+          "signed": -2.9455604622086184e-13
+        },
+        {
+          "bin": 3,
+          "lane": "recovered",
+          "metric": "cell_flux",
+          "relative": -2.7385024963022417e-12,
+          "signed": -2.7346180875298387e-13
+        },
+        {
+          "bin": 4,
+          "lane": "recovered",
+          "metric": "cell_flux",
+          "relative": -2.5052237635414703e-12,
+          "signed": -2.8042845823250673e-13
+        },
+        {
+          "bin": 5,
+          "lane": "recovered",
+          "metric": "cell_flux",
+          "relative": -2.7398600020249535e-12,
+          "signed": -2.700201173766459e-13
+        },
+        {
+          "bin": 6,
+          "lane": "recovered",
+          "metric": "cell_flux",
+          "relative": -2.9062065541008206e-12,
+          "signed": -3.2385205628315816e-13
+        },
+        {
+          "bin": 7,
+          "lane": "recovered",
+          "metric": "cell_flux",
+          "relative": -3.209158017055181e-12,
+          "signed": -3.168854068036353e-13
+        },
+        {
+          "bin": 8,
+          "lane": "recovered",
+          "metric": "cell_flux",
+          "relative": -2.5217320596592437e-12,
+          "signed": -3.4056091280376677e-13
+        },
+        {
+          "bin": 9,
+          "lane": "recovered",
+          "metric": "cell_flux",
+          "relative": -2.467935498169352e-12,
+          "signed": -2.3619994848900205e-13
+        },
+        {
+          "bin": 10,
+          "lane": "recovered",
+          "metric": "cell_flux",
+          "relative": -7.574771884243804e-14,
+          "signed": -8.007483565108942e-15
+        },
+        {
+          "bin": 11,
+          "lane": "recovered",
+          "metric": "cell_flux",
+          "relative": -1.6562345434113976e-13,
+          "signed": -1.6903145549918008e-14
+        },
+        {
+          "bin": 12,
+          "lane": "recovered",
+          "metric": "cell_flux",
+          "relative": -2.7816409175234093e-12,
+          "signed": -2.738503868116027e-13
+        },
+        {
+          "bin": 13,
+          "lane": "recovered",
+          "metric": "cell_flux",
+          "relative": -1.8052722916971475e-12,
+          "signed": -1.84893766963512e-13
+        },
+        {
+          "bin": 14,
+          "lane": "recovered",
+          "metric": "cell_flux",
+          "relative": -1.6357890279962773e-12,
+          "signed": -1.579153474651207e-13
+        },
+        {
+          "bin": 15,
+          "lane": "recovered",
+          "metric": "cell_flux",
+          "relative": -2.1407249527041784e-12,
+          "signed": -2.1747881273626035e-13
+        },
+        {
+          "bin": 16,
+          "lane": "recovered",
+          "metric": "cell_flux",
+          "relative": -1.1576546719652328e-12,
+          "signed": -9.689471447416054e-14
+        },
+        {
+          "bin": 17,
+          "lane": "recovered",
+          "metric": "cell_flux",
+          "relative": -3.7405553472184674e-13,
+          "signed": -3.4208746946262636e-14
+        }
+      ],
+      "seed": 23,
+      "status": "CANDIDATE_DISAGREEMENT"
+    }
+  ],
+  "cross_sections": "/mnt/c/Users/joshu/Documents/2026_DPA/openc-hts-dpa/.data/openmc/cross_sections.xml",
+  "cross_sections_sha256": "218236803b2c4a21b038992af93dacfdfe5c0c0401cbbc57f3ff3a947c63abc7",
+  "hdf_bindings_sha256": {
+    "/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-product-05/dev/stellarcsg/reports/product05/model-02/xml/plasma_boundary.h5": "16f2704654f62dfccd996ca633aae6740ad028ec7ed91831564547fe4a6b9b48",
+    "/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-product-05/dev/stellarcsg/reports/recovery04/wistell-coils-1cm.h5": "9bb178c308e7f3ec659e1651a7d57e0ecbff734d3320000df1c2bf79fcf3262b"
+  },
+  "immutable_xml_sha256": {
+    "geometry.xml": "7ceff2f576353e94ea949fbe1a42526548df69e22e8feb6915b827c31b3dab13",
+    "materials.xml": "6e51f0455b6254195a72ad5936c08f3d98735f102901b893470dd1ce655592ac",
+    "tallies.xml": "69f01d0e89553061b75da6d035b35290a8bf262bee2877f72e3a48b21c1c0e73"
+  },
+  "lanes": {
+    "old": {
+      "binary": "/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-run-compare-06/build/native-old-control-06/openmc",
+      "binary_sha256": "8c7f76b5e0c3f1fc3bd6569eb71d0683e011253894592416c40adf0dfec9e985",
+      "library": "/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-run-compare-06/build/native-old-control-06/libopenmc.so",
+      "library_sha256": "b266a84430f568b196f080494330c395f95c1b0681e665b099f955335bd6003b",
+      "loader": {
+        "ld_library_path": "/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-run-compare-06/build/native-old-control-06",
+        "ldd": "\tlinux-vdso.so.1 (0x000072048ede4000)\n\tlibopenmc.so => /mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-run-compare-06/build/native-old-control-06/libopenmc.so (0x000072048eaa0000)\n\tlibstdc++.so.6 => /lib/x86_64-linux-gnu/libstdc++.so.6 (0x000072048e800000)\n\tlibgcc_s.so.1 => /lib/x86_64-linux-gnu/libgcc_s.so.1 (0x000072048ea6c000)\n\tlibc.so.6 => /lib/x86_64-linux-gnu/libc.so.6 (0x000072048e60a000)\n\tlibhdf5_serial.so.310 => /lib/x86_64-linux-gnu/libhdf5_serial.so.310 (0x000072048e200000)\n\tlibhdf5_serial_hl.so.310 => /lib/x86_64-linux-gnu/libhdf5_serial_hl.so.310 (0x000072048e1db000)\n\tlibpng16.so.16 => /lib/x86_64-linux-gnu/libpng16.so.16 (0x000072048e1a2000)\n\tlibgomp.so.1 => /lib/x86_64-linux-gnu/libgomp.so.1 (0x000072048e14d000)\n\tlibm.so.6 => /lib/x86_64-linux-gnu/libm.so.6 (0x000072048e05d000)\n\t/lib64/ld-linux-x86-64.so.2 (0x000072048ede6000)\n\tlibcrypto.so.3 => /lib/x86_64-linux-gnu/libcrypto.so.3 (0x000072048da00000)\n\tlibcurl.so.4 => /lib/x86_64-linux-gnu/libcurl.so.4 (0x000072048d910000)\n\tlibsz.so.2 => /lib/x86_64-linux-gnu/libsz.so.2 (0x000072048e605000)\n\tlibz.so.1 => /lib/x86_64-linux-gnu/libz.so.1 (0x000072048e03d000)\n\tlibzstd.so.1 => /lib/x86_64-linux-gnu/libzstd.so.1 (0x000072048d846000)\n\tlibnghttp3.so.9 => /lib/x86_64-linux-gnu/libnghttp3.so.9 (0x000072048d81c000)\n\tlibnghttp2.so.14 => /lib/x86_64-linux-gnu/libnghttp2.so.14 (0x000072048d7ea000)\n\tlibidn2.so.0 => /lib/x86_64-linux-gnu/libidn2.so.0 (0x000072048d7b7000)\n\tlibrtmp.so.1 => /lib/x86_64-linux-gnu/librtmp.so.1 (0x000072048d799000)\n\tlibssh2.so.1 => /lib/x86_64-linux-gnu/libssh2.so.1 (0x000072048d750000)\n\tlibpsl.so.5 => /lib/x86_64-linux-gnu/libpsl.so.5 (0x000072048d73c000)\n\tlibssl.so.3 => /lib/x86_64-linux-gnu/libssl.so.3 (0x000072048d62e000)\n\tlibgssapi_krb5.so.2 => /lib/x86_64-linux-gnu/libgssapi_krb5.so.2 (0x000072048d5d8000)\n\tlibldap.so.2 => /lib/x86_64-linux-gnu/libldap.so.2 (0x000072048d574000)\n\tliblber.so.2 => /lib/x86_64-linux-gnu/liblber.so.2 (0x000072048d563000)\n\tlibbrotlidec.so.1 => /lib/x86_64-linux-gnu/libbrotlidec.so.1 (0x000072048d555000)\n\tlibaec.so.0 => /lib/x86_64-linux-gnu/libaec.so.0 (0x000072048d54a000)\n\tlibunistring.so.5 => /lib/x86_64-linux-gnu/libunistring.so.5 (0x000072048d362000)\n\tlibgnutls.so.30 => /lib/x86_64-linux-gnu/libgnutls.so.30 (0x000072048d000000)\n\tlibhogweed.so.6 => /lib/x86_64-linux-gnu/libhogweed.so.6 (0x000072048d317000)\n\tlibnettle.so.8 => /lib/x86_64-linux-gnu/libnettle.so.8 (0x000072048d2c1000)\n\tlibgmp.so.10 => /lib/x86_64-linux-gnu/libgmp.so.10 (0x000072048d237000)\n\tlibkrb5.so.3 => /lib/x86_64-linux-gnu/libkrb5.so.3 (0x000072048cf28000)\n\tlibk5crypto.so.3 => /lib/x86_64-linux-gnu/libk5crypto.so.3 (0x000072048cefa000)\n\tlibcom_err.so.2 => /lib/x86_64-linux-gnu/libcom_err.so.2 (0x000072048d231000)\n\tlibkrb5support.so.0 => /lib/x86_64-linux-gnu/libkrb5support.so.0 (0x000072048ceec000)\n\tlibsasl2.so.2 => /lib/x86_64-linux-gnu/libsasl2.so.2 (0x000072048ced0000)\n\tlibbrotlicommon.so.1 => /lib/x86_64-linux-gnu/libbrotlicommon.so.1 (0x000072048cead000)\n\tlibp11-kit.so.0 => /lib/x86_64-linux-gnu/libp11-kit.so.0 (0x000072048cd0c000)\n\tlibtasn1.so.6 => /lib/x86_64-linux-gnu/libtasn1.so.6 (0x000072048ccf6000)\n\tlibkeyutils.so.1 => /lib/x86_64-linux-gnu/libkeyutils.so.1 (0x000072048ccef000)\n\tlibresolv.so.2 => /lib/x86_64-linux-gnu/libresolv.so.2 (0x000072048ccdd000)\n\tlibffi.so.8 => /lib/x86_64-linux-gnu/libffi.so.8 (0x000072048ccd0000)\n",
+        "requested": "/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-run-compare-06/build/native-old-control-06/libopenmc.so",
+        "resolved": "/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-run-compare-06/build/native-old-control-06/libopenmc.so"
+      }
+    },
+    "recovered": {
+      "binary": "/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-run-compare-06/build/native-recovered-06/bin/openmc",
+      "binary_sha256": "8c7f76b5e0c3f1fc3bd6569eb71d0683e011253894592416c40adf0dfec9e985",
+      "library": "/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-run-compare-06/build/native-recovered-06/lib/libopenmc.so",
+      "library_sha256": "630f71801795b18f0fe858ee6d557ce9dec905f3adc6b5fdec25d6137730faa4",
+      "loader": {
+        "ld_library_path": "/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-run-compare-06/build/native-recovered-06/lib",
+        "ldd": "\tlinux-vdso.so.1 (0x0000720c978a9000)\n\tlibopenmc.so => /mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-run-compare-06/build/native-recovered-06/lib/libopenmc.so (0x0000720c97564000)\n\tlibstdc++.so.6 => /lib/x86_64-linux-gnu/libstdc++.so.6 (0x0000720c97200000)\n\tlibgcc_s.so.1 => /lib/x86_64-linux-gnu/libgcc_s.so.1 (0x0000720c97530000)\n\tlibc.so.6 => /lib/x86_64-linux-gnu/libc.so.6 (0x0000720c9700a000)\n\tlibhdf5_serial.so.310 => /lib/x86_64-linux-gnu/libhdf5_serial.so.310 (0x0000720c96c00000)\n\tlibhdf5_serial_hl.so.310 => /lib/x86_64-linux-gnu/libhdf5_serial_hl.so.310 (0x0000720c97509000)\n\tlibpng16.so.16 => /lib/x86_64-linux-gnu/libpng16.so.16 (0x0000720c974d0000)\n\tlibgomp.so.1 => /lib/x86_64-linux-gnu/libgomp.so.1 (0x0000720c9747b000)\n\tlibm.so.6 => /lib/x86_64-linux-gnu/libm.so.6 (0x0000720c96b10000)\n\t/lib64/ld-linux-x86-64.so.2 (0x0000720c978ab000)\n\tlibcrypto.so.3 => /lib/x86_64-linux-gnu/libcrypto.so.3 (0x0000720c96400000)\n\tlibcurl.so.4 => /lib/x86_64-linux-gnu/libcurl.so.4 (0x0000720c96310000)\n\tlibsz.so.2 => /lib/x86_64-linux-gnu/libsz.so.2 (0x0000720c97474000)\n\tlibz.so.1 => /lib/x86_64-linux-gnu/libz.so.1 (0x0000720c96af0000)\n\tlibzstd.so.1 => /lib/x86_64-linux-gnu/libzstd.so.1 (0x0000720c96246000)\n\tlibnghttp3.so.9 => /lib/x86_64-linux-gnu/libnghttp3.so.9 (0x0000720c96ac6000)\n\tlibnghttp2.so.14 => /lib/x86_64-linux-gnu/libnghttp2.so.14 (0x0000720c96a94000)\n\tlibidn2.so.0 => /lib/x86_64-linux-gnu/libidn2.so.0 (0x0000720c96a61000)\n\tlibrtmp.so.1 => /lib/x86_64-linux-gnu/librtmp.so.1 (0x0000720c96a43000)\n\tlibssh2.so.1 => /lib/x86_64-linux-gnu/libssh2.so.1 (0x0000720c961fd000)\n\tlibpsl.so.5 => /lib/x86_64-linux-gnu/libpsl.so.5 (0x0000720c961e9000)\n\tlibssl.so.3 => /lib/x86_64-linux-gnu/libssl.so.3 (0x0000720c960db000)\n\tlibgssapi_krb5.so.2 => /lib/x86_64-linux-gnu/libgssapi_krb5.so.2 (0x0000720c96085000)\n\tlibldap.so.2 => /lib/x86_64-linux-gnu/libldap.so.2 (0x0000720c96021000)\n\tliblber.so.2 => /lib/x86_64-linux-gnu/liblber.so.2 (0x0000720c96010000)\n\tlibbrotlidec.so.1 => /lib/x86_64-linux-gnu/libbrotlidec.so.1 (0x0000720c96002000)\n\tlibaec.so.0 => /lib/x86_64-linux-gnu/libaec.so.0 (0x0000720c95ff7000)\n\tlibunistring.so.5 => /lib/x86_64-linux-gnu/libunistring.so.5 (0x0000720c95e0f000)\n\tlibgnutls.so.30 => /lib/x86_64-linux-gnu/libgnutls.so.30 (0x0000720c95a00000)\n\tlibhogweed.so.6 => /lib/x86_64-linux-gnu/libhogweed.so.6 (0x0000720c95dc4000)\n\tlibnettle.so.8 => /lib/x86_64-linux-gnu/libnettle.so.8 (0x0000720c95d6e000)\n\tlibgmp.so.10 => /lib/x86_64-linux-gnu/libgmp.so.10 (0x0000720c95ce4000)\n\tlibkrb5.so.3 => /lib/x86_64-linux-gnu/libkrb5.so.3 (0x0000720c95928000)\n\tlibk5crypto.so.3 => /lib/x86_64-linux-gnu/libk5crypto.so.3 (0x0000720c95cb6000)\n\tlibcom_err.so.2 => /lib/x86_64-linux-gnu/libcom_err.so.2 (0x0000720c97466000)\n\tlibkrb5support.so.0 => /lib/x86_64-linux-gnu/libkrb5support.so.0 (0x0000720c95ca8000)\n\tlibsasl2.so.2 => /lib/x86_64-linux-gnu/libsasl2.so.2 (0x0000720c95c8c000)\n\tlibbrotlicommon.so.1 => /lib/x86_64-linux-gnu/libbrotlicommon.so.1 (0x0000720c95c69000)\n\tlibp11-kit.so.0 => /lib/x86_64-linux-gnu/libp11-kit.so.0 (0x0000720c95787000)\n\tlibtasn1.so.6 => /lib/x86_64-linux-gnu/libtasn1.so.6 (0x0000720c95c53000)\n\tlibkeyutils.so.1 => /lib/x86_64-linux-gnu/libkeyutils.so.1 (0x0000720c97001000)\n\tlibresolv.so.2 => /lib/x86_64-linux-gnu/libresolv.so.2 (0x0000720c95c41000)\n\tlibffi.so.8 => /lib/x86_64-linux-gnu/libffi.so.8 (0x0000720c95c34000)\n",
+        "requested": "/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-run-compare-06/build/native-recovered-06/lib/libopenmc.so",
+        "resolved": "/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-run-compare-06/build/native-recovered-06/lib/libopenmc.so"
+      }
+    }
+  },
+  "model_xml": "/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-product-05/dev/stellarcsg/reports/product05/model-02/xml",
+  "schema": "stellarcsg.product06.compare-transport/v1",
+  "status": "UNQUALIFIED_CLIPPED_DIAGNOSTIC_EXPERIMENT",
+  "tolerance_absolute": 1e-12
+}

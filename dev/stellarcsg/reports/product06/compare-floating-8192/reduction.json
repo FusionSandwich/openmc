@@ -1,0 +1,633 @@
+{
+  "attempt_statuses": [
+    {
+      "completion": "COMPLETE",
+      "exit_code": 0,
+      "hdf_bindings_unchanged": true,
+      "lane": "old",
+      "metric_errors": [],
+      "seed": 17,
+      "timeout": null,
+      "warnings": [
+        " WARNING: Could not compute uncertainties -- only one active batch simulated!"
+      ]
+    },
+    {
+      "completion": "COMPLETE",
+      "exit_code": 0,
+      "hdf_bindings_unchanged": true,
+      "lane": "recovered",
+      "metric_errors": [],
+      "seed": 17,
+      "timeout": null,
+      "warnings": [
+        " WARNING: Could not compute uncertainties -- only one active batch simulated!"
+      ]
+    },
+    {
+      "completion": "COMPLETE",
+      "exit_code": 0,
+      "hdf_bindings_unchanged": true,
+      "lane": "recovered",
+      "metric_errors": [],
+      "seed": 19,
+      "timeout": null,
+      "warnings": [
+        " WARNING: Could not compute uncertainties -- only one active batch simulated!"
+      ]
+    },
+    {
+      "completion": "COMPLETE",
+      "exit_code": 0,
+      "hdf_bindings_unchanged": true,
+      "lane": "old",
+      "metric_errors": [],
+      "seed": 19,
+      "timeout": null,
+      "warnings": [
+        " WARNING: Could not compute uncertainties -- only one active batch simulated!"
+      ]
+    },
+    {
+      "completion": "COMPLETE",
+      "exit_code": 0,
+      "hdf_bindings_unchanged": true,
+      "lane": "old",
+      "metric_errors": [],
+      "seed": 23,
+      "timeout": null,
+      "warnings": [
+        " WARNING: Could not compute uncertainties -- only one active batch simulated!"
+      ]
+    },
+    {
+      "completion": "COMPLETE",
+      "exit_code": 0,
+      "hdf_bindings_unchanged": true,
+      "lane": "recovered",
+      "metric_errors": [],
+      "seed": 23,
+      "timeout": null,
+      "warnings": [
+        " WARNING: Could not compute uncertainties -- only one active batch simulated!"
+      ]
+    }
+  ],
+  "claim_boundary": "Descriptive reduction only: no transport qualification, statistical confidence, or inferred root-cause claim.",
+  "per_lane": {
+    "old": {
+      "attempt_count": 3,
+      "completed_count": 3,
+      "incomplete_count": 0,
+      "median_active_histories_per_second": 8253.480198761012,
+      "median_active_runtime_seconds": 0.992550997,
+      "median_closure_absolute": 1.8189894035458565e-12,
+      "median_closure_relative": 2.5228614090596935e-15,
+      "median_histories_per_transport_second": 8387.681274218041,
+      "median_initialization_runtime_seconds": 4.52012619,
+      "median_transport_runtime_seconds": 0.976670397,
+      "nonzero_cell_bins": [
+        10,
+        11,
+        2001,
+        2002,
+        2003,
+        2008,
+        2009,
+        2016,
+        2017,
+        2024,
+        2025,
+        2032,
+        2033,
+        2040,
+        2041,
+        2046,
+        2047,
+        2048
+      ],
+      "nonzero_cell_support_count": 18
+    },
+    "recovered": {
+      "attempt_count": 3,
+      "completed_count": 3,
+      "incomplete_count": 0,
+      "median_active_histories_per_second": 8041.308326518771,
+      "median_active_runtime_seconds": 1.018739696,
+      "median_closure_absolute": 1.3642420526593924e-12,
+      "median_closure_relative": 1.9104290700518553e-15,
+      "median_histories_per_transport_second": 8179.7835260230195,
+      "median_initialization_runtime_seconds": 4.317186084,
+      "median_transport_runtime_seconds": 1.001493496,
+      "nonzero_cell_bins": [
+        10,
+        11,
+        2001,
+        2002,
+        2003,
+        2008,
+        2009,
+        2016,
+        2017,
+        2024,
+        2025,
+        2032,
+        2033,
+        2040,
+        2041,
+        2046,
+        2047,
+        2048
+      ],
+      "nonzero_cell_support_count": 18
+    }
+  },
+  "per_seed_pairs": [
+    {
+      "exact_available": false,
+      "lanes": {
+        "exact": {
+          "status": "MISSING_OR_INCOMPLETE"
+        },
+        "old": {
+          "status": "COMPLETE"
+        },
+        "recovered": {
+          "status": "COMPLETE"
+        }
+      },
+      "recovered_over_old_transport_runtime_ratio": 1.0477811170424869,
+      "seed": 17
+    },
+    {
+      "exact_available": false,
+      "lanes": {
+        "exact": {
+          "status": "MISSING_OR_INCOMPLETE"
+        },
+        "old": {
+          "status": "COMPLETE"
+        },
+        "recovered": {
+          "status": "COMPLETE"
+        }
+      },
+      "recovered_over_old_transport_runtime_ratio": 1.072161394690045,
+      "seed": 19
+    },
+    {
+      "exact_available": false,
+      "lanes": {
+        "exact": {
+          "status": "MISSING_OR_INCOMPLETE"
+        },
+        "old": {
+          "status": "COMPLETE"
+        },
+        "recovered": {
+          "status": "COMPLETE"
+        }
+      },
+      "recovered_over_old_transport_runtime_ratio": 0.9550889485810135,
+      "seed": 23
+    }
+  ],
+  "schema": "stellarcsg.product06.reduce-transport/v1",
+  "source_comparison_raw_differences": [
+    {
+      "raw_differences": [
+        {
+          "lane": "recovered",
+          "metric": "global_flux",
+          "relative": -2.207503732927232e-15,
+          "signed": -1.5916157281026244e-12
+        },
+        {
+          "lane": "recovered",
+          "metric": "leakage",
+          "relative": 0.0,
+          "signed": 0.0
+        },
+        {
+          "bin": 0,
+          "lane": "recovered",
+          "metric": "cell_flux",
+          "relative": 2.355035795550761e-16,
+          "signed": 7.105427357601002e-15
+        },
+        {
+          "bin": 1,
+          "lane": "recovered",
+          "metric": "cell_flux",
+          "relative": 3.4636488768555235e-15,
+          "signed": 2.3874235921539366e-12
+        },
+        {
+          "bin": 2,
+          "lane": "recovered",
+          "metric": "cell_flux",
+          "relative": -3.94425636046691e-12,
+          "signed": -3.8472003360823237e-13
+        },
+        {
+          "bin": 3,
+          "lane": "recovered",
+          "metric": "cell_flux",
+          "relative": -3.631855453299938e-12,
+          "signed": -3.605588050348274e-13
+        },
+        {
+          "bin": 4,
+          "lane": "recovered",
+          "metric": "cell_flux",
+          "relative": -1.6350307856199263e-12,
+          "signed": -1.651040415495686e-13
+        },
+        {
+          "bin": 5,
+          "lane": "recovered",
+          "metric": "cell_flux",
+          "relative": -2.626766773685938e-12,
+          "signed": -2.719491298819321e-13
+        },
+        {
+          "bin": 6,
+          "lane": "recovered",
+          "metric": "cell_flux",
+          "relative": -3.151321145589634e-12,
+          "signed": -3.0647706594777446e-13
+        },
+        {
+          "bin": 7,
+          "lane": "recovered",
+          "metric": "cell_flux",
+          "relative": -2.8181685433689642e-12,
+          "signed": -2.823297151621773e-13
+        },
+        {
+          "bin": 8,
+          "lane": "recovered",
+          "metric": "cell_flux",
+          "relative": -1.6957713602178369e-12,
+          "signed": -1.4839518502895999e-13
+        },
+        {
+          "bin": 9,
+          "lane": "recovered",
+          "metric": "cell_flux",
+          "relative": -5.073788594073424e-12,
+          "signed": -4.942990461387353e-13
+        },
+        {
+          "bin": 10,
+          "lane": "recovered",
+          "metric": "cell_flux",
+          "relative": 8.746287587824285e-13,
+          "signed": 8.25589596686882e-14
+        },
+        {
+          "bin": 11,
+          "lane": "recovered",
+          "metric": "cell_flux",
+          "relative": 4.956004335796501e-13,
+          "signed": 4.941880238362728e-14
+        },
+        {
+          "bin": 12,
+          "lane": "recovered",
+          "metric": "cell_flux",
+          "relative": -2.0793128910212594e-12,
+          "signed": -2.2283563883007673e-13
+        },
+        {
+          "bin": 13,
+          "lane": "recovered",
+          "metric": "cell_flux",
+          "relative": -2.1416364995927073e-14,
+          "signed": -1.8596235662471372e-15
+        },
+        {
+          "bin": 14,
+          "lane": "recovered",
+          "metric": "cell_flux",
+          "relative": -1.7821389802060867e-12,
+          "signed": -1.8314516569972739e-13
+        },
+        {
+          "bin": 15,
+          "lane": "recovered",
+          "metric": "cell_flux",
+          "relative": -2.2373177187185616e-12,
+          "signed": -2.1094237467877974e-13
+        },
+        {
+          "bin": 16,
+          "lane": "recovered",
+          "metric": "cell_flux",
+          "relative": -1.5848925009285021e-12,
+          "signed": -1.4827028493868966e-13
+        },
+        {
+          "bin": 17,
+          "lane": "recovered",
+          "metric": "cell_flux",
+          "relative": -1.6442259327113662e-12,
+          "signed": -1.4631351685778782e-13
+        }
+      ],
+      "seed": 17,
+      "status": "CANDIDATE_DISAGREEMENT"
+    },
+    {
+      "raw_differences": [
+        {
+          "lane": "recovered",
+          "metric": "global_flux",
+          "relative": 7.85879776351064e-16,
+          "signed": 5.684341886080801e-13
+        },
+        {
+          "lane": "recovered",
+          "metric": "leakage",
+          "relative": 0.0,
+          "signed": 0.0
+        },
+        {
+          "bin": 0,
+          "lane": "recovered",
+          "metric": "cell_flux",
+          "relative": 0.0,
+          "signed": 0.0
+        },
+        {
+          "bin": 1,
+          "lane": "recovered",
+          "metric": "cell_flux",
+          "relative": 4.448500890697118e-15,
+          "signed": 3.069544618483633e-12
+        },
+        {
+          "bin": 2,
+          "lane": "recovered",
+          "metric": "cell_flux",
+          "relative": -3.038020199731518e-12,
+          "signed": -3.217565103241782e-13
+        },
+        {
+          "bin": 3,
+          "lane": "recovered",
+          "metric": "cell_flux",
+          "relative": -2.025923852916205e-12,
+          "signed": -1.8024470804789416e-13
+        },
+        {
+          "bin": 4,
+          "lane": "recovered",
+          "metric": "cell_flux",
+          "relative": -2.645431818035163e-12,
+          "signed": -2.614714000870322e-13
+        },
+        {
+          "bin": 5,
+          "lane": "recovered",
+          "metric": "cell_flux",
+          "relative": -2.9134058690366674e-12,
+          "signed": -2.755157213485404e-13
+        },
+        {
+          "bin": 6,
+          "lane": "recovered",
+          "metric": "cell_flux",
+          "relative": -1.9442586472317044e-12,
+          "signed": -1.9588497490730106e-13
+        },
+        {
+          "bin": 7,
+          "lane": "recovered",
+          "metric": "cell_flux",
+          "relative": -2.6038895681077388e-12,
+          "signed": -2.7086666243292257e-13
+        },
+        {
+          "bin": 8,
+          "lane": "recovered",
+          "metric": "cell_flux",
+          "relative": -2.5325535626613517e-12,
+          "signed": -2.666616927271548e-13
+        },
+        {
+          "bin": 9,
+          "lane": "recovered",
+          "metric": "cell_flux",
+          "relative": -3.0665367475567303e-12,
+          "signed": -2.921135555666865e-13
+        },
+        {
+          "bin": 10,
+          "lane": "recovered",
+          "metric": "cell_flux",
+          "relative": -5.25543474239631e-13,
+          "signed": -5.6246673985071993e-14
+        },
+        {
+          "bin": 11,
+          "lane": "recovered",
+          "metric": "cell_flux",
+          "relative": -1.1068179685245591e-12,
+          "signed": -9.776901510605285e-14
+        },
+        {
+          "bin": 12,
+          "lane": "recovered",
+          "metric": "cell_flux",
+          "relative": -2.233362657805961e-12,
+          "signed": -2.3506196988876127e-13
+        },
+        {
+          "bin": 13,
+          "lane": "recovered",
+          "metric": "cell_flux",
+          "relative": -3.4227484418425577e-13,
+          "signed": -3.519406988061746e-14
+        },
+        {
+          "bin": 14,
+          "lane": "recovered",
+          "metric": "cell_flux",
+          "relative": -2.037122633876314e-12,
+          "signed": -1.7610912728116546e-13
+        },
+        {
+          "bin": 15,
+          "lane": "recovered",
+          "metric": "cell_flux",
+          "relative": -1.5616838774938509e-12,
+          "signed": -1.4645229473586596e-13
+        },
+        {
+          "bin": 16,
+          "lane": "recovered",
+          "metric": "cell_flux",
+          "relative": -2.2780384967485584e-12,
+          "signed": -2.328831572029344e-13
+        },
+        {
+          "bin": 17,
+          "lane": "recovered",
+          "metric": "cell_flux",
+          "relative": -2.2394922577067907e-12,
+          "signed": -2.2909452113140105e-13
+        }
+      ],
+      "seed": 19,
+      "status": "CANDIDATE_DISAGREEMENT"
+    },
+    {
+      "raw_differences": [
+        {
+          "lane": "recovered",
+          "metric": "global_flux",
+          "relative": 6.368096900172856e-16,
+          "signed": 4.547473508864641e-13
+        },
+        {
+          "lane": "recovered",
+          "metric": "leakage",
+          "relative": 0.0,
+          "signed": 0.0
+        },
+        {
+          "bin": 0,
+          "lane": "recovered",
+          "metric": "cell_flux",
+          "relative": 0.0,
+          "signed": 0.0
+        },
+        {
+          "bin": 1,
+          "lane": "recovered",
+          "metric": "cell_flux",
+          "relative": 5.5142099111365294e-15,
+          "signed": 3.751665644813329e-12
+        },
+        {
+          "bin": 2,
+          "lane": "recovered",
+          "metric": "cell_flux",
+          "relative": -3.075472976095215e-12,
+          "signed": -2.9455604622086184e-13
+        },
+        {
+          "bin": 3,
+          "lane": "recovered",
+          "metric": "cell_flux",
+          "relative": -2.7385024963022417e-12,
+          "signed": -2.7346180875298387e-13
+        },
+        {
+          "bin": 4,
+          "lane": "recovered",
+          "metric": "cell_flux",
+          "relative": -2.5052237635414703e-12,
+          "signed": -2.8042845823250673e-13
+        },
+        {
+          "bin": 5,
+          "lane": "recovered",
+          "metric": "cell_flux",
+          "relative": -2.7398600020249535e-12,
+          "signed": -2.700201173766459e-13
+        },
+        {
+          "bin": 6,
+          "lane": "recovered",
+          "metric": "cell_flux",
+          "relative": -2.9062065541008206e-12,
+          "signed": -3.2385205628315816e-13
+        },
+        {
+          "bin": 7,
+          "lane": "recovered",
+          "metric": "cell_flux",
+          "relative": -3.209158017055181e-12,
+          "signed": -3.168854068036353e-13
+        },
+        {
+          "bin": 8,
+          "lane": "recovered",
+          "metric": "cell_flux",
+          "relative": -2.5217320596592437e-12,
+          "signed": -3.4056091280376677e-13
+        },
+        {
+          "bin": 9,
+          "lane": "recovered",
+          "metric": "cell_flux",
+          "relative": -2.467935498169352e-12,
+          "signed": -2.3619994848900205e-13
+        },
+        {
+          "bin": 10,
+          "lane": "recovered",
+          "metric": "cell_flux",
+          "relative": -7.574771884243804e-14,
+          "signed": -8.007483565108942e-15
+        },
+        {
+          "bin": 11,
+          "lane": "recovered",
+          "metric": "cell_flux",
+          "relative": -1.6562345434113976e-13,
+          "signed": -1.6903145549918008e-14
+        },
+        {
+          "bin": 12,
+          "lane": "recovered",
+          "metric": "cell_flux",
+          "relative": -2.7816409175234093e-12,
+          "signed": -2.738503868116027e-13
+        },
+        {
+          "bin": 13,
+          "lane": "recovered",
+          "metric": "cell_flux",
+          "relative": -1.8052722916971475e-12,
+          "signed": -1.84893766963512e-13
+        },
+        {
+          "bin": 14,
+          "lane": "recovered",
+          "metric": "cell_flux",
+          "relative": -1.6357890279962773e-12,
+          "signed": -1.579153474651207e-13
+        },
+        {
+          "bin": 15,
+          "lane": "recovered",
+          "metric": "cell_flux",
+          "relative": -2.1407249527041784e-12,
+          "signed": -2.1747881273626035e-13
+        },
+        {
+          "bin": 16,
+          "lane": "recovered",
+          "metric": "cell_flux",
+          "relative": -1.1576546719652328e-12,
+          "signed": -9.689471447416054e-14
+        },
+        {
+          "bin": 17,
+          "lane": "recovered",
+          "metric": "cell_flux",
+          "relative": -3.7405553472184674e-13,
+          "signed": -3.4208746946262636e-14
+        }
+      ],
+      "seed": 23,
+      "status": "CANDIDATE_DISAGREEMENT"
+    }
+  ],
+  "source_receipt_schema": "stellarcsg.product06.compare-transport/v1",
+  "timing_boundary": "Non-debug diagnostic timings; not production-throughput or promotion evidence.",
+  "track_output_excluded_from_timing": false
+}
