@@ -14,14 +14,15 @@ assert SPEC.loader is not None
 SPEC.loader.exec_module(tracks)
 
 
-DTYPE = np.dtype([("r", "f8", (3,)), ("u", "f8", (3,)), ("E", "f8"), ("time", "f8"), ("wgt", "f8"),
+XYZ = np.dtype([("x", "f8"), ("y", "f8"), ("z", "f8")])
+DTYPE = np.dtype([("r", XYZ), ("u", XYZ), ("E", "f8"), ("time", "f8"), ("wgt", "f8"),
                   ("cell_id", "i4"), ("cell_instance", "i4"), ("material_id", "i4")])
 
 
 def _write(path: Path, changed: bool = False) -> None:
     values = np.zeros(2, dtype=DTYPE)
-    values[0]["r"] = [1.0, 2.0, 3.0]
-    values[0]["u"] = [0.0, 1.0, 0.0]
+    values[0]["r"] = (1.0, 2.0, 3.0)
+    values[0]["u"] = (0.0, 1.0, 0.0)
     values[0]["E"] = 14.0
     values[0]["wgt"] = 1.0
     values[0]["cell_id"] = 10
@@ -41,6 +42,7 @@ def test_first_track_difference_preserves_raw_values(tmp_path) -> None:
     assert entry["first_difference"]["event_index"] == 1
     assert entry["first_difference"]["fields"]["cell_id"]["candidate"] == 11
     assert entry["max_abs_differences"]["time"] == 1.0e-9
+    assert len(result["exact_track_sha256"]) == 64
 
 
 def test_campaign_keeps_missing_track_lane_status(tmp_path) -> None:
@@ -49,3 +51,15 @@ def test_campaign_keeps_missing_track_lane_status(tmp_path) -> None:
     _write(exact / "tracks.h5")
     result = tracks.compare_campaign(tmp_path, 0.0)
     assert result["seeds"][0]["lanes"]["old"]["status"] == "TRACKS_MISSING"
+
+
+def test_step_truncation_follows_shared_prefix_comparison(tmp_path) -> None:
+    exact, candidate = tmp_path / "exact.h5", tmp_path / "candidate.h5"
+    _write(exact)
+    _write(candidate)
+    with h5py.File(candidate, "a") as handle:
+        original = handle["track_1_1_17"][...]
+        del handle["track_1_1_17"]
+        handle["track_1_1_17"] = np.concatenate((original, original[:1]))
+    result = tracks.compare_lane(exact, candidate, 0.0)
+    assert result["shared"][0]["first_difference"] == {"event_index": 2, "reason": "step_count"}

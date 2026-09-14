@@ -47,11 +47,15 @@ def runtime_value(state: dict[str, Any], *names: str) -> float | None:
 def reduce_receipt(receipt: dict[str, Any]) -> dict[str, Any]:
     attempts = list(receipt.get("attempts") or [])
     lanes = sorted({str(attempt.get("lane")) for attempt in attempts if attempt.get("lane") is not None})
+    debug = any("-g" in (attempt.get("command") or []) for attempt in attempts)
+    tracks = any("-t" in (attempt.get("command") or []) or attempt.get("track_diagnostic") for attempt in attempts)
+    timing_label = ("Geometry-debug diagnostic timings" if debug else "Non-debug diagnostic timings") + "; not production-throughput or promotion evidence."
     output: dict[str, Any] = {
         "schema": "stellarcsg.product06.reduce-transport/v1",
         "source_receipt_schema": receipt.get("schema"),
         "claim_boundary": "Descriptive reduction only: no transport qualification, statistical confidence, or inferred root-cause claim.",
-        "timing_boundary": "Active-HPS and runtime ratios are small geometry-debug diagnostic timings, not production-throughput or promotion evidence.",
+        "timing_boundary": timing_label,
+        "track_output_excluded_from_timing": tracks,
         "per_lane": {}, "per_seed_pairs": [],
         "source_comparison_raw_differences": [{"seed": row.get("seed"), "status": row.get("status"), "raw_differences": row.get("raw_differences")} for row in receipt.get("comparisons") or []],
         "attempt_statuses": [{key: attempt.get(key) for key in ("lane", "seed", "completion", "exit_code", "timeout", "warnings", "hdf_bindings_unchanged")} | {"metric_errors": state_values(attempt).get("metric_errors")} for attempt in attempts],

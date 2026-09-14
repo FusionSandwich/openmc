@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 import argparse
+import hashlib
 import json
 from pathlib import Path
 import re
@@ -27,8 +28,19 @@ def track_datasets(path: Path) -> dict[str, np.ndarray]:
     return result
 
 
+def numeric_values(value: np.ndarray) -> np.ndarray:
+    """Return scalar, plain-vector, or HDF compound x/y/z values as floats."""
+    array = np.asarray(value)
+    if array.dtype.names is not None:
+        if set(array.dtype.names) != {"x", "y", "z"}:
+            raise ValueError("nested track vector must have x/y/z fields")
+        return np.stack([np.asarray(array[axis], dtype=float) for axis in ("x", "y", "z")], axis=-1)
+    return np.asarray(array, dtype=float)
+
+
 def numeric_delta(left: np.ndarray, right: np.ndarray) -> float:
-    return float(np.max(np.abs(np.asarray(left, dtype=float) - np.asarray(right, dtype=float)))) if left.size else 0.0
+    delta = numeric_values(right) - numeric_values(left)
+    return float(np.max(np.abs(delta))) if delta.size else 0.0
 
 
 def first_difference(reference: np.ndarray, candidate: np.ndarray, tolerance: float) -> dict[str, object] | None:
@@ -38,9 +50,9 @@ def first_difference(reference: np.ndarray, candidate: np.ndarray, tolerance: fl
             if int(left[field]) != int(right[field]):
                 fields[field] = {"exact": int(left[field]), "candidate": int(right[field])}
         for field in NUMERIC_FIELDS:
-            delta = np.asarray(right[field], dtype=float) - np.asarray(left[field], dtype=float)
+            delta = numeric_values(right[field]) - numeric_values(left[field])
             if np.any(~np.isfinite(delta)) or np.max(np.abs(delta), initial=0.0) > tolerance:
-                fields[field] = {"exact": np.asarray(left[field]).tolist(), "candidate": np.asarray(right[field]).tolist(), "signed_delta": delta.tolist()}
+                fields[field] = {"exact": numeric_values(left[field]).tolist(), "candidate": numeric_values(right[field]).tolist(), "signed_delta": delta.tolist()}
         if fields:
             return {"event_index": index, "fields": fields}
     return None
@@ -48,7 +60,8 @@ def first_difference(reference: np.ndarray, candidate: np.ndarray, tolerance: fl
 
 def compare_lane(exact_file: Path, candidate_file: Path, tolerance: float) -> dict[str, object]:
     exact, candidate = track_datasets(exact_file), track_datasets(candidate_file)
-    result: dict[str, object] = {"exact_history_count": len(exact), "candidate_history_count": len(candidate),
+    result: dict[str, object] = {"exact_track_sha256": hashlib.sha256(exact_file.read_bytes()).hexdigest(), "candidate_track_sha256": hashlib.sha256(candidate_file.read_bytes()).hexdigest(),
+                                 "exact_history_count": len(exact), "candidate_history_count": len(candidate),
                                  "missing_from_candidate": sorted(set(exact) - set(candidate)), "extra_in_candidate": sorted(set(candidate) - set(exact)),
                                  "shared": []}
     for name in sorted(set(exact) & set(candidate)):
@@ -56,11 +69,11 @@ def compare_lane(exact_file: Path, candidate_file: Path, tolerance: float) -> di
         entry: dict[str, object] = {"track": name, "exact_step_count": len(left), "candidate_step_count": len(right),
                                     "exact_discrete_fields": {field: np.asarray(left[field]).tolist() for field in DISCRETE_FIELDS},
                                     "candidate_discrete_fields": {field: np.asarray(right[field]).tolist() for field in DISCRETE_FIELDS}}
-        if len(left) != len(right):
-            entry["first_difference"] = {"event_index": min(len(left), len(right)), "reason": "step_count"}
-        else:
-            entry["max_abs_differences"] = {field: numeric_delta(left[field], right[field]) for field in NUMERIC_FIELDS}
-            entry["first_difference"] = first_difference(left, right, tolerance)
+        shared = min(len(left), len(right))
+        entry["max_abs_differences"] = {field: numeric_delta(left[field][:shared], right[field][:shared]) for field in NUMERIC_FIELDS}
+        entry["first_difference"] = first_difference(left[:shared], right[:shared], tolerance)
+        if entry["first_difference"] is None and len(left) != len(right):
+            entry["first_difference"] = {"event_index": shared, "reason": "step_count"}
         result["shared"].append(entry)
     return result
 
