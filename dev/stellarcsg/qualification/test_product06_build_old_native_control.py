@@ -17,18 +17,22 @@ def test_replaces_exactly_one_preserved_compile_and_link_object(tmp_path, monkey
     build.mkdir()
     source.parent.mkdir()
     source.write_text("old source")
+    database_source = tmp_path / "recovered" / "dev" / "stellarcsg" / "src" / "compiled_swept_surface.cpp"
+    database_source.parent.mkdir(parents=True)
+    database_source.write_text("new source")
     original = build / "CMakeFiles/openmc.dir/compiled_swept_surface.cpp.o"
     original.parent.mkdir(parents=True)
     original.write_text("object")
     (build / "compile_commands.json").write_text(json.dumps([{
-        "file": str(source), "command": f"c++ -c \"{source}\" -o CMakeFiles/openmc.dir/compiled_swept_surface.cpp.o"}]))
+        "file": str(database_source), "command": f"c++ -c \"{database_source}\" -o CMakeFiles/openmc.dir/compiled_swept_surface.cpp.o"}]))
     replacement = tmp_path / "replacement.o"
     compile, old_object = control.replace_compile_command(build, source, replacement)
     assert old_object == original.resolve()
     assert compile[compile.index("-c") + 1] == str(source.resolve())
     assert compile[compile.index("-o") + 1] == str(replacement)
     command = f": && c++ -shared -o lib/libopenmc.so {original.relative_to(build).as_posix()} -Wl,-soname,libopenmc.so && :"
-    monkeypatch.setattr(control.subprocess, "run", lambda *args, **kwargs: type("Run", (), {"returncode": 0, "stdout": command + "\n", "stderr": ""})())
+    prerequisite = ": && c++ -c unrelated.cpp -o CMakeFiles/unrelated.o && :"
+    monkeypatch.setattr(control.subprocess, "run", lambda *args, **kwargs: type("Run", (), {"returncode": 0, "stdout": prerequisite + "\n" + command + "\n", "stderr": ""})())
     linked = control.link_tokens(build, original, replacement, tmp_path / "libopenmc.so")
     assert str(replacement) in linked
     assert str(tmp_path / "libopenmc.so") in linked

@@ -24,6 +24,11 @@ def build_path(build: Path, value: str | Path) -> Path:
     return path.resolve() if path.is_absolute() else (build / path).resolve()
 
 
+def command_path(directory: Path, value: str | Path) -> Path:
+    path = Path(value)
+    return path.resolve() if path.is_absolute() else (directory / path).resolve()
+
+
 def command_tokens(entry: dict[str, object]) -> list[str]:
     if "arguments" in entry:
         return [str(value) for value in entry["arguments"]]
@@ -34,18 +39,20 @@ def command_tokens(entry: dict[str, object]) -> list[str]:
 
 def replace_compile_command(build: Path, old_source: Path, new_object: Path) -> tuple[list[str], Path]:
     database = json.loads((build / "compile_commands.json").read_text())
-    matches = [entry for entry in database if Path(str(entry["file"])).resolve() == old_source.resolve()]
+    matches = [entry for entry in database if Path(str(entry["file"])).name == "compiled_swept_surface.cpp"]
     if len(matches) != 1:
-        raise ValueError("expected exactly one compile_commands entry for old source")
-    tokens = command_tokens(matches[0])
+        raise ValueError("expected exactly one compiled_swept_surface.cpp compile_commands entry")
+    entry = matches[0]
+    database_source = command_path(Path(str(entry.get("directory", build))), str(entry["file"]))
+    tokens = command_tokens(entry)
     if tokens.count("-c") != 1 or "-o" not in tokens:
         raise ValueError("compile command must have one -c and an -o")
     compile_index, output_index = tokens.index("-c"), tokens.index("-o")
     if compile_index + 1 >= len(tokens) or output_index + 1 >= len(tokens):
         raise ValueError("truncated compile command")
-    compiled_source = build_path(build, tokens[compile_index + 1])
-    if compiled_source != old_source.resolve():
-        raise ValueError("compile command source does not match requested old source")
+    compiled_source = command_path(Path(str(entry.get("directory", build))), tokens[compile_index + 1])
+    if compiled_source != database_source:
+        raise ValueError("compile command -c source does not match its compile_commands file")
     original_object = build_path(build, tokens[output_index + 1])
     tokens[compile_index + 1] = str(old_source.resolve())
     tokens[output_index + 1] = str(new_object)
@@ -53,21 +60,25 @@ def replace_compile_command(build: Path, old_source: Path, new_object: Path) -> 
 
 
 def link_tokens(build: Path, original_object: Path, replacement_object: Path, output_library: Path) -> list[str]:
-    probe = subprocess.run(["ninja", "-t", "commands", "lib/libopenmc.so"], cwd=build, text=True, capture_output=True, check=False)
+    probe = subprocess.run(["ninja", "-t", "commands", "-s", "lib/libopenmc.so"], cwd=build, text=True, capture_output=True, check=False)
     if probe.returncode != 0:
         raise RuntimeError(f"ninja command query failed: {probe.stderr.strip()}")
-    lines = [line for line in probe.stdout.splitlines() if line.strip()]
-    if len(lines) != 1:
-        raise ValueError("expected one final lib/libopenmc.so ninja command")
-    tokens = shlex.split(lines[0])
-    if len(tokens) < 7 or tokens[:2] != [":", "&&"] or tokens[-2:] != ["&&", ":"] or tokens.count("&&") != 2:
-        raise ValueError("unexpected shared-library wrapper; expected ': && compiler ... && :'")
+    candidates: list[list[str]] = []
+    for line in probe.stdout.splitlines():
+        tokens = shlex.split(line)
+        if len(tokens) < 7 or tokens[:2] != [":", "&&"] or tokens[-2:] != ["&&", ":"] or tokens.count("&&") != 2:
+            continue
+        body = tokens[2:-2]
+        if not body or body[0].startswith("-") or body.count("-o") != 1:
+            continue
+        output_index = body.index("-o")
+        if output_index + 1 < len(body) and body[output_index + 1] == "lib/libopenmc.so":
+            candidates.append(tokens)
+    if len(candidates) != 1:
+        raise ValueError("expected one final lib/libopenmc.so linker command after ninja -t commands -s")
+    tokens = candidates[0]
     body = tokens[2:-2]
-    if not body or body[0].startswith("-") or body.count("-o") != 1:
-        raise ValueError("unexpected shared-library compiler command")
     output_index = body.index("-o")
-    if output_index + 1 >= len(body):
-        raise ValueError("truncated shared-library output flag")
     object_matches = [index for index, token in enumerate(body) if build_path(build, token) == original_object.resolve()]
     if len(object_matches) != 1:
         raise ValueError("expected the compiled swept object exactly once in shared-library link command")
@@ -128,7 +139,7 @@ def main() -> int:
         subprocess.run(compile, cwd=build, check=True)
         subprocess.run(link[2:-2], cwd=build, check=True)
         executable = output / "openmc"
-        shutil.copyfile(existing_executable(build), executable)
+        shutil.copy2(existing_executable(build), executable)
         receipt["output"].update(object_sha256=sha256(new_object), library_sha256=sha256(new_library), executable=str(executable), executable_sha256=sha256(executable), loader=ldd_binding(executable, new_library))
     (output / "receipt.json").write_text(json.dumps(receipt, indent=2, sort_keys=True) + "\n")
     print(json.dumps({"mode": receipt["mode"], "receipt": str(output / "receipt.json")}, sort_keys=True))

@@ -76,6 +76,11 @@ def test_invalid_statepoint_metrics_and_loader_resolution_failures(tmp_path, mon
     binary, library = tmp_path / "openmc", tmp_path / "libopenmc.so"
     binary.write_text("")
     library.write_text("")
-    monkeypatch.setattr(product06.subprocess, "run", lambda *args, **kwargs: type("Run", (), {"returncode": 0, "stdout": "libopenmc.so => /wrong/libopenmc.so", "stderr": ""})())
+    captured = {}
+    def fake_run(*args, **kwargs):
+        captured.update(kwargs)
+        return type("Run", (), {"returncode": 0, "stdout": "libopenmc.so => /wrong/libopenmc.so", "stderr": ""})()
+    monkeypatch.setattr(product06.subprocess, "run", fake_run)
     with pytest.raises(RuntimeError, match="not requested"):
         product06.resolved_openmc_library(binary, library)
+    assert captured["env"]["LD_LIBRARY_PATH"] == str(library.parent)

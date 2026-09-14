@@ -72,7 +72,8 @@ def hdf_binding_hashes(bindings: list[str]) -> dict[str, str]:
 
 def resolved_openmc_library(binary: Path, requested_library: Path) -> dict[str, str]:
     """Verify the ELF loader will use the requested libopenmc before launch."""
-    probe = subprocess.run(["ldd", str(binary)], text=True, capture_output=True, check=False)
+    environment = dict(os.environ, LD_LIBRARY_PATH=str(requested_library.parent))
+    probe = subprocess.run(["ldd", str(binary)], env=environment, text=True, capture_output=True, check=False)
     if probe.returncode != 0:
         raise RuntimeError(f"ldd failed for {binary}: {probe.stderr.strip()}")
     match = re.search(r"libopenmc\.so(?:\.\d+)*\s+=>\s+(\S+)", probe.stdout)
@@ -82,7 +83,7 @@ def resolved_openmc_library(binary: Path, requested_library: Path) -> dict[str, 
     expected = requested_library.resolve()
     if actual != expected:
         raise RuntimeError(f"ldd resolved {actual}, not requested {expected}")
-    return {"requested": str(expected), "resolved": str(actual), "ldd": probe.stdout}
+    return {"requested": str(expected), "resolved": str(actual), "ld_library_path": environment["LD_LIBRARY_PATH"], "ldd": probe.stdout}
 
 
 def prepare_run_folder(source_xml: Path, run_folder: Path, histories: int, seed: int) -> dict[str, str]:
