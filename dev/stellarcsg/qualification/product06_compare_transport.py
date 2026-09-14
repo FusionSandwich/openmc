@@ -125,7 +125,9 @@ def statepoint_summary(path: Path) -> dict[str, object]:
         if "tallies/tally 1/results" in state:
             result["cell_flux"] = state["tallies/tally 1/results"][..., 0].reshape(-1).astype(float).tolist()
         if "tallies/tally 2/results" in state:
-            result["global_flux"] = float(state["tallies/tally 2/results"][0, 0, 0])
+            global_values = np.asarray(state["tallies/tally 2/results"])[..., 0].reshape(-1)
+            if global_values.size == 1:
+                result["global_flux"] = float(global_values.item())
         result["runtime_seconds"] = {name: float(state["runtime"][name][()]) for name in state["runtime"]} if "runtime" in state else None
         cells = result.get("cell_flux")
         global_flux = result.get("global_flux")
@@ -155,6 +157,11 @@ def warning_lines(stdout: Path, stderr: Path) -> list[str]:
     return [line.rstrip() for path in (stdout, stderr) for line in path.read_text(errors="replace").splitlines() if pattern.search(line)]
 
 
+def navigation_warnings(warnings: list[str]) -> list[str]:
+    pattern = re.compile(r"lost particle|maximum number of events", re.IGNORECASE)
+    return [line for line in warnings if pattern.search(line)]
+
+
 def compare_attempts(attempts: list[dict[str, object]], tolerance: float, required_lane_names: set[str], baseline_lane: str) -> list[dict[str, object]]:
     by_seed: dict[int, list[dict[str, object]]] = {}
     for attempt in attempts:
@@ -168,14 +175,18 @@ def compare_attempts(attempts: list[dict[str, object]], tolerance: float, requir
             continue
         baseline = completed[baseline_lane]["statepoint"]
         failures: list[dict[str, object]] = []
+        raw_differences: list[dict[str, object]] = []
         for lane in sorted(required_lane_names - {baseline_lane}):
             row = completed[lane]
             current = row["statepoint"]
             for key in ("global_flux", "leakage"):
                 if key not in baseline or key not in current:
                     failures.append({"lane": row["lane"], "metric": key, "reason": "missing"})
-                elif abs(float(baseline[key]) - float(current[key])) > tolerance:
-                    failures.append({"lane": row["lane"], "metric": key, "baseline": baseline[key], "candidate": current[key]})
+                else:
+                    signed = float(current[key]) - float(baseline[key])
+                    raw_differences.append({"lane": row["lane"], "metric": key, "signed": signed, "relative": None if float(baseline[key]) == 0.0 else signed / float(baseline[key])})
+                    if abs(signed) > tolerance:
+                        failures.append({"lane": row["lane"], "metric": key, "baseline": baseline[key], "candidate": current[key]})
             left, right = baseline.get("cell_flux"), current.get("cell_flux")
             if baseline.get("cell_bins") != current.get("cell_bins"):
                 failures.append({"lane": row["lane"], "metric": "cell_bins", "reason": "identity_mismatch"})
@@ -183,9 +194,11 @@ def compare_attempts(attempts: list[dict[str, object]], tolerance: float, requir
                 failures.append({"lane": row["lane"], "metric": "cell_flux", "reason": "missing_or_shape"})
             else:
                 for index, (a, b) in enumerate(zip(left, right)):
-                    if abs(float(a) - float(b)) > tolerance:
+                    signed = float(b) - float(a)
+                    raw_differences.append({"lane": row["lane"], "metric": "cell_flux", "bin": index, "signed": signed, "relative": None if float(a) == 0.0 else signed / float(a)})
+                    if abs(signed) > tolerance:
                         failures.append({"lane": row["lane"], "metric": "cell_flux", "bin": index, "baseline": a, "candidate": b})
-        comparison.update(status="AGREE" if not failures else "CANDIDATE_DISAGREEMENT", candidate_disagreement_count=len(failures), differences=failures)
+        comparison.update(status="WITHIN_PRESPECIFIED_TOLERANCE" if not failures else "CANDIDATE_DISAGREEMENT", candidate_disagreement_count=len(failures), differences=failures, raw_differences=raw_differences)
         comparisons.append(comparison)
     return comparisons
 
@@ -240,7 +253,8 @@ def run_campaign(*, model: Path, lanes: dict[str, Path], libraries: dict[str, Pa
             except subprocess.TimeoutExpired:
                 attempt["timeout"] = True
             attempt["runtime_seconds"] = time.monotonic() - began
-            attempt.update(stdout=stdout.name, stderr=stderr.name, warnings=warning_lines(stdout, stderr))
+            warnings = warning_lines(stdout, stderr)
+            attempt.update(stdout=stdout.name, stderr=stderr.name, warnings=warnings, navigation_warnings=navigation_warnings(warnings))
             try:
                 attempt["hdf_bindings_unchanged"] = hdf_binding_hashes(bindings) == binding_hashes
             except (OSError, ValueError) as error:
@@ -254,7 +268,8 @@ def run_campaign(*, model: Path, lanes: dict[str, Path], libraries: dict[str, Pa
                     attempt["statepoint"]["metrics_valid"] = False
                     attempt["statepoint"]["metric_errors"].append("cell_flux:bin_count")
             state = attempt.get("statepoint", {})
-            attempt["completion"] = "COMPLETE" if attempt.get("exit_code") == 0 and attempt["hdf_bindings_unchanged"] and state.get("current_batch") == state.get("n_batches") and state.get("n_particles") == histories and state.get("metrics_valid") and state.get("closure_checked") else "INCOMPLETE"
+            attempt["clean_navigation"] = not attempt["navigation_warnings"]
+            attempt["completion"] = "COMPLETE" if attempt.get("exit_code") == 0 and attempt["hdf_bindings_unchanged"] and attempt["clean_navigation"] and state.get("current_batch") == state.get("n_batches") and state.get("n_particles") == histories and state.get("metrics_valid") and state.get("closure_checked") else "INCOMPLETE"
             attempt["finished_unix"] = time.time()
             receipt["attempts"].append(attempt)
             (output / "receipt.json").write_text(json.dumps(receipt, indent=2, sort_keys=True) + "\n")

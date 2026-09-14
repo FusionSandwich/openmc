@@ -30,10 +30,18 @@ def test_replaces_exactly_one_preserved_compile_and_link_object(tmp_path, monkey
     assert old_object == original.resolve()
     assert compile[compile.index("-c") + 1] == str(source.resolve())
     assert compile[compile.index("-o") + 1] == str(replacement)
-    command = f": && c++ -shared -o lib/libopenmc.so {original.relative_to(build).as_posix()} -Wl,-soname,libopenmc.so && :"
+    source_library = build / "lib" / "libopenmc.so"
+    source_library.parent.mkdir()
+    source_library.write_text("base library")
+    copied_library = tmp_path / "source" / "openmc" / "lib" / "libopenmc.so"
+    command = (f": && c++ -Wl,--dependency-file=CMakeFiles/libopenmc.dir/link.d -shared -o lib/libopenmc.so "
+               f"{original.relative_to(build).as_posix()} -Wl,-soname,libopenmc.so && cd {build.as_posix()} && "
+               f"/usr/bin/cmake -E copy {source_library.as_posix()} {copied_library.as_posix()}")
     prerequisite = ": && c++ -c unrelated.cpp -o CMakeFiles/unrelated.o && :"
     monkeypatch.setattr(control.subprocess, "run", lambda *args, **kwargs: type("Run", (), {"returncode": 0, "stdout": prerequisite + "\n" + command + "\n", "stderr": ""})())
     linked = control.link_tokens(build, original, replacement, tmp_path / "libopenmc.so")
     assert str(replacement) in linked
     assert str(tmp_path / "libopenmc.so") in linked
     assert "-Wl,-soname,libopenmc.so" in linked
+    assert any(token.startswith("-Wl,--dependency-file=") and "link.d" in token for token in linked)
+    assert "copy" not in linked

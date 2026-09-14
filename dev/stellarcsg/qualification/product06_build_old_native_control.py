@@ -66,25 +66,38 @@ def link_tokens(build: Path, original_object: Path, replacement_object: Path, ou
     candidates: list[list[str]] = []
     for line in probe.stdout.splitlines():
         tokens = shlex.split(line)
-        if len(tokens) < 7 or tokens[:2] != [":", "&&"] or tokens[-2:] != ["&&", ":"] or tokens.count("&&") != 2:
+        if len(tokens) < 12 or tokens[:2] != [":", "&&"]:
             continue
-        body = tokens[2:-2]
+        separators = [index for index, token in enumerate(tokens) if token == "&&"]
+        if len(separators) != 3 or separators[0] != 1 or separators[1] <= 2:
+            continue
+        body = tokens[2:separators[1]]
         if not body or body[0].startswith("-") or body.count("-o") != 1:
             continue
         output_index = body.index("-o")
-        if output_index + 1 < len(body) and body[output_index + 1] == "lib/libopenmc.so":
-            candidates.append(tokens)
+        tail = tokens[separators[1] + 1:]
+        expected_source = (build / "lib/libopenmc.so").resolve()
+        if (output_index + 1 >= len(body) or body[output_index + 1] != "lib/libopenmc.so" or
+                len(tail) != 8 or tail[0] != "cd" or command_path(build, tail[1]) != build.resolve() or
+                tail[2:5] != ["&&", "/usr/bin/cmake", "-E"] or tail[5] != "copy" or
+                command_path(build, tail[6]) != expected_source or
+                not tail[7].replace("\\", "/").endswith("/openmc/lib/libopenmc.so")):
+            continue
+        candidates.append(body)
     if len(candidates) != 1:
         raise ValueError("expected one final lib/libopenmc.so linker command after ninja -t commands -s")
-    tokens = candidates[0]
-    body = tokens[2:-2]
+    body = candidates[0]
     output_index = body.index("-o")
     object_matches = [index for index, token in enumerate(body) if build_path(build, token) == original_object.resolve()]
     if len(object_matches) != 1:
         raise ValueError("expected the compiled swept object exactly once in shared-library link command")
     body[object_matches[0]] = str(replacement_object)
     body[output_index + 1] = str(output_library)
-    return [":", "&&", *body, "&&", ":"]
+    dependency_flags = [index for index, token in enumerate(body) if token.startswith("-Wl,--dependency-file=")]
+    if len(dependency_flags) != 1:
+        raise ValueError("expected one linker dependency-file flag")
+    body[dependency_flags[0]] = "-Wl,--dependency-file=" + str(output_library.with_suffix(".link.d"))
+    return body
 
 
 def existing_executable(build: Path) -> Path:
@@ -125,7 +138,7 @@ def main() -> int:
     base_library = build / "lib/libopenmc.so"
     if not base_library.is_file() or not original_object.is_file():
         raise ValueError("base library or original swept object is absent")
-    base_objects = [build_path(build, token) for token in link[2:-2] if token.endswith((".o", ".obj")) and build_path(build, token).is_file()]
+    base_objects = [build_path(build, token) for token in link if token.endswith((".o", ".obj")) and build_path(build, token).is_file()]
     receipt: dict[str, object] = {
         "schema": "stellarcsg.product06.old-native-control/v1", "mode": "EXECUTE" if args.execute else "PLAN_ONLY",
         "source": {"path": str(old_source), "sha256": sha256(old_source)},
@@ -137,7 +150,7 @@ def main() -> int:
     }
     if args.execute:
         subprocess.run(compile, cwd=build, check=True)
-        subprocess.run(link[2:-2], cwd=build, check=True)
+        subprocess.run(link, cwd=build, check=True)
         executable = output / "openmc"
         shutil.copy2(existing_executable(build), executable)
         receipt["output"].update(object_sha256=sha256(new_object), library_sha256=sha256(new_library), executable=str(executable), executable_sha256=sha256(executable), loader=ldd_binding(executable, new_library))
