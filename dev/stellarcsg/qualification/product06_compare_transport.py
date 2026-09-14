@@ -63,6 +63,28 @@ def validate_absolute_hdf_bindings(xml_directory: Path) -> list[str]:
     return bindings
 
 
+def hdf_binding_hashes(bindings: list[str]) -> dict[str, str]:
+    paths = [Path(binding) for binding in bindings]
+    if any(not path.is_file() for path in paths):
+        raise ValueError("an absolute external HDF binding does not exist")
+    return {str(path): sha256(path) for path in paths}
+
+
+def resolved_openmc_library(binary: Path, requested_library: Path) -> dict[str, str]:
+    """Verify the ELF loader will use the requested libopenmc before launch."""
+    probe = subprocess.run(["ldd", str(binary)], text=True, capture_output=True, check=False)
+    if probe.returncode != 0:
+        raise RuntimeError(f"ldd failed for {binary}: {probe.stderr.strip()}")
+    match = re.search(r"libopenmc\.so(?:\.\d+)*\s+=>\s+(\S+)", probe.stdout)
+    if not match:
+        raise RuntimeError(f"ldd did not resolve libopenmc.so for {binary}")
+    actual = Path(match.group(1)).resolve()
+    expected = requested_library.resolve()
+    if actual != expected:
+        raise RuntimeError(f"ldd resolved {actual}, not requested {expected}")
+    return {"requested": str(expected), "resolved": str(actual), "ldd": probe.stdout}
+
+
 def prepare_run_folder(source_xml: Path, run_folder: Path, histories: int, seed: int) -> dict[str, str]:
     """Copy immutable XML inputs and make the sole settings edits for one run."""
     run_folder.mkdir(parents=True, exist_ok=False)
@@ -103,10 +125,27 @@ def statepoint_summary(path: Path) -> dict[str, object]:
             result["cell_flux"] = state["tallies/tally 1/results"][..., 0].reshape(-1).astype(float).tolist()
         if "tallies/tally 2/results" in state:
             result["global_flux"] = float(state["tallies/tally 2/results"][0, 0, 0])
+        result["runtime_seconds"] = {name: float(state["runtime"][name][()]) for name in state["runtime"]} if "runtime" in state else None
         cells = result.get("cell_flux")
         global_flux = result.get("global_flux")
         if cells is not None and global_flux is not None:
             result["flux_closure_absolute"] = abs(float(np.sum(cells)) - float(global_flux))
+        active = None if result["runtime_seconds"] is None else result["runtime_seconds"].get("active batches")
+        result["histories_per_active_second"] = None if active is None or active <= 0.0 else float(result["n_particles"] / active)
+    required = ("leakage", "cell_flux", "global_flux", "flux_closure_absolute", "runtime_seconds", "histories_per_active_second")
+    errors = [key for key in required if result.get(key) is None]
+    for key in ("leakage", "global_flux", "flux_closure_absolute", "histories_per_active_second"):
+        if key in result and result[key] is not None and not np.isfinite(float(result[key])):
+            errors.append(key + ":nonfinite")
+    if result.get("cell_flux") is not None and not np.isfinite(np.asarray(result["cell_flux"], dtype=float)).all():
+        errors.append("cell_flux:nonfinite")
+    if result.get("runtime_seconds") is not None and (not result["runtime_seconds"] or not all(np.isfinite(value) for value in result["runtime_seconds"].values())):
+        errors.append("runtime_seconds:invalid")
+    if result.get("n_realizations") in (None, 0):
+        errors.append("n_realizations")
+    result["metrics_valid"] = not errors
+    result["metric_errors"] = errors
+    result["closure_checked"] = result.get("flux_closure_absolute") is not None
     return result
 
 
@@ -115,20 +154,21 @@ def warning_lines(stdout: Path, stderr: Path) -> list[str]:
     return [line.rstrip() for path in (stdout, stderr) for line in path.read_text(errors="replace").splitlines() if pattern.search(line)]
 
 
-def compare_attempts(attempts: list[dict[str, object]], tolerance: float) -> list[dict[str, object]]:
+def compare_attempts(attempts: list[dict[str, object]], tolerance: float, required_lane_names: set[str], baseline_lane: str) -> list[dict[str, object]]:
     by_seed: dict[int, list[dict[str, object]]] = {}
     for attempt in attempts:
         by_seed.setdefault(int(attempt["seed"]), []).append(attempt)
     comparisons: list[dict[str, object]] = []
     for seed, rows in sorted(by_seed.items()):
-        completed = [row for row in rows if row.get("completion") == "COMPLETE" and "statepoint" in row]
-        comparison: dict[str, object] = {"seed": seed, "status": "BLOCKED_INCOMPLETE", "candidate_disagreement_count": None}
-        if len(completed) < 2:
+        completed = {str(row["lane"]): row for row in rows if row.get("completion") == "COMPLETE" and row.get("statepoint", {}).get("metrics_valid")}
+        comparison: dict[str, object] = {"seed": seed, "baseline_lane": baseline_lane, "status": "BLOCKED_INCOMPLETE", "candidate_disagreement_count": None}
+        if set(completed) != required_lane_names or baseline_lane not in completed:
             comparisons.append(comparison)
             continue
-        baseline = completed[0]["statepoint"]
+        baseline = completed[baseline_lane]["statepoint"]
         failures: list[dict[str, object]] = []
-        for row in completed[1:]:
+        for lane in sorted(required_lane_names - {baseline_lane}):
+            row = completed[lane]
             current = row["statepoint"]
             for key in ("global_flux", "leakage"):
                 if key not in baseline or key not in current:
@@ -151,24 +191,26 @@ def compare_attempts(attempts: list[dict[str, object]], tolerance: float) -> lis
 
 def run_campaign(*, model: Path, lanes: dict[str, Path], libraries: dict[str, Path], output: Path,
                  histories: int, seeds: list[int], timeout: int, debug: bool, tolerance: float,
-                 cross_sections: Path = DEFAULT_CROSS_SECTIONS) -> dict[str, object]:
+                 cross_sections: Path = DEFAULT_CROSS_SECTIONS, baseline_lane: str = "exact") -> dict[str, object]:
     if output.exists():
         raise FileExistsError("--output must not already exist")
     if histories <= 0 or timeout <= 0 or tolerance < 0 or not seeds or len(set(seeds)) != len(seeds):
         raise ValueError("histories/timeout/tolerance/seeds are invalid")
-    if set(lanes) != set(libraries) or not cross_sections.is_file():
+    if set(lanes) != set(libraries) or baseline_lane not in lanes or not cross_sections.is_file():
         raise ValueError("every --lane needs one --library and OPENMC_CROSS_SECTIONS must exist")
     xml = model_xml_directory(model)
     bindings = validate_absolute_hdf_bindings(xml)
+    binding_hashes = hdf_binding_hashes(bindings)
     bins = tally_bins(xml)
+    loader_checks = {name: resolved_openmc_library(binary, libraries[name]) for name, binary in lanes.items()}
     output.mkdir(parents=True)
     immutable_hashes = {name: sha256(xml / name) for name in XML_NAMES if name != "settings.xml"}
     receipt: dict[str, object] = {
         "schema": "stellarcsg.product06.compare-transport/v1", "status": "UNQUALIFIED_CLIPPED_DIAGNOSTIC_EXPERIMENT",
         "claim_boundary": "Exit code, closure, and lane agreement are recorded evidence only; none qualifies transport, periodic symmetry, or recovered throughput.",
-        "model_xml": str(xml.resolve()), "immutable_xml_sha256": immutable_hashes, "hdf_bindings": bindings,
+        "model_xml": str(xml.resolve()), "immutable_xml_sha256": immutable_hashes, "hdf_bindings_sha256": binding_hashes,
         "cross_sections": str(cross_sections), "cross_sections_sha256": sha256(cross_sections),
-        "lanes": {name: {"binary": str(binary), "binary_sha256": sha256(binary), "library": str(libraries[name]), "library_sha256": sha256(libraries[name])} for name, binary in lanes.items()},
+        "lanes": {name: {"binary": str(binary), "binary_sha256": sha256(binary), "library": str(libraries[name]), "library_sha256": sha256(libraries[name]), "loader": loader_checks[name]} for name, binary in lanes.items()},
         "attempts": [], "tolerance_absolute": tolerance,
     }
     for seed_index, seed in enumerate(seeds):
@@ -198,16 +240,24 @@ def run_campaign(*, model: Path, lanes: dict[str, Path], libraries: dict[str, Pa
                 attempt["timeout"] = True
             attempt["runtime_seconds"] = time.monotonic() - began
             attempt.update(stdout=stdout.name, stderr=stderr.name, warnings=warning_lines(stdout, stderr))
+            try:
+                attempt["hdf_bindings_unchanged"] = hdf_binding_hashes(bindings) == binding_hashes
+            except (OSError, ValueError) as error:
+                attempt["hdf_bindings_unchanged"] = False
+                attempt["hdf_binding_error"] = str(error)
             statepoints = sorted(folder.glob("statepoint.*.h5"))
             if statepoints:
                 attempt["statepoint"] = statepoint_summary(statepoints[-1])
                 attempt["statepoint"]["cell_bins"] = bins
+                if len(attempt["statepoint"].get("cell_flux", [])) != len(bins):
+                    attempt["statepoint"]["metrics_valid"] = False
+                    attempt["statepoint"]["metric_errors"].append("cell_flux:bin_count")
             state = attempt.get("statepoint", {})
-            attempt["completion"] = "COMPLETE" if attempt.get("exit_code") == 0 and state.get("current_batch") == state.get("n_batches") and state.get("n_particles") == histories else "INCOMPLETE"
+            attempt["completion"] = "COMPLETE" if attempt.get("exit_code") == 0 and attempt["hdf_bindings_unchanged"] and state.get("current_batch") == state.get("n_batches") and state.get("n_particles") == histories and state.get("metrics_valid") and state.get("closure_checked") else "INCOMPLETE"
             attempt["finished_unix"] = time.time()
             receipt["attempts"].append(attempt)
             (output / "receipt.json").write_text(json.dumps(receipt, indent=2, sort_keys=True) + "\n")
-    receipt["comparisons"] = compare_attempts(receipt["attempts"], tolerance)
+    receipt["comparisons"] = compare_attempts(receipt["attempts"], tolerance, set(lanes), baseline_lane)
     receipt["candidate_disagreement_count"] = sum(int(row["candidate_disagreement_count"] or 0) for row in receipt["comparisons"])
     (output / "receipt.json").write_text(json.dumps(receipt, indent=2, sort_keys=True) + "\n")
     return receipt
@@ -225,10 +275,11 @@ def main() -> int:
     parser.add_argument("--debug", action="store_true")
     parser.add_argument("--absolute-tolerance", type=float, default=1.0e-12)
     parser.add_argument("--cross-sections", type=Path, default=DEFAULT_CROSS_SECTIONS)
+    parser.add_argument("--baseline-lane", default="exact")
     args = parser.parse_args()
     result = run_campaign(model=args.model, lanes=parse_named_paths(args.lane, "--lane"), libraries=parse_named_paths(args.library, "--library"),
                           output=args.output, histories=args.histories, seeds=args.seeds, timeout=args.timeout, debug=args.debug,
-                          tolerance=args.absolute_tolerance, cross_sections=args.cross_sections)
+                          tolerance=args.absolute_tolerance, cross_sections=args.cross_sections, baseline_lane=args.baseline_lane)
     print(json.dumps({"output": str(args.output), "attempts": len(result["attempts"]), "candidate_disagreement_count": result["candidate_disagreement_count"]}, sort_keys=True))
     return 0
 

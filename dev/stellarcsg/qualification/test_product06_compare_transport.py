@@ -6,6 +6,7 @@ import xml.etree.ElementTree as ET
 
 import h5py
 import numpy as np
+import pytest
 
 
 SCRIPT = Path(__file__).with_name("product06_compare_transport.py")
@@ -45,6 +46,8 @@ def test_statepoint_summary_and_lane_disagreement(tmp_path) -> None:
         state["n_particles"] = 64
         state["n_batches"] = 1
         state["n_realizations"] = 1
+        state["runtime/active batches"] = 2.0
+        state["runtime/initialization"] = 0.1
         state["global_tallies"] = np.zeros((4, 2))
         state["global_tallies"][3, 1] = 0.2
         state.create_dataset("tallies/tally 1/results", data=np.array([[[1.0]], [[2.0]]]))
@@ -57,6 +60,22 @@ def test_statepoint_summary_and_lane_disagreement(tmp_path) -> None:
         {"lane": "new", "seed": 17, "completion": "COMPLETE", "statepoint": {**summary, "global_flux": 3.1}},
         {"lane": "old", "seed": 19, "completion": "INCOMPLETE"},
     ]
-    compared = product06.compare_attempts(attempts, 1.0e-12)
+    compared = product06.compare_attempts(attempts, 1.0e-12, {"old", "new"}, "old")
     assert compared[0]["status"] == "CANDIDATE_DISAGREEMENT"
     assert compared[1]["status"] == "BLOCKED_INCOMPLETE"
+
+
+def test_invalid_statepoint_metrics_and_loader_resolution_failures(tmp_path, monkeypatch) -> None:
+    statepoint = tmp_path / "invalid.h5"
+    with h5py.File(statepoint, "w") as state:
+        state["current_batch"] = 1
+        state["n_particles"] = 64
+        state["n_batches"] = 1
+        state["n_realizations"] = 0
+    assert not product06.statepoint_summary(statepoint)["metrics_valid"]
+    binary, library = tmp_path / "openmc", tmp_path / "libopenmc.so"
+    binary.write_text("")
+    library.write_text("")
+    monkeypatch.setattr(product06.subprocess, "run", lambda *args, **kwargs: type("Run", (), {"returncode": 0, "stdout": "libopenmc.so => /wrong/libopenmc.so", "stderr": ""})())
+    with pytest.raises(RuntimeError, match="not requested"):
+        product06.resolved_openmc_library(binary, library)
