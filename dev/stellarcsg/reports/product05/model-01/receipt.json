@@ -1,0 +1,25 @@
+{
+  "status": "unqualified_clipped_diagnostic",
+  "acquisition_bytes": 0,
+  "default_periodic_preparation": "REJECT_PERIODIC_SEAM_MISMATCH: use record-approximation only with an explicit representation-change record",
+  "plasma_sampled_radial_fit": {
+    "samples": 4608,
+    "max_cm": 11.337670981100075,
+    "rms_cm": 2.0802746631793334,
+    "p95_cm": 5.244920795924281,
+    "max_local_radius_fraction": 0.08165529411954459,
+    "metric": "off-grid VMEC point to compiled radial surface along its local radius; not two-sided Hausdorff certification",
+    "normal_volume_clearance": "NOT_MEASURED"
+  },
+  "heldout_plasma_import": "surface slice 0 has a geometric-theta fold",
+  "binary_sha256": "446b66dc9e3554514937de4ba3f294498f53b07e08c08a05cd4656f9b3298658",
+  "library_sha256": "451b21536d4178a81c4ec5c9a44f6e04eac194c58c87a639d643441ff2717d48",
+  "command": [
+    "/mnt/d/codex-verification/stellarcsg-20260913-03/native/bin/openmc",
+    "-g",
+    "-n",
+    "16"
+  ],
+  "solver_lane": "retained dc76/5ed exact reference, NOT recovered candidate",
+  "transport_exit_code": 0
+}

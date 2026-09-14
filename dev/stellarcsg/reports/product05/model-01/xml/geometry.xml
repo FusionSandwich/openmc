@@ -1,0 +1,41 @@
+<?xml version='1.0' encoding='utf-8'?>
+<geometry>
+  <surface id="1" type="periodic-spline" name="plasma_boundary" data_file="/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-product-05/dev/stellarcsg/reports/product05/model-01/xml/plasma_boundary.h5" dataset="/surfaces/plasma_boundary" content_id="sha256:9e6fa3d4d3dff22f70bd234d585240e09352b4545d668350ab9d6132ab4cc8c0" solver="layered" units="cm" />
+  <surface id="2" type="x-plane" name="sector_x0_vacuum" coeffs="0" boundary="vacuum" />
+  <surface id="3" type="y-plane" name="sector_y0_vacuum" coeffs="0" boundary="vacuum" />
+  <surface id="4" type="sphere" name="diagnostic_bounding_world_vacuum" coeffs="0 0 0 1666.93920142" boundary="vacuum" />
+  <surface id="10001" type="swept-spline" name="finite-coil-001" data_file="/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-product-05/dev/stellarcsg/reports/recovery04/wistell-coils-1cm.h5" dataset="/coils/coil_001" content_id="sha256:df6edd8ec3969a8a4dcd15aaee58b0434cefaf64eafc131e7ae358dd32e96e7e" units="cm" />
+  <surface id="10002" type="swept-spline" name="finite-coil-002" data_file="/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-product-05/dev/stellarcsg/reports/recovery04/wistell-coils-1cm.h5" dataset="/coils/coil_002" content_id="sha256:ce0835cd732b3eeea8c67f49fd7d71e1532e629f769bf3c630ab527c50f1c9ce" units="cm" />
+  <surface id="10003" type="swept-spline" name="finite-coil-003" data_file="/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-product-05/dev/stellarcsg/reports/recovery04/wistell-coils-1cm.h5" dataset="/coils/coil_003" content_id="sha256:991c4063bcec392490c3927dd258c901df44e0200f2712941057a61f59690915" units="cm" />
+  <surface id="10008" type="swept-spline" name="finite-coil-008" data_file="/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-product-05/dev/stellarcsg/reports/recovery04/wistell-coils-1cm.h5" dataset="/coils/coil_008" content_id="sha256:1311f6bf52884e3b466079f8dffa670c3ae981d57d51897cd59cd424bd67047d" units="cm" />
+  <surface id="10009" type="swept-spline" name="finite-coil-009" data_file="/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-product-05/dev/stellarcsg/reports/recovery04/wistell-coils-1cm.h5" dataset="/coils/coil_009" content_id="sha256:a868c4e79fb5f09fd3ac94d2a59435d1a7c8ca81f9cae584c186c839315fa68c" units="cm" />
+  <surface id="10016" type="swept-spline" name="finite-coil-016" data_file="/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-product-05/dev/stellarcsg/reports/recovery04/wistell-coils-1cm.h5" dataset="/coils/coil_016" content_id="sha256:d2f2c15550b3fbd32dd4e28122caf27bf41a7a38d28f7d7ef1af0fd9d31863e5" units="cm" />
+  <surface id="10017" type="swept-spline" name="finite-coil-017" data_file="/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-product-05/dev/stellarcsg/reports/recovery04/wistell-coils-1cm.h5" dataset="/coils/coil_017" content_id="sha256:5a7fd008d81fe12a9a94288586587c21f169397085a477415289cedea44088a2" units="cm" />
+  <surface id="10024" type="swept-spline" name="finite-coil-024" data_file="/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-product-05/dev/stellarcsg/reports/recovery04/wistell-coils-1cm.h5" dataset="/coils/coil_024" content_id="sha256:3625b3f3ba17ee0960e1b9ff3c5ae99ed54ce7dd2509326f276920a862bfd7ff" units="cm" />
+  <surface id="10025" type="swept-spline" name="finite-coil-025" data_file="/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-product-05/dev/stellarcsg/reports/recovery04/wistell-coils-1cm.h5" dataset="/coils/coil_025" content_id="sha256:c3c571d275d9f3a048f8b87a24903abe60cbb65d5adf18d8ad927ca9eefe5cf1" units="cm" />
+  <surface id="10032" type="swept-spline" name="finite-coil-032" data_file="/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-product-05/dev/stellarcsg/reports/recovery04/wistell-coils-1cm.h5" dataset="/coils/coil_032" content_id="sha256:44736cdd7cd6155d5e27fcd0d489e2445199c62b9aa4ddbfcb8efe1ade3a984b" units="cm" />
+  <surface id="10033" type="swept-spline" name="finite-coil-033" data_file="/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-product-05/dev/stellarcsg/reports/recovery04/wistell-coils-1cm.h5" dataset="/coils/coil_033" content_id="sha256:756036fbf3a8790e77fdf5925c82aaf10c9feed6d8508bf5c983362bde7fe5d6" units="cm" />
+  <surface id="10040" type="swept-spline" name="finite-coil-040" data_file="/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-product-05/dev/stellarcsg/reports/recovery04/wistell-coils-1cm.h5" dataset="/coils/coil_040" content_id="sha256:66cda8f416d04467279f36ef42199f977d2bc8ee952a61d10666870e5d14e6a8" units="cm" />
+  <surface id="10041" type="swept-spline" name="finite-coil-041" data_file="/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-product-05/dev/stellarcsg/reports/recovery04/wistell-coils-1cm.h5" dataset="/coils/coil_041" content_id="sha256:aef42c0c8dbc136c145d5169cfb1aa28d83b2fd0ad8e0cda0cba089b8f5773ee" units="cm" />
+  <surface id="10046" type="swept-spline" name="finite-coil-046" data_file="/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-product-05/dev/stellarcsg/reports/recovery04/wistell-coils-1cm.h5" dataset="/coils/coil_046" content_id="sha256:8ca32c22538015ffe449b2ace76b80a8e63e18b5095527b98fac65fc520563b4" units="cm" />
+  <surface id="10047" type="swept-spline" name="finite-coil-047" data_file="/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-product-05/dev/stellarcsg/reports/recovery04/wistell-coils-1cm.h5" dataset="/coils/coil_047" content_id="sha256:c085059ee3e0769de86206c04af514c1b2d7351761df3979a0e27ccd35cb7808" units="cm" />
+  <surface id="10048" type="swept-spline" name="finite-coil-048" data_file="/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-product-05/dev/stellarcsg/reports/recovery04/wistell-coils-1cm.h5" dataset="/coils/coil_048" content_id="sha256:d507fb8a34cd1cac43df27de8ee5569f5ab8dcd68b9a39d36f91508cc9bff0cd" units="cm" />
+  <cell id="2001" name="finite-coil-001" material="1001" region="-10001 2 3 -4" />
+  <cell id="2002" name="finite-coil-002" material="1002" region="-10002 2 3 -4" />
+  <cell id="2003" name="finite-coil-003" material="1003" region="-10003 2 3 -4" />
+  <cell id="2008" name="finite-coil-008" material="1008" region="-10008 2 3 -4" />
+  <cell id="2009" name="finite-coil-009" material="1009" region="-10009 2 3 -4" />
+  <cell id="2016" name="finite-coil-016" material="1016" region="-10016 2 3 -4" />
+  <cell id="2017" name="finite-coil-017" material="1017" region="-10017 2 3 -4" />
+  <cell id="2024" name="finite-coil-024" material="1024" region="-10024 2 3 -4" />
+  <cell id="2025" name="finite-coil-025" material="1025" region="-10025 2 3 -4" />
+  <cell id="2032" name="finite-coil-032" material="1032" region="-10032 2 3 -4" />
+  <cell id="2033" name="finite-coil-033" material="1033" region="-10033 2 3 -4" />
+  <cell id="2040" name="finite-coil-040" material="1040" region="-10040 2 3 -4" />
+  <cell id="2041" name="finite-coil-041" material="1041" region="-10041 2 3 -4" />
+  <cell id="2046" name="finite-coil-046" material="1046" region="-10046 2 3 -4" />
+  <cell id="2047" name="finite-coil-047" material="1047" region="-10047 2 3 -4" />
+  <cell id="2048" name="finite-coil-048" material="1048" region="-10048 2 3 -4" />
+  <cell id="10" name="plasma_diagnostic_void" material="void" region="-1 2 3 -4 10001 10002 10003 10008 10009 10016 10017 10024 10025 10032 10033 10040 10041 10046 10047 10048" />
+  <cell id="11" name="sector_exterior_diagnostic_void" material="void" region="1 2 3 -4 10001 10002 10003 10008 10009 10016 10017 10024 10025 10032 10033 10040 10041 10046 10047 10048" />
+</geometry>

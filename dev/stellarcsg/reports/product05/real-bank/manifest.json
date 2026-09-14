@@ -1,0 +1,12 @@
+{
+  "schema": "stellarcsg.real-stress/v1",
+  "count": 160,
+  "bank_sha256": "59580d8aa8348ad4d81d7e7bed5c5217639fff5d71a39708400994e7b33282cb",
+  "payload_sha256": "9bb178c308e7f3ec659e1651a7d57e0ecbff734d3320000df1c2bf79fcf3262b",
+  "nominal_radius_cm": 1.0,
+  "section_assumption": "standardized circular test envelope; not source winding pack",
+  "generation": "32 off-knot source-cubic samples, 5 geometric constructions each",
+  "oracle_status": "reference required; constructed distances are not reference roots",
+  "held_out_configuration": false,
+  "performance_claim": "stress coverage, not realistic distributed transport"
+}

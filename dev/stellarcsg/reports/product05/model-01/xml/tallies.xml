@@ -1,0 +1,10 @@
+<?xml version='1.0' encoding='utf-8'?>
+<tallies>
+  <filter id="1" type="cell">
+    <bins>10 2001 2002 2003 2008 2009 2016 2017 2024 2025 2032 2033 2040 2041 2046 2047 2048</bins>
+  </filter>
+  <tally id="1" name="diagnostic_member_identity">
+    <filters>1</filters>
+    <scores>flux</scores>
+  </tally>
+</tallies>

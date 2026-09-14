@@ -1,0 +1,67 @@
+<?xml version='1.0' encoding='utf-8'?>
+<materials>
+  <material id="1001" name="winding-pack-001_DIAGNOSTIC_H1">
+    <density units="atom/b-cm" value="1e-6" />
+    <nuclide name="H1" ao="1.0" />
+  </material>
+  <material id="1002" name="winding-pack-002_DIAGNOSTIC_H1">
+    <density units="atom/b-cm" value="1e-6" />
+    <nuclide name="H1" ao="1.0" />
+  </material>
+  <material id="1003" name="winding-pack-003_DIAGNOSTIC_H1">
+    <density units="atom/b-cm" value="1e-6" />
+    <nuclide name="H1" ao="1.0" />
+  </material>
+  <material id="1008" name="winding-pack-008_DIAGNOSTIC_H1">
+    <density units="atom/b-cm" value="1e-6" />
+    <nuclide name="H1" ao="1.0" />
+  </material>
+  <material id="1009" name="winding-pack-009_DIAGNOSTIC_H1">
+    <density units="atom/b-cm" value="1e-6" />
+    <nuclide name="H1" ao="1.0" />
+  </material>
+  <material id="1016" name="winding-pack-016_DIAGNOSTIC_H1">
+    <density units="atom/b-cm" value="1e-6" />
+    <nuclide name="H1" ao="1.0" />
+  </material>
+  <material id="1017" name="winding-pack-017_DIAGNOSTIC_H1">
+    <density units="atom/b-cm" value="1e-6" />
+    <nuclide name="H1" ao="1.0" />
+  </material>
+  <material id="1024" name="winding-pack-024_DIAGNOSTIC_H1">
+    <density units="atom/b-cm" value="1e-6" />
+    <nuclide name="H1" ao="1.0" />
+  </material>
+  <material id="1025" name="winding-pack-025_DIAGNOSTIC_H1">
+    <density units="atom/b-cm" value="1e-6" />
+    <nuclide name="H1" ao="1.0" />
+  </material>
+  <material id="1032" name="winding-pack-032_DIAGNOSTIC_H1">
+    <density units="atom/b-cm" value="1e-6" />
+    <nuclide name="H1" ao="1.0" />
+  </material>
+  <material id="1033" name="winding-pack-033_DIAGNOSTIC_H1">
+    <density units="atom/b-cm" value="1e-6" />
+    <nuclide name="H1" ao="1.0" />
+  </material>
+  <material id="1040" name="winding-pack-040_DIAGNOSTIC_H1">
+    <density units="atom/b-cm" value="1e-6" />
+    <nuclide name="H1" ao="1.0" />
+  </material>
+  <material id="1041" name="winding-pack-041_DIAGNOSTIC_H1">
+    <density units="atom/b-cm" value="1e-6" />
+    <nuclide name="H1" ao="1.0" />
+  </material>
+  <material id="1046" name="winding-pack-046_DIAGNOSTIC_H1">
+    <density units="atom/b-cm" value="1e-6" />
+    <nuclide name="H1" ao="1.0" />
+  </material>
+  <material id="1047" name="winding-pack-047_DIAGNOSTIC_H1">
+    <density units="atom/b-cm" value="1e-6" />
+    <nuclide name="H1" ao="1.0" />
+  </material>
+  <material id="1048" name="winding-pack-048_DIAGNOSTIC_H1">
+    <density units="atom/b-cm" value="1e-6" />
+    <nuclide name="H1" ao="1.0" />
+  </material>
+</materials>

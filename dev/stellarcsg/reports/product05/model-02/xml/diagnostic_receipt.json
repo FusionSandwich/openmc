@@ -1,0 +1,23 @@
+{
+  "coil_geometry": "native individual swept-spline HDF5 surfaces from the supplied payload",
+  "members": 16,
+  "model_gaps": [
+    "This is a preparation plan, not a qualified transport model.",
+    "Finite coil curves are retained whole and their future material cells must be intersected with the sector halfspaces.",
+    "The native individual swept-spline records retain the supplied coil payload directly.",
+    "The plasma fit uses the requested source grid; its input-to-model geometric fidelity is NOT_MEASURED.",
+    "No periodic boundary condition is emitted. A seam mismatch is retained as an approximation record, never corrected by forced copies.",
+    "The clipped diagnostic XML is not a qualified transport model: material physics, overlap clearance, particle navigation, and tally results require separate acceptance."
+  ],
+  "periodic_boundaries": "NOT_USED",
+  "plasma_surface_file": "/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-product-05/dev/stellarcsg/reports/product05/model-02/xml/plasma_boundary.h5",
+  "sector_boundary_type": "vacuum",
+  "source_hashes": {
+    "makegrid_filaments": "7748369407d28a70f35b5c4a7c0ab860495a08fd0030002112ea933fe570159b",
+    "sector_manifest": "7329691db5857fe8e27a396e66e49aaac02a72aa9d2bd9628eb8887414474805",
+    "swept_coil_payload": "9bb178c308e7f3ec659e1651a7d57e0ecbff734d3320000df1c2bf79fcf3262b",
+    "vmec": "9231969001203a8133255ee0a275bf552b114cc12524dda0608ab2f12047f7ac"
+  },
+  "status": "DIAGNOSTIC_CLIPPED_NATIVE_SWEPT_MODEL_NOT_TRANSPORT_QUALIFIED",
+  "swept_coils_file": "/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-product-05/dev/stellarcsg/reports/recovery04/wistell-coils-1cm.h5"
+}

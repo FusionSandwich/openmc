@@ -1,0 +1,62 @@
+{
+  "acquisition_bytes": 0,
+  "parallelism": 1,
+  "commands": [
+    [
+      "g++",
+      "-std=c++17",
+      "-O3",
+      "-ffp-contract=off",
+      "-fno-fast-math",
+      "-I/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-product-05/dev/stellarcsg/include",
+      "/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-product-05/dev/stellarcsg/qualification/product05_cover_test.cpp",
+      "-o",
+      "/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-product-05/build/product05-cover-01/test"
+    ],
+    [
+      "/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-product-05/build/product05-cover-01/test"
+    ],
+    [
+      "g++",
+      "-std=c++17",
+      "-O3",
+      "-ffp-contract=off",
+      "-fno-fast-math",
+      "-I/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-product-05/dev/stellarcsg/include",
+      "-DSTELLARCSG_HAS_HDF5",
+      "-I/usr/include/hdf5/serial",
+      "/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-product-05/dev/stellarcsg/qualification/product05_interval_cover.cpp",
+      "/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-fast-recovery-04/build/recovery-04-baseline/libstellarcsg_reference.a",
+      "-L/usr/lib/x86_64-linux-gnu/hdf5/serial",
+      "-lhdf5_hl",
+      "-lhdf5",
+      "-o",
+      "/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-product-05/build/product05-cover-01/probe"
+    ],
+    [
+      "/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-product-05/build/product05-cover-01/probe",
+      "/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-product-05/dev/stellarcsg/qualification/recovery04_frozen_bank.csv",
+      "/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-product-05/dev/stellarcsg/reports/recovery04/wistell-coils-1cm.h5"
+    ]
+  ],
+  "bank_sha256": "7348483e39128259a844d22a7618869a3f111604ea48d01e196a87fe0d396af7",
+  "coils_sha256": "9bb178c308e7f3ec659e1651a7d57e0ecbff734d3320000df1c2bf79fcf3262b",
+  "library_sha256": "f3c702c3ecb17900409fe560251440646a975025cd1e63b5f8f6f31da1cdaad4",
+  "source_sha256": {
+    "product05_cover_test.cpp": "27eacc4a87ce4fb4dfa1c0cc2fdd0b3ae0687c20a786230cb59b31b560571faa",
+    "product05_interval_cover.cpp": "8f92a8e9bb363528543519ec9ac6e38b93950c30ae5673f6ac16be317b3d7397",
+    "product05_interval_cover.hpp": "915c306c6512a5cefbe1023523fa63402bd623925a25028f604ac5dfd9e57d30",
+    "product05_probe.py": "256ba26f3d9b194f3d7aeae971eb5f9782e3bce5896ce4770de0135b2731c027"
+  },
+  "build-test_exit_code": 0,
+  "test_exit_code": 0,
+  "build-probe_exit_code": 0,
+  "probe_exit_code": 0,
+  "probe_sha256": "b15feb2cd560fed6755a78f2aee164d00a5b1e7e295a1a1c2d6e8313cb4ee472",
+  "query_count": 160,
+  "root_free": 90,
+  "unresolved": 70,
+  "false_exclusions_against_exact": [],
+  "single_run_mean_ns": 106206.875,
+  "claim": "experimental_exclusion_only_not_distance_or_transport"
+}

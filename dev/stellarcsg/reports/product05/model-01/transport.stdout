@@ -1,0 +1,94 @@
+                                %%%%%%%%%%%%%%%
+                           %%%%%%%%%%%%%%%%%%%%%%%%
+                        %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+                      %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+                    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+                   %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+                                    %%%%%%%%%%%%%%%%%%%%%%%%
+                                     %%%%%%%%%%%%%%%%%%%%%%%%
+                 ###############      %%%%%%%%%%%%%%%%%%%%%%%%
+                ##################     %%%%%%%%%%%%%%%%%%%%%%%
+                ###################     %%%%%%%%%%%%%%%%%%%%%%%
+                ####################     %%%%%%%%%%%%%%%%%%%%%%
+                #####################     %%%%%%%%%%%%%%%%%%%%%
+                ######################     %%%%%%%%%%%%%%%%%%%%
+                #######################     %%%%%%%%%%%%%%%%%%
+                 #######################     %%%%%%%%%%%%%%%%%
+                 ######################     %%%%%%%%%%%%%%%%%
+                  ####################     %%%%%%%%%%%%%%%%%
+                    #################     %%%%%%%%%%%%%%%%%
+                     ###############     %%%%%%%%%%%%%%%%
+                       ############     %%%%%%%%%%%%%%%
+                          ########     %%%%%%%%%%%%%%
+                                      %%%%%%%%%%%
+
+                 | The OpenMC Monte Carlo Code
+       Copyright | 2011-2026 MIT, UChicago Argonne LLC, and contributors
+         License | https://docs.openmc.org/en/latest/license.html
+         Version | 0.0.0
+     Commit Hash | 
+       Date/Time | 2026-09-13 20:32:32
+  OpenMP Threads | 1
+
+ Reading settings XML file...
+ Reading cross sections XML file...
+ Reading materials XML file...
+ Reading geometry XML file...
+ Reading H1 from
+ /mnt/c/Users/joshu/Documents/2026_DPA/openc-hts-dpa/.data/openmc/FENDL-3.1d_H1.h
+ 5
+ Minimum neutron data temperature: 300 K
+ Maximum neutron data temperature: 300 K
+ Reading tallies XML file...
+ Preparing distributed cell instances...
+ Reading plot XML file...
+ Writing summary.h5 file...
+ Maximum neutron transport energy: 150000000 eV for H1
+
+ ===============>     FIXED SOURCE TRANSPORT SIMULATION     <===============
+
+ Simulating batch 1
+ Creating state point statepoint.1.h5...
+
+ =======================>     TIMING STATISTICS     <=======================
+
+ Total time for initialization     = 6.0634e+00 seconds
+   Reading cross sections          = 3.3329e-02 seconds
+ Total time in simulation          = 2.6304e+00 seconds
+   Time in transport only          = 2.6123e+00 seconds
+   Time in active batches          = 2.6304e+00 seconds
+   Time accumulating tallies       = 2.9100e-05 seconds
+   Time writing statepoints        = 1.7571e-02 seconds
+ Total time for finalization       = 2.0302e-03 seconds
+ Total time elapsed                = 8.6974e+00 seconds
+ Calculation Rate (active)         = 6.08278 particles/second
+
+ ============================>     RESULTS     <============================
+
+ Leakage Fraction           = 1.00000
+
+
+ ==================>     CELL OVERLAP CHECK SUMMARY     <===================
+
+ Cell ID      No. Overlap Checks
+     2001                 1
+     2002                 2
+     2003                 1
+     2008                 0
+     2009                 0
+     2016                 0
+     2017                 1
+     2024                 0
+     2025                 4
+     2032                 2
+     2033                 2
+     2040                 0
+     2041                 0
+     2046                 0
+     2047                 2
+     2048                 1
+       10                 3
+       11                18
+
+ There were 17 cells with less than 10 overlap checks
+ 2001 2002 2003 2008 2009 2016 2017 2024 2025 2032 2033 2040 2041 2046 2047 2048 10

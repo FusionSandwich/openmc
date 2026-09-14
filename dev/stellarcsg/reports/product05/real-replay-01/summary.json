@@ -1,0 +1,314 @@
+{
+  "status": "single_run_stress_not_transport",
+  "reference_hits": 149,
+  "lanes": {
+    "old": {
+      "query_count": 160,
+      "hit_count": 143,
+      "failures": [
+        {
+          "id": "real00_entry_near",
+          "type": "root_distance",
+          "candidate": 2.0020000000360545,
+          "reference": 0.0020000000035015203
+        },
+        {
+          "id": "real02_grazing_stress",
+          "type": "root_distance",
+          "candidate": 0.20046304528410452,
+          "reference": 18.579571062178655
+        },
+        {
+          "id": "real03_entry_near",
+          "type": "root_distance",
+          "candidate": 2.0020000000083438,
+          "reference": 0.002000000003173055
+        },
+        {
+          "id": "real03_grazing_stress",
+          "type": "hit_disposition",
+          "candidate": null,
+          "reference": 0.19999579814614799
+        },
+        {
+          "id": "real04_entry_near",
+          "type": "root_distance",
+          "candidate": 2.0020000000014635,
+          "reference": 0.002000000003556523
+        },
+        {
+          "id": "real04_grazing_stress",
+          "type": "root_distance",
+          "candidate": 33.73475974434666,
+          "reference": 0.19999636285263228
+        },
+        {
+          "id": "real06_entry_near",
+          "type": "root_distance",
+          "candidate": 2.002000000000021,
+          "reference": 0.0019999999990256132
+        },
+        {
+          "id": "real07_entry_near",
+          "type": "root_distance",
+          "candidate": 2.0019999999999594,
+          "reference": 0.001999999999111298
+        },
+        {
+          "id": "real08_entry_near",
+          "type": "root_distance",
+          "candidate": 2.002000000000031,
+          "reference": 0.001999999997481474
+        },
+        {
+          "id": "real09_entry_near",
+          "type": "root_distance",
+          "candidate": 2.002000000000014,
+          "reference": 0.0019999999982137197
+        },
+        {
+          "id": "real10_grazing_stress",
+          "type": "hit_disposition",
+          "candidate": null,
+          "reference": 0.19999588670731516
+        },
+        {
+          "id": "real11_entry_near",
+          "type": "root_distance",
+          "candidate": 2.0019999999998963,
+          "reference": 0.0019999999978312847
+        },
+        {
+          "id": "real11_grazing_stress",
+          "type": "hit_disposition",
+          "candidate": null,
+          "reference": 0.19999762618837005
+        },
+        {
+          "id": "real12_entry_near",
+          "type": "root_distance",
+          "candidate": 2.0019999999999687,
+          "reference": 0.00199999999669017
+        },
+        {
+          "id": "real14_entry_near",
+          "type": "root_distance",
+          "candidate": 2.0020000000000113,
+          "reference": 0.001999999999484571
+        },
+        {
+          "id": "real14_grazing_stress",
+          "type": "hit_disposition",
+          "candidate": null,
+          "reference": 0.19999142722279406
+        },
+        {
+          "id": "real15_entry_near",
+          "type": "root_distance",
+          "candidate": 2.00199999999999,
+          "reference": 0.0020000000013882294
+        },
+        {
+          "id": "real17_grazing_stress",
+          "type": "root_distance",
+          "candidate": 0.2003566483308805,
+          "reference": 0.19999344734499172
+        },
+        {
+          "id": "real18_entry_near",
+          "type": "root_distance",
+          "candidate": 2.0020000000026363,
+          "reference": 0.0019999999973987267
+        },
+        {
+          "id": "real18_grazing_stress",
+          "type": "hit_disposition",
+          "candidate": null,
+          "reference": 0.19999905606343843
+        },
+        {
+          "id": "real19_entry_near",
+          "type": "root_distance",
+          "candidate": 2.00199999999996,
+          "reference": 0.0019999999971944986
+        },
+        {
+          "id": "real19_grazing_stress",
+          "type": "root_distance",
+          "candidate": 12.11110361670479,
+          "reference": 0.19999682301850277
+        },
+        {
+          "id": "real20_entry_near",
+          "type": "root_distance",
+          "candidate": 2.002000000000007,
+          "reference": 0.0019999999965617317
+        },
+        {
+          "id": "real21_entry_near",
+          "type": "root_distance",
+          "candidate": 2.001999999999963,
+          "reference": 0.0020000000034483788
+        },
+        {
+          "id": "real22_grazing_stress",
+          "type": "hit_disposition",
+          "candidate": null,
+          "reference": 0.1999813271404476
+        },
+        {
+          "id": "real24_entry_near",
+          "type": "root_distance",
+          "candidate": 2.0020000000018343,
+          "reference": 0.0020000000034722898
+        },
+        {
+          "id": "real24_grazing_stress",
+          "type": "root_distance",
+          "candidate": 7.553322621320414,
+          "reference": 0.19999733902062328
+        },
+        {
+          "id": "real25_entry_near",
+          "type": "root_distance",
+          "candidate": 2.0020000000000144,
+          "reference": 0.002000000000161802
+        },
+        {
+          "id": "real27_entry_near",
+          "type": "root_distance",
+          "candidate": 2.00199999999998,
+          "reference": 0.0019999999982216648
+        },
+        {
+          "id": "real28_entry_near",
+          "type": "root_distance",
+          "candidate": 2.0020000000000024,
+          "reference": 0.001999999998458185
+        },
+        {
+          "id": "real29_entry_near",
+          "type": "root_distance",
+          "candidate": 2.001999999999919,
+          "reference": 0.002000000001349557
+        },
+        {
+          "id": "real29_grazing_stress",
+          "type": "root_distance",
+          "candidate": 27.846582969513335,
+          "reference": 0.1999906910568302
+        },
+        {
+          "id": "real30_grazing_stress",
+          "type": "root_distance",
+          "candidate": 30.138791428860785,
+          "reference": 0.19999842881115365
+        },
+        {
+          "id": "real31_entry_near",
+          "type": "root_distance",
+          "candidate": 2.00200000001576,
+          "reference": 0.0020000000033208037
+        }
+      ],
+      "single_bank_mean_ns": 3693.75
+    },
+    "experimental": {
+      "query_count": 160,
+      "hit_count": 143,
+      "failures": [
+        {
+          "id": "real02_grazing_stress",
+          "type": "root_distance",
+          "candidate": 0.20046304528410452,
+          "reference": 18.579571062178655
+        },
+        {
+          "id": "real03_grazing_stress",
+          "type": "hit_disposition",
+          "candidate": null,
+          "reference": 0.19999579814614799
+        },
+        {
+          "id": "real04_grazing_stress",
+          "type": "root_distance",
+          "candidate": 33.73475974434666,
+          "reference": 0.19999636285263228
+        },
+        {
+          "id": "real10_grazing_stress",
+          "type": "hit_disposition",
+          "candidate": null,
+          "reference": 0.19999588670731516
+        },
+        {
+          "id": "real11_grazing_stress",
+          "type": "hit_disposition",
+          "candidate": null,
+          "reference": 0.19999762618837005
+        },
+        {
+          "id": "real14_grazing_stress",
+          "type": "hit_disposition",
+          "candidate": null,
+          "reference": 0.19999142722279406
+        },
+        {
+          "id": "real17_grazing_stress",
+          "type": "root_distance",
+          "candidate": 0.2003566483308805,
+          "reference": 0.19999344734499172
+        },
+        {
+          "id": "real18_grazing_stress",
+          "type": "hit_disposition",
+          "candidate": null,
+          "reference": 0.19999905606343843
+        },
+        {
+          "id": "real19_grazing_stress",
+          "type": "root_distance",
+          "candidate": 12.11110361670479,
+          "reference": 0.19999682301850277
+        },
+        {
+          "id": "real22_grazing_stress",
+          "type": "hit_disposition",
+          "candidate": null,
+          "reference": 0.1999813271404476
+        },
+        {
+          "id": "real24_grazing_stress",
+          "type": "root_distance",
+          "candidate": 0.19974185754127238,
+          "reference": 0.19999733902062328
+        },
+        {
+          "id": "real26_grazing_stress",
+          "type": "root_distance",
+          "candidate": 0.20026121656284457,
+          "reference": 29.872238417413097
+        },
+        {
+          "id": "real29_grazing_stress",
+          "type": "root_distance",
+          "candidate": 27.846582969513335,
+          "reference": 0.1999906910568302
+        },
+        {
+          "id": "real30_grazing_stress",
+          "type": "root_distance",
+          "candidate": 30.138791428860785,
+          "reference": 0.19999842881115365
+        }
+      ],
+      "single_bank_mean_ns": 4644.375
+    },
+    "exact_reference": {
+      "query_count": 160,
+      "hit_count": 149,
+      "failures": [],
+      "single_bank_mean_ns": 113190077.575
+    }
+  }
+}

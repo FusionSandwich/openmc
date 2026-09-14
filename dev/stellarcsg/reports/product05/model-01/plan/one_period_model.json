@@ -1,0 +1,679 @@
+{
+  "approximation_record": {
+    "kind": "input_symmetry_mismatch_retained",
+    "maximum_observed_cm": 0.00020307042560429456,
+    "policy": "No rotated copies are imposed; complete supplied finite coil members are retained and sector-clipped later.",
+    "tolerance_cm": 1e-08
+  },
+  "finite_coil_members": [
+    {
+      "coefficient_hull_radius_cm": 1555.4915978476133,
+      "coil_id": 1,
+      "content_id": "sha256:df6edd8ec3969a8a4dcd15aaee58b0434cefaf64eafc131e7ae358dd32e96e7e",
+      "dataset": "/coils/coil_001",
+      "diagnostic_source_anchor_cm": [
+        1082.2577511694808,
+        198.32234552326693,
+        -301.4265983106095
+      ],
+      "member_identity": {
+        "cell_id": "finite-coil-001",
+        "material_id": "winding-pack-001"
+      },
+      "section": {
+        "major_radius_cm": 1.0,
+        "minor_radius_cm": 1.0,
+        "shape_assumption": "swept elliptical section from HDF5 coefficients"
+      },
+      "sector_neighbor_geometry": {
+        "complete_curve_retained": true,
+        "crosses_lower_seam_candidate": true,
+        "crosses_upper_seam_candidate": false,
+        "retained_span_count": 164
+      }
+    },
+    {
+      "coefficient_hull_radius_cm": 1555.4915978476133,
+      "coil_id": 2,
+      "content_id": "sha256:ce0835cd732b3eeea8c67f49fd7d71e1532e629f769bf3c630ab527c50f1c9ce",
+      "dataset": "/coils/coil_002",
+      "diagnostic_source_anchor_cm": [
+        1137.0983904822222,
+        80.41568843462925,
+        -433.0801829930465
+      ],
+      "member_identity": {
+        "cell_id": "finite-coil-002",
+        "material_id": "winding-pack-002"
+      },
+      "section": {
+        "major_radius_cm": 1.0,
+        "minor_radius_cm": 1.0,
+        "shape_assumption": "swept elliptical section from HDF5 coefficients"
+      },
+      "sector_neighbor_geometry": {
+        "complete_curve_retained": true,
+        "crosses_lower_seam_candidate": true,
+        "crosses_upper_seam_candidate": false,
+        "retained_span_count": 99
+      }
+    },
+    {
+      "coefficient_hull_radius_cm": 1555.4915978476154,
+      "coil_id": 3,
+      "content_id": "sha256:991c4063bcec392490c3927dd258c901df44e0200f2712941057a61f59690915",
+      "dataset": "/coils/coil_003",
+      "diagnostic_source_anchor_cm": [
+        80.41563873047743,
+        1137.0983939973034,
+        433.08018299304683
+      ],
+      "member_identity": {
+        "cell_id": "finite-coil-003",
+        "material_id": "winding-pack-003"
+      },
+      "section": {
+        "major_radius_cm": 1.0,
+        "minor_radius_cm": 1.0,
+        "shape_assumption": "swept elliptical section from HDF5 coefficients"
+      },
+      "sector_neighbor_geometry": {
+        "complete_curve_retained": true,
+        "crosses_lower_seam_candidate": false,
+        "crosses_upper_seam_candidate": true,
+        "retained_span_count": 99
+      }
+    },
+    {
+      "coefficient_hull_radius_cm": 1555.4915978476142,
+      "coil_id": 8,
+      "content_id": "sha256:1311f6bf52884e3b466079f8dffa670c3ae981d57d51897cd59cd424bd67047d",
+      "dataset": "/coils/coil_008",
+      "diagnostic_source_anchor_cm": [
+        198.32248744423725,
+        1082.2577251626346,
+        301.42659831060917
+      ],
+      "member_identity": {
+        "cell_id": "finite-coil-008",
+        "material_id": "winding-pack-008"
+      },
+      "section": {
+        "major_radius_cm": 1.0,
+        "minor_radius_cm": 1.0,
+        "shape_assumption": "swept elliptical section from HDF5 coefficients"
+      },
+      "sector_neighbor_geometry": {
+        "complete_curve_retained": true,
+        "crosses_lower_seam_candidate": false,
+        "crosses_upper_seam_candidate": true,
+        "retained_span_count": 164
+      }
+    },
+    {
+      "coefficient_hull_radius_cm": 1390.3098425862747,
+      "coil_id": 9,
+      "content_id": "sha256:a868c4e79fb5f09fd3ac94d2a59435d1a7c8ca81f9cae584c186c839315fa68c",
+      "dataset": "/coils/coil_009",
+      "diagnostic_source_anchor_cm": [
+        897.1581552991557,
+        10.152242510694975,
+        253.1718714240671
+      ],
+      "member_identity": {
+        "cell_id": "finite-coil-009",
+        "material_id": "winding-pack-009"
+      },
+      "section": {
+        "major_radius_cm": 1.0,
+        "minor_radius_cm": 1.0,
+        "shape_assumption": "swept elliptical section from HDF5 coefficients"
+      },
+      "sector_neighbor_geometry": {
+        "complete_curve_retained": true,
+        "crosses_lower_seam_candidate": false,
+        "crosses_upper_seam_candidate": false,
+        "retained_span_count": 256
+      }
+    },
+    {
+      "coefficient_hull_radius_cm": 1390.309842586274,
+      "coil_id": 16,
+      "content_id": "sha256:d2f2c15550b3fbd32dd4e28122caf27bf41a7a38d28f7d7ef1af0fd9d31863e5",
+      "dataset": "/coils/coil_016",
+      "diagnostic_source_anchor_cm": [
+        10.152360158784916,
+        897.158153967842,
+        -253.17187142406706
+      ],
+      "member_identity": {
+        "cell_id": "finite-coil-016",
+        "material_id": "winding-pack-016"
+      },
+      "section": {
+        "major_radius_cm": 1.0,
+        "minor_radius_cm": 1.0,
+        "shape_assumption": "swept elliptical section from HDF5 coefficients"
+      },
+      "sector_neighbor_geometry": {
+        "complete_curve_retained": true,
+        "crosses_lower_seam_candidate": false,
+        "crosses_upper_seam_candidate": false,
+        "retained_span_count": 256
+      }
+    },
+    {
+      "coefficient_hull_radius_cm": 1287.4469869713391,
+      "coil_id": 17,
+      "content_id": "sha256:5a7fd008d81fe12a9a94288586587c21f169397085a477415289cedea44088a2",
+      "dataset": "/coils/coil_017",
+      "diagnostic_source_anchor_cm": [
+        440.9101529735659,
+        285.4069232565752,
+        74.10362285267537
+      ],
+      "member_identity": {
+        "cell_id": "finite-coil-017",
+        "material_id": "winding-pack-017"
+      },
+      "section": {
+        "major_radius_cm": 1.0,
+        "minor_radius_cm": 1.0,
+        "shape_assumption": "swept elliptical section from HDF5 coefficients"
+      },
+      "sector_neighbor_geometry": {
+        "complete_curve_retained": true,
+        "crosses_lower_seam_candidate": false,
+        "crosses_upper_seam_candidate": false,
+        "retained_span_count": 256
+      }
+    },
+    {
+      "coefficient_hull_radius_cm": 1287.4469869713387,
+      "coil_id": 24,
+      "content_id": "sha256:3625b3f3ba17ee0960e1b9ff3c5ae99ed54ce7dd2509326f276920a862bfd7ff",
+      "dataset": "/coils/coil_024",
+      "diagnostic_source_anchor_cm": [
+        285.40698107495876,
+        440.91011554696183,
+        -74.10362285267516
+      ],
+      "member_identity": {
+        "cell_id": "finite-coil-024",
+        "material_id": "winding-pack-024"
+      },
+      "section": {
+        "major_radius_cm": 1.0,
+        "minor_radius_cm": 1.0,
+        "shape_assumption": "swept elliptical section from HDF5 coefficients"
+      },
+      "sector_neighbor_geometry": {
+        "complete_curve_retained": true,
+        "crosses_lower_seam_candidate": false,
+        "crosses_upper_seam_candidate": false,
+        "retained_span_count": 256
+      }
+    },
+    {
+      "coefficient_hull_radius_cm": 1267.1311029082942,
+      "coil_id": 25,
+      "content_id": "sha256:c3c571d275d9f3a048f8b87a24903abe60cbb65d5adf18d8ad927ca9eefe5cf1",
+      "dataset": "/coils/coil_025",
+      "diagnostic_source_anchor_cm": [
+        346.1758844797199,
+        385.70493685211943,
+        70.13488853077504
+      ],
+      "member_identity": {
+        "cell_id": "finite-coil-025",
+        "material_id": "winding-pack-025"
+      },
+      "section": {
+        "major_radius_cm": 1.0,
+        "minor_radius_cm": 1.0,
+        "shape_assumption": "swept elliptical section from HDF5 coefficients"
+      },
+      "sector_neighbor_geometry": {
+        "complete_curve_retained": true,
+        "crosses_lower_seam_candidate": false,
+        "crosses_upper_seam_candidate": false,
+        "retained_span_count": 256
+      }
+    },
+    {
+      "coefficient_hull_radius_cm": 1267.1311029082945,
+      "coil_id": 32,
+      "content_id": "sha256:44736cdd7cd6155d5e27fcd0d489e2445199c62b9aa4ddbfcb8efe1ade3a984b",
+      "dataset": "/coils/coil_032",
+      "diagnostic_source_anchor_cm": [
+        385.70498224760314,
+        346.1758339006201,
+        -70.13488853077612
+      ],
+      "member_identity": {
+        "cell_id": "finite-coil-032",
+        "material_id": "winding-pack-032"
+      },
+      "section": {
+        "major_radius_cm": 1.0,
+        "minor_radius_cm": 1.0,
+        "shape_assumption": "swept elliptical section from HDF5 coefficients"
+      },
+      "sector_neighbor_geometry": {
+        "complete_curve_retained": true,
+        "crosses_lower_seam_candidate": false,
+        "crosses_upper_seam_candidate": false,
+        "retained_span_count": 256
+      }
+    },
+    {
+      "coefficient_hull_radius_cm": 1304.6402333251915,
+      "coil_id": 33,
+      "content_id": "sha256:756036fbf3a8790e77fdf5925c82aaf10c9feed6d8508bf5c983362bde7fe5d6",
+      "dataset": "/coils/coil_033",
+      "diagnostic_source_anchor_cm": [
+        110.78653491178841,
+        727.6230292593856,
+        -353.23495419996476
+      ],
+      "member_identity": {
+        "cell_id": "finite-coil-033",
+        "material_id": "winding-pack-033"
+      },
+      "section": {
+        "major_radius_cm": 1.0,
+        "minor_radius_cm": 1.0,
+        "shape_assumption": "swept elliptical section from HDF5 coefficients"
+      },
+      "sector_neighbor_geometry": {
+        "complete_curve_retained": true,
+        "crosses_lower_seam_candidate": false,
+        "crosses_upper_seam_candidate": false,
+        "retained_span_count": 256
+      }
+    },
+    {
+      "coefficient_hull_radius_cm": 1304.640233325191,
+      "coil_id": 40,
+      "content_id": "sha256:66cda8f416d04467279f36ef42199f977d2bc8ee952a61d10666870e5d14e6a8",
+      "dataset": "/coils/coil_040",
+      "diagnostic_source_anchor_cm": [
+        727.6230437872784,
+        110.78643949554626,
+        353.2349541999654
+      ],
+      "member_identity": {
+        "cell_id": "finite-coil-040",
+        "material_id": "winding-pack-040"
+      },
+      "section": {
+        "major_radius_cm": 1.0,
+        "minor_radius_cm": 1.0,
+        "shape_assumption": "swept elliptical section from HDF5 coefficients"
+      },
+      "sector_neighbor_geometry": {
+        "complete_curve_retained": true,
+        "crosses_lower_seam_candidate": false,
+        "crosses_upper_seam_candidate": false,
+        "retained_span_count": 256
+      }
+    },
+    {
+      "coefficient_hull_radius_cm": 1491.8079523262238,
+      "coil_id": 41,
+      "content_id": "sha256:aef42c0c8dbc136c145d5169cfb1aa28d83b2fd0ad8e0cda0cba089b8f5773ee",
+      "dataset": "/coils/coil_041",
+      "diagnostic_source_anchor_cm": [
+        57.2709901782504,
+        1004.8905305960943,
+        -72.60481296818668
+      ],
+      "member_identity": {
+        "cell_id": "finite-coil-041",
+        "material_id": "winding-pack-041"
+      },
+      "section": {
+        "major_radius_cm": 1.0,
+        "minor_radius_cm": 1.0,
+        "shape_assumption": "swept elliptical section from HDF5 coefficients"
+      },
+      "sector_neighbor_geometry": {
+        "complete_curve_retained": true,
+        "crosses_lower_seam_candidate": false,
+        "crosses_upper_seam_candidate": true,
+        "retained_span_count": 225
+      }
+    },
+    {
+      "coefficient_hull_radius_cm": 1491.8079523262224,
+      "coil_id": 46,
+      "content_id": "sha256:8ca32c22538015ffe449b2ace76b80a8e63e18b5095527b98fac65fc520563b4",
+      "dataset": "/coils/coil_046",
+      "diagnostic_source_anchor_cm": [
+        49.9848121712549,
+        990.782720797396,
+        314.8712815697536
+      ],
+      "member_identity": {
+        "cell_id": "finite-coil-046",
+        "material_id": "winding-pack-046"
+      },
+      "section": {
+        "major_radius_cm": 1.0,
+        "minor_radius_cm": 1.0,
+        "shape_assumption": "swept elliptical section from HDF5 coefficients"
+      },
+      "sector_neighbor_geometry": {
+        "complete_curve_retained": true,
+        "crosses_lower_seam_candidate": false,
+        "crosses_upper_seam_candidate": true,
+        "retained_span_count": 38
+      }
+    },
+    {
+      "coefficient_hull_radius_cm": 1491.807952326222,
+      "coil_id": 47,
+      "content_id": "sha256:c085059ee3e0769de86206c04af514c1b2d7351761df3979a0e27ccd35cb7808",
+      "dataset": "/coils/coil_047",
+      "diagnostic_source_anchor_cm": [
+        990.7827186124885,
+        49.98485547974482,
+        -314.8712815697535
+      ],
+      "member_identity": {
+        "cell_id": "finite-coil-047",
+        "material_id": "winding-pack-047"
+      },
+      "section": {
+        "major_radius_cm": 1.0,
+        "minor_radius_cm": 1.0,
+        "shape_assumption": "swept elliptical section from HDF5 coefficients"
+      },
+      "sector_neighbor_geometry": {
+        "complete_curve_retained": true,
+        "crosses_lower_seam_candidate": true,
+        "crosses_upper_seam_candidate": false,
+        "retained_span_count": 38
+      }
+    },
+    {
+      "coefficient_hull_radius_cm": 1491.807952326222,
+      "coil_id": 48,
+      "content_id": "sha256:d507fb8a34cd1cac43df27de8ee5569f5ab8dcd68b9a39d36f91508cc9bff0cd",
+      "dataset": "/coils/coil_048",
+      "diagnostic_source_anchor_cm": [
+        1004.89053810627,
+        57.270858402764304,
+        72.60481296818641
+      ],
+      "member_identity": {
+        "cell_id": "finite-coil-048",
+        "material_id": "winding-pack-048"
+      },
+      "section": {
+        "major_radius_cm": 1.0,
+        "minor_radius_cm": 1.0,
+        "shape_assumption": "swept elliptical section from HDF5 coefficients"
+      },
+      "sector_neighbor_geometry": {
+        "complete_curve_retained": true,
+        "crosses_lower_seam_candidate": true,
+        "crosses_upper_seam_candidate": false,
+        "retained_span_count": 225
+      }
+    }
+  ],
+  "n_field_periods": 4,
+  "per_member_cell_blueprint": [
+    {
+      "cell_id": "finite-coil-001",
+      "material_id": "winding-pack-001",
+      "region": [
+        "inside this complete finite swept coil",
+        "x >= 0",
+        "y >= 0"
+      ],
+      "status": "NATIVE_INDIVIDUAL_SWEPT_SURFACE_DIAGNOSTIC",
+      "surface_content_id": "sha256:df6edd8ec3969a8a4dcd15aaee58b0434cefaf64eafc131e7ae358dd32e96e7e",
+      "surface_dataset": "/coils/coil_001",
+      "surface_type": "swept-spline"
+    },
+    {
+      "cell_id": "finite-coil-002",
+      "material_id": "winding-pack-002",
+      "region": [
+        "inside this complete finite swept coil",
+        "x >= 0",
+        "y >= 0"
+      ],
+      "status": "NATIVE_INDIVIDUAL_SWEPT_SURFACE_DIAGNOSTIC",
+      "surface_content_id": "sha256:ce0835cd732b3eeea8c67f49fd7d71e1532e629f769bf3c630ab527c50f1c9ce",
+      "surface_dataset": "/coils/coil_002",
+      "surface_type": "swept-spline"
+    },
+    {
+      "cell_id": "finite-coil-003",
+      "material_id": "winding-pack-003",
+      "region": [
+        "inside this complete finite swept coil",
+        "x >= 0",
+        "y >= 0"
+      ],
+      "status": "NATIVE_INDIVIDUAL_SWEPT_SURFACE_DIAGNOSTIC",
+      "surface_content_id": "sha256:991c4063bcec392490c3927dd258c901df44e0200f2712941057a61f59690915",
+      "surface_dataset": "/coils/coil_003",
+      "surface_type": "swept-spline"
+    },
+    {
+      "cell_id": "finite-coil-008",
+      "material_id": "winding-pack-008",
+      "region": [
+        "inside this complete finite swept coil",
+        "x >= 0",
+        "y >= 0"
+      ],
+      "status": "NATIVE_INDIVIDUAL_SWEPT_SURFACE_DIAGNOSTIC",
+      "surface_content_id": "sha256:1311f6bf52884e3b466079f8dffa670c3ae981d57d51897cd59cd424bd67047d",
+      "surface_dataset": "/coils/coil_008",
+      "surface_type": "swept-spline"
+    },
+    {
+      "cell_id": "finite-coil-009",
+      "material_id": "winding-pack-009",
+      "region": [
+        "inside this complete finite swept coil",
+        "x >= 0",
+        "y >= 0"
+      ],
+      "status": "NATIVE_INDIVIDUAL_SWEPT_SURFACE_DIAGNOSTIC",
+      "surface_content_id": "sha256:a868c4e79fb5f09fd3ac94d2a59435d1a7c8ca81f9cae584c186c839315fa68c",
+      "surface_dataset": "/coils/coil_009",
+      "surface_type": "swept-spline"
+    },
+    {
+      "cell_id": "finite-coil-016",
+      "material_id": "winding-pack-016",
+      "region": [
+        "inside this complete finite swept coil",
+        "x >= 0",
+        "y >= 0"
+      ],
+      "status": "NATIVE_INDIVIDUAL_SWEPT_SURFACE_DIAGNOSTIC",
+      "surface_content_id": "sha256:d2f2c15550b3fbd32dd4e28122caf27bf41a7a38d28f7d7ef1af0fd9d31863e5",
+      "surface_dataset": "/coils/coil_016",
+      "surface_type": "swept-spline"
+    },
+    {
+      "cell_id": "finite-coil-017",
+      "material_id": "winding-pack-017",
+      "region": [
+        "inside this complete finite swept coil",
+        "x >= 0",
+        "y >= 0"
+      ],
+      "status": "NATIVE_INDIVIDUAL_SWEPT_SURFACE_DIAGNOSTIC",
+      "surface_content_id": "sha256:5a7fd008d81fe12a9a94288586587c21f169397085a477415289cedea44088a2",
+      "surface_dataset": "/coils/coil_017",
+      "surface_type": "swept-spline"
+    },
+    {
+      "cell_id": "finite-coil-024",
+      "material_id": "winding-pack-024",
+      "region": [
+        "inside this complete finite swept coil",
+        "x >= 0",
+        "y >= 0"
+      ],
+      "status": "NATIVE_INDIVIDUAL_SWEPT_SURFACE_DIAGNOSTIC",
+      "surface_content_id": "sha256:3625b3f3ba17ee0960e1b9ff3c5ae99ed54ce7dd2509326f276920a862bfd7ff",
+      "surface_dataset": "/coils/coil_024",
+      "surface_type": "swept-spline"
+    },
+    {
+      "cell_id": "finite-coil-025",
+      "material_id": "winding-pack-025",
+      "region": [
+        "inside this complete finite swept coil",
+        "x >= 0",
+        "y >= 0"
+      ],
+      "status": "NATIVE_INDIVIDUAL_SWEPT_SURFACE_DIAGNOSTIC",
+      "surface_content_id": "sha256:c3c571d275d9f3a048f8b87a24903abe60cbb65d5adf18d8ad927ca9eefe5cf1",
+      "surface_dataset": "/coils/coil_025",
+      "surface_type": "swept-spline"
+    },
+    {
+      "cell_id": "finite-coil-032",
+      "material_id": "winding-pack-032",
+      "region": [
+        "inside this complete finite swept coil",
+        "x >= 0",
+        "y >= 0"
+      ],
+      "status": "NATIVE_INDIVIDUAL_SWEPT_SURFACE_DIAGNOSTIC",
+      "surface_content_id": "sha256:44736cdd7cd6155d5e27fcd0d489e2445199c62b9aa4ddbfcb8efe1ade3a984b",
+      "surface_dataset": "/coils/coil_032",
+      "surface_type": "swept-spline"
+    },
+    {
+      "cell_id": "finite-coil-033",
+      "material_id": "winding-pack-033",
+      "region": [
+        "inside this complete finite swept coil",
+        "x >= 0",
+        "y >= 0"
+      ],
+      "status": "NATIVE_INDIVIDUAL_SWEPT_SURFACE_DIAGNOSTIC",
+      "surface_content_id": "sha256:756036fbf3a8790e77fdf5925c82aaf10c9feed6d8508bf5c983362bde7fe5d6",
+      "surface_dataset": "/coils/coil_033",
+      "surface_type": "swept-spline"
+    },
+    {
+      "cell_id": "finite-coil-040",
+      "material_id": "winding-pack-040",
+      "region": [
+        "inside this complete finite swept coil",
+        "x >= 0",
+        "y >= 0"
+      ],
+      "status": "NATIVE_INDIVIDUAL_SWEPT_SURFACE_DIAGNOSTIC",
+      "surface_content_id": "sha256:66cda8f416d04467279f36ef42199f977d2bc8ee952a61d10666870e5d14e6a8",
+      "surface_dataset": "/coils/coil_040",
+      "surface_type": "swept-spline"
+    },
+    {
+      "cell_id": "finite-coil-041",
+      "material_id": "winding-pack-041",
+      "region": [
+        "inside this complete finite swept coil",
+        "x >= 0",
+        "y >= 0"
+      ],
+      "status": "NATIVE_INDIVIDUAL_SWEPT_SURFACE_DIAGNOSTIC",
+      "surface_content_id": "sha256:aef42c0c8dbc136c145d5169cfb1aa28d83b2fd0ad8e0cda0cba089b8f5773ee",
+      "surface_dataset": "/coils/coil_041",
+      "surface_type": "swept-spline"
+    },
+    {
+      "cell_id": "finite-coil-046",
+      "material_id": "winding-pack-046",
+      "region": [
+        "inside this complete finite swept coil",
+        "x >= 0",
+        "y >= 0"
+      ],
+      "status": "NATIVE_INDIVIDUAL_SWEPT_SURFACE_DIAGNOSTIC",
+      "surface_content_id": "sha256:8ca32c22538015ffe449b2ace76b80a8e63e18b5095527b98fac65fc520563b4",
+      "surface_dataset": "/coils/coil_046",
+      "surface_type": "swept-spline"
+    },
+    {
+      "cell_id": "finite-coil-047",
+      "material_id": "winding-pack-047",
+      "region": [
+        "inside this complete finite swept coil",
+        "x >= 0",
+        "y >= 0"
+      ],
+      "status": "NATIVE_INDIVIDUAL_SWEPT_SURFACE_DIAGNOSTIC",
+      "surface_content_id": "sha256:c085059ee3e0769de86206c04af514c1b2d7351761df3979a0e27ccd35cb7808",
+      "surface_dataset": "/coils/coil_047",
+      "surface_type": "swept-spline"
+    },
+    {
+      "cell_id": "finite-coil-048",
+      "material_id": "winding-pack-048",
+      "region": [
+        "inside this complete finite swept coil",
+        "x >= 0",
+        "y >= 0"
+      ],
+      "status": "NATIVE_INDIVIDUAL_SWEPT_SURFACE_DIAGNOSTIC",
+      "surface_content_id": "sha256:d507fb8a34cd1cac43df27de8ee5569f5ab8dcd68b9a39d36f91508cc9bff0cd",
+      "surface_dataset": "/coils/coil_048",
+      "surface_type": "swept-spline"
+    }
+  ],
+  "plasma": {
+    "content_id": "sha256:9e6fa3d4d3dff22f70bd234d585240e09352b4545d668350ab9d6132ab4cc8c0",
+    "data_file": "/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-product-05/dev/stellarcsg/reports/product05/model-01/plan/plasma_boundary.h5",
+    "representation": "periodic-radial-bicubic",
+    "source_units": "VMEC metres converted once to centimetres",
+    "surface_dataset": "/surfaces/plasma_boundary"
+  },
+  "schema": "stellarcsg.one-period-plan/v1",
+  "seam_diagnostic": {
+    "max_manifest_coil_rotation_error_cm": 0.00020307042560429456,
+    "max_source_plasma_seam_error_cm": 2.428351918216984e-13,
+    "mean_source_plasma_seam_error_cm": 6.433236979818988e-14,
+    "method": "VMEC boundary endpoint versus rotated first endpoint",
+    "sample_count": 64,
+    "tolerance_cm": 1e-08
+  },
+  "sector_degrees": [
+    0.0,
+    90.0
+  ],
+  "sector_region": [
+    "x >= 0",
+    "y >= 0"
+  ],
+  "source_hashes": {
+    "makegrid_filaments": "7748369407d28a70f35b5c4a7c0ab860495a08fd0030002112ea933fe570159b",
+    "sector_manifest": "7329691db5857fe8e27a396e66e49aaac02a72aa9d2bd9628eb8887414474805",
+    "swept_coil_payload": "9bb178c308e7f3ec659e1651a7d57e0ecbff734d3320000df1c2bf79fcf3262b",
+    "vmec": "9231969001203a8133255ee0a275bf552b114cc12524dda0608ab2f12047f7ac"
+  },
+  "status": "PREPARED_NOT_TRANSPORT_QUALIFIED",
+  "swept_coils_file": "/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-product-05/dev/stellarcsg/reports/recovery04/wistell-coils-1cm.h5",
+  "symmetry_policy": "record-approximation",
+  "transport_limitations": [
+    "This is a preparation plan, not a qualified transport model.",
+    "Finite coil curves are retained whole and their future material cells must be intersected with the sector halfspaces.",
+    "The native individual swept-spline records retain the supplied coil payload directly.",
+    "The plasma fit uses the requested source grid; its input-to-model geometric fidelity is NOT_MEASURED.",
+    "No periodic boundary condition is emitted. A seam mismatch is retained as an approximation record, never corrected by forced copies.",
+    "The clipped diagnostic XML is not a qualified transport model: material physics, overlap clearance, particle navigation, and tally results require separate acceptance."
+  ],
+  "units": "cm"
+}
