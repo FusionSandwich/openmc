@@ -35,6 +35,15 @@ def relative(signed: float, reference: float) -> float | None:
     return None if reference == 0.0 else signed / reference
 
 
+def runtime_value(state: dict[str, Any], *names: str) -> float | None:
+    runtime = state.get("runtime_seconds") or {}
+    for name in names:
+        value = number(runtime.get(name))
+        if value is not None:
+            return value
+    return None
+
+
 def reduce_receipt(receipt: dict[str, Any]) -> dict[str, Any]:
     attempts = list(receipt.get("attempts") or [])
     lanes = sorted({str(attempt.get("lane")) for attempt in attempts if attempt.get("lane") is not None})
@@ -64,8 +73,12 @@ def reduce_receipt(receipt: dict[str, Any]) -> dict[str, Any]:
         output["per_lane"][lane] = {
             "attempt_count": len(rows), "completed_count": len(valid), "incomplete_count": len(rows) - len(valid),
             "median_active_histories_per_second": median_or_none([number(state_values(row).get("histories_per_active_second")) for row in valid]),
-            "median_active_runtime_seconds": median_or_none([number((state_values(row).get("runtime_seconds") or {}).get("active batches")) for row in valid]),
-            "median_initialization_runtime_seconds": median_or_none([number((state_values(row).get("runtime_seconds") or {}).get("initialization")) for row in valid]),
+            "median_active_runtime_seconds": median_or_none([runtime_value(state_values(row), "active batches") for row in valid]),
+            "median_initialization_runtime_seconds": median_or_none([runtime_value(state_values(row), "total initialization", "initialization") for row in valid]),
+            "median_transport_runtime_seconds": median_or_none([runtime_value(state_values(row), "transport") for row in valid]),
+            "median_histories_per_transport_second": median_or_none([
+                None if runtime_value(state_values(row), "transport") in (None, 0.0) else float(state_values(row).get("n_particles", 0)) / runtime_value(state_values(row), "transport")
+                for row in valid]),
             "median_closure_absolute": median_or_none(closures), "median_closure_relative": median_or_none(closure_relative),
             "nonzero_cell_support_count": len(support), "nonzero_cell_bins": sorted(support),
         }
@@ -91,6 +104,9 @@ def reduce_receipt(receipt: dict[str, Any]) -> dict[str, Any]:
                 numerator = number((state.get("runtime_seconds") or {}).get("active batches"))
                 denominator = number((exact_state.get("runtime_seconds") or {}).get("active batches"))
                 values["active_runtime_ratio_lane_over_exact"] = None if numerator is None or denominator in (None, 0.0) else numerator / denominator
+                numerator = runtime_value(state, "transport")
+                denominator = runtime_value(exact_state, "transport")
+                values["transport_runtime_ratio_lane_over_exact"] = None if numerator is None or denominator in (None, 0.0) else numerator / denominator
                 bins, flux = state.get("cell_bins") or [], state.get("cell_flux") or []
                 reference_bins, reference_flux = exact_state.get("cell_bins") or [], exact_state.get("cell_flux") or []
                 if bins != reference_bins or len(flux) != len(reference_flux):
@@ -101,6 +117,13 @@ def reduce_receipt(receipt: dict[str, Any]) -> dict[str, Any]:
                         {"cell_id": int(cell), "signed": float(value) - float(reference), "relative": relative(float(value) - float(reference), float(reference))}
                         for cell, value, reference in zip(bins, flux, reference_flux)]
             pair["lanes"][lane] = values
+        recovered, old = rows.get("recovered"), rows.get("old")
+        if recovered is not None and old is not None:
+            recovered_transport = runtime_value(state_values(recovered), "transport")
+            old_transport = runtime_value(state_values(old), "transport")
+            pair["recovered_over_old_transport_runtime_ratio"] = None if recovered_transport is None or old_transport in (None, 0.0) else recovered_transport / old_transport
+        else:
+            pair["recovered_over_old_transport_runtime_ratio"] = None
         output["per_seed_pairs"].append(pair)
     return output
 
