@@ -1110,18 +1110,18 @@ DistanceResult CompiledSweptSplineSurface::distance(
                                      : StackEntry {node.right, right->enter};
     }
   }
-  if (!std::isfinite(best_t)) {
-    for (std::size_t unresolved_index = 0; unresolved_index < unresolved_count;
-         ++unresolved_index) {
-      const auto item = unresolved[unresolved_index];
-      const auto& span = spans_[item.span];
-      add_performance_counter(PerformanceCounter::local_subdivision_calls);
-      constexpr int scan_segments = 8;
-      double previous_t = item.enter;
-      double previous_value =
-        evaluate_in_span(origin + previous_t * ray_direction, span);
-      for (int segment_index = 1; segment_index <= scan_segments;
-           ++segment_index) {
+  for (std::size_t unresolved_index = 0; unresolved_index < unresolved_count;
+       ++unresolved_index) {
+    const auto item = unresolved[unresolved_index];
+    if (item.enter >= best_t) continue;
+    const auto& span = spans_[item.span];
+    add_performance_counter(PerformanceCounter::local_subdivision_calls);
+    constexpr int scan_segments = 8;
+    double previous_t = item.enter;
+    double previous_value =
+      evaluate_in_span(origin + previous_t * ray_direction, span);
+    for (int segment_index = 1; segment_index <= scan_segments;
+         ++segment_index) {
         const double current_t =
           item.enter + (item.exit - item.enter) *
                          static_cast<double>(segment_index) /
@@ -1129,33 +1129,31 @@ DistanceResult CompiledSweptSplineSurface::distance(
         const double current_value =
           evaluate_in_span(origin + current_t * ray_direction, span);
         add_performance_counter(PerformanceCounter::local_subdivision_nodes);
-        if (std::signbit(previous_value) != std::signbit(current_value)) {
-          double a = previous_t;
-          double right = current_t;
-          double fa = previous_value;
-          for (int iteration = 0; iteration < 40; ++iteration) {
-            const double midpoint = 0.5 * (a + right);
-            const double fm = evaluate_in_span(
-              origin + midpoint * ray_direction, span);
-            if (std::signbit(fa) != std::signbit(fm)) right = midpoint;
-            else { a = midpoint; fa = fm; }
-          }
-          const double t = 0.5 * (a + right);
-          const double authoritative_residual = std::abs(
-            evaluate(origin + t * ray_direction));
-          if (t > minimum_t && t < best_t
-              && authoritative_residual
-                <= 100.0 * options.absolute_f_tolerance) {
-            best_t = t;
-            best_residual = authoritative_residual;
-            best_span = item.span;
-          }
-          break;
+      if (std::signbit(previous_value) != std::signbit(current_value)) {
+        double a = previous_t;
+        double right = current_t;
+        double fa = previous_value;
+        for (int iteration = 0; iteration < 40; ++iteration) {
+          const double midpoint = 0.5 * (a + right);
+          const double fm = evaluate_in_span(
+            origin + midpoint * ray_direction, span);
+          if (std::signbit(fa) != std::signbit(fm)) right = midpoint;
+          else { a = midpoint; fa = fm; }
         }
-        previous_t = current_t;
-        previous_value = current_value;
+        const double t = 0.5 * (a + right);
+        const double authoritative_residual = std::abs(
+          evaluate(origin + t * ray_direction));
+        if (t > minimum_t && t < best_t
+            && authoritative_residual
+              <= 100.0 * options.absolute_f_tolerance) {
+          best_t = t;
+          best_residual = authoritative_residual;
+          best_span = item.span;
+        }
+        break;
       }
-      if (std::isfinite(best_t)) break;
+      previous_t = current_t;
+      previous_value = current_value;
     }
   }
   record_candidate_count(candidates);
