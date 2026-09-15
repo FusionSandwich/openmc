@@ -95,3 +95,11 @@ review. All previous negative results remain retained.
 - Torus-arcs and period-import report surviving exported patches, but this
   coordinator has not yet retrieved or verified their contents. Patch-level
   review remains a separate next step. All returned ZTorus ratios remain null.
+- Bezier also confirms its clone and exported patch were removed. Its recalled
+  code assigns `best_t` from a Newton point after a Boolean inclusion test and
+  prunes using `best_t + residual_tolerance`; the parameter enclosure is not
+  returned. Retain the enclosure and derive a directed-rounding longitudinal
+  interval before any future pruning. This is a repair direction, not reviewed
+  surviving source or a proven fix. Three lanes now lack exportable patches.
+- Swept-fiber reports a surviving archive with raw outputs, patch and checksums.
+  Its candidate wrong count is null, not zero: it produces no distance results.
