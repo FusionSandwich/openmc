@@ -20,8 +20,12 @@ scope labels, not asserted UI titles. Do not duplicate these sessions.
 | Periodic geometry, fidelity, clearances, generic import, heldout fold | 6aa96f04-1d60-83ea-8e4c-d69f106135b0 | qualified physical assembly still missing |
 
 Additional briefs, each independent of rerunning the currently failing case.
-Status: PREPARED, NOT SUBMITTED. The user explicitly requires ChatGPT Pro,
-not a substituted cloud task with unverified model selection.
+Status update: all four briefs were submitted using the user-authorized
+chatgpt-pro-handoff browser skill, with ordinary Chat pressed and 6 Pro
+observed in the selector. Submitted user markers and permanent conversation
+IDs were verified. Links/payload hashes are in the private local dispatch
+index, not published here. Repository execution/access in each destination
+remains a separate pending check. No duplicate solver sessions were created.
 
 | Brief | Owns | Explicitly does not own |
 |---|---|---|
@@ -48,9 +52,11 @@ Pro is not a model switch. Report model selection as UNVERIFIED unless the
 actual destination configuration proves it. Do not substitute a local Codex
 model without user agreement. No mouse/browser automation is needed.
 
-After the user clarified the Pro requirement, no new sessions were created.
-Available app tools were searched; none exposes explicit ChatGPT Astra 6 Pro
-creation or selection. The six pre-existing sessions are not verified Pro.
+The initial app-only dispatch was blocked by that limitation. The user later
+authorized the new browser skill; it enabled the four ordinary Pro chats above.
+The six pre-existing Work sessions are still not retrospectively verified Pro.
+Their returned reports and targeted follow-ups are summarized separately in
+`CHAT_RESULT_REVIEW_20260915.md`. Their numeric results are not local reruns.
 
 The public branch is `JS/stellarcsg-root-repair-20260915-07` at
 https://github.com/FusionSandwich/openmc . Future dispatch prompts must pin the
