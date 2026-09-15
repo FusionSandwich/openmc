@@ -2,6 +2,11 @@
 
 ## Start here
 
+For the additional independent work requested on September 15, read
+`REMAINING_WORK_DISPATCH.md`. It maps existing sessions to remaining gates,
+adds four nonduplicating briefs, and records the WISTELL-D input/assembly
+distinction. Existing solver tasks must not be restarted or duplicated.
+
 Repository: https://github.com/FusionSandwich/openmc
 
 Handoff branch: `JS/stellarcsg-root-repair-20260915-07`.
