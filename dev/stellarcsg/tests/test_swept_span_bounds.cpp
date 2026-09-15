@@ -10,6 +10,14 @@ using namespace stellarcsg::swept_span_bounds;
 
 int main()
 {
+  const auto cancellation = power_to_bezier({1.e16, 1., -1.e16, 1.});
+  // Exact endpoint is 2 although ordinary left-to-right binary64 summation is 1.
+  assert(cancellation[3].lo <= 2.0 && cancellation[3].hi >= 2.0);
+  const auto mixed_bspline = bspline_to_bezier({-3., 6., -3., 6.});
+  // Exact first/last Bernstein controls are 3 and 0, respectively.
+  assert(mixed_bspline[0].lo <= 3.0 && mixed_bspline[0].hi >= 3.0);
+  assert(mixed_bspline[3].lo <= 0.0 && mixed_bspline[3].hi >= 0.0);
+
   // These controls have exact rational Bernstein conversion values 6, 8, 10, 12.
   CubicSpan authoritative {};
   authoritative.center[0] = {0., 6., 12., 18.};
