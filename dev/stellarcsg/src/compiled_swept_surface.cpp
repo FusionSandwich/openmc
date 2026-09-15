@@ -855,7 +855,22 @@ DistanceResult CompiledSweptSplineSurface::distance(
       iterations_total += static_cast<std::uint64_t>(iterations);
       add_performance_counter(PerformanceCounter::newton_iterations,
         static_cast<std::uint64_t>(iterations));
-      if (residual > circular_tolerance) {
+      Vec3 center;
+      Vec3 center_d;
+      Vec3 center_dd;
+      center_derivatives(span, angle, center, center_d, center_dd);
+      const double speed = norm(center_d);
+      const Vec3 radial = origin + t * ray_direction - center;
+      const double radial_length = norm(radial);
+      if (!(speed > 0.0) || !std::isfinite(speed)
+          || !(radial_length > 0.0) || !std::isfinite(radial_length)) {
+        residual = std::numeric_limits<double>::infinity();
+      } else {
+        const Vec3 tangent = center_d / speed;
+        residual = std::hypot(
+          dot(radial, tangent), radial_length - circular_radius_);
+      }
+      if (!std::isfinite(residual) || residual > circular_tolerance) {
         add_performance_counter(PerformanceCounter::newton_failures);
         return false;
       }
@@ -908,15 +923,14 @@ DistanceResult CompiledSweptSplineSurface::distance(
         angle + delta_angle, span.angle_min, span.angle_max);
       alpha = wrap(alpha + delta_alpha);
     }
-    if (residual > projected_tolerance) {
-      const Vec3 position = surface_point(span, angle, alpha);
-      const Vec3 offset = position - origin;
-      residual = std::hypot(dot(basis1, offset), dot(basis2, offset));
-    }
+    const Vec3 final_position = surface_point(span, angle, alpha);
+    const Vec3 final_offset = final_position - origin;
+    residual = std::hypot(
+      dot(basis1, final_offset), dot(basis2, final_offset));
     iterations_total += static_cast<std::uint64_t>(iterations);
     add_performance_counter(PerformanceCounter::newton_iterations,
       static_cast<std::uint64_t>(iterations));
-    if (residual > projected_tolerance) {
+    if (!std::isfinite(residual) || residual > projected_tolerance) {
       add_performance_counter(PerformanceCounter::newton_failures);
       return false;
     }
