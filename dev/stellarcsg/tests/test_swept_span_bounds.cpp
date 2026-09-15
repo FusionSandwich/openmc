@@ -55,6 +55,18 @@ int main()
     Vec3 {std::numeric_limits<double>::denorm_min(), 0., 0.});
   assert(!subnormal.certain);
 
+  const BoundingBox center_box {{0., 0., 0.}, {1., 1., 1.}};
+  assert(excludes_ray_segment(center_box, 1.0,
+    Vec3 {-2., 2.1, .5}, Vec3 {1., 0., 0.}, 0., 6.));
+  // A near-tangent corner interval is retained when outward rounding prevents
+  // proving a strictly greater tube distance.
+  assert(!excludes_ray_segment(center_box, 1.0,
+    Vec3 {-2., 2., .5}, Vec3 {1., 0., 0.}, 0., 6.));
+  const BoundingBox translated_center {{1.e200, -1., -1.},
+                                        {1.e200, 1., 1.}};
+  assert(!excludes_ray_segment(translated_center, 1.0,
+    Vec3 {1.e200, 0., 0.}, Vec3 {1., 0., 0.}, 0., 1.));
+
   CubicSpan overflowing = authoritative;
   overflowing.center[0][0] = std::numeric_limits<double>::max();
   assert(!union_bounds(overflowing, compiled).certain);

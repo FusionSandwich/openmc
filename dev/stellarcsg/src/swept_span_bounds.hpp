@@ -29,8 +29,11 @@ struct CubicSpan {
 };
 
 struct BoundsResult {
+  BoundingBox center_box {{-infinity, -infinity, -infinity},
+                          {infinity, infinity, infinity}};
   BoundingBox box {{-infinity, -infinity, -infinity},
                    {infinity, infinity, infinity}};
+  double radius_upper {infinity};
   bool certain {false};
 };
 
@@ -155,17 +158,19 @@ struct RayBoundsResult {
     if (!hull(bezier, radius_lo, radius_hi) || radius_lo < 0.0) return {};
     radius_upper = std::max(radius_upper, radius_hi);
   }
+  BoundingBox center_box {{lower[0], lower[1], lower[2]},
+                          {upper[0], upper[1], upper[2]}};
   BoundingBox box {{down(lower[0] - radius_upper),
                     down(lower[1] - radius_upper),
                     down(lower[2] - radius_upper)},
                    {up(upper[0] + radius_upper),
                     up(upper[1] + radius_upper),
                     up(upper[2] + radius_upper)}};
-  if (!box.valid() || !std::isfinite(radius_upper)
+  if (!center_box.valid() || !box.valid() || !std::isfinite(radius_upper)
       || !std::isfinite(box.lower.x) || !std::isfinite(box.lower.y)
       || !std::isfinite(box.lower.z) || !std::isfinite(box.upper.x)
       || !std::isfinite(box.upper.y) || !std::isfinite(box.upper.z)) return {};
-  return {box, true};
+  return {center_box, box, radius_upper, true};
 }
 
 [[nodiscard]] inline RayBoundsResult ray_interval_outward(const BoundingBox& box,
@@ -198,6 +203,41 @@ struct RayBoundsResult {
     if (enter > exit) return {{}, true};
   }
   return {RayInterval {enter, exit}, true};
+}
+
+[[nodiscard]] inline bool excludes_ray_segment(const BoundingBox& center_box,
+  double radius_upper, const Vec3& origin, const Vec3& direction,
+  double enter, double exit) noexcept
+{
+  if (!supported_binary64() || !center_box.valid()
+      || !std::isfinite(radius_upper) || radius_upper < 0.0
+      || !std::isfinite(enter) || !std::isfinite(exit) || enter > exit) return false;
+  const std::array<double, 3> lo {center_box.lower.x, center_box.lower.y, center_box.lower.z};
+  const std::array<double, 3> hi {center_box.upper.x, center_box.upper.y, center_box.upper.z};
+  const std::array<double, 3> point {origin.x, origin.y, origin.z};
+  const std::array<double, 3> ray {direction.x, direction.y, direction.z};
+  double squared_lower = 0.0;
+  for (std::size_t axis = 0; axis < 3; ++axis) {
+    if (!std::isfinite(lo[axis]) || !std::isfinite(hi[axis])
+        || !std::isfinite(point[axis]) || !std::isfinite(ray[axis])) return false;
+    const double first = ray[axis] >= 0.0 ? down(enter * ray[axis]) : down(exit * ray[axis]);
+    const double last = ray[axis] >= 0.0 ? up(exit * ray[axis]) : up(enter * ray[axis]);
+    const double ray_lo = down(point[axis] + first);
+    const double ray_hi = up(point[axis] + last);
+    const double offset_lo = down(ray_lo - hi[axis]);
+    const double offset_hi = up(ray_hi - lo[axis]);
+    if (!std::isfinite(ray_lo) || !std::isfinite(ray_hi)
+        || !std::isfinite(offset_lo) || !std::isfinite(offset_hi)) return false;
+    const double minimum = offset_lo <= 0.0 && offset_hi >= 0.0 ? 0.0
+      : std::min(std::abs(offset_lo), std::abs(offset_hi));
+    const double square = down(minimum * minimum);
+    if (!std::isfinite(square)) return false;
+    squared_lower = down(squared_lower + square);
+    if (!std::isfinite(squared_lower)) return false;
+  }
+  const double radius_squared_upper = up(radius_upper * radius_upper);
+  return std::isfinite(radius_squared_upper)
+    && squared_lower > radius_squared_upper;
 }
 
 } // namespace stellarcsg::swept_span_bounds

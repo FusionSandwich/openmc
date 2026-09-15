@@ -1,5 +1,6 @@
 #include "stellarcsg/compiled_swept_surface.hpp"
 #include "stellarcsg/performance_counters.hpp"
+#include "swept_span_bounds.hpp"
 
 #include <algorithm>
 #include <array>
@@ -24,6 +25,18 @@ constexpr std::array<std::array<double, 4>, 4> bspline_to_power {{
   {{-1.0 / 6.0, 0.5, -0.5, 1.0 / 6.0}}}};
 
 std::atomic<std::uint64_t> next_swept_surface_instance {1};
+
+std::optional<RayInterval> outward_ray_interval_or_throw(
+  const BoundingBox& box, const Vec3& origin, const Vec3& direction)
+{
+  const auto result = swept_span_bounds::ray_interval_outward(
+    box, origin, direction);
+  if (!result.certain) {
+    throw std::runtime_error(
+      "UNSUPPORTED_SWEEP_BOUNDS: outward ray interval is unknown");
+  }
+  return result.interval;
+}
 
 struct SweptEvaluationCache {
   std::uint64_t instance_id {0};
@@ -447,24 +460,43 @@ void CompiledSweptSplineSurface::build_spans()
       }
       span.proxy_start = frame_in_span(span, span.angle_min).center;
       span.proxy_end = frame_in_span(span, span.angle_max).center;
-      BoundingBox center_bounds = empty_box();
-      double radius_bound = 0.0;
-      for (std::size_t bezier = 0; bezier < 4; ++bezier) {
-        Vec3 center_control;
-        for (std::size_t field = 0; field < 8; ++field) {
-          const double* power = span.power.data() + 4 * field;
-          const double value = bezier == 0 ? power[0]
-            : bezier == 1 ? power[0] + power[1] / 3.0
-            : bezier == 2 ? power[0] + 2.0 * power[1] / 3.0
-                            + power[2] / 3.0
-            : power[0] + power[1] + power[2] + power[3];
-          if (field == 0) center_control.x = value;
-          else if (field == 1) center_control.y = value;
-          else if (field == 2) center_control.z = value;
-          else if (field >= 6) radius_bound = std::max(radius_bound, value);
+      swept_span_bounds::CubicSpan authoritative {};
+      swept_span_bounds::CubicSpan compiled {};
+      for (std::size_t axis = 0; axis < 3; ++axis) {
+        for (std::size_t control = 0; control < 4; ++control) {
+          const auto source = wrap_index(static_cast<long>(i)
+            + static_cast<long>(control) - 1, data_.sample_count);
+          authoritative.center[axis][control] =
+            data_.centerline_coefficients[3 * source + axis];
+          compiled.center[axis][control] = span.power[4 * axis + control];
         }
-        extend(center_bounds, center_control);
       }
+      for (std::size_t control = 0; control < 4; ++control) {
+        const auto source = wrap_index(static_cast<long>(i)
+          + static_cast<long>(control) - 1, data_.sample_count);
+        authoritative.radius[control] = data_.major_radius_coefficients[source];
+        compiled.radius[control] = span.power[24 + control];
+      }
+      const auto major_bounds = swept_span_bounds::union_bounds(
+        authoritative, compiled);
+      for (std::size_t control = 0; control < 4; ++control) {
+        const auto source = wrap_index(static_cast<long>(i)
+          + static_cast<long>(control) - 1, data_.sample_count);
+        authoritative.radius[control] = data_.minor_radius_coefficients[source];
+        compiled.radius[control] = span.power[28 + control];
+      }
+      const auto minor_bounds = swept_span_bounds::union_bounds(
+        authoritative, compiled);
+      if (!major_bounds.certain || !minor_bounds.certain) {
+        throw std::invalid_argument(
+          "UNSUPPORTED_SWEEP_BOUNDS: span preprocessing is unknown");
+      }
+      BoundingBox center_bounds = major_bounds.center_box;
+      extend(center_bounds, minor_bounds.center_box);
+      BoundingBox conservative_bounds = major_bounds.box;
+      extend(conservative_bounds, minor_bounds.box);
+      const double radius_bound = std::max(
+        major_bounds.radius_upper, minor_bounds.radius_upper);
       span.radius_bound = radius_bound;
       const Vec3 second_start {
         2.0 * span.power[2], 2.0 * span.power[6],
@@ -476,11 +508,8 @@ void CompiledSweptSplineSurface::build_spans()
       const double centerline_error = std::max(
         norm(second_start), norm(second_end)) / 8.0;
       span.proxy_radius = radius_bound + centerline_error + rounding;
-      const double inflation = radius_bound + rounding;
       span.centerline_bbox = center_bounds;
-      span.conservative_bbox = {
-        center_bounds.lower - Vec3 {inflation, inflation, inflation},
-        center_bounds.upper + Vec3 {inflation, inflation, inflation}};
+      span.conservative_bbox = conservative_bounds;
       spans_.push_back(span);
     }
   }
@@ -726,7 +755,7 @@ DistanceResult CompiledSweptSplineSurface::distance_reference(
     throw std::invalid_argument("Ray direction must be non-zero");
   }
   const Vec3 u = direction / direction_norm;
-  const auto interval = bounds_.ray_interval(origin, u);
+  const auto interval = outward_ray_interval_or_throw(bounds_, origin, u);
   if (!interval) {
     add_performance_counter(PerformanceCounter::no_hit_returns);
     return {};
@@ -777,8 +806,8 @@ DistanceResult CompiledSweptSplineSurface::distance(
   RootSearchDiagnostics diagnostics;
   diagnostics.solver_path = SolverPath::general_swept_certified;
   if (span_bvh_.empty()) return {};
-  const auto root_interval = span_bvh_.front().bbox.ray_interval(
-    origin, ray_direction);
+  const auto root_interval = outward_ray_interval_or_throw(
+    span_bvh_.front().bbox, origin, ray_direction);
   if (!root_interval || root_interval->exit < 0.0) {
     add_performance_counter(PerformanceCounter::no_hit_returns);
     return {};
@@ -1103,10 +1132,17 @@ DistanceResult CompiledSweptSplineSurface::distance(
       for (std::uint32_t local = 0; local < node.count; ++local) {
         const std::uint32_t span_id = span_indices_[node.first + local];
         const auto& span = spans_[span_id];
-        const auto interval = span.conservative_bbox.ray_interval(
-          origin, ray_direction);
+        const auto interval = outward_ray_interval_or_throw(
+          span.conservative_bbox, origin, ray_direction);
         if (!interval || interval->exit <= minimum_t
             || interval->enter >= best_t) continue;
+        const double segment_enter = std::max(minimum_t, interval->enter);
+        const double segment_exit = std::min(interval->exit, best_t);
+        // A true result only excludes this center-box tube interval. A false
+        // result is deliberately retained for the existing seed/fallback work.
+        if (swept_span_bounds::excludes_ray_segment(span.centerline_bbox,
+              span.radius_bound, origin, ray_direction,
+              segment_enter, segment_exit)) continue;
         ++candidates;
         add_performance_counter(PerformanceCounter::candidate_patches_or_segments);
         const Vec3 segment = span.proxy_end - span.proxy_start;
@@ -1217,10 +1253,10 @@ DistanceResult CompiledSweptSplineSurface::distance(
       }
       continue;
     }
-    const auto left =
-      span_bvh_[node.left].bbox.ray_interval(origin, ray_direction);
-    const auto right =
-      span_bvh_[node.right].bbox.ray_interval(origin, ray_direction);
+    const auto left = outward_ray_interval_or_throw(
+      span_bvh_[node.left].bbox, origin, ray_direction);
+    const auto right = outward_ray_interval_or_throw(
+      span_bvh_[node.right].bbox, origin, ray_direction);
     const bool use_left =
       left && left->exit > minimum_t && left->enter < best_t;
     const bool use_right =
