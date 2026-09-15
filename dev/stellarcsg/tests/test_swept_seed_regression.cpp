@@ -20,5 +20,28 @@ int main()
       failures += pass ? 0 : 1;
     }
   }
+  const auto torus_data = make_data(0);
+  const stellarcsg::CompiledSweptSplineSurface torus {torus_data, true};
+  const double knot_radius = sample(torus_data, 0).x;
+  const auto near_tangent = torus.distance(
+    Vec3 {knot_radius, -2, .2499999}, Vec3 {0, 1, 0}, false);
+  const double expected_near_tangent = 1.9527658734094704;
+  const bool near_tangent_pass = near_tangent.found
+    && std::abs(near_tangent.distance - expected_near_tangent) <= 2e-8;
+  std::cout << std::setprecision(17)
+            << "a15 distance=" << near_tangent.distance
+            << " pass=" << near_tangent_pass << '\n';
+  failures += near_tangent_pass ? 0 : 1;
+
+  bool tangent_unresolved = false;
+  try {
+    (void) torus.distance(
+      Vec3 {knot_radius, -2, .25}, Vec3 {0, 1, 0}, false);
+  } catch (const std::runtime_error& error) {
+    tangent_unresolved = std::string {error.what()}.find(
+      "Swept query unresolved") != std::string::npos;
+  }
+  std::cout << "a08 unresolved=" << tangent_unresolved << '\n';
+  failures += tangent_unresolved ? 0 : 1;
   return failures ? 1 : 0;
 }

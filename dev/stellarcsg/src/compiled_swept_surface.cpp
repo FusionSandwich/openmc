@@ -800,12 +800,14 @@ DistanceResult CompiledSweptSplineSurface::distance(
   double best_t = std::numeric_limits<double>::infinity();
   double best_residual = std::numeric_limits<double>::infinity();
   std::uint32_t best_span = std::numeric_limits<std::uint32_t>::max();
+  double suspect_lower_bound = std::numeric_limits<double>::infinity();
   std::uint64_t candidates = 0;
   std::uint64_t iterations_total = 0;
 
   const auto solve_seed = [&](const SweptSpan& span, std::uint32_t span_id,
-                            double ray_seed, double angle_seed,
-                            double alpha_seed) {
+                             double ray_seed, double angle_seed,
+                             double alpha_seed, double span_enter,
+                             double span_exit) {
     double angle = std::clamp(angle_seed, span.angle_min, span.angle_max);
     const double span_width = span.angle_max - span.angle_min;
     if (circular_cross_section_) {
@@ -862,13 +864,142 @@ DistanceResult CompiledSweptSplineSurface::distance(
       const double speed = norm(center_d);
       const Vec3 radial = origin + t * ray_direction - center;
       const double radial_length = norm(radial);
+      bool suspect = false;
+      double final_delta_t = 0.0;
       if (!(speed > 0.0) || !std::isfinite(speed)
           || !(radial_length > 0.0) || !std::isfinite(radial_length)) {
         residual = std::numeric_limits<double>::infinity();
+        suspect = true;
       } else {
         const Vec3 tangent = center_d / speed;
-        residual = std::hypot(
-          dot(radial, tangent), radial_length - circular_radius_);
+        const Vec3 tangent_d = (center_dd
+          - tangent * dot(tangent, center_dd)) / speed;
+        const double h1 = dot(radial, tangent);
+        const double h2 = radial_length - circular_radius_;
+        residual = std::hypot(h1, h2);
+        const double j11 = -speed + dot(radial, tangent_d);
+        const double j12 = dot(ray_direction, tangent);
+        const double j21 = -dot(radial, center_d) / radial_length;
+        const double j22 = dot(radial, ray_direction) / radial_length;
+        const double determinant = j11 * j22 - j12 * j21;
+        const double scale = std::max(
+          1.0, std::hypot(j11, j21) * std::hypot(j12, j22));
+        const double determinant_floor =
+          128.0 * std::numeric_limits<double>::epsilon() * scale;
+        const double angular_column = std::hypot(j11, j21);
+        if (!std::isfinite(determinant)
+            || std::abs(determinant) <= determinant_floor
+            || !(angular_column > 0.0)
+            || std::abs(determinant) / angular_column
+                 <= options.derivative_tolerance) {
+          suspect = true;
+        } else {
+          final_delta_t = (-j11 * h2 + j21 * h1) / determinant;
+          const double t_tolerance = options.absolute_t_tolerance
+            + options.relative_t_tolerance * std::abs(t);
+          suspect = !std::isfinite(final_delta_t)
+            || std::abs(final_delta_t) > t_tolerance;
+        }
+      }
+      // A small equation residual does not bound ray-distance error near a
+      // grazing root. Only an authoritative sign bracket may accept this lead.
+      if (suspect && t > minimum_t) {
+        const double t_tolerance = options.absolute_t_tolerance
+          + options.relative_t_tolerance * std::abs(t);
+        const double correction_scale = std::isfinite(final_delta_t)
+          ? std::abs(final_delta_t) : 0.0;
+        const double local_limit = std::max(64.0 * t_tolerance,
+          std::min(0.25 * span.proxy_radius,
+            std::max(64.0 * correction_scale, 64.0 * t_tolerance)));
+        double half_width = std::min(local_limit,
+          std::max(2.0 * correction_scale, 8.0 * t_tolerance));
+        double bracket_a = 0.0;
+        double bracket_b = 0.0;
+        double bracket_value_a = 0.0;
+        bool bracketed = false;
+        const auto strict_sign_change = [](double a, double b) {
+          return std::isfinite(a) && std::isfinite(b)
+            && a != 0.0 && b != 0.0
+            && std::signbit(a) != std::signbit(b);
+        };
+        const double local_lower = std::max(minimum_t, span_enter);
+        const double candidate_t = std::clamp(t, local_lower, span_exit);
+        const double candidate_value =
+          evaluate(origin + candidate_t * ray_direction);
+        ++diagnostics.function_evaluations;
+        for (int expansion = 0; expansion < 8 && !bracketed; ++expansion) {
+          const double left = std::max(local_lower, candidate_t - half_width);
+          const double right = std::min(span_exit, candidate_t + half_width);
+          if (!(right > left)) break;
+          const double left_value = evaluate(origin + left * ray_direction);
+          const double right_value = evaluate(origin + right * ray_direction);
+          diagnostics.function_evaluations += 2;
+          add_performance_counter(PerformanceCounter::local_subdivision_nodes, 2);
+          if (strict_sign_change(left_value, candidate_value)) {
+            bracket_a = left;
+            bracket_b = candidate_t;
+            bracket_value_a = left_value;
+            bracketed = true;
+          } else if (strict_sign_change(candidate_value, right_value)) {
+            bracket_a = candidate_t;
+            bracket_b = right;
+            bracket_value_a = candidate_value;
+            bracketed = true;
+          } else if (strict_sign_change(left_value, right_value)) {
+            bracket_a = left;
+            bracket_b = right;
+            bracket_value_a = left_value;
+            bracketed = true;
+          }
+          if (half_width >= local_limit) break;
+          half_width = std::min(local_limit, 2.0 * half_width);
+        }
+        if (bracketed) {
+          add_performance_counter(PerformanceCounter::local_subdivision_calls);
+          ++diagnostics.sign_change_brackets;
+          for (int refinement = 0; refinement < 64; ++refinement) {
+            const double midpoint = bracket_a + 0.5 * (bracket_b - bracket_a);
+            const double midpoint_value =
+              evaluate(origin + midpoint * ray_direction);
+            ++diagnostics.function_evaluations;
+            add_performance_counter(PerformanceCounter::local_subdivision_nodes);
+            if (!std::isfinite(midpoint_value)) {
+              bracketed = false;
+              break;
+            }
+            if (std::signbit(bracket_value_a)
+                != std::signbit(midpoint_value)) {
+              bracket_b = midpoint;
+            } else {
+              bracket_a = midpoint;
+              bracket_value_a = midpoint_value;
+            }
+            const double bracket_tolerance = options.absolute_t_tolerance
+              + options.relative_t_tolerance
+                * std::max(std::abs(bracket_a), std::abs(bracket_b));
+            if (bracket_b - bracket_a <= bracket_tolerance) break;
+          }
+        }
+        if (bracketed) {
+          const double refined_t = bracket_a + 0.5 * (bracket_b - bracket_a);
+          const double refined_residual =
+            std::abs(evaluate(origin + refined_t * ray_direction));
+          ++diagnostics.function_evaluations;
+          if (refined_t > minimum_t && std::isfinite(refined_residual)
+              && refined_residual <= options.absolute_f_tolerance) {
+            if (refined_t < best_t) {
+              best_t = refined_t;
+              best_residual = refined_residual;
+              best_span = span_id;
+            }
+            return true;
+          }
+        }
+        suspect_lower_bound = std::min(
+          suspect_lower_bound, std::max(minimum_t, span_enter));
+        ++diagnostics.unresolved_intervals;
+        add_performance_counter(PerformanceCounter::newton_failures);
+        return false;
       }
       if (!std::isfinite(residual) || residual > circular_tolerance) {
         add_performance_counter(PerformanceCounter::newton_failures);
@@ -1071,7 +1202,8 @@ DistanceResult CompiledSweptSplineSurface::distance(
             dot(transverse, frame_value.binormal) / frame_value.minor_radius,
             dot(transverse, frame_value.normal) / frame_value.major_radius);
           solved =
-            solve_seed(span, span_id, proxy_t[seed], angle, alpha) || solved;
+            solve_seed(span, span_id, proxy_t[seed], angle, alpha,
+              std::max(minimum_t, interval->enter), interval->exit) || solved;
         }
 
         if (!solved && proxy_count != 0) {
@@ -1164,6 +1296,10 @@ DistanceResult CompiledSweptSplineSurface::distance(
     static_cast<long>(iterations_total);
   diagnostics.certified_excluded_intervals =
     static_cast<long>(spans_.size()) - static_cast<long>(candidates);
+  if (suspect_lower_bound < best_t) {
+    throw std::runtime_error(
+      "Swept query unresolved suspect circular crossing");
+  }
   if (!std::isfinite(best_t)) {
     add_performance_counter(PerformanceCounter::no_hit_returns);
     return {false, std::numeric_limits<double>::infinity(),
