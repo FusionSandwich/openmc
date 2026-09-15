@@ -129,6 +129,14 @@ if this cannot actually run, rather than inventing benchmark numbers.
 
 ## Qualification remains mandatory
 
+### Mandatory cross-machine torus control
+
+Mandatory cross-machine performance rule: measure native OpenMC CSG ZTorus in the SAME environment and benchmark session as every coil/plasma candidate and recovered-old control. Report distance, classification and normal cost ratios as candidate ns/query divided by ZTorus ns/query; report transport throughput as candidate histories/s divided by ZTorus histories/s (and label any inverse slowdown explicitly). Include absolute values, bank/model hashes, compiler/options, CPU/thread settings and repeated-run variability. Do not compare absolute ns/query across computers. Use comparable unique-ray/query classes and matched transport settings where meaningful; label unlike geometries/banks as sentinel cost ratios, not matched fidelity/performance claims. If ZTorus is unavailable, ratios are null and the performance comparison is incomplete, not waived. Preserve old-fast-relative guardrails as well. No extra unapproved acquisition or remote job is authorized by this requirement.
+
+This applies to every future method/benchmark report, including independent
+ChatGPT environments. A source-only generator has no geometry-kernel timing
+claim; once it reports geometry or transport performance, this rule applies.
+
 No silent no-hit for unresolved states; every possible earlier-root interval
 must be excluded or resolved. No cache advantage in unique-query timing,
 global ray scans, wholesale GMP hot path, tolerance inflation, or blanket
