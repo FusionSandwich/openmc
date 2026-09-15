@@ -1,3 +1,7 @@
+// These numerical checks must remain active in Release qualification builds.
+#ifdef NDEBUG
+#undef NDEBUG
+#endif
 #include "../src/swept_span_bounds.hpp"
 
 #include <cassert>

@@ -1,0 +1,138 @@
+{
+  "checks": [
+    {
+      "ref": "refs/heads/codex/stellarcsg-native-csg-foundation-20260828",
+      "expected": "5faf87421d5d2066278c7ae02e38138fc22ec894",
+      "actual": "5faf87421d5d2066278c7ae02e38138fc22ec894",
+      "unchanged": true
+    },
+    {
+      "ref": "refs/heads/codex/stellarcsg-composite-blanket-interoperability-20260901",
+      "expected": "3041a938c3fb0bc349654f37b0b3ebcd3cd5a9bb",
+      "actual": "3041a938c3fb0bc349654f37b0b3ebcd3cd5a9bb",
+      "unchanged": true
+    },
+    {
+      "ref": "refs/heads/codex/stellarcsg-torus-class-fastpath-20260901",
+      "expected": "c0290b257e879d16762b072e0b6ee3e43a519e8e",
+      "actual": "c0290b257e879d16762b072e0b6ee3e43a519e8e",
+      "unchanged": true
+    },
+    {
+      "ref": "refs/heads/codex/stellarcsg-ab-benchmark-20260901",
+      "expected": "7f41b6bf6c41ef13b843200669cc98e4329ef7b9",
+      "actual": "7f41b6bf6c41ef13b843200669cc98e4329ef7b9",
+      "unchanged": true
+    },
+    {
+      "ref": "refs/heads/JS/stellarcsg-a-20260913-01a09",
+      "expected": "4e1efc947c5aa713a36c81d650a35ca71e60d2e1",
+      "actual": "4e1efc947c5aa713a36c81d650a35ca71e60d2e1",
+      "unchanged": true
+    },
+    {
+      "ref": "refs/heads/JS/stellarcsg-b-20260913-01a09",
+      "expected": "4774434f10ab922411a0b3eefc243d07ea4adb17",
+      "actual": "4774434f10ab922411a0b3eefc243d07ea4adb17",
+      "unchanged": true
+    },
+    {
+      "ref": "refs/heads/JS/stellarcsg-neutral-20260913-01a09",
+      "expected": "6949794947d06a37e4d9ea30b04138b2c6823132",
+      "actual": "6949794947d06a37e4d9ea30b04138b2c6823132",
+      "unchanged": true
+    },
+    {
+      "ref": "refs/heads/JS/stellarcsg-fast-20260913-03",
+      "expected": "5ed327ade33b31ecdb5e3b4b4111c55f321991fd",
+      "actual": "5ed327ade33b31ecdb5e3b4b4111c55f321991fd",
+      "unchanged": true
+    },
+    {
+      "ref": "refs/heads/JS/stellarcsg-neutral-20260913-03",
+      "expected": "4370d95735af985a37a743f6cae0e31988ca070f",
+      "actual": "4370d95735af985a37a743f6cae0e31988ca070f",
+      "unchanged": true
+    },
+    {
+      "ref": "refs/heads/JS/stellarcsg-transport-20260913-02",
+      "expected": "5614f9cacfd9bb1acba4cf6683d9b1da16c06067",
+      "actual": "5614f9cacfd9bb1acba4cf6683d9b1da16c06067",
+      "unchanged": true
+    },
+    {
+      "ref": "refs/heads/JS/stellarcsg-coil-20260913-02",
+      "expected": "d57c1cc302bd34c83e785299d7a12c88804b2665",
+      "actual": "d57c1cc302bd34c83e785299d7a12c88804b2665",
+      "unchanged": true
+    },
+    {
+      "ref": "refs/heads/JS/stellarcsg-neutral-20260913-02",
+      "expected": "6f13c5501a138d2e66bf288760891c3602cd6444",
+      "actual": "6f13c5501a138d2e66bf288760891c3602cd6444",
+      "unchanged": true
+    },
+    {
+      "ref": "refs/heads/JS/stellarcsg-plasma-20260913-02",
+      "expected": "221faceda4972f2718ed3cba6545b5064e389eb2",
+      "actual": "221faceda4972f2718ed3cba6545b5064e389eb2",
+      "unchanged": true
+    },
+    {
+      "ref": "refs/heads/codex/stellarcsg-legacy-v2-20260901",
+      "expected": "6ee8f74a358c5dc3b8f1e10ff93b079eb3f1e30c",
+      "actual": "6ee8f74a358c5dc3b8f1e10ff93b079eb3f1e30c",
+      "unchanged": true
+    },
+    {
+      "ref": "refs/heads/codex/stellarcsg-bezier-hybrid-v2-20260901",
+      "expected": "68ab1c3054645e2f49586de3729fa2081e19eb20",
+      "actual": "68ab1c3054645e2f49586de3729fa2081e19eb20",
+      "unchanged": true
+    },
+    {
+      "ref": "refs/heads/JS/stellarcsg-fast-recovery-20260913-04",
+      "expected": "57cb1fbf75a54a0fa75e70386922ad9cfecf06b1",
+      "actual": "57cb1fbf75a54a0fa75e70386922ad9cfecf06b1",
+      "unchanged": true
+    },
+    {
+      "ref": "refs/heads/JS/stellarcsg-recovery-bank-20260913-04",
+      "expected": "fe3392b9f563bd66f67b31ca51385ffb100f3780",
+      "actual": "fe3392b9f563bd66f67b31ca51385ffb100f3780",
+      "unchanged": true
+    },
+    {
+      "ref": "refs/heads/archive/stellarcsg-qualified-c67b68fd-20260831",
+      "expected": "c67b68fdaf7be2049308db7da449f14a25123847",
+      "actual": "c67b68fdaf7be2049308db7da449f14a25123847",
+      "unchanged": true
+    },
+    {
+      "ref": "refs/heads/develop",
+      "expected": "9a62e431d3101799e6179a6d0cf3b37440062e23",
+      "actual": "9a62e431d3101799e6179a6d0cf3b37440062e23",
+      "unchanged": true
+    },
+    {
+      "ref": "refs/remotes/origin/master",
+      "expected": "55b52b7ef3c9415ce045712132bf31c2a013d8c8",
+      "actual": "55b52b7ef3c9415ce045712132bf31c2a013d8c8",
+      "unchanged": true
+    },
+    {
+      "ref": "refs/heads/JS/stellarcsg-run-compare-20260913-06",
+      "expected": "9c6cc86e0a6543334c973cf5610e58bdb6ad2197",
+      "actual": "9c6cc86e0a6543334c973cf5610e58bdb6ad2197",
+      "unchanged": true
+    },
+    {
+      "ref": "refs/heads/JS/stellarcsg-product-20260913-05",
+      "expected": "7a8c465e3fd1410e2b59bab4c40d48a61513bd3e",
+      "actual": "7a8c465e3fd1410e2b59bab4c40d48a61513bd3e",
+      "unchanged": true
+    }
+  ],
+  "changed_count": 0,
+  "push_performed": false
+}

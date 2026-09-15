@@ -1,0 +1,6 @@
+# Preserve the exact bytes of benchmark receipts and raw captures.
+*.json -text
+*.jsonl -text
+*.stderr -text
+*.txt -text
+*.log -text

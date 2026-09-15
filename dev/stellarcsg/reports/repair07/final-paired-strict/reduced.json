@@ -1,0 +1,2720 @@
+{
+  "schema": "stellarcsg.recovery04.reduce/v1",
+  "campaigns": [
+    "/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-root-repair-07/dev/stellarcsg/reports/repair07/final-paired-strict"
+  ],
+  "bank_hashes": [
+    "7348483e39128259a844d22a7618869a3f111604ea48d01e196a87fe0d396af7"
+  ],
+  "errors": [],
+  "lanes": {
+    "acceptance_only": {
+      "attempt_count": 7,
+      "valid_attempt_count": 7,
+      "invalid_attempt_count": 0,
+      "metrics": {
+        "distance": {
+          "median_of_bank_means": 2422.5,
+          "pooled_perquery_median": 600.0,
+          "pooled_perquery_p95": 8604.999999999996,
+          "pooled_perquery_p99": 15580.999999999995,
+          "timing_excluded_values": 0,
+          "available": true
+        },
+        "classification": {
+          "median_of_bank_means": 1505.625,
+          "pooled_perquery_median": 1300.0,
+          "pooled_perquery_p95": 2300.0,
+          "pooled_perquery_p99": 3280.9999999999945,
+          "timing_excluded_values": 0,
+          "available": true
+        },
+        "normal": {
+          "median_of_bank_means": 1784.375,
+          "pooled_perquery_median": 1400.0,
+          "pooled_perquery_p95": 2700.0,
+          "pooled_perquery_p99": 4461.999999999989,
+          "timing_excluded_values": 0,
+          "available": true
+        },
+        "candidates": {
+          "median_of_bank_means": null,
+          "pooled_perquery_median": null,
+          "pooled_perquery_p95": null,
+          "pooled_perquery_p99": null,
+          "timing_excluded_values": 1120,
+          "available": false
+        },
+        "newton": {
+          "median_of_bank_means": null,
+          "pooled_perquery_median": null,
+          "pooled_perquery_p95": null,
+          "pooled_perquery_p99": null,
+          "timing_excluded_values": 1120,
+          "available": false
+        },
+        "subdivision": {
+          "median_of_bank_means": null,
+          "pooled_perquery_median": null,
+          "pooled_perquery_p95": null,
+          "pooled_perquery_p99": null,
+          "timing_excluded_values": 1120,
+          "available": false
+        }
+      },
+      "primary_median_of_7_complete": true,
+      "first_run_unique_status": {
+        "available": true,
+        "candidate_failure_query_ids": [],
+        "candidate_blocked_query_ids": [],
+        "reference_blocked_query_ids": [],
+        "states": {
+          "PASS": 160
+        }
+      },
+      "attempts": [
+        {
+          "repeat": 0,
+          "exit_code": 0,
+          "valid": true,
+          "errors": []
+        },
+        {
+          "repeat": 1,
+          "exit_code": 0,
+          "valid": true,
+          "errors": []
+        },
+        {
+          "repeat": 2,
+          "exit_code": 0,
+          "valid": true,
+          "errors": []
+        },
+        {
+          "repeat": 3,
+          "exit_code": 0,
+          "valid": true,
+          "errors": []
+        },
+        {
+          "repeat": 4,
+          "exit_code": 0,
+          "valid": true,
+          "errors": []
+        },
+        {
+          "repeat": 5,
+          "exit_code": 0,
+          "valid": true,
+          "errors": []
+        },
+        {
+          "repeat": 6,
+          "exit_code": 0,
+          "valid": true,
+          "errors": []
+        }
+      ],
+      "per_category": {
+        "clear_miss": {
+          "unique_query_count": 1,
+          "metrics": {
+            "distance": {
+              "median": 2100.0,
+              "p95": 2470.0,
+              "p99": 2494.0,
+              "available": true
+            },
+            "classification": {
+              "median": 14900.0,
+              "p95": 15340.0,
+              "p99": 15388.0,
+              "available": true
+            },
+            "normal": {
+              "median": 27700.0,
+              "p95": 29170.0,
+              "p99": 29434.0,
+              "available": true
+            },
+            "candidates": {
+              "median": null,
+              "p95": null,
+              "p99": null,
+              "available": false
+            },
+            "newton": {
+              "median": null,
+              "p95": null,
+              "p99": null,
+              "available": false
+            },
+            "subdivision": {
+              "median": null,
+              "p95": null,
+              "p99": null,
+              "available": false
+            }
+          }
+        },
+        "coincident_in": {
+          "unique_query_count": 1,
+          "metrics": {
+            "distance": {
+              "median": 4100.0,
+              "p95": 6049.999999999998,
+              "p99": 6649.999999999998,
+              "available": true
+            },
+            "classification": {
+              "median": 1100.0,
+              "p95": 1309.9999999999998,
+              "p99": 1381.9999999999998,
+              "available": true
+            },
+            "normal": {
+              "median": 2000.0,
+              "p95": 2679.9999999999995,
+              "p99": 2776.0,
+              "available": true
+            },
+            "candidates": {
+              "median": null,
+              "p95": null,
+              "p99": null,
+              "available": false
+            },
+            "newton": {
+              "median": null,
+              "p95": null,
+              "p99": null,
+              "available": false
+            },
+            "subdivision": {
+              "median": null,
+              "p95": null,
+              "p99": null,
+              "available": false
+            }
+          }
+        },
+        "coincident_out": {
+          "unique_query_count": 1,
+          "metrics": {
+            "distance": {
+              "median": 1000.0,
+              "p95": 1419.9999999999995,
+              "p99": 1563.9999999999995,
+              "available": true
+            },
+            "classification": {
+              "median": 2000.0,
+              "p95": 2240.0,
+              "p99": 2288.0,
+              "available": true
+            },
+            "normal": {
+              "median": 2400.0,
+              "p95": 3189.9999999999995,
+              "p99": 3357.9999999999995,
+              "available": true
+            },
+            "candidates": {
+              "median": null,
+              "p95": null,
+              "p99": null,
+              "available": false
+            },
+            "newton": {
+              "median": null,
+              "p95": null,
+              "p99": null,
+              "available": false
+            },
+            "subdivision": {
+              "median": null,
+              "p95": null,
+              "p99": null,
+              "available": false
+            }
+          }
+        },
+        "competing_roots": {
+          "unique_query_count": 1,
+          "metrics": {
+            "distance": {
+              "median": 3100.0,
+              "p95": 4179.999999999999,
+              "p99": 4515.999999999999,
+              "available": true
+            },
+            "classification": {
+              "median": 1400.0,
+              "p95": 1749.9999999999995,
+              "p99": 1869.9999999999998,
+              "available": true
+            },
+            "normal": {
+              "median": 1000.0,
+              "p95": 1339.9999999999998,
+              "p99": 1388.0,
+              "available": true
+            },
+            "candidates": {
+              "median": null,
+              "p95": null,
+              "p99": null,
+              "available": false
+            },
+            "newton": {
+              "median": null,
+              "p95": null,
+              "p99": null,
+              "available": false
+            },
+            "subdivision": {
+              "median": null,
+              "p95": null,
+              "p99": null,
+              "available": false
+            }
+          }
+        },
+        "direction_scaling": {
+          "unique_query_count": 2,
+          "metrics": {
+            "distance": {
+              "median": 2900.0,
+              "p95": 3235.0,
+              "p99": 3287.0,
+              "available": true
+            },
+            "classification": {
+              "median": 1000.0,
+              "p95": 1135.0,
+              "p99": 1187.0,
+              "available": true
+            },
+            "normal": {
+              "median": 1100.0,
+              "p95": 1235.0,
+              "p99": 1287.0,
+              "available": true
+            },
+            "candidates": {
+              "median": null,
+              "p95": null,
+              "p99": null,
+              "available": false
+            },
+            "newton": {
+              "median": null,
+              "p95": null,
+              "p99": null,
+              "available": false
+            },
+            "subdivision": {
+              "median": null,
+              "p95": null,
+              "p99": null,
+              "available": false
+            }
+          }
+        },
+        "grazing": {
+          "unique_query_count": 1,
+          "metrics": {
+            "distance": {
+              "median": 100.0,
+              "p95": 200.0,
+              "p99": 200.0,
+              "available": true
+            },
+            "classification": {
+              "median": 1100.0,
+              "p95": 1170.0,
+              "p99": 1194.0,
+              "available": true
+            },
+            "normal": {
+              "median": 1500.0,
+              "p95": 5939.999999999995,
+              "p99": 7427.999999999997,
+              "available": true
+            },
+            "candidates": {
+              "median": null,
+              "p95": null,
+              "p99": null,
+              "available": false
+            },
+            "newton": {
+              "median": null,
+              "p95": null,
+              "p99": null,
+              "available": false
+            },
+            "subdivision": {
+              "median": null,
+              "p95": null,
+              "p99": null,
+              "available": false
+            }
+          }
+        },
+        "heldout_unique": {
+          "unique_query_count": 136,
+          "metrics": {
+            "distance": {
+              "median": 400.0,
+              "p95": 7544.999999999993,
+              "p99": 10749.0,
+              "available": true
+            },
+            "classification": {
+              "median": 1300.0,
+              "p95": 2000.0,
+              "p99": 2549.000000000001,
+              "available": true
+            },
+            "normal": {
+              "median": 1400.0,
+              "p95": 2400.0,
+              "p99": 3298.000000000002,
+              "available": true
+            },
+            "candidates": {
+              "median": null,
+              "p95": null,
+              "p99": null,
+              "available": false
+            },
+            "newton": {
+              "median": null,
+              "p95": null,
+              "p99": null,
+              "available": false
+            },
+            "subdivision": {
+              "median": null,
+              "p95": null,
+              "p99": null,
+              "available": false
+            }
+          }
+        },
+        "inside": {
+          "unique_query_count": 1,
+          "metrics": {
+            "distance": {
+              "median": 1900.0,
+              "p95": 2279.9999999999995,
+              "p99": 2376.0,
+              "available": true
+            },
+            "classification": {
+              "median": 1100.0,
+              "p95": 1170.0,
+              "p99": 1194.0,
+              "available": true
+            },
+            "normal": {
+              "median": 1000.0,
+              "p95": 1339.9999999999998,
+              "p99": 1388.0,
+              "available": true
+            },
+            "candidates": {
+              "median": null,
+              "p95": null,
+              "p99": null,
+              "available": false
+            },
+            "newton": {
+              "median": null,
+              "p95": null,
+              "p99": null,
+              "available": false
+            },
+            "subdivision": {
+              "median": null,
+              "p95": null,
+              "p99": null,
+              "available": false
+            }
+          }
+        },
+        "near_entry_002": {
+          "unique_query_count": 1,
+          "metrics": {
+            "distance": {
+              "median": 1200.0,
+              "p95": 1549.9999999999995,
+              "p99": 1669.9999999999998,
+              "available": true
+            },
+            "classification": {
+              "median": 1000.0,
+              "p95": 1139.9999999999998,
+              "p99": 1188.0,
+              "available": true
+            },
+            "normal": {
+              "median": 1000.0,
+              "p95": 1309.9999999999998,
+              "p99": 1381.9999999999998,
+              "available": true
+            },
+            "candidates": {
+              "median": null,
+              "p95": null,
+              "p99": null,
+              "available": false
+            },
+            "newton": {
+              "median": null,
+              "p95": null,
+              "p99": null,
+              "available": false
+            },
+            "subdivision": {
+              "median": null,
+              "p95": null,
+              "p99": null,
+              "available": false
+            }
+          }
+        },
+        "near_entry_502": {
+          "unique_query_count": 1,
+          "metrics": {
+            "distance": {
+              "median": 2300.0,
+              "p95": 2959.9999999999995,
+              "p99": 3151.9999999999995,
+              "available": true
+            },
+            "classification": {
+              "median": 1000.0,
+              "p95": 1209.9999999999998,
+              "p99": 1281.9999999999998,
+              "available": true
+            },
+            "normal": {
+              "median": 1000.0,
+              "p95": 1239.9999999999998,
+              "p99": 1288.0,
+              "available": true
+            },
+            "candidates": {
+              "median": null,
+              "p95": null,
+              "p99": null,
+              "available": false
+            },
+            "newton": {
+              "median": null,
+              "p95": null,
+              "p99": null,
+              "available": false
+            },
+            "subdivision": {
+              "median": null,
+              "p95": null,
+              "p99": null,
+              "available": false
+            }
+          }
+        },
+        "near_tangent_minus": {
+          "unique_query_count": 1,
+          "metrics": {
+            "distance": {
+              "median": 37400.0,
+              "p95": 37600.0,
+              "p99": 37600.0,
+              "available": true
+            },
+            "classification": {
+              "median": 700.0,
+              "p95": 800.0,
+              "p99": 800.0,
+              "available": true
+            },
+            "normal": {
+              "median": 1100.0,
+              "p95": 1300.0,
+              "p99": 1300.0,
+              "available": true
+            },
+            "candidates": {
+              "median": null,
+              "p95": null,
+              "p99": null,
+              "available": false
+            },
+            "newton": {
+              "median": null,
+              "p95": null,
+              "p99": null,
+              "available": false
+            },
+            "subdivision": {
+              "median": null,
+              "p95": null,
+              "p99": null,
+              "available": false
+            }
+          }
+        },
+        "near_tangent_plus": {
+          "unique_query_count": 1,
+          "metrics": {
+            "distance": {
+              "median": 100.0,
+              "p95": 339.9999999999999,
+              "p99": 387.9999999999999,
+              "available": true
+            },
+            "classification": {
+              "median": 1000.0,
+              "p95": 1279.9999999999998,
+              "p99": 1375.9999999999998,
+              "available": true
+            },
+            "normal": {
+              "median": 1400.0,
+              "p95": 1670.0,
+              "p99": 1694.0,
+              "available": true
+            },
+            "candidates": {
+              "median": null,
+              "p95": null,
+              "p99": null,
+              "available": false
+            },
+            "newton": {
+              "median": null,
+              "p95": null,
+              "p99": null,
+              "available": false
+            },
+            "subdivision": {
+              "median": null,
+              "p95": null,
+              "p99": null,
+              "available": false
+            }
+          }
+        },
+        "rigid_transform": {
+          "unique_query_count": 1,
+          "metrics": {
+            "distance": {
+              "median": 3400.0,
+              "p95": 4299.999999999999,
+              "p99": 4540.0,
+              "available": true
+            },
+            "classification": {
+              "median": 2000.0,
+              "p95": 2540.0,
+              "p99": 2588.0,
+              "available": true
+            },
+            "normal": {
+              "median": 2100.0,
+              "p95": 2200.0,
+              "p99": 2200.0,
+              "available": true
+            },
+            "candidates": {
+              "median": null,
+              "p95": null,
+              "p99": null,
+              "available": false
+            },
+            "newton": {
+              "median": null,
+              "p95": null,
+              "p99": null,
+              "available": false
+            },
+            "subdivision": {
+              "median": null,
+              "p95": null,
+              "p99": null,
+              "available": false
+            }
+          }
+        },
+        "seam": {
+          "unique_query_count": 1,
+          "metrics": {
+            "distance": {
+              "median": 8100.0,
+              "p95": 9040.0,
+              "p99": 9088.0,
+              "available": true
+            },
+            "classification": {
+              "median": 1700.0,
+              "p95": 2219.9999999999995,
+              "p99": 2363.9999999999995,
+              "available": true
+            },
+            "normal": {
+              "median": 2000.0,
+              "p95": 2170.0,
+              "p99": 2194.0,
+              "available": true
+            },
+            "candidates": {
+              "median": null,
+              "p95": null,
+              "p99": null,
+              "available": false
+            },
+            "newton": {
+              "median": null,
+              "p95": null,
+              "p99": null,
+              "available": false
+            },
+            "subdivision": {
+              "median": null,
+              "p95": null,
+              "p99": null,
+              "available": false
+            }
+          }
+        },
+        "tangent": {
+          "unique_query_count": 1,
+          "metrics": {
+            "distance": {
+              "median": 15300.0,
+              "p95": 15710.0,
+              "p99": 15782.0,
+              "available": true
+            },
+            "classification": {
+              "median": 700.0,
+              "p95": 800.0,
+              "p99": 800.0,
+              "available": true
+            },
+            "normal": {
+              "median": 800.0,
+              "p95": 939.9999999999999,
+              "p99": 987.9999999999999,
+              "available": true
+            },
+            "candidates": {
+              "median": null,
+              "p95": null,
+              "p99": null,
+              "available": false
+            },
+            "newton": {
+              "median": null,
+              "p95": null,
+              "p99": null,
+              "available": false
+            },
+            "subdivision": {
+              "median": null,
+              "p95": null,
+              "p99": null,
+              "available": false
+            }
+          }
+        },
+        "transverse": {
+          "unique_query_count": 1,
+          "metrics": {
+            "distance": {
+              "median": 7700.0,
+              "p95": 9310.0,
+              "p99": 9622.0,
+              "available": true
+            },
+            "classification": {
+              "median": 2000.0,
+              "p95": 2200.0,
+              "p99": 2200.0,
+              "available": true
+            },
+            "normal": {
+              "median": 2300.0,
+              "p95": 2840.0,
+              "p99": 2888.0,
+              "available": true
+            },
+            "candidates": {
+              "median": null,
+              "p95": null,
+              "p99": null,
+              "available": false
+            },
+            "newton": {
+              "median": null,
+              "p95": null,
+              "p99": null,
+              "available": false
+            },
+            "subdivision": {
+              "median": null,
+              "p95": null,
+              "p99": null,
+              "available": false
+            }
+          }
+        },
+        "wistell_coil031_real": {
+          "unique_query_count": 8,
+          "metrics": {
+            "distance": {
+              "median": 750.0,
+              "p95": 1725.0,
+              "p99": 1900.0,
+              "available": true
+            },
+            "classification": {
+              "median": 2200.0,
+              "p95": 3625.0,
+              "p99": 3980.000000000001,
+              "available": true
+            },
+            "normal": {
+              "median": 2300.0,
+              "p95": 3450.0,
+              "p99": 4300.0,
+              "available": true
+            },
+            "candidates": {
+              "median": null,
+              "p95": null,
+              "p99": null,
+              "available": false
+            },
+            "newton": {
+              "median": null,
+              "p95": null,
+              "p99": null,
+              "available": false
+            },
+            "subdivision": {
+              "median": null,
+              "p95": null,
+              "p99": null,
+              "available": false
+            }
+          }
+        }
+      },
+      "heldout": {
+        "False": {
+          "unique_query_count": 16,
+          "metrics": {
+            "distance": {
+              "median": 2950.0,
+              "p95": 37245.0,
+              "p99": 37578.0,
+              "available": true
+            },
+            "classification": {
+              "median": 1100.0,
+              "p95": 14400.0,
+              "p99": 15178.0,
+              "available": true
+            },
+            "normal": {
+              "median": 1400.0,
+              "p95": 26689.999999999996,
+              "p99": 28389.0,
+              "available": true
+            },
+            "candidates": {
+              "median": null,
+              "p95": null,
+              "p99": null,
+              "available": false
+            },
+            "newton": {
+              "median": null,
+              "p95": null,
+              "p99": null,
+              "available": false
+            },
+            "subdivision": {
+              "median": null,
+              "p95": null,
+              "p99": null,
+              "available": false
+            }
+          }
+        },
+        "True": {
+          "unique_query_count": 144,
+          "metrics": {
+            "distance": {
+              "median": 400.0,
+              "p95": 7264.999999999998,
+              "p99": 10692.999999999995,
+              "available": true
+            },
+            "classification": {
+              "median": 1300.0,
+              "p95": 2200.0,
+              "p99": 2800.0,
+              "available": true
+            },
+            "normal": {
+              "median": 1400.0,
+              "p95": 2600.0,
+              "p99": 3592.999999999995,
+              "available": true
+            },
+            "candidates": {
+              "median": null,
+              "p95": null,
+              "p99": null,
+              "available": false
+            },
+            "newton": {
+              "median": null,
+              "p95": null,
+              "p99": null,
+              "available": false
+            },
+            "subdivision": {
+              "median": null,
+              "p95": null,
+              "p99": null,
+              "available": false
+            }
+          }
+        }
+      },
+      "repeat_consistency": {
+        "available": true,
+        "input_mismatches": [],
+        "status_mismatches": []
+      }
+    },
+    "experimental": {
+      "attempt_count": 7,
+      "valid_attempt_count": 7,
+      "invalid_attempt_count": 0,
+      "metrics": {
+        "distance": {
+          "median_of_bank_means": 1806.875,
+          "pooled_perquery_median": 700.0,
+          "pooled_perquery_p95": 5300.0,
+          "pooled_perquery_p99": 8361.999999999989,
+          "timing_excluded_values": 0,
+          "available": true
+        },
+        "classification": {
+          "median_of_bank_means": 1555.625,
+          "pooled_perquery_median": 1400.0,
+          "pooled_perquery_p95": 2404.9999999999955,
+          "pooled_perquery_p99": 3300.0,
+          "timing_excluded_values": 0,
+          "available": true
+        },
+        "normal": {
+          "median_of_bank_means": 1833.75,
+          "pooled_perquery_median": 1500.0,
+          "pooled_perquery_p95": 2800.0,
+          "pooled_perquery_p99": 4400.0,
+          "timing_excluded_values": 0,
+          "available": true
+        },
+        "candidates": {
+          "median_of_bank_means": null,
+          "pooled_perquery_median": null,
+          "pooled_perquery_p95": null,
+          "pooled_perquery_p99": null,
+          "timing_excluded_values": 1120,
+          "available": false
+        },
+        "newton": {
+          "median_of_bank_means": null,
+          "pooled_perquery_median": null,
+          "pooled_perquery_p95": null,
+          "pooled_perquery_p99": null,
+          "timing_excluded_values": 1120,
+          "available": false
+        },
+        "subdivision": {
+          "median_of_bank_means": null,
+          "pooled_perquery_median": null,
+          "pooled_perquery_p95": null,
+          "pooled_perquery_p99": null,
+          "timing_excluded_values": 1120,
+          "available": false
+        }
+      },
+      "primary_median_of_7_complete": true,
+      "first_run_unique_status": {
+        "available": true,
+        "candidate_failure_query_ids": [],
+        "candidate_blocked_query_ids": [],
+        "reference_blocked_query_ids": [],
+        "states": {
+          "PASS": 160
+        }
+      },
+      "attempts": [
+        {
+          "repeat": 0,
+          "exit_code": 0,
+          "valid": true,
+          "errors": []
+        },
+        {
+          "repeat": 1,
+          "exit_code": 0,
+          "valid": true,
+          "errors": []
+        },
+        {
+          "repeat": 2,
+          "exit_code": 0,
+          "valid": true,
+          "errors": []
+        },
+        {
+          "repeat": 3,
+          "exit_code": 0,
+          "valid": true,
+          "errors": []
+        },
+        {
+          "repeat": 4,
+          "exit_code": 0,
+          "valid": true,
+          "errors": []
+        },
+        {
+          "repeat": 5,
+          "exit_code": 0,
+          "valid": true,
+          "errors": []
+        },
+        {
+          "repeat": 6,
+          "exit_code": 0,
+          "valid": true,
+          "errors": []
+        }
+      ],
+      "per_category": {
+        "clear_miss": {
+          "unique_query_count": 1,
+          "metrics": {
+            "distance": {
+              "median": 2200.0,
+              "p95": 3139.999999999999,
+              "p99": 3427.999999999999,
+              "available": true
+            },
+            "classification": {
+              "median": 15200.0,
+              "p95": 20059.999999999996,
+              "p99": 21451.999999999996,
+              "available": true
+            },
+            "normal": {
+              "median": 28300.0,
+              "p95": 31260.0,
+              "p99": 31452.0,
+              "available": true
+            },
+            "candidates": {
+              "median": null,
+              "p95": null,
+              "p99": null,
+              "available": false
+            },
+            "newton": {
+              "median": null,
+              "p95": null,
+              "p99": null,
+              "available": false
+            },
+            "subdivision": {
+              "median": null,
+              "p95": null,
+              "p99": null,
+              "available": false
+            }
+          }
+        },
+        "coincident_in": {
+          "unique_query_count": 1,
+          "metrics": {
+            "distance": {
+              "median": 3900.0,
+              "p95": 5120.0,
+              "p99": 5264.0,
+              "available": true
+            },
+            "classification": {
+              "median": 1100.0,
+              "p95": 1579.9999999999998,
+              "p99": 1675.9999999999998,
+              "available": true
+            },
+            "normal": {
+              "median": 2000.0,
+              "p95": 2670.0,
+              "p99": 2694.0,
+              "available": true
+            },
+            "candidates": {
+              "median": null,
+              "p95": null,
+              "p99": null,
+              "available": false
+            },
+            "newton": {
+              "median": null,
+              "p95": null,
+              "p99": null,
+              "available": false
+            },
+            "subdivision": {
+              "median": null,
+              "p95": null,
+              "p99": null,
+              "available": false
+            }
+          }
+        },
+        "coincident_out": {
+          "unique_query_count": 1,
+          "metrics": {
+            "distance": {
+              "median": 900.0,
+              "p95": 1100.0,
+              "p99": 1100.0,
+              "available": true
+            },
+            "classification": {
+              "median": 2200.0,
+              "p95": 2759.9999999999995,
+              "p99": 2951.9999999999995,
+              "available": true
+            },
+            "normal": {
+              "median": 2100.0,
+              "p95": 3879.999999999999,
+              "p99": 4215.999999999999,
+              "available": true
+            },
+            "candidates": {
+              "median": null,
+              "p95": null,
+              "p99": null,
+              "available": false
+            },
+            "newton": {
+              "median": null,
+              "p95": null,
+              "p99": null,
+              "available": false
+            },
+            "subdivision": {
+              "median": null,
+              "p95": null,
+              "p99": null,
+              "available": false
+            }
+          }
+        },
+        "competing_roots": {
+          "unique_query_count": 1,
+          "metrics": {
+            "distance": {
+              "median": 2700.0,
+              "p95": 3329.999999999999,
+              "p99": 3545.9999999999995,
+              "available": true
+            },
+            "classification": {
+              "median": 1400.0,
+              "p95": 1749.9999999999995,
+              "p99": 1869.9999999999998,
+              "available": true
+            },
+            "normal": {
+              "median": 1000.0,
+              "p95": 1370.0,
+              "p99": 1394.0,
+              "available": true
+            },
+            "candidates": {
+              "median": null,
+              "p95": null,
+              "p99": null,
+              "available": false
+            },
+            "newton": {
+              "median": null,
+              "p95": null,
+              "p99": null,
+              "available": false
+            },
+            "subdivision": {
+              "median": null,
+              "p95": null,
+              "p99": null,
+              "available": false
+            }
+          }
+        },
+        "direction_scaling": {
+          "unique_query_count": 2,
+          "metrics": {
+            "distance": {
+              "median": 2150.0,
+              "p95": 2700.0,
+              "p99": 2700.0,
+              "available": true
+            },
+            "classification": {
+              "median": 1000.0,
+              "p95": 1035.0,
+              "p99": 1087.0,
+              "available": true
+            },
+            "normal": {
+              "median": 1000.0,
+              "p95": 1200.0,
+              "p99": 1200.0,
+              "available": true
+            },
+            "candidates": {
+              "median": null,
+              "p95": null,
+              "p99": null,
+              "available": false
+            },
+            "newton": {
+              "median": null,
+              "p95": null,
+              "p99": null,
+              "available": false
+            },
+            "subdivision": {
+              "median": null,
+              "p95": null,
+              "p99": null,
+              "available": false
+            }
+          }
+        },
+        "grazing": {
+          "unique_query_count": 1,
+          "metrics": {
+            "distance": {
+              "median": 100.0,
+              "p95": 100.0,
+              "p99": 100.0,
+              "available": true
+            },
+            "classification": {
+              "median": 1000.0,
+              "p95": 1070.0,
+              "p99": 1094.0,
+              "available": true
+            },
+            "normal": {
+              "median": 1400.0,
+              "p95": 1779.9999999999998,
+              "p99": 1875.9999999999998,
+              "available": true
+            },
+            "candidates": {
+              "median": null,
+              "p95": null,
+              "p99": null,
+              "available": false
+            },
+            "newton": {
+              "median": null,
+              "p95": null,
+              "p99": null,
+              "available": false
+            },
+            "subdivision": {
+              "median": null,
+              "p95": null,
+              "p99": null,
+              "available": false
+            }
+          }
+        },
+        "heldout_unique": {
+          "unique_query_count": 136,
+          "metrics": {
+            "distance": {
+              "median": 400.0,
+              "p95": 4800.0,
+              "p99": 6549.000000000001,
+              "available": true
+            },
+            "classification": {
+              "median": 1400.0,
+              "p95": 2200.0,
+              "p99": 2800.0,
+              "available": true
+            },
+            "normal": {
+              "median": 1400.0,
+              "p95": 2600.0,
+              "p99": 3498.000000000002,
+              "available": true
+            },
+            "candidates": {
+              "median": null,
+              "p95": null,
+              "p99": null,
+              "available": false
+            },
+            "newton": {
+              "median": null,
+              "p95": null,
+              "p99": null,
+              "available": false
+            },
+            "subdivision": {
+              "median": null,
+              "p95": null,
+              "p99": null,
+              "available": false
+            }
+          }
+        },
+        "inside": {
+          "unique_query_count": 1,
+          "metrics": {
+            "distance": {
+              "median": 1700.0,
+              "p95": 1979.9999999999998,
+              "p99": 2076.0,
+              "available": true
+            },
+            "classification": {
+              "median": 1100.0,
+              "p95": 1309.9999999999998,
+              "p99": 1381.9999999999998,
+              "available": true
+            },
+            "normal": {
+              "median": 1100.0,
+              "p95": 1309.9999999999998,
+              "p99": 1381.9999999999998,
+              "available": true
+            },
+            "candidates": {
+              "median": null,
+              "p95": null,
+              "p99": null,
+              "available": false
+            },
+            "newton": {
+              "median": null,
+              "p95": null,
+              "p99": null,
+              "available": false
+            },
+            "subdivision": {
+              "median": null,
+              "p95": null,
+              "p99": null,
+              "available": false
+            }
+          }
+        },
+        "near_entry_002": {
+          "unique_query_count": 1,
+          "metrics": {
+            "distance": {
+              "median": 1100.0,
+              "p95": 1679.9999999999998,
+              "p99": 1775.9999999999998,
+              "available": true
+            },
+            "classification": {
+              "median": 1000.0,
+              "p95": 1200.0,
+              "p99": 1200.0,
+              "available": true
+            },
+            "normal": {
+              "median": 1000.0,
+              "p95": 1370.0,
+              "p99": 1394.0,
+              "available": true
+            },
+            "candidates": {
+              "median": null,
+              "p95": null,
+              "p99": null,
+              "available": false
+            },
+            "newton": {
+              "median": null,
+              "p95": null,
+              "p99": null,
+              "available": false
+            },
+            "subdivision": {
+              "median": null,
+              "p95": null,
+              "p99": null,
+              "available": false
+            }
+          }
+        },
+        "near_entry_502": {
+          "unique_query_count": 1,
+          "metrics": {
+            "distance": {
+              "median": 2000.0,
+              "p95": 2510.0,
+              "p99": 2582.0,
+              "available": true
+            },
+            "classification": {
+              "median": 1000.0,
+              "p95": 1139.9999999999998,
+              "p99": 1188.0,
+              "available": true
+            },
+            "normal": {
+              "median": 1000.0,
+              "p95": 1209.9999999999998,
+              "p99": 1281.9999999999998,
+              "available": true
+            },
+            "candidates": {
+              "median": null,
+              "p95": null,
+              "p99": null,
+              "available": false
+            },
+            "newton": {
+              "median": null,
+              "p95": null,
+              "p99": null,
+              "available": false
+            },
+            "subdivision": {
+              "median": null,
+              "p95": null,
+              "p99": null,
+              "available": false
+            }
+          }
+        },
+        "near_tangent_minus": {
+          "unique_query_count": 1,
+          "metrics": {
+            "distance": {
+              "median": 6100.0,
+              "p95": 8220.0,
+              "p99": 8364.0,
+              "available": true
+            },
+            "classification": {
+              "median": 800.0,
+              "p95": 969.9999999999999,
+              "p99": 994.0,
+              "available": true
+            },
+            "normal": {
+              "median": 1200.0,
+              "p95": 1639.9999999999998,
+              "p99": 1688.0,
+              "available": true
+            },
+            "candidates": {
+              "median": null,
+              "p95": null,
+              "p99": null,
+              "available": false
+            },
+            "newton": {
+              "median": null,
+              "p95": null,
+              "p99": null,
+              "available": false
+            },
+            "subdivision": {
+              "median": null,
+              "p95": null,
+              "p99": null,
+              "available": false
+            }
+          }
+        },
+        "near_tangent_plus": {
+          "unique_query_count": 1,
+          "metrics": {
+            "distance": {
+              "median": 200.0,
+              "p95": 300.0,
+              "p99": 300.0,
+              "available": true
+            },
+            "classification": {
+              "median": 1000.0,
+              "p95": 1309.9999999999998,
+              "p99": 1381.9999999999998,
+              "available": true
+            },
+            "normal": {
+              "median": 1500.0,
+              "p95": 1909.9999999999998,
+              "p99": 1981.9999999999998,
+              "available": true
+            },
+            "candidates": {
+              "median": null,
+              "p95": null,
+              "p99": null,
+              "available": false
+            },
+            "newton": {
+              "median": null,
+              "p95": null,
+              "p99": null,
+              "available": false
+            },
+            "subdivision": {
+              "median": null,
+              "p95": null,
+              "p99": null,
+              "available": false
+            }
+          }
+        },
+        "rigid_transform": {
+          "unique_query_count": 1,
+          "metrics": {
+            "distance": {
+              "median": 3100.0,
+              "p95": 3540.0,
+              "p99": 3588.0,
+              "available": true
+            },
+            "classification": {
+              "median": 1900.0,
+              "p95": 2070.0,
+              "p99": 2094.0,
+              "available": true
+            },
+            "normal": {
+              "median": 2000.0,
+              "p95": 2170.0,
+              "p99": 2194.0,
+              "available": true
+            },
+            "candidates": {
+              "median": null,
+              "p95": null,
+              "p99": null,
+              "available": false
+            },
+            "newton": {
+              "median": null,
+              "p95": null,
+              "p99": null,
+              "available": false
+            },
+            "subdivision": {
+              "median": null,
+              "p95": null,
+              "p99": null,
+              "available": false
+            }
+          }
+        },
+        "seam": {
+          "unique_query_count": 1,
+          "metrics": {
+            "distance": {
+              "median": 7100.0,
+              "p95": 7840.0,
+              "p99": 7888.0,
+              "available": true
+            },
+            "classification": {
+              "median": 1600.0,
+              "p95": 1670.0,
+              "p99": 1694.0,
+              "available": true
+            },
+            "normal": {
+              "median": 1800.0,
+              "p95": 2240.0,
+              "p99": 2288.0,
+              "available": true
+            },
+            "candidates": {
+              "median": null,
+              "p95": null,
+              "p99": null,
+              "available": false
+            },
+            "newton": {
+              "median": null,
+              "p95": null,
+              "p99": null,
+              "available": false
+            },
+            "subdivision": {
+              "median": null,
+              "p95": null,
+              "p99": null,
+              "available": false
+            }
+          }
+        },
+        "tangent": {
+          "unique_query_count": 1,
+          "metrics": {
+            "distance": {
+              "median": 14400.0,
+              "p95": 18729.999999999996,
+              "p99": 20145.999999999996,
+              "available": true
+            },
+            "classification": {
+              "median": 800.0,
+              "p95": 800.0,
+              "p99": 800.0,
+              "available": true
+            },
+            "normal": {
+              "median": 800.0,
+              "p95": 800.0,
+              "p99": 800.0,
+              "available": true
+            },
+            "candidates": {
+              "median": null,
+              "p95": null,
+              "p99": null,
+              "available": false
+            },
+            "newton": {
+              "median": null,
+              "p95": null,
+              "p99": null,
+              "available": false
+            },
+            "subdivision": {
+              "median": null,
+              "p95": null,
+              "p99": null,
+              "available": false
+            }
+          }
+        },
+        "transverse": {
+          "unique_query_count": 1,
+          "metrics": {
+            "distance": {
+              "median": 6000.0,
+              "p95": 9079.999999999998,
+              "p99": 9895.999999999998,
+              "available": true
+            },
+            "classification": {
+              "median": 1700.0,
+              "p95": 2470.0,
+              "p99": 2494.0,
+              "available": true
+            },
+            "normal": {
+              "median": 2100.0,
+              "p95": 3039.999999999999,
+              "p99": 3327.999999999999,
+              "available": true
+            },
+            "candidates": {
+              "median": null,
+              "p95": null,
+              "p99": null,
+              "available": false
+            },
+            "newton": {
+              "median": null,
+              "p95": null,
+              "p99": null,
+              "available": false
+            },
+            "subdivision": {
+              "median": null,
+              "p95": null,
+              "p99": null,
+              "available": false
+            }
+          }
+        },
+        "wistell_coil031_real": {
+          "unique_query_count": 8,
+          "metrics": {
+            "distance": {
+              "median": 800.0,
+              "p95": 1500.0,
+              "p99": 1870.0000000000018,
+              "available": true
+            },
+            "classification": {
+              "median": 2300.0,
+              "p95": 3300.0,
+              "p99": 3770.000000000002,
+              "available": true
+            },
+            "normal": {
+              "median": 2500.0,
+              "p95": 3625.0,
+              "p99": 4045.0000000000005,
+              "available": true
+            },
+            "candidates": {
+              "median": null,
+              "p95": null,
+              "p99": null,
+              "available": false
+            },
+            "newton": {
+              "median": null,
+              "p95": null,
+              "p99": null,
+              "available": false
+            },
+            "subdivision": {
+              "median": null,
+              "p95": null,
+              "p99": null,
+              "available": false
+            }
+          }
+        }
+      },
+      "heldout": {
+        "False": {
+          "unique_query_count": 16,
+          "metrics": {
+            "distance": {
+              "median": 2350.0,
+              "p95": 14300.0,
+              "p99": 14578.0,
+              "available": true
+            },
+            "classification": {
+              "median": 1100.0,
+              "p95": 14244.999999999998,
+              "p99": 15967.0,
+              "available": true
+            },
+            "normal": {
+              "median": 1400.0,
+              "p95": 27545.0,
+              "p99": 30524.0,
+              "available": true
+            },
+            "candidates": {
+              "median": null,
+              "p95": null,
+              "p99": null,
+              "available": false
+            },
+            "newton": {
+              "median": null,
+              "p95": null,
+              "p99": null,
+              "available": false
+            },
+            "subdivision": {
+              "median": null,
+              "p95": null,
+              "p99": null,
+              "available": false
+            }
+          }
+        },
+        "True": {
+          "unique_query_count": 144,
+          "metrics": {
+            "distance": {
+              "median": 500.0,
+              "p95": 4700.0,
+              "p99": 6500.0,
+              "available": true
+            },
+            "classification": {
+              "median": 1400.0,
+              "p95": 2400.0,
+              "p99": 3000.0,
+              "available": true
+            },
+            "normal": {
+              "median": 1500.0,
+              "p95": 2800.0,
+              "p99": 3700.0,
+              "available": true
+            },
+            "candidates": {
+              "median": null,
+              "p95": null,
+              "p99": null,
+              "available": false
+            },
+            "newton": {
+              "median": null,
+              "p95": null,
+              "p99": null,
+              "available": false
+            },
+            "subdivision": {
+              "median": null,
+              "p95": null,
+              "p99": null,
+              "available": false
+            }
+          }
+        }
+      },
+      "repeat_consistency": {
+        "available": true,
+        "input_mismatches": [],
+        "status_mismatches": []
+      }
+    },
+    "old": {
+      "attempt_count": 7,
+      "valid_attempt_count": 7,
+      "invalid_attempt_count": 0,
+      "metrics": {
+        "distance": {
+          "median_of_bank_means": 1280.0,
+          "pooled_perquery_median": 700.0,
+          "pooled_perquery_p95": 3600.0,
+          "pooled_perquery_p99": 7680.9999999999945,
+          "timing_excluded_values": 0,
+          "available": true
+        },
+        "classification": {
+          "median_of_bank_means": 1515.0,
+          "pooled_perquery_median": 1300.0,
+          "pooled_perquery_p95": 2400.0,
+          "pooled_perquery_p99": 3180.9999999999945,
+          "timing_excluded_values": 0,
+          "available": true
+        },
+        "normal": {
+          "median_of_bank_means": 1726.875,
+          "pooled_perquery_median": 1400.0,
+          "pooled_perquery_p95": 2700.0,
+          "pooled_perquery_p99": 4000.0,
+          "timing_excluded_values": 0,
+          "available": true
+        },
+        "candidates": {
+          "median_of_bank_means": null,
+          "pooled_perquery_median": null,
+          "pooled_perquery_p95": null,
+          "pooled_perquery_p99": null,
+          "timing_excluded_values": 1120,
+          "available": false
+        },
+        "newton": {
+          "median_of_bank_means": null,
+          "pooled_perquery_median": null,
+          "pooled_perquery_p95": null,
+          "pooled_perquery_p99": null,
+          "timing_excluded_values": 1120,
+          "available": false
+        },
+        "subdivision": {
+          "median_of_bank_means": null,
+          "pooled_perquery_median": null,
+          "pooled_perquery_p95": null,
+          "pooled_perquery_p99": null,
+          "timing_excluded_values": 1120,
+          "available": false
+        }
+      },
+      "primary_median_of_7_complete": true,
+      "first_run_unique_status": {
+        "available": true,
+        "candidate_failure_query_ids": [
+          "a03"
+        ],
+        "candidate_blocked_query_ids": [],
+        "reference_blocked_query_ids": [],
+        "states": {
+          "FAIL": 1,
+          "PASS": 159
+        }
+      },
+      "attempts": [
+        {
+          "repeat": 0,
+          "exit_code": 1,
+          "valid": true,
+          "errors": []
+        },
+        {
+          "repeat": 1,
+          "exit_code": 1,
+          "valid": true,
+          "errors": []
+        },
+        {
+          "repeat": 2,
+          "exit_code": 1,
+          "valid": true,
+          "errors": []
+        },
+        {
+          "repeat": 3,
+          "exit_code": 1,
+          "valid": true,
+          "errors": []
+        },
+        {
+          "repeat": 4,
+          "exit_code": 1,
+          "valid": true,
+          "errors": []
+        },
+        {
+          "repeat": 5,
+          "exit_code": 1,
+          "valid": true,
+          "errors": []
+        },
+        {
+          "repeat": 6,
+          "exit_code": 1,
+          "valid": true,
+          "errors": []
+        }
+      ],
+      "per_category": {
+        "clear_miss": {
+          "unique_query_count": 1,
+          "metrics": {
+            "distance": {
+              "median": 2200.0,
+              "p95": 2640.0,
+              "p99": 2688.0,
+              "available": true
+            },
+            "classification": {
+              "median": 14800.0,
+              "p95": 15660.0,
+              "p99": 15852.0,
+              "available": true
+            },
+            "normal": {
+              "median": 28200.0,
+              "p95": 38159.99999999999,
+              "p99": 41231.99999999999,
+              "available": true
+            },
+            "candidates": {
+              "median": null,
+              "p95": null,
+              "p99": null,
+              "available": false
+            },
+            "newton": {
+              "median": null,
+              "p95": null,
+              "p99": null,
+              "available": false
+            },
+            "subdivision": {
+              "median": null,
+              "p95": null,
+              "p99": null,
+              "available": false
+            }
+          }
+        },
+        "coincident_in": {
+          "unique_query_count": 1,
+          "metrics": {
+            "distance": {
+              "median": 1600.0,
+              "p95": 2429.999999999999,
+              "p99": 2645.9999999999995,
+              "available": true
+            },
+            "classification": {
+              "median": 1100.0,
+              "p95": 1439.9999999999998,
+              "p99": 1488.0,
+              "available": true
+            },
+            "normal": {
+              "median": 1900.0,
+              "p95": 2410.0,
+              "p99": 2482.0,
+              "available": true
+            },
+            "candidates": {
+              "median": null,
+              "p95": null,
+              "p99": null,
+              "available": false
+            },
+            "newton": {
+              "median": null,
+              "p95": null,
+              "p99": null,
+              "available": false
+            },
+            "subdivision": {
+              "median": null,
+              "p95": null,
+              "p99": null,
+              "available": false
+            }
+          }
+        },
+        "coincident_out": {
+          "unique_query_count": 1,
+          "metrics": {
+            "distance": {
+              "median": 800.0,
+              "p95": 1139.9999999999998,
+              "p99": 1188.0,
+              "available": true
+            },
+            "classification": {
+              "median": 1700.0,
+              "p95": 2670.0,
+              "p99": 2694.0,
+              "available": true
+            },
+            "normal": {
+              "median": 2100.0,
+              "p95": 3200.0,
+              "p99": 3200.0,
+              "available": true
+            },
+            "candidates": {
+              "median": null,
+              "p95": null,
+              "p99": null,
+              "available": false
+            },
+            "newton": {
+              "median": null,
+              "p95": null,
+              "p99": null,
+              "available": false
+            },
+            "subdivision": {
+              "median": null,
+              "p95": null,
+              "p99": null,
+              "available": false
+            }
+          }
+        },
+        "competing_roots": {
+          "unique_query_count": 1,
+          "metrics": {
+            "distance": {
+              "median": 1500.0,
+              "p95": 1909.9999999999998,
+              "p99": 1981.9999999999998,
+              "available": true
+            },
+            "classification": {
+              "median": 1400.0,
+              "p95": 1400.0,
+              "p99": 1400.0,
+              "available": true
+            },
+            "normal": {
+              "median": 1000.0,
+              "p95": 1239.9999999999998,
+              "p99": 1288.0,
+              "available": true
+            },
+            "candidates": {
+              "median": null,
+              "p95": null,
+              "p99": null,
+              "available": false
+            },
+            "newton": {
+              "median": null,
+              "p95": null,
+              "p99": null,
+              "available": false
+            },
+            "subdivision": {
+              "median": null,
+              "p95": null,
+              "p99": null,
+              "available": false
+            }
+          }
+        },
+        "direction_scaling": {
+          "unique_query_count": 2,
+          "metrics": {
+            "distance": {
+              "median": 1000.0,
+              "p95": 1335.0,
+              "p99": 1387.0,
+              "available": true
+            },
+            "classification": {
+              "median": 1000.0,
+              "p95": 1035.0,
+              "p99": 1087.0,
+              "available": true
+            },
+            "normal": {
+              "median": 1050.0,
+              "p95": 1100.0,
+              "p99": 1100.0,
+              "available": true
+            },
+            "candidates": {
+              "median": null,
+              "p95": null,
+              "p99": null,
+              "available": false
+            },
+            "newton": {
+              "median": null,
+              "p95": null,
+              "p99": null,
+              "available": false
+            },
+            "subdivision": {
+              "median": null,
+              "p95": null,
+              "p99": null,
+              "available": false
+            }
+          }
+        },
+        "grazing": {
+          "unique_query_count": 1,
+          "metrics": {
+            "distance": {
+              "median": 100.0,
+              "p95": 100.0,
+              "p99": 100.0,
+              "available": true
+            },
+            "classification": {
+              "median": 900.0,
+              "p95": 1000.0,
+              "p99": 1000.0,
+              "available": true
+            },
+            "normal": {
+              "median": 1400.0,
+              "p95": 1739.9999999999998,
+              "p99": 1788.0,
+              "available": true
+            },
+            "candidates": {
+              "median": null,
+              "p95": null,
+              "p99": null,
+              "available": false
+            },
+            "newton": {
+              "median": null,
+              "p95": null,
+              "p99": null,
+              "available": false
+            },
+            "subdivision": {
+              "median": null,
+              "p95": null,
+              "p99": null,
+              "available": false
+            }
+          }
+        },
+        "heldout_unique": {
+          "unique_query_count": 136,
+          "metrics": {
+            "distance": {
+              "median": 400.0,
+              "p95": 3344.999999999993,
+              "p99": 5396.000000000004,
+              "available": true
+            },
+            "classification": {
+              "median": 1300.0,
+              "p95": 2200.0,
+              "p99": 2700.0,
+              "available": true
+            },
+            "normal": {
+              "median": 1400.0,
+              "p95": 2500.0,
+              "p99": 3600.0,
+              "available": true
+            },
+            "candidates": {
+              "median": null,
+              "p95": null,
+              "p99": null,
+              "available": false
+            },
+            "newton": {
+              "median": null,
+              "p95": null,
+              "p99": null,
+              "available": false
+            },
+            "subdivision": {
+              "median": null,
+              "p95": null,
+              "p99": null,
+              "available": false
+            }
+          }
+        },
+        "inside": {
+          "unique_query_count": 1,
+          "metrics": {
+            "distance": {
+              "median": 900.0,
+              "p95": 1070.0,
+              "p99": 1094.0,
+              "available": true
+            },
+            "classification": {
+              "median": 1000.0,
+              "p95": 1000.0,
+              "p99": 1000.0,
+              "available": true
+            },
+            "normal": {
+              "median": 1000.0,
+              "p95": 1100.0,
+              "p99": 1100.0,
+              "available": true
+            },
+            "candidates": {
+              "median": null,
+              "p95": null,
+              "p99": null,
+              "available": false
+            },
+            "newton": {
+              "median": null,
+              "p95": null,
+              "p99": null,
+              "available": false
+            },
+            "subdivision": {
+              "median": null,
+              "p95": null,
+              "p99": null,
+              "available": false
+            }
+          }
+        },
+        "near_entry_002": {
+          "unique_query_count": 1,
+          "metrics": {
+            "distance": {
+              "median": 900.0,
+              "p95": 969.9999999999999,
+              "p99": 994.0,
+              "available": true
+            },
+            "classification": {
+              "median": 900.0,
+              "p95": 1000.0,
+              "p99": 1000.0,
+              "available": true
+            },
+            "normal": {
+              "median": 1700.0,
+              "p95": 2009.9999999999998,
+              "p99": 2082.0,
+              "available": true
+            },
+            "candidates": {
+              "median": null,
+              "p95": null,
+              "p99": null,
+              "available": false
+            },
+            "newton": {
+              "median": null,
+              "p95": null,
+              "p99": null,
+              "available": false
+            },
+            "subdivision": {
+              "median": null,
+              "p95": null,
+              "p99": null,
+              "available": false
+            }
+          }
+        },
+        "near_entry_502": {
+          "unique_query_count": 1,
+          "metrics": {
+            "distance": {
+              "median": 800.0,
+              "p95": 900.0,
+              "p99": 900.0,
+              "available": true
+            },
+            "classification": {
+              "median": 1100.0,
+              "p95": 1100.0,
+              "p99": 1100.0,
+              "available": true
+            },
+            "normal": {
+              "median": 1100.0,
+              "p95": 1100.0,
+              "p99": 1100.0,
+              "available": true
+            },
+            "candidates": {
+              "median": null,
+              "p95": null,
+              "p99": null,
+              "available": false
+            },
+            "newton": {
+              "median": null,
+              "p95": null,
+              "p99": null,
+              "available": false
+            },
+            "subdivision": {
+              "median": null,
+              "p95": null,
+              "p99": null,
+              "available": false
+            }
+          }
+        },
+        "near_tangent_minus": {
+          "unique_query_count": 1,
+          "metrics": {
+            "distance": {
+              "median": 4500.0,
+              "p95": 13919.999999999993,
+              "p99": 16703.999999999993,
+              "available": true
+            },
+            "classification": {
+              "median": 800.0,
+              "p95": 900.0,
+              "p99": 900.0,
+              "available": true
+            },
+            "normal": {
+              "median": 1200.0,
+              "p95": 1570.0,
+              "p99": 1594.0,
+              "available": true
+            },
+            "candidates": {
+              "median": null,
+              "p95": null,
+              "p99": null,
+              "available": false
+            },
+            "newton": {
+              "median": null,
+              "p95": null,
+              "p99": null,
+              "available": false
+            },
+            "subdivision": {
+              "median": null,
+              "p95": null,
+              "p99": null,
+              "available": false
+            }
+          }
+        },
+        "near_tangent_plus": {
+          "unique_query_count": 1,
+          "metrics": {
+            "distance": {
+              "median": 200.0,
+              "p95": 300.0,
+              "p99": 300.0,
+              "available": true
+            },
+            "classification": {
+              "median": 900.0,
+              "p95": 1170.0,
+              "p99": 1194.0,
+              "available": true
+            },
+            "normal": {
+              "median": 1300.0,
+              "p95": 1600.0,
+              "p99": 1600.0,
+              "available": true
+            },
+            "candidates": {
+              "median": null,
+              "p95": null,
+              "p99": null,
+              "available": false
+            },
+            "newton": {
+              "median": null,
+              "p95": null,
+              "p99": null,
+              "available": false
+            },
+            "subdivision": {
+              "median": null,
+              "p95": null,
+              "p99": null,
+              "available": false
+            }
+          }
+        },
+        "rigid_transform": {
+          "unique_query_count": 1,
+          "metrics": {
+            "distance": {
+              "median": 2000.0,
+              "p95": 2140.0,
+              "p99": 2188.0,
+              "available": true
+            },
+            "classification": {
+              "median": 1800.0,
+              "p95": 2070.0,
+              "p99": 2094.0,
+              "available": true
+            },
+            "normal": {
+              "median": 2100.0,
+              "p95": 2300.0,
+              "p99": 2300.0,
+              "available": true
+            },
+            "candidates": {
+              "median": null,
+              "p95": null,
+              "p99": null,
+              "available": false
+            },
+            "newton": {
+              "median": null,
+              "p95": null,
+              "p99": null,
+              "available": false
+            },
+            "subdivision": {
+              "median": null,
+              "p95": null,
+              "p99": null,
+              "available": false
+            }
+          }
+        },
+        "seam": {
+          "unique_query_count": 1,
+          "metrics": {
+            "distance": {
+              "median": 6700.0,
+              "p95": 7580.0,
+              "p99": 7676.0,
+              "available": true
+            },
+            "classification": {
+              "median": 1600.0,
+              "p95": 2009.9999999999998,
+              "p99": 2082.0,
+              "available": true
+            },
+            "normal": {
+              "median": 1600.0,
+              "p95": 1800.0,
+              "p99": 1800.0,
+              "available": true
+            },
+            "candidates": {
+              "median": null,
+              "p95": null,
+              "p99": null,
+              "available": false
+            },
+            "newton": {
+              "median": null,
+              "p95": null,
+              "p99": null,
+              "available": false
+            },
+            "subdivision": {
+              "median": null,
+              "p95": null,
+              "p99": null,
+              "available": false
+            }
+          }
+        },
+        "tangent": {
+          "unique_query_count": 1,
+          "metrics": {
+            "distance": {
+              "median": 14400.0,
+              "p95": 14600.0,
+              "p99": 14600.0,
+              "available": true
+            },
+            "classification": {
+              "median": 800.0,
+              "p95": 800.0,
+              "p99": 800.0,
+              "available": true
+            },
+            "normal": {
+              "median": 800.0,
+              "p95": 800.0,
+              "p99": 800.0,
+              "available": true
+            },
+            "candidates": {
+              "median": null,
+              "p95": null,
+              "p99": null,
+              "available": false
+            },
+            "newton": {
+              "median": null,
+              "p95": null,
+              "p99": null,
+              "available": false
+            },
+            "subdivision": {
+              "median": null,
+              "p95": null,
+              "p99": null,
+              "available": false
+            }
+          }
+        },
+        "transverse": {
+          "unique_query_count": 1,
+          "metrics": {
+            "distance": {
+              "median": 3600.0,
+              "p95": 4040.0,
+              "p99": 4088.0,
+              "available": true
+            },
+            "classification": {
+              "median": 1700.0,
+              "p95": 2219.9999999999995,
+              "p99": 2363.9999999999995,
+              "available": true
+            },
+            "normal": {
+              "median": 2000.0,
+              "p95": 2240.0,
+              "p99": 2288.0,
+              "available": true
+            },
+            "candidates": {
+              "median": null,
+              "p95": null,
+              "p99": null,
+              "available": false
+            },
+            "newton": {
+              "median": null,
+              "p95": null,
+              "p99": null,
+              "available": false
+            },
+            "subdivision": {
+              "median": null,
+              "p95": null,
+              "p99": null,
+              "available": false
+            }
+          }
+        },
+        "wistell_coil031_real": {
+          "unique_query_count": 8,
+          "metrics": {
+            "distance": {
+              "median": 750.0,
+              "p95": 1375.0,
+              "p99": 1900.0,
+              "available": true
+            },
+            "classification": {
+              "median": 2100.0,
+              "p95": 3175.0,
+              "p99": 4030.000000000004,
+              "available": true
+            },
+            "normal": {
+              "median": 2300.0,
+              "p95": 3725.0,
+              "p99": 11585.000000000044,
+              "available": true
+            },
+            "candidates": {
+              "median": null,
+              "p95": null,
+              "p99": null,
+              "available": false
+            },
+            "newton": {
+              "median": null,
+              "p95": null,
+              "p99": null,
+              "available": false
+            },
+            "subdivision": {
+              "median": null,
+              "p95": null,
+              "p99": null,
+              "available": false
+            }
+          }
+        }
+      },
+      "heldout": {
+        "False": {
+          "unique_query_count": 16,
+          "metrics": {
+            "distance": {
+              "median": 1350.0,
+              "p95": 14344.999999999998,
+              "p99": 14600.0,
+              "available": true
+            },
+            "classification": {
+              "median": 1050.0,
+              "p95": 14379.999999999996,
+              "p99": 15067.0,
+              "available": true
+            },
+            "normal": {
+              "median": 1400.0,
+              "p95": 25754.999999999978,
+              "p99": 29123.0,
+              "available": true
+            },
+            "candidates": {
+              "median": null,
+              "p95": null,
+              "p99": null,
+              "available": false
+            },
+            "newton": {
+              "median": null,
+              "p95": null,
+              "p99": null,
+              "available": false
+            },
+            "subdivision": {
+              "median": null,
+              "p95": null,
+              "p99": null,
+              "available": false
+            }
+          }
+        },
+        "True": {
+          "unique_query_count": 144,
+          "metrics": {
+            "distance": {
+              "median": 400.0,
+              "p95": 3300.0,
+              "p99": 5185.99999999999,
+              "available": true
+            },
+            "classification": {
+              "median": 1400.0,
+              "p95": 2400.0,
+              "p99": 2900.0,
+              "available": true
+            },
+            "normal": {
+              "median": 1400.0,
+              "p95": 2664.9999999999977,
+              "p99": 3700.0,
+              "available": true
+            },
+            "candidates": {
+              "median": null,
+              "p95": null,
+              "p99": null,
+              "available": false
+            },
+            "newton": {
+              "median": null,
+              "p95": null,
+              "p99": null,
+              "available": false
+            },
+            "subdivision": {
+              "median": null,
+              "p95": null,
+              "p99": null,
+              "available": false
+            }
+          }
+        }
+      },
+      "repeat_consistency": {
+        "available": true,
+        "input_mismatches": [],
+        "status_mismatches": []
+      }
+    }
+  },
+  "exact_reference": {
+    "available": false,
+    "reason": "exact_reference_lane_absent"
+  },
+  "old_experimental_ratio": {
+    "available": true,
+    "old_over_experimental_distance": 0.7084053960567278,
+    "bank_sha256": "7348483e39128259a844d22a7618869a3f111604ea48d01e196a87fe0d396af7"
+  },
+  "unknown_fallback_count": null,
+  "unknown_fallback_time_ns": null,
+  "unknown_allocation_count": null,
+  "unknown_memory_bytes": null,
+  "raw_evidence_retained_on_disk": true
+}

@@ -1,0 +1,100 @@
+worktree C:/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/openmc-stellarcsg
+HEAD 5faf87421d5d2066278c7ae02e38138fc22ec894
+branch refs/heads/codex/stellarcsg-native-csg-foundation-20260828
+
+worktree C:/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/openmc-stellarcsg-composite
+HEAD 3041a938c3fb0bc349654f37b0b3ebcd3cd5a9bb
+branch refs/heads/codex/stellarcsg-composite-blanket-interoperability-20260901
+
+worktree C:/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/openmc-stellarcsg-torus-class
+HEAD c0290b257e879d16762b072e0b6ee3e43a519e8e
+branch refs/heads/codex/stellarcsg-torus-class-fastpath-20260901
+
+worktree C:/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-acceptance-only-07
+HEAD 9dab4041670fa835153c1a9c367595d4be7c3d3b
+branch refs/heads/JS/stellarcsg-acceptance-only-20260915-07
+
+worktree C:/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-benchmark-arena
+HEAD 7f41b6bf6c41ef13b843200669cc98e4329ef7b9
+branch refs/heads/codex/stellarcsg-ab-benchmark-20260901
+
+worktree C:/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-cont-a
+HEAD 4e1efc947c5aa713a36c81d650a35ca71e60d2e1
+branch refs/heads/JS/stellarcsg-a-20260913-01a09
+
+worktree C:/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-cont-b
+HEAD 4774434f10ab922411a0b3eefc243d07ea4adb17
+branch refs/heads/JS/stellarcsg-b-20260913-01a09
+
+worktree C:/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-cont-neutral
+HEAD 6949794947d06a37e4d9ea30b04138b2c6823132
+branch refs/heads/JS/stellarcsg-neutral-20260913-01a09
+
+worktree C:/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-crossing-repair-07
+HEAD 29ce99ee0b3eca3c0cf78fa07da4cf9cbc0d00b2
+branch refs/heads/JS/stellarcsg-crossing-repair-20260915-07
+
+worktree C:/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-fast-03
+HEAD 5ed327ade33b31ecdb5e3b4b4111c55f321991fd
+branch refs/heads/JS/stellarcsg-fast-20260913-03
+
+worktree C:/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-fast-recovery-04
+HEAD 57cb1fbf75a54a0fa75e70386922ad9cfecf06b1
+branch refs/heads/JS/stellarcsg-fast-recovery-20260913-04
+
+worktree C:/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-import-05
+HEAD 3595c0718de4805fe9210a5584679b9a3cd2e7e9
+branch refs/heads/JS/stellarcsg-import-20260913-05
+
+worktree C:/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-local-repair-07
+HEAD 48c65bf0ce2d2c41ab1c7e3f19b84b4f67bc9bfc
+branch refs/heads/JS/stellarcsg-local-repair-20260915-07
+
+worktree C:/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-neutral-03
+HEAD 4370d95735af985a37a743f6cae0e31988ca070f
+branch refs/heads/JS/stellarcsg-neutral-20260913-03
+
+worktree C:/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-next-b
+HEAD 5614f9cacfd9bb1acba4cf6683d9b1da16c06067
+branch refs/heads/JS/stellarcsg-transport-20260913-02
+
+worktree C:/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-next-coil
+HEAD d57c1cc302bd34c83e785299d7a12c88804b2665
+branch refs/heads/JS/stellarcsg-coil-20260913-02
+
+worktree C:/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-next-neutral
+HEAD 6f13c5501a138d2e66bf288760891c3602cd6444
+branch refs/heads/JS/stellarcsg-neutral-20260913-02
+
+worktree C:/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-next-plasma
+HEAD 221faceda4972f2718ed3cba6545b5064e389eb2
+branch refs/heads/JS/stellarcsg-plasma-20260913-02
+
+worktree C:/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-product-05
+HEAD 7a8c465e3fd1410e2b59bab4c40d48a61513bd3e
+branch refs/heads/JS/stellarcsg-product-20260913-05
+
+worktree C:/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-recovery-bank-04
+HEAD fe3392b9f563bd66f67b31ca51385ffb100f3780
+branch refs/heads/JS/stellarcsg-recovery-bank-20260913-04
+
+worktree C:/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-root-repair-07
+HEAD 203948e1439ae0fa51426cb7ad26dddf8975f502
+branch refs/heads/JS/stellarcsg-root-repair-20260915-07
+
+worktree C:/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-run-compare-06
+HEAD 9c6cc86e0a6543334c973cf5610e58bdb6ad2197
+branch refs/heads/JS/stellarcsg-run-compare-20260913-06
+
+worktree C:/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-run-harness-06
+HEAD 80c06154125025a6537ae3f324bce40948b33cf0
+branch refs/heads/JS/stellarcsg-run-harness-20260913-06
+
+worktree C:/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-track-a
+HEAD 6ee8f74a358c5dc3b8f1e10ff93b079eb3f1e30c
+branch refs/heads/codex/stellarcsg-legacy-v2-20260901
+
+worktree C:/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-track-b
+HEAD 68ab1c3054645e2f49586de3729fa2081e19eb20
+branch refs/heads/codex/stellarcsg-bezier-hybrid-v2-20260901
+

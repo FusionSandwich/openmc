@@ -1,0 +1,35 @@
+[
+  {
+    "lane": "old",
+    "wrong_nonblocked": [
+      "a03",
+      "a06",
+      "a08",
+      "a15"
+    ],
+    "blocked": [],
+    "reference": "baseline-strict/exact_reference-0.jsonl",
+    "tolerance_cm": 2E-08
+  },
+  {
+    "lane": "experimental",
+    "wrong_nonblocked": [
+      "a06",
+      "a08",
+      "a15"
+    ],
+    "blocked": [],
+    "reference": "baseline-strict/exact_reference-0.jsonl",
+    "tolerance_cm": 2E-08
+  },
+  {
+    "lane": "acceptance_only",
+    "wrong_nonblocked": [
+      "a06",
+      "a08"
+    ],
+    "blocked": [],
+    "reference": "baseline-strict/exact_reference-0.jsonl",
+    "tolerance_cm": 2E-08
+  }
+]

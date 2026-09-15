@@ -1,0 +1,1768 @@
+{
+  "schema": "stellarcsg.recovery04.reduce/v1",
+  "campaigns": [
+    "/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-root-repair-07/dev/stellarcsg/reports/repair07/stages-stress"
+  ],
+  "bank_hashes": [
+    "59580d8aa8348ad4d81d7e7bed5c5217639fff5d71a39708400994e7b33282cb"
+  ],
+  "errors": [],
+  "lanes": {
+    "exact_reference": {
+      "attempt_count": 1,
+      "valid_attempt_count": 1,
+      "invalid_attempt_count": 0,
+      "metrics": {
+        "distance": {
+          "median_of_bank_means": null,
+          "pooled_perquery_median": 126708282.0,
+          "pooled_perquery_p95": 158370374.35,
+          "pooled_perquery_p99": 176110448.81999996,
+          "timing_excluded_values": 0,
+          "available": true
+        },
+        "classification": {
+          "median_of_bank_means": null,
+          "pooled_perquery_median": 10689903.0,
+          "pooled_perquery_p95": 27181386.999999996,
+          "pooled_perquery_p99": 31092937.409999996,
+          "timing_excluded_values": 0,
+          "available": true
+        },
+        "normal": {
+          "median_of_bank_means": null,
+          "pooled_perquery_median": 13976301.0,
+          "pooled_perquery_p95": 31161068.549999997,
+          "pooled_perquery_p99": 32181274.84,
+          "timing_excluded_values": 0,
+          "available": true
+        },
+        "candidates": {
+          "median_of_bank_means": null,
+          "pooled_perquery_median": null,
+          "pooled_perquery_p95": null,
+          "pooled_perquery_p99": null,
+          "timing_excluded_values": 160,
+          "available": false
+        },
+        "newton": {
+          "median_of_bank_means": null,
+          "pooled_perquery_median": null,
+          "pooled_perquery_p95": null,
+          "pooled_perquery_p99": null,
+          "timing_excluded_values": 160,
+          "available": false
+        },
+        "subdivision": {
+          "median_of_bank_means": null,
+          "pooled_perquery_median": null,
+          "pooled_perquery_p95": null,
+          "pooled_perquery_p99": null,
+          "timing_excluded_values": 160,
+          "available": false
+        }
+      },
+      "primary_median_of_7_complete": false,
+      "first_run_unique_status": {
+        "available": true,
+        "candidate_failure_query_ids": [],
+        "candidate_blocked_query_ids": [],
+        "reference_blocked_query_ids": [],
+        "states": {
+          "PASS": 160
+        }
+      },
+      "attempts": [
+        {
+          "repeat": 0,
+          "exit_code": 0,
+          "valid": true,
+          "errors": []
+        }
+      ],
+      "per_category": {
+        "center_exit": {
+          "unique_query_count": 32,
+          "metrics": {
+            "distance": {
+              "median": 120210745.5,
+              "p95": 134365074.04999998,
+              "p99": 145370029.43,
+              "available": true
+            },
+            "classification": {
+              "median": 10295752.5,
+              "p95": 23781824.35,
+              "p99": 26359484.490000006,
+              "available": true
+            },
+            "normal": {
+              "median": 13913001.5,
+              "p95": 31556511.1,
+              "p99": 31987262.310000002,
+              "available": true
+            },
+            "candidates": {
+              "median": null,
+              "p95": null,
+              "p99": null,
+              "available": false
+            },
+            "newton": {
+              "median": null,
+              "p95": null,
+              "p99": null,
+              "available": false
+            },
+            "subdivision": {
+              "median": null,
+              "p95": null,
+              "p99": null,
+              "available": false
+            }
+          }
+        },
+        "entry": {
+          "unique_query_count": 32,
+          "metrics": {
+            "distance": {
+              "median": 151334327.5,
+              "p95": 174940569.9,
+              "p99": 183726254.08,
+              "available": true
+            },
+            "classification": {
+              "median": 10798800.5,
+              "p95": 26978011.799999997,
+              "p99": 30025831.69,
+              "available": true
+            },
+            "normal": {
+              "median": 13196003.5,
+              "p95": 29348008.349999998,
+              "p99": 31545408.69,
+              "available": true
+            },
+            "candidates": {
+              "median": null,
+              "p95": null,
+              "p99": null,
+              "available": false
+            },
+            "newton": {
+              "median": null,
+              "p95": null,
+              "p99": null,
+              "available": false
+            },
+            "subdivision": {
+              "median": null,
+              "p95": null,
+              "p99": null,
+              "available": false
+            }
+          }
+        },
+        "entry_near": {
+          "unique_query_count": 32,
+          "metrics": {
+            "distance": {
+              "median": 150102710.0,
+              "p95": 164128956.15,
+              "p99": 171322198.84,
+              "available": true
+            },
+            "classification": {
+              "median": 11182751.0,
+              "p95": 24032481.349999998,
+              "p99": 26363728.070000004,
+              "available": true
+            },
+            "normal": {
+              "median": 14482001.0,
+              "p95": 29781536.299999997,
+              "p99": 31667299.01,
+              "available": true
+            },
+            "candidates": {
+              "median": null,
+              "p95": null,
+              "p99": null,
+              "available": false
+            },
+            "newton": {
+              "median": null,
+              "p95": null,
+              "p99": null,
+              "available": false
+            },
+            "subdivision": {
+              "median": null,
+              "p95": null,
+              "p99": null,
+              "available": false
+            }
+          }
+        },
+        "grazing_stress": {
+          "unique_query_count": 32,
+          "metrics": {
+            "distance": {
+              "median": 23642302.0,
+              "p95": 83087837.05,
+              "p99": 85018050.08,
+              "available": true
+            },
+            "classification": {
+              "median": 10302703.0,
+              "p95": 25718667.699999996,
+              "p99": 28242124.2,
+              "available": true
+            },
+            "normal": {
+              "median": 13005103.0,
+              "p95": 27877953.15,
+              "p99": 31000790.760000005,
+              "available": true
+            },
+            "candidates": {
+              "median": null,
+              "p95": null,
+              "p99": null,
+              "available": false
+            },
+            "newton": {
+              "median": null,
+              "p95": null,
+              "p99": null,
+              "available": false
+            },
+            "subdivision": {
+              "median": null,
+              "p95": null,
+              "p99": null,
+              "available": false
+            }
+          }
+        },
+        "interior_exit": {
+          "unique_query_count": 32,
+          "metrics": {
+            "distance": {
+              "median": 121589181.0,
+              "p95": 133243395.85,
+              "p99": 145761084.44000003,
+              "available": true
+            },
+            "classification": {
+              "median": 10864001.0,
+              "p95": 30493869.349999998,
+              "p99": 33575009.07,
+              "available": true
+            },
+            "normal": {
+              "median": 14356001.0,
+              "p95": 29002448.45,
+              "p99": 32799087.760000005,
+              "available": true
+            },
+            "candidates": {
+              "median": null,
+              "p95": null,
+              "p99": null,
+              "available": false
+            },
+            "newton": {
+              "median": null,
+              "p95": null,
+              "p99": null,
+              "available": false
+            },
+            "subdivision": {
+              "median": null,
+              "p95": null,
+              "p99": null,
+              "available": false
+            }
+          }
+        }
+      },
+      "heldout": {
+        "False": {
+          "unique_query_count": 160,
+          "metrics": {
+            "distance": {
+              "median": 126708282.0,
+              "p95": 158370374.35,
+              "p99": 176110448.81999996,
+              "available": true
+            },
+            "classification": {
+              "median": 10689903.0,
+              "p95": 27181386.999999996,
+              "p99": 31092937.409999996,
+              "available": true
+            },
+            "normal": {
+              "median": 13976301.0,
+              "p95": 31161068.549999997,
+              "p99": 32181274.84,
+              "available": true
+            },
+            "candidates": {
+              "median": null,
+              "p95": null,
+              "p99": null,
+              "available": false
+            },
+            "newton": {
+              "median": null,
+              "p95": null,
+              "p99": null,
+              "available": false
+            },
+            "subdivision": {
+              "median": null,
+              "p95": null,
+              "p99": null,
+              "available": false
+            }
+          }
+        }
+      },
+      "repeat_consistency": {
+        "available": true,
+        "input_mismatches": [],
+        "status_mismatches": []
+      }
+    },
+    "experimental": {
+      "attempt_count": 1,
+      "valid_attempt_count": 1,
+      "invalid_attempt_count": 0,
+      "metrics": {
+        "distance": {
+          "median_of_bank_means": null,
+          "pooled_perquery_median": 4100.0,
+          "pooled_perquery_p95": 17500.0,
+          "pooled_perquery_p99": 20514.999999999996,
+          "timing_excluded_values": 0,
+          "available": true
+        },
+        "classification": {
+          "median_of_bank_means": null,
+          "pooled_perquery_median": 1300.0,
+          "pooled_perquery_p95": 3204.999999999998,
+          "pooled_perquery_p99": 3886.9999999999977,
+          "timing_excluded_values": 0,
+          "available": true
+        },
+        "normal": {
+          "median_of_bank_means": null,
+          "pooled_perquery_median": 1500.0,
+          "pooled_perquery_p95": 3700.0,
+          "pooled_perquery_p99": 4141.0,
+          "timing_excluded_values": 0,
+          "available": true
+        },
+        "candidates": {
+          "median_of_bank_means": null,
+          "pooled_perquery_median": null,
+          "pooled_perquery_p95": null,
+          "pooled_perquery_p99": null,
+          "timing_excluded_values": 160,
+          "available": false
+        },
+        "newton": {
+          "median_of_bank_means": null,
+          "pooled_perquery_median": null,
+          "pooled_perquery_p95": null,
+          "pooled_perquery_p99": null,
+          "timing_excluded_values": 160,
+          "available": false
+        },
+        "subdivision": {
+          "median_of_bank_means": null,
+          "pooled_perquery_median": null,
+          "pooled_perquery_p95": null,
+          "pooled_perquery_p99": null,
+          "timing_excluded_values": 160,
+          "available": false
+        }
+      },
+      "primary_median_of_7_complete": false,
+      "first_run_unique_status": {
+        "available": true,
+        "candidate_failure_query_ids": [],
+        "candidate_blocked_query_ids": [],
+        "reference_blocked_query_ids": [],
+        "states": {
+          "PASS": 160
+        }
+      },
+      "attempts": [
+        {
+          "repeat": 0,
+          "exit_code": 0,
+          "valid": true,
+          "errors": []
+        }
+      ],
+      "per_category": {
+        "center_exit": {
+          "unique_query_count": 32,
+          "metrics": {
+            "distance": {
+              "median": 3900.0,
+              "p95": 8025.0,
+              "p99": 10301.000000000004,
+              "available": true
+            },
+            "classification": {
+              "median": 1000.0,
+              "p95": 3100.0,
+              "p99": 3307.0000000000005,
+              "available": true
+            },
+            "normal": {
+              "median": 1350.0,
+              "p95": 3700.0,
+              "p99": 3976.0000000000005,
+              "available": true
+            },
+            "candidates": {
+              "median": null,
+              "p95": null,
+              "p99": null,
+              "available": false
+            },
+            "newton": {
+              "median": null,
+              "p95": null,
+              "p99": null,
+              "available": false
+            },
+            "subdivision": {
+              "median": null,
+              "p95": null,
+              "p99": null,
+              "available": false
+            }
+          }
+        },
+        "entry": {
+          "unique_query_count": 32,
+          "metrics": {
+            "distance": {
+              "median": 4050.0,
+              "p95": 7045.0,
+              "p99": 7652.000000000001,
+              "available": true
+            },
+            "classification": {
+              "median": 1250.0,
+              "p95": 3335.0,
+              "p99": 4052.000000000001,
+              "available": true
+            },
+            "normal": {
+              "median": 1350.0,
+              "p95": 3745.0,
+              "p99": 4076.0000000000005,
+              "available": true
+            },
+            "candidates": {
+              "median": null,
+              "p95": null,
+              "p99": null,
+              "available": false
+            },
+            "newton": {
+              "median": null,
+              "p95": null,
+              "p99": null,
+              "available": false
+            },
+            "subdivision": {
+              "median": null,
+              "p95": null,
+              "p99": null,
+              "available": false
+            }
+          }
+        },
+        "entry_near": {
+          "unique_query_count": 32,
+          "metrics": {
+            "distance": {
+              "median": 4250.0,
+              "p95": 6970.0,
+              "p99": 14338.000000000013,
+              "available": true
+            },
+            "classification": {
+              "median": 2050.0,
+              "p95": 3490.0,
+              "p99": 4497.000000000002,
+              "available": true
+            },
+            "normal": {
+              "median": 2350.0,
+              "p95": 3790.0,
+              "p99": 4590.000000000001,
+              "available": true
+            },
+            "candidates": {
+              "median": null,
+              "p95": null,
+              "p99": null,
+              "available": false
+            },
+            "newton": {
+              "median": null,
+              "p95": null,
+              "p99": null,
+              "available": false
+            },
+            "subdivision": {
+              "median": null,
+              "p95": null,
+              "p99": null,
+              "available": false
+            }
+          }
+        },
+        "grazing_stress": {
+          "unique_query_count": 32,
+          "metrics": {
+            "distance": {
+              "median": 15100.0,
+              "p95": 20575.0,
+              "p99": 38305.00000000003,
+              "available": true
+            },
+            "classification": {
+              "median": 1200.0,
+              "p95": 2345.0,
+              "p99": 2745.0000000000005,
+              "available": true
+            },
+            "normal": {
+              "median": 1400.0,
+              "p95": 2745.0,
+              "p99": 3421.000000000001,
+              "available": true
+            },
+            "candidates": {
+              "median": null,
+              "p95": null,
+              "p99": null,
+              "available": false
+            },
+            "newton": {
+              "median": null,
+              "p95": null,
+              "p99": null,
+              "available": false
+            },
+            "subdivision": {
+              "median": null,
+              "p95": null,
+              "p99": null,
+              "available": false
+            }
+          }
+        },
+        "interior_exit": {
+          "unique_query_count": 32,
+          "metrics": {
+            "distance": {
+              "median": 3650.0,
+              "p95": 5835.0,
+              "p99": 6000.0,
+              "available": true
+            },
+            "classification": {
+              "median": 1100.0,
+              "p95": 2145.0,
+              "p99": 2959.0000000000014,
+              "available": true
+            },
+            "normal": {
+              "median": 1300.0,
+              "p95": 2700.0,
+              "p99": 2907.0000000000005,
+              "available": true
+            },
+            "candidates": {
+              "median": null,
+              "p95": null,
+              "p99": null,
+              "available": false
+            },
+            "newton": {
+              "median": null,
+              "p95": null,
+              "p99": null,
+              "available": false
+            },
+            "subdivision": {
+              "median": null,
+              "p95": null,
+              "p99": null,
+              "available": false
+            }
+          }
+        }
+      },
+      "heldout": {
+        "False": {
+          "unique_query_count": 160,
+          "metrics": {
+            "distance": {
+              "median": 4100.0,
+              "p95": 17500.0,
+              "p99": 20514.999999999996,
+              "available": true
+            },
+            "classification": {
+              "median": 1300.0,
+              "p95": 3204.999999999998,
+              "p99": 3886.9999999999977,
+              "available": true
+            },
+            "normal": {
+              "median": 1500.0,
+              "p95": 3700.0,
+              "p99": 4141.0,
+              "available": true
+            },
+            "candidates": {
+              "median": null,
+              "p95": null,
+              "p99": null,
+              "available": false
+            },
+            "newton": {
+              "median": null,
+              "p95": null,
+              "p99": null,
+              "available": false
+            },
+            "subdivision": {
+              "median": null,
+              "p95": null,
+              "p99": null,
+              "available": false
+            }
+          }
+        }
+      },
+      "repeat_consistency": {
+        "available": true,
+        "input_mismatches": [],
+        "status_mismatches": []
+      }
+    },
+    "old": {
+      "attempt_count": 1,
+      "valid_attempt_count": 1,
+      "invalid_attempt_count": 0,
+      "metrics": {
+        "distance": {
+          "median_of_bank_means": null,
+          "pooled_perquery_median": 2050.0,
+          "pooled_perquery_p95": 14609.999999999996,
+          "pooled_perquery_p99": 18921.999999999985,
+          "timing_excluded_values": 0,
+          "available": true
+        },
+        "classification": {
+          "median_of_bank_means": null,
+          "pooled_perquery_median": 1100.0,
+          "pooled_perquery_p95": 2404.999999999998,
+          "pooled_perquery_p99": 3040.9999999999995,
+          "timing_excluded_values": 0,
+          "available": true
+        },
+        "normal": {
+          "median_of_bank_means": null,
+          "pooled_perquery_median": 1300.0,
+          "pooled_perquery_p95": 2800.0,
+          "pooled_perquery_p99": 3200.0,
+          "timing_excluded_values": 0,
+          "available": true
+        },
+        "candidates": {
+          "median_of_bank_means": null,
+          "pooled_perquery_median": null,
+          "pooled_perquery_p95": null,
+          "pooled_perquery_p99": null,
+          "timing_excluded_values": 160,
+          "available": false
+        },
+        "newton": {
+          "median_of_bank_means": null,
+          "pooled_perquery_median": null,
+          "pooled_perquery_p95": null,
+          "pooled_perquery_p99": null,
+          "timing_excluded_values": 160,
+          "available": false
+        },
+        "subdivision": {
+          "median_of_bank_means": null,
+          "pooled_perquery_median": null,
+          "pooled_perquery_p95": null,
+          "pooled_perquery_p99": null,
+          "timing_excluded_values": 160,
+          "available": false
+        }
+      },
+      "primary_median_of_7_complete": false,
+      "first_run_unique_status": {
+        "available": true,
+        "candidate_failure_query_ids": [],
+        "candidate_blocked_query_ids": [],
+        "reference_blocked_query_ids": [],
+        "states": {
+          "PASS": 160
+        }
+      },
+      "attempts": [
+        {
+          "repeat": 0,
+          "exit_code": 0,
+          "valid": true,
+          "errors": []
+        }
+      ],
+      "per_category": {
+        "center_exit": {
+          "unique_query_count": 32,
+          "metrics": {
+            "distance": {
+              "median": 1700.0,
+              "p95": 3249.999999999999,
+              "p99": 4352.000000000001,
+              "available": true
+            },
+            "classification": {
+              "median": 900.0,
+              "p95": 1969.9999999999995,
+              "p99": 2783.000000000001,
+              "available": true
+            },
+            "normal": {
+              "median": 1150.0,
+              "p95": 2484.999999999999,
+              "p99": 3200.0,
+              "available": true
+            },
+            "candidates": {
+              "median": null,
+              "p95": null,
+              "p99": null,
+              "available": false
+            },
+            "newton": {
+              "median": null,
+              "p95": null,
+              "p99": null,
+              "available": false
+            },
+            "subdivision": {
+              "median": null,
+              "p95": null,
+              "p99": null,
+              "available": false
+            }
+          }
+        },
+        "entry": {
+          "unique_query_count": 32,
+          "metrics": {
+            "distance": {
+              "median": 2050.0,
+              "p95": 3290.0,
+              "p99": 3607.0000000000005,
+              "available": true
+            },
+            "classification": {
+              "median": 1100.0,
+              "p95": 2090.0,
+              "p99": 2338.0000000000005,
+              "available": true
+            },
+            "normal": {
+              "median": 1300.0,
+              "p95": 2279.9999999999995,
+              "p99": 2569.0,
+              "available": true
+            },
+            "candidates": {
+              "median": null,
+              "p95": null,
+              "p99": null,
+              "available": false
+            },
+            "newton": {
+              "median": null,
+              "p95": null,
+              "p99": null,
+              "available": false
+            },
+            "subdivision": {
+              "median": null,
+              "p95": null,
+              "p99": null,
+              "available": false
+            }
+          }
+        },
+        "entry_near": {
+          "unique_query_count": 32,
+          "metrics": {
+            "distance": {
+              "median": 2200.0,
+              "p95": 5249.999999999999,
+              "p99": 10009.000000000007,
+              "available": true
+            },
+            "classification": {
+              "median": 1650.0,
+              "p95": 2835.0,
+              "p99": 3069.0,
+              "available": true
+            },
+            "normal": {
+              "median": 1750.0,
+              "p95": 3000.0,
+              "p99": 11073.000000000015,
+              "available": true
+            },
+            "candidates": {
+              "median": null,
+              "p95": null,
+              "p99": null,
+              "available": false
+            },
+            "newton": {
+              "median": null,
+              "p95": null,
+              "p99": null,
+              "available": false
+            },
+            "subdivision": {
+              "median": null,
+              "p95": null,
+              "p99": null,
+              "available": false
+            }
+          }
+        },
+        "grazing_stress": {
+          "unique_query_count": 32,
+          "metrics": {
+            "distance": {
+              "median": 10950.0,
+              "p95": 19089.999999999996,
+              "p99": 21814.0,
+              "available": true
+            },
+            "classification": {
+              "median": 1000.0,
+              "p95": 2045.0,
+              "p99": 2238.0000000000005,
+              "available": true
+            },
+            "normal": {
+              "median": 1300.0,
+              "p95": 2690.0,
+              "p99": 2938.0000000000005,
+              "available": true
+            },
+            "candidates": {
+              "median": null,
+              "p95": null,
+              "p99": null,
+              "available": false
+            },
+            "newton": {
+              "median": null,
+              "p95": null,
+              "p99": null,
+              "available": false
+            },
+            "subdivision": {
+              "median": null,
+              "p95": null,
+              "p99": null,
+              "available": false
+            }
+          }
+        },
+        "interior_exit": {
+          "unique_query_count": 32,
+          "metrics": {
+            "distance": {
+              "median": 1600.0,
+              "p95": 4029.999999999999,
+              "p99": 4869.0,
+              "available": true
+            },
+            "classification": {
+              "median": 1000.0,
+              "p95": 2279.9999999999995,
+              "p99": 2983.000000000001,
+              "available": true
+            },
+            "normal": {
+              "median": 1100.0,
+              "p95": 2579.9999999999995,
+              "p99": 3076.0000000000005,
+              "available": true
+            },
+            "candidates": {
+              "median": null,
+              "p95": null,
+              "p99": null,
+              "available": false
+            },
+            "newton": {
+              "median": null,
+              "p95": null,
+              "p99": null,
+              "available": false
+            },
+            "subdivision": {
+              "median": null,
+              "p95": null,
+              "p99": null,
+              "available": false
+            }
+          }
+        }
+      },
+      "heldout": {
+        "False": {
+          "unique_query_count": 160,
+          "metrics": {
+            "distance": {
+              "median": 2050.0,
+              "p95": 14609.999999999996,
+              "p99": 18921.999999999985,
+              "available": true
+            },
+            "classification": {
+              "median": 1100.0,
+              "p95": 2404.999999999998,
+              "p99": 3040.9999999999995,
+              "available": true
+            },
+            "normal": {
+              "median": 1300.0,
+              "p95": 2800.0,
+              "p99": 3200.0,
+              "available": true
+            },
+            "candidates": {
+              "median": null,
+              "p95": null,
+              "p99": null,
+              "available": false
+            },
+            "newton": {
+              "median": null,
+              "p95": null,
+              "p99": null,
+              "available": false
+            },
+            "subdivision": {
+              "median": null,
+              "p95": null,
+              "p99": null,
+              "available": false
+            }
+          }
+        }
+      },
+      "repeat_consistency": {
+        "available": true,
+        "input_mismatches": [],
+        "status_mismatches": []
+      }
+    },
+    "ordering": {
+      "attempt_count": 1,
+      "valid_attempt_count": 1,
+      "invalid_attempt_count": 0,
+      "metrics": {
+        "distance": {
+          "median_of_bank_means": null,
+          "pooled_perquery_median": 13100.0,
+          "pooled_perquery_p95": 20205.0,
+          "pooled_perquery_p99": 26982.999999999978,
+          "timing_excluded_values": 0,
+          "available": true
+        },
+        "classification": {
+          "median_of_bank_means": null,
+          "pooled_perquery_median": 1300.0,
+          "pooled_perquery_p95": 2800.0,
+          "pooled_perquery_p99": 3140.9999999999995,
+          "timing_excluded_values": 0,
+          "available": true
+        },
+        "normal": {
+          "median_of_bank_means": null,
+          "pooled_perquery_median": 1500.0,
+          "pooled_perquery_p95": 2914.999999999995,
+          "pooled_perquery_p99": 4341.0,
+          "timing_excluded_values": 0,
+          "available": true
+        },
+        "candidates": {
+          "median_of_bank_means": null,
+          "pooled_perquery_median": null,
+          "pooled_perquery_p95": null,
+          "pooled_perquery_p99": null,
+          "timing_excluded_values": 160,
+          "available": false
+        },
+        "newton": {
+          "median_of_bank_means": null,
+          "pooled_perquery_median": null,
+          "pooled_perquery_p95": null,
+          "pooled_perquery_p99": null,
+          "timing_excluded_values": 160,
+          "available": false
+        },
+        "subdivision": {
+          "median_of_bank_means": null,
+          "pooled_perquery_median": null,
+          "pooled_perquery_p95": null,
+          "pooled_perquery_p99": null,
+          "timing_excluded_values": 160,
+          "available": false
+        }
+      },
+      "primary_median_of_7_complete": false,
+      "first_run_unique_status": {
+        "available": true,
+        "candidate_failure_query_ids": [],
+        "candidate_blocked_query_ids": [],
+        "reference_blocked_query_ids": [],
+        "states": {
+          "PASS": 160
+        }
+      },
+      "attempts": [
+        {
+          "repeat": 0,
+          "exit_code": 0,
+          "valid": true,
+          "errors": []
+        }
+      ],
+      "per_category": {
+        "center_exit": {
+          "unique_query_count": 32,
+          "metrics": {
+            "distance": {
+              "median": 10150.0,
+              "p95": 14570.0,
+              "p99": 16004.000000000002,
+              "available": true
+            },
+            "classification": {
+              "median": 1100.0,
+              "p95": 2290.0,
+              "p99": 2469.0,
+              "available": true
+            },
+            "normal": {
+              "median": 1500.0,
+              "p95": 2524.9999999999995,
+              "p99": 11908.000000000016,
+              "available": true
+            },
+            "candidates": {
+              "median": null,
+              "p95": null,
+              "p99": null,
+              "available": false
+            },
+            "newton": {
+              "median": null,
+              "p95": null,
+              "p99": null,
+              "available": false
+            },
+            "subdivision": {
+              "median": null,
+              "p95": null,
+              "p99": null,
+              "available": false
+            }
+          }
+        },
+        "entry": {
+          "unique_query_count": 32,
+          "metrics": {
+            "distance": {
+              "median": 12500.0,
+              "p95": 17580.0,
+              "p99": 18421.0,
+              "available": true
+            },
+            "classification": {
+              "median": 1300.0,
+              "p95": 2800.0,
+              "p99": 3007.0000000000005,
+              "available": true
+            },
+            "normal": {
+              "median": 1400.0,
+              "p95": 3590.0,
+              "p99": 3769.0,
+              "available": true
+            },
+            "candidates": {
+              "median": null,
+              "p95": null,
+              "p99": null,
+              "available": false
+            },
+            "newton": {
+              "median": null,
+              "p95": null,
+              "p99": null,
+              "available": false
+            },
+            "subdivision": {
+              "median": null,
+              "p95": null,
+              "p99": null,
+              "available": false
+            }
+          }
+        },
+        "entry_near": {
+          "unique_query_count": 32,
+          "metrics": {
+            "distance": {
+              "median": 13000.0,
+              "p95": 19365.0,
+              "p99": 28235.000000000015,
+              "available": true
+            },
+            "classification": {
+              "median": 1850.0,
+              "p95": 3145.0,
+              "p99": 3752.000000000001,
+              "available": true
+            },
+            "normal": {
+              "median": 1950.0,
+              "p95": 4300.0,
+              "p99": 4369.0,
+              "available": true
+            },
+            "candidates": {
+              "median": null,
+              "p95": null,
+              "p99": null,
+              "available": false
+            },
+            "newton": {
+              "median": null,
+              "p95": null,
+              "p99": null,
+              "available": false
+            },
+            "subdivision": {
+              "median": null,
+              "p95": null,
+              "p99": null,
+              "available": false
+            }
+          }
+        },
+        "grazing_stress": {
+          "unique_query_count": 32,
+          "metrics": {
+            "distance": {
+              "median": 16850.0,
+              "p95": 24125.0,
+              "p99": 28747.000000000007,
+              "available": true
+            },
+            "classification": {
+              "median": 1250.0,
+              "p95": 2045.0,
+              "p99": 2100.0,
+              "available": true
+            },
+            "normal": {
+              "median": 1500.0,
+              "p95": 2145.0,
+              "p99": 2476.0000000000005,
+              "available": true
+            },
+            "candidates": {
+              "median": null,
+              "p95": null,
+              "p99": null,
+              "available": false
+            },
+            "newton": {
+              "median": null,
+              "p95": null,
+              "p99": null,
+              "available": false
+            },
+            "subdivision": {
+              "median": null,
+              "p95": null,
+              "p99": null,
+              "available": false
+            }
+          }
+        },
+        "interior_exit": {
+          "unique_query_count": 32,
+          "metrics": {
+            "distance": {
+              "median": 12950.0,
+              "p95": 16780.0,
+              "p99": 17138.0,
+              "available": true
+            },
+            "classification": {
+              "median": 1100.0,
+              "p95": 2469.9999999999995,
+              "p99": 2800.0,
+              "available": true
+            },
+            "normal": {
+              "median": 1300.0,
+              "p95": 2745.0,
+              "p99": 2869.0,
+              "available": true
+            },
+            "candidates": {
+              "median": null,
+              "p95": null,
+              "p99": null,
+              "available": false
+            },
+            "newton": {
+              "median": null,
+              "p95": null,
+              "p99": null,
+              "available": false
+            },
+            "subdivision": {
+              "median": null,
+              "p95": null,
+              "p99": null,
+              "available": false
+            }
+          }
+        }
+      },
+      "heldout": {
+        "False": {
+          "unique_query_count": 160,
+          "metrics": {
+            "distance": {
+              "median": 13100.0,
+              "p95": 20205.0,
+              "p99": 26982.999999999978,
+              "available": true
+            },
+            "classification": {
+              "median": 1300.0,
+              "p95": 2800.0,
+              "p99": 3140.9999999999995,
+              "available": true
+            },
+            "normal": {
+              "median": 1500.0,
+              "p95": 2914.999999999995,
+              "p99": 4341.0,
+              "available": true
+            },
+            "candidates": {
+              "median": null,
+              "p95": null,
+              "p99": null,
+              "available": false
+            },
+            "newton": {
+              "median": null,
+              "p95": null,
+              "p99": null,
+              "available": false
+            },
+            "subdivision": {
+              "median": null,
+              "p95": null,
+              "p99": null,
+              "available": false
+            }
+          }
+        }
+      },
+      "repeat_consistency": {
+        "available": true,
+        "input_mismatches": [],
+        "status_mismatches": []
+      }
+    },
+    "residual": {
+      "attempt_count": 1,
+      "valid_attempt_count": 1,
+      "invalid_attempt_count": 0,
+      "metrics": {
+        "distance": {
+          "median_of_bank_means": null,
+          "pooled_perquery_median": 4200.0,
+          "pooled_perquery_p95": 16700.0,
+          "pooled_perquery_p99": 21386.999999999996,
+          "timing_excluded_values": 0,
+          "available": true
+        },
+        "classification": {
+          "median_of_bank_means": null,
+          "pooled_perquery_median": 1300.0,
+          "pooled_perquery_p95": 2504.999999999998,
+          "pooled_perquery_p99": 3040.9999999999995,
+          "timing_excluded_values": 0,
+          "available": true
+        },
+        "normal": {
+          "median_of_bank_means": null,
+          "pooled_perquery_median": 1500.0,
+          "pooled_perquery_p95": 3100.0,
+          "pooled_perquery_p99": 3481.999999999999,
+          "timing_excluded_values": 0,
+          "available": true
+        },
+        "candidates": {
+          "median_of_bank_means": null,
+          "pooled_perquery_median": null,
+          "pooled_perquery_p95": null,
+          "pooled_perquery_p99": null,
+          "timing_excluded_values": 160,
+          "available": false
+        },
+        "newton": {
+          "median_of_bank_means": null,
+          "pooled_perquery_median": null,
+          "pooled_perquery_p95": null,
+          "pooled_perquery_p99": null,
+          "timing_excluded_values": 160,
+          "available": false
+        },
+        "subdivision": {
+          "median_of_bank_means": null,
+          "pooled_perquery_median": null,
+          "pooled_perquery_p95": null,
+          "pooled_perquery_p99": null,
+          "timing_excluded_values": 160,
+          "available": false
+        }
+      },
+      "primary_median_of_7_complete": false,
+      "first_run_unique_status": {
+        "available": true,
+        "candidate_failure_query_ids": [],
+        "candidate_blocked_query_ids": [],
+        "reference_blocked_query_ids": [],
+        "states": {
+          "PASS": 160
+        }
+      },
+      "attempts": [
+        {
+          "repeat": 0,
+          "exit_code": 0,
+          "valid": true,
+          "errors": []
+        }
+      ],
+      "per_category": {
+        "center_exit": {
+          "unique_query_count": 32,
+          "metrics": {
+            "distance": {
+              "median": 4100.0,
+              "p95": 6345.0,
+              "p99": 6676.000000000001,
+              "available": true
+            },
+            "classification": {
+              "median": 1100.0,
+              "p95": 2200.0,
+              "p99": 2269.0,
+              "available": true
+            },
+            "normal": {
+              "median": 1450.0,
+              "p95": 2545.0,
+              "p99": 2669.0,
+              "available": true
+            },
+            "candidates": {
+              "median": null,
+              "p95": null,
+              "p99": null,
+              "available": false
+            },
+            "newton": {
+              "median": null,
+              "p95": null,
+              "p99": null,
+              "available": false
+            },
+            "subdivision": {
+              "median": null,
+              "p95": null,
+              "p99": null,
+              "available": false
+            }
+          }
+        },
+        "entry": {
+          "unique_query_count": 32,
+          "metrics": {
+            "distance": {
+              "median": 4200.0,
+              "p95": 6800.0,
+              "p99": 6800.0,
+              "available": true
+            },
+            "classification": {
+              "median": 1350.0,
+              "p95": 2535.0,
+              "p99": 2838.0000000000005,
+              "available": true
+            },
+            "normal": {
+              "median": 1400.0,
+              "p95": 2890.0,
+              "p99": 3276.0000000000005,
+              "available": true
+            },
+            "candidates": {
+              "median": null,
+              "p95": null,
+              "p99": null,
+              "available": false
+            },
+            "newton": {
+              "median": null,
+              "p95": null,
+              "p99": null,
+              "available": false
+            },
+            "subdivision": {
+              "median": null,
+              "p95": null,
+              "p99": null,
+              "available": false
+            }
+          }
+        },
+        "entry_near": {
+          "unique_query_count": 32,
+          "metrics": {
+            "distance": {
+              "median": 4200.0,
+              "p95": 6445.0,
+              "p99": 13124.000000000013,
+              "available": true
+            },
+            "classification": {
+              "median": 1800.0,
+              "p95": 2835.0,
+              "p99": 3414.000000000001,
+              "available": true
+            },
+            "normal": {
+              "median": 2150.0,
+              "p95": 3490.0,
+              "p99": 4014.000000000001,
+              "available": true
+            },
+            "candidates": {
+              "median": null,
+              "p95": null,
+              "p99": null,
+              "available": false
+            },
+            "newton": {
+              "median": null,
+              "p95": null,
+              "p99": null,
+              "available": false
+            },
+            "subdivision": {
+              "median": null,
+              "p95": null,
+              "p99": null,
+              "available": false
+            }
+          }
+        },
+        "grazing_stress": {
+          "unique_query_count": 32,
+          "metrics": {
+            "distance": {
+              "median": 11600.0,
+              "p95": 21415.0,
+              "p99": 23801.000000000004,
+              "available": true
+            },
+            "classification": {
+              "median": 1200.0,
+              "p95": 2090.0,
+              "p99": 2614.000000000001,
+              "available": true
+            },
+            "normal": {
+              "median": 1500.0,
+              "p95": 2659.9999999999995,
+              "p99": 3100.0,
+              "available": true
+            },
+            "candidates": {
+              "median": null,
+              "p95": null,
+              "p99": null,
+              "available": false
+            },
+            "newton": {
+              "median": null,
+              "p95": null,
+              "p99": null,
+              "available": false
+            },
+            "subdivision": {
+              "median": null,
+              "p95": null,
+              "p99": null,
+              "available": false
+            }
+          }
+        },
+        "interior_exit": {
+          "unique_query_count": 32,
+          "metrics": {
+            "distance": {
+              "median": 3650.0,
+              "p95": 5980.0,
+              "p99": 6683.000000000001,
+              "available": true
+            },
+            "classification": {
+              "median": 1150.0,
+              "p95": 1745.0,
+              "p99": 2697.000000000002,
+              "available": true
+            },
+            "normal": {
+              "median": 1350.0,
+              "p95": 2335.0,
+              "p99": 3052.000000000001,
+              "available": true
+            },
+            "candidates": {
+              "median": null,
+              "p95": null,
+              "p99": null,
+              "available": false
+            },
+            "newton": {
+              "median": null,
+              "p95": null,
+              "p99": null,
+              "available": false
+            },
+            "subdivision": {
+              "median": null,
+              "p95": null,
+              "p99": null,
+              "available": false
+            }
+          }
+        }
+      },
+      "heldout": {
+        "False": {
+          "unique_query_count": 160,
+          "metrics": {
+            "distance": {
+              "median": 4200.0,
+              "p95": 16700.0,
+              "p99": 21386.999999999996,
+              "available": true
+            },
+            "classification": {
+              "median": 1300.0,
+              "p95": 2504.999999999998,
+              "p99": 3040.9999999999995,
+              "available": true
+            },
+            "normal": {
+              "median": 1500.0,
+              "p95": 3100.0,
+              "p99": 3481.999999999999,
+              "available": true
+            },
+            "candidates": {
+              "median": null,
+              "p95": null,
+              "p99": null,
+              "available": false
+            },
+            "newton": {
+              "median": null,
+              "p95": null,
+              "p99": null,
+              "available": false
+            },
+            "subdivision": {
+              "median": null,
+              "p95": null,
+              "p99": null,
+              "available": false
+            }
+          }
+        }
+      },
+      "repeat_consistency": {
+        "available": true,
+        "input_mismatches": [],
+        "status_mismatches": []
+      }
+    }
+  },
+  "exact_reference": {
+    "available": true,
+    "comparisons": {
+      "old": {
+        "distance_tolerance_absolute": 2e-08,
+        "mismatched_query_ids": [
+          "real00_entry_near",
+          "real02_grazing_stress",
+          "real03_entry_near",
+          "real03_grazing_stress",
+          "real04_entry_near",
+          "real04_grazing_stress",
+          "real06_entry_near",
+          "real07_entry_near",
+          "real08_entry_near",
+          "real09_entry_near",
+          "real10_grazing_stress",
+          "real11_entry_near",
+          "real11_grazing_stress",
+          "real12_entry_near",
+          "real14_entry_near",
+          "real14_grazing_stress",
+          "real15_entry_near",
+          "real17_grazing_stress",
+          "real18_entry_near",
+          "real18_grazing_stress",
+          "real19_entry_near",
+          "real19_grazing_stress",
+          "real20_entry_near",
+          "real21_entry_near",
+          "real22_grazing_stress",
+          "real24_entry_near",
+          "real24_grazing_stress",
+          "real25_entry_near",
+          "real27_entry_near",
+          "real28_entry_near",
+          "real29_entry_near",
+          "real29_grazing_stress",
+          "real30_grazing_stress",
+          "real31_entry_near"
+        ],
+        "reference_blocked_query_ids": []
+      },
+      "experimental": {
+        "distance_tolerance_absolute": 2e-08,
+        "mismatched_query_ids": [
+          "real02_grazing_stress",
+          "real03_grazing_stress",
+          "real04_grazing_stress",
+          "real10_grazing_stress",
+          "real11_grazing_stress",
+          "real14_grazing_stress",
+          "real17_grazing_stress",
+          "real18_grazing_stress",
+          "real19_grazing_stress",
+          "real22_grazing_stress",
+          "real24_grazing_stress",
+          "real26_grazing_stress",
+          "real29_grazing_stress",
+          "real30_grazing_stress"
+        ],
+        "reference_blocked_query_ids": []
+      },
+      "residual": {
+        "distance_tolerance_absolute": 2e-08,
+        "mismatched_query_ids": [
+          "real02_grazing_stress",
+          "real03_grazing_stress",
+          "real04_grazing_stress",
+          "real10_grazing_stress",
+          "real11_grazing_stress",
+          "real14_grazing_stress",
+          "real17_grazing_stress",
+          "real18_grazing_stress",
+          "real19_grazing_stress",
+          "real22_grazing_stress",
+          "real23_grazing_stress",
+          "real24_grazing_stress",
+          "real26_grazing_stress",
+          "real29_grazing_stress",
+          "real30_grazing_stress"
+        ],
+        "reference_blocked_query_ids": []
+      },
+      "ordering": {
+        "distance_tolerance_absolute": 2e-08,
+        "mismatched_query_ids": [
+          "real02_grazing_stress",
+          "real03_grazing_stress",
+          "real04_grazing_stress",
+          "real10_grazing_stress",
+          "real11_grazing_stress",
+          "real14_grazing_stress",
+          "real17_grazing_stress",
+          "real18_grazing_stress",
+          "real19_grazing_stress",
+          "real22_grazing_stress",
+          "real23_grazing_stress",
+          "real24_grazing_stress",
+          "real26_grazing_stress",
+          "real29_grazing_stress",
+          "real30_grazing_stress"
+        ],
+        "reference_blocked_query_ids": []
+      }
+    }
+  },
+  "old_experimental_ratio": {
+    "available": false,
+    "reason": "requires_old_and_experimental_160_query_reports_with_one_bank_hash"
+  },
+  "unknown_fallback_count": null,
+  "unknown_fallback_time_ns": null,
+  "unknown_allocation_count": null,
+  "unknown_memory_bytes": null,
+  "raw_evidence_retained_on_disk": true
+}
