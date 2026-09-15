@@ -932,7 +932,10 @@ DistanceResult CompiledSweptSplineSurface::distance(
       }
       // A small equation residual does not bound ray-distance error near a
       // grazing root. Only an authoritative sign bracket may accept this lead.
-      if (suspect && t > minimum_t) {
+      // This guard repairs candidate acceptance, not the existing unresolved
+      // span algorithm. Nonconverged seeds still require separate coverage.
+      if (suspect && std::isfinite(residual)
+          && residual <= circular_tolerance && t > minimum_t) {
         const double t_tolerance = options.absolute_t_tolerance
           + options.relative_t_tolerance * std::abs(t);
         const double correction_scale = std::isfinite(final_delta_t)
