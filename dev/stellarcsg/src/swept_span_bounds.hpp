@@ -118,6 +118,10 @@ struct RayBoundsResult {
 [[nodiscard]] inline bool hull(const IntervalCubic& values, double& lower,
   double& upper) noexcept
 {
+  if (!std::all_of(values.begin(), values.end(), [](Interval value) {
+        return std::isfinite(value.lo) && std::isfinite(value.hi)
+          && value.lo <= value.hi;
+      })) return false;
   const auto lo = std::min_element(values.begin(), values.end(),
     [](Interval left, Interval right) { return left.lo < right.lo; });
   const auto hi = std::max_element(values.begin(), values.end(),
@@ -136,8 +140,8 @@ struct RayBoundsResult {
   double radius_upper = -infinity;
   for (std::size_t axis = 0; axis < 3; ++axis) {
     if (!finite(authoritative.center[axis]) || !finite(compiled.center[axis])) return {};
-    const Cubic a = bspline_to_bezier(authoritative.center[axis]);
-    const Cubic b = power_to_bezier(compiled.center[axis]);
+    const IntervalCubic a = bspline_to_bezier(authoritative.center[axis]);
+    const IntervalCubic b = power_to_bezier(compiled.center[axis]);
     double a_lo, a_hi, b_lo, b_hi;
     if (!hull(a, a_lo, a_hi) || !hull(b, b_lo, b_hi)) return {};
     lower[axis] = down(std::min(a_lo, b_lo));
@@ -145,7 +149,7 @@ struct RayBoundsResult {
   }
   for (const Cubic* controls : {&authoritative.radius, &compiled.radius}) {
     if (!finite(*controls)) return {};
-    const Cubic bezier = controls == &authoritative.radius
+    const IntervalCubic bezier = controls == &authoritative.radius
       ? bspline_to_bezier(*controls) : power_to_bezier(*controls);
     double radius_lo, radius_hi;
     if (!hull(bezier, radius_lo, radius_hi) || radius_lo < 0.0) return {};
