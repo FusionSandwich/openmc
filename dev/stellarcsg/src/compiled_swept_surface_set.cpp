@@ -216,6 +216,10 @@ SweptCoilSetDistanceResult CompiledSweptSplineSurfaceSet::distance(
           continue;
         const auto candidate = coils_[coil_index]->distance(
           origin, ray_direction, coincident, options);
+        if (candidate.disposition() == DistanceDisposition::unresolved) {
+          throw std::runtime_error(
+            "Swept-spline member has an unresolved nearest-boundary query");
+        }
         if (candidate.found &&
             (!(candidate.distance >= 0.0) || !std::isfinite(candidate.distance))) {
           throw std::runtime_error("Swept-spline member returned invalid hit distance");

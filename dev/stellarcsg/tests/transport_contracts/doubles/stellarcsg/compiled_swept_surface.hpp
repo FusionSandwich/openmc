@@ -13,7 +13,7 @@ struct UnresolvedTestError : std::runtime_error {
   explicit UnresolvedTestError(int id) : std::runtime_error("UNRESOLVED_TEST"),member(id) {}
 };
 enum class TestFault { none, distance_exception, evaluate_exception,
-  normal_exception, returned_unresolved, nan_hit };
+  normal_exception, returned_unresolved, resolved_historical, nan_hit };
 struct SweptSplineSurfaceData {
   int coil_id=0;
   std::string content_id="test-content-id";
@@ -46,6 +46,7 @@ public:
     if(data_.fault==TestFault::distance_exception) throw UnresolvedTestError(data_.coil_id);
     DistanceResult out;
     if(data_.fault==TestFault::returned_unresolved) {
+      out.terminal_unresolved=true;
       out.root_diagnostics.unresolved_intervals=1;
       out.root_diagnostics.fallback_reason=SolverFallbackReason::interval_budget_exhausted;
       return out;
@@ -53,6 +54,8 @@ public:
     if(data_.fault==TestFault::nan_hit) {
       out.found=true; out.distance=std::numeric_limits<double>::quiet_NaN(); return out;
     }
+    if(data_.fault==TestFault::resolved_historical)
+      out.root_diagnostics.unresolved_intervals=1;
     const auto v=normalized(u);
     const auto q=p-data_.center;
     const auto b=dot(q,v);

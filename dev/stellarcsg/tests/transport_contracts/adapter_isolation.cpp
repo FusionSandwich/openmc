@@ -218,6 +218,11 @@ int main(int argc,char** argv) {
     try { observed="distance="+number(s.distance({-2,0,0},{1,0,0},false)); }
     catch(const std::exception&) {return true;} return false;
   });
+  check("historical_unresolved_count_can_be_resolved","BLOCKED_TERMINAL_STATUS",[] {
+    test_payloads["/member"].fault=TestFault::resolved_historical;
+    openmc::SurfaceSweptSpline s(single());
+    return s.distance({-2,0,0},{1,0,0},false)==1;
+  });
   check("earlier_returned_unresolved_not_farther_hit","BLOCKED_TERMINAL_STATUS",[] {
     test_payloads["/members/010"].fault=TestFault::returned_unresolved;
     openmc::SurfaceSweptSpline s(collection());

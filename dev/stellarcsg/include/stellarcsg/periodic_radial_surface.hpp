@@ -45,12 +45,23 @@ struct SurfaceDiagnostics {
   long root_derivative_evaluations {0};
 };
 
+enum class DistanceDisposition { hit, no_hit, unresolved };
+
 struct DistanceResult {
   bool found {false};
   double distance {std::numeric_limits<double>::infinity()};
   RootKind kind {RootKind::sign_change};
   double residual {std::numeric_limits<double>::infinity()};
   RootSearchDiagnostics root_diagnostics {};
+  // This is a terminal result, unlike historical unresolved_intervals counts.
+  // A member may find a lead while an earlier possible root remains unresolved.
+  bool terminal_unresolved {false};
+
+  [[nodiscard]] DistanceDisposition disposition() const noexcept
+  {
+    if (terminal_unresolved) return DistanceDisposition::unresolved;
+    return found ? DistanceDisposition::hit : DistanceDisposition::no_hit;
+  }
 };
 
 class PeriodicRadialSurface {

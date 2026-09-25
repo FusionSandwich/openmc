@@ -961,6 +961,8 @@ DistanceResult CompiledSweptSplineSurface::distance(
   std::array<StackEntry, 64> stack {};
   std::array<UnresolvedSpan, 64> unresolved {};
   std::size_t unresolved_count = 0;
+  double earliest_unresolved = std::numeric_limits<double>::infinity();
+  bool traversal_incomplete = false;
   std::size_t stack_size = 0;
   stack[stack_size++] = {0U, root_interval->enter};
   while (stack_size != 0) {
@@ -1054,10 +1056,13 @@ DistanceResult CompiledSweptSplineSurface::distance(
             span, span_id, proxy_t[seed], angle, alpha) || solved;
         }
 
-        if (!solved && proxy_count != 0
-            && unresolved_count < unresolved.size()) {
-          unresolved[unresolved_count++] = {
-            span_id, std::max(minimum_t, interval->enter), interval->exit};
+        if (!solved) {
+          const double enter = std::max(minimum_t, interval->enter);
+          earliest_unresolved = std::min(earliest_unresolved, enter);
+          ++diagnostics.unresolved_intervals;
+          if (unresolved_count < unresolved.size()) {
+            unresolved[unresolved_count++] = {span_id, enter, interval->exit};
+          }
         }
       }
       continue;
@@ -1068,7 +1073,10 @@ DistanceResult CompiledSweptSplineSurface::distance(
     const bool use_right = right && right->exit > minimum_t && right->enter < best_t;
     if (use_left && use_right) {
       const bool left_first = left->enter <= right->enter;
-      if (stack_size + 2 > stack.size()) break;
+      if (stack_size + 2 > stack.size()) {
+        traversal_incomplete = true;
+        break;
+      }
       stack[stack_size++] = left_first
         ? StackEntry {node.right, right->enter}
         : StackEntry {node.left, left->enter};
@@ -1076,7 +1084,10 @@ DistanceResult CompiledSweptSplineSurface::distance(
         ? StackEntry {node.left, left->enter}
         : StackEntry {node.right, right->enter};
     } else if (use_left || use_right) {
-      if (stack_size + 1 > stack.size()) break;
+      if (stack_size + 1 > stack.size()) {
+        traversal_incomplete = true;
+        break;
+      }
       stack[stack_size++] = use_left
         ? StackEntry {node.left, left->enter}
         : StackEntry {node.right, right->enter};
@@ -1135,15 +1146,19 @@ DistanceResult CompiledSweptSplineSurface::distance(
     static_cast<long>(iterations_total);
   diagnostics.certified_excluded_intervals =
     static_cast<long>(spans_.size()) - static_cast<long>(candidates);
+  const bool terminal_unresolved = traversal_incomplete
+    || (std::isfinite(earliest_unresolved)
+      && (!std::isfinite(best_t) || earliest_unresolved <= best_t));
   if (!std::isfinite(best_t)) {
     add_performance_counter(PerformanceCounter::no_hit_returns);
     return {false, std::numeric_limits<double>::infinity(),
       RootKind::sign_change, std::numeric_limits<double>::infinity(),
-      diagnostics};
+      diagnostics, terminal_unresolved};
   }
   add_performance_counter(PerformanceCounter::accepted_roots);
   record_residual(best_residual, data_.characteristic_length);
-  return {true, best_t, RootKind::sign_change, best_residual, diagnostics};
+  return {true, best_t, RootKind::sign_change, best_residual, diagnostics,
+    terminal_unresolved};
 }
 
 } // namespace stellarcsg

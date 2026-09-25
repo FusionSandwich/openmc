@@ -10,12 +10,15 @@
 
 namespace openmc {
 
-// Adapter validation only: do not change geometric origin contacts or the
-// kernel's coincident policy. Historical unresolved-interval counters are not
-// a terminal disposition; a typed unresolved/no-hit contract is still needed.
+// Keep terminal unresolved separate from historical diagnostic counts: a
+// fallback may resolve an interval after incrementing those counters.
 inline double checked_stellarcsg_distance(
   const stellarcsg::DistanceResult& result, int surface_id)
 {
+  if (result.disposition() == stellarcsg::DistanceDisposition::unresolved) {
+    throw std::runtime_error("StellarCSG surface " + std::to_string(surface_id) +
+                             " has an unresolved nearest-boundary query");
+  }
   if (!result.found) return INFTY;
   if (!std::isfinite(result.distance) || result.distance < 0.0) {
     throw std::runtime_error("StellarCSG surface " + std::to_string(surface_id) +

@@ -54,6 +54,7 @@ D=dev/stellarcsg/tests/transport_contracts
 bash "$D/run_isolation.sh" "$PWD/results/contracts-01"
 # Initial patch: exit 1, 47 checks / 40 PASS / 7 FAIL.
 # Local collection guard/tie repair: exit 1, 47 checks / 43 PASS / 4 FAIL.
+# Terminal unresolved propagation: exit 1, 48 checks / 47 PASS / 1 FAIL.
 # Continue deliberately in another command; do not hide that status.
 python -m pytest -c /dev/null --confcutdir="$D" -q "$D/test_analytic_ownership.py"
 python "$D/python_method_isolation.py" --source openmc/surface.py \
@@ -73,11 +74,11 @@ still NOT_RUN; the analytic rational ledger is a separate oracle.
 
 ## Explicit remaining contracts
 
-* `BLOCKED_TERMINAL_STATUS`: a boolean found flag plus historical diagnostic
-  counts cannot encode a terminal unresolved disposition. Injected unresolved
-  diagnostics are currently dropped by the adapters/collection. A nonzero
-  historical unresolved count might also describe a subsequently resolved
-  fallback; rejecting every nonzero count would be unjustified overblocking.
+* The local terminal-disposition change carries an explicit unresolved result
+  through the member, collection and adapter. It also checks that a historical
+  unresolved count from a subsequently resolved fallback is still accepted.
+  This preserves known failures; the production solver still lacks a complete
+  certified ledger of earlier root-capable intervals.
 * The local collection repair rejects NaN member hits and duplicate member IDs,
   and chooses the minimum stable ID at equal distance. These three controlled
   checks now pass. Repeated physical coil IDs across images require an explicit
@@ -95,8 +96,10 @@ still NOT_RUN; the analytic rational ledger is a separate oracle.
   required. The opaque C++ collection's scalar distance does not expose member
   IDs/materials to the OpenMC Surface API.
 
-Proposed owning-lane outcome interface: terminal `hit`, `no_hit`, `unresolved`,
-plus stable member identity, contact kind, and unresolved-prefix information.
+Proposed complete owning-lane outcome interface: terminal `hit`, `no_hit`,
+`unresolved`, plus stable member identity, contact kind, and unresolved-prefix
+information. The current scalar result carries the terminal disposition but
+does not certify it for every production solver path or expose the full ledger.
 A `hit` requires finite nonnegative distance and resolution/exclusion of every
 possibly earlier interval. A `no_hit` must carry the agreed completeness
 semantics; a sampled reference is not a certificate. Unresolved must cause an

@@ -186,6 +186,15 @@ std::vector<Query> read_bank(const std::string& filename)
 void number_or_null(double x) { if (std::isfinite(x)) std::cout << x; else std::cout << "null"; }
 void counter_or_null(bool available, std::uint64_t value)
 { if (available) std::cout << value; else std::cout << "null"; }
+const char* disposition_name(stellarcsg::DistanceDisposition disposition)
+{
+  switch (disposition) {
+  case stellarcsg::DistanceDisposition::hit: return "hit";
+  case stellarcsg::DistanceDisposition::no_hit: return "no_hit";
+  case stellarcsg::DistanceDisposition::unresolved: return "unresolved";
+  }
+  return "invalid";
+}
 
 int replay_bank(const std::string& filename, const std::string& wistell_file,
   const std::string& wistell_dataset, bool with_reference)
@@ -226,6 +235,12 @@ int replay_bank(const std::string& filename, const std::string& wistell_file,
     double distance_ns=NAN, reference_ns=NAN, evaluate_ns=NAN, normal_ns=NAN;
     try { auto t=Clock::now(); candidate=surface.distance(q.origin,q.direction,q.category.find("coincident_") == 0); distance_ns=std::chrono::duration<double,std::nano>(Clock::now()-t).count(); }
     catch (const std::exception& e) { candidate_blocked=true; candidate_error=e.what(); ++blocked; }
+    if (!candidate_blocked && candidate.disposition()
+          == stellarcsg::DistanceDisposition::unresolved) {
+      candidate_blocked=true;
+      candidate_error="terminal_unresolved";
+      ++blocked;
+    }
     const auto after_candidate = stellarcsg::performance_counters_snapshot();
     try {
       // A distinct point per query keeps the one-entry evaluation cache from
@@ -251,7 +266,7 @@ int replay_bank(const std::string& filename, const std::string& wistell_file,
     if (with_reference && !reference_ok && !candidate_blocked && !reference_blocked) ++reference_disagreements;
     std::cout << "{\"kind\":\"query\",\"id\":\"" << q.id << "\",\"category\":\"" << q.category
       << "\",\"heldout\":" << (q.heldout?"true":"false") << ",\"coefficient_hash\":\"" << q.coefficient_hash << "\",\"source_sha256\":\"" << q.source_sha256
-      << "\",\"expected\":\"" << q.expected << "\",\"candidate_found\":" << (candidate.found?"true":"false") << ",\"candidate_distance\":"; number_or_null(candidate.found?candidate.distance:NAN);
+      << "\",\"expected\":\"" << q.expected << "\",\"candidate_disposition\":\"" << disposition_name(candidate.disposition()) << "\",\"candidate_found\":" << (candidate.found?"true":"false") << ",\"candidate_distance\":"; number_or_null(candidate.found?candidate.distance:NAN);
     std::cout << ",\"reference_available\":" << (with_reference?"true":"false") << ",\"reference_found\":" << (reference.found?"true":"false") << ",\"reference_distance\":"; number_or_null(with_reference && reference.found?reference.distance:NAN);
     std::cout << ",\"candidate_distance_ns\":"; number_or_null(distance_ns); std::cout << ",\"reference_distance_ns\":"; number_or_null(reference_ns); std::cout << ",\"evaluate_ns\":"; number_or_null(evaluate_ns); std::cout << ",\"normal_ns\":"; number_or_null(normal_ns);
     std::cout << ",\"candidate_ok\":" << (candidate_ok?"true":"false") << ",\"reference_agrees\":"; if (with_reference && !reference_blocked) std::cout << (reference_ok?"true":"false"); else std::cout << "null"; std::cout << ",\"counter_distance_calls\":"; counter_or_null(counters_available, after_candidate.distance_calls-before.distance_calls); std::cout << ",\"counter_cache_hits\":"; counter_or_null(counters_available, after_candidate.cache_hits-before.cache_hits); std::cout << ",\"counter_cache_misses\":"; counter_or_null(counters_available, after_candidate.cache_misses-before.cache_misses); std::cout << ",\"candidate_spans\":"; counter_or_null(counters_available, after_candidate.candidate_patches_or_segments-before.candidate_patches_or_segments); std::cout << ",\"candidate_newton\":"; counter_or_null(counters_available, after_candidate.newton_iterations-before.newton_iterations); std::cout << ",\"candidate_subdivision\":"; counter_or_null(counters_available, after_candidate.local_subdivision_nodes-before.local_subdivision_nodes);
