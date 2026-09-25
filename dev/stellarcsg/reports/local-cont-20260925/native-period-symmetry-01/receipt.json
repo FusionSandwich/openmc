@@ -1,0 +1,83 @@
+{
+  "schema": "stellarcsg.native-period-symmetry-sample/v1",
+  "state": "SAMPLED_NATIVE_IMPLICIT_COVARIANCE_ONLY",
+  "scales": [
+    0.99,
+    1.0,
+    1.01
+  ],
+  "span_ids": [
+    0,
+    64,
+    128,
+    255
+  ],
+  "fractions": [
+    0.0,
+    1e-08,
+    0.5,
+    0.99999999
+  ],
+  "alpha_count": 4,
+  "summary": {
+    "original": {
+      "pair_count": 36,
+      "samples_per_scale": 2304,
+      "max_abs_implicit_difference_by_scale": [
+        0.5513385077802886,
+        0.5625325478181218,
+        0.5738390871400287
+      ],
+      "sign_disagreements_by_scale": [
+        256,
+        1128,
+        256
+      ]
+    },
+    "frame": {
+      "pair_count": 36,
+      "samples_per_scale": 2304,
+      "max_abs_implicit_difference_by_scale": [
+        4.361980874945104e-05,
+        4.4060407966117765e-05,
+        4.4501007186781294e-05
+      ],
+      "sign_disagreements_by_scale": [
+        0,
+        1182,
+        0
+      ]
+    },
+    "exact": {
+      "pair_count": 36,
+      "samples_per_scale": 2304,
+      "max_abs_implicit_difference_by_scale": [
+        4.440892098500626e-16,
+        4.440892098500626e-16,
+        4.440892098500626e-16
+      ],
+      "sign_disagreements_by_scale": [
+        0,
+        0,
+        0
+      ]
+    }
+  },
+  "affinity": [
+    0
+  ],
+  "hashes": {
+    "/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-local-continuation-20260925/build/local-cont-20260925/probe_native_period_symmetry": "c461acb3c680c84cb572c44b0528d15c1415fb464d78f1b3474ae62238682b54",
+    "/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-local-continuation-20260925/build/local-cont-20260925/libstellarcsg_reference.a": "70341c506c44a56f8fc71f4c782296d3c772b5ab203c1e71521fe6c4ccda1d83",
+    "/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-local-continuation-20260925/dev/stellarcsg/qualified/wistell_d_swept_coils.h5": "caeed2e41da2082b93d32758e40932d9ac268966998dc2664e8164cb8cb7a89b",
+    "/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-local-continuation-20260925/dev/stellarcsg/reports/local-cont-20260925/wistell-period-frame-candidate.h5": "9571b71cff1f2f1e4bbeb079d779bfcc9b614da87e16cf2cfd49dae931918018",
+    "/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-local-continuation-20260925/dev/stellarcsg/reports/local-cont-20260925/wistell-exact-period-candidate.h5": "5239876917349e057ad261cfeb6dcec4f25f8c10376ee173c2960aed161967ab",
+    "/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-local-continuation-20260925/dev/stellarcsg/reports/local-cont-20260925/period-candidate-manifest-03.json": "1c0df0e1e3b5ad635c296cc216d67fee1a53e93f5d2457734c7aa892a1b93481",
+    "/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-local-continuation-20260925/dev/stellarcsg/reports/local-cont-20260925/period-candidate-manifest-frame-02.json": "208b3bce3feed8cd72360b6db29229b717a9cbce5860ed96cc4c39c3c1a9080b",
+    "/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-local-continuation-20260925/dev/stellarcsg/reports/local-cont-20260925/period-candidate-manifest-exact-01.json": "9b60ff7f924ee2e766a0e832857754c55bed313f72685942d520cc4cd2729686",
+    "/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-local-continuation-20260925/dev/stellarcsg/qualification/probe_native_period_symmetry.cpp": "3c5deeba00e5235e15ff725b9a702cd8b58402eb32d795aa9a9d18761e34e387",
+    "/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-local-continuation-20260925/dev/stellarcsg/qualification/run_native_period_symmetry.py": "b932e42fdace7560926ba363d3abc27d59d7c68f5bd8430750223643e65babc9",
+    "/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-local-continuation-20260925/dev/stellarcsg/reports/local-cont-20260925/native-period-symmetry-01/pairs.txt": "b7e65ae92bd1cef1d6253180f3b10789c4931e4ce92cc16d4fe5ff000b03915d"
+  },
+  "claim_boundary": "Finite-grid comparison of the current compiled implicit evaluator at rotated corresponding points. No continuous floating enclosure, source winding-pack fidelity, periodic-plane ownership, nearest-root proof, transport or performance qualification."
+}

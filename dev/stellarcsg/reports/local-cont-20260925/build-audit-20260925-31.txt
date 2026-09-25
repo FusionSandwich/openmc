@@ -1,0 +1,7 @@
+2026-09-25 local native-period-symmetry diagnostic preflight
+Windows RAM: 33,457,440 KiB total; 4,194,640 KiB free at observation.
+Free disk: C: 82,908,041,216 B; D: 504,026,583,040 B. Target is C:.
+Largest resident processes: vmmemWSL 2,154,844,160 B; ChatGPT 1,252,147,200 B; chrome 947,662,848 B; codex 875,913,216 B; chrome 725,262,336 B; ChatGPT 680,497,152 B; chrome 662,278,144 B; OneDrive 636,321,792 B.
+Existing WSL OpenMC-Dev-D: /usr/bin/g++ GCC 14.2.0; /usr/bin/cmake 3.31.6; /usr/bin/ninja 1.12.1; /usr/bin/h5c++ and HDF5 1.14.5; /opt/openmc-venv Python 3.13.5, h5py 3.16.0 and NumPy 2.5.1. Existing /opt/openmc-venv is 606 MiB and /root/.cache/pip is 152 MiB. Existing local source checkout, 7.3 MiB standalone build with libstellarcsg_reference.a, and 16 MiB native build with libopenmc.so were observed.
+The existing local compiler, HDF5 and compiled StellarCSG library suffice. Planned software download/install/upgrade and external acquisition: 0 B. Planned one-job helper compilation/link uses the existing standalone library and writes under 2 MiB in the existing C: build/local-cont-20260925 directory; pair-list and results each under 1 MiB in dev/stellarcsg/reports/local-cont-20260925. No dependency environment or remote system is changed.
+Rollback: retain source HDF5/manifests and prior build. The new helper binary and diagnostic receipts are identifiable by name and may be removed only after path review; no package/cache rollback is needed.
