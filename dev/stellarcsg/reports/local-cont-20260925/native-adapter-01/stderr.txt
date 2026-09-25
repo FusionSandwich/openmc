@@ -1,0 +1,1 @@
+native adapter smoke: collection: Swept-spline member has an unresolved nearest-boundary query

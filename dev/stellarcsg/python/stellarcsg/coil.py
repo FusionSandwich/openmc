@@ -86,11 +86,18 @@ def _equal_arc_samples(points_cm: np.ndarray, count: int):
     return centerline, tangent, length
 
 
-def _rotation_minimizing_frame(tangent: np.ndarray):
+def _rotation_minimizing_frame(tangent: np.ndarray, centerline: np.ndarray):
     count = tangent.shape[0]
     trial = np.array([0.0, 0.0, 1.0])
     if abs(np.dot(trial, tangent[0])) > 0.9:
-        trial = np.array([1.0, 0.0, 0.0])
+        # A fixed x fallback gives rotational copies different elliptical
+        # cross-section gauges. The local cylindrical radial direction rotates
+        # with the coil about the stellarator axis.
+        radial = np.array([centerline[0, 0], centerline[0, 1], 0.0])
+        radial_norm = np.linalg.norm(radial)
+        scale = max(1.0, float(np.linalg.norm(centerline[0])))
+        trial = (radial / radial_norm if radial_norm > 1.0e-12 * scale
+                 else np.array([1.0, 0.0, 0.0]))
     normal = np.empty_like(tangent)
     normal[0] = trial - np.dot(trial, tangent[0]) * tangent[0]
     normal[0] /= np.linalg.norm(normal[0])
@@ -147,7 +154,8 @@ class SweptSplineData:
         if minor_radius_cm <= 0.0:
             raise ValueError("coil cross-section radius must be positive")
         centerline, tangent, length = _equal_arc_samples(points_cm, sample_count)
-        normal, binormal, residual_twist = _rotation_minimizing_frame(tangent)
+        normal, binormal, residual_twist = _rotation_minimizing_frame(
+            tangent, centerline)
         centerline_coefficients = np.column_stack([
             samples_to_periodic_coefficients(centerline[:, axis]) for axis in range(3)
         ])

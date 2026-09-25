@@ -296,12 +296,6 @@ if(GIT_FOUND AND EXISTS "${CMAKE_CURRENT_SOURCE_DIR}/.git")
   endif()
 endif()
 
-# Check to see if submodules exist (by checking one)
-if(NOT EXISTS "${CMAKE_CURRENT_SOURCE_DIR}/vendor/pugixml/CMakeLists.txt")
-  message(FATAL_ERROR "The git submodules were not downloaded! GIT_SUBMODULE was \
-    turned off or failed. Please update submodules and try again.")
-endif()
-
 #===============================================================================
 # pugixml library
 #===============================================================================
@@ -312,6 +306,9 @@ if(OPENMC_FORCE_VENDORED_LIBS)
 else()
   find_package_write_status(pugixml)
   if (NOT pugixml_FOUND)
+    if(NOT EXISTS "${CMAKE_CURRENT_SOURCE_DIR}/vendor/pugixml/CMakeLists.txt")
+      message(FATAL_ERROR "pugixml was not found and its vendored source is missing")
+    endif()
     add_subdirectory(vendor/pugixml)
     set_target_properties(pugixml PROPERTIES CXX_STANDARD 14 CXX_EXTENSIONS OFF)
   endif()
@@ -327,6 +324,9 @@ if(OPENMC_FORCE_VENDORED_LIBS)
 else()
   find_package_write_status(fmt)
   if (NOT fmt_FOUND)
+    if(NOT EXISTS "${CMAKE_CURRENT_SOURCE_DIR}/vendor/fmt/CMakeLists.txt")
+      message(FATAL_ERROR "fmt was not found and its vendored source is missing")
+    endif()
     set(FMT_INSTALL ON CACHE BOOL "Generate the install target.")
     add_subdirectory(vendor/fmt)
   endif()
