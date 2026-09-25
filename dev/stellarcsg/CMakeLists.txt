@@ -106,6 +106,10 @@ if(STELLARCSG_BUILD_TESTS)
 endif()
 
 if(STELLARCSG_BUILD_BENCHMARKS)
+  if(STELLARCSG_ENABLE_HDF5)
+    add_executable(stellarcsg_recovery04_bank qualification/recovery04_frozen_bank.cpp)
+    target_link_libraries(stellarcsg_recovery04_bank PRIVATE StellarCSG::reference)
+  endif()
   add_executable(stellarcsg_surface_benchmark
     benchmarks/benchmark_compiled_surface.cpp)
   target_link_libraries(stellarcsg_surface_benchmark
