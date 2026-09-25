@@ -11,6 +11,7 @@
 #include "openmc/error.h"
 #include "openmc/hdf5_interface.h"
 #include "openmc/settings.h"
+#include "openmc/stellarcsg_distance.h"
 #include "openmc/xml_interface.h"
 #include "stellarcsg/coefficient_file.hpp"
 
@@ -97,7 +98,7 @@ double SurfacePeriodicSpline::distance(
   const auto result = solver_ == "reference"
     ? surface_->distance_reference(to_vec3(r), to_vec3(u), coincident, options)
     : surface_->distance(to_vec3(r), to_vec3(u), coincident, options);
-  return result.found ? result.distance : INFTY;
+  return checked_stellarcsg_distance(result, id_);
 }
 
 Direction SurfacePeriodicSpline::normal(Position r) const

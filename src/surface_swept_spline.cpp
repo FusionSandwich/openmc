@@ -1,6 +1,7 @@
 #include "openmc/surface_swept_spline.h"
 
 #include <filesystem>
+#include <limits>
 #include <cstdlib>
 #include <iostream>
 #include <stdexcept>
@@ -11,6 +12,7 @@
 #include "openmc/error.h"
 #include "openmc/hdf5_interface.h"
 #include "openmc/settings.h"
+#include "openmc/stellarcsg_distance.h"
 #include "openmc/xml_interface.h"
 #include "stellarcsg/swept_coefficient_file.hpp"
 #include "stellarcsg/performance_counters.hpp"
@@ -24,9 +26,13 @@ Direction convert(stellarcsg::Vec3 value) { return {value.x, value.y, value.z}; 
 SurfaceSweptSpline::SurfaceSweptSpline(pugi::xml_node node) : Surface(node)
 {
   const bool single = check_for_node(node, "dataset");
-  const bool collection = check_for_node(node, "dataset_prefix")
-                          && check_for_node(node, "dataset_count");
-  if (!check_for_node(node, "data_file") || single == collection)
+  const bool has_prefix = check_for_node(node, "dataset_prefix");
+  const bool has_count = check_for_node(node, "dataset_count");
+  const bool has_start = check_for_node(node, "dataset_start");
+  const bool collection = has_prefix && has_count;
+  if (!check_for_node(node, "data_file") ||
+      (single && (has_prefix || has_count || has_start)) ||
+      (!single && !collection))
     fatal_error(fmt::format(
       "Swept-spline surface {} requires data_file and exactly one of dataset "
       "or dataset_prefix plus dataset_count", id_));
@@ -34,14 +40,27 @@ SurfaceSweptSpline::SurfaceSweptSpline(pugi::xml_node node) : Surface(node)
   if (single) dataset_ = get_node_value(node, "dataset", false, true);
   if (collection) {
     dataset_prefix_ = get_node_value(node, "dataset_prefix", false, true);
-    dataset_count_ = std::stoi(
-      get_node_value(node, "dataset_count", false, true));
-    if (check_for_node(node, "dataset_start")) {
-      dataset_start_ = std::stoi(
-        get_node_value(node, "dataset_start", false, true));
+    const auto read_integer = [&](const char* name) {
+      const auto text = get_node_value(node, name, false, true);
+      try {
+        std::size_t consumed = 0;
+        const int value = std::stoi(text, &consumed);
+        if (consumed != text.size()) throw std::invalid_argument("trailing text");
+        return value;
+      } catch (const std::exception&) {
+        fatal_error(fmt::format(
+          "Swept-spline surface {} requires an integer {}", id_, name));
+      }
+      throw std::runtime_error("Unreachable after invalid dataset selector");
+    };
+    dataset_count_ = read_integer("dataset_count");
+    if (has_start) dataset_start_ = read_integer("dataset_start");
+    if (dataset_count_ <= 0 || dataset_start_ < 0 ||
+        dataset_start_ > std::numeric_limits<int>::max() - (dataset_count_ - 1)) {
+      fatal_error(fmt::format("Swept-spline surface {} requires positive "
+                              "dataset_count and a nonnegative, representable "
+                              "dataset index range", id_));
     }
-    if (dataset_count_ <= 0) fatal_error(fmt::format(
-      "Swept-spline surface {} requires a positive dataset_count", id_));
   }
   if (check_for_node(node, "content_id"))
     content_id_ = get_node_value(node, "content_id", false, true);
@@ -115,11 +134,11 @@ double SurfaceSweptSpline::distance(Position r, Direction u, bool coincident) co
   if (surface_) {
     const auto result = surface_->distance(
       convert(r), convert(u), coincident, options);
-    return result.found ? result.distance : INFTY;
+    return checked_stellarcsg_distance(result, id_);
   }
   const auto result = surface_set_->distance(
     convert(r), convert(u), coincident, options);
-  return result.root.found ? result.root.distance : INFTY;
+  return checked_stellarcsg_distance(result.root, id_);
 }
 
 Direction SurfaceSweptSpline::normal(Position r) const

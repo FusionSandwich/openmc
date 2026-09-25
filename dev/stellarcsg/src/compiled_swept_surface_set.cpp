@@ -8,6 +8,7 @@
 #include <limits>
 #include <numeric>
 #include <stdexcept>
+#include <unordered_set>
 #include <utility>
 
 namespace stellarcsg {
@@ -61,7 +62,11 @@ CompiledSweptSplineSurfaceSet::CompiledSweptSplineSurfaceSet(
   }
   coils_.reserve(coils.size());
   coil_ids_.reserve(coils.size());
+  std::unordered_set<int> seen_ids;
   for (auto& data : coils) {
+    if (!seen_ids.insert(data.coil_id).second) {
+      throw std::invalid_argument("Swept-spline surface member IDs must be unique");
+    }
     coil_ids_.push_back(data.coil_id);
     coils_.push_back(
       std::make_unique<CompiledSweptSplineSurface>(std::move(data)));
@@ -126,6 +131,9 @@ double CompiledSweptSplineSurfaceSet::evaluate(const Vec3& point) const
         const auto coil_index = indices_[node.first + local];
         if (!contains(coils_[coil_index]->bounding_box(), point)) continue;
         const double value = coils_[coil_index]->evaluate(point);
+        if (!std::isfinite(value)) {
+          throw std::runtime_error("Swept-spline member classification is nonfinite");
+        }
         if (value <= 0.0) {
           most_negative = inside ? std::min(most_negative, value) : value;
           inside = true;
@@ -157,7 +165,11 @@ Vec3 CompiledSweptSplineSurfaceSet::normal(const Vec3& point) const
         const auto coil_index = indices_[node.first + local];
         if (!contains(coils_[coil_index]->bounding_box(), point)) continue;
         const double residual = std::abs(coils_[coil_index]->evaluate(point));
-        if (residual < best) {
+        if (!std::isfinite(residual)) {
+          throw std::runtime_error("Swept-spline member normal ownership is nonfinite");
+        }
+        if (residual < best || (residual == best &&
+            (best_coil == coils_.size() || coil_ids_[coil_index] < coil_ids_[best_coil]))) {
           best = residual;
           best_coil = coil_index;
         }
@@ -192,7 +204,7 @@ SweptCoilSetDistanceResult CompiledSweptSplineSurfaceSet::distance(
   SweptCoilSetDistanceResult result;
   while (stack_size != 0) {
     const auto entry = stack[--stack_size];
-    if (entry.near_t >= best_t) continue;
+    if (entry.near_t > best_t) continue;
     const auto& node = bvh_[entry.node];
     add_performance_counter(PerformanceCounter::candidate_bvh_nodes);
     if (node.leaf()) {
@@ -200,11 +212,16 @@ SweptCoilSetDistanceResult CompiledSweptSplineSurfaceSet::distance(
         const auto coil_index = indices_[node.first + local];
         const auto interval = coils_[coil_index]->bounding_box().ray_interval(
           origin, ray_direction);
-        if (!interval || interval->exit < 0.0 || interval->enter >= best_t)
+        if (!interval || interval->exit < 0.0 || interval->enter > best_t)
           continue;
         const auto candidate = coils_[coil_index]->distance(
           origin, ray_direction, coincident, options);
-        if (candidate.found && candidate.distance < best_t) {
+        if (candidate.found &&
+            (!(candidate.distance >= 0.0) || !std::isfinite(candidate.distance))) {
+          throw std::runtime_error("Swept-spline member returned invalid hit distance");
+        }
+        if (candidate.found && (candidate.distance < best_t ||
+            (candidate.distance == best_t && coil_ids_[coil_index] < result.coil_id))) {
           best_t = candidate.distance;
           result.root = candidate;
           result.coil_id = coil_ids_[coil_index];
@@ -215,8 +232,8 @@ SweptCoilSetDistanceResult CompiledSweptSplineSurfaceSet::distance(
     }
     const auto left = bvh_[node.left].bbox.ray_interval(origin, ray_direction);
     const auto right = bvh_[node.right].bbox.ray_interval(origin, ray_direction);
-    const bool use_left = left && left->exit >= 0.0 && left->enter < best_t;
-    const bool use_right = right && right->exit >= 0.0 && right->enter < best_t;
+    const bool use_left = left && left->exit >= 0.0 && left->enter <= best_t;
+    const bool use_right = right && right->exit >= 0.0 && right->enter <= best_t;
     if (use_left && use_right) {
       const bool left_first = left->enter <= right->enter;
       stack[stack_size++] = left_first

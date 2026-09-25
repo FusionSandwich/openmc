@@ -1,0 +1,10 @@
+{
+  "evidence": "actual-methods-with-controlled-base",
+  "checks": 20,
+  "passed": 18,
+  "failed": 2,
+  "source": "openmc/surface.py",
+  "source_sha256": "93dab161d4ff09073d628c5f9b18acd74203f7eefc5c05d8bd823e6a35313a60",
+  "native_openmc_imported": false,
+  "transport_run": false
+}

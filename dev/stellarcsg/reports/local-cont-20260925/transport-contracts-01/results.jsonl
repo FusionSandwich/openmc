@@ -1,0 +1,47 @@
+{"case":"single_signed_classification","passed":true,"observed":"","block_code":null}
+{"case":"single_distance_normal_consistency","passed":true,"observed":"distance=1 evaluate(hit)=0","block_code":null}
+{"case":"single_inside_exit","passed":true,"observed":"","block_code":null}
+{"case":"geometric_origin_contact_outward","passed":true,"observed":"","block_code":null}
+{"case":"tracking_origin_suppression_outward","passed":true,"observed":"","block_code":null}
+{"case":"geometric_origin_contact_inward","passed":true,"observed":"","block_code":null}
+{"case":"tracking_origin_suppression_keeps_far_exit","passed":true,"observed":"","block_code":null}
+{"case":"origin_tangent_contact_vs_tracking","passed":true,"observed":"","block_code":null}
+{"case":"positive_near_origin_hit_not_removed_by_adapter","passed":true,"observed":"","block_code":null}
+{"case":"single_direction_positive_scaling","passed":true,"observed":"","block_code":null}
+{"case":"nonzero_direction_required","passed":true,"observed":"Cannot normalize a zero or non-finite vector","block_code":null}
+{"case":"nonfinite_direction_required","passed":true,"observed":"Cannot normalize a zero or non-finite vector","block_code":null}
+{"case":"rigid_translation_and_axis_rotation","passed":true,"observed":"","block_code":null}
+{"case":"negative_finite_positive_infinite_bounds","passed":true,"observed":"","block_code":null}
+{"case":"relative_input_path_resolution","passed":true,"observed":"/fixture/input/payload.h5","block_code":null}
+{"case":"collection_finite_member_dataset_window","passed":true,"observed":"","block_code":null}
+{"case":"collection_union_disjoint_classification","passed":true,"observed":"","block_code":null}
+{"case":"member_id_not_vector_or_dataset_index","passed":true,"observed":"id=7 index=1","block_code":null}
+{"case":"bvh_member_attribution_after_partition","passed":true,"observed":"","block_code":null}
+{"case":"empty_member_set_rejected","passed":true,"observed":"Swept-spline surface set cannot be empty","block_code":null}
+{"case":"missing_dataset_rejected","passed":true,"observed":"FATAL_TEST_DOUBLE: Swept-spline surface 901 requires data_file and exactly one of dataset or dataset_prefix plus dataset_count","block_code":null}
+{"case":"single_plus_complete_collection_rejected","passed":true,"observed":"FATAL_TEST_DOUBLE: Swept-spline surface 901 requires data_file and exactly one of dataset or dataset_prefix plus dataset_count","block_code":null}
+{"case":"single_plus_partial_collection_rejected","passed":true,"observed":"FATAL_TEST_DOUBLE: Swept-spline surface 901 requires data_file and exactly one of dataset or dataset_prefix plus dataset_count","block_code":null}
+{"case":"dataset_count_must_consume_entire_integer","passed":true,"observed":"FATAL_TEST_DOUBLE: Swept-spline surface 902 requires an integer dataset_count","block_code":null}
+{"case":"duplicate_member_ids_rejected","passed":false,"observed":"accepted without exception","block_code":"BLOCKED_DUPLICATE_ID"}
+{"case":"coincident_ownership_stable_under_permutation","passed":false,"observed":"owners=42,7","block_code":"BLOCKED_BOUNDARY_OWNERSHIP"}
+{"case":"true_overlap_not_an_exterior_union_hit","passed":false,"observed":"distance=2 union_value=-3 expected_exit=3","block_code":"BLOCKED_MATERIAL_OVERLAP"}
+{"case":"distance_exception_preserved_single","passed":true,"observed":"UNRESOLVED_TEST member=7","block_code":null}
+{"case":"classification_exception_preserved_single","passed":true,"observed":"UNRESOLVED_TEST member=7","block_code":null}
+{"case":"normal_exception_preserved_single","passed":true,"observed":"UNRESOLVED_TEST member=7","block_code":null}
+{"case":"distance_exception_preserved_collection","passed":true,"observed":"UNRESOLVED_TEST member=7","block_code":null}
+{"case":"returned_unresolved_not_single_no_hit","passed":false,"observed":"distance=+infinity","block_code":"BLOCKED_TERMINAL_STATUS"}
+{"case":"earlier_returned_unresolved_not_farther_hit","passed":false,"observed":"distance=5","block_code":"BLOCKED_TERMINAL_STATUS"}
+{"case":"nonfinite_hit_rejected","passed":true,"observed":"","block_code":null}
+{"case":"periodic_solver_dispatch","passed":true,"observed":"","block_code":null}
+{"case":"periodic_exception_preserved","passed":true,"observed":"UNRESOLVED_TEST member=7","block_code":null}
+{"case":"periodic_returned_unresolved_not_no_hit","passed":false,"observed":"distance=+infinity","block_code":"BLOCKED_TERMINAL_STATUS"}
+{"case":"invalid_units_rejected","passed":true,"observed":"FATAL_TEST_DOUBLE: Periodic-spline surface 901 requires units='cm'","block_code":null}
+{"case":"unsupported_periodic_policy_rejected","passed":true,"observed":"FATAL_TEST_DOUBLE: Periodic-spline surface 901 requires solver='layered' or 'reference'; received 'invented'","block_code":null}
+{"case":"source_options_not_inflated_by_adapter","passed":true,"observed":"","block_code":null}
+{"case":"negative_dataset_start_rejected","passed":true,"observed":"FATAL_TEST_DOUBLE: Swept-spline surface 902 requires positive dataset_count and a nonnegative, representable dataset index range","block_code":null}
+{"case":"overflowing_dataset_range_rejected","passed":true,"observed":"FATAL_TEST_DOUBLE: Swept-spline surface 902 requires positive dataset_count and a nonnegative, representable dataset index range","block_code":null}
+{"case":"single_plus_start_rejected","passed":true,"observed":"FATAL_TEST_DOUBLE: Swept-spline surface 901 requires data_file and exactly one of dataset or dataset_prefix plus dataset_count","block_code":null}
+{"case":"empty_collection_rejected","passed":true,"observed":"FATAL_TEST_DOUBLE: Swept-spline surface 902 requires positive dataset_count and a nonnegative, representable dataset index range","block_code":null}
+{"case":"periodic_nonfinite_hit_rejected","passed":true,"observed":"StellarCSG surface 901 returned a non-finite or negative hit distance","block_code":null}
+{"case":"nonfinite_member_hit_not_collection_no_hit","passed":false,"observed":"accepted without exception","block_code":"BLOCKED_INVALID_MEMBER_HIT"}
+{"case":"adapter_serialization_real_hdf5_file","passed":true,"observed":"/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-local-continuation-20260925/dev/stellarcsg/reports/local-cont-20260925/transport-contracts-01/adapter-output.h5","block_code":null}

@@ -1,1 +1,2 @@
 .git_archival.txt  export-subst
+dev/stellarcsg/tests/transport_contracts/*.sh text eol=lf

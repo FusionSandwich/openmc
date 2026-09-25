@@ -2803,13 +2803,18 @@ class SweptSplineSurface(Surface):
     def _from_xml_element(cls, elem):
         if get_text(elem, 'units', 'cm') != 'cm':
             raise ValueError("swept-spline XML units must be 'cm'")
+        kwargs = {
+            'surface_id': int(get_text(elem, 'id')),
+            'boundary_type': get_text(elem, 'boundary', 'transmission'),
+            'name': get_text(elem, 'name'),
+        }
+        if kwargs['boundary_type'] in _ALBEDO_BOUNDARIES:
+            kwargs['albedo'] = float(get_text(elem, 'albedo', 1.0))
         return cls(
             data_file=get_text(elem, 'data_file'),
             dataset=get_text(elem, 'dataset'),
             content_id=get_text(elem, 'content_id'),
-            surface_id=int(get_text(elem, 'id')),
-            boundary_type=get_text(elem, 'boundary', 'transmission'),
-            name=get_text(elem, 'name'),
+            **kwargs,
         )
 
     @classmethod
