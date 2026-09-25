@@ -124,10 +124,15 @@ struct BoundingBox {
   }
 
   [[nodiscard]] std::optional<RayInterval> ray_interval(
-    const Vec3& origin, const Vec3& direction, double parallel_tolerance = 1.0e-15) const
+    const Vec3& origin, const Vec3& direction) const
   {
     if (!valid()) {
       throw std::invalid_argument("Bounding box lower corner exceeds upper corner");
+    }
+    if (!std::isfinite(origin.x) || !std::isfinite(origin.y)
+        || !std::isfinite(origin.z) || !std::isfinite(direction.x)
+        || !std::isfinite(direction.y) || !std::isfinite(direction.z)) {
+      throw std::invalid_argument("Ray origin and direction must be finite");
     }
 
     double t_enter = -std::numeric_limits<double>::infinity();
@@ -139,17 +144,35 @@ struct BoundingBox {
     const std::array<double, 3> hi {upper.x, upper.y, upper.z};
 
     for (std::size_t i = 0; i < 3; ++i) {
-      if (std::abs(d[i]) <= parallel_tolerance) {
+      if (d[i] == 0.0) {
         if (o[i] < lo[i] || o[i] > hi[i]) {
           return std::nullopt;
         }
         continue;
       }
-
-      double a = (lo[i] - o[i]) / d[i];
-      double b = (hi[i] - o[i]) / d[i];
+      // Bound both rounded subtractions before division, then widen the
+      // rounded quotients. If an intermediate overflows, retain the entire
+      // axis instead of risking a false ray-box exclusion.
+      if (!std::isfinite(lo[i]) || !std::isfinite(hi[i])) continue;
+      const double lower_difference = lo[i] - o[i];
+      const double upper_difference = hi[i] - o[i];
+      if (!std::isfinite(lower_difference)
+          || !std::isfinite(upper_difference)) continue;
+      const double lower_difference_down = std::nextafter(
+        lower_difference, -std::numeric_limits<double>::infinity());
+      const double upper_difference_up = std::nextafter(
+        upper_difference, std::numeric_limits<double>::infinity());
+      const double raw_enter = d[i] > 0.0
+        ? lower_difference_down / d[i] : upper_difference_up / d[i];
+      const double raw_exit = d[i] > 0.0
+        ? upper_difference_up / d[i] : lower_difference_down / d[i];
+      if (!std::isfinite(raw_enter) || !std::isfinite(raw_exit)) continue;
+      const double a = std::nextafter(
+        raw_enter, -std::numeric_limits<double>::infinity());
+      const double b = std::nextafter(
+        raw_exit, std::numeric_limits<double>::infinity());
       if (a > b) {
-        std::swap(a, b);
+        throw std::logic_error("Invalid widened ray-box slab interval");
       }
       t_enter = std::max(t_enter, a);
       t_exit = std::min(t_exit, b);

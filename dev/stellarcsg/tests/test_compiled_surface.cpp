@@ -525,6 +525,29 @@ void test_hdf5_round_trip()
 }
 #endif
 
+void test_near_parallel_ray_box_interval()
+{
+  const stellarcsg::BoundingBox box {
+    {1.0e16, 1.0, -1.0}, {1.0e16 + 100.0, 2.0, 1.0}};
+  const auto nearly_parallel = box.ray_interval(
+    {0.0, 0.0, 0.0}, {1.0, 1.0e-16, 0.0});
+  check(nearly_parallel.has_value()
+      && nearly_parallel->enter <= 1.0e16
+      && nearly_parallel->exit >= 1.0e16,
+    "nonzero near-parallel ray component reaches a distant box");
+  check(!box.ray_interval({0.0, 0.0, 0.0}, {1.0, 0.0, 0.0}),
+    "exactly parallel ray outside the slab still misses");
+  bool invalid_rejected = false;
+  try {
+    (void) box.ray_interval(
+      {std::numeric_limits<double>::quiet_NaN(), 0.0, 0.0},
+      {1.0, 0.0, 0.0});
+  } catch (const std::invalid_argument&) {
+    invalid_rejected = true;
+  }
+  check(invalid_rejected, "nonfinite ray origin is rejected before slab pruning");
+}
+
 void test_sha256_known_vector()
 {
   stellarcsg::Sha256 digest;
@@ -554,6 +577,7 @@ int main()
     test_close_root_pair_regressions();
     test_exact_circular_swept_coil();
     test_swept_coil_set_bvh();
+    test_near_parallel_ray_box_interval();
     test_sha256_known_vector();
 #ifdef STELLARCSG_HAS_HDF5
     test_hdf5_round_trip();
