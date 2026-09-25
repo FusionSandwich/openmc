@@ -1,0 +1,17 @@
+Native probe precision refresh, 2026-09-25, before recompiling helper.
+
+Windows RAM: 33,457,440 KiB total, 3,229,104 KiB free. C: free
+85,888,602,112 B; D: free 505,482,510,336 B. Largest residents:
+ChatGPT 1.35 GiB, Julia 0.98 GiB, Chrome 0.92/0.90 GiB, Codex 0.80
+GiB. Windows Python 3.12.10 and Git 2.55.0 present; no Conda command.
+WSL OpenMC-Dev-D still has GCC 14.2, CMake 3.31.6, Ninja 1.12.1,
+HDF5 1.14.5, /opt/openmc-venv and pip cache. The existing native helper,
+libopenmc.so, local fmt/pugixml source checkout, analytic HDF5 and D:
+verification checkout are present; no new dependency is needed.
+
+Planned external acquisition: 0 bytes. Recompile only the existing
+native_adapter_smoke helper with one compiler job, output under 20 MiB
+in build/native-local-20260925 on C:. New native-adapter-07 receipt was
+absent before execution. Rollback: restore the prior helper source and
+recompile after preserving receipts; no dependency environment or other
+checkout is modified.

@@ -7,6 +7,7 @@
 #include "stellarcsg/swept_coefficient_file.hpp"
 
 #include <cmath>
+#include <iomanip>
 #include <iostream>
 #include <set>
 #include <stdexcept>
@@ -54,6 +55,7 @@ int main(int argc, char** argv)
       throw std::invalid_argument("Usage: native_adapter_smoke ANALYTIC_H5");
     }
     openmc::settings::path_input = "";
+    std::cout << std::setprecision(17);
     const std::string file = argv[1];
     const std::string one =
       "<geometry><surface id='902' type='swept-spline' data_file='" + file
