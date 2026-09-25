@@ -74,7 +74,14 @@ constexpr Vec3 operator*(double scalar, Vec3 value)
 
 constexpr Vec3 operator/(Vec3 value, double scalar)
 {
-  value *= 1.0 / scalar;
+  if ((scalar >= 1.0e-300 && scalar <= 1.0e300)
+      || (scalar <= -1.0e-300 && scalar >= -1.0e300)) {
+    value *= 1.0 / scalar;
+  } else {
+    value.x /= scalar;
+    value.y /= scalar;
+    value.z /= scalar;
+  }
   return value;
 }
 
@@ -97,6 +104,10 @@ constexpr double norm_squared(const Vec3& value)
 
 inline double norm(const Vec3& value)
 {
+  const double scale = std::max({
+    std::abs(value.x), std::abs(value.y), std::abs(value.z)});
+  if (scale < 1.0e-150 || scale > 1.0e150)
+    return std::hypot(value.x, value.y, value.z);
   return std::sqrt(norm_squared(value));
 }
 
@@ -106,6 +117,9 @@ inline Vec3 normalized(const Vec3& value)
   if (!(magnitude > 0.0) || !std::isfinite(magnitude)) {
     throw std::domain_error("Cannot normalize a zero or non-finite vector");
   }
+  if (magnitude < 1.0e-150 || magnitude > 1.0e150)
+    return {value.x / magnitude, value.y / magnitude,
+      value.z / magnitude};
   return value / magnitude;
 }
 

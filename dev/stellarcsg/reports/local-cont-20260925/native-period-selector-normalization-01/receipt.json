@@ -1,0 +1,52 @@
+{
+  "schema": "stellarcsg.native-period-selector/v1",
+  "state": "PASS_REPRESENTATION_ONLY",
+  "command": [
+    "/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-local-continuation-20260925/build/native-local-20260925/native_period_selector",
+    "/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-local-continuation-20260925/dev/stellarcsg/qualified/wistell_d_swept_coils.h5",
+    "1000 1002 1001 1007 1008 1010 1009 1015 1016 1023 1024 1031 1032 1039 1040 1046 1047 1045",
+    "/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-local-continuation-20260925/dev/stellarcsg/reports/local-cont-20260925/native-period-selector-normalization-01/statepoint-selector.h5"
+  ],
+  "exit_code": 0,
+  "loader_binding": "libopenmc.so => /mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-local-continuation-20260925/build/native-local-20260925/lib/libopenmc.so (0x0000786cd9619000)",
+  "affinity": [
+    0
+  ],
+  "selected_member_ids": [
+    1000,
+    1002,
+    1001,
+    1007,
+    1008,
+    1010,
+    1009,
+    1015,
+    1016,
+    1023,
+    1024,
+    1031,
+    1032,
+    1039,
+    1040,
+    1046,
+    1047,
+    1045
+  ],
+  "selected_member_count": 18,
+  "native_registered": true,
+  "statepoint_selector_roundtrip": true,
+  "python_statepoint_roundtrip": true,
+  "native_transport_run": false,
+  "hashes": {
+    "/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-local-continuation-20260925/build/native-local-20260925/native_period_selector": "a66f5c7acf37b521f58732361c32d452d3610e0c0f3de25c38dd3a9189f11579",
+    "/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-local-continuation-20260925/build/native-local-20260925/lib/libopenmc.so": "3a3dd136201abb937e8940165178b09d681de2acb624daecebb1c5f8eb2cd31b",
+    "/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-local-continuation-20260925/dev/stellarcsg/qualified/wistell_d_swept_coils.h5": "caeed2e41da2082b93d32758e40932d9ac268966998dc2664e8164cb8cb7a89b",
+    "/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-local-continuation-20260925/dev/stellarcsg/reports/local-cont-20260925/period-candidate-manifest-03.json": "1c0df0e1e3b5ad635c296cc216d67fee1a53e93f5d2457734c7aa892a1b93481",
+    "/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-local-continuation-20260925/dev/stellarcsg/qualification/native_period_selector.cpp": "613c6e64b56033611c3df0db4480a56e84e997f0146568bd3118b56a419332f8",
+    "/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-local-continuation-20260925/dev/stellarcsg/qualification/run_native_period_selector.py": "52173019430d685397f463b2ceb5d60b7528ee0dba1c91c43127c9ff68098af2",
+    "/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-local-continuation-20260925/openmc/surface.py": "6c59f6f11d58742ba1e75a214d206e3d67a36663578028f4f5ee2d6768e7fd8f"
+  },
+  "statepoint_sha256": "3c3e17a7ae867dd2622f1463ff30580289dbf49b5820f34f2cb40b309155ecaa",
+  "python_openmc_source": "/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-local-continuation-20260925/openmc/__init__.py",
+  "claim_boundary": "Native registration and selector serialization of the 18 provisional whole-coil candidates only; no seam ownership, clipping, material transport or root proof."
+}

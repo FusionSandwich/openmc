@@ -353,6 +353,17 @@ void test_exact_circular_swept_coil()
     stellarcsg::SweptTorusMode::approximate_torus_surrogate};
   const stellarcsg::CompiledSweptSplineSurface forced_coil {
     std::move(forced_data), true};
+  for (int exponent : {-600, 600}) {
+    const auto scaled = forced_coil.distance(
+      {major + 2.0 * minor, 0.0, 0.0},
+      {-std::ldexp(1.0, exponent), 0.0, 0.0}, false);
+    check(scaled.found,
+      "faithful swept distance accepts finite extreme ray scaling");
+    if (scaled.found) {
+      check_near(scaled.distance, minor, 1.0e-7,
+        "finite extreme ray scaling preserves physical distance");
+    }
+  }
   check(coil.approximate_torus_surrogate(),
     "analytic control explicitly selects approximate torus surrogate");
   check(!forced_coil.approximate_torus_surrogate(),
@@ -563,6 +574,33 @@ void test_near_parallel_ray_box_interval()
   check(invalid_rejected, "nonfinite ray origin is rejected before slab pruning");
 }
 
+void test_extreme_scale_frame_normalization()
+{
+  const double delta = std::ldexp(1.0, -537);
+  const stellarcsg::Vec3 derivative {delta, 0.5 * delta, 0.0};
+  const auto tangent = stellarcsg::normalized(derivative);
+  check_near(stellarcsg::norm_squared(tangent), 1.0, 2.0e-15,
+    "underflow-scale frame tangent has unit length");
+  stellarcsg::Vec3 normal {0.0, 0.0, 1.0};
+  normal = stellarcsg::normalized(
+    normal - stellarcsg::dot(normal, tangent) * tangent);
+  const auto binormal = stellarcsg::normalized(
+    stellarcsg::cross(tangent, normal));
+  normal = stellarcsg::cross(binormal, tangent);
+  check(normal.z <= 1.0 + 2.0e-15,
+    "underflow-scale frame does not expand a unit-radius surface");
+  for (int exponent : {-600, 600}) {
+    const auto unit = stellarcsg::normalized(
+      {std::ldexp(1.0, exponent), 0.0, 0.0});
+    check_near(unit.x, 1.0, 2.0e-15,
+      "finite extreme-scale direction normalizes");
+  }
+  const auto smallest = stellarcsg::normalized(
+    {std::numeric_limits<double>::denorm_min(), 0.0, 0.0});
+  check_near(smallest.x, 1.0, 2.0e-15,
+    "subnormal direction normalizes without reciprocal overflow");
+}
+
 void test_swept_span_horner_bounds()
 {
   stellarcsg::SweptSplineSurfaceData data;
@@ -629,6 +667,7 @@ int main()
     test_exact_circular_swept_coil();
     test_swept_coil_set_bvh();
     test_near_parallel_ray_box_interval();
+    test_extreme_scale_frame_normalization();
     test_swept_span_horner_bounds();
     test_sha256_known_vector();
 #ifdef STELLARCSG_HAS_HDF5
