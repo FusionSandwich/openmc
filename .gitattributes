@@ -8,3 +8,5 @@ dev/stellarcsg/reports/local-cont-20260925/period-candidate-manifest-frame-02.js
 dev/stellarcsg/reports/local-cont-20260925/period-manifest-comparison-02.json text eol=lf
 dev/stellarcsg/reports/local-cont-20260925/period-selector-check-02/receipt.json text eol=lf
 dev/stellarcsg/reports/local-cont-20260925/period-selector-check-frame-02/receipt.json text eol=lf
+dev/stellarcsg/experiments/swept_prefix_interval.cpp text eol=lf
+dev/stellarcsg/qualification/run_cpp_prefix_probe.py text eol=lf

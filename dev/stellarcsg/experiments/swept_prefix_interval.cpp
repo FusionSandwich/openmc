@@ -347,6 +347,9 @@ int main(int argc, char** argv)
       std::size_t padded_negative_unknown = 0;
       std::array<std::size_t, 3> slack_excluded {};
       std::array<std::array<std::size_t, 3>, 3> gap_slack_excluded {};
+      constexpr std::array<double, 6> rectangle_gaps {
+        1.0e-5, 1.0e-4, 1.0e-3, 1.0e-2, 1.0e-1, 1.0};
+      std::array<std::size_t, rectangle_gaps.size()> rectangle_gap_excluded {};
       std::size_t zero_gap_unknown = 0;
       std::size_t negative_unknown = 0;
       std::size_t nodes = 0;
@@ -361,6 +364,15 @@ int main(int argc, char** argv)
           dominant_axis, lead.distance - gap, true);
         const auto rectangle = analyze_span(span, origin, direction,
           dominant_axis, lead.distance - gap, false);
+        std::array<bool, rectangle_gaps.size()> rectangle_gap_result {};
+        SpanResult rectangle_last_gap;
+        for (std::size_t i = 0; i < rectangle_gaps.size(); ++i) {
+          const auto gap_result = analyze_span(span, origin, direction,
+            dominant_axis, lead.distance - rectangle_gaps[i], false);
+          rectangle_gap_result[i] = gap_result.undecided == 0;
+          if (i + 1 == rectangle_gaps.size()) rectangle_last_gap = gap_result;
+          rectangle_gap_excluded[i] += rectangle_gap_result[i];
+        }
         const auto zero_gap = analyze_span(span, origin, direction,
           dominant_axis, lead.distance, true);
         const auto negative = analyze_span(span, origin, direction,
@@ -422,6 +434,20 @@ int main(int argc, char** argv)
                   << ",\"rectangle_excluded\":"
                   << (rectangle.undecided == 0 ? "true" : "false")
                   << ",\"rectangle_nodes\":" << rectangle.nodes
+                  << ",\"rectangle_gap_excluded\":[";
+        for (std::size_t i = 0; i < rectangle_gap_result.size(); ++i) {
+          if (i != 0) std::cout << ',';
+          std::cout << (rectangle_gap_result[i] ? "true" : "false");
+        }
+        std::cout << ']'
+                  << ",\"rectangle_last_gap_outcomes\":[";
+        for (std::size_t i = 0; i < rectangle_last_gap.outcomes.size(); ++i) {
+          if (i != 0) std::cout << ',';
+          std::cout << rectangle_last_gap.outcomes[i];
+        }
+        std::cout << ']'
+                  << ",\"rectangle_last_gap_undecided\":"
+                  << rectangle_last_gap.undecided
                   << ",\"slack_excluded\":["
                   << (slack_result[0] ? "true" : "false") << ','
                   << (slack_result[1] ? "true" : "false") << ','
@@ -456,6 +482,12 @@ int main(int argc, char** argv)
                 << ",\"projection_slack_cm\":" << projection_slack
                 << ",\"prefix_excluded\":" << excluded_prefix
                 << ",\"rectangle_excluded\":" << rectangle_excluded
+                << ",\"rectangle_gap_excluded\":[";
+      for (std::size_t i = 0; i < rectangle_gap_excluded.size(); ++i) {
+        if (i != 0) std::cout << ',';
+        std::cout << rectangle_gap_excluded[i];
+      }
+      std::cout << ']'
                 << ",\"slack_excluded\":[" << slack_excluded[0] << ','
                 << slack_excluded[1] << ',' << slack_excluded[2] << ']'
                 << ",\"gap_slack_excluded\":[";
