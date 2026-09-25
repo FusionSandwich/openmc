@@ -574,6 +574,29 @@ void test_near_parallel_ray_box_interval()
   check(invalid_rejected, "nonfinite ray origin is rejected before slab pruning");
 }
 
+void test_endpoint_sphere_proxy_seeds()
+{
+  const auto direction = stellarcsg::normalized(
+    stellarcsg::Vec3 {-1.0, -1.0, 0.0});
+  const double coordinate = std::ldexp(1.0, 30);
+  const stellarcsg::Vec3 origin {coordinate, coordinate, 0.0};
+  const auto roots = stellarcsg::ray_sphere_seed_roots(
+    origin, direction, {0.0, 0.0, 0.0}, 1.0);
+  check(roots.has_value(),
+    "endpoint sphere proxy retains a central hit despite quadratic cancellation");
+  if (roots) {
+    check((*roots)[0] > 0.0 && (*roots)[0] < (*roots)[1],
+      "endpoint sphere proxy orders both positive roots");
+    const double center_t = -stellarcsg::dot(origin, direction)
+      / stellarcsg::norm_squared(direction);
+    check((*roots)[0] < center_t && center_t < (*roots)[1],
+      "endpoint sphere proxy roots straddle the center crossing");
+  }
+  check(!stellarcsg::ray_sphere_seed_roots(
+      {coordinate, coordinate, 2.0}, direction, {0.0, 0.0, 0.0}, 1.0),
+    "offset endpoint sphere proxy remains a miss");
+}
+
 void test_extreme_scale_frame_normalization()
 {
   const double delta = std::ldexp(1.0, -537);
@@ -748,6 +771,7 @@ int main()
     test_exact_circular_swept_coil();
     test_swept_coil_set_bvh();
     test_near_parallel_ray_box_interval();
+    test_endpoint_sphere_proxy_seeds();
     test_extreme_scale_frame_normalization();
     test_swept_span_horner_bounds();
     test_swept_earlier_unresolved_candidate();

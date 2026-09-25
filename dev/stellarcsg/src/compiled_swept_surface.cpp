@@ -1245,15 +1245,11 @@ DistanceResult CompiledSweptSplineSurface::distance(
           }
         }
         for (const Vec3 endpoint : {span.proxy_start, span.proxy_end}) {
-          const Vec3 sphere_offset = origin - endpoint;
-          const double qb = 2.0 * dot(sphere_offset, ray_direction);
-          const double qc = norm_squared(sphere_offset)
-                            - span.proxy_radius * span.proxy_radius;
-          const double discriminant = qb * qb - 4.0 * qc;
-          if (discriminant >= 0.0) {
-            const double root = std::sqrt(discriminant);
-            add_proxy_t(0.5 * (-qb - root));
-            add_proxy_t(0.5 * (-qb + root));
+          const auto roots = ray_sphere_seed_roots(
+            origin, ray_direction, endpoint, span.proxy_radius);
+          if (roots) {
+            add_proxy_t((*roots)[0]);
+            add_proxy_t((*roots)[1]);
           }
         }
         for (std::size_t insertion = 1; insertion < proxy_count; ++insertion) {

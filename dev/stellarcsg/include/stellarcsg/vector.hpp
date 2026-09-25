@@ -199,6 +199,41 @@ struct BoundingBox {
   }
 };
 
+// Heuristic ray/sphere intersection seeds. Compute the closest-line distance
+// through the cross product instead of subtracting two large quadratic terms.
+// The direction need not have exactly unit length after binary64 normalization.
+// These seeds are not a certified exclusion test at tangency.
+[[nodiscard]] inline std::optional<std::array<double, 2>>
+ray_sphere_seed_roots(const Vec3& origin, const Vec3& direction,
+                      const Vec3& center, double radius)
+{
+  if (!(radius > 0.0) || !std::isfinite(radius)) {
+    throw std::invalid_argument("Ray/sphere seed radius must be finite and positive");
+  }
+  const long double wx = static_cast<long double>(origin.x) - center.x;
+  const long double wy = static_cast<long double>(origin.y) - center.y;
+  const long double wz = static_cast<long double>(origin.z) - center.z;
+  const long double dx = direction.x, dy = direction.y, dz = direction.z;
+  const long double direction_squared = dx*dx + dy*dy + dz*dz;
+  if (!(direction_squared > 0.0L) || !std::isfinite(direction_squared)
+      || !std::isfinite(wx) || !std::isfinite(wy) || !std::isfinite(wz)) {
+    throw std::invalid_argument("Ray/sphere seed inputs must be finite and nonzero");
+  }
+  const long double projection = wx*dx + wy*dy + wz*dz;
+  const long double cx = wy*dz - wz*dy;
+  const long double cy = wz*dx - wx*dz;
+  const long double cz = wx*dy - wy*dx;
+  const long double radial_squared =
+    direction_squared * static_cast<long double>(radius) * radius
+    - (cx*cx + cy*cy + cz*cz);
+  if (radial_squared < 0.0L) return std::nullopt;
+  const long double center_t = -projection / direction_squared;
+  const long double half_width = std::sqrt(radial_squared) / direction_squared;
+  return std::array<double, 2> {{
+    static_cast<double>(center_t - half_width),
+    static_cast<double>(center_t + half_width)}};
+}
+
 } // namespace stellarcsg
 
 #endif

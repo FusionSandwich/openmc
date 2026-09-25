@@ -1,0 +1,7 @@
+2026-09-25 local endpoint-proxy-seed frozen-bank rebuild preflight
+Windows RAM: 33,457,440 KiB total; 3,541,744 KiB free at corrected observation. First free-RAM query used a nonexistent property and returned null; no build was issued until corrected.
+Free disk: C: 84,223,528,960 B; D: 503,715,909,632 B. Bank build and output target C:.
+Largest resident processes: vmmemWSL 1,918,017,536 B; ChatGPT 1,347,690,496 B; chrome 940,822,528 B; codex 877,965,312 B; ChatGPT 738,672,640 B; chrome 656,162,816 B; chrome 655,007,744 B; OneDrive 650,035,200 B.
+Existing WSL OpenMC-Dev-D: GCC 14.2.0, CMake 3.31.6, Ninja 1.12.1, Python 3.13.5, /opt/openmc-venv 606 MiB and pip cache 152 MiB. Standalone/native build directories and recovery04 bank source are present. Earlier in this turn Windows Git/Python/CMake, no active Conda/venv, and related OpenMC/StellarCSG local checkouts were observed. The source HDF5 and frozen CSV are already local.
+Existing capabilities suffice. Planned software download/install/upgrade/acquisition: 0 B. One-job Ninja relink of existing frozen-bank executable, expected under 10 MiB new output, targets build/local-cont-20260925 on C:. Then one bounded one-CPU 160-ray diagnostic replay to a new report directory. No dependency environment or remote system changes.
+Rollback: preserve Git history and receipts; revert named source/test edits and relink the existing bank if needed. No package/cache rollback is needed.
