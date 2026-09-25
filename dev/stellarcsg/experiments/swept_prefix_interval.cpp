@@ -354,7 +354,7 @@ SpanResult analyze_span(const stellarcsg::SweptSpan& span,
 }
 
 enum class QuadraticOutcome {
-  separated_value, no_real_root, outside_prefix,
+  separated_value, no_real_root, outside_prefix, separated_plane,
   undecided_frame, undecided_root
 };
 
@@ -362,12 +362,13 @@ bool quadratic_excluded(QuadraticOutcome state)
 {
   return state == QuadraticOutcome::separated_value
     || state == QuadraticOutcome::no_real_root
-    || state == QuadraticOutcome::outside_prefix;
+    || state == QuadraticOutcome::outside_prefix
+    || state == QuadraticOutcome::separated_plane;
 }
 
 QuadraticOutcome exclude_quadratic_tile(
   const stellarcsg::SweptSpan& span, I u, double cutoff,
-  double implicit_slack)
+  double implicit_slack, double plane_slack)
 {
   const double scale = 1.0 / (span.angle_max - span.angle_min);
   V center, center_derivative, supplied;
@@ -413,23 +414,34 @@ QuadraticOutcome exclude_quadratic_tile(
   const I denominator = I::point(2.0) * qa;
   const I first = (-qb - root) / denominator;
   const I second = (-qb + root) / denominator;
-  const auto away = [cutoff](I candidate) {
-    return candidate.hi < 0.0 || candidate.lo > cutoff;
+  bool used_plane = false;
+  const auto branch_excluded = [&](I candidate) {
+    const auto prefix = intersection(candidate, t);
+    if (!prefix) return true;
+    const V at_root {I::point(550.0) - *prefix - center[0],
+                     -center[1], -center[2]};
+    const I plane = dot(at_root, *tangent);
+    if (plane.lo > plane_slack || plane.hi < -plane_slack) {
+      used_plane = true;
+      return true;
+    }
+    return false;
   };
-  return away(first) && away(second)
-    ? QuadraticOutcome::outside_prefix
-    : QuadraticOutcome::undecided_root;
+  if (!branch_excluded(first) || !branch_excluded(second))
+    return QuadraticOutcome::undecided_root;
+  return used_plane ? QuadraticOutcome::separated_plane
+                    : QuadraticOutcome::outside_prefix;
 }
 
 struct QuadraticResult {
   std::size_t nodes {0};
   std::size_t undecided {0};
-  std::array<std::size_t, 5> outcomes {};
+  std::array<std::size_t, 6> outcomes {};
 };
 
 QuadraticResult analyze_quadratic_span(
   const stellarcsg::SweptSpan& span, double cutoff,
-  double implicit_slack, int max_depth = 36,
+  double implicit_slack, double plane_slack, int max_depth = 36,
   std::size_t max_nodes = 10000)
 {
   struct Tile { double lo, hi; int depth; };
@@ -446,7 +458,8 @@ QuadraticResult analyze_quadratic_span(
       break;
     }
     const auto state = exclude_quadratic_tile(
-      span, I::bounds(tile.lo, tile.hi), cutoff, implicit_slack);
+      span, I::bounds(tile.lo, tile.hi), cutoff,
+      implicit_slack, plane_slack);
     if (quadratic_excluded(state) || tile.depth == max_depth) {
       ++result.outcomes[static_cast<std::size_t>(state)];
       if (!quadratic_excluded(state)) ++result.undecided;
@@ -466,6 +479,7 @@ QuadraticResult analyze_quadratic_span(
 int quadratic_seam_main(const char* h5)
 {
   constexpr double slack = 1.0e-6;
+  constexpr double plane_slack = 1.0e-4;
   std::cout << std::setprecision(17);
   const stellarcsg::Vec3 origin {550.0, 0.0, 0.0};
   const stellarcsg::Vec3 direction {-1.0, 0.0, 0.0};
@@ -479,11 +493,13 @@ int quadratic_seam_main(const char* h5)
     for (std::size_t span_id : {std::size_t {0}, surface.spans().size() - 1}) {
       for (double gap : {1.0, 1.0e-5, 0.0, -4.0}) {
         const auto result = analyze_quadratic_span(
-          surface.spans()[span_id], lead.distance - gap, slack);
+          surface.spans()[span_id], lead.distance - gap,
+          slack, plane_slack);
         std::cout << "{\"kind\":\"quadratic_seam\",\"member\":"
                   << member << ",\"span\":" << span_id
                   << ",\"gap_cm\":" << gap
                   << ",\"slack\":" << slack
+                  << ",\"plane_slack_cm\":" << plane_slack
                   << ",\"nodes\":" << result.nodes
                   << ",\"undecided\":" << result.undecided
                   << ",\"outcomes\":[";

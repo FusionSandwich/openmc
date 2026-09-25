@@ -57,18 +57,23 @@ def main() -> int:
              and keys == expected
              and all(row.get("kind") == "quadratic_seam"
                      and row.get("slack") == 1.0e-6
+                     and row.get("plane_slack_cm") == 1.0e-4
                      and isinstance(row.get("nodes"), int)
                      and isinstance(row.get("undecided"), int)
-                     and len(row.get("outcomes", [])) == 5
+                     and len(row.get("outcomes", [])) == 6
                      for row in rows)
              and all(row["undecided"] == 0 and row["nodes"] == 1
                      and row["outcomes"][0] == 1
                      for row in rows if row["gap_cm"] == 1.0)
              and all(row["undecided"] > 0
-                     for row in rows if row["gap_cm"] <= 1.0e-5))
+                     for row in rows if row["gap_cm"] <= 0.0))
+    narrow_excluded = sum(row["gap_cm"] == 1.0e-5
+                          and row["undecided"] == 0 for row in rows)
     receipt = {
-        "schema": "stellarcsg.quadratic-seam-interval/v1",
-        "state": "EXPERIMENTAL_ONE_CM_PREFIX_ONLY_NOT_ROOT_CERTIFIED"
+        "schema": "stellarcsg.quadratic-seam-interval/v2",
+        "state": ("EXPERIMENTAL_NARROW_PREFIX_NOT_ROOT_CERTIFIED"
+                  if narrow_excluded == 4 else
+                  "EXPERIMENTAL_ONE_CM_PREFIX_ONLY_NOT_ROOT_CERTIFIED")
                  if valid else "EXPERIMENT_INCOMPLETE",
         "command": command,
         "exit_code": child.returncode,
@@ -79,8 +84,9 @@ def main() -> int:
                     args.sample, Path(__file__).resolve())},
         "compile_contract": "GCC 14.2 -O2 -fno-fast-math -ffp-contract=off",
         "outcome_order": ["excluded_value", "excluded_no_real_root",
-                          "excluded_root_interval", "undecided_frame",
-                          "undecided_root"],
+                          "excluded_root_interval", "excluded_plane",
+                          "undecided_frame", "undecided_root"],
+        "narrow_prefix_excluded_count": narrow_excluded,
         "rows": rows,
         "claim_boundary": "Off-production interval model on compiled powers; its algebraic ellipse condition and stress slack are not an audited enclosure of the production parametric/libm path. The finite lead neighborhood, root uniqueness and other floating bounds remain unproved. No transport or performance qualification."
     }
@@ -89,7 +95,8 @@ def main() -> int:
     print(json.dumps({"state": receipt["state"], "rows": len(rows),
                       "one_cm_excluded": sum(row["gap_cm"] == 1.0
                                              and row["undecided"] == 0
-                                             for row in rows)}))
+                                             for row in rows),
+                      "narrow_excluded": narrow_excluded}))
     return 0 if valid else 1
 
 
