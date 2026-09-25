@@ -2634,6 +2634,12 @@ class PeriodicSplineSurface(Surface):
         self.content_id = content_id
         self.solver = solver
 
+    def is_equal(self, other):
+        if type(other) is not type(self):
+            return False
+        return (self.data_file, self.dataset, self.content_id, self.solver) == (
+            other.data_file, other.dataset, other.content_id, other.solver)
+
     def _get_base_coeffs(self):
         return ()
 
@@ -2734,23 +2740,71 @@ class SweptSplineSurface(Surface):
 
     The external HDF5 group contains an equal-arc-length centerline,
     rotation-minimizing frame, and circular or elliptical cross-section data.
+    A collection selector makes one surface for the union of consecutively
+    numbered coil groups. Use separate surfaces when cells or tallies need
+    distinct coil ownership.
+
+    Parameters
+    ----------
+    data_file : path-like
+        HDF5 coefficient file.
+    dataset, content_id : str, optional
+        Absolute group path and canonical payload ID for one coil.
+    dataset_prefix : str, optional
+        Absolute prefix for numbered collection groups, for example
+        ``'/coils/coil_'``.
+    dataset_start : int, optional
+        First numbered group, default 0 for a collection.
+    dataset_count : int, optional
+        Positive number of consecutive collection groups.
     """
 
     _type = 'swept-spline'
     _coeff_keys = ()
 
-    def __init__(self, data_file, dataset, content_id, **kwargs):
+    def __init__(self, data_file, dataset=None, content_id=None, *,
+                 dataset_prefix=None, dataset_start=None, dataset_count=None,
+                 **kwargs):
         super().__init__(**kwargs)
         check_type('data_file', data_file, (str, Path))
-        check_type('dataset', dataset, str)
-        check_type('content_id', content_id, str)
-        if not dataset.startswith('/'):
-            raise ValueError('dataset must be an absolute HDF5 group path')
-        if not content_id:
-            raise ValueError('content_id cannot be empty')
+        collection = dataset_prefix is not None or dataset_count is not None
+        if collection:
+            if dataset is not None or content_id is not None:
+                raise ValueError('collection and single-member selectors cannot be mixed')
+            check_type('dataset_prefix', dataset_prefix, str)
+            if not dataset_prefix.startswith('/'):
+                raise ValueError('dataset_prefix must be an absolute HDF5 group prefix')
+            if type(dataset_count) is not int or dataset_count <= 0:
+                raise ValueError('dataset_count must be a positive integer')
+            if dataset_start is None:
+                dataset_start = 0
+            if type(dataset_start) is not int or dataset_start < 0:
+                raise ValueError('dataset_start must be a nonnegative integer')
+            if dataset_start > 2**31 - dataset_count:
+                raise ValueError('dataset selector range exceeds signed 32-bit indices')
+        else:
+            if dataset_start is not None:
+                raise ValueError('dataset_start requires a collection selector')
+            check_type('dataset', dataset, str)
+            check_type('content_id', content_id, str)
+            if not dataset.startswith('/'):
+                raise ValueError('dataset must be an absolute HDF5 group path')
+            if not content_id:
+                raise ValueError('content_id cannot be empty')
         self.data_file = str(data_file)
         self.dataset = dataset
         self.content_id = content_id
+        self.dataset_prefix = dataset_prefix
+        self.dataset_start = dataset_start
+        self.dataset_count = dataset_count
+
+    def is_equal(self, other):
+        if type(other) is not type(self):
+            return False
+        return (self.data_file, self.dataset, self.content_id,
+                self.dataset_prefix, self.dataset_start, self.dataset_count) == (
+                    other.data_file, other.dataset, other.content_id,
+                    other.dataset_prefix, other.dataset_start, other.dataset_count)
 
     def _get_base_coeffs(self):
         return ()
@@ -2767,17 +2821,30 @@ class SweptSplineSurface(Surface):
             raise ValueError("side must be '+' or '-'")
         import h5py
         with h5py.File(self.data_file, 'r') as h5:
-            group = h5[self.dataset]
-            if group.attrs['units'] not in ('cm', b'cm'):
-                raise ValueError("swept-spline payload units must be 'cm'")
-            centerline = group['centerline_coefficients'][...]
-            radius = max(
-                float(np.max(group['major_radius_coefficients'][...])),
-                float(np.max(group['minor_radius_coefficients'][...])),
-            )
+            datasets = ([self.dataset] if self.dataset is not None else
+                        [f'{self.dataset_prefix}{index:03d}' for index in
+                         range(self.dataset_start,
+                               self.dataset_start + self.dataset_count)])
+            lower, upper = None, None
+            for dataset in datasets:
+                group = h5[dataset]
+                if group.attrs['units'] not in ('cm', b'cm'):
+                    raise ValueError("swept-spline payload units must be 'cm'")
+                centerline = group['centerline_coefficients'][...]
+                radius = max(
+                    float(np.max(group['major_radius_coefficients'][...])),
+                    float(np.max(group['minor_radius_coefficients'][...])),
+                )
+                characteristic = float(group.attrs['length_cm'])
+                rounding = max(64.0 * np.finfo(float).eps * characteristic,
+                               1.0e-12 * characteristic)
+                radius += rounding
+                member_lower = np.min(centerline, axis=0) - radius
+                member_upper = np.max(centerline, axis=0) + radius
+                lower = member_lower if lower is None else np.minimum(lower, member_lower)
+                upper = member_upper if upper is None else np.maximum(upper, member_upper)
         return BoundingBox(
-            np.min(centerline, axis=0) - radius,
-            np.max(centerline, axis=0) + radius,
+            lower, upper,
         )
 
     def translate(self, vector, inplace=False):
@@ -2794,8 +2861,13 @@ class SweptSplineSurface(Surface):
         element = super().to_xml_element()
         element.attrib.pop('coeffs', None)
         element.set('data_file', self.data_file)
-        element.set('dataset', self.dataset)
-        element.set('content_id', self.content_id)
+        if self.dataset is not None:
+            element.set('dataset', self.dataset)
+            element.set('content_id', self.content_id)
+        else:
+            element.set('dataset_prefix', self.dataset_prefix)
+            element.set('dataset_start', str(self.dataset_start))
+            element.set('dataset_count', str(self.dataset_count))
         element.set('units', 'cm')
         return element
 
@@ -2810,22 +2882,43 @@ class SweptSplineSurface(Surface):
         }
         if kwargs['boundary_type'] in _ALBEDO_BOUNDARIES:
             kwargs['albedo'] = float(get_text(elem, 'albedo', 1.0))
-        return cls(
-            data_file=get_text(elem, 'data_file'),
-            dataset=get_text(elem, 'dataset'),
-            content_id=get_text(elem, 'content_id'),
-            **kwargs,
-        )
+        dataset = get_text(elem, 'dataset')
+        content_id = get_text(elem, 'content_id')
+        prefix = get_text(elem, 'dataset_prefix')
+        start = get_text(elem, 'dataset_start')
+        count = get_text(elem, 'dataset_count')
+        if prefix is not None or start is not None or count is not None:
+            if dataset is not None or content_id is not None:
+                raise ValueError('collection and single-member selectors cannot be mixed')
+            selectors = {'dataset_prefix': prefix,
+                         'dataset_start': '0' if start is None else start,
+                         'dataset_count': count}
+            for key in ('dataset_start', 'dataset_count'):
+                value = selectors[key]
+                if value is None or not value.isdecimal():
+                    raise ValueError(f'{key} must be an unsigned decimal integer')
+                selectors[key] = int(value)
+        else:
+            selectors = {'dataset': dataset, 'content_id': content_id}
+        return cls(data_file=get_text(elem, 'data_file'), **selectors, **kwargs)
 
     @classmethod
     def _from_hdf5(cls, group, **kwargs):
         def text(name):
             value = group[name][()]
             return value.decode() if isinstance(value, bytes) else str(value)
-        return cls(
-            data_file=text('data_file'), dataset=text('dataset'),
-            content_id=text('content_id'), **kwargs
-        )
+        if any(name in group for name in
+               ('dataset_prefix', 'dataset_start', 'dataset_count')):
+            if 'dataset' in group or 'content_id' in group:
+                raise ValueError('collection and single-member selectors cannot be mixed')
+            selectors = {'dataset_prefix': text('dataset_prefix'),
+                         'dataset_start': int(group['dataset_start'][()])
+                         if 'dataset_start' in group else 0,
+                         'dataset_count': int(group['dataset_count'][()])}
+        else:
+            selectors = {'dataset': text('dataset'),
+                         'content_id': text('content_id')}
+        return cls(data_file=text('data_file'), **selectors, **kwargs)
 
 
 class Halfspace(Region):

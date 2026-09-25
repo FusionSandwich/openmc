@@ -1,0 +1,14 @@
+{
+  "schema": "stellarcsg.native-python-collection/v1",
+  "state": "PYTHON_ROUNDTRIP_PASSED_NO_TRANSPORT",
+  "command": "PYTHONPATH=. PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 MKL_NUM_THREADS=1 /opt/openmc-venv/bin/python -m pytest -q dev/stellarcsg/tests/transport_contracts/test_native_python_api.py",
+  "exit_code": 0,
+  "hashes": {
+    "openmc/surface.py": "8b056a029016d6a9fb48e4add8d25a7f0962002e082b71f2787148850230b47c",
+    "dev/stellarcsg/tests/transport_contracts/test_native_python_api.py": "4f99ea13f4b3aa5bf367a602554739105d7d0d540f415963170eab5667e7c2bf",
+    "dev/stellarcsg/reports/local-cont-20260925/transport-contracts-04/adapter-output.h5": "5fa35573f04c0c57a711877144dc6f57cdfa52224418c94afe62a0ef4958b9fb",
+    "stdout.txt": "f53d93d0a9988e41779e8d458a9844a7cf60ccfa6a575eb24d0990b720e9c9c7"
+  },
+  "native_cpp_transport_run": false,
+  "claim_boundary": "Python XML/HDF5 selector and bound behavior only; PeriodicSplineSurface equality remains expected failure; native C++ transport/root certification not tested."
+}

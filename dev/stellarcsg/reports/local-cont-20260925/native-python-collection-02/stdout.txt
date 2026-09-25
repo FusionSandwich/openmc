@@ -1,0 +1,4 @@
+..............x                                                          [100%]
+=========================== short test summary info ============================
+XFAIL dev/stellarcsg/tests/transport_contracts/test_native_python_api.py::test_payload_equality_has_defined_semantics[PeriodicSplineSurface] - BLOCKED_SPLINE_EQUALITY_EMPTY_COEFFICIENTS
+14 passed, 1 xfailed in 8.60s

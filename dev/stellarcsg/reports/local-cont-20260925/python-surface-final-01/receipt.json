@@ -1,0 +1,15 @@
+{
+  "schema": "stellarcsg.python-surface-final/v1",
+  "state": "PYTHON_SURFACE_AND_COLLECTION_CONTRACTS_PASSED_NO_TRANSPORT",
+  "command": "PYTHONPATH=. PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 MKL_NUM_THREADS=1 /opt/openmc-venv/bin/python -m pytest -q dev/stellarcsg/tests/transport_contracts/test_native_python_api.py tests/unit_tests/test_surface.py tests/unit_tests/test_stellarcsg_surface.py",
+  "exit_code": 0,
+  "hashes": {
+    "openmc/surface.py": "4b8a8d3ce51e4bcd291600903a18c675f535e29cd9dd5ac86bba269ae1d98b6d",
+    "dev/stellarcsg/tests/transport_contracts/test_native_python_api.py": "de182aed774c7699fa9d9adaa6558cfa8489cca98d1f7d9e38cd5007946bd33b",
+    "tests/unit_tests/test_surface.py": "f3e456bda9ae44215f2cd8d0c4e113a106640eaeccbe76b44aac677fbbf348d3",
+    "tests/unit_tests/test_stellarcsg_surface.py": "fd99139cb964456a2a321d89986ef62620b28f01da5fb96ec7788e7f499dc325",
+    "stdout.txt": "24c1ff89ea71da8abd3321b4147494f470afd0c6720a6bbbcebf2dd22d3776d3"
+  },
+  "native_cpp_transport_run": false,
+  "claim_boundary": "45 Python package/unit tests passed; C++ collection root resolution, one-period geometry, and particle transport remain unqualified."
+}

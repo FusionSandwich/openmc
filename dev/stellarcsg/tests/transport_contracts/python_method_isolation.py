@@ -136,14 +136,48 @@ def main():
               and int(group['dataset_count'][()]) == 2
               and group['dataset_prefix'][()].decode() == '/members/')
         check('cpp_collection_hdf5_python_roundtrip', lambda:
-              cls._from_hdf5(group, surface_id=902) is not None,
+              (lambda loaded: loaded.data_file == 'payload.h5'
+               and loaded.dataset is None and loaded.content_id is None
+               and loaded.dataset_prefix == '/members/'
+               and loaded.dataset_start == 10 and loaded.dataset_count == 2)(
+                   cls._from_hdf5(group, surface_id=902)),
               'BLOCKED_COLLECTION_PYTHON_REPRESENTATION')
     collection = ET.Element('surface', id='902', type='swept-spline',
                             data_file='payload.h5', dataset_prefix='/members/',
                             dataset_start='10', dataset_count='2')
     check('cpp_collection_xml_python_roundtrip', lambda:
-          cls._from_xml_element(collection) is not None,
+          (lambda loaded: loaded.dataset_prefix == '/members/'
+           and loaded.dataset_start == 10 and loaded.dataset_count == 2
+           and loaded.dataset is None and loaded.content_id is None)(
+               cls._from_xml_element(collection)),
           'BLOCKED_COLLECTION_PYTHON_REPRESENTATION')
+    collection_surface = cls(data_file='payload.h5', dataset_prefix='/members/',
+                             dataset_start=10, dataset_count=2, surface_id=902)
+    check('collection_xml_export_matches_cpp_selector', lambda:
+          {key: collection_surface.to_xml_element().get(key) for key in
+           ('data_file', 'dataset_prefix', 'dataset_start', 'dataset_count', 'units')}
+          == dict(data_file='payload.h5', dataset_prefix='/members/',
+                  dataset_start='10', dataset_count='2', units='cm'))
+    check('collection_xml_roundtrip_identity', lambda:
+          cls._from_xml_element(collection_surface.to_xml_element()).__dict__
+          == collection_surface.__dict__)
+    check('collection_mixed_selector_rejected', lambda: raises(ValueError,
+          lambda: cls('x.h5', '/member', 'identity',
+                      dataset_prefix='/members/', dataset_count=2)))
+    check('collection_zero_count_rejected', lambda: raises(ValueError,
+          lambda: cls('x.h5', dataset_prefix='/members/', dataset_count=0)))
+    check('collection_overflow_rejected', lambda: raises(ValueError,
+          lambda: cls('x.h5', dataset_prefix='/members/', dataset_start=2**31-1,
+                      dataset_count=2)))
+    check('single_payload_equality', lambda:
+          surface().is_equal(surface()) and not surface().is_equal(
+              cls('payload.h5', '/member', 'different', surface_id=902)))
+    check('collection_selector_equality', lambda:
+          collection_surface.is_equal(cls('payload.h5', dataset_prefix='/members/',
+                                          dataset_start=10, dataset_count=2))
+          and not collection_surface.is_equal(cls(
+              'payload.h5', dataset_prefix='/members/', dataset_start=11,
+              dataset_count=2)))
     check('positive_halfspace_unbounded', lambda:
           np.isposinf(surface().bounding_box('+').upper_right).all())
     check('invalid_halfspace_rejected', lambda: raises(ValueError,
@@ -154,6 +188,10 @@ def main():
                    passed=len(rows)-failed, failed=failed,
                    source=str(args.source), source_sha256=hashlib.sha256(
                        args.source.read_bytes()).hexdigest(),
+                   adapter_hdf5_sha256=hashlib.sha256(
+                       args.adapter_hdf5.read_bytes()).hexdigest(),
+                   runner_sha256=hashlib.sha256(
+                       Path(__file__).read_bytes()).hexdigest(),
                    native_openmc_imported=False, transport_run=False)
     (args.output/'receipt.json').write_text(json.dumps(receipt, indent=2)+'\n')
     print(json.dumps(receipt))

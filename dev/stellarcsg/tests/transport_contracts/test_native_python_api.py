@@ -103,9 +103,89 @@ def test_rigid_native_analytic_control():
     assert moved.evaluate((3, 4, 2)) == -1
 
 
-@pytest.mark.xfail(strict=True, reason='BLOCKED_SPLINE_EQUALITY_EMPTY_COEFFICIENTS')
+def test_swept_collection_python_roundtrip_and_bounds(tmp_path):
+    payload = tmp_path / 'coils.h5'
+    with h5py.File(payload, 'w') as h5:
+        for index, center_x in ((10, 0.0), (11, 10.0)):
+            group = h5.create_group(f'members/coil_{index:03d}')
+            group.attrs['units'] = 'cm'
+            group.attrs['length_cm'] = 20.0
+            group['centerline_coefficients'] = np.tile(
+                [center_x, 0.0, 0.0], (4, 1))
+            group['major_radius_coefficients'] = np.full(4, 2.0)
+            group['minor_radius_coefficients'] = np.full(4, 1.0)
+    collection = openmc.SweptSplineSurface(
+        payload, dataset_prefix='/members/coil_', dataset_start=10,
+        dataset_count=2, surface_id=302, boundary_type='white', albedo=0.375)
+    element = collection.to_xml_element()
+    assert element.get('dataset') is None and element.get('content_id') is None
+    assert element.get('dataset_prefix') == '/members/coil_'
+    assert element.get('dataset_start') == '10' and element.get('dataset_count') == '2'
+    openmc.reset_auto_ids()
+    loaded = openmc.Surface.from_xml_element(element)
+    assert loaded.is_equal(collection) and loaded.albedo == 0.375
+    bounds = collection.bounding_box('-')
+    assert np.allclose(bounds.lower_left, [-2., -2., -2.], atol=1e-10)
+    assert np.allclose(bounds.upper_right, [12., 2., 2.], atol=1e-10)
+    assert np.all(bounds.lower_left < [-2., -2., -2.])
+    assert np.all(bounds.upper_right > [12., 2., 2.])
+    with h5py.File(tmp_path/'summary.h5', 'w') as h5:
+        group = h5.create_group('surface 303')
+        for key, value in dict(type='swept-spline', boundary_type='transmission',
+                               data_file=str(payload),
+                               dataset_prefix='/members/coil_').items():
+            group[key] = np.bytes_(value)
+        group['dataset_start'] = 10
+        group['dataset_count'] = 2
+        loaded_hdf5 = openmc.Surface.from_hdf5(group)
+        assert loaded_hdf5.dataset is None
+        assert loaded_hdf5.dataset_start == 10 and loaded_hdf5.dataset_count == 2
+        assert loaded_hdf5.is_equal(collection)
+    geometry_path = tmp_path / 'geometry.xml'
+    openmc.Geometry([openmc.Cell(cell_id=402, region=-collection)]).export_to_xml(
+        path=geometry_path)
+    openmc.reset_auto_ids()
+    reloaded_geometry = openmc.Geometry.from_xml(
+        path=geometry_path, materials=openmc.Materials())
+    assert reloaded_geometry.get_all_surfaces()[302].is_equal(collection)
+
+
+def test_swept_selector_identity_and_invalid_collections():
+    single = openmc.SweptSplineSurface('coils.h5', '/coil', 'content-a')
+    assert single.is_equal(openmc.SweptSplineSurface(
+        'coils.h5', '/coil', 'content-a'))
+    assert not single.is_equal(openmc.SweptSplineSurface(
+        'coils.h5', '/coil', 'content-b'))
+    collection = openmc.SweptSplineSurface(
+        'coils.h5', dataset_prefix='/members/coil_', dataset_start=10,
+        dataset_count=2)
+    assert not collection.is_equal(single)
+    assert not collection.is_equal(openmc.SweptSplineSurface(
+        'coils.h5', dataset_prefix='/members/coil_', dataset_start=11,
+        dataset_count=2))
+    with pytest.raises(ValueError):
+        openmc.SweptSplineSurface('coils.h5', '/coil', 'content-a',
+                                  dataset_prefix='/members/', dataset_count=2)
+    for count, start in ((0, 0), (2, -1), (2, 2**31-1)):
+        with pytest.raises(ValueError):
+            openmc.SweptSplineSurface('coils.h5', dataset_prefix='/members/',
+                                      dataset_start=start, dataset_count=count)
+    malformed = ET.Element('surface', id='999', type='swept-spline',
+                           data_file='coils.h5', dataset='/coil',
+                           content_id='content-a', dataset_prefix='/members/',
+                           dataset_count='2')
+    with pytest.raises(ValueError):
+        openmc.Surface.from_xml_element(malformed)
+    malformed.attrib.pop('dataset')
+    malformed.attrib.pop('content_id')
+    malformed.set('dataset_count', '2garbage')
+    with pytest.raises(ValueError):
+        openmc.Surface.from_xml_element(malformed)
+
+
 @pytest.mark.parametrize('kind', [openmc.PeriodicSplineSurface, openmc.SweptSplineSurface])
 def test_payload_equality_has_defined_semantics(kind):
     first = kind('toy.h5', '/member', 'sha256:'+'1'*64)
     second = kind('toy.h5', '/member', 'sha256:'+'1'*64)
     assert first.is_equal(second)
+    assert not first.is_equal(kind('toy.h5', '/member', 'sha256:'+'2'*64))
