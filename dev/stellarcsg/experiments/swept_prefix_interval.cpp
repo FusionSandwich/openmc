@@ -9,10 +9,12 @@
 #include <cfenv>
 #include <cmath>
 #include <cstdint>
+#include <fstream>
 #include <iomanip>
 #include <iostream>
 #include <limits>
 #include <optional>
+#include <sstream>
 #include <stdexcept>
 #include <string>
 #include <vector>
@@ -367,7 +369,9 @@ bool quadratic_excluded(QuadraticOutcome state)
 }
 
 QuadraticOutcome exclude_quadratic_tile(
-  const stellarcsg::SweptSpan& span, I u, double cutoff,
+  const stellarcsg::SweptSpan& span, I u,
+  const stellarcsg::Vec3& origin,
+  const stellarcsg::Vec3& direction, double cutoff,
   double implicit_slack, double plane_slack)
 {
   const double scale = 1.0 / (span.angle_max - span.angle_min);
@@ -392,11 +396,18 @@ QuadraticOutcome exclude_quadratic_tile(
   const I minor = polynomial(span, 7, u);
   if (major.contains_zero() || minor.contains_zero())
     return QuadraticOutcome::undecided_frame;
-  const V offset {I::point(550.0) - center[0], -center[1], -center[2]};
+  const std::array<double, 3> o {origin.x, origin.y, origin.z};
+  const std::array<double, 3> d {direction.x, direction.y, direction.z};
+  V offset;
+  for (int axis = 0; axis < 3; ++axis)
+    offset[axis] = I::point(o[axis]) - center[axis];
   const I an = dot(offset, *normal) / major;
   const I ab = dot(offset, *binormal) / minor;
-  const I bn = (*normal)[0] / major;
-  const I bb = (*binormal)[0] / minor;
+  V ray_direction;
+  for (int axis = 0; axis < 3; ++axis)
+    ray_direction[axis] = I::point(d[axis]);
+  const I bn = -dot(ray_direction, *normal) / major;
+  const I bb = -dot(ray_direction, *binormal) / minor;
   const I t {0.0, cutoff};
   const I value = square(an - bn * t) + square(ab - bb * t)
     - I::point(1.0);
@@ -418,8 +429,9 @@ QuadraticOutcome exclude_quadratic_tile(
   const auto branch_excluded = [&](I candidate) {
     const auto prefix = intersection(candidate, t);
     if (!prefix) return true;
-    const V at_root {I::point(550.0) - *prefix - center[0],
-                     -center[1], -center[2]};
+    V at_root;
+    for (int axis = 0; axis < 3; ++axis)
+      at_root[axis] = offset[axis] + ray_direction[axis] * *prefix;
     const I plane = dot(at_root, *tangent);
     if (plane.lo > plane_slack || plane.hi < -plane_slack) {
       used_plane = true;
@@ -440,7 +452,9 @@ struct QuadraticResult {
 };
 
 QuadraticResult analyze_quadratic_span(
-  const stellarcsg::SweptSpan& span, double cutoff,
+  const stellarcsg::SweptSpan& span,
+  const stellarcsg::Vec3& origin,
+  const stellarcsg::Vec3& direction, double cutoff,
   double implicit_slack, double plane_slack, int max_depth = 36,
   std::size_t max_nodes = 10000)
 {
@@ -458,7 +472,7 @@ QuadraticResult analyze_quadratic_span(
       break;
     }
     const auto state = exclude_quadratic_tile(
-      span, I::bounds(tile.lo, tile.hi), cutoff,
+      span, I::bounds(tile.lo, tile.hi), origin, direction, cutoff,
       implicit_slack, plane_slack);
     if (quadratic_excluded(state) || tile.depth == max_depth) {
       ++result.outcomes[static_cast<std::size_t>(state)];
@@ -493,7 +507,7 @@ int quadratic_seam_main(const char* h5)
     for (std::size_t span_id : {std::size_t {0}, surface.spans().size() - 1}) {
       for (double gap : {1.0, 1.0e-5, 0.0, -4.0}) {
         const auto result = analyze_quadratic_span(
-          surface.spans()[span_id], lead.distance - gap,
+          surface.spans()[span_id], origin, direction, lead.distance - gap,
           slack, plane_slack);
         std::cout << "{\"kind\":\"quadratic_seam\",\"member\":"
                   << member << ",\"span\":" << span_id
@@ -514,6 +528,116 @@ int quadratic_seam_main(const char* h5)
   return 0;
 }
 
+stellarcsg::SweptSplineSurfaceData torus_data()
+{
+  // Match the geometry construction in recovery04_frozen_bank.cpp exactly.
+  stellarcsg::SweptSplineSurfaceData data;
+  data.coil_id = 9040;
+  data.sample_count = 64;
+  data.length = two_pi * 5.0;
+  data.characteristic_length = 5.0;
+  data.major_radius_coefficients.assign(data.sample_count, 0.25);
+  data.minor_radius_coefficients.assign(data.sample_count, 0.25);
+  for (std::size_t i = 0; i < data.sample_count; ++i) {
+    const double a = two_pi * i / data.sample_count;
+    const double c = std::cos(a), s = std::sin(a);
+    for (double x : {5.0 * c, 5.0 * s, 0.0})
+      data.centerline_coefficients.push_back(x);
+    for (double x : {0.0, 0.0, 1.0})
+      data.normal_coefficients.push_back(x);
+    for (double x : {c, s, 0.0})
+      data.binormal_coefficients.push_back(x);
+  }
+  return data;
+}
+
+std::string torus_hash(const stellarcsg::SweptSplineSurfaceData& data)
+{
+  // Stable payload identifier used by recovery04_frozen_bank.cpp.
+  std::uint64_t hash = 1469598103934665603ULL;
+  const auto add = [&hash](const void* bytes, std::size_t count) {
+    const auto* p = static_cast<const unsigned char*>(bytes);
+    for (std::size_t i = 0; i < count; ++i) {
+      hash ^= p[i];
+      hash *= 1099511628211ULL;
+    }
+  };
+  add(&data.coil_id, sizeof(data.coil_id));
+  for (const auto* values : {&data.centerline_coefficients,
+         &data.normal_coefficients, &data.binormal_coefficients,
+         &data.major_radius_coefficients, &data.minor_radius_coefficients}) {
+    for (double value : *values) add(&value, sizeof(value));
+  }
+  std::ostringstream out;
+  out << std::hex << hash;
+  return out.str();
+}
+
+int quadratic_bank_anchors_main(const char* bank_path)
+{
+  std::ifstream bank {bank_path};
+  std::string line;
+  if (!std::getline(bank, line))
+    throw std::runtime_error("missing frozen bank header");
+  const auto data = torus_data();
+  const std::string coefficient_hash = torus_hash(data);
+  const stellarcsg::CompiledSweptSplineSurface surface {data, true};
+  std::size_t selected = 0;
+  std::cout << std::setprecision(17);
+  while (std::getline(bank, line)) {
+    std::stringstream stream {line};
+    std::vector<std::string> fields;
+    std::string field;
+    while (std::getline(stream, field, ',')) fields.push_back(field);
+    if (fields.size() != 15) throw std::runtime_error("malformed frozen bank row");
+    const std::string& id = fields[0];
+    if (id != "a03" && id != "a06" && id != "a08" && id != "a15")
+      continue;
+    if (fields[1] != "torus" || fields[2] != coefficient_hash)
+      throw std::runtime_error("anchor geometry or coefficients changed");
+    ++selected;
+    const stellarcsg::Vec3 origin {std::stod(fields[9]),
+                                   std::stod(fields[10]),
+                                   std::stod(fields[11])};
+    const stellarcsg::Vec3 supplied_direction {std::stod(fields[12]),
+                                               std::stod(fields[13]),
+                                               std::stod(fields[14])};
+    const auto direction = stellarcsg::normalized(supplied_direction);
+    const auto candidate = surface.distance(origin, supplied_direction, false);
+    const std::vector<double> cutoffs = id == "a03"
+      ? std::vector<double> {0.00199, 0.002, 0.012}
+      : id == "a06" ? std::vector<double> {0.0, 0.01}
+      : std::vector<double> {1.99999, 2.0, 2.1};
+    for (std::size_t span_id : {std::size_t {0}, surface.spans().size() - 1}) {
+      for (double cutoff : cutoffs) {
+        const auto result = analyze_quadratic_span(surface.spans()[span_id],
+          origin, direction, cutoff, 1.0e-6, 1.0e-4, 36, 2000);
+        std::cout << "{\"kind\":\"quadratic_bank_anchor\",\"id\":\""
+                  << id << "\",\"span\":" << span_id
+                  << ",\"cutoff_cm\":" << cutoff
+                  << ",\"candidate_disposition\":\""
+                  << (candidate.disposition() == stellarcsg::DistanceDisposition::hit
+                        ? "hit" : candidate.disposition()
+                          == stellarcsg::DistanceDisposition::no_hit
+                        ? "no_hit" : "unresolved") << "\""
+                  << ",\"candidate_distance_cm\":";
+        if (candidate.found) std::cout << candidate.distance;
+        else std::cout << "null";
+        std::cout << ",\"nodes\":" << result.nodes
+                  << ",\"undecided\":" << result.undecided
+                  << ",\"outcomes\":[";
+        for (std::size_t i = 0; i < result.outcomes.size(); ++i) {
+          if (i != 0) std::cout << ',';
+          std::cout << result.outcomes[i];
+        }
+        std::cout << "]}\n";
+      }
+    }
+  }
+  if (selected != 4) throw std::runtime_error("expected four bank anchors");
+  return 0;
+}
+
 } // namespace
 
 int main(int argc, char** argv)
@@ -527,6 +651,9 @@ int main(int argc, char** argv)
     }
     if (argc == 3 && std::string(argv[2]) == "--quadratic-seams") {
       return quadratic_seam_main(argv[1]);
+    }
+    if (argc == 3 && std::string(argv[2]) == "--quadratic-bank-anchors") {
+      return quadratic_bank_anchors_main(argv[1]);
     }
     if (argc != 2) throw std::invalid_argument(
       "usage: swept_prefix_interval H5 [--quadratic-seams]");
