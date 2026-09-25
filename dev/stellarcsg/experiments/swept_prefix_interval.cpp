@@ -158,7 +158,7 @@ std::array<I, 2> complementary_branches(I known)
 Outcome exclude_tile(const stellarcsg::SweptSpan& span, I u,
                      const stellarcsg::Vec3& origin,
                      const stellarcsg::Vec3& direction,
-                     int dominant_axis, double cutoff)
+                     int dominant_axis, double cutoff, bool use_unit_circle)
 {
   const double scale = 1.0 / (span.angle_max - span.angle_min);
   V center, center_derivative, supplied;
@@ -212,19 +212,23 @@ Outcome exclude_tile(const stellarcsg::SweptSpan& span, I u,
       const auto cosine = ((rhs - b * unit) / a).clip_unit();
       if (!cosine) return Outcome::projection;
       if (away(ray_t(*cosine, unit))) return Outcome::single_prefix;
-      const auto branches = complementary_branches(*cosine);
-      if (away(ray_t(*cosine, branches[0]))
-          && away(ray_t(*cosine, branches[1])))
-        return Outcome::unit_branches;
+      if (use_unit_circle) {
+        const auto branches = complementary_branches(*cosine);
+        if (away(ray_t(*cosine, branches[0]))
+            && away(ray_t(*cosine, branches[1])))
+          return Outcome::unit_branches;
+      }
     }
     if (!b.contains_zero()) {
       const auto sine = ((rhs - a * unit) / b).clip_unit();
       if (!sine) return Outcome::projection;
       if (away(ray_t(unit, *sine))) return Outcome::single_prefix;
-      const auto branches = complementary_branches(*sine);
-      if (away(ray_t(branches[0], *sine))
-          && away(ray_t(branches[1], *sine)))
-        return Outcome::unit_branches;
+      if (use_unit_circle) {
+        const auto branches = complementary_branches(*sine);
+        if (away(ray_t(branches[0], *sine))
+            && away(ray_t(branches[1], *sine)))
+          return Outcome::unit_branches;
+      }
     }
   }
   const I determinant = first[1] * second[2] - first[2] * second[1];
@@ -235,8 +239,8 @@ Outcome exclude_tile(const stellarcsg::SweptSpan& span, I u,
     - first[0] * second[1]) / determinant).clip_unit();
   if (!cosine || !sine) return Outcome::projection;
   const I length_squared = square(*cosine) + square(*sine);
-  if (length_squared.hi < 1.0 - unit_circle_slack
-      || length_squared.lo > 1.0 + unit_circle_slack)
+  if (use_unit_circle && (length_squared.hi < 1.0 - unit_circle_slack
+      || length_squared.lo > 1.0 + unit_circle_slack))
     return Outcome::unit_circle;
   if (away(ray_t(*cosine, *sine))) return Outcome::ray_prefix;
   return Outcome::undecided_root;
@@ -250,7 +254,7 @@ struct SpanResult {
 SpanResult analyze_span(const stellarcsg::SweptSpan& span,
                         const stellarcsg::Vec3& origin,
                         const stellarcsg::Vec3& direction,
-                        int dominant_axis, double cutoff,
+                        int dominant_axis, double cutoff, bool use_unit_circle,
                         int max_depth = 36, std::size_t max_nodes = 10000)
 {
   struct Tile { double lo, hi; int depth; };
@@ -264,7 +268,7 @@ SpanResult analyze_span(const stellarcsg::SweptSpan& span,
       break;
     }
     const Outcome state = exclude_tile(span, I::bounds(tile.lo, tile.hi),
-      origin, direction, dominant_axis, cutoff);
+      origin, direction, dominant_axis, cutoff, use_unit_circle);
     if (excluded(state) || tile.depth == max_depth) {
       ++result.outcomes[static_cast<std::size_t>(state)];
       if (!excluded(state)) ++result.undecided;
@@ -306,7 +310,7 @@ int main(int argc, char** argv)
     underflow_witness.power[4 * 6] = 1.0;
     underflow_witness.power[4 * 7] = 1.0;
     const auto witness = exclude_tile(underflow_witness, I::bounds(0.0, 1.0),
-      origin, direction, dominant_axis, 1.0);
+      origin, direction, dominant_axis, 1.0, true);
     std::cout << "{\"kind\":\"underflow_control\",\"state\":\""
               << name(witness) << "\"}\n";
     if (witness != Outcome::undecided_frame)
@@ -318,26 +322,33 @@ int main(int argc, char** argv)
       const auto lead = surface.distance(origin, direction, false);
       if (!lead.found || !lead.terminal_unresolved)
         throw std::runtime_error("expected unresolved lead fixture changed");
-      std::size_t selected = 0, excluded_prefix = 0, zero_gap_unknown = 0;
+      std::size_t selected = 0, excluded_prefix = 0, rectangle_excluded = 0;
+      std::size_t zero_gap_unknown = 0;
       std::size_t negative_unknown = 0;
       std::size_t nodes = 0;
       for (std::size_t index = 0; index < surface.spans().size(); ++index) {
         const auto& span = surface.spans()[index];
         ++selected;
         const auto prefix = analyze_span(span, origin, direction,
-          dominant_axis, lead.distance - gap);
+          dominant_axis, lead.distance - gap, true);
+        const auto rectangle = analyze_span(span, origin, direction,
+          dominant_axis, lead.distance - gap, false);
         const auto zero_gap = analyze_span(span, origin, direction,
-          dominant_axis, lead.distance);
+          dominant_axis, lead.distance, true);
         const auto negative = analyze_span(span, origin, direction,
-          dominant_axis, lead.distance + 4.0);
+          dominant_axis, lead.distance + 4.0, true);
         nodes += prefix.nodes;
         excluded_prefix += prefix.undecided == 0;
+        rectangle_excluded += rectangle.undecided == 0;
         zero_gap_unknown += zero_gap.undecided != 0;
         negative_unknown += negative.undecided != 0;
         std::cout << "{\"kind\":\"span\",\"member\":" << member
                   << ",\"span\":" << index << ",\"nodes\":"
                   << prefix.nodes << ",\"prefix_excluded\":"
                   << (prefix.undecided == 0 ? "true" : "false")
+                  << ",\"rectangle_excluded\":"
+                  << (rectangle.undecided == 0 ? "true" : "false")
+                  << ",\"rectangle_nodes\":" << rectangle.nodes
                   << ",\"zero_gap_undecided\":"
                   << (zero_gap.undecided != 0 ? "true" : "false")
                   << ",\"negative_control_undecided\":"
@@ -348,6 +359,7 @@ int main(int argc, char** argv)
                 << member << ",\"lead_cm\":" << lead.distance
                 << ",\"selected\":" << selected
                 << ",\"prefix_excluded\":" << excluded_prefix
+                << ",\"rectangle_excluded\":" << rectangle_excluded
                 << ",\"zero_gap_undecided\":" << zero_gap_unknown
                 << ",\"negative_control_undecided\":"
                 << negative_unknown << ",\"nodes\":" << nodes

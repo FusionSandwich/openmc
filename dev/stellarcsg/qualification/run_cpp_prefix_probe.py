@@ -56,6 +56,9 @@ def main() -> int:
     span_counts_match = (len(unique_spans) == len(span_rows)
                          and len(span_rows) == sum(
                              row.get("selected", 0) for row in summaries)
+                         and all(not row.get("rectangle_excluded")
+                                 or row.get("prefix_excluded") is True
+                                 for row in span_rows)
                          and all(sum(item.get("prefix_excluded") is True
                                      for item in span_rows
                                      if item.get("member") == row.get("member"))
@@ -64,6 +67,14 @@ def main() -> int:
                                          for item in span_rows
                                          if item.get("member") == row.get("member"))
                                  == row.get("zero_gap_undecided")
+                                 and sum(item.get("rectangle_excluded") is True
+                                         for item in span_rows
+                                         if item.get("member") == row.get("member"))
+                                 == row.get("rectangle_excluded")
+                                 and sum(item.get("negative_control_undecided")
+                                         is True for item in span_rows
+                                         if item.get("member") == row.get("member"))
+                                 == row.get("negative_control_undecided")
                                  for row in summaries))
     valid = (result.returncode == 0
              and underflow == [{"kind": "underflow_control",
@@ -77,8 +88,8 @@ def main() -> int:
                      and row.get("terminal_unresolved") is True
                      for row in summaries))
     receipt = {
-        "schema": "stellarcsg.cpp-prefix-interval-probe/v1",
-        "state": "EXPERIMENTAL_PREFIX_EXCLUDED_NOT_ROOT_CERTIFIED" if valid
+        "schema": "stellarcsg.cpp-prefix-interval-probe/v2",
+        "state": "EXPERIMENTAL_RECTANGLE_COMPARISON_NOT_ROOT_CERTIFIED" if valid
                  else "EXPERIMENT_INCOMPLETE",
         "command": command,
         "exit_code": result.returncode,
@@ -92,7 +103,7 @@ def main() -> int:
         "summaries": summaries,
         "production_solver_modified": False,
         "native_transport_run": False,
-        "claim_boundary": "Stored compiled powers tested, but no complete floating-path audit or finite root-tile uniqueness proof; no tracking admission.",
+        "claim_boundary": "The rectangle comparison tests whether unit-circle slack is needed for exclusions. Stored compiled powers are tested, but no complete floating-path audit or finite root-tile uniqueness proof exists; no tracking admission.",
     }
     (args.output / "receipt.json").write_text(json.dumps(receipt, indent=2)
                                                 + "\n")

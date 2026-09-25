@@ -1,0 +1,56 @@
+{
+  "schema": "stellarcsg.cpp-prefix-interval-probe/v2",
+  "state": "EXPERIMENTAL_RECTANGLE_COMPARISON_NOT_ROOT_CERTIFIED",
+  "command": [
+    "/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-local-continuation-20260925/build/native-local-20260925/swept_prefix_rectangle",
+    "/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-local-continuation-20260925/dev/stellarcsg/qualified/analytic_swept_coils.h5"
+  ],
+  "exit_code": 0,
+  "loader_binding": "libopenmc.so => /mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-local-continuation-20260925/build/native-local-20260925/lib/libopenmc.so (0x00007832bdec3000)",
+  "affinity": [
+    0
+  ],
+  "hashes": {
+    "/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-local-continuation-20260925/build/native-local-20260925/swept_prefix_rectangle": "6b8e33c48c902aa02204ce7c62ed2fb1d8660f74ffc368586b0198a6370cf651",
+    "/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-local-continuation-20260925/build/native-local-20260925/lib/libopenmc.so": "31578a499d905e0c1c12fd71270e39a7cf905cc3d5d12cb73c412cdf5707f65a",
+    "/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-local-continuation-20260925/dev/stellarcsg/qualified/analytic_swept_coils.h5": "39f77da5ab1fe427cce58b153e9b52cf8915e9973a9b8f3dfad5ab3b00a9e46d",
+    "/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-local-continuation-20260925/dev/stellarcsg/experiments/swept_prefix_interval.cpp": "6e5f76cc13166d99290da5f066e1c32c55b5d6405833bff64e3cb2ff662cd792"
+  },
+  "compile_contract": "GCC 14.2 -O2 -fno-fast-math -ffp-contract=off",
+  "underflow_control": [
+    {
+      "kind": "underflow_control",
+      "state": "undecided_frame"
+    }
+  ],
+  "span_counts_match": true,
+  "summaries": [
+    {
+      "kind": "member_summary",
+      "member": 2,
+      "lead_cm": 16,
+      "selected": 256,
+      "prefix_excluded": 256,
+      "rectangle_excluded": 256,
+      "zero_gap_undecided": 1,
+      "negative_control_undecided": 1,
+      "nodes": 326,
+      "terminal_unresolved": true
+    },
+    {
+      "kind": "member_summary",
+      "member": 3,
+      "lead_cm": 17.000000000000227,
+      "selected": 384,
+      "prefix_excluded": 384,
+      "rectangle_excluded": 382,
+      "zero_gap_undecided": 2,
+      "negative_control_undecided": 2,
+      "nodes": 492,
+      "terminal_unresolved": true
+    }
+  ],
+  "production_solver_modified": false,
+  "native_transport_run": false,
+  "claim_boundary": "The rectangle comparison tests whether unit-circle slack is needed for exclusions. Stored compiled powers are tested, but no complete floating-path audit or finite root-tile uniqueness proof exists; no tracking admission."
+}
