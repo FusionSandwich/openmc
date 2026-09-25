@@ -66,3 +66,8 @@ dev/stellarcsg/reports/local-cont-20260925/p00-magnet-material-smoke-16-01/*.xml
 dev/stellarcsg/reports/local-cont-20260925/p00-magnet-material-smoke-16-01/*.json text eol=lf
 dev/stellarcsg/reports/local-cont-20260925/p00-magnet-material-smoke-16-02/*.xml text eol=lf
 dev/stellarcsg/reports/local-cont-20260925/p00-magnet-material-smoke-16-02/*.json text eol=lf
+dev/stellarcsg/qualification/audit_p00_magnet_material_bank.py text eol=lf
+dev/stellarcsg/reports/local-cont-20260925/p00-magnet-material-bank-01/*.xml text eol=lf
+dev/stellarcsg/reports/local-cont-20260925/p00-magnet-material-bank-01/*.json text eol=lf
+dev/stellarcsg/reports/local-cont-20260925/p00-magnet-material-bank-02/*.xml text eol=lf
+dev/stellarcsg/reports/local-cont-20260925/p00-magnet-material-bank-02/*.json text eol=lf
