@@ -7,6 +7,7 @@
 #include <cmath>
 #include <limits>
 #include <numeric>
+#include <optional>
 #include <stdexcept>
 #include <unordered_set>
 #include <utility>
@@ -252,7 +253,82 @@ SweptCoilSetDistanceResult CompiledSweptSplineSurfaceSet::distance(
         : StackEntry {node.right, right->enter};
     }
   }
-  return result;
+  if (!result.root.found) return result;
+
+  // The first constituent crossing is a union crossing only when no other
+  // member contains that point.  Keep the usual BVH path for the common
+  // nonoverlapping case; an overlap needs an ordered walk of member roots.
+  const auto masked_by_another = [&](const Vec3& point,
+                                     std::size_t owner) {
+    for (std::size_t index = 0; index < coils_.size(); ++index) {
+      if (index == owner || !contains(coils_[index]->bounding_box(), point))
+        continue;
+      const double value = coils_[index]->evaluate(point);
+      if (!std::isfinite(value)) {
+        throw std::runtime_error(
+          "Swept-spline member overlap classification is nonfinite");
+      }
+      if (value < 0.0) return true;
+    }
+    return false;
+  };
+  if (!masked_by_another(origin + best_t * ray_direction,
+                        result.coil_index)) return result;
+
+  struct Event {
+    std::size_t index;
+    double t;
+    DistanceResult root;
+  };
+  std::vector<std::optional<Event>> events(coils_.size());
+  const auto next_event = [&](std::size_t index, double from_t,
+                              bool suppress_origin) -> std::optional<Event> {
+    const Vec3 from = origin + from_t * ray_direction;
+    const auto interval = coils_[index]->bounding_box().ray_interval(
+      from, ray_direction);
+    if (!interval || interval->exit < 0.0) return std::nullopt;
+    auto root = coils_[index]->distance(
+      from, ray_direction, suppress_origin, options);
+    if (root.disposition() == DistanceDisposition::unresolved) {
+      throw std::runtime_error(
+        "Swept-spline member has an unresolved nearest-boundary query");
+    }
+    if (!root.found) return std::nullopt;
+    const double t = from_t + root.distance;
+    if (!(root.distance >= 0.0) || !std::isfinite(t)
+        || (suppress_origin && !(t > from_t))) {
+      throw std::runtime_error(
+        "Swept-spline member did not advance to a finite next boundary");
+    }
+    return Event {index, t, root};
+  };
+  for (std::size_t index = 0; index < coils_.size(); ++index) {
+    events[index] = next_event(index, 0.0, coincident);
+  }
+  constexpr std::size_t max_masked_events = 4096;
+  for (std::size_t count = 0; count < max_masked_events; ++count) {
+    std::optional<Event> first;
+    for (const auto& event : events) {
+      if (event && (!first || event->t < first->t
+          || (event->t == first->t
+              && coil_ids_[event->index] < coil_ids_[first->index]))) {
+        first = event;
+      }
+    }
+    if (!first) return {};
+    const Vec3 point = origin + first->t * ray_direction;
+    if (!masked_by_another(point, first->index)) {
+      SweptCoilSetDistanceResult exterior;
+      exterior.root = first->root;
+      exterior.root.distance = first->t;
+      exterior.coil_id = coil_ids_[first->index];
+      exterior.coil_index = first->index;
+      return exterior;
+    }
+    events[first->index] = next_event(first->index, first->t, true);
+  }
+  throw std::runtime_error(
+    "Swept-spline union boundary event budget exhausted");
 }
 
 } // namespace stellarcsg

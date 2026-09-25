@@ -25,6 +25,10 @@ def main() -> int:
     for path in (args.binary, args.library, args.analytic_h5, args.source):
         if not path.is_file():
             parser.error(f"required input missing: {path}")
+    args.binary = args.binary.resolve()
+    args.library = args.library.resolve()
+    args.analytic_h5 = args.analytic_h5.resolve()
+    args.source = args.source.resolve()
     if args.output.exists():
         parser.error("output must be new")
     environment = os.environ.copy()

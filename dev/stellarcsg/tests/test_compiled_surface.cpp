@@ -423,6 +423,24 @@ void test_swept_coil_set_bvh()
     check_near(crossing.root.distance, minor, 2.0e-9,
       "coil-set BVH returns the nearest coil distance");
   }
+
+  // A later root of the same member can be the first exterior union
+  // boundary: the entering root is inside the first torus, and that torus's
+  // exit is inside the second.  Exercise the actual swept compiler here.
+  std::vector<stellarcsg::SweptSplineSurfaceData> overlapping;
+  overlapping.push_back(make_coil(40, 0.0));
+  overlapping.push_back(make_coil(50, 0.3));
+  const stellarcsg::CompiledSweptSplineSurfaceSet overlapping_set {
+    std::move(overlapping)};
+  const auto union_exit = overlapping_set.distance(
+    {major, 0.0, 0.0}, {0.0, 0.0, 1.0}, false);
+  check(union_exit.root.found, "overlapping swept tori find union exit");
+  if (union_exit.root.found) {
+    check_near(union_exit.root.distance, 0.3 + minor, 2.0e-9,
+      "overlapping swept tori skip both interior member crossings");
+    check(union_exit.coil_id == 50,
+      "overlapping swept tori attribute exterior exit to final member");
+  }
 }
 
 #ifdef STELLARCSG_HAS_HDF5

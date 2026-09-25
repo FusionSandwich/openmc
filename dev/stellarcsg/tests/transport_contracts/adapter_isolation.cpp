@@ -196,6 +196,15 @@ int main(int argc,char** argv) {
     observed="distance="+number(hit.root.distance)+" union_value="+number(s.evaluate({hit.root.distance,0,0}))+" expected_exit=3";
     return hit.root.found && hit.root.distance==3 && s.evaluate({3,0,0})==0;
   });
+  check("masked_entry_then_same_member_exterior_exit","BLOCKED_UNION_REENTRY",[] {
+    // The first A root is inside B; B's exit is then inside A.  A's second
+    // root is the first union exterior boundary.
+    CompiledSweptSplineSurfaceSet s({member(7,{3,0,0},2),member(42,{},4)});
+    const auto hit=s.distance({0,0,0},{1,0,0},false);
+    observed="distance="+number(hit.root.distance)+" id="+std::to_string(hit.coil_id);
+    return hit.root.found && hit.root.distance==5 && hit.coil_id==7
+      && s.evaluate({5,0,0})==0;
+  });
   check("distance_exception_preserved_single","BLOCKED_EXCEPTION",[] {
     test_payloads["/member"].fault=TestFault::distance_exception;
     openmc::SurfaceSweptSpline s(single()); return unresolved([&]{s.distance({-2,0,0},{1,0,0},false);});
