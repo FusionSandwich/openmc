@@ -122,6 +122,57 @@ void extend(BoundingBox& box, const BoundingBox& other)
   extend(box, other.upper);
 }
 
+struct OutwardInterval {
+  double lower;
+  double upper;
+};
+
+double outward_value(double value, double direction)
+{
+  if (!std::isfinite(value)) {
+    throw std::invalid_argument(
+      "Swept-spline span arithmetic exceeds finite bounds");
+  }
+  const double widened = std::nextafter(value, direction);
+  if (!std::isfinite(widened)) {
+    throw std::invalid_argument(
+      "Swept-spline span enclosure exceeds finite bounds");
+  }
+  return widened;
+}
+
+OutwardInterval outward_sum(OutwardInterval a, OutwardInterval b)
+{
+  return {outward_value(a.lower + b.lower,
+            -std::numeric_limits<double>::infinity()),
+          outward_value(a.upper + b.upper,
+            std::numeric_limits<double>::infinity())};
+}
+
+OutwardInterval outward_product(double coefficient, OutwardInterval interval)
+{
+  const double lower = coefficient >= 0.0
+    ? coefficient * interval.lower : coefficient * interval.upper;
+  const double upper = coefficient >= 0.0
+    ? coefficient * interval.upper : coefficient * interval.lower;
+  return {outward_value(lower, -std::numeric_limits<double>::infinity()),
+          outward_value(upper, std::numeric_limits<double>::infinity())};
+}
+
+OutwardInterval stored_power_range(const double* power, OutwardInterval u)
+{
+  OutwardInterval value {power[3], power[3]};
+  for (int degree = 2; degree >= 0; --degree) {
+    const auto left = outward_product(value.lower, u);
+    const auto right = outward_product(value.upper, u);
+    value = {
+      std::min({left.lower, left.upper, right.lower, right.upper}),
+      std::max({left.lower, left.upper, right.lower, right.upper})};
+    value = outward_sum(value, {power[degree], power[degree]});
+  }
+  return value;
+}
+
 Vec3 centroid(const BoundingBox& box)
 {
   return 0.5 * (box.lower + box.upper);
@@ -467,21 +518,35 @@ void CompiledSweptSplineSurface::build_spans()
       span.proxy_end = frame_in_span(span, span.angle_max).center;
       BoundingBox center_bounds = empty_box();
       double radius_bound = 0.0;
-      for (std::size_t bezier = 0; bezier < 4; ++bezier) {
-        Vec3 center_control;
-        for (std::size_t field = 0; field < 8; ++field) {
-          const double* power = span.power.data() + 4 * field;
-          const double value = bezier == 0 ? power[0]
-            : bezier == 1 ? power[0] + power[1] / 3.0
-            : bezier == 2 ? power[0] + 2.0 * power[1] / 3.0
-                            + power[2] / 3.0
-            : power[0] + power[1] + power[2] + power[3];
-          if (field == 0) center_control.x = value;
-          else if (field == 1) center_control.y = value;
-          else if (field == 2) center_control.z = value;
-          else if (field >= 6) radius_bound = std::max(radius_bound, value);
-        }
-        extend(center_bounds, center_control);
+      // frame_in_span evaluates the stored powers with rounded Horner steps.
+      // Enclose that floating path on short local-u tiles, including the
+      // rounded endpoint mapping, rather than trusting rounded Bezier controls.
+      const double coordinate_scale = 1.0
+        / (span.angle_max - span.angle_min);
+      const double upper_u = outward_value(
+        (span.angle_max - span.angle_min) * coordinate_scale,
+        std::numeric_limits<double>::infinity());
+      constexpr int bound_tiles = 16;
+      for (int tile = 0; tile < bound_tiles; ++tile) {
+        const double left = upper_u * static_cast<double>(tile)
+          / static_cast<double>(bound_tiles);
+        const double right = upper_u * static_cast<double>(tile + 1)
+          / static_cast<double>(bound_tiles);
+        const OutwardInterval u {
+          tile == 0 ? 0.0 : outward_value(left,
+            -std::numeric_limits<double>::infinity()),
+          tile + 1 == bound_tiles ? upper_u : outward_value(right,
+            std::numeric_limits<double>::infinity())};
+        std::array<OutwardInterval, 8> fields;
+        for (std::size_t field = 0; field < fields.size(); ++field)
+          fields[field] = stored_power_range(
+            span.power.data() + 4 * field, u);
+        extend(center_bounds, Vec3 {
+          fields[0].lower, fields[1].lower, fields[2].lower});
+        extend(center_bounds, Vec3 {
+          fields[0].upper, fields[1].upper, fields[2].upper});
+        radius_bound = std::max({radius_bound,
+          fields[6].upper, fields[7].upper});
       }
       span.radius_bound = radius_bound;
       const Vec3 second_start {
@@ -493,12 +558,25 @@ void CompiledSweptSplineSurface::build_spans()
         2.0 * span.power[10] + 6.0 * span.power[11]};
       const double centerline_error = std::max(
         norm(second_start), norm(second_end)) / 8.0;
-      span.proxy_radius = radius_bound + centerline_error + rounding;
-      const double inflation = radius_bound + rounding;
+      span.proxy_radius = outward_value(
+        radius_bound + centerline_error + rounding,
+        std::numeric_limits<double>::infinity());
+      const double inflation = outward_value(radius_bound + rounding,
+        std::numeric_limits<double>::infinity());
       span.centerline_bbox = center_bounds;
       span.conservative_bbox = {
-        center_bounds.lower - Vec3 {inflation, inflation, inflation},
-        center_bounds.upper + Vec3 {inflation, inflation, inflation}};
+        {outward_value(center_bounds.lower.x - inflation,
+           -std::numeric_limits<double>::infinity()),
+         outward_value(center_bounds.lower.y - inflation,
+           -std::numeric_limits<double>::infinity()),
+         outward_value(center_bounds.lower.z - inflation,
+           -std::numeric_limits<double>::infinity())},
+        {outward_value(center_bounds.upper.x + inflation,
+           std::numeric_limits<double>::infinity()),
+         outward_value(center_bounds.upper.y + inflation,
+           std::numeric_limits<double>::infinity()),
+         outward_value(center_bounds.upper.z + inflation,
+           std::numeric_limits<double>::infinity())}};
       spans_.push_back(span);
     }
   }

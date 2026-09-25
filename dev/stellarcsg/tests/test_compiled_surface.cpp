@@ -5,6 +5,7 @@
 #include "stellarcsg/performance_counters.hpp"
 #include "stellarcsg/sha256.hpp"
 
+#include <array>
 #include <cmath>
 #include <cstdio>
 #include <cstdlib>
@@ -562,6 +563,42 @@ void test_near_parallel_ray_box_interval()
   check(invalid_rejected, "nonfinite ray origin is rejected before slab pruning");
 }
 
+void test_swept_span_horner_bounds()
+{
+  stellarcsg::SweptSplineSurfaceData data;
+  data.coil_id = 91;
+  data.sample_count = 8;
+  data.length = 8.0;
+  data.characteristic_length = 1.0;
+  data.centerline_coefficients.assign(24, 0.0);
+  data.normal_coefficients.assign(24, 0.0);
+  data.binormal_coefficients.assign(24, 0.0);
+  data.major_radius_coefficients.assign(8, 0.25);
+  data.minor_radius_coefficients.assign(8, 0.25);
+  const std::array<double, 4> controls {
+    2617843008604128.0, 9630992893998072.0,
+    -8370907897845388.0, 7252534354622564.0};
+  for (std::size_t i = 0; i < 8; ++i) {
+    data.centerline_coefficients[3 * i + 1] = static_cast<double>(i);
+    data.normal_coefficients[3 * i + 2] = 1.0;
+    data.binormal_coefficients[3 * i + 1] = 1.0;
+  }
+  for (std::size_t i = 0; i < controls.size(); ++i)
+    data.centerline_coefficients[3 * ((i + 7) % 8)] = controls[i];
+  const stellarcsg::CompiledSweptSplineSurface surface {std::move(data)};
+  const auto& span = surface.spans().front();
+  const double angle = std::nextafter(span.angle_max, span.angle_min);
+  const double u = (angle - span.angle_min)
+    * (1.0 / (span.angle_max - span.angle_min));
+  const double* power = span.power.data();
+  const double x = ((power[3] * u + power[2]) * u + power[1]) * u + power[0];
+  check(span.centerline_bbox.lower.x <= x && x <= span.centerline_bbox.upper.x,
+    "swept span box encloses stored-power Horner center near its endpoint");
+  check(span.conservative_bbox.lower.x <= x
+      && x <= span.conservative_bbox.upper.x,
+    "swept surface box encloses the same center despite small tube radius");
+}
+
 void test_sha256_known_vector()
 {
   stellarcsg::Sha256 digest;
@@ -592,6 +629,7 @@ int main()
     test_exact_circular_swept_coil();
     test_swept_coil_set_bvh();
     test_near_parallel_ray_box_interval();
+    test_swept_span_horner_bounds();
     test_sha256_known_vector();
 #ifdef STELLARCSG_HAS_HDF5
     test_hdf5_round_trip();
