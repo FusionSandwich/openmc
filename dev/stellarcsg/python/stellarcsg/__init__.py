@@ -15,6 +15,7 @@ from .surface import (
 )
 from .vmec import VmecBoundary
 from .coil import SweptSplineData, read_makegrid_filaments, write_swept_collection
+from .plasma_source import BoundedPlasmaSource, load_bounded_plasma_source
 
 __all__ = [
     "HexMesh",
@@ -32,4 +33,6 @@ __all__ = [
     "SweptSplineData",
     "read_makegrid_filaments",
     "write_swept_collection",
+    "BoundedPlasmaSource",
+    "load_bounded_plasma_source",
 ]
