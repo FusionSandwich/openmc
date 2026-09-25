@@ -23,3 +23,6 @@ dev/stellarcsg/reports/local-cont-20260925/compiled-provisional-period-box-01.js
 dev/stellarcsg/reports/local-cont-20260925/native-python-swept-box-parity-01.json text eol=lf
 dev/stellarcsg/reports/local-cont-20260925/period-python-swept-bounds-01.json text eol=lf
 dev/stellarcsg/reports/local-cont-20260925/period-swept-bound-parity-01.json text eol=lf
+dev/stellarcsg/qualification/stage_period_region.py text eol=lf
+dev/stellarcsg/reports/local-cont-20260925/provisional-period-region-01/geometry.xml text eol=lf
+dev/stellarcsg/reports/local-cont-20260925/provisional-period-region-01/receipt.json text eol=lf

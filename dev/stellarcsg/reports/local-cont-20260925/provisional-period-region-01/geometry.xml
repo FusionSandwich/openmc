@@ -1,0 +1,11 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<geometry>
+  <cell id="1001" name="provisional-coil-region" material="void" region="901 902 -904 905 -906 -903" universe="1"/>
+  <cell id="1002" name="provisional-complement" material="void" region="901 902 -904 905 -906 903" universe="1"/>
+  <surface id="901" type="x-plane" boundary="periodic" coeffs="0.0" periodic_surface_id="902"/>
+  <surface id="902" type="y-plane" boundary="periodic" coeffs="0.0" periodic_surface_id="901"/>
+  <surface id="903" type="swept-spline" data_file="/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-local-continuation-20260925/dev/stellarcsg/reports/local-cont-20260925/wistell-exact-period-candidate.h5" dataset_prefix="/coils/coil_" dataset_indices="1000 1002 1001 1007 1008 1010 1009 1015 1016 1023 1024 1031 1032 1039 1040 1046 1047 1045" units="cm"/>
+  <surface id="904" type="z-cylinder" boundary="vacuum" coeffs="0.0 0.0 2500.0"/>
+  <surface id="905" type="z-plane" boundary="vacuum" coeffs="-700.0"/>
+  <surface id="906" type="z-plane" boundary="vacuum" coeffs="700.0"/>
+</geometry>
