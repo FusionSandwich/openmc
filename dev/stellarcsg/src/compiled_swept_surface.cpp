@@ -274,9 +274,10 @@ double point_distance_squared_upper(const Vec3& first, const Vec3& second)
   const auto upper_nonnegative = [](double rounded) {
     if (!std::isfinite(rounded))
       return std::numeric_limits<double>::infinity();
-    return rounded > 0.0
-      ? std::nextafter(rounded, std::numeric_limits<double>::infinity())
-      : 0.0;
+    // A positive exact square can underflow to rounded zero. Widen zero too
+    // so this remains an upper bound on the exact squared distance.
+    return std::nextafter(std::max(0.0, rounded),
+      std::numeric_limits<double>::infinity());
   };
   const double dx = upper_nonnegative(std::abs(first.x - second.x));
   const double dy = upper_nonnegative(std::abs(first.y - second.y));
