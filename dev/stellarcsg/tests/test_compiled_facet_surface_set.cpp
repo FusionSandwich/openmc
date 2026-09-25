@@ -1,4 +1,7 @@
 #include "stellarcsg/compiled_facet_surface_set.hpp"
+#ifdef STELLARCSG_HAS_HDF5
+#include "stellarcsg/facet_payload_file.hpp"
+#endif
 
 #include <cmath>
 #include <cstdlib>
@@ -145,6 +148,19 @@ int main()
 
     if (const char* fixture = std::getenv("STELLARCSG_FACET_FIXTURE"))
       accepted_fixture(fixture);
+
+#ifdef STELLARCSG_HAS_HDF5
+    if (const char* payload = std::getenv("STELLARCSG_FACET_PAYLOAD")) {
+      const char* expected = std::getenv("STELLARCSG_FACET_CONTENT_ID");
+      require(expected != nullptr, "facet payload test requires expected ID");
+      const auto data = stellarcsg::read_facet_payload_hdf5(
+        payload, "/facets/one_period", expected);
+      require(data.triangles.size() == 3348, "accepted payload triangle count");
+      const CompiledFacetSurfaceSet loaded {data.triangles};
+      require(loaded.triangle_count() == 3348,
+        "accepted payload compiles as a closed oriented facet set");
+    }
+#endif
 
     std::cout << "facet surface tests passed\n";
     return 0;

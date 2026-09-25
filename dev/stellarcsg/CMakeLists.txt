@@ -42,6 +42,7 @@ if(STELLARCSG_ENABLE_HDF5)
   find_package(HDF5 REQUIRED COMPONENTS C HL)
   target_sources(stellarcsg_reference PRIVATE src/coefficient_file.cpp)
   target_sources(stellarcsg_reference PRIVATE src/swept_coefficient_file.cpp)
+  target_sources(stellarcsg_reference PRIVATE src/facet_payload_file.cpp)
   target_include_directories(stellarcsg_reference PUBLIC ${HDF5_INCLUDE_DIRS})
   target_link_libraries(stellarcsg_reference PUBLIC
     ${HDF5_LIBRARIES} ${HDF5_HL_LIBRARIES})
@@ -107,6 +108,12 @@ if(STELLARCSG_BUILD_TESTS)
     COMMAND stellarcsg_facet_surface_tests)
   set_tests_properties(stellarcsg_facet_p00_tests PROPERTIES
     ENVIRONMENT "STELLARCSG_FACET_FIXTURE=${CMAKE_CURRENT_SOURCE_DIR}/reports/local-cont-20260925/p00-accepted-facet-fixture.txt")
+  if(STELLARCSG_ENABLE_HDF5)
+    add_test(NAME stellarcsg_facet_p00_payload_tests
+      COMMAND stellarcsg_facet_surface_tests)
+    set_tests_properties(stellarcsg_facet_p00_payload_tests PROPERTIES
+      ENVIRONMENT "STELLARCSG_FACET_PAYLOAD=${CMAKE_CURRENT_SOURCE_DIR}/reports/local-cont-20260925/p00-accepted-facet-payload-01.h5;STELLARCSG_FACET_CONTENT_ID=sha256:c580f1c228ee9633df197aed32e5f41bc6bcb7b382d8a68f677e69787e8c57a6")
+  endif()
 
   if(CMAKE_CXX_COMPILER_ID MATCHES "GNU|Clang")
     foreach(target stellarcsg_reference_tests stellarcsg_compiled_surface_tests
