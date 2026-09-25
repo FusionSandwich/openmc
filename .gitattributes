@@ -44,3 +44,12 @@ dev/stellarcsg/reports/local-cont-20260925/wistell-authoritative-input-02.md tex
 dev/stellarcsg/qualification/audit_p00_h5m_catalog.py text eol=lf
 dev/stellarcsg/reports/local-cont-20260925/p00-h5m-catalog-readback-01.json text eol=lf
 dev/stellarcsg/reports/local-cont-20260925/native-swept-identity-gate-01.json text eol=lf
+dev/stellarcsg/qualification/stage_facet_component_period_region.py text eol=lf
+dev/stellarcsg/qualification/audit_component_facet_ray_bank.py text eol=lf
+dev/stellarcsg/qualification/audit_component_facet_rejections.py text eol=lf
+dev/stellarcsg/reports/local-cont-20260925/component-facet-period-region-02/*.xml text eol=lf
+dev/stellarcsg/reports/local-cont-20260925/component-facet-period-region-02/*.json text eol=lf
+dev/stellarcsg/reports/local-cont-20260925/component-facet-ray-bank-05/*.json text eol=lf
+dev/stellarcsg/reports/local-cont-20260925/component-facet-ray-bank-05/volume-*/*.xml text eol=lf
+dev/stellarcsg/reports/local-cont-20260925/component-facet-rejections-03/*.json text eol=lf
+dev/stellarcsg/reports/local-cont-20260925/component-facet-rejections-03/*/*.xml text eol=lf

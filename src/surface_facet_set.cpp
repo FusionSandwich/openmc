@@ -1,5 +1,7 @@
 #include "openmc/surface_facet_set.h"
 
+#include <algorithm>
+#include <charconv>
 #include <cmath>
 #include <filesystem>
 #include <stdexcept>
@@ -36,13 +38,23 @@ SurfaceFacetSet::SurfaceFacetSet(pugi::xml_node node) : Surface(node)
   data_file_ = get_node_value(node, "data_file", false, true);
   dataset_ = get_node_value(node, "dataset", false, true);
   content_id_ = get_node_value(node, "content_id", false, true);
+  if (check_for_node(node, "component_id")) {
+    const auto selector = get_node_value(node, "component_id", false, true);
+    const auto [end, error] = std::from_chars(selector.data(),
+      selector.data() + selector.size(), component_id_);
+    if (error != std::errc {} || end != selector.data() + selector.size()
+        || component_id_ <= 0)
+      fatal_error(fmt::format("Facet-set surface {} requires a positive "
+                              "int32 component_id", id_));
+  }
   if (check_for_node(node, "periodic_caps")) {
     periodic_caps_ = get_node_value(node, "periodic_caps", false, true);
-    if (periodic_caps_ != "x0 y0")
+    if (periodic_caps_ != "x0" && periodic_caps_ != "y0"
+        && periodic_caps_ != "x0 y0")
       fatal_error(fmt::format("Facet-set surface {} periodic_caps must be "
-                              "'x0 y0'", id_));
-    skip_x_cap_ = true;
-    skip_y_cap_ = true;
+                              "'x0', 'y0' or 'x0 y0'", id_));
+    skip_x_cap_ = periodic_caps_ == "x0" || periodic_caps_ == "x0 y0";
+    skip_y_cap_ = periodic_caps_ == "y0" || periodic_caps_ == "x0 y0";
   }
   if (dataset_.empty() || dataset_.front() != '/')
     fatal_error(fmt::format("Facet-set surface {} requires an absolute "
@@ -58,6 +70,15 @@ SurfaceFacetSet::SurfaceFacetSet(pugi::xml_node node) : Surface(node)
   try {
     auto data = stellarcsg::read_facet_payload_hdf5(
       path.lexically_normal().string(), dataset_, content_id_);
+    if (component_id_ > 0) {
+      auto& triangles = data.triangles;
+      triangles.erase(std::remove_if(triangles.begin(), triangles.end(),
+                        [this](const auto& triangle) {
+                          return triangle.component_id != component_id_;
+                        }), triangles.end());
+      if (triangles.empty())
+        throw std::runtime_error("Selected facet component_id is absent");
+    }
     surface_ = std::make_unique<stellarcsg::CompiledFacetSurfaceSet>(
       std::move(data.triangles));
     if ((skip_x_cap_ && surface_->periodic_cap_count(0) == 0)
@@ -147,6 +168,8 @@ void SurfaceFacetSet::to_hdf5_inner(hid_t group) const
   write_string(group, "data_file", data_file_, false);
   write_string(group, "dataset", dataset_, false);
   write_string(group, "content_id", content_id_, false);
+  if (component_id_ > 0)
+    write_dataset(group, "component_id", component_id_);
   if (!periodic_caps_.empty())
     write_string(group, "periodic_caps", periodic_caps_, false);
 }

@@ -205,6 +205,16 @@ def test_facet_set_payload_identity_roundtrip_and_bounds(tmp_path):
     assert delegated.to_xml_element().get('periodic_caps') == 'x0 y0'
     assert openmc.Surface.from_xml_element(
         delegated.to_xml_element()).is_equal(delegated)
+    selected = openmc.FacetSetSurface(
+        payload, '/facets/one_period', identity, component_id=16,
+        surface_id=308)
+    assert openmc.Surface.from_xml_element(
+        selected.to_xml_element()).is_equal(selected)
+    for malformed in ('1_6', '+16', ' 16', '１6'):
+        element = selected.to_xml_element()
+        element.set('component_id', malformed)
+        with pytest.raises(ValueError, match='component_id'):
+            openmc.Surface.from_xml_element(element)
     assert np.isfinite(delegated.bounding_box('-').lower_left).all()
     with pytest.raises(ValueError, match='periodic_caps'):
         openmc.FacetSetSurface(payload, '/facets/one_period', identity,

@@ -3089,7 +3089,9 @@ class FacetSetSurface(Surface):
         Absolute HDF5 group path.
     content_id : str
         SHA-256 ID binding metadata, vertices and component IDs.
-    periodic_caps : {'', 'x0 y0'}
+    component_id : int, optional
+        Select one positive component ID after verifying the complete payload.
+    periodic_caps : {'', 'x0', 'y0', 'x0 y0'}
         Explicitly delegate outward cap triangles on the selected zero planes
         to the corresponding periodic plane surfaces during distance queries.
     """
@@ -3098,14 +3100,18 @@ class FacetSetSurface(Surface):
     _coeff_keys = ()
 
     def __init__(self, data_file, dataset, content_id, periodic_caps='',
-                 **kwargs):
+                 component_id=None, **kwargs):
         super().__init__(**kwargs)
         check_type('data_file', data_file, (str, Path))
         check_type('dataset', dataset, str)
         check_type('content_id', content_id, str)
         check_type('periodic_caps', periodic_caps, str)
-        if periodic_caps not in ('', 'x0 y0'):
-            raise ValueError("periodic_caps must be '' or 'x0 y0'")
+        if periodic_caps not in ('', 'x0', 'y0', 'x0 y0'):
+            raise ValueError("periodic_caps must be '', 'x0', 'y0' or 'x0 y0'")
+        if (component_id is not None
+                and (type(component_id) is not int
+                     or not 0 < component_id <= 2**31 - 1)):
+            raise ValueError('component_id must be a positive signed-32-bit integer')
         if not dataset.startswith('/'):
             raise ValueError('dataset must be an absolute HDF5 group path')
         if len(content_id) != 71 or not content_id.startswith('sha256:') \
@@ -3118,13 +3124,14 @@ class FacetSetSurface(Surface):
         self.dataset = dataset
         self.content_id = content_id
         self.periodic_caps = periodic_caps
+        self.component_id = component_id
 
     def is_equal(self, other):
         return (type(other) is type(self)
                 and (self.data_file, self.dataset, self.content_id,
-                     self.periodic_caps)
+                     self.periodic_caps, self.component_id)
                 == (other.data_file, other.dataset, other.content_id,
-                    other.periodic_caps))
+                    other.periodic_caps, other.component_id))
 
     def _get_base_coeffs(self):
         return ()
@@ -3168,6 +3175,12 @@ class FacetSetSurface(Surface):
             digest.update(components.tobytes())
             if 'sha256:' + digest.hexdigest() != self.content_id:
                 raise ValueError('facet canonical payload SHA-256 does not verify')
+            if self.component_id is not None:
+                selected = components == self.component_id
+                if not np.any(selected):
+                    raise ValueError('selected facet component_id is absent')
+                vertices = vertices[selected]
+                components = components[selected]
             normal = np.cross(vertices[:, 1] - vertices[:, 0],
                               vertices[:, 2] - vertices[:, 0])
             lengths = np.linalg.norm(normal, axis=1)
@@ -3242,12 +3255,17 @@ class FacetSetSurface(Surface):
         element.set('units', 'cm')
         if self.periodic_caps:
             element.set('periodic_caps', self.periodic_caps)
+        if self.component_id is not None:
+            element.set('component_id', str(self.component_id))
         return element
 
     @classmethod
     def _from_xml_element(cls, elem):
         if get_text(elem, 'units', 'cm') != 'cm':
             raise ValueError("facet-set XML units must be 'cm'")
+        selector = get_text(elem, 'component_id')
+        if selector is not None and not (selector.isascii() and selector.isdecimal()):
+            raise ValueError('component_id must contain only ASCII decimal digits')
         kwargs = {
             'surface_id': int(get_text(elem, 'id')),
             'boundary_type': get_text(elem, 'boundary', 'transmission'),
@@ -3257,7 +3275,9 @@ class FacetSetSurface(Surface):
             kwargs['albedo'] = float(get_text(elem, 'albedo', 1.0))
         return cls(get_text(elem, 'data_file'), get_text(elem, 'dataset'),
                    get_text(elem, 'content_id'),
-                   periodic_caps=get_text(elem, 'periodic_caps', ''), **kwargs)
+                   periodic_caps=get_text(elem, 'periodic_caps', ''),
+                   component_id=int(selector) if selector is not None else None,
+                   **kwargs)
 
     @classmethod
     def _from_hdf5(cls, group, **kwargs):
@@ -3267,6 +3287,8 @@ class FacetSetSurface(Surface):
         return cls(text('data_file'), text('dataset'), text('content_id'),
                    periodic_caps=text('periodic_caps')
                    if 'periodic_caps' in group else '',
+                   component_id=int(group['component_id'][()])
+                   if 'component_id' in group else None,
                    **kwargs)
 
 

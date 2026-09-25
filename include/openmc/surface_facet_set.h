@@ -24,6 +24,7 @@ private:
   std::string dataset_;
   std::string content_id_;
   std::string periodic_caps_;
+  int component_id_ {0};
   bool skip_x_cap_ {false};
   bool skip_y_cap_ {false};
   std::unique_ptr<stellarcsg::CompiledFacetSurfaceSet> surface_;
