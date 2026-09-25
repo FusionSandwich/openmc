@@ -26,3 +26,8 @@ dev/stellarcsg/reports/local-cont-20260925/period-swept-bound-parity-01.json tex
 dev/stellarcsg/qualification/stage_period_region.py text eol=lf
 dev/stellarcsg/reports/local-cont-20260925/provisional-period-region-01/geometry.xml text eol=lf
 dev/stellarcsg/reports/local-cont-20260925/provisional-period-region-01/receipt.json text eol=lf
+dev/stellarcsg/experiments/probe_native_period_region.cpp text eol=lf
+dev/stellarcsg/qualification/audit_native_period_region.py text eol=lf
+dev/stellarcsg/reports/local-cont-20260925/native-period-region-01/stdout.jsonl text eol=lf
+dev/stellarcsg/reports/local-cont-20260925/native-period-region-01/stderr.txt text eol=lf
+dev/stellarcsg/reports/local-cont-20260925/native-period-region-01/receipt.json text eol=lf
