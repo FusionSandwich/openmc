@@ -1,0 +1,33 @@
+Adversarial-review fixes native and standalone rebuild preflight, 2026-09-25.
+Windows RAM total/free B: 34260418560 / 6821834752
+Drive free bytes:
+C: 81729531904
+D: 501369769984
+Largest process working sets:
+
+ProcessName           Id      RAM_B
+-----------           --      -----
+vmmemWSL           51388 2601725952
+ChatGPT            29076 1849122816
+codex              26516 1742352384
+Memory Compression  3228 1572294656
+julia              58908 1184968704
+ChatGPT            46276 1046638592
+julia              34140  874901504
+OneDrive           47340  629743616
+
+
+WSL disks/RAM/executables/caches:
+Filesystem         1B-blocks          Used    Available Use% Mounted on
+/dev/sde       1081101176832   63105708032 963003113472   7% /
+C:\             998965768192  917236203520  81729564672  92% /mnt/c
+D:\            2000397791232 1499028021248 501369769984  75% /mnt/d
+               total        used        free      shared  buff/cache   available
+Mem:     25200033792  1382576128 22558400512     3891200  1584762880 23817457664
+Swap:    34359738368           0 34359738368
+g++ (Debian 14.2.0-19) 14.2.0
+cmake version 3.31.6
+/opt/openmc-fes-venv/bin/python
+/home/sman/.cache/pip
+/home/sman/.local/share/mamba/pkgs
+Existing local capabilities: current StellarCSG checkout and CMake/Ninja build tree, D:/Scratch/stellarator_optimization and D:/Scratch/parastell, /opt/openmc-fes-venv, Windows Python 3.12.10 / Git 2.55 / CMake 4.4, WSL G++ 14.2 / CMake 3.31.6 / HDF5 1.14.5 / cached Ninja 1.13.2, pip and mamba caches. Prior audits 66-70 include full inventory. Existing capabilities suffice; planned software acquisition 0 B. Incrementally compile libopenmc with one job and a standalone facet regression binary in existing C: build directories, expected net bytes below 20 MiB. No download, installation, upgrade, environment modification, or remote access. Rollback: rebuild prior committed source and remove new standalone executable.

@@ -102,6 +102,9 @@ int main()
     triangles.insert(triangles.end(), second.begin(), second.end());
     const CompiledFacetSurfaceSet surface {triangles};
     require(surface.triangle_count() == 24, "triangle count");
+    require(surface.periodic_cap_count(0) == 2
+      && surface.periodic_cap_count(1) == 4,
+      "outward zero-plane cap counts");
     require(surface.contains({0.25, 0.31, 0.42}) == true,
       "first cube inside");
     require(surface.contains({3.25, 0.31, 0.42}) == true,
@@ -117,10 +120,27 @@ int main()
       "nearest hit distance and component");
     require(first.outward_normal.x < -0.999,
       "outward normal orientation");
+    const auto face_normal = surface.normal_at({0.0, 0.31, 0.42});
+    require(face_normal && face_normal->x < -0.999,
+      "normal on unique face interior");
+    const auto next_from_face = surface.distance(
+      {0.0, 0.31, 0.42}, {1.0, 0.0, 0.0}, true);
+    require(next_from_face.found && !next_from_face.terminal_unresolved
+      && std::abs(next_from_face.distance - 1.0) < 1e-12,
+      "coincident origin skips only zero-distance self hit");
+    require(surface.normal_at({0.0, 0.5, 0.5}).has_value(),
+      "coplanar triangle seam has shared normal");
     const auto scaled = surface.distance({-1.0, 0.31, 0.42},
       {4.0, 0.0, 0.0});
     require(scaled.found && std::abs(scaled.distance - 1.0) < 1e-12,
       "distance independent of direction scale");
+    const auto cap_hit = surface.distance(
+      {0.25, 0.31, 0.42}, {-1.0, 0.0, 0.0});
+    const auto cap_delegated = surface.distance(
+      {0.25, 0.31, 0.42}, {-1.0, 0.0, 0.0}, false, true, false);
+    require(cap_hit.found && std::abs(cap_hit.distance - 0.25) < 1e-12
+      && !cap_delegated.found && !cap_delegated.terminal_unresolved,
+      "explicit x-cap delegation leaves parity geometry intact");
 
     const auto miss = surface.distance({-1.0, 2.0, 0.42},
       {1.0, 0.0, 0.0});
@@ -129,8 +149,14 @@ int main()
 
     const auto seam = surface.distance({-1.0, 0.5, 0.5},
       {1.0, 0.0, 0.0});
-    require(seam.terminal_unresolved,
-      "shared triangle edge must fail closed");
+    require(seam.found && !seam.terminal_unresolved
+      && std::abs(seam.distance - 1.0) < 1e-12
+      && seam.outward_normal.x < -0.999,
+      "coplanar triangulation seam has a unique crossing");
+    const auto crease = surface.distance({-1.0, 0.0, 0.42},
+      {1.0, 0.0, 0.0});
+    require(crease.terminal_unresolved,
+      "noncoplanar facet crease must fail closed");
 
     auto open = cube(0.0, 7);
     open.pop_back();
@@ -146,6 +172,20 @@ int main()
     catch (const std::invalid_argument&) { rejected_reversed = true; }
     require(rejected_reversed, "inconsistent orientation rejected");
 
+    auto inward_shell = cube(0.0, 7);
+    for (auto& triangle : inward_shell)
+      std::swap(triangle.b, triangle.c);
+    bool rejected_inward_shell = false;
+    try { (void) CompiledFacetSurfaceSet {inward_shell}; }
+    catch (const std::invalid_argument&) { rejected_inward_shell = true; }
+    require(rejected_inward_shell, "globally inward winding rejected");
+
+    const CompiledFacetSurfaceSet aligned_cap {cube(1e-13, 7)};
+    const CompiledFacetSurfaceSet displaced_cap {cube(5e-11, 7)};
+    require(aligned_cap.periodic_cap_count(0) == 2
+      && displaced_cap.periodic_cap_count(0) == 0,
+      "delegated cap must align within coincidence budget");
+
     if (const char* fixture = std::getenv("STELLARCSG_FACET_FIXTURE"))
       accepted_fixture(fixture);
 
@@ -159,6 +199,9 @@ int main()
       const CompiledFacetSurfaceSet loaded {data.triangles};
       require(loaded.triangle_count() == 3348,
         "accepted payload compiles as a closed oriented facet set");
+      require(loaded.periodic_cap_count(0) == 80
+        && loaded.periodic_cap_count(1) == 80,
+        "accepted payload zero-plane caps identified");
     }
 #endif
 

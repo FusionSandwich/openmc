@@ -1,0 +1,17 @@
+{
+  "schema": "stellarcsg.native-facet-standalone/v1",
+  "state": "PASS",
+  "command": "build/local-cont-20260925/facet-payload-test-06",
+  "exit_code": 0,
+  "stdout": "facet surface tests passed\n",
+  "stderr": "",
+  "hashes": {
+    "binary": "330307140e5dbe5955b5ac5f58de88c73952e8bb62624f426ab0b4a08a360955",
+    "test_source": "b993939681df1b9e8dd5a7cc42711ba320557297dd77e07e42c9415069204f4e",
+    "facet_kernel": "c79d43aee833e144712ec0516d8c47ccc081df252434171a2a96541cbf179283",
+    "facet_loader": "48449f3de3c9df2bcf1dcd13a57e3c30302aa042029c22e295fa5411ea2ae388",
+    "fixture": "e3bb70b70012f7899fadb3d8b736123b96e5e472afa3bc645d303013ef715b05",
+    "payload": "126fdbec0a5795036ad75c7409f760652e47722d02f28fada89ddaf2fa71d9df"
+  },
+  "claim_boundary": "Standalone closed oriented facet geometry, SHA-bound accepted payload, normals, distances, cap delegation, reversed winding and crease/seam controls. This is not OpenMC history transport."
+}

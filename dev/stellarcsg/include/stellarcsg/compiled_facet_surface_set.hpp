@@ -3,6 +3,7 @@
 
 #include "stellarcsg/vector.hpp"
 
+#include <array>
 #include <cstddef>
 #include <cstdint>
 #include <limits>
@@ -36,9 +37,14 @@ public:
   // Returns physical distance in the same units as the vertices, for any
   // finite nonzero direction. Ambiguous earlier contacts set terminal_unresolved.
   [[nodiscard]] FacetDistanceResult distance(const Vec3& origin,
-    const Vec3& direction) const;
+    const Vec3& direction, bool coincident = false,
+    bool skip_x_cap = false, bool skip_y_cap = false) const;
+  // Counts outward-oriented planar caps on x=0 and y=0, respectively.
+  [[nodiscard]] std::size_t periodic_cap_count(int axis) const;
   // nullopt means at least one probe ray is geometrically ambiguous.
   [[nodiscard]] std::optional<bool> contains(const Vec3& point) const;
+  // Defined only on a unique face interior or coplanar triangulation seam.
+  [[nodiscard]] std::optional<Vec3> normal_at(const Vec3& point) const;
   [[nodiscard]] const BoundingBox& bounding_box() const noexcept
   {
     return bounds_;
@@ -65,6 +71,8 @@ private:
 
   std::vector<FacetTriangle> triangles_ {};
   std::vector<BoundingBox> triangle_boxes_ {};
+  std::vector<std::uint8_t> periodic_cap_mask_ {};
+  std::array<std::size_t, 2> periodic_cap_counts_ {};
   std::vector<std::uint32_t> indices_ {};
   std::vector<Node> nodes_ {};
   BoundingBox bounds_ {};

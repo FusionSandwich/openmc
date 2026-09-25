@@ -1,6 +1,7 @@
 #include "openmc/surface.h"
 
 #ifdef OPENMC_EXPERIMENTAL_STELLARCSG
+#include "openmc/surface_facet_set.h"
 #include "openmc/surface_periodic_spline.h"
 #include "openmc/surface_swept_spline.h"
 #endif
@@ -1250,6 +1251,9 @@ void read_surfaces(pugi::xml_node node,
       } else if (surf_type == "swept-spline") {
         model::surfaces.push_back(
           std::make_unique<SurfaceSweptSpline>(surf_node));
+      } else if (surf_type == "facet-set") {
+        model::surfaces.push_back(
+          std::make_unique<SurfaceFacetSet>(surf_node));
 #endif
 
       } else {

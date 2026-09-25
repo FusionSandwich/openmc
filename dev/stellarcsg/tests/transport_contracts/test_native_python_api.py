@@ -5,7 +5,9 @@ explicit module-level skip (BLOCKED), never an API pass. Local method-isolation
 receipts do not count as executing this file.
 """
 import importlib.util
+import hashlib
 from pathlib import Path
+import shutil
 
 import h5py
 import lxml.etree as ET
@@ -185,6 +187,102 @@ def test_swept_collection_member_content_binding(tmp_path):
         h5['members/coil_011'].attrs.modify('content_id', 'sha256:' + 'c' * 64)
     with pytest.raises(ValueError, match='member content ID mismatch'):
         surface.bounding_box('-')
+
+
+def test_facet_set_payload_identity_roundtrip_and_bounds(tmp_path):
+    reports = Path(__file__).resolve().parents[2] / 'reports/local-cont-20260925'
+    payload = reports / 'p00-accepted-facet-payload-01.h5'
+    identity = 'sha256:c580f1c228ee9633df197aed32e5f41bc6bcb7b382d8a68f677e69787e8c57a6'
+    surface = openmc.FacetSetSurface(
+        payload, '/facets/one_period', identity, surface_id=306)
+    element = surface.to_xml_element()
+    assert element.get('type') == 'facet-set'
+    assert element.get('content_id') == identity
+    assert openmc.Surface.from_xml_element(element).is_equal(surface)
+    delegated = openmc.FacetSetSurface(
+        payload, '/facets/one_period', identity, periodic_caps='x0 y0',
+        surface_id=307)
+    assert delegated.to_xml_element().get('periodic_caps') == 'x0 y0'
+    assert openmc.Surface.from_xml_element(
+        delegated.to_xml_element()).is_equal(delegated)
+    assert np.isfinite(delegated.bounding_box('-').lower_left).all()
+    with pytest.raises(ValueError, match='periodic_caps'):
+        openmc.FacetSetSurface(payload, '/facets/one_period', identity,
+                               periodic_caps='z0')
+    geometry_path = tmp_path / 'facet-geometry.xml'
+    openmc.Geometry([openmc.Cell(cell_id=406, region=-surface)]).export_to_xml(
+        path=geometry_path)
+    openmc.reset_auto_ids()
+    reloaded_geometry = openmc.Geometry.from_xml(
+        path=geometry_path, materials=openmc.Materials())
+    assert reloaded_geometry.get_all_surfaces()[306].is_equal(surface)
+    box = surface.bounding_box('-')
+    with h5py.File(payload, 'r') as h5:
+        vertices = h5['facets/one_period/triangle_vertices'][:]
+    assert np.all(box.lower_left < vertices.min(axis=(0, 1)))
+    assert np.all(box.upper_right > vertices.max(axis=(0, 1)))
+    with h5py.File(tmp_path / 'facet-summary.h5', 'w') as h5:
+        group = h5.create_group('surface 306')
+        for key, value in dict(type='facet-set', boundary_type='transmission',
+                               data_file=str(payload), dataset='/facets/one_period',
+                               content_id=identity).items():
+            group[key] = np.bytes_(value)
+        assert openmc.Surface.from_hdf5(group).is_equal(surface)
+        delegated_group = h5.create_group('surface 307')
+        for key, value in dict(type='facet-set', boundary_type='transmission',
+                               data_file=str(payload), dataset='/facets/one_period',
+                               content_id=identity, periodic_caps='x0 y0').items():
+            delegated_group[key] = np.bytes_(value)
+        assert openmc.Surface.from_hdf5(delegated_group).is_equal(delegated)
+    with pytest.raises(ValueError, match='periodic'):
+        openmc.FacetSetSurface(payload, '/facets/one_period', identity,
+                               boundary_type='periodic')
+    tampered = tmp_path / 'tampered-facets.h5'
+    shutil.copyfile(payload, tampered)
+    with h5py.File(tampered, 'r+') as h5:
+        vertices = h5['facets/one_period/triangle_vertices']
+        vertices[0, 0, 0] = np.nextafter(vertices[0, 0, 0], np.inf)
+    with pytest.raises(ValueError, match='SHA-256 does not verify'):
+        openmc.FacetSetSurface(
+            tampered, '/facets/one_period', identity).bounding_box('-')
+    degenerate = tmp_path / 'degenerate-facets.h5'
+    shutil.copyfile(payload, degenerate)
+    with h5py.File(degenerate, 'r+') as h5:
+        group = h5['facets/one_period']
+        vertices = group['triangle_vertices'][:]
+        vertices[0, 2] = vertices[0, 1]
+        group['triangle_vertices'][:] = vertices
+        components = group['component_ids'][:]
+        metadata = group.attrs['canonical_metadata_json']
+        if isinstance(metadata, bytes):
+            metadata = metadata.decode()
+        digest = hashlib.sha256(metadata.encode())
+        digest.update(vertices.astype('<f8').tobytes())
+        digest.update(components.astype('<i4').tobytes())
+        degenerate_id = 'sha256:' + digest.hexdigest()
+        group.attrs['content_id'] = degenerate_id
+    with pytest.raises(ValueError, match='degenerate triangles'):
+        openmc.FacetSetSurface(degenerate, '/facets/one_period',
+                               degenerate_id).bounding_box('-')
+    inward = tmp_path / 'inward-facets.h5'
+    shutil.copyfile(payload, inward)
+    with h5py.File(inward, 'r+') as h5:
+        group = h5['facets/one_period']
+        vertices = group['triangle_vertices'][:]
+        vertices[:, [1, 2]] = vertices[:, [2, 1]]
+        group['triangle_vertices'][:] = vertices
+        components = group['component_ids'][:]
+        metadata = group.attrs['canonical_metadata_json']
+        if isinstance(metadata, bytes):
+            metadata = metadata.decode()
+        digest = hashlib.sha256(metadata.encode())
+        digest.update(vertices.astype('<f8').tobytes())
+        digest.update(components.astype('<i4').tobytes())
+        inward_id = 'sha256:' + digest.hexdigest()
+        group.attrs['content_id'] = inward_id
+    with pytest.raises(ValueError, match='wind outward'):
+        openmc.FacetSetSurface(inward, '/facets/one_period',
+                               inward_id).bounding_box('-')
 
 
 def test_swept_python_box_contains_rounded_stored_power_witness(tmp_path):

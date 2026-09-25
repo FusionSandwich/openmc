@@ -20,6 +20,7 @@ using EdgeBits = std::pair<VertexBits, VertexBits>;
 struct EdgeAudit {
   int count {0};
   int orientation {0};
+  std::size_t first_triangle {0};
 };
 
 struct LongVec {
@@ -120,14 +121,27 @@ CompiledFacetSurfaceSet::CompiledFacetSurfaceSet(
     throw std::invalid_argument("Facet set requires a finite nonempty triangle count");
   }
   std::map<std::pair<int, EdgeBits>, EdgeAudit> edges;
+  std::vector<std::size_t> parent(triangles_.size());
+  std::iota(parent.begin(), parent.end(), std::size_t {0});
+  const auto root = [&parent](std::size_t index) {
+    while (parent[index] != index) {
+      parent[index] = parent[parent[index]];
+      index = parent[index];
+    }
+    return index;
+  };
   triangle_boxes_.reserve(triangles_.size());
-  for (const auto& triangle : triangles_) {
+  periodic_cap_mask_.reserve(triangles_.size());
+  for (std::size_t triangle_index = 0; triangle_index < triangles_.size();
+       ++triangle_index) {
+    const auto& triangle = triangles_[triangle_index];
     if (!finite(triangle.a) || !finite(triangle.b) || !finite(triangle.c)) {
       throw std::invalid_argument("Facet vertices must be finite");
     }
     const LongVec e1 = as_long(triangle.b) - as_long(triangle.a);
     const LongVec e2 = as_long(triangle.c) - as_long(triangle.a);
-    const long double area2 = length_long(cross_long(e1, e2));
+    const LongVec normal = cross_long(e1, e2);
+    const long double area2 = length_long(normal);
     if (!(area2 > 0.0L) || !std::isfinite(area2)) {
       throw std::invalid_argument("Facet triangle has zero or nonfinite area");
     }
@@ -141,10 +155,29 @@ CompiledFacetSurfaceSet::CompiledFacetSurfaceSet(
       const bool forward = left < right;
       auto& audit = edges[{triangle.component_id,
         forward ? EdgeBits {left, right} : EdgeBits {right, left}}];
+      if (audit.count == 0) audit.first_triangle = triangle_index;
+      else parent[root(triangle_index)] = root(audit.first_triangle);
       ++audit.count;
       audit.orientation += forward ? 1 : -1;
     }
     triangle_boxes_.push_back(triangle_box(triangle));
+    std::uint8_t cap_mask = 0;
+    // Stay within one quarter of OpenMC's 1e-12 cm coincidence tolerance.
+    constexpr double cap_position_tolerance = 2.5e-13;
+    constexpr long double cap_normal_tolerance = 1.0e-12L;
+    if (std::max({std::abs(triangle.a.x), std::abs(triangle.b.x),
+          std::abs(triangle.c.x)}) <= cap_position_tolerance
+        && -normal.x / area2 >= 1.0L - cap_normal_tolerance) {
+      cap_mask |= 1U;
+      ++periodic_cap_counts_[0];
+    }
+    if (std::max({std::abs(triangle.a.y), std::abs(triangle.b.y),
+          std::abs(triangle.c.y)}) <= cap_position_tolerance
+        && -normal.y / area2 >= 1.0L - cap_normal_tolerance) {
+      cap_mask |= 2U;
+      ++periodic_cap_counts_[1];
+    }
+    periodic_cap_mask_.push_back(cap_mask);
   }
   for (const auto& item : edges) {
     if (item.second.count != 2 || item.second.orientation != 0) {
@@ -152,11 +185,39 @@ CompiledFacetSurfaceSet::CompiledFacetSurfaceSet(
         "Each facet component must have a closed consistently oriented edge set");
     }
   }
+  // Edge consistency alone accepts a globally inverted shell. Parity defines
+  // the interior as the negative side, so each connected shell must wind
+  // outward for OpenMC's normal-based exact-boundary sense to agree.
+  std::map<std::size_t, LongVec> references;
+  std::map<std::size_t, long double> signed_volume6;
+  for (std::size_t index = 0; index < triangles_.size(); ++index) {
+    const auto shell = root(index);
+    const auto& triangle = triangles_[index];
+    const auto [iter, inserted] = references.try_emplace(
+      shell, as_long(triangle.a));
+    (void) inserted;
+    const LongVec a = as_long(triangle.a) - iter->second;
+    const LongVec b = as_long(triangle.b) - iter->second;
+    const LongVec c = as_long(triangle.c) - iter->second;
+    signed_volume6[shell] += dot_long(a, cross_long(b, c));
+  }
+  for (const auto& [shell, volume6] : signed_volume6) {
+    (void) shell;
+    if (!(volume6 > 0.0L) || !std::isfinite(volume6))
+      throw std::invalid_argument("Each connected facet shell must wind outward");
+  }
   indices_.resize(triangles_.size());
   std::iota(indices_.begin(), indices_.end(), 0U);
   nodes_.reserve(2 * triangles_.size());
   (void) build_node(0U, static_cast<std::uint32_t>(triangles_.size()));
   bounds_ = nodes_.front().bbox;
+}
+
+std::size_t CompiledFacetSurfaceSet::periodic_cap_count(int axis) const
+{
+  if (axis < 0 || axis > 1)
+    throw std::invalid_argument("Periodic facet cap axis must be x or y");
+  return periodic_cap_counts_[static_cast<std::size_t>(axis)];
 }
 
 std::uint32_t CompiledFacetSurfaceSet::build_node(
@@ -243,8 +304,51 @@ CompiledFacetSurfaceSet::intersect_triangle(
   return {true, false, result};
 }
 
+std::optional<Vec3> CompiledFacetSurfaceSet::normal_at(const Vec3& point) const
+{
+  if (!finite(point))
+    throw std::invalid_argument("Facet normal point must be finite");
+  std::optional<Vec3> chosen;
+  std::optional<int> chosen_component;
+  for (const auto& triangle : triangles_) {
+    const LongVec e1 = as_long(triangle.b) - as_long(triangle.a);
+    const LongVec e2 = as_long(triangle.c) - as_long(triangle.a);
+    const LongVec offset = as_long(point) - as_long(triangle.a);
+    const LongVec n = cross_long(e1, e2);
+    const long double magnitude = length_long(n);
+    const long double scale = std::max({1.0L, length_long(e1),
+      length_long(e2), length_long(offset)});
+    const long double plane_gap = std::abs(dot_long(n, offset)) / magnitude;
+    const long double plane_tolerance = 1.0e-12L + 64.0L
+      * std::numeric_limits<long double>::epsilon() * scale;
+    if (plane_gap > plane_tolerance) continue;
+    const long double d00 = dot_long(e1, e1);
+    const long double d01 = dot_long(e1, e2);
+    const long double d11 = dot_long(e2, e2);
+    const long double d20 = dot_long(offset, e1);
+    const long double d21 = dot_long(offset, e2);
+    const long double denominator = d00 * d11 - d01 * d01;
+    if (!(denominator > 0.0L)) return std::nullopt;
+    const long double v = (d11 * d20 - d01 * d21) / denominator;
+    const long double w = (d00 * d21 - d01 * d20) / denominator;
+    const long double u = 1.0L - v - w;
+    if (u < -1.0e-12L || v < -1.0e-12L || w < -1.0e-12L)
+      continue;
+    const Vec3 normal {static_cast<double>(n.x / magnitude),
+      static_cast<double>(n.y / magnitude),
+      static_cast<double>(n.z / magnitude)};
+    if (chosen && (norm(*chosen - normal) > 1.0e-10
+        || *chosen_component != triangle.component_id))
+      return std::nullopt;
+    chosen = normal;
+    chosen_component = triangle.component_id;
+  }
+  return chosen;
+}
+
 FacetDistanceResult CompiledFacetSurfaceSet::distance(
-  const Vec3& origin, const Vec3& direction) const
+  const Vec3& origin, const Vec3& direction, bool coincident,
+  bool skip_x_cap, bool skip_y_cap) const
 {
   const double direction_length = norm(direction);
   if (!finite(origin) || !finite(direction)
@@ -252,6 +356,9 @@ FacetDistanceResult CompiledFacetSurfaceSet::distance(
     throw std::invalid_argument("Facet ray must have finite origin and nonzero direction");
   }
   const Vec3 unit_direction = normalized(direction);
+  // A coincident hint only authorizes discarding zero-distance self hits when
+  // the origin is independently recognized on a unique local face.
+  const bool confirmed_origin_face = coincident && normal_at(origin).has_value();
   FacetDistanceResult best;
   double earliest_ambiguity = std::numeric_limits<double>::infinity();
   std::vector<std::uint32_t> stack {0U};
@@ -265,12 +372,34 @@ FacetDistanceResult CompiledFacetSurfaceSet::distance(
     if (node.leaf()) {
       for (std::uint32_t i = 0; i < node.count; ++i) {
         const auto triangle_index = indices_[node.first + i];
+        const auto cap_mask = periodic_cap_mask_[triangle_index];
+        if ((skip_x_cap && (cap_mask & 1U))
+            || (skip_y_cap && (cap_mask & 2U))) continue;
         const auto local = triangle_boxes_[triangle_index].ray_interval(
           origin, unit_direction);
         if (!local || local->exit <= 0.0 || local->enter > best.distance)
           continue;
         const auto hit = intersect_triangle(triangle_index, origin, unit_direction);
         if (hit.ambiguous) {
+          if (confirmed_origin_face && std::isfinite(hit.t)
+              && std::abs(hit.t) <= 1.0e-12) continue;
+          // The diagonal between coplanar facets is a unique physical plane
+          // crossing. Resolve only a finite, transverse contact with one
+          // normal and one component; retain crease/vertex ambiguity.
+          if (std::isfinite(hit.t) && hit.t > 1.0e-12) {
+            const auto shared_normal = normal_at(origin + hit.t * unit_direction);
+            if (shared_normal
+                && std::abs(dot(*shared_normal, unit_direction)) > 1.0e-12) {
+              if (hit.t < best.distance) {
+                best.found = true;
+                best.distance = hit.t;
+                best.triangle_index = triangle_index;
+                best.component_id = triangles_[triangle_index].component_id;
+                best.outward_normal = *shared_normal;
+              }
+              continue;
+            }
+          }
           earliest_ambiguity = std::min(earliest_ambiguity,
             std::max(0.0, local->enter));
         } else if (hit.hit && hit.t < best.distance) {

@@ -2,6 +2,7 @@ from __future__ import annotations
 from abc import ABC, abstractmethod
 from collections.abc import Iterable
 from copy import deepcopy
+import hashlib
 import math
 from numbers import Real
 from pathlib import Path
@@ -461,7 +462,7 @@ class Surface(IDManagerMixin, ABC):
         surf_type = get_text(elem, "type")
         cls = _SURFACE_CLASSES[surf_type]
 
-        if surf_type in ('periodic-spline', 'swept-spline'):
+        if surf_type in ('periodic-spline', 'swept-spline', 'facet-set'):
             return cls._from_xml_element(elem)
 
         # Determine ID, boundary type, boundary albedo, coefficients
@@ -511,7 +512,7 @@ class Surface(IDManagerMixin, ABC):
         surf_type = group['type'][()].decode()
         cls = _SURFACE_CLASSES[surf_type]
 
-        if surf_type in ('periodic-spline', 'swept-spline'):
+        if surf_type in ('periodic-spline', 'swept-spline', 'facet-set'):
             return cls._from_hdf5(group, **kwargs)
 
         coeffs = group['coefficients'][...]
@@ -3075,6 +3076,198 @@ class SweptSplineSurface(Surface):
                          'member_content_ids': text('member_content_ids').split()
                          if 'member_content_ids' in group else None}
         return cls(data_file=text('data_file'), **selectors, **kwargs)
+
+
+class FacetSetSurface(Surface):
+    """Experimental closed, oriented triangle surface set from HDF5.
+
+    Parameters
+    ----------
+    data_file : str or pathlib.Path
+        HDF5 file containing the triangle payload.
+    dataset : str
+        Absolute HDF5 group path.
+    content_id : str
+        SHA-256 ID binding metadata, vertices and component IDs.
+    periodic_caps : {'', 'x0', 'y0', 'x0 y0'}
+        Explicitly delegate outward cap triangles on the selected zero planes
+        to the corresponding periodic plane surfaces during distance queries.
+    """
+
+    _type = 'facet-set'
+    _coeff_keys = ()
+
+    def __init__(self, data_file, dataset, content_id, periodic_caps='',
+                 **kwargs):
+        super().__init__(**kwargs)
+        check_type('data_file', data_file, (str, Path))
+        check_type('dataset', dataset, str)
+        check_type('content_id', content_id, str)
+        check_type('periodic_caps', periodic_caps, str)
+        if periodic_caps not in ('', 'x0', 'y0', 'x0 y0'):
+            raise ValueError("periodic_caps must be '', 'x0', 'y0' or 'x0 y0'")
+        if not dataset.startswith('/'):
+            raise ValueError('dataset must be an absolute HDF5 group path')
+        if len(content_id) != 71 or not content_id.startswith('sha256:') \
+                or any(character not in '0123456789abcdef'
+                       for character in content_id[7:]):
+            raise ValueError('content_id must be a canonical SHA-256 ID')
+        if self.boundary_type == 'periodic':
+            raise ValueError('facet-set surfaces cannot be periodic')
+        self.data_file = str(data_file)
+        self.dataset = dataset
+        self.content_id = content_id
+        self.periodic_caps = periodic_caps
+
+    def is_equal(self, other):
+        return (type(other) is type(self)
+                and (self.data_file, self.dataset, self.content_id,
+                     self.periodic_caps)
+                == (other.data_file, other.dataset, other.content_id,
+                    other.periodic_caps))
+
+    def _get_base_coeffs(self):
+        return ()
+
+    def evaluate(self, point):
+        raise NotImplementedError(
+            'FacetSetSurface evaluation is provided by an experimental OpenMC build'
+        )
+
+    def bounding_box(self, side):
+        if side == '+':
+            return BoundingBox.infinite()
+        if side != '-':
+            raise ValueError("side must be '+' or '-'")
+        import h5py
+        with h5py.File(self.data_file, 'r') as h5:
+            group = h5[self.dataset]
+            def text(name):
+                value = group.attrs[name]
+                return value.decode() if isinstance(value, bytes) else str(value)
+            if text('units') != 'cm':
+                raise ValueError("facet payload units must be 'cm'")
+            if text('content_id') != self.content_id:
+                raise ValueError('facet payload content ID mismatch')
+            vertices_ds = group['triangle_vertices']
+            components_ds = group['component_ids']
+            if (len(vertices_ds.shape) != 3 or vertices_ds.shape[0] == 0
+                    or vertices_ds.shape[1:] != (3, 3)
+                    or components_ds.shape != (vertices_ds.shape[0],)
+                    or vertices_ds.dtype.kind != 'f'
+                    or vertices_ds.dtype.itemsize != 8
+                    or components_ds.dtype.kind != 'i'
+                    or components_ds.dtype.itemsize != 4):
+                raise ValueError('invalid facet payload dataset shape or type')
+            vertices = np.asarray(vertices_ds, dtype='<f8', order='C')
+            components = np.asarray(components_ds, dtype='<i4', order='C')
+            if not np.isfinite(vertices).all() or np.any(components <= 0):
+                raise ValueError('invalid facet vertex or component ID')
+            digest = hashlib.sha256(text('canonical_metadata_json').encode())
+            digest.update(vertices.tobytes())
+            digest.update(components.tobytes())
+            if 'sha256:' + digest.hexdigest() != self.content_id:
+                raise ValueError('facet canonical payload SHA-256 does not verify')
+            normal = np.cross(vertices[:, 1] - vertices[:, 0],
+                              vertices[:, 2] - vertices[:, 0])
+            lengths = np.linalg.norm(normal, axis=1)
+            if not np.isfinite(lengths).all() or np.any(lengths <= 0):
+                raise ValueError('facet payload has degenerate triangles')
+            # Mirror the native closed, oriented edge and shell checks. A
+            # globally inverted shell otherwise disagrees with OpenMC sense().
+            parent = list(range(len(vertices)))
+            def root(index):
+                while parent[index] != index:
+                    parent[index] = parent[parent[index]]
+                    index = parent[index]
+                return index
+            edge_audit = {}
+            for index, (triangle, component) in enumerate(zip(vertices, components)):
+                points = [tuple(0.0 if x == 0 else float(x) for x in point)
+                          for point in triangle]
+                for left, right in ((0, 1), (1, 2), (2, 0)):
+                    a, b = points[left], points[right]
+                    if a == b:
+                        raise ValueError('facet payload has repeated vertices')
+                    key = (int(component), min(a, b), max(a, b))
+                    entry = edge_audit.setdefault(key, [0, 0, index])
+                    if entry[0]:
+                        parent[root(index)] = root(entry[2])
+                    entry[0] += 1
+                    entry[1] += 1 if a < b else -1
+            if any(count != 2 or orientation != 0
+                   for count, orientation, _ in edge_audit.values()):
+                raise ValueError('facet payload is not closed and consistently oriented')
+            shells = {}
+            for index in range(len(vertices)):
+                shells.setdefault(root(index), []).append(index)
+            for indices in shells.values():
+                shell = vertices[indices].astype(np.longdouble)
+                relative = shell - shell[0, 0]
+                signed_volume6 = np.sum(np.einsum(
+                    'ij,ij->i', relative[:, 0],
+                    np.cross(relative[:, 1], relative[:, 2])))
+                if not np.isfinite(signed_volume6) or signed_volume6 <= 0:
+                    raise ValueError('facet payload shell does not wind outward')
+            if self.periodic_caps:
+                for axis, label in ((0, 'x0'), (1, 'y0')):
+                    if label in self.periodic_caps:
+                        caps = (np.max(np.abs(vertices[:, :, axis]), axis=1)
+                                <= 2.5e-13) & (-normal[:, axis] / lengths
+                                             >= 1.0 - 1e-12)
+                        if not np.any(caps):
+                            raise ValueError(f'periodic cap {label} has no oriented triangles')
+            lower = np.nextafter(np.min(vertices, axis=(0, 1)), -np.inf)
+            upper = np.nextafter(np.max(vertices, axis=(0, 1)), np.inf)
+            if not np.isfinite(lower).all() or not np.isfinite(upper).all():
+                raise ValueError('facet payload bounds overflow')
+        return BoundingBox(lower, upper)
+
+    def translate(self, vector, inplace=False):
+        raise NotImplementedError(
+            'translate the facet payload before constructing this surface'
+        )
+
+    def rotate(self, rotation, pivot=(0., 0., 0.), order='xyz', inplace=False):
+        raise NotImplementedError(
+            'rotate the facet payload before constructing this surface'
+        )
+
+    def to_xml_element(self):
+        element = super().to_xml_element()
+        element.attrib.pop('coeffs', None)
+        element.set('data_file', self.data_file)
+        element.set('dataset', self.dataset)
+        element.set('content_id', self.content_id)
+        element.set('units', 'cm')
+        if self.periodic_caps:
+            element.set('periodic_caps', self.periodic_caps)
+        return element
+
+    @classmethod
+    def _from_xml_element(cls, elem):
+        if get_text(elem, 'units', 'cm') != 'cm':
+            raise ValueError("facet-set XML units must be 'cm'")
+        kwargs = {
+            'surface_id': int(get_text(elem, 'id')),
+            'boundary_type': get_text(elem, 'boundary', 'transmission'),
+            'name': get_text(elem, 'name'),
+        }
+        if kwargs['boundary_type'] in _ALBEDO_BOUNDARIES:
+            kwargs['albedo'] = float(get_text(elem, 'albedo', 1.0))
+        return cls(get_text(elem, 'data_file'), get_text(elem, 'dataset'),
+                   get_text(elem, 'content_id'),
+                   periodic_caps=get_text(elem, 'periodic_caps', ''), **kwargs)
+
+    @classmethod
+    def _from_hdf5(cls, group, **kwargs):
+        def text(name):
+            value = group[name][()]
+            return value.decode() if isinstance(value, bytes) else str(value)
+        return cls(text('data_file'), text('dataset'), text('content_id'),
+                   periodic_caps=text('periodic_caps')
+                   if 'periodic_caps' in group else '',
+                   **kwargs)
 
 
 class Halfspace(Region):

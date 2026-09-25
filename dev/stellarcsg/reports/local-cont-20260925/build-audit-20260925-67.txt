@@ -1,0 +1,35 @@
+Facet native-helper build preflight, 2026-09-25.
+Windows RAM total/free B: 34260418560 / 9534795776
+Drive free bytes:
+C: 80706269184
+D: 501494333440
+Largest process working sets:
+
+ProcessName           Id      RAM_B
+-----------           --      -----
+vmmemWSL           51388 1873727488
+ChatGPT            29076 1732194304
+codex              26516 1306140672
+Memory Compression  3228 1157156864
+ChatGPT            46276  933109760
+chrome             46124  696238080
+OneDrive           47340  626016256
+MsMpEng            27844  619474944
+
+
+WSL disks/RAM/executables/caches:
+Filesystem         1B-blocks          Used    Available Use% Mounted on
+/dev/sde       1081101176832   63105708032 963003113472   7% /
+C:\             998965768192  918259449856  80706318336  92% /mnt/c
+D:\            2000397791232 1498903457792 501494333440  75% /mnt/d
+               total        used        free      shared  buff/cache   available
+Mem:     25200033792   906883072 23618764800     3641344   999940096 24293150720
+Swap:    34359738368           0 34359738368
+/usr/bin/g++
+g++ (Debian 14.2.0-19) 14.2.0
+/usr/bin/cmake
+cmake version 3.31.6
+/opt/openmc-fes-venv/bin/python
+/home/sman/.cache/pip
+/home/sman/.local/share/mamba/pkgs
+Existing source checkouts: this StellarCSG worktree; D:/Scratch/stellarator_optimization; D:/Scratch/parastell. Existing Python environment /opt/openmc-fes-venv; existing Windows Python 3.12.10, Git 2.55, CMake 4.4, WSL HDF5 1.14.5, existing local Ninja 1.13.2 in mamba cache. See audit66 for fuller inventory. No dependency environment change or software acquisition planned. Planned acquisition bytes: 0. Compile two C++ native helper binaries and update the standalone facet test under build/native-local-20260925 and build/local-cont-20260925; expected added bytes below 10 MiB, on C:. Existing local source and libraries suffice. Rollback: remove only these three newly built binaries, or rebuild from prior committed source. No remote access.

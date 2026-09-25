@@ -1,0 +1,33 @@
+Native facet seam probe build preflight, 2026-09-25.
+Windows RAM total/free B: 34260418560 / 8696770560
+Drive free bytes:
+C: 80168058880
+D: 501462790144
+Largest process working sets:
+
+ProcessName           Id      RAM_B
+-----------           --      -----
+ChatGPT            29076 1796112384
+codex              26516 1425874944
+vmmemWSL           51388 1273667584
+Memory Compression  3228 1240375296
+ChatGPT            46276 1031348224
+chrome             59888  809226240
+chrome             46124  670560256
+OneDrive           47340  629727232
+
+
+WSL disks/RAM/executables/caches:
+Filesystem         1B-blocks          Used    Available Use% Mounted on
+/dev/sde       1081101176832   63105708032 963003113472   7% /
+C:\             998965768192  918797709312  80168058880  92% /mnt/c
+D:\            2000397791232 1498935001088 501462790144  75% /mnt/d
+               total        used        free      shared  buff/cache   available
+Mem:     25200033792   899383296 24283496448     3641344   331776000 24300650496
+Swap:    34359738368           0 34359738368
+g++ (Debian 14.2.0-19) 14.2.0
+cmake version 3.31.6
+/opt/openmc-fes-venv/bin/python
+/home/sman/.cache/pip
+/home/sman/.local/share/mamba/pkgs
+Existing local capabilities: this StellarCSG checkout and built libopenmc.so, D:/Scratch/stellarator_optimization and D:/Scratch/parastell checkouts, /opt/openmc-fes-venv, Windows Python 3.12.10 / Git 2.55 / CMake 4.4, WSL G++ 14.2 / CMake 3.31.6 / HDF5 1.14.5 / Ninja 1.13.2 in mamba cache, Windows and WSL pip caches. Prior audits 66-67 contain full inventory. No download, installation, upgrade, environment modification, or software acquisition is needed. Planned acquisition 0 B. Compile one local C++ seam probe against existing headers/libopenmc into build/native-local-20260925 on C:, expected output below 10 MiB. Rollback: remove that one generated executable. No remote access.
