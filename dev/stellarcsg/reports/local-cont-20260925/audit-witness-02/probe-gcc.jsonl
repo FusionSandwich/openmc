@@ -1,0 +1,5 @@
+{"case":"frame_underflow_enclosure","outcome":"COUNTEREXAMPLE_CONFIRMED","supported_binary64":true,"bounds_certain":true,"derivative_x":2.2227587494850775e-162,"rounded_speed_squared":4.9406564584124654e-324,"tangent_squared_norm":1.25,"evaluated_surface_z":1.1180339887498949,"box_upper_z":1.0000000000000009}
+{"case":"finite_direction_scale","exponent":-600,"outcome":"REJECTED_AS_OBSERVED"}
+{"case":"finite_direction_scale","exponent":600,"outcome":"REJECTED_AS_OBSERVED"}
+{"case":"ideal_bounds_examples","checks":6,"outcome":"EXAMPLES_CONFIRMED"}
+{"case":"endpoint_sphere_proxy","outcome":"COUNTEREXAMPLE_CONFIRMED","computed_discriminant":-2048,"direction_component":-0.70710678118654746,"geometry":"exact stored direction passes through sphere center"}

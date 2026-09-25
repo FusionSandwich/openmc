@@ -1,0 +1,90 @@
+{
+  "schema": "stellarcsg.performance-redesign-final-status/v1",
+  "recorded_date": "2026-08-31",
+  "repository": "FusionSandwich/openmc",
+  "branch": "codex/stellarcsg-native-csg-foundation-20260828",
+  "evidence_commit": "1353d0ae5",
+  "experimental_option_default": "OFF",
+  "pull_request_created": false,
+  "default_branches_modified": false,
+  "commits": [
+    "0a88df565 Record StellarCSG performance redesign baseline",
+    "4e97b2480 Add local periodic patch intersection kernel",
+    "03cb4f99c Replace swept-coil global search with local span kernel",
+    "e48c21639 Add shared swept-coil set BVH",
+    "1353d0ae5 Retain matched complete coil-set qualification"
+  ],
+  "gates": {
+    "A_forced_general_exact_torus": {
+      "status": "NOT_RUN",
+      "correctness": "PASS_INITIAL_100000_RANDOM_PLUS_4099_ADVERSARIAL",
+      "performance": "OpenMC forced-general timing not run"
+    },
+    "B_shaped_axisymmetric": {
+      "status": "NOT_RUN"
+    },
+    "C_synthetic_helical": {
+      "status": "NOT_RUN",
+      "note": "Evaluate/normal baseline only; no distance/OpenMC gate"
+    },
+    "D_authoritative_wistell_d_plasma": {
+      "status": "PASS",
+      "minimum_speed_gate": "PASS_1.2385667401X_FINE_DAGMC",
+      "preferred_1_3x_gate": "FAIL",
+      "accuracy_closure": "NOT_RUN"
+    },
+    "E_planar_torus_equivalent_coil": {
+      "status": "NOT_RUN",
+      "correctness": "PASS_INITIAL_100_RAYS",
+      "performance": "Not run against fine DAGMC"
+    },
+    "F_nonplanar_coil": {
+      "status": "FAIL",
+      "native_over_fine_dagmc": 0.4748735496368464
+    },
+    "G_complete_coil_set": {
+      "status": "PASS",
+      "native_over_fine_dagmc": 5.888573780989845,
+      "wrong_roots": 0,
+      "lost_particles": 0,
+      "native_geometry_debug": "PASS",
+      "dagmc_geometry_debug": "FAIL_RETAINED_EXPLICIT_IMPLICIT_COMPLEMENT_COMPLAINT"
+    },
+    "embree_double_down": {
+      "status": "BLOCKED_BY_ENVIRONMENT",
+      "reason": "Pinned DAGMC 3.2.4 binary is nompi_nodoubledown"
+    },
+    "tier3_materialized": {
+      "status": "NOT_RUN"
+    },
+    "blanket_layer_family": {
+      "status": "NOT_RUN"
+    }
+  },
+  "production_invariants": {
+    "periodic_global_reference_calls": 0,
+    "swept_global_reference_calls": 0,
+    "complete_set_linear_scan": false,
+    "hot_path_hdf5_python_or_allocation": false
+  },
+  "tests": {
+    "standalone_release": "PASS_2_OF_2",
+    "gcc_asan_ubsan": "PASS_2_OF_2",
+    "python": "PASS_13_SKIP_1_OPTIONAL_ENDF",
+    "openmc_surface_adapter": "PASS_3_CASES_22_ASSERTIONS",
+    "openmc_enabled_suite": "PASS_12_OF_13; test_mcpl_stat_sum failed because optional libmcpl is unavailable",
+    "openmc_default_off_build": "PASS",
+    "native_wistell_plasma_geometry_debug": "PASS",
+    "native_representative_coil_geometry_debug": "PASS",
+    "native_complete_coil_set_geometry_debug": "PASS",
+    "dagmc_geometry_debug": "FAIL_RETAINED_EXPLICIT_IMPLICIT_COMPLEMENT_OVERLAP"
+  },
+  "qualification_boundaries": [
+    "Periodic common-surface accuracy closure is incomplete.",
+    "Symmetric Hausdorff and normal-angle metrics were not run for the coil set.",
+    "The 10-million and 1-million-ray high-statistics targets were not reached.",
+    "Thirteen coil configurations passed initial 100-ray independent-oracle checks, but only WISTELL-D received complete-set OpenMC timing.",
+    "Single-coil parity failed even though complete-set scaling passed.",
+    "Local subdivision fallback remains above the preregistered 0.01 percent target."
+  ]
+}

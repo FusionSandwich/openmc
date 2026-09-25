@@ -1,0 +1,242 @@
+{
+  "schema": "stellarcsg.seam-rounded-distance-ties/v1",
+  "state": "SAMPLED_ROUNDED_DISTANCE_TIES",
+  "source_sha256": "f654e44ef38ce0c8e52f4fbe97f9d1193fc36bb02ba4e2eaed4d2dff21e88b83",
+  "samples_sha256": "42553aa2b610bcfff56af13d1188f8248b2a84ae26ed24ecbbae65af4e278bb6",
+  "compiled_all_spans_sha256": "64b038d56be85866e3dd364134061059885e04e64c01b042cc782d1f773edf3a",
+  "results": [
+    {
+      "member": 2,
+      "sample_count": 6,
+      "rounded_tie_count": 6,
+      "exact_last_endpoint_nearer_count": 6,
+      "samples": [
+        {
+          "point_x_hex": "0x1.0b0000000006dp+9",
+          "selected_center_hex": [
+            "0x1.0400000000000p+9",
+            "-0x1.dc00000000000p-42",
+            "0x0.0p+0"
+          ],
+          "first_center_hex": [
+            "0x1.0400000000000p+9",
+            "0x0.0p+0",
+            "0x0.0p+0"
+          ],
+          "first_native_d2_hex": "0x1.8800000002fb0p+7",
+          "selected_native_d2_hex": "0x1.8800000002fb0p+7",
+          "rounded_distance_tie": true,
+          "exact_last_endpoint_minus_first_d2_cm2": -3.979039320260081e-13,
+          "exact_last_endpoint_strictly_nearer": true
+        },
+        {
+          "point_x_hex": "0x1.0b00000000015p+9",
+          "selected_center_hex": [
+            "0x1.0400000000000p+9",
+            "-0x1.dc00000000000p-42",
+            "0x0.0p+0"
+          ],
+          "first_center_hex": [
+            "0x1.0400000000000p+9",
+            "0x0.0p+0",
+            "0x0.0p+0"
+          ],
+          "first_native_d2_hex": "0x1.8800000000930p+7",
+          "selected_native_d2_hex": "0x1.8800000000930p+7",
+          "rounded_distance_tie": true,
+          "exact_last_endpoint_minus_first_d2_cm2": -3.9790393202572376e-13,
+          "exact_last_endpoint_strictly_nearer": true
+        },
+        {
+          "point_x_hex": "0x1.0b00000000004p+9",
+          "selected_center_hex": [
+            "0x1.0400000000000p+9",
+            "-0x1.dc00000000000p-42",
+            "0x0.0p+0"
+          ],
+          "first_center_hex": [
+            "0x1.0400000000000p+9",
+            "0x0.0p+0",
+            "0x0.0p+0"
+          ],
+          "first_native_d2_hex": "0x1.88000000001c0p+7",
+          "selected_native_d2_hex": "0x1.88000000001c0p+7",
+          "rounded_distance_tie": true,
+          "exact_last_endpoint_minus_first_d2_cm2": -3.9790393202566883e-13,
+          "exact_last_endpoint_strictly_nearer": true
+        },
+        {
+          "point_x_hex": "0x1.0b00000000000p+9",
+          "selected_center_hex": [
+            "0x1.0400000000000p+9",
+            "-0x1.dc00000000000p-42",
+            "0x0.0p+0"
+          ],
+          "first_center_hex": [
+            "0x1.0400000000000p+9",
+            "0x0.0p+0",
+            "0x0.0p+0"
+          ],
+          "first_native_d2_hex": "0x1.8800000000000p+7",
+          "selected_native_d2_hex": "0x1.8800000000000p+7",
+          "rounded_distance_tie": true,
+          "exact_last_endpoint_minus_first_d2_cm2": -3.979039320256559e-13,
+          "exact_last_endpoint_strictly_nearer": true
+        },
+        {
+          "point_x_hex": "0x1.0affffffffffdp+9",
+          "selected_center_hex": [
+            "0x1.0400000000000p+9",
+            "-0x1.dc00000000000p-42",
+            "0x0.0p+0"
+          ],
+          "first_center_hex": [
+            "0x1.0400000000000p+9",
+            "0x0.0p+0",
+            "0x0.0p+0"
+          ],
+          "first_native_d2_hex": "0x1.87ffffffffeb0p+7",
+          "selected_native_d2_hex": "0x1.87ffffffffeb0p+7",
+          "rounded_distance_tie": true,
+          "exact_last_endpoint_minus_first_d2_cm2": -3.979039320256462e-13,
+          "exact_last_endpoint_strictly_nearer": true
+        },
+        {
+          "point_x_hex": "0x1.0afffffffffbdp+9",
+          "selected_center_hex": [
+            "0x1.0400000000000p+9",
+            "-0x1.dc00000000000p-42",
+            "0x0.0p+0"
+          ],
+          "first_center_hex": [
+            "0x1.0400000000000p+9",
+            "0x0.0p+0",
+            "0x0.0p+0"
+          ],
+          "first_native_d2_hex": "0x1.87fffffffe2b0p+7",
+          "selected_native_d2_hex": "0x1.87fffffffe2b0p+7",
+          "rounded_distance_tie": true,
+          "exact_last_endpoint_minus_first_d2_cm2": -3.979039320254394e-13,
+          "exact_last_endpoint_strictly_nearer": true
+        }
+      ]
+    },
+    {
+      "member": 3,
+      "sample_count": 6,
+      "rounded_tie_count": 6,
+      "exact_last_endpoint_nearer_count": 6,
+      "samples": [
+        {
+          "point_x_hex": "0x1.0a8000000005dp+9",
+          "selected_center_hex": [
+            "0x1.107fffffffffep+9",
+            "0x1.0000000000000p-48",
+            "0x1.0000000000000p-52"
+          ],
+          "first_center_hex": [
+            "0x1.107fffffffffep+9",
+            "0x1.2000000000000p-48",
+            "0x1.4000000000000p-52"
+          ],
+          "first_native_d2_hex": "0x1.1ffffffffdc60p+7",
+          "selected_native_d2_hex": "0x1.1ffffffffdc60p+7",
+          "rounded_distance_tie": true,
+          "exact_last_endpoint_minus_first_d2_cm2": -6.821210263290814e-13,
+          "exact_last_endpoint_strictly_nearer": true
+        },
+        {
+          "point_x_hex": "0x1.0a80000000005p+9",
+          "selected_center_hex": [
+            "0x1.107fffffffffep+9",
+            "0x1.0000000000000p-48",
+            "0x1.0000000000000p-52"
+          ],
+          "first_center_hex": [
+            "0x1.107fffffffffep+9",
+            "0x1.2000000000000p-48",
+            "0x1.4000000000000p-52"
+          ],
+          "first_native_d2_hex": "0x1.1fffffffffd60p+7",
+          "selected_native_d2_hex": "0x1.1fffffffffd60p+7",
+          "rounded_distance_tie": true,
+          "exact_last_endpoint_minus_first_d2_cm2": -6.821210263296501e-13,
+          "exact_last_endpoint_strictly_nearer": true
+        },
+        {
+          "point_x_hex": "0x1.0a80000000002p+9",
+          "selected_center_hex": [
+            "0x1.107fffffffffep+9",
+            "0x1.0000000000000p-48",
+            "0x1.0000000000000p-52"
+          ],
+          "first_center_hex": [
+            "0x1.107fffffffffep+9",
+            "0x1.2000000000000p-48",
+            "0x1.4000000000000p-52"
+          ],
+          "first_native_d2_hex": "0x1.1fffffffffe80p+7",
+          "selected_native_d2_hex": "0x1.1fffffffffe80p+7",
+          "rounded_distance_tie": true,
+          "exact_last_endpoint_minus_first_d2_cm2": -6.821210263296695e-13,
+          "exact_last_endpoint_strictly_nearer": true
+        },
+        {
+          "point_x_hex": "0x1.0a7fffffffffep+9",
+          "selected_center_hex": [
+            "0x1.107fffffffffep+9",
+            "0x1.0000000000000p-48",
+            "0x1.0000000000000p-52"
+          ],
+          "first_center_hex": [
+            "0x1.107fffffffffep+9",
+            "0x1.2000000000000p-48",
+            "0x1.4000000000000p-52"
+          ],
+          "first_native_d2_hex": "0x1.2000000000000p+7",
+          "selected_native_d2_hex": "0x1.2000000000000p+7",
+          "rounded_distance_tie": true,
+          "exact_last_endpoint_minus_first_d2_cm2": -6.821210263296954e-13,
+          "exact_last_endpoint_strictly_nearer": true
+        },
+        {
+          "point_x_hex": "0x1.0a7fffffffffap+9",
+          "selected_center_hex": [
+            "0x1.107fffffffffep+9",
+            "0x1.0000000000000p-48",
+            "0x1.0000000000000p-52"
+          ],
+          "first_center_hex": [
+            "0x1.107fffffffffep+9",
+            "0x1.2000000000000p-48",
+            "0x1.4000000000000p-52"
+          ],
+          "first_native_d2_hex": "0x1.2000000000180p+7",
+          "selected_native_d2_hex": "0x1.2000000000180p+7",
+          "rounded_distance_tie": true,
+          "exact_last_endpoint_minus_first_d2_cm2": -6.821210263297212e-13,
+          "exact_last_endpoint_strictly_nearer": true
+        },
+        {
+          "point_x_hex": "0x1.0a7ffffffffadp+9",
+          "selected_center_hex": [
+            "0x1.107fffffffffep+9",
+            "0x1.0000000000000p-48",
+            "0x1.0000000000000p-52"
+          ],
+          "first_center_hex": [
+            "0x1.107fffffffffep+9",
+            "0x1.2000000000000p-48",
+            "0x1.4000000000000p-52"
+          ],
+          "first_native_d2_hex": "0x1.2000000001e60p+7",
+          "selected_native_d2_hex": "0x1.2000000001e60p+7",
+          "rounded_distance_tie": true,
+          "exact_last_endpoint_minus_first_d2_cm2": -6.821210263302188e-13,
+          "exact_last_endpoint_strictly_nearer": true
+        }
+      ]
+    }
+  ],
+  "claim_boundary": "At the saved compiled sample points, the native-style binary64 squared distances from the first-span endpoint center and the compiled selected center tie, while exact rational stored-power last-endpoint distance is strictly smaller. The sampled compiled center and first-span power are independently sourced; no untested angle, continuous interval, or BVH selection is certified."
+}

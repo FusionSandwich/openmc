@@ -1,0 +1,25 @@
+{
+  "schema": "stellarcsg.all-compiled-span-identity/v1",
+  "state": "ALL_ANALYTIC_SHAPED_SPANS_BITWISE_IDENTICAL",
+  "source_sha256": "d079f40bab79864ee74c26b842d38797a30a6fc0c2a3d71fbd774f51d94ffbcd",
+  "helper_source_sha256": "89b0e2b6d507f1125cbeccfb9eb2bd0c2280a778522a5849a1ebd223d0897c08",
+  "helper_executable_sha256": "30d833a5e3b11822d65588280915dfca9edb75e4254fc46f577db58157505772",
+  "static_library_sha256": "5cb8273552738defc8102321b55b592e855f32b43249ae4728e87359a229cbb9",
+  "production_source_sha256": "d2823d12de04bd062987fc91e82ee69a6af36c3adc285ed6929399577f3d8a73",
+  "reconstruction_source_sha256": "b4855d938c3416c08031c1111c58ef8d16d6f0cd86a208bbc400a31019555f4d",
+  "h5_sha256": "39f77da5ab1fe427cce58b153e9b52cf8915e9973a9b8f3dfad5ab3b00a9e46d",
+  "seam_identity_sha256": "90ad1bf611e86d1d63b8bc355c6bfddd55e420152916e78b7eefc64dc5647884",
+  "global_model_sha256": "533a8d2e3c19b850a8b60b7eceb32ae473c816b5e80b40b0d31d436cb01b02e8",
+  "raw_output_basename": "compiled-all-spans-01.jsonl",
+  "raw_output_sha256": "64b038d56be85866e3dd364134061059885e04e64c01b042cc782d1f773edf3a",
+  "span_count": 640,
+  "member_span_counts": {
+    "2": 256,
+    "3": 384
+  },
+  "coefficients_compared": 20480,
+  "angle_limits_compared": 1280,
+  "mismatch_count": 0,
+  "mismatch_preview": [],
+  "claim_boundary": "All eight stored-power fields and both angle limits match bitwise between reconstructed HDF5 and the existing compiled standalone instances for analytic shaped members 2/3. This does not certify rounded frame/nearest-root/BVH behavior, generic import, physical WISTELL-D fidelity, or a native hit."
+}

@@ -1,0 +1,7 @@
+2026-09-25 local build preflight (conservative ray-box slab interval)
+Windows RAM: 33,457,440 KiB total; 3,067,020 KiB free.
+Free disk: C: 84,612,820,992 B; D: 504,507,633,664 B. Build target is C:.
+Largest resident processes: vmmemWSL 1,967,837,184 B; ChatGPT 1,293,574,144 B; chrome 931,442,688 B; codex 869,191,680 B; another ChatGPT 711,286,784 B; another chrome 669,831,168 B.
+Existing WSL OpenMC-Dev-D: GCC 14.2.0, CMake 3.31.6, Ninja 1.12.1, HDF5 1.14.5, Python 3.13.5 in /opt/openmc-venv (606 MiB); pip cache 152 MiB. Existing local source checkout, configured standalone build (7.0 MiB), native build (16 MiB), and native libopenmc.so are present.
+Existing tools and environments suffice. Planned download/install/acquisition: 0 B. One-job incremental standalone and native builds target only the two existing directories on C:, allowing under 200 MiB of regenerated objects/libraries after the shared vector header edit. No dependency environment changes or remote execution.
+Rollback: revert the vector/test edit and rebuild the same existing targets from the prior commit; keep this audit and regression results. No package/cache removal is needed.

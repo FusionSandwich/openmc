@@ -1,0 +1,14 @@
+{
+  "schema": "stellarcsg.surface-regression/v1",
+  "state": "PYTHON_SURFACE_REGRESSION_PASSED_NO_TRANSPORT",
+  "command": "PYTHONPATH=. PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 MKL_NUM_THREADS=1 /opt/openmc-venv/bin/python -m pytest -q tests/unit_tests/test_surface.py tests/unit_tests/test_stellarcsg_surface.py",
+  "exit_code": 0,
+  "hashes": {
+    "openmc/surface.py": "cb671d3d7d39103472070900ce22796b4f1c34d672cfe3f1bbc88a9c2837fc2c",
+    "tests/unit_tests/test_surface.py": "f3e456bda9ae44215f2cd8d0c4e113a106640eaeccbe76b44aac677fbbf348d3",
+    "tests/unit_tests/test_stellarcsg_surface.py": "fd99139cb964456a2a321d89986ef62620b28f01da5fb96ec7788e7f499dc325",
+    "stdout.txt": "6af7ebc722c37f06db04633c29d8dd3725d2995f4d5f442004384ec68d3dc44b"
+  },
+  "native_cpp_transport_run": false,
+  "claim_boundary": "29 Python surface unit tests passed; no C++ transport or nuclear-data regression was run."
+}

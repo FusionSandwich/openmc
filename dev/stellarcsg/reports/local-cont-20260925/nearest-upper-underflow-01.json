@@ -1,0 +1,21 @@
+{
+  "schema": "stellarcsg.nearest-upper-underflow/v1",
+  "state": "EXACT_UPPER_UNDERFLOW_WITNESS_REPAIRED",
+  "source_sha256": "e9cf9bf21051e00833338bc4acdfa0e3c161771c3dcb948f29c4c5b4f03c7e78",
+  "production_source_sha256": "dd4db0fb66dda806f0061f67e4d3ad0b673c5a46d1598f667191016a2157c163",
+  "point_hex": [
+    "0x0.0000000000001p-1022",
+    "0x0.0p+0",
+    "0x0.0p+0"
+  ],
+  "center_hex": [
+    "0x0.0p+0",
+    "0x0.0p+0",
+    "0x0.0p+0"
+  ],
+  "exact_squared_distance": "2^-2148",
+  "old_upper_hex": "0x0.0p+0",
+  "repaired_upper_hex": "0x0.0000000000005p-1022",
+  "repaired_is_exact_upper": true,
+  "claim_boundary": "Exact rational comparison for the smallest-positive-binary64 one-axis gap. The old Python reproduction of point_distance_squared_upper returned zero, below the positive exact square. Widening zero in every nonnegative step returns a strict upper. This checks the changed arithmetic case, not all compiler paths, BVH boxes, earlier roots or native transport."
+}

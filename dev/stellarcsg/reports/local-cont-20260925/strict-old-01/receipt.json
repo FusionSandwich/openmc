@@ -1,0 +1,135 @@
+{
+  "schema": "stellarcsg.recovery04.measure/v1",
+  "hashes": {
+    "dev/stellarcsg/qualification/recovery04_frozen_bank.csv": "7348483e39128259a844d22a7618869a3f111604ea48d01e196a87fe0d396af7",
+    "/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-root-repair-07/dev/stellarcsg/reports/recovery04/wistell-coils-1cm.h5": "9bb178c308e7f3ec659e1651a7d57e0ecbff734d3320000df1c2bf79fcf3262b",
+    "/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-local-continuation-20260925/build/local-cont-20260925/stellarcsg_recovery04_bank": "62c8d64b19de2ff20dd390417f4b88037ef526e6e3e6ead65c3d8541af69c28b"
+  },
+  "source_commit": "c67b68fdaf7be2049308db7da449f14a25123847",
+  "affinity": [
+    0
+  ],
+  "attempts": [
+    {
+      "lane": "old",
+      "repeat": 0,
+      "command": [
+        "/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-local-continuation-20260925/build/local-cont-20260925/stellarcsg_recovery04_bank",
+        "--replay",
+        "dev/stellarcsg/qualification/recovery04_frozen_bank.csv",
+        "--wistell-h5",
+        "/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-root-repair-07/dev/stellarcsg/reports/recovery04/wistell-coils-1cm.h5",
+        "--skip-reference"
+      ],
+      "started": 1790316188.9332082,
+      "exit_code": 1,
+      "finished": 1790316196.3228989,
+      "stdout": "old-0.jsonl",
+      "stderr": "old-0.stderr"
+    },
+    {
+      "lane": "old",
+      "repeat": 1,
+      "command": [
+        "/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-local-continuation-20260925/build/local-cont-20260925/stellarcsg_recovery04_bank",
+        "--replay",
+        "dev/stellarcsg/qualification/recovery04_frozen_bank.csv",
+        "--wistell-h5",
+        "/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-root-repair-07/dev/stellarcsg/reports/recovery04/wistell-coils-1cm.h5",
+        "--skip-reference"
+      ],
+      "started": 1790316196.3266985,
+      "exit_code": 1,
+      "finished": 1790316196.4014351,
+      "stdout": "old-1.jsonl",
+      "stderr": "old-1.stderr"
+    },
+    {
+      "lane": "old",
+      "repeat": 2,
+      "command": [
+        "/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-local-continuation-20260925/build/local-cont-20260925/stellarcsg_recovery04_bank",
+        "--replay",
+        "dev/stellarcsg/qualification/recovery04_frozen_bank.csv",
+        "--wistell-h5",
+        "/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-root-repair-07/dev/stellarcsg/reports/recovery04/wistell-coils-1cm.h5",
+        "--skip-reference"
+      ],
+      "started": 1790316196.405171,
+      "exit_code": 1,
+      "finished": 1790316196.480425,
+      "stdout": "old-2.jsonl",
+      "stderr": "old-2.stderr"
+    },
+    {
+      "lane": "old",
+      "repeat": 3,
+      "command": [
+        "/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-local-continuation-20260925/build/local-cont-20260925/stellarcsg_recovery04_bank",
+        "--replay",
+        "dev/stellarcsg/qualification/recovery04_frozen_bank.csv",
+        "--wistell-h5",
+        "/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-root-repair-07/dev/stellarcsg/reports/recovery04/wistell-coils-1cm.h5",
+        "--skip-reference"
+      ],
+      "started": 1790316196.4834638,
+      "exit_code": 1,
+      "finished": 1790316196.5572467,
+      "stdout": "old-3.jsonl",
+      "stderr": "old-3.stderr"
+    },
+    {
+      "lane": "old",
+      "repeat": 4,
+      "command": [
+        "/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-local-continuation-20260925/build/local-cont-20260925/stellarcsg_recovery04_bank",
+        "--replay",
+        "dev/stellarcsg/qualification/recovery04_frozen_bank.csv",
+        "--wistell-h5",
+        "/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-root-repair-07/dev/stellarcsg/reports/recovery04/wistell-coils-1cm.h5",
+        "--skip-reference"
+      ],
+      "started": 1790316196.5611095,
+      "exit_code": 1,
+      "finished": 1790316196.6358347,
+      "stdout": "old-4.jsonl",
+      "stderr": "old-4.stderr"
+    },
+    {
+      "lane": "old",
+      "repeat": 5,
+      "command": [
+        "/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-local-continuation-20260925/build/local-cont-20260925/stellarcsg_recovery04_bank",
+        "--replay",
+        "dev/stellarcsg/qualification/recovery04_frozen_bank.csv",
+        "--wistell-h5",
+        "/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-root-repair-07/dev/stellarcsg/reports/recovery04/wistell-coils-1cm.h5",
+        "--skip-reference"
+      ],
+      "started": 1790316196.639306,
+      "exit_code": 1,
+      "finished": 1790316196.709198,
+      "stdout": "old-5.jsonl",
+      "stderr": "old-5.stderr"
+    },
+    {
+      "lane": "old",
+      "repeat": 6,
+      "command": [
+        "/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-local-continuation-20260925/build/local-cont-20260925/stellarcsg_recovery04_bank",
+        "--replay",
+        "dev/stellarcsg/qualification/recovery04_frozen_bank.csv",
+        "--wistell-h5",
+        "/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-root-repair-07/dev/stellarcsg/reports/recovery04/wistell-coils-1cm.h5",
+        "--skip-reference"
+      ],
+      "started": 1790316196.712769,
+      "exit_code": 1,
+      "finished": 1790316196.7875273,
+      "stdout": "old-6.jsonl",
+      "stderr": "old-6.stderr"
+    }
+  ],
+  "state": "FAIL",
+  "note": "One unique bank per fresh process; reference calls disabled. Per-call timer overhead is included; setup, classification and normal calls are outside distance timers."
+}

@@ -1,0 +1,7 @@
+2026-09-25 local nearest-centerline BVH rounding rebuild preflight
+Windows RAM: 33,457,440 KiB total; 3,951,904 KiB free at observation.
+Free disk: C: 82,129,281,024 B; D: 503,834,398,720 B. Build target is C:.
+Largest resident processes: vmmemWSL 1,940,668,416 B; ChatGPT 1,322,405,888 B; chrome 945,405,952 B; codex 877,424,640 B; ChatGPT 726,138,880 B; chrome 698,634,240 B; chrome 662,519,808 B; OneDrive 641,740,800 B.
+Existing WSL OpenMC-Dev-D: GCC 14.2.0, CMake 3.31.6, Ninja 1.12.1, Python 3.13.5, NumPy 2.5.1 and h5py 3.16.0. Existing /opt/openmc-venv is 606 MiB and pip cache is 152 MiB. The local source worktree and configured 7.8 MiB standalone build are present.
+Existing capabilities suffice. Planned software download/install/upgrade/acquisition: 0 B. One-job CMake rebuild of existing static library, compiled-surface test and frozen-bank executable, under 20 MiB output, targets build/local-cont-20260925 on C:. No dependency environment or remote system changes.
+Rollback: preserve source-control history and receipts. Revert only the named source/test edits and rebuild existing targets if the bounded arithmetic fails; no package/cache rollback is needed.

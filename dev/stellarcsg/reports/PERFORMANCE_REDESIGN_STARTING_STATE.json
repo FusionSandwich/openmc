@@ -1,0 +1,151 @@
+{
+  "schema": "stellarcsg.performance-redesign-starting-state/v1",
+  "recorded_date": "2026-08-31",
+  "repository": "FusionSandwich/openmc",
+  "remote": "https://github.com/FusionSandwich/openmc.git",
+  "branch": "codex/stellarcsg-native-csg-foundation-20260828",
+  "starting_sha": "379850112dad4f89645005b27e40468e7c89413a",
+  "remote_branch_sha_after_fetch": "379850112dad4f89645005b27e40468e7c89413a",
+  "git_status_after_preserving_prior_work": "clean",
+  "prior_turn_work": {
+    "classification": "uncommitted certified-interval precursor experiment, preserved before clean baseline reproduction",
+    "stash": "stash@{0}",
+    "stash_sha": "37df8118a09938422f74e8e64723377f0e0fd107",
+    "diff_hash": "6c37f97b697dfc0af73851e0ecb6253b3682dbff",
+    "working_tree_files": 7
+  },
+  "host": {
+    "computer": "VENGEANCE",
+    "operating_system": "Microsoft Windows 11 Home 10.0.26200 64-bit",
+    "wsl_kernel": "6.18.33.2-microsoft-standard-WSL2",
+    "cpu": "Intel(R) Core(TM) i9-10850K CPU @ 3.60GHz",
+    "physical_cores": 10,
+    "logical_processors": 20,
+    "total_ram_gib": 31.91,
+    "free_ram_gib_at_audit": 8.51,
+    "system_drive_free_gib": 86.23,
+    "data_drive_free_gib": 138.97,
+    "significant_running_processes": [
+      "ChatGPT/Codex",
+      "Docker Desktop/com.docker.backend",
+      "OneDrive",
+      "Chrome",
+      "Visual Studio Code"
+    ]
+  },
+  "toolchains": {
+    "windows": {
+      "git": "2.55.0.windows.3",
+      "cmake": "4.4.0",
+      "python": "3.12.10",
+      "docker": "29.7.2"
+    },
+    "wsl_debian": {
+      "gcc": "14.2.0",
+      "gxx": "14.2.0",
+      "cmake": "3.31.6",
+      "python": "3.13.5",
+      "linker": "GNU ld 2.44"
+    },
+    "pinned_container": {
+      "image": "parastell-openmc:0.16.0",
+      "image_id": "sha256:ca0c3b1fba39ce27af6ebdb79df14795041922e72521f232cdd770ff1c416191",
+      "image_bytes": 4008320326,
+      "os": "Ubuntu 24.04.2 LTS",
+      "compiler": "Ubuntu c++ 13.3.0",
+      "linker": "GNU ld 2.42",
+      "cmake": "4.2.3",
+      "python": "3.12.13",
+      "dagmc": "3.2.4 nompi_nodoubledown",
+      "moab": "5.5.1",
+      "embree": "UNAVAILABLE_IN_PINNED_IMAGE",
+      "cadquery": "2.7.0",
+      "gmsh": "4.15.0",
+      "hdf5": "1.14.3"
+    }
+  },
+  "openmc": {
+    "source_commit": "379850112dad4f89645005b27e40468e7c89413a",
+    "retained_build_version": "0.15.1-dev598",
+    "experimental_option_default": "OFF"
+  },
+  "cmake_configurations": {
+    "standalone_release": {
+      "build_type": "Release",
+      "compiler": "/usr/bin/c++",
+      "STELLARCSG_BUILD_BENCHMARKS": true,
+      "STELLARCSG_BUILD_CAMPAIGNS": true,
+      "STELLARCSG_BUILD_TESTS": true,
+      "STELLARCSG_BUILD_TOOLS": true,
+      "STELLARCSG_ENABLE_HDF5": true,
+      "STELLARCSG_ENABLE_SANITIZERS": false
+    },
+    "joint_openmc_dagmc": {
+      "build_type": "Release",
+      "OPENMC_BUILD_TESTS": false,
+      "OPENMC_ENABLE_EXPERIMENTAL_STELLARCSG": true,
+      "OPENMC_ENABLE_PROFILE": false,
+      "OPENMC_ENABLE_STRICT_FP": false,
+      "OPENMC_USE_DAGMC": true,
+      "OPENMC_USE_LIBMESH": false,
+      "OPENMC_USE_MPI": false,
+      "OPENMC_USE_OPENMP": true,
+      "OPENMC_USE_UWUW": false
+    }
+  },
+  "environment": {
+    "OPENMC_CROSS_SECTIONS": "C:\\Users\\joshu\\Documents\\2026_DPA\\openc-hts-dpa\\.data\\openmc\\cross_sections.xml",
+    "OMP_NUM_THREADS": "UNSET_AT_AUDIT",
+    "KMP_AFFINITY": "UNSET_AT_AUDIT",
+    "GOMP_CPU_AFFINITY": "UNSET_AT_AUDIT",
+    "MKL_NUM_THREADS": "UNSET_AT_AUDIT"
+  },
+  "local_capabilities": {
+    "existing_build_directories": [
+      "build/stellarcsg-periodic-integration",
+      "build/stellarcsg-clang-asan",
+      "build/openmc-stellarcsg-enabled",
+      "build/openmc-stellarcsg-disabled",
+      "build/openmc-stellarcsg-dagmc-container",
+      "build/openmc-dagmc-matched-speed"
+    ],
+    "existing_container_environments": [
+      "/opt/conda",
+      "/opt/conda/envs/parastell_damage",
+      "/opt/conda/envs/lammps_md"
+    ],
+    "cache_sizes_gib": {
+      "user_cache": 1.98,
+      "pip_cache": 1.61
+    },
+    "dependency_acquisition_required": false,
+    "reason": "The pinned local image and existing WSL/OpenMC builds contain every dependency required for the clean baseline and first dependency-free kernel implementation."
+  },
+  "mandatory_git_sync_acquisition": {
+    "planned_bytes": "less than 1 MiB of ref/tag negotiation because ls-remote proved the branch object already existed locally",
+    "target": ".git remote refs and object database",
+    "result": "no branch object delta; already up to date",
+    "rollback": "delete unused fetched remote refs/objects through normal Git maintenance; no working-tree rewrite occurred"
+  },
+  "benchmark_sources": [
+    {"path": "dev/stellarcsg/test_data/wistell_d/wout_wistell-d.nc", "bytes": 4626928, "sha256": "9231969001203a8133255ee0a275bf552b114cc12524dda0608ab2f12047f7ac"},
+    {"path": "dev/stellarcsg/test_data/wistell_d/coils.wistell-d", "bytes": 1737790, "sha256": "7748369407d28a70f35b5c4a7c0ab860495a08fd0030002112ea933fe570159b"},
+    {"path": "dev/stellarcsg/test_data/wistell_d/blanket_boundary.npy", "bytes": 3744, "sha256": "fdb85b2c0c8cd72f5d000302e0b67349ebf72679f98f9c4d7739e5d8484cdde3"},
+    {"path": "dev/stellarcsg/test_data/wistell_d/magnet_boundary.npy", "bytes": 3744, "sha256": "3579e5d8fe97dd74c8700e5676964159f00f07989ca6436528f60462889f05bd"},
+    {"path": "dev/stellarcsg/test_data/wistell_d/nwl.npy", "bytes": 3744, "sha256": "56baa090d61b67273efba61213849b7516beabb2a57fc2ad4751a6f3a32b2db4"},
+    {"path": "dev/stellarcsg/test_data/parastell_generic/wout_vmec.nc", "bytes": 8730304, "sha256": "1cebb8d46e60d77df4a6904662a9c9f943137a9fb59f7290e5309af15fa04797"},
+    {"path": "dev/stellarcsg/test_data/parastell_generic/coils.example", "bytes": 501321, "sha256": "69f508b216f0b674368ca8731d390c9d514736ff092f0ebecd854e8772ae04ab"},
+    {"path": "dev/stellarcsg/qualified/analytic_periodic_surfaces.h5", "bytes": 426240, "sha256": "4c3fde17b07c0b363f716911ac954d5984ed7751b9afa90d7dba4fd54932ded8"},
+    {"path": "dev/stellarcsg/qualified/analytic_swept_coils.h5", "bytes": 95232, "sha256": "39f77da5ab1fe427cce58b153e9b52cf8915e9973a9b8f3dfad5ab3b00a9e46d"},
+    {"path": "dev/stellarcsg/qualified/wistell_d_periodic_surfaces.h5", "bytes": 4791296, "sha256": "52695c3c6a7329faccdd009f1179c50c91e24c8902447356d3b2cd77c7f9ca36"},
+    {"path": "dev/stellarcsg/qualified/wistell_d_swept_coils.h5", "bytes": 1280000, "sha256": "caeed2e41da2082b93d32758e40932d9ac268966998dc2664e8164cb8cb7a89b"},
+    {"path": "dev/stellarcsg/qualified/dagmc_exact_torus_coarse.h5m", "bytes": 395172, "sha256": "393ec6ef79718aa0c90996e74cc68303fc000ea0c9b258dcdf19fc7d57215a0b"},
+    {"path": "dev/stellarcsg/qualified/dagmc_exact_torus_fine.h5m", "bytes": 2215788, "sha256": "2377cfa960399ce18ece599a736d8e9adb602a632339f541f4fb73530afdcb56"},
+    {"path": "C:/HTS_transport/plots/stellarcsg_multiconfig_20260831/wistell_d/csg_surface.h5", "sha256": "223293dba92e73675224c5fc258250a5cabb779b3369c86f3b65ff76a269abd8"},
+    {"path": "C:/HTS_transport/plots/stellarcsg_multiconfig_20260831/wistell_d/dagmc/plasma_fine.h5m", "sha256": "861997912a5d8a64d7f527817e8d4b6f0ed1e6a1cdac27110c7ea3b4441cdbd8"}
+  ],
+  "initial_call_graph": {
+    "periodic": "OpenMC SurfacePeriodicSpline::distance -> CompiledPeriodicSplineSurface::distance_reference -> PeriodicRadialSurface::distance_reference -> find_nearest_root_reference",
+    "swept": "OpenMC SurfaceSweptSpline::distance -> CompiledSweptSplineSurface::distance_reference -> exact torus specialization or global ray root search; every generic evaluate performs a 4*sample_count centerline scan plus 48 golden-section iterations"
+  }
+}

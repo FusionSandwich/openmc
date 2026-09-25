@@ -1,0 +1,637 @@
+{
+  "accepted_dagmc_volume_ids": [
+    8,
+    9,
+    10,
+    11,
+    12,
+    13,
+    14,
+    15,
+    16,
+    17,
+    18,
+    19,
+    20,
+    21,
+    22,
+    23,
+    24,
+    25
+  ],
+  "accepted_geometry_status": "ACCEPTED",
+  "accepted_receipt_manifest_sha256": "d589f609af26e212bd4548253beaea9e147b16b8c3601df7ad27c916c168c0e1",
+  "bbox_assignment_cost_cm": 6447.7773405277285,
+  "claim_boundary": "The local H5M is byte-identical to accepted P00. A local facet catalog tied to that H5M and pre-CAD source-index order have a unique minimum-cost bbox assignment across 18 coil groups. The local magnet manifest does not match the accepted receipt's manifest hash, so this mapping is not an accepted-manifest identity claim. Large box differences for sector-clipped coils are expected. This diagnostic does not prove exact source-index-to-CAD identity, a continuous STEP-to-StellarCSG surface bound, collision-free CSG ownership or transport qualification.",
+  "classification": "ACCEPTED_P00_H5M_LOCAL_FACET_ORDER_DIAGNOSTIC",
+  "coil_count": 18,
+  "coil_facet_count": 3348,
+  "input_sha256": {
+    "acceptance_receipt": "3316b08887736e7f75cde613d112221360017b6dda494af96a4b993d64c910ed",
+    "dagmc_h5m": "549c42bf66b290f8f56b6f4d7523940c3b32b9d256d993ea42605f4dddb33e39",
+    "edge_npz": "3a35367b904dc1135eed00db859fabbdb8099741c68ec45a7b2860325062600b",
+    "edge_receipt": "d663e1586b763c85b359c52457737a0ea068707751597c47af2b5f8acd969fb0",
+    "facet_catalog": "e1bb8ca2bbda5d7a41e02303f5507aa964e822469eb503e4c8ad84ccc6a1bfb9",
+    "filament_provenance": "a47c5e4b07084821829a60a8532cfd2cc4122c84c03d681c05407747846c231c",
+    "magnet_manifest": "22488e49c225952b29b8fd69d38412d929949e7d7678b8c4eb2e98934f9daec5"
+  },
+  "local_manifest_matches_accepted_receipt_hash": false,
+  "minimum_forbidden_pair_assignment_margin_cm": 28.689974509910826,
+  "rows": [
+    {
+      "accepted_mesh_box_cm": [
+        [
+          877.0595306007492,
+          -2.1649348980190553e-14,
+          -364.4227106523633
+        ],
+        [
+          910.2545466622963,
+          12.416950671922168,
+          -214.61452999615395
+        ]
+      ],
+      "box_endpoint_distance_sum_cm": 1224.1680827347868,
+      "dagmc_volume_id": 8,
+      "facet_count": 16,
+      "forbid_this_pair_assignment_margin_cm": 44.28581823118475,
+      "magnet_component": "magnet-0001",
+      "raw_filament_index": 9,
+      "source_member": "coil_1009",
+      "source_preclip_box_cm": [
+        [
+          823.1515445639305,
+          -549.1189633089351,
+          -536.2332929514363
+        ],
+        [
+          1287.1514804210453,
+          12.320480326242066,
+          310.3848539750379
+        ]
+      ]
+    },
+    {
+      "accepted_mesh_box_cm": [
+        [
+          962.0463624457404,
+          -3.552713678800501e-14,
+          -487.8961339480668
+        ],
+        [
+          1035.9419053538459,
+          71.18252560101237,
+          -124.94916284406683
+        ]
+      ],
+      "box_endpoint_distance_sum_cm": 1075.394413822266,
+      "dagmc_volume_id": 9,
+      "facet_count": 58,
+      "forbid_this_pair_assignment_margin_cm": 44.28581823118475,
+      "magnet_component": "magnet-0002",
+      "raw_filament_index": 46,
+      "source_member": "coil_1046",
+      "source_preclip_box_cm": [
+        [
+          959.9283755376609,
+          -441.0361215990205,
+          -550.4808312464685
+        ],
+        [
+          1456.4628661217698,
+          71.12916847861025,
+          344.0711773815177
+        ]
+      ]
+    },
+    {
+      "accepted_mesh_box_cm": [
+        [
+          1009.6336650263015,
+          -5.928590951498336e-14,
+          -483.19282967488687
+        ],
+        [
+          1538.1682153595743,
+          136.2253933191901,
+          -26.755512809423976
+        ]
+      ],
+      "box_endpoint_distance_sum_cm": 707.0045665315033,
+      "dagmc_volume_id": 10,
+      "facet_count": 96,
+      "forbid_this_pair_assignment_margin_cm": 83.17627156829622,
+      "magnet_component": "magnet-0003",
+      "raw_filament_index": 1,
+      "source_member": "coil_1001",
+      "source_preclip_box_cm": [
+        [
+          1006.732493165598,
+          -286.0306535117214,
+          -485.19606916592227
+        ],
+        [
+          1562.6683744897018,
+          136.0339949743994,
+          393.4830483789295
+        ]
+      ]
+    },
+    {
+      "accepted_mesh_box_cm": [
+        [
+          1015.3616803932653,
+          -4.773959005888173e-15,
+          -395.9613534197848
+        ],
+        [
+          1561.0251880821284,
+          283.31368746572406,
+          393.4232423161823
+        ]
+      ],
+      "box_endpoint_distance_sum_cm": 228.15767977641787,
+      "dagmc_volume_id": 11,
+      "facet_count": 168,
+      "forbid_this_pair_assignment_margin_cm": 208.8364797694594,
+      "magnet_component": "magnet-0004",
+      "raw_filament_index": 0,
+      "source_member": "coil_1000",
+      "source_preclip_box_cm": [
+        [
+          1006.732493165598,
+          -136.0339949743994,
+          -393.4830483789295
+        ],
+        [
+          1562.6683744897018,
+          286.0306535117214,
+          485.19606916592227
+        ]
+      ]
+    },
+    {
+      "accepted_mesh_box_cm": [
+        [
+          962.0463624457404,
+          -4.668487818548783e-14,
+          -342.68202517983195
+        ],
+        [
+          1454.8459886937035,
+          440.53006396254176,
+          550.8944471960938
+        ]
+      ],
+      "box_endpoint_distance_sum_cm": 72.91823218719266,
+      "dagmc_volume_id": 12,
+      "facet_count": 210,
+      "forbid_this_pair_assignment_margin_cm": 400.346422650362,
+      "magnet_component": "magnet-0005",
+      "raw_filament_index": 47,
+      "source_member": "coil_1047",
+      "source_preclip_box_cm": [
+        [
+          959.9283755376609,
+          -71.12916847861025,
+          -344.0711773815177
+        ],
+        [
+          1456.4628661217698,
+          441.0361215990205,
+          550.4808312464685
+        ]
+      ]
+    },
+    {
+      "accepted_mesh_box_cm": [
+        [
+          832.0024582025468,
+          -5.9396931817445875e-15,
+          -310.3374121390166
+        ],
+        [
+          1280.5705095277744,
+          548.2059582523821,
+          536.1585627310558
+        ]
+      ],
+      "box_endpoint_distance_sum_cm": 21.81462805129391,
+      "dagmc_volume_id": 13,
+      "facet_count": 208,
+      "forbid_this_pair_assignment_margin_cm": 605.393153362782,
+      "magnet_component": "magnet-0006",
+      "raw_filament_index": 8,
+      "source_member": "coil_1008",
+      "source_preclip_box_cm": [
+        [
+          823.1515445639305,
+          -12.320480326242066,
+          -310.3848539750379
+        ],
+        [
+          1287.1514804210453,
+          549.1189633089351,
+          536.2332929514363
+        ]
+      ]
+    },
+    {
+      "accepted_mesh_box_cm": [
+        [
+          580.794262074683,
+          46.52826188736344,
+          -258.29882187125725
+        ],
+        [
+          1175.5414966297164,
+          688.8636341003157,
+          529.283485984345
+        ]
+      ],
+      "box_endpoint_distance_sum_cm": 14.707371827645222,
+      "dagmc_volume_id": 14,
+      "facet_count": 216,
+      "forbid_this_pair_assignment_margin_cm": 568.2067495444844,
+      "magnet_component": "magnet-0007",
+      "raw_filament_index": 39,
+      "source_member": "coil_1039",
+      "source_preclip_box_cm": [
+        [
+          575.8850671887121,
+          45.8834634301997,
+          -258.63469813864236
+        ],
+        [
+          1185.17366987056,
+          690.3395254414838,
+          529.312883360891
+        ]
+      ]
+    },
+    {
+      "accepted_mesh_box_cm": [
+        [
+          425.6065550821928,
+          88.19679867424976,
+          -228.36454299932495
+        ],
+        [
+          1115.7110869284286,
+          784.4945775260403,
+          460.56991838949557
+        ]
+      ],
+      "box_endpoint_distance_sum_cm": 6.81596120851871,
+      "dagmc_volume_id": 15,
+      "facet_count": 352,
+      "forbid_this_pair_assignment_margin_cm": 568.2067495444844,
+      "magnet_component": "magnet-0008",
+      "raw_filament_index": 16,
+      "source_member": "coil_1016",
+      "source_preclip_box_cm": [
+        [
+          425.00227023775057,
+          84.2359569127022,
+          -227.52147357872198
+        ],
+        [
+          1117.4031614348035,
+          786.0985483145647,
+          461.9738422717437
+        ]
+      ]
+    },
+    {
+      "accepted_mesh_box_cm": [
+        [
+          334.37030537490455,
+          163.9303375336631,
+          -221.2177960111899
+        ],
+        [
+          1020.5074884410725,
+          909.7189231030525,
+          343.44141404284505
+        ]
+      ],
+      "box_endpoint_distance_sum_cm": 16.322542441914884,
+      "dagmc_volume_id": 16,
+      "facet_count": 350,
+      "forbid_this_pair_assignment_margin_cm": 602.0287575705379,
+      "magnet_component": "magnet-0009",
+      "raw_filament_index": 31,
+      "source_member": "coil_1031",
+      "source_preclip_box_cm": [
+        [
+          335.4390994379114,
+          162.5562240706177,
+          -220.91657937524025
+        ],
+        [
+          1020.5074884410725,
+          913.285603362112,
+          357.55350989788144
+        ]
+      ]
+    },
+    {
+      "accepted_mesh_box_cm": [
+        [
+          163.9304229826198,
+          334.37022124174234,
+          -343.4414140602309
+        ],
+        [
+          909.7190364103969,
+          1020.5073934041174,
+          221.21779600290228
+        ]
+      ],
+      "box_endpoint_distance_sum_cm": 17.79843772020235,
+      "dagmc_volume_id": 17,
+      "facet_count": 350,
+      "forbid_this_pair_assignment_margin_cm": 617.9593936394067,
+      "magnet_component": "magnet-0010",
+      "raw_filament_index": 24,
+      "source_member": "coil_1024",
+      "source_preclip_box_cm": [
+        [
+          162.55631352976079,
+          335.43901446210947,
+          -357.55350989788144
+        ],
+        [
+          913.2857146867793,
+          1020.5073934041174,
+          220.91657937524008
+        ]
+      ]
+    },
+    {
+      "accepted_mesh_box_cm": [
+        [
+          88.19688714738734,
+          425.60651919321253,
+          -460.56991847327754
+        ],
+        [
+          784.4946977637223,
+          1115.7110002240124,
+          228.36454300199475
+        ]
+      ],
+      "box_endpoint_distance_sum_cm": 6.7247546303300245,
+      "dagmc_volume_id": 18,
+      "facet_count": 352,
+      "forbid_this_pair_assignment_margin_cm": 561.2628673993459,
+      "magnet_component": "magnet-0011",
+      "raw_filament_index": 23,
+      "source_member": "coil_1023",
+      "source_preclip_box_cm": [
+        [
+          84.23604768292607,
+          425.0022321818432,
+          -461.9738422717437
+        ],
+        [
+          786.0986710512548,
+          1117.4030768079526,
+          227.52147357872195
+        ]
+      ]
+    },
+    {
+      "accepted_mesh_box_cm": [
+        [
+          46.52836548503527,
+          580.7942331135389,
+          -529.2834859812286
+        ],
+        [
+          688.8637594312788,
+          1175.541420540769,
+          258.29882186721426
+        ]
+      ],
+      "box_endpoint_distance_sum_cm": 14.701826118554992,
+      "dagmc_volume_id": 19,
+      "facet_count": 216,
+      "forbid_this_pair_assignment_margin_cm": 561.2628673993459,
+      "magnet_component": "magnet-0012",
+      "raw_filament_index": 32,
+      "source_member": "coil_1032",
+      "source_preclip_box_cm": [
+        [
+          45.88356686802386,
+          575.8850361462868,
+          -529.312883360891
+        ],
+        [
+          690.3396499912571,
+          1185.1735954664314,
+          258.63469813864236
+        ]
+      ]
+    },
+    {
+      "accepted_mesh_box_cm": [
+        [
+          8.137934770502397e-14,
+          832.0029669478354,
+          -536.1585178843013
+        ],
+        [
+          548.2061206231986,
+          1280.57045235969,
+          310.3374177328311
+        ]
+      ],
+      "box_endpoint_distance_sum_cm": 21.814689600283536,
+      "dagmc_volume_id": 20,
+      "facet_count": 208,
+      "forbid_this_pair_assignment_margin_cm": 603.200716934869,
+      "magnet_component": "magnet-0013",
+      "raw_filament_index": 15,
+      "source_member": "coil_1015",
+      "source_preclip_box_cm": [
+        [
+          -12.32036168706749,
+          823.1515226829076,
+          -536.2332929514364
+        ],
+        [
+          549.1191254365045,
+          1287.1514123080738,
+          310.3848539750379
+        ]
+      ]
+    },
+    {
+      "accepted_mesh_box_cm": [
+        [
+          4.368727601899991e-14,
+          962.0463258017992,
+          -550.8944504120185
+        ],
+        [
+          440.53024006203736,
+          1454.8459413933635,
+          342.68203553963843
+        ]
+      ],
+      "box_endpoint_distance_sum_cm": 73.35268158370283,
+      "dagmc_volume_id": 21,
+      "facet_count": 210,
+      "forbid_this_pair_assignment_margin_cm": 488.2923809316999,
+      "magnet_component": "magnet-0014",
+      "raw_filament_index": 40,
+      "source_member": "coil_1040",
+      "source_preclip_box_cm": [
+        [
+          -71.12903840581411,
+          959.9283790019082,
+          -550.4808312464685
+        ],
+        [
+          441.03629957352854,
+          1456.462821580774,
+          344.0711773815177
+        ]
+      ]
+    },
+    {
+      "accepted_mesh_box_cm": [
+        [
+          3.785860513971784e-14,
+          1015.3616767158964,
+          -393.4242178292816
+        ],
+        [
+          283.3138674091358,
+          1561.025137725036,
+          395.9613576953092
+        ]
+      ],
+      "box_endpoint_distance_sum_cm": 168.35000265379742,
+      "dagmc_volume_id": 22,
+      "facet_count": 168,
+      "forbid_this_pair_assignment_margin_cm": 463.1347981663457,
+      "magnet_component": "magnet-0015",
+      "raw_filament_index": 7,
+      "source_member": "coil_1007",
+      "source_preclip_box_cm": [
+        [
+          -136.0338560776085,
+          1006.7325033309147,
+          -485.19606916592227
+        ],
+        [
+          286.03084305715794,
+          1562.6683671608737,
+          393.4830483789294
+        ]
+      ]
+    },
+    {
+      "accepted_mesh_box_cm": [
+        [
+          4.3853809472693683e-14,
+          1009.633669990416,
+          26.755556657909622
+        ],
+        [
+          136.2253478481696,
+          1538.1681532354396,
+          483.1928934985276
+        ]
+      ],
+      "box_endpoint_distance_sum_cm": 532.9354240725984,
+      "dagmc_volume_id": 23,
+      "facet_count": 96,
+      "forbid_this_pair_assignment_margin_cm": 225.21219411580387,
+      "magnet_component": "magnet-0016",
+      "raw_filament_index": 2,
+      "source_member": "coil_1002",
+      "source_preclip_box_cm": [
+        [
+          -286.0307166935341,
+          1006.7324965540383,
+          -393.4830483789295
+        ],
+        [
+          136.03394867546933,
+          1562.668372046762,
+          485.19606916592227
+        ]
+      ]
+    },
+    {
+      "accepted_mesh_box_cm": [
+        [
+          5.0182080713057076e-14,
+          962.0463502310635,
+          124.94921637115492
+        ],
+        [
+          71.18248213687988,
+          1035.9418845211462,
+          487.89608821383723
+        ]
+      ],
+      "box_endpoint_distance_sum_cm": 1068.9674283056365,
+      "dagmc_volume_id": 24,
+      "facet_count": 58,
+      "forbid_this_pair_assignment_margin_cm": 28.689974509910826,
+      "magnet_component": "magnet-0017",
+      "raw_filament_index": 45,
+      "source_member": "coil_1045",
+      "source_preclip_box_cm": [
+        [
+          -441.03618092385733,
+          959.9283766924118,
+          -344.0711773815177
+        ],
+        [
+          71.1291251210117,
+          1456.4628512747738,
+          550.4808312464685
+        ]
+      ]
+    },
+    {
+      "accepted_mesh_box_cm": [
+        [
+          8.248957072964913e-14,
+          877.0595524543869,
+          214.61463494380445
+        ],
+        [
+          12.416911286572867,
+          910.2544330206924,
+          364.42258208557
+        ]
+      ],
+      "box_endpoint_distance_sum_cm": 1175.8286172610824,
+      "dagmc_volume_id": 25,
+      "facet_count": 16,
+      "forbid_this_pair_assignment_margin_cm": 28.689974509910826,
+      "magnet_component": "magnet-0018",
+      "raw_filament_index": 10,
+      "source_member": "coil_1010",
+      "source_preclip_box_cm": [
+        [
+          -549.1190173514592,
+          823.1515372702577,
+          -310.3848539750379
+        ],
+        [
+          12.320440779850575,
+          1287.1514577167238,
+          536.2332929514363
+        ]
+      ]
+    }
+  ],
+  "schema": "stellarcsg.p00-accepted-facet-mapping/v1"
+}

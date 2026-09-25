@@ -1,0 +1,37 @@
+{
+  "schema": "stellarcsg.openmc-geometry-speed/v1",
+  "recorded_date": "2026-08-31",
+  "periodic_wistell_d": {
+    "evidence": "../benchmarks/raw/wistell_openmc_patch_vs_fine_mesh_20260831.json",
+    "native_csg_histories_per_s_median": 26643.8,
+    "fine_direct_dagmc_histories_per_s_median": 21511.8,
+    "native_over_fine_mesh": 1.2385667401147278,
+    "status": "PASS_MINIMUM_SPEED_GATE"
+  },
+  "forced_general_torus_openmc": "NOT_RUN_WITH_CURRENT_PATCH_KERNEL",
+  "shaped_axisymmetric_openmc": "NOT_RUN_WITH_CURRENT_PATCH_KERNEL",
+  "synthetic_helical_openmc": "NOT_RUN_WITH_CURRENT_PATCH_KERNEL",
+  "coil_wistell_d_representative_nonplanar": {
+    "evidence": "../benchmarks/raw/wistell_coil_span_vs_dagmc_20260831.json",
+    "native_csg_histories_per_s_median": 432436,
+    "coarse_direct_dagmc_histories_per_s_median": 932251,
+    "fine_direct_dagmc_histories_per_s_median": 910634,
+    "native_over_fine_mesh": 0.4748735496368464,
+    "double_down_embree_active": false,
+    "status": "FAIL_NONPLANAR_COIL_PARITY_GATE"
+  },
+  "complete_coil_set": {
+    "evidence": "../benchmarks/raw/wistell_coil_set_openmc_20260831.json",
+    "coils": 48,
+    "native_csg_histories_per_s_median": 289656,
+    "coarse_direct_dagmc_histories_per_s_median": 69868.9,
+    "fine_direct_dagmc_histories_per_s_median": 49189.5,
+    "native_over_fine_mesh": 5.888573780989845,
+    "native_lost_particles": 0,
+    "native_geometry_debug": "PASS",
+    "dagmc_geometry_debug": "FAIL_KNOWN_EXPLICIT_IMPLICIT_COMPLEMENT_OVERLAP",
+    "double_down_embree": "NOT_RUN_UNAVAILABLE_IN_PINNED_BINARY",
+    "status": "PASS_COMPLETE_COIL_SET_SPEED_GATE"
+  },
+  "materialized_tier3": "NOT_RUN"
+}

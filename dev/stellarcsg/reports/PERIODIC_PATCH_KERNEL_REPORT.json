@@ -1,0 +1,43 @@
+{
+  "schema": "stellarcsg.periodic-patch-kernel/v1",
+  "recorded_date": "2026-08-31",
+  "implementation": {
+    "authoritative_surface": "periodic axis spline plus bicubic radial spline",
+    "patches": "one conservative patch per physical spline span",
+    "proxy": "two corner triangles plus curvature/twist error tube",
+    "acceleration": "contiguous patches and flattened front-to-back BVH2",
+    "local_solver": "projected 2x2 damped Newton with patch-local power-polynomial evaluation",
+    "ambiguous_case": "patch-local ray subdivision and derivative-stationary tangent resolution",
+    "hot_path_allocations": 0,
+    "production_global_reference_calls": 0,
+    "global_interval_precursor": "retained private negative/offline precursor; not called by distance()"
+  },
+  "wistell_microkernel": {
+    "evidence": "../benchmarks/raw/wistell_periodic_microkernel_20260831.json",
+    "distance_ns_per_call_median": 11826.72,
+    "distance_calls_per_s": 84554.3,
+    "candidate_bvh_nodes_per_call": 66.713,
+    "candidate_patches_per_call": 6.696,
+    "newton_iterations_per_call": 16.953,
+    "local_subdivision_calls_per_call": 0.464,
+    "global_reference_calls": 0
+  },
+  "openmc_wistell": {
+    "evidence": "../benchmarks/raw/wistell_openmc_patch_vs_fine_mesh_20260831.json",
+    "native_histories_per_s_median": 26643.8,
+    "fine_mesh_histories_per_s_median": 21511.8,
+    "native_over_fine_mesh": 1.2385667401147278,
+    "speedup_over_global_baseline": 298.99009848770066,
+    "lost_particles": 0,
+    "geometry_errors": 0,
+    "minimum_gate": "PASS",
+    "preferred_1_3x_gate": "FAIL",
+    "accuracy_closure": "NOT_YET_QUALIFIED"
+  },
+  "target_metrics": {
+    "candidate_patch_target_met": false,
+    "bvh_node_target_met": false,
+    "newton_iteration_target_met": false,
+    "comment": "The initial internal candidate/iteration targets were missed, but the end-to-end minimum speed gate passed. Further BVH/seed optimization remains useful."
+  }
+}

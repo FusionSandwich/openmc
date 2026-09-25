@@ -1,0 +1,58 @@
+name: StellarCSG standalone CI
+
+on:
+  push:
+    branches:
+      - codex/stellarcsg-native-csg-foundation-20260828
+    paths:
+      - 'dev/stellarcsg/**'
+      - '.github/workflows/stellarcsg-ci.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  cpp-and-python:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          submodules: recursive
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Install build and Python dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y cmake ninja-build libhdf5-dev
+          python -m pip install --upgrade pip setuptools wheel
+          python -m pip install -e 'dev/stellarcsg[test]'
+      - name: Build and test standalone C++ kernel
+        run: |
+          cmake -S dev/stellarcsg -B build/stellarcsg-ci -G Ninja \
+            -DCMAKE_BUILD_TYPE=Release \
+            -DSTELLARCSG_ENABLE_HDF5=ON \
+            -DSTELLARCSG_BUILD_TESTS=ON \
+            -DSTELLARCSG_BUILD_BENCHMARKS=ON \
+            -DSTELLARCSG_BUILD_TOOLS=ON
+          cmake --build build/stellarcsg-ci --parallel
+          ctest --test-dir build/stellarcsg-ci --output-on-failure
+          build/stellarcsg-ci/stellarcsg_surface_benchmark \
+            > build/stellarcsg-ci/geometry_benchmark.json
+      - name: Run Python compiler and mesh tests
+        run: |
+          pytest -q dev/stellarcsg/python/tests
+          stellarcsg demo --output-dir build/stellarcsg-demo
+          build/stellarcsg-ci/stellarcsg_inspect_surface \
+            build/stellarcsg-demo/compiled_geometry.h5 /surfaces/plasma 600 0 0 \
+            > build/stellarcsg-ci/python_to_cpp_surface_probe.json
+      - uses: actions/upload-artifact@v4
+        with:
+          name: stellarcsg-standalone-evidence-${{ github.sha }}
+          path: |
+            build/stellarcsg-ci/geometry_benchmark.json
+            build/stellarcsg-ci/python_to_cpp_surface_probe.json
+            build/stellarcsg-demo/
+          if-no-files-found: error
+          retention-days: 14

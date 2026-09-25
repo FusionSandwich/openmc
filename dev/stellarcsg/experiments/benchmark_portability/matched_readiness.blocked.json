@@ -1,0 +1,65 @@
+{
+  "schema": "stellarcsg.matched-readiness/v1",
+  "gates": {
+    "candidate_numerics_and_admission": {
+      "state": "BLOCKED",
+      "reason": "No fully qualified candidate established by pinned handoff; earlier-prefix/contact/even-root/admission blockers remain.",
+      "evidence": null
+    },
+    "old_fast_guardrails_and_same_session_ztorus": {
+      "state": "BLOCKED",
+      "reason": "Native OpenMC ZTorus unavailable locally. No same-session native ratios. Old controls not run.",
+      "evidence": null
+    },
+    "physical_winding_pack_assembly": {
+      "state": "BLOCKED",
+      "reason": "Current 1 cm circular/no-blanket diagnostic is not physical winding packs or the accepted 40 cm-offset assembly.",
+      "evidence": null
+    },
+    "nfp4_90deg_periodic_members_images_and_seams": {
+      "state": "BLOCKED",
+      "reason": "Finite membership, neighbor images, rotation, seam ownership and periodic closure are not qualified.",
+      "evidence": null
+    },
+    "fidelity_ladder_and_clearance": {
+      "state": "BLOCKED",
+      "reason": "Physical winding-pack fidelity/clearance and heldout fold are open; no sampled certificate.",
+      "evidence": null
+    },
+    "matched_sources_materials_tallies_settings_and_data": {
+      "state": "BLOCKED",
+      "reason": "No frozen matched source/material/tally/settings/nuclear-data manifests are available here.",
+      "evidence": null
+    },
+    "frozen_h5m_and_native_geometry": {
+      "state": "BLOCKED",
+      "reason": "No qualified matching native geometry and H5M pair acquired or verified.",
+      "evidence": null
+    },
+    "ordinary_dagmc_runtime_verified": {
+      "state": "BLOCKED",
+      "reason": "Ordinary DAGMC runtime not available/verified locally.",
+      "evidence": null
+    },
+    "double_down_embree_runtime_verified": {
+      "state": "BLOCKED",
+      "reason": "Double Down/Embree runtime not available/verified locally; current Bateman linkage is unknown.",
+      "evidence": null
+    },
+    "lost_history_and_closure_contracts": {
+      "state": "BLOCKED",
+      "reason": "Lost-history, per-coil attribution, source-weight and tally closure gates have not been executed.",
+      "evidence": null
+    },
+    "authorized_available_local_runtime": {
+      "state": "BLOCKED",
+      "reason": "No transport launch or remote work authorized by this dispatch.",
+      "evidence": null
+    },
+    "resource_audit_current": {
+      "state": "BLOCKED",
+      "reason": "Audit supports only present small local plumbing tests, not future transport/build/acquisition.",
+      "evidence": null
+    }
+  }
+}

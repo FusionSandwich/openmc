@@ -1,0 +1,387 @@
+{
+  "schema": "stellarcsg.centerline-prefix-feasibility/v4",
+  "state": "EXPERIMENTAL_NOT_ROOT_CERTIFIED",
+  "h5_sha256": "39f77da5ab1fe427cce58b153e9b52cf8915e9973a9b8f3dfad5ab3b00a9e46d",
+  "source_sha256": "e0eaa0ec218f350eec3ee290d86a66090cd89b4c05a1a94fc1489efdd6309346",
+  "fixture_ray_origin_cm": [
+    550.0,
+    0.0,
+    0.0
+  ],
+  "fixture_ray_direction": [
+    -1.0,
+    0.0,
+    0.0
+  ],
+  "rounding_pad_cm": 1e-05,
+  "tangent_dot_pad_cm2": 0.01,
+  "sampled_seam_axial_support": [
+    {
+      "member": 2,
+      "span": 0,
+      "sample_count": 4097,
+      "maximum_sampled_surface_x_cm": 534.0,
+      "at_local_u": 0.0
+    },
+    {
+      "member": 2,
+      "span": 255,
+      "sample_count": 4097,
+      "maximum_sampled_surface_x_cm": 534.0,
+      "at_local_u": 1.0
+    },
+    {
+      "member": 3,
+      "span": 0,
+      "sample_count": 4097,
+      "maximum_sampled_surface_x_cm": 556.9999999999999,
+      "at_local_u": 0.0
+    },
+    {
+      "member": 3,
+      "span": 383,
+      "sample_count": 4097,
+      "maximum_sampled_surface_x_cm": 556.9999999999999,
+      "at_local_u": 1.0
+    }
+  ],
+  "results": [
+    {
+      "member": 2,
+      "gap_cm": 1.0,
+      "method": "sphere",
+      "span_count": 256,
+      "excluded": 252,
+      "unknown_spans": [
+        0,
+        1,
+        254,
+        255
+      ],
+      "tile_visits": 388,
+      "max_depth": 30
+    },
+    {
+      "member": 2,
+      "gap_cm": 1.0,
+      "method": "sphere_tangent",
+      "span_count": 256,
+      "excluded": 254,
+      "unknown_spans": [
+        0,
+        255
+      ],
+      "tile_visits": 322,
+      "max_depth": 30
+    },
+    {
+      "member": 2,
+      "gap_cm": 1.0,
+      "method": "sphere_support_tangent",
+      "span_count": 256,
+      "excluded": 254,
+      "unknown_spans": [
+        0,
+        255
+      ],
+      "tile_visits": 322,
+      "max_depth": 30
+    },
+    {
+      "member": 2,
+      "gap_cm": 1e-05,
+      "method": "sphere",
+      "span_count": 256,
+      "excluded": 252,
+      "unknown_spans": [
+        0,
+        1,
+        254,
+        255
+      ],
+      "tile_visits": 388,
+      "max_depth": 30
+    },
+    {
+      "member": 2,
+      "gap_cm": 1e-05,
+      "method": "sphere_tangent",
+      "span_count": 256,
+      "excluded": 254,
+      "unknown_spans": [
+        0,
+        255
+      ],
+      "tile_visits": 322,
+      "max_depth": 30
+    },
+    {
+      "member": 2,
+      "gap_cm": 1e-05,
+      "method": "sphere_support_tangent",
+      "span_count": 256,
+      "excluded": 254,
+      "unknown_spans": [
+        0,
+        255
+      ],
+      "tile_visits": 322,
+      "max_depth": 30
+    },
+    {
+      "member": 2,
+      "gap_cm": 0.0,
+      "method": "sphere",
+      "span_count": 256,
+      "excluded": 252,
+      "unknown_spans": [
+        0,
+        1,
+        254,
+        255
+      ],
+      "tile_visits": 390,
+      "max_depth": 30
+    },
+    {
+      "member": 2,
+      "gap_cm": 0.0,
+      "method": "sphere_tangent",
+      "span_count": 256,
+      "excluded": 254,
+      "unknown_spans": [
+        0,
+        255
+      ],
+      "tile_visits": 322,
+      "max_depth": 30
+    },
+    {
+      "member": 2,
+      "gap_cm": 0.0,
+      "method": "sphere_support_tangent",
+      "span_count": 256,
+      "excluded": 254,
+      "unknown_spans": [
+        0,
+        255
+      ],
+      "tile_visits": 322,
+      "max_depth": 30
+    },
+    {
+      "member": 2,
+      "gap_cm": -4.0,
+      "method": "sphere",
+      "span_count": 256,
+      "excluded": 252,
+      "unknown_spans": [
+        0,
+        1,
+        254,
+        255
+      ],
+      "tile_visits": 390,
+      "max_depth": 30
+    },
+    {
+      "member": 2,
+      "gap_cm": -4.0,
+      "method": "sphere_tangent",
+      "span_count": 256,
+      "excluded": 254,
+      "unknown_spans": [
+        0,
+        255
+      ],
+      "tile_visits": 322,
+      "max_depth": 30
+    },
+    {
+      "member": 2,
+      "gap_cm": -4.0,
+      "method": "sphere_support_tangent",
+      "span_count": 256,
+      "excluded": 254,
+      "unknown_spans": [
+        0,
+        255
+      ],
+      "tile_visits": 322,
+      "max_depth": 30
+    },
+    {
+      "member": 3,
+      "gap_cm": 1.0,
+      "method": "sphere",
+      "span_count": 384,
+      "excluded": 378,
+      "unknown_spans": [
+        0,
+        1,
+        2,
+        381,
+        382,
+        383
+      ],
+      "tile_visits": 580,
+      "max_depth": 30
+    },
+    {
+      "member": 3,
+      "gap_cm": 1.0,
+      "method": "sphere_tangent",
+      "span_count": 384,
+      "excluded": 382,
+      "unknown_spans": [
+        0,
+        383
+      ],
+      "tile_visits": 450,
+      "max_depth": 30
+    },
+    {
+      "member": 3,
+      "gap_cm": 1.0,
+      "method": "sphere_support_tangent",
+      "span_count": 384,
+      "excluded": 382,
+      "unknown_spans": [
+        0,
+        383
+      ],
+      "tile_visits": 450,
+      "max_depth": 30
+    },
+    {
+      "member": 3,
+      "gap_cm": 1e-05,
+      "method": "sphere",
+      "span_count": 384,
+      "excluded": 378,
+      "unknown_spans": [
+        0,
+        1,
+        2,
+        381,
+        382,
+        383
+      ],
+      "tile_visits": 580,
+      "max_depth": 30
+    },
+    {
+      "member": 3,
+      "gap_cm": 1e-05,
+      "method": "sphere_tangent",
+      "span_count": 384,
+      "excluded": 382,
+      "unknown_spans": [
+        0,
+        383
+      ],
+      "tile_visits": 450,
+      "max_depth": 30
+    },
+    {
+      "member": 3,
+      "gap_cm": 1e-05,
+      "method": "sphere_support_tangent",
+      "span_count": 384,
+      "excluded": 382,
+      "unknown_spans": [
+        0,
+        383
+      ],
+      "tile_visits": 450,
+      "max_depth": 30
+    },
+    {
+      "member": 3,
+      "gap_cm": 0.0,
+      "method": "sphere",
+      "span_count": 384,
+      "excluded": 378,
+      "unknown_spans": [
+        0,
+        1,
+        2,
+        381,
+        382,
+        383
+      ],
+      "tile_visits": 580,
+      "max_depth": 30
+    },
+    {
+      "member": 3,
+      "gap_cm": 0.0,
+      "method": "sphere_tangent",
+      "span_count": 384,
+      "excluded": 382,
+      "unknown_spans": [
+        0,
+        383
+      ],
+      "tile_visits": 450,
+      "max_depth": 30
+    },
+    {
+      "member": 3,
+      "gap_cm": 0.0,
+      "method": "sphere_support_tangent",
+      "span_count": 384,
+      "excluded": 382,
+      "unknown_spans": [
+        0,
+        383
+      ],
+      "tile_visits": 450,
+      "max_depth": 30
+    },
+    {
+      "member": 3,
+      "gap_cm": -4.0,
+      "method": "sphere",
+      "span_count": 384,
+      "excluded": 378,
+      "unknown_spans": [
+        0,
+        1,
+        2,
+        381,
+        382,
+        383
+      ],
+      "tile_visits": 580,
+      "max_depth": 30
+    },
+    {
+      "member": 3,
+      "gap_cm": -4.0,
+      "method": "sphere_tangent",
+      "span_count": 384,
+      "excluded": 382,
+      "unknown_spans": [
+        0,
+        383
+      ],
+      "tile_visits": 450,
+      "max_depth": 30
+    },
+    {
+      "member": 3,
+      "gap_cm": -4.0,
+      "method": "sphere_support_tangent",
+      "span_count": 384,
+      "excluded": 382,
+      "unknown_spans": [
+        0,
+        383
+      ],
+      "tile_visits": 450,
+      "max_depth": 30
+    }
+  ],
+  "claim_boundary": "Floating Bezier hull and radius bounds are diagnostic; no formal arithmetic or production root-tile certificate."
+}

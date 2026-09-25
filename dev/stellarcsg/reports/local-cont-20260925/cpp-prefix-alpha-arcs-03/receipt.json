@@ -1,0 +1,188 @@
+{
+  "schema": "stellarcsg.cpp-prefix-interval-probe/v9",
+  "state": "EXPERIMENTAL_ALPHA_ARC_SWEEP_NOT_ROOT_CERTIFIED",
+  "command": [
+    "/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-local-continuation-20260925/build/native-local-20260925/swept_prefix_alpha_arcs_4096",
+    "/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-local-continuation-20260925/dev/stellarcsg/qualified/analytic_swept_coils.h5"
+  ],
+  "exit_code": 0,
+  "loader_binding": "libopenmc.so => /mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-local-continuation-20260925/build/native-local-20260925/lib/libopenmc.so (0x00007110be206000)",
+  "affinity": [
+    0
+  ],
+  "hashes": {
+    "/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-local-continuation-20260925/build/native-local-20260925/swept_prefix_alpha_arcs_4096": "dea2cf556ae4dfe980c81ffdca83cb8c7c83d9517f0a7ea62f1fe8958069cb79",
+    "/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-local-continuation-20260925/build/native-local-20260925/lib/libopenmc.so": "31578a499d905e0c1c12fd71270e39a7cf905cc3d5d12cb73c412cdf5707f65a",
+    "/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-local-continuation-20260925/dev/stellarcsg/qualified/analytic_swept_coils.h5": "39f77da5ab1fe427cce58b153e9b52cf8915e9973a9b8f3dfad5ab3b00a9e46d",
+    "/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-local-continuation-20260925/dev/stellarcsg/experiments/swept_prefix_interval.cpp": "c7121df4aa1abad6667c83c1ec1a16be578f2a6758d06cf4252a700704157dfc",
+    "/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-local-continuation-20260925/dev/stellarcsg/qualification/run_cpp_prefix_probe.py": "e0add4a3c23c45ef5071f1bf6ded51b620762cb9fef040f491848212f33db8f8"
+  },
+  "compile_contract": "GCC 14.2 -O2 -fno-fast-math -ffp-contract=off",
+  "unit_circle_slack_sweep": [
+    1e-10,
+    1e-08,
+    1e-06
+  ],
+  "gap_slack_matrix": {
+    "gaps_cm": [
+      1e-11,
+      1e-08,
+      1e-05
+    ],
+    "slacks": [
+      1e-12,
+      1e-08,
+      1e-06
+    ]
+  },
+  "rectangle_gaps_cm": [
+    1e-05,
+    0.0001,
+    0.001,
+    0.01,
+    0.1,
+    1.0
+  ],
+  "alpha_arc_counts": [
+    64,
+    256,
+    4096
+  ],
+  "alpha_arc_endpoint_slack": 1e-06,
+  "rectangle_last_gap_outcome_order": [
+    "excluded_projection",
+    "excluded_single_prefix",
+    "excluded_unit_branches",
+    "excluded_unit_circle",
+    "excluded_ray_prefix",
+    "undecided_frame",
+    "undecided_projection",
+    "undecided_root",
+    "excluded_alpha_arcs"
+  ],
+  "padded_case": {
+    "gap_cm": 1e-05,
+    "unit_circle_slack": 1e-06,
+    "projection_slack_formula": "2*projected_tolerance+256*DBL_EPSILON*characteristic_length"
+  },
+  "underflow_control": [
+    {
+      "kind": "underflow_control",
+      "state": "undecided_frame"
+    }
+  ],
+  "span_counts_match": true,
+  "summaries": [
+    {
+      "kind": "member_summary",
+      "member": 2,
+      "lead_cm": 16,
+      "selected": 256,
+      "u_endpoint_above_one_ulp": 0,
+      "padded_excluded": 256,
+      "padded_zero_gap_undecided": 2,
+      "padded_negative_undecided": 2,
+      "projection_slack_cm": 5.983976786267405e-07,
+      "prefix_excluded": 256,
+      "rectangle_excluded": 256,
+      "rectangle_gap_excluded": [
+        256,
+        256,
+        256,
+        256,
+        256,
+        256
+      ],
+      "alpha_arc_excluded": [
+        256,
+        256,
+        256
+      ],
+      "alpha_arc_zero_gap_undecided": 2,
+      "alpha_arc_negative_undecided": 2,
+      "slack_excluded": [
+        256,
+        256,
+        256
+      ],
+      "gap_slack_excluded": [
+        [
+          256,
+          256,
+          256
+        ],
+        [
+          256,
+          256,
+          256
+        ],
+        [
+          256,
+          256,
+          256
+        ]
+      ],
+      "zero_gap_undecided": 1,
+      "negative_control_undecided": 1,
+      "nodes": 326,
+      "terminal_unresolved": true
+    },
+    {
+      "kind": "member_summary",
+      "member": 3,
+      "lead_cm": 17.000000000000227,
+      "selected": 384,
+      "u_endpoint_above_one_ulp": 0,
+      "padded_excluded": 384,
+      "padded_zero_gap_undecided": 2,
+      "padded_negative_undecided": 2,
+      "projection_slack_cm": 6.501468937106146e-07,
+      "prefix_excluded": 384,
+      "rectangle_excluded": 382,
+      "rectangle_gap_excluded": [
+        382,
+        382,
+        382,
+        382,
+        382,
+        382
+      ],
+      "alpha_arc_excluded": [
+        382,
+        382,
+        382
+      ],
+      "alpha_arc_zero_gap_undecided": 2,
+      "alpha_arc_negative_undecided": 2,
+      "slack_excluded": [
+        382,
+        382,
+        382
+      ],
+      "gap_slack_excluded": [
+        [
+          384,
+          382,
+          382
+        ],
+        [
+          384,
+          382,
+          382
+        ],
+        [
+          384,
+          384,
+          384
+        ]
+      ],
+      "zero_gap_undecided": 2,
+      "negative_control_undecided": 2,
+      "nodes": 492,
+      "terminal_unresolved": true
+    }
+  ],
+  "production_solver_modified": false,
+  "native_transport_run": false,
+  "claim_boundary": "The alpha-arc rectangles are an experimental correlation alternative to the unit-circle test. Their 1e-6 trigonometric endpoint allowance and the arithmetic intervals are not a proved enclosure of the production floating path; finite root-tile existence/uniqueness remain unaudited. No tracking admission."
+}

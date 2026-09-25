@@ -1,0 +1,2947 @@
+{
+  "schema": "stellarcsg.period-frame-fidelity-sample/v1",
+  "state": "SAMPLED_SECTION_SUPPORT_ONLY_NOT_PHYSICAL_FIDELITY",
+  "hashes": {
+    "original_h5_sha256": "caeed2e41da2082b93d32758e40932d9ac268966998dc2664e8164cb8cb7a89b",
+    "frame_h5_sha256": "9571b71cff1f2f1e4bbeb079d779bfcc9b614da87e16cf2cfd49dae931918018",
+    "exact_h5_sha256": "5239876917349e057ad261cfeb6dcec4f25f8c10376ee173c2960aed161967ab",
+    "original_manifest_sha256": "1c0df0e1e3b5ad635c296cc216d67fee1a53e93f5d2457734c7aa892a1b93481",
+    "frame_manifest_sha256": "208b3bce3feed8cd72360b6db29229b717a9cbce5860ed96cc4c39c3c1a9080b",
+    "exact_manifest_sha256": "9b60ff7f924ee2e766a0e832857754c55bed313f72685942d520cc4cd2729686",
+    "auditor_sha256": "9a01ec7a7da226dd1d4cfe06c9856d15fc3de863db1acad0bcc394faae60cf36"
+  },
+  "samples_per_member": 1024,
+  "directions_per_sample": 32,
+  "maxima_cm": {
+    "original_to_frame": 1.8389290452543747,
+    "frame_to_exact": 0.00019318354493691459,
+    "original_to_exact": 1.8390157230769315
+  },
+  "rows": [
+    {
+      "member": "coil_1000",
+      "original_to_frame": {
+        "max_sampled_support_difference_cm": 4.565237077258644e-13,
+        "witness": {
+          "span": 16,
+          "u": 0.0,
+          "section_angle_rad": 4.516039439535327,
+          "signed_support_change_cm": -4.565237077258644e-13,
+          "center_separation_cm": 4.547473508864641e-13
+        }
+      },
+      "frame_to_exact": {
+        "max_sampled_support_difference_cm": 0.0,
+        "witness": {
+          "span": 0,
+          "u": 0.0,
+          "section_angle_rad": 0.0,
+          "signed_support_change_cm": 0.0,
+          "center_separation_cm": 0.0
+        }
+      },
+      "original_to_exact": {
+        "max_sampled_support_difference_cm": 4.565237077258644e-13,
+        "witness": {
+          "span": 16,
+          "u": 0.0,
+          "section_angle_rad": 4.516039439535327,
+          "signed_support_change_cm": -4.565237077258644e-13,
+          "center_separation_cm": 4.547473508864641e-13
+        }
+      }
+    },
+    {
+      "member": "coil_1001",
+      "original_to_frame": {
+        "max_sampled_support_difference_cm": 4.565237077258644e-13,
+        "witness": {
+          "span": 16,
+          "u": 0.0,
+          "section_angle_rad": 1.3744467859455345,
+          "signed_support_change_cm": -4.565237077258644e-13,
+          "center_separation_cm": 4.547473508864641e-13
+        }
+      },
+      "frame_to_exact": {
+        "max_sampled_support_difference_cm": 0.0,
+        "witness": {
+          "span": 0,
+          "u": 0.0,
+          "section_angle_rad": 0.0,
+          "signed_support_change_cm": 0.0,
+          "center_separation_cm": 0.0
+        }
+      },
+      "original_to_exact": {
+        "max_sampled_support_difference_cm": 4.565237077258644e-13,
+        "witness": {
+          "span": 16,
+          "u": 0.0,
+          "section_angle_rad": 1.3744467859455345,
+          "signed_support_change_cm": -4.565237077258644e-13,
+          "center_separation_cm": 4.547473508864641e-13
+        }
+      }
+    },
+    {
+      "member": "coil_1002",
+      "original_to_frame": {
+        "max_sampled_support_difference_cm": 6.803446694902959e-13,
+        "witness": {
+          "span": 1,
+          "u": 0.25,
+          "section_angle_rad": 1.3744467859455345,
+          "signed_support_change_cm": 6.803446694902959e-13,
+          "center_separation_cm": 6.822042879749657e-13
+        }
+      },
+      "frame_to_exact": {
+        "max_sampled_support_difference_cm": 6.439451519568706e-05,
+        "witness": {
+          "span": 38,
+          "u": 0.25,
+          "section_angle_rad": 0.0,
+          "signed_support_change_cm": -6.439451519568706e-05,
+          "center_separation_cm": 6.529171900319475e-05
+        }
+      },
+      "original_to_exact": {
+        "max_sampled_support_difference_cm": 6.43945152063452e-05,
+        "witness": {
+          "span": 38,
+          "u": 0.25,
+          "section_angle_rad": 0.0,
+          "signed_support_change_cm": -6.43945152063452e-05,
+          "center_separation_cm": 6.529171902184641e-05
+        }
+      }
+    },
+    {
+      "member": "coil_1003",
+      "original_to_frame": {
+        "max_sampled_support_difference_cm": 6.803446694902959e-13,
+        "witness": {
+          "span": 1,
+          "u": 0.25,
+          "section_angle_rad": 1.3744467859455345,
+          "signed_support_change_cm": -6.803446694902959e-13,
+          "center_separation_cm": 6.822042879749657e-13
+        }
+      },
+      "frame_to_exact": {
+        "max_sampled_support_difference_cm": 6.439451519568706e-05,
+        "witness": {
+          "span": 38,
+          "u": 0.25,
+          "section_angle_rad": 3.141592653589793,
+          "signed_support_change_cm": -6.439451519568706e-05,
+          "center_separation_cm": 6.529171900319475e-05
+        }
+      },
+      "original_to_exact": {
+        "max_sampled_support_difference_cm": 6.439451520456885e-05,
+        "witness": {
+          "span": 38,
+          "u": 0.25,
+          "section_angle_rad": 3.141592653589793,
+          "signed_support_change_cm": -6.439451520456885e-05,
+          "center_separation_cm": 6.529171902184641e-05
+        }
+      }
+    },
+    {
+      "member": "coil_1004",
+      "original_to_frame": {
+        "max_sampled_support_difference_cm": 4.565237077258644e-13,
+        "witness": {
+          "span": 151,
+          "u": 0.0,
+          "section_angle_rad": 1.7671458676442586,
+          "signed_support_change_cm": -4.565237077258644e-13,
+          "center_separation_cm": 4.549693413077341e-13
+        }
+      },
+      "frame_to_exact": {
+        "max_sampled_support_difference_cm": 0.00012878903015689502,
+        "witness": {
+          "span": 38,
+          "u": 0.25,
+          "section_angle_rad": 0.0,
+          "signed_support_change_cm": -0.00012878903015689502,
+          "center_separation_cm": 0.00013058343780473195
+        }
+      },
+      "original_to_exact": {
+        "max_sampled_support_difference_cm": 0.00012878903017288224,
+        "witness": {
+          "span": 38,
+          "u": 0.25,
+          "section_angle_rad": 0.0,
+          "signed_support_change_cm": -0.00012878903017288224,
+          "center_separation_cm": 0.00013058343780029106
+        }
+      }
+    },
+    {
+      "member": "coil_1005",
+      "original_to_frame": {
+        "max_sampled_support_difference_cm": 4.547473508864641e-13,
+        "witness": {
+          "span": 151,
+          "u": 0.0,
+          "section_angle_rad": 4.908738521234052,
+          "signed_support_change_cm": -4.547473508864641e-13,
+          "center_separation_cm": 4.549693413077341e-13
+        }
+      },
+      "frame_to_exact": {
+        "max_sampled_support_difference_cm": 0.00012878903015689502,
+        "witness": {
+          "span": 38,
+          "u": 0.25,
+          "section_angle_rad": 3.141592653589793,
+          "signed_support_change_cm": -0.00012878903015689502,
+          "center_separation_cm": 0.00013058343780473195
+        }
+      },
+      "original_to_exact": {
+        "max_sampled_support_difference_cm": 0.00012878903016932952,
+        "witness": {
+          "span": 38,
+          "u": 0.25,
+          "section_angle_rad": 3.141592653589793,
+          "signed_support_change_cm": -0.00012878903016932952,
+          "center_separation_cm": 0.00013058343780029106
+        }
+      }
+    },
+    {
+      "member": "coil_1006",
+      "original_to_frame": {
+        "max_sampled_support_difference_cm": 4.565237077258644e-13,
+        "witness": {
+          "span": 17,
+          "u": 0.75,
+          "section_angle_rad": 4.516039439535327,
+          "signed_support_change_cm": 4.565237077258644e-13,
+          "center_separation_cm": 4.556346636343676e-13
+        }
+      },
+      "frame_to_exact": {
+        "max_sampled_support_difference_cm": 0.00019318354493513823,
+        "witness": {
+          "span": 38,
+          "u": 0.25,
+          "section_angle_rad": 0.0,
+          "signed_support_change_cm": -0.00019318354493513823,
+          "center_separation_cm": 0.0001958751566115669
+        }
+      },
+      "original_to_exact": {
+        "max_sampled_support_difference_cm": 0.00019318354488184752,
+        "witness": {
+          "span": 38,
+          "u": 0.25,
+          "section_angle_rad": 0.0,
+          "signed_support_change_cm": -0.00019318354488184752,
+          "center_separation_cm": 0.00019587515655539246
+        }
+      }
+    },
+    {
+      "member": "coil_1007",
+      "original_to_frame": {
+        "max_sampled_support_difference_cm": 4.565237077258644e-13,
+        "witness": {
+          "span": 17,
+          "u": 0.75,
+          "section_angle_rad": 1.3744467859455345,
+          "signed_support_change_cm": 4.565237077258644e-13,
+          "center_separation_cm": 4.556346636343676e-13
+        }
+      },
+      "frame_to_exact": {
+        "max_sampled_support_difference_cm": 0.00019318354493691459,
+        "witness": {
+          "span": 38,
+          "u": 0.25,
+          "section_angle_rad": 3.141592653589793,
+          "signed_support_change_cm": -0.00019318354493691459,
+          "center_separation_cm": 0.0001958751566115669
+        }
+      },
+      "original_to_exact": {
+        "max_sampled_support_difference_cm": 0.00019318354488184752,
+        "witness": {
+          "span": 38,
+          "u": 0.25,
+          "section_angle_rad": 3.141592653589793,
+          "signed_support_change_cm": -0.00019318354488184752,
+          "center_separation_cm": 0.00019587515655539246
+        }
+      }
+    },
+    {
+      "member": "coil_1008",
+      "original_to_frame": {
+        "max_sampled_support_difference_cm": 0.77895473318965,
+        "witness": {
+          "span": 175,
+          "u": 0.5,
+          "section_angle_rad": 2.552544031041707,
+          "signed_support_change_cm": -0.77895473318965,
+          "center_separation_cm": 7.105427357601002e-14
+        }
+      },
+      "frame_to_exact": {
+        "max_sampled_support_difference_cm": 0.0,
+        "witness": {
+          "span": 0,
+          "u": 0.0,
+          "section_angle_rad": 0.0,
+          "signed_support_change_cm": 0.0,
+          "center_separation_cm": 0.0
+        }
+      },
+      "original_to_exact": {
+        "max_sampled_support_difference_cm": 0.77895473318965,
+        "witness": {
+          "span": 175,
+          "u": 0.5,
+          "section_angle_rad": 2.552544031041707,
+          "signed_support_change_cm": -0.77895473318965,
+          "center_separation_cm": 7.105427357601002e-14
+        }
+      }
+    },
+    {
+      "member": "coil_1009",
+      "original_to_frame": {
+        "max_sampled_support_difference_cm": 0.77895473318965,
+        "witness": {
+          "span": 175,
+          "u": 0.5,
+          "section_angle_rad": 2.552544031041707,
+          "signed_support_change_cm": -0.77895473318965,
+          "center_separation_cm": 7.105427357601002e-14
+        }
+      },
+      "frame_to_exact": {
+        "max_sampled_support_difference_cm": 0.0,
+        "witness": {
+          "span": 0,
+          "u": 0.0,
+          "section_angle_rad": 0.0,
+          "signed_support_change_cm": 0.0,
+          "center_separation_cm": 0.0
+        }
+      },
+      "original_to_exact": {
+        "max_sampled_support_difference_cm": 0.77895473318965,
+        "witness": {
+          "span": 175,
+          "u": 0.5,
+          "section_angle_rad": 2.552544031041707,
+          "signed_support_change_cm": -0.77895473318965,
+          "center_separation_cm": 7.105427357601002e-14
+        }
+      }
+    },
+    {
+      "member": "coil_1010",
+      "original_to_frame": {
+        "max_sampled_support_difference_cm": 1.8389290452543747,
+        "witness": {
+          "span": 144,
+          "u": 0.5,
+          "section_angle_rad": 1.7671458676442586,
+          "signed_support_change_cm": 1.8389290452543747,
+          "center_separation_cm": 4.0194366942304644e-14
+        }
+      },
+      "frame_to_exact": {
+        "max_sampled_support_difference_cm": 5.969760795210277e-05,
+        "witness": {
+          "span": 16,
+          "u": 0.25,
+          "section_angle_rad": 1.3744467859455345,
+          "signed_support_change_cm": -5.969760795210277e-05,
+          "center_separation_cm": 5.980156374173347e-05
+        }
+      },
+      "original_to_exact": {
+        "max_sampled_support_difference_cm": 1.8389579590910916,
+        "witness": {
+          "span": 144,
+          "u": 0.5,
+          "section_angle_rad": 1.7671458676442586,
+          "signed_support_change_cm": 1.8389579590910916,
+          "center_separation_cm": 4.0778838470396455e-05
+        }
+      }
+    },
+    {
+      "member": "coil_1011",
+      "original_to_frame": {
+        "max_sampled_support_difference_cm": 1.8389290452543747,
+        "witness": {
+          "span": 144,
+          "u": 0.5,
+          "section_angle_rad": 1.7671458676442586,
+          "signed_support_change_cm": 1.8389290452543747,
+          "center_separation_cm": 4.0194366942304644e-14
+        }
+      },
+      "frame_to_exact": {
+        "max_sampled_support_difference_cm": 5.969760795210277e-05,
+        "witness": {
+          "span": 16,
+          "u": 0.25,
+          "section_angle_rad": 1.3744467859455345,
+          "signed_support_change_cm": -5.969760795210277e-05,
+          "center_separation_cm": 5.980156374173347e-05
+        }
+      },
+      "original_to_exact": {
+        "max_sampled_support_difference_cm": 1.8389579590910916,
+        "witness": {
+          "span": 144,
+          "u": 0.5,
+          "section_angle_rad": 1.7671458676442586,
+          "signed_support_change_cm": 1.8389579590910916,
+          "center_separation_cm": 4.0778838470396455e-05
+        }
+      }
+    },
+    {
+      "member": "coil_1012",
+      "original_to_frame": {
+        "max_sampled_support_difference_cm": 0.7789548999968048,
+        "witness": {
+          "span": 175,
+          "u": 0.5,
+          "section_angle_rad": 2.552544031041707,
+          "signed_support_change_cm": -0.7789548999968048,
+          "center_separation_cm": 5.684341886080802e-14
+        }
+      },
+      "frame_to_exact": {
+        "max_sampled_support_difference_cm": 0.00011939521587756019,
+        "witness": {
+          "span": 16,
+          "u": 0.25,
+          "section_angle_rad": 1.3744467859455345,
+          "signed_support_change_cm": -0.00011939521587756019,
+          "center_separation_cm": 0.00011960312734191525
+        }
+      },
+      "original_to_exact": {
+        "max_sampled_support_difference_cm": 0.7790109265325302,
+        "witness": {
+          "span": 175,
+          "u": 0.5,
+          "section_angle_rad": 5.6941366846315,
+          "signed_support_change_cm": -0.7790109265325302,
+          "center_separation_cm": 8.571961928182692e-05
+        }
+      }
+    },
+    {
+      "member": "coil_1013",
+      "original_to_frame": {
+        "max_sampled_support_difference_cm": 0.7789548999968048,
+        "witness": {
+          "span": 175,
+          "u": 0.5,
+          "section_angle_rad": 2.552544031041707,
+          "signed_support_change_cm": -0.7789548999968048,
+          "center_separation_cm": 5.684341886080802e-14
+        }
+      },
+      "frame_to_exact": {
+        "max_sampled_support_difference_cm": 0.00011939521587756019,
+        "witness": {
+          "span": 16,
+          "u": 0.25,
+          "section_angle_rad": 1.3744467859455345,
+          "signed_support_change_cm": -0.00011939521587756019,
+          "center_separation_cm": 0.00011960312734191525
+        }
+      },
+      "original_to_exact": {
+        "max_sampled_support_difference_cm": 0.7790109265325302,
+        "witness": {
+          "span": 175,
+          "u": 0.5,
+          "section_angle_rad": 5.6941366846315,
+          "signed_support_change_cm": -0.7790109265325302,
+          "center_separation_cm": 8.571961928182692e-05
+        }
+      }
+    },
+    {
+      "member": "coil_1014",
+      "original_to_frame": {
+        "max_sampled_support_difference_cm": 1.838928981560418,
+        "witness": {
+          "span": 144,
+          "u": 0.5,
+          "section_angle_rad": 1.7671458676442586,
+          "signed_support_change_cm": 1.838928981560418,
+          "center_separation_cm": 2.0097183471152322e-14
+        }
+      },
+      "frame_to_exact": {
+        "max_sampled_support_difference_cm": 0.00017909282383854475,
+        "witness": {
+          "span": 16,
+          "u": 0.25,
+          "section_angle_rad": 1.3744467859455345,
+          "signed_support_change_cm": -0.00017909282383854475,
+          "center_separation_cm": 0.0001794046907419969
+        }
+      },
+      "original_to_exact": {
+        "max_sampled_support_difference_cm": 1.8390157230769315,
+        "witness": {
+          "span": 144,
+          "u": 0.5,
+          "section_angle_rad": 4.908738521234052,
+          "signed_support_change_cm": 1.8390157230769315,
+          "center_separation_cm": 0.00012233651427366534
+        }
+      }
+    },
+    {
+      "member": "coil_1015",
+      "original_to_frame": {
+        "max_sampled_support_difference_cm": 1.838928981560418,
+        "witness": {
+          "span": 144,
+          "u": 0.5,
+          "section_angle_rad": 1.7671458676442586,
+          "signed_support_change_cm": 1.838928981560418,
+          "center_separation_cm": 2.0097183471152322e-14
+        }
+      },
+      "frame_to_exact": {
+        "max_sampled_support_difference_cm": 0.00017909282383854475,
+        "witness": {
+          "span": 16,
+          "u": 0.25,
+          "section_angle_rad": 1.3744467859455345,
+          "signed_support_change_cm": -0.00017909282383854475,
+          "center_separation_cm": 0.0001794046907419969
+        }
+      },
+      "original_to_exact": {
+        "max_sampled_support_difference_cm": 1.8390157230769315,
+        "witness": {
+          "span": 144,
+          "u": 0.5,
+          "section_angle_rad": 4.908738521234052,
+          "signed_support_change_cm": 1.8390157230769315,
+          "center_separation_cm": 0.00012233651427366534
+        }
+      }
+    },
+    {
+      "member": "coil_1016",
+      "original_to_frame": {
+        "max_sampled_support_difference_cm": 2.5224267119483557e-13,
+        "witness": {
+          "span": 32,
+          "u": 0.5,
+          "section_angle_rad": 5.105088062083414,
+          "signed_support_change_cm": 2.5224267119483557e-13,
+          "center_separation_cm": 2.5579538487363607e-13
+        }
+      },
+      "frame_to_exact": {
+        "max_sampled_support_difference_cm": 0.0,
+        "witness": {
+          "span": 0,
+          "u": 0.0,
+          "section_angle_rad": 0.0,
+          "signed_support_change_cm": 0.0,
+          "center_separation_cm": 0.0
+        }
+      },
+      "original_to_exact": {
+        "max_sampled_support_difference_cm": 2.5224267119483557e-13,
+        "witness": {
+          "span": 32,
+          "u": 0.5,
+          "section_angle_rad": 5.105088062083414,
+          "signed_support_change_cm": 2.5224267119483557e-13,
+          "center_separation_cm": 2.5579538487363607e-13
+        }
+      }
+    },
+    {
+      "member": "coil_1017",
+      "original_to_frame": {
+        "max_sampled_support_difference_cm": 2.504663143554353e-13,
+        "witness": {
+          "span": 32,
+          "u": 0.25,
+          "section_angle_rad": 4.908738521234052,
+          "signed_support_change_cm": -2.504663143554353e-13,
+          "center_separation_cm": 2.5421149729252077e-13
+        }
+      },
+      "frame_to_exact": {
+        "max_sampled_support_difference_cm": 0.0,
+        "witness": {
+          "span": 0,
+          "u": 0.0,
+          "section_angle_rad": 0.0,
+          "signed_support_change_cm": 0.0,
+          "center_separation_cm": 0.0
+        }
+      },
+      "original_to_exact": {
+        "max_sampled_support_difference_cm": 2.504663143554353e-13,
+        "witness": {
+          "span": 32,
+          "u": 0.25,
+          "section_angle_rad": 4.908738521234052,
+          "signed_support_change_cm": -2.504663143554353e-13,
+          "center_separation_cm": 2.5421149729252077e-13
+        }
+      }
+    },
+    {
+      "member": "coil_1018",
+      "original_to_frame": {
+        "max_sampled_support_difference_cm": 4.2810199829546036e-13,
+        "witness": {
+          "span": 252,
+          "u": 0.0,
+          "section_angle_rad": 2.552544031041707,
+          "signed_support_change_cm": 4.2810199829546036e-13,
+          "center_separation_cm": 4.687638763087749e-13
+        }
+      },
+      "frame_to_exact": {
+        "max_sampled_support_difference_cm": 5.555364386644612e-05,
+        "witness": {
+          "span": 251,
+          "u": 0.5,
+          "section_angle_rad": 5.105088062083414,
+          "signed_support_change_cm": 5.555364386644612e-05,
+          "center_separation_cm": 5.567630308290701e-05
+        }
+      },
+      "original_to_exact": {
+        "max_sampled_support_difference_cm": 5.555364373499572e-05,
+        "witness": {
+          "span": 251,
+          "u": 0.5,
+          "section_angle_rad": 5.105088062083414,
+          "signed_support_change_cm": 5.555364373499572e-05,
+          "center_separation_cm": 5.567630296675329e-05
+        }
+      }
+    },
+    {
+      "member": "coil_1019",
+      "original_to_frame": {
+        "max_sampled_support_difference_cm": 4.2810199829546036e-13,
+        "witness": {
+          "span": 252,
+          "u": 0.0,
+          "section_angle_rad": 2.552544031041707,
+          "signed_support_change_cm": -4.2810199829546036e-13,
+          "center_separation_cm": 4.687638763087749e-13
+        }
+      },
+      "frame_to_exact": {
+        "max_sampled_support_difference_cm": 5.5553643864669766e-05,
+        "witness": {
+          "span": 251,
+          "u": 0.5,
+          "section_angle_rad": 1.9634954084936207,
+          "signed_support_change_cm": 5.5553643864669766e-05,
+          "center_separation_cm": 5.567630308290701e-05
+        }
+      },
+      "original_to_exact": {
+        "max_sampled_support_difference_cm": 5.555364373321936e-05,
+        "witness": {
+          "span": 251,
+          "u": 0.5,
+          "section_angle_rad": 1.9634954084936207,
+          "signed_support_change_cm": 5.555364373321936e-05,
+          "center_separation_cm": 5.567630296675329e-05
+        }
+      }
+    },
+    {
+      "member": "coil_1020",
+      "original_to_frame": {
+        "max_sampled_support_difference_cm": 3.7481129311345285e-13,
+        "witness": {
+          "span": 245,
+          "u": 0.5,
+          "section_angle_rad": 5.890486225480862,
+          "signed_support_change_cm": -3.7481129311345285e-13,
+          "center_separation_cm": 4.549693413077341e-13
+        }
+      },
+      "frame_to_exact": {
+        "max_sampled_support_difference_cm": 0.00011110728692464988,
+        "witness": {
+          "span": 251,
+          "u": 0.5,
+          "section_angle_rad": 5.105088062083414,
+          "signed_support_change_cm": 0.00011110728692464988,
+          "center_separation_cm": 0.00011135260561062555
+        }
+      },
+      "original_to_exact": {
+        "max_sampled_support_difference_cm": 0.00011110728705432393,
+        "witness": {
+          "span": 251,
+          "u": 0.5,
+          "section_angle_rad": 5.105088062083414,
+          "signed_support_change_cm": 0.00011110728705432393,
+          "center_separation_cm": 0.00011135260572677928
+        }
+      }
+    },
+    {
+      "member": "coil_1021",
+      "original_to_frame": {
+        "max_sampled_support_difference_cm": 3.7481129311345285e-13,
+        "witness": {
+          "span": 245,
+          "u": 0.5,
+          "section_angle_rad": 2.748893571891069,
+          "signed_support_change_cm": -3.7481129311345285e-13,
+          "center_separation_cm": 4.549693413077341e-13
+        }
+      },
+      "frame_to_exact": {
+        "max_sampled_support_difference_cm": 0.00011110728692287353,
+        "witness": {
+          "span": 251,
+          "u": 0.5,
+          "section_angle_rad": 1.9634954084936207,
+          "signed_support_change_cm": 0.00011110728692287353,
+          "center_separation_cm": 0.00011135260561062555
+        }
+      },
+      "original_to_exact": {
+        "max_sampled_support_difference_cm": 0.00011110728705432393,
+        "witness": {
+          "span": 251,
+          "u": 0.5,
+          "section_angle_rad": 1.9634954084936207,
+          "signed_support_change_cm": 0.00011110728705432393,
+          "center_separation_cm": 0.00011135260572677928
+        }
+      }
+    },
+    {
+      "member": "coil_1022",
+      "original_to_frame": {
+        "max_sampled_support_difference_cm": 2.540190280342358e-13,
+        "witness": {
+          "span": 13,
+          "u": 0.75,
+          "section_angle_rad": 0.39269908169872414,
+          "signed_support_change_cm": 2.540190280342358e-13,
+          "center_separation_cm": 3.410605131648481e-13
+        }
+      },
+      "frame_to_exact": {
+        "max_sampled_support_difference_cm": 0.00016666093082662314,
+        "witness": {
+          "span": 251,
+          "u": 0.5,
+          "section_angle_rad": 5.105088062083414,
+          "signed_support_change_cm": 0.00016666093082662314,
+          "center_separation_cm": 0.00016702890909878461
+        }
+      },
+      "original_to_exact": {
+        "max_sampled_support_difference_cm": 0.00016666093082662314,
+        "witness": {
+          "span": 251,
+          "u": 0.5,
+          "section_angle_rad": 5.105088062083414,
+          "signed_support_change_cm": 0.00016666093082662314,
+          "center_separation_cm": 0.00016702890909878461
+        }
+      }
+    },
+    {
+      "member": "coil_1023",
+      "original_to_frame": {
+        "max_sampled_support_difference_cm": 2.504663143554353e-13,
+        "witness": {
+          "span": 13,
+          "u": 0.75,
+          "section_angle_rad": 3.5342917352885173,
+          "signed_support_change_cm": 2.504663143554353e-13,
+          "center_separation_cm": 3.410605131648481e-13
+        }
+      },
+      "frame_to_exact": {
+        "max_sampled_support_difference_cm": 0.0001666609308248468,
+        "witness": {
+          "span": 251,
+          "u": 0.5,
+          "section_angle_rad": 1.9634954084936207,
+          "signed_support_change_cm": 0.0001666609308248468,
+          "center_separation_cm": 0.00016702890909878461
+        }
+      },
+      "original_to_exact": {
+        "max_sampled_support_difference_cm": 0.00016666093082662314,
+        "witness": {
+          "span": 251,
+          "u": 0.5,
+          "section_angle_rad": 1.9634954084936207,
+          "signed_support_change_cm": 0.00016666093082662314,
+          "center_separation_cm": 0.00016702890909878461
+        }
+      }
+    },
+    {
+      "member": "coil_1024",
+      "original_to_frame": {
+        "max_sampled_support_difference_cm": 2.717825964282383e-13,
+        "witness": {
+          "span": 45,
+          "u": 0.0,
+          "section_angle_rad": 3.5342917352885173,
+          "signed_support_change_cm": -2.717825964282383e-13,
+          "center_separation_cm": 2.6812987050722663e-13
+        }
+      },
+      "frame_to_exact": {
+        "max_sampled_support_difference_cm": 0.0,
+        "witness": {
+          "span": 0,
+          "u": 0.0,
+          "section_angle_rad": 0.0,
+          "signed_support_change_cm": 0.0,
+          "center_separation_cm": 0.0
+        }
+      },
+      "original_to_exact": {
+        "max_sampled_support_difference_cm": 2.717825964282383e-13,
+        "witness": {
+          "span": 45,
+          "u": 0.0,
+          "section_angle_rad": 3.5342917352885173,
+          "signed_support_change_cm": -2.717825964282383e-13,
+          "center_separation_cm": 2.6812987050722663e-13
+        }
+      }
+    },
+    {
+      "member": "coil_1025",
+      "original_to_frame": {
+        "max_sampled_support_difference_cm": 2.682298827494378e-13,
+        "witness": {
+          "span": 45,
+          "u": 0.0,
+          "section_angle_rad": 0.39269908169872414,
+          "signed_support_change_cm": -2.682298827494378e-13,
+          "center_separation_cm": 2.6812987050722663e-13
+        }
+      },
+      "frame_to_exact": {
+        "max_sampled_support_difference_cm": 0.0,
+        "witness": {
+          "span": 0,
+          "u": 0.0,
+          "section_angle_rad": 0.0,
+          "signed_support_change_cm": 0.0,
+          "center_separation_cm": 0.0
+        }
+      },
+      "original_to_exact": {
+        "max_sampled_support_difference_cm": 2.682298827494378e-13,
+        "witness": {
+          "span": 45,
+          "u": 0.0,
+          "section_angle_rad": 0.39269908169872414,
+          "signed_support_change_cm": -2.682298827494378e-13,
+          "center_separation_cm": 2.6812987050722663e-13
+        }
+      }
+    },
+    {
+      "member": "coil_1026",
+      "original_to_frame": {
+        "max_sampled_support_difference_cm": 3.4994229736184934e-13,
+        "witness": {
+          "span": 44,
+          "u": 0.75,
+          "section_angle_rad": 2.748893571891069,
+          "signed_support_change_cm": 3.4994229736184934e-13,
+          "center_separation_cm": 3.595093471822542e-13
+        }
+      },
+      "frame_to_exact": {
+        "max_sampled_support_difference_cm": 5.3323876594291164e-05,
+        "witness": {
+          "span": 254,
+          "u": 0.25,
+          "section_angle_rad": 1.9634954084936207,
+          "signed_support_change_cm": 5.3323876594291164e-05,
+          "center_separation_cm": 5.362826777472818e-05
+        }
+      },
+      "original_to_exact": {
+        "max_sampled_support_difference_cm": 5.332387659606752e-05,
+        "witness": {
+          "span": 254,
+          "u": 0.25,
+          "section_angle_rad": 1.9634954084936207,
+          "signed_support_change_cm": 5.332387659606752e-05,
+          "center_separation_cm": 5.362826777472818e-05
+        }
+      }
+    },
+    {
+      "member": "coil_1027",
+      "original_to_frame": {
+        "max_sampled_support_difference_cm": 3.4994229736184934e-13,
+        "witness": {
+          "span": 44,
+          "u": 0.75,
+          "section_angle_rad": 2.748893571891069,
+          "signed_support_change_cm": -3.4994229736184934e-13,
+          "center_separation_cm": 3.595093471822542e-13
+        }
+      },
+      "frame_to_exact": {
+        "max_sampled_support_difference_cm": 5.3323876594291164e-05,
+        "witness": {
+          "span": 254,
+          "u": 0.25,
+          "section_angle_rad": 5.105088062083414,
+          "signed_support_change_cm": 5.3323876594291164e-05,
+          "center_separation_cm": 5.362826777472818e-05
+        }
+      },
+      "original_to_exact": {
+        "max_sampled_support_difference_cm": 5.332387659606752e-05,
+        "witness": {
+          "span": 254,
+          "u": 0.25,
+          "section_angle_rad": 5.105088062083414,
+          "signed_support_change_cm": 5.332387659606752e-05,
+          "center_separation_cm": 5.362826777472818e-05
+        }
+      }
+    },
+    {
+      "member": "coil_1028",
+      "original_to_frame": {
+        "max_sampled_support_difference_cm": 2.4868995751603507e-13,
+        "witness": {
+          "span": 24,
+          "u": 0.5,
+          "section_angle_rad": 0.7853981633974483,
+          "signed_support_change_cm": 2.4868995751603507e-13,
+          "center_separation_cm": 2.5460839292419616e-13
+        }
+      },
+      "frame_to_exact": {
+        "max_sampled_support_difference_cm": 0.00010664775314239705,
+        "witness": {
+          "span": 254,
+          "u": 0.25,
+          "section_angle_rad": 1.9634954084936207,
+          "signed_support_change_cm": 0.00010664775314239705,
+          "center_separation_cm": 0.00010725653537333288
+        }
+      },
+      "original_to_exact": {
+        "max_sampled_support_difference_cm": 0.00010664775323832032,
+        "witness": {
+          "span": 254,
+          "u": 0.25,
+          "section_angle_rad": 1.9634954084936207,
+          "signed_support_change_cm": 0.00010664775323832032,
+          "center_separation_cm": 0.00010725653546525539
+        }
+      }
+    },
+    {
+      "member": "coil_1029",
+      "original_to_frame": {
+        "max_sampled_support_difference_cm": 2.4868995751603507e-13,
+        "witness": {
+          "span": 24,
+          "u": 0.5,
+          "section_angle_rad": 3.9269908169872414,
+          "signed_support_change_cm": 2.4868995751603507e-13,
+          "center_separation_cm": 2.5460839292419616e-13
+        }
+      },
+      "frame_to_exact": {
+        "max_sampled_support_difference_cm": 0.00010664775314417341,
+        "witness": {
+          "span": 254,
+          "u": 0.25,
+          "section_angle_rad": 5.105088062083414,
+          "signed_support_change_cm": 0.00010664775314417341,
+          "center_separation_cm": 0.00010725653537333288
+        }
+      },
+      "original_to_exact": {
+        "max_sampled_support_difference_cm": 0.00010664775323832032,
+        "witness": {
+          "span": 254,
+          "u": 0.25,
+          "section_angle_rad": 5.105088062083414,
+          "signed_support_change_cm": 0.00010664775323832032,
+          "center_separation_cm": 0.00010725653546525539
+        }
+      }
+    },
+    {
+      "member": "coil_1030",
+      "original_to_frame": {
+        "max_sampled_support_difference_cm": 3.3928415632544784e-13,
+        "witness": {
+          "span": 52,
+          "u": 0.75,
+          "section_angle_rad": 0.0,
+          "signed_support_change_cm": -3.3928415632544784e-13,
+          "center_separation_cm": 3.4224270219716276e-13
+        }
+      },
+      "frame_to_exact": {
+        "max_sampled_support_difference_cm": 0.00015997163014702664,
+        "witness": {
+          "span": 254,
+          "u": 0.25,
+          "section_angle_rad": 1.9634954084936207,
+          "signed_support_change_cm": 0.00015997163014702664,
+          "center_separation_cm": 0.0001608848036900118
+        }
+      },
+      "original_to_exact": {
+        "max_sampled_support_difference_cm": 0.00015997163014702664,
+        "witness": {
+          "span": 254,
+          "u": 0.25,
+          "section_angle_rad": 1.9634954084936207,
+          "signed_support_change_cm": 0.00015997163014702664,
+          "center_separation_cm": 0.0001608848036900118
+        }
+      }
+    },
+    {
+      "member": "coil_1031",
+      "original_to_frame": {
+        "max_sampled_support_difference_cm": 3.3928415632544784e-13,
+        "witness": {
+          "span": 52,
+          "u": 0.75,
+          "section_angle_rad": 0.0,
+          "signed_support_change_cm": 3.3928415632544784e-13,
+          "center_separation_cm": 3.4224270219716276e-13
+        }
+      },
+      "frame_to_exact": {
+        "max_sampled_support_difference_cm": 0.0001599716301452503,
+        "witness": {
+          "span": 254,
+          "u": 0.25,
+          "section_angle_rad": 5.105088062083414,
+          "signed_support_change_cm": 0.0001599716301452503,
+          "center_separation_cm": 0.0001608848036900118
+        }
+      },
+      "original_to_exact": {
+        "max_sampled_support_difference_cm": 0.00015997163014702664,
+        "witness": {
+          "span": 254,
+          "u": 0.25,
+          "section_angle_rad": 5.105088062083414,
+          "signed_support_change_cm": 0.00015997163014702664,
+          "center_separation_cm": 0.0001608848036900118
+        }
+      }
+    },
+    {
+      "member": "coil_1032",
+      "original_to_frame": {
+        "max_sampled_support_difference_cm": 1.7274790909294016,
+        "witness": {
+          "span": 66,
+          "u": 0.5,
+          "section_angle_rad": 1.3744467859455345,
+          "signed_support_change_cm": 1.7274790909294016,
+          "center_separation_cm": 1.1368683772161603e-13
+        }
+      },
+      "frame_to_exact": {
+        "max_sampled_support_difference_cm": 0.0,
+        "witness": {
+          "span": 0,
+          "u": 0.0,
+          "section_angle_rad": 0.0,
+          "signed_support_change_cm": 0.0,
+          "center_separation_cm": 0.0
+        }
+      },
+      "original_to_exact": {
+        "max_sampled_support_difference_cm": 1.7274790909294016,
+        "witness": {
+          "span": 66,
+          "u": 0.5,
+          "section_angle_rad": 1.3744467859455345,
+          "signed_support_change_cm": 1.7274790909294016,
+          "center_separation_cm": 1.1368683772161603e-13
+        }
+      }
+    },
+    {
+      "member": "coil_1033",
+      "original_to_frame": {
+        "max_sampled_support_difference_cm": 1.7274790909294016,
+        "witness": {
+          "span": 66,
+          "u": 0.5,
+          "section_angle_rad": 1.3744467859455345,
+          "signed_support_change_cm": 1.7274790909294016,
+          "center_separation_cm": 1.1368683772161603e-13
+        }
+      },
+      "frame_to_exact": {
+        "max_sampled_support_difference_cm": 0.0,
+        "witness": {
+          "span": 0,
+          "u": 0.0,
+          "section_angle_rad": 0.0,
+          "signed_support_change_cm": 0.0,
+          "center_separation_cm": 0.0
+        }
+      },
+      "original_to_exact": {
+        "max_sampled_support_difference_cm": 1.7274790909294016,
+        "witness": {
+          "span": 66,
+          "u": 0.5,
+          "section_angle_rad": 1.3744467859455345,
+          "signed_support_change_cm": 1.7274790909294016,
+          "center_separation_cm": 1.1368683772161603e-13
+        }
+      }
+    },
+    {
+      "member": "coil_1034",
+      "original_to_frame": {
+        "max_sampled_support_difference_cm": 0.9566723215652271,
+        "witness": {
+          "span": 66,
+          "u": 0.5,
+          "section_angle_rad": 3.730641276137879,
+          "signed_support_change_cm": -0.9566723215652271,
+          "center_separation_cm": 2.842170943040401e-14
+        }
+      },
+      "frame_to_exact": {
+        "max_sampled_support_difference_cm": 5.668649728463038e-05,
+        "witness": {
+          "span": 16,
+          "u": 0.0,
+          "section_angle_rad": 1.3744467859455345,
+          "signed_support_change_cm": -5.668649728463038e-05,
+          "center_separation_cm": 5.676337443356474e-05
+        }
+      },
+      "original_to_exact": {
+        "max_sampled_support_difference_cm": 0.95670071294089,
+        "witness": {
+          "span": 66,
+          "u": 0.5,
+          "section_angle_rad": 3.730641276137879,
+          "signed_support_change_cm": -0.95670071294089,
+          "center_separation_cm": 4.176449166921897e-05
+        }
+      }
+    },
+    {
+      "member": "coil_1035",
+      "original_to_frame": {
+        "max_sampled_support_difference_cm": 0.9566723215652271,
+        "witness": {
+          "span": 66,
+          "u": 0.5,
+          "section_angle_rad": 3.730641276137879,
+          "signed_support_change_cm": -0.9566723215652271,
+          "center_separation_cm": 2.842170943040401e-14
+        }
+      },
+      "frame_to_exact": {
+        "max_sampled_support_difference_cm": 5.668649728463038e-05,
+        "witness": {
+          "span": 16,
+          "u": 0.0,
+          "section_angle_rad": 1.3744467859455345,
+          "signed_support_change_cm": -5.668649728463038e-05,
+          "center_separation_cm": 5.676337443356474e-05
+        }
+      },
+      "original_to_exact": {
+        "max_sampled_support_difference_cm": 0.95670071294089,
+        "witness": {
+          "span": 66,
+          "u": 0.5,
+          "section_angle_rad": 3.730641276137879,
+          "signed_support_change_cm": -0.95670071294089,
+          "center_separation_cm": 4.176449166921897e-05
+        }
+      }
+    },
+    {
+      "member": "coil_1036",
+      "original_to_frame": {
+        "max_sampled_support_difference_cm": 1.7274791852698694,
+        "witness": {
+          "span": 66,
+          "u": 0.5,
+          "section_angle_rad": 1.3744467859455345,
+          "signed_support_change_cm": 1.7274791852698694,
+          "center_separation_cm": 0.0
+        }
+      },
+      "frame_to_exact": {
+        "max_sampled_support_difference_cm": 0.00011337299515723487,
+        "witness": {
+          "span": 16,
+          "u": 0.0,
+          "section_angle_rad": 1.3744467859455345,
+          "signed_support_change_cm": -0.00011337299515723487,
+          "center_separation_cm": 0.00011352674929182143
+        }
+      },
+      "original_to_exact": {
+        "max_sampled_support_difference_cm": 1.727529094111464,
+        "witness": {
+          "span": 66,
+          "u": 0.5,
+          "section_angle_rad": 1.3744467859455345,
+          "signed_support_change_cm": 1.727529094111464,
+          "center_separation_cm": 8.352898162798571e-05
+        }
+      }
+    },
+    {
+      "member": "coil_1037",
+      "original_to_frame": {
+        "max_sampled_support_difference_cm": 1.7274791852698694,
+        "witness": {
+          "span": 66,
+          "u": 0.5,
+          "section_angle_rad": 1.3744467859455345,
+          "signed_support_change_cm": 1.7274791852698694,
+          "center_separation_cm": 0.0
+        }
+      },
+      "frame_to_exact": {
+        "max_sampled_support_difference_cm": 0.00011337299515723487,
+        "witness": {
+          "span": 16,
+          "u": 0.0,
+          "section_angle_rad": 1.3744467859455345,
+          "signed_support_change_cm": -0.00011337299515723487,
+          "center_separation_cm": 0.00011352674929182143
+        }
+      },
+      "original_to_exact": {
+        "max_sampled_support_difference_cm": 1.727529094111464,
+        "witness": {
+          "span": 66,
+          "u": 0.5,
+          "section_angle_rad": 1.3744467859455345,
+          "signed_support_change_cm": 1.727529094111464,
+          "center_separation_cm": 8.352898162798571e-05
+        }
+      }
+    },
+    {
+      "member": "coil_1038",
+      "original_to_frame": {
+        "max_sampled_support_difference_cm": 0.9566721636912412,
+        "witness": {
+          "span": 66,
+          "u": 0.5,
+          "section_angle_rad": 0.5890486225480862,
+          "signed_support_change_cm": -0.9566721636912412,
+          "center_separation_cm": 5.684341886080802e-14
+        }
+      },
+      "frame_to_exact": {
+        "max_sampled_support_difference_cm": 0.0001700594929996413,
+        "witness": {
+          "span": 16,
+          "u": 0.0,
+          "section_angle_rad": 1.3744467859455345,
+          "signed_support_change_cm": -0.0001700594929996413,
+          "center_separation_cm": 0.00017029012396064562
+        }
+      },
+      "original_to_exact": {
+        "max_sampled_support_difference_cm": 0.9567573378223297,
+        "witness": {
+          "span": 66,
+          "u": 0.5,
+          "section_angle_rad": 0.5890486225480862,
+          "signed_support_change_cm": -0.9567573378223297,
+          "center_separation_cm": 0.00012529347282580648
+        }
+      }
+    },
+    {
+      "member": "coil_1039",
+      "original_to_frame": {
+        "max_sampled_support_difference_cm": 0.9566721636912412,
+        "witness": {
+          "span": 66,
+          "u": 0.5,
+          "section_angle_rad": 0.5890486225480862,
+          "signed_support_change_cm": -0.9566721636912412,
+          "center_separation_cm": 5.684341886080802e-14
+        }
+      },
+      "frame_to_exact": {
+        "max_sampled_support_difference_cm": 0.0001700594929996413,
+        "witness": {
+          "span": 16,
+          "u": 0.0,
+          "section_angle_rad": 1.3744467859455345,
+          "signed_support_change_cm": -0.0001700594929996413,
+          "center_separation_cm": 0.00017029012396064562
+        }
+      },
+      "original_to_exact": {
+        "max_sampled_support_difference_cm": 0.9567573378223297,
+        "witness": {
+          "span": 66,
+          "u": 0.5,
+          "section_angle_rad": 0.5890486225480862,
+          "signed_support_change_cm": -0.9567573378223297,
+          "center_separation_cm": 0.00012529347282580648
+        }
+      }
+    },
+    {
+      "member": "coil_1040",
+      "original_to_frame": {
+        "max_sampled_support_difference_cm": 4.4231285301066237e-13,
+        "witness": {
+          "span": 160,
+          "u": 0.75,
+          "section_angle_rad": 4.319689898685965,
+          "signed_support_change_cm": -4.4231285301066237e-13,
+          "center_separation_cm": 4.583413733277592e-13
+        }
+      },
+      "frame_to_exact": {
+        "max_sampled_support_difference_cm": 0.0,
+        "witness": {
+          "span": 0,
+          "u": 0.0,
+          "section_angle_rad": 0.0,
+          "signed_support_change_cm": 0.0,
+          "center_separation_cm": 0.0
+        }
+      },
+      "original_to_exact": {
+        "max_sampled_support_difference_cm": 4.4231285301066237e-13,
+        "witness": {
+          "span": 160,
+          "u": 0.75,
+          "section_angle_rad": 4.319689898685965,
+          "signed_support_change_cm": -4.4231285301066237e-13,
+          "center_separation_cm": 4.583413733277592e-13
+        }
+      }
+    },
+    {
+      "member": "coil_1041",
+      "original_to_frame": {
+        "max_sampled_support_difference_cm": 4.4231285301066237e-13,
+        "witness": {
+          "span": 160,
+          "u": 0.75,
+          "section_angle_rad": 1.1780972450961724,
+          "signed_support_change_cm": -4.4231285301066237e-13,
+          "center_separation_cm": 4.583413733277592e-13
+        }
+      },
+      "frame_to_exact": {
+        "max_sampled_support_difference_cm": 0.0,
+        "witness": {
+          "span": 0,
+          "u": 0.0,
+          "section_angle_rad": 0.0,
+          "signed_support_change_cm": 0.0,
+          "center_separation_cm": 0.0
+        }
+      },
+      "original_to_exact": {
+        "max_sampled_support_difference_cm": 4.4231285301066237e-13,
+        "witness": {
+          "span": 160,
+          "u": 0.75,
+          "section_angle_rad": 1.1780972450961724,
+          "signed_support_change_cm": -4.4231285301066237e-13,
+          "center_separation_cm": 4.583413733277592e-13
+        }
+      }
+    },
+    {
+      "member": "coil_1042",
+      "original_to_frame": {
+        "max_sampled_support_difference_cm": 4.813927034774679e-13,
+        "witness": {
+          "span": 165,
+          "u": 0.25,
+          "section_angle_rad": 1.5707963267948966,
+          "signed_support_change_cm": 4.813927034774679e-13,
+          "center_separation_cm": 5.180631357449723e-13
+        }
+      },
+      "frame_to_exact": {
+        "max_sampled_support_difference_cm": 6.182314779579201e-05,
+        "witness": {
+          "span": 11,
+          "u": 0.0,
+          "section_angle_rad": 0.7853981633974483,
+          "signed_support_change_cm": -6.182314779579201e-05,
+          "center_separation_cm": 6.202069502996237e-05
+        }
+      },
+      "original_to_exact": {
+        "max_sampled_support_difference_cm": 6.182314779756837e-05,
+        "witness": {
+          "span": 11,
+          "u": 0.0,
+          "section_angle_rad": 0.7853981633974483,
+          "signed_support_change_cm": -6.182314779756837e-05,
+          "center_separation_cm": 6.202069502996237e-05
+        }
+      }
+    },
+    {
+      "member": "coil_1043",
+      "original_to_frame": {
+        "max_sampled_support_difference_cm": 4.813927034774679e-13,
+        "witness": {
+          "span": 165,
+          "u": 0.25,
+          "section_angle_rad": 4.71238898038469,
+          "signed_support_change_cm": 4.813927034774679e-13,
+          "center_separation_cm": 5.180631357449723e-13
+        }
+      },
+      "frame_to_exact": {
+        "max_sampled_support_difference_cm": 6.182314779579201e-05,
+        "witness": {
+          "span": 11,
+          "u": 0.0,
+          "section_angle_rad": 3.9269908169872414,
+          "signed_support_change_cm": -6.182314779579201e-05,
+          "center_separation_cm": 6.202069502996237e-05
+        }
+      },
+      "original_to_exact": {
+        "max_sampled_support_difference_cm": 6.182314779579201e-05,
+        "witness": {
+          "span": 11,
+          "u": 0.0,
+          "section_angle_rad": 3.9269908169872414,
+          "signed_support_change_cm": -6.182314779579201e-05,
+          "center_separation_cm": 6.202069502996237e-05
+        }
+      }
+    },
+    {
+      "member": "coil_1044",
+      "original_to_frame": {
+        "max_sampled_support_difference_cm": 6.821210263296962e-13,
+        "witness": {
+          "span": 237,
+          "u": 0.5,
+          "section_angle_rad": 2.552544031041707,
+          "signed_support_change_cm": -6.821210263296962e-13,
+          "center_separation_cm": 6.821210263296962e-13
+        }
+      },
+      "frame_to_exact": {
+        "max_sampled_support_difference_cm": 0.0001236462956502038,
+        "witness": {
+          "span": 11,
+          "u": 0.0,
+          "section_angle_rad": 0.7853981633974483,
+          "signed_support_change_cm": -0.0001236462956502038,
+          "center_separation_cm": 0.0001240413899043067
+        }
+      },
+      "original_to_exact": {
+        "max_sampled_support_difference_cm": 0.00012364629565198015,
+        "witness": {
+          "span": 11,
+          "u": 0.0,
+          "section_angle_rad": 0.7853981633974483,
+          "signed_support_change_cm": -0.00012364629565198015,
+          "center_separation_cm": 0.0001240413899043067
+        }
+      }
+    },
+    {
+      "member": "coil_1045",
+      "original_to_frame": {
+        "max_sampled_support_difference_cm": 6.821210263296962e-13,
+        "witness": {
+          "span": 237,
+          "u": 0.5,
+          "section_angle_rad": 2.552544031041707,
+          "signed_support_change_cm": 6.821210263296962e-13,
+          "center_separation_cm": 6.821210263296962e-13
+        }
+      },
+      "frame_to_exact": {
+        "max_sampled_support_difference_cm": 0.0001236462956502038,
+        "witness": {
+          "span": 11,
+          "u": 0.0,
+          "section_angle_rad": 3.9269908169872414,
+          "signed_support_change_cm": -0.0001236462956502038,
+          "center_separation_cm": 0.0001240413899043067
+        }
+      },
+      "original_to_exact": {
+        "max_sampled_support_difference_cm": 0.0001236462956502038,
+        "witness": {
+          "span": 11,
+          "u": 0.0,
+          "section_angle_rad": 3.9269908169872414,
+          "signed_support_change_cm": -0.0001236462956502038,
+          "center_separation_cm": 0.0001240413899043067
+        }
+      }
+    },
+    {
+      "member": "coil_1046",
+      "original_to_frame": {
+        "max_sampled_support_difference_cm": 3.410605131648481e-13,
+        "witness": {
+          "span": 129,
+          "u": 0.25,
+          "section_angle_rad": 1.3744467859455345,
+          "signed_support_change_cm": 3.410605131648481e-13,
+          "center_separation_cm": 3.410605131648481e-13
+        }
+      },
+      "frame_to_exact": {
+        "max_sampled_support_difference_cm": 0.00018546944295394496,
+        "witness": {
+          "span": 11,
+          "u": 0.0,
+          "section_angle_rad": 0.7853981633974483,
+          "signed_support_change_cm": -0.00018546944295394496,
+          "center_separation_cm": 0.0001860620845970968
+        }
+      },
+      "original_to_exact": {
+        "max_sampled_support_difference_cm": 0.0001854694429521686,
+        "witness": {
+          "span": 11,
+          "u": 0.0,
+          "section_angle_rad": 0.7853981633974483,
+          "signed_support_change_cm": -0.0001854694429521686,
+          "center_separation_cm": 0.0001860620845970968
+        }
+      }
+    },
+    {
+      "member": "coil_1047",
+      "original_to_frame": {
+        "max_sampled_support_difference_cm": 3.410605131648481e-13,
+        "witness": {
+          "span": 129,
+          "u": 0.25,
+          "section_angle_rad": 4.516039439535327,
+          "signed_support_change_cm": 3.410605131648481e-13,
+          "center_separation_cm": 3.410605131648481e-13
+        }
+      },
+      "frame_to_exact": {
+        "max_sampled_support_difference_cm": 0.00018546944295394496,
+        "witness": {
+          "span": 11,
+          "u": 0.0,
+          "section_angle_rad": 3.9269908169872414,
+          "signed_support_change_cm": -0.00018546944295394496,
+          "center_separation_cm": 0.0001860620845970968
+        }
+      },
+      "original_to_exact": {
+        "max_sampled_support_difference_cm": 0.0001854694429521686,
+        "witness": {
+          "span": 11,
+          "u": 0.0,
+          "section_angle_rad": 3.9269908169872414,
+          "signed_support_change_cm": -0.0001854694429521686,
+          "center_separation_cm": 0.0001860620845970968
+        }
+      }
+    }
+  ],
+  "rotational_pair_count": 36,
+  "rotational_maxima_cm": {
+    "original": 2.000162632535327,
+    "frame": 0.00019318354694775053,
+    "exact": 0.0
+  },
+  "rotational_pairs": [
+    {
+      "canonical_member": "coil_1000",
+      "successor_member": "coil_1002",
+      "quarter_turns": 1,
+      "cases": {
+        "original": {
+          "max_sampled_support_difference_cm": 6.439451547102237e-05,
+          "witness": {
+            "span": 38,
+            "u": 0.25,
+            "section_angle_rad": 3.141592653589793,
+            "signed_support_change_cm": -6.439451547102237e-05,
+            "center_separation_cm": 6.529171904160567e-05
+          }
+        },
+        "frame": {
+          "max_sampled_support_difference_cm": 6.439451542306074e-05,
+          "witness": {
+            "span": 38,
+            "u": 0.25,
+            "section_angle_rad": 3.141592653589793,
+            "signed_support_change_cm": -6.439451542306074e-05,
+            "center_separation_cm": 6.529171900319475e-05
+          }
+        },
+        "exact": {
+          "max_sampled_support_difference_cm": 0.0,
+          "witness": {
+            "span": 0,
+            "u": 0.0,
+            "section_angle_rad": 0.0,
+            "signed_support_change_cm": 0.0,
+            "center_separation_cm": 0.0
+          }
+        }
+      }
+    },
+    {
+      "canonical_member": "coil_1000",
+      "successor_member": "coil_1004",
+      "quarter_turns": 2,
+      "cases": {
+        "original": {
+          "max_sampled_support_difference_cm": 0.00012878903110369322,
+          "witness": {
+            "span": 38,
+            "u": 0.25,
+            "section_angle_rad": 3.141592653589793,
+            "signed_support_change_cm": -0.00012878903110369322,
+            "center_separation_cm": 0.00013058343782005035
+          }
+        },
+        "frame": {
+          "max_sampled_support_difference_cm": 0.00012878903105573158,
+          "witness": {
+            "span": 38,
+            "u": 0.25,
+            "section_angle_rad": 3.141592653589793,
+            "signed_support_change_cm": -0.00012878903105573158,
+            "center_separation_cm": 0.00013058343780473195
+          }
+        },
+        "exact": {
+          "max_sampled_support_difference_cm": 0.0,
+          "witness": {
+            "span": 0,
+            "u": 0.0,
+            "section_angle_rad": 0.0,
+            "signed_support_change_cm": 0.0,
+            "center_separation_cm": 0.0
+          }
+        }
+      }
+    },
+    {
+      "canonical_member": "coil_1000",
+      "successor_member": "coil_1006",
+      "quarter_turns": 3,
+      "cases": {
+        "original": {
+          "max_sampled_support_difference_cm": 0.0001931835469282106,
+          "witness": {
+            "span": 38,
+            "u": 0.25,
+            "section_angle_rad": 3.141592653589793,
+            "signed_support_change_cm": -0.0001931835469282106,
+            "center_separation_cm": 0.00019587515657515175
+          }
+        },
+        "frame": {
+          "max_sampled_support_difference_cm": 0.00019318354694775053,
+          "witness": {
+            "span": 38,
+            "u": 0.25,
+            "section_angle_rad": 3.141592653589793,
+            "signed_support_change_cm": -0.00019318354694775053,
+            "center_separation_cm": 0.0001958751566115669
+          }
+        },
+        "exact": {
+          "max_sampled_support_difference_cm": 0.0,
+          "witness": {
+            "span": 0,
+            "u": 0.0,
+            "section_angle_rad": 0.0,
+            "signed_support_change_cm": 0.0,
+            "center_separation_cm": 0.0
+          }
+        }
+      }
+    },
+    {
+      "canonical_member": "coil_1001",
+      "successor_member": "coil_1007",
+      "quarter_turns": 1,
+      "cases": {
+        "original": {
+          "max_sampled_support_difference_cm": 0.00019318354692643425,
+          "witness": {
+            "span": 38,
+            "u": 0.25,
+            "section_angle_rad": 0.0,
+            "signed_support_change_cm": -0.00019318354692643425,
+            "center_separation_cm": 0.00019587515657515175
+          }
+        },
+        "frame": {
+          "max_sampled_support_difference_cm": 0.00019318354694775053,
+          "witness": {
+            "span": 38,
+            "u": 0.25,
+            "section_angle_rad": 0.0,
+            "signed_support_change_cm": -0.00019318354694775053,
+            "center_separation_cm": 0.0001958751566115669
+          }
+        },
+        "exact": {
+          "max_sampled_support_difference_cm": 0.0,
+          "witness": {
+            "span": 0,
+            "u": 0.0,
+            "section_angle_rad": 0.0,
+            "signed_support_change_cm": 0.0,
+            "center_separation_cm": 0.0
+          }
+        }
+      }
+    },
+    {
+      "canonical_member": "coil_1001",
+      "successor_member": "coil_1005",
+      "quarter_turns": 2,
+      "cases": {
+        "original": {
+          "max_sampled_support_difference_cm": 0.00012878903110191686,
+          "witness": {
+            "span": 38,
+            "u": 0.25,
+            "section_angle_rad": 0.0,
+            "signed_support_change_cm": -0.00012878903110191686,
+            "center_separation_cm": 0.00013058343782005035
+          }
+        },
+        "frame": {
+          "max_sampled_support_difference_cm": 0.00012878903105573158,
+          "witness": {
+            "span": 38,
+            "u": 0.25,
+            "section_angle_rad": 0.0,
+            "signed_support_change_cm": -0.00012878903105573158,
+            "center_separation_cm": 0.00013058343780473195
+          }
+        },
+        "exact": {
+          "max_sampled_support_difference_cm": 0.0,
+          "witness": {
+            "span": 0,
+            "u": 0.0,
+            "section_angle_rad": 0.0,
+            "signed_support_change_cm": 0.0,
+            "center_separation_cm": 0.0
+          }
+        }
+      }
+    },
+    {
+      "canonical_member": "coil_1001",
+      "successor_member": "coil_1003",
+      "quarter_turns": 3,
+      "cases": {
+        "original": {
+          "max_sampled_support_difference_cm": 6.439451546924602e-05,
+          "witness": {
+            "span": 38,
+            "u": 0.25,
+            "section_angle_rad": 0.0,
+            "signed_support_change_cm": -6.439451546924602e-05,
+            "center_separation_cm": 6.529171904160567e-05
+          }
+        },
+        "frame": {
+          "max_sampled_support_difference_cm": 6.43945154248371e-05,
+          "witness": {
+            "span": 38,
+            "u": 0.25,
+            "section_angle_rad": 0.0,
+            "signed_support_change_cm": -6.43945154248371e-05,
+            "center_separation_cm": 6.529171900319475e-05
+          }
+        },
+        "exact": {
+          "max_sampled_support_difference_cm": 0.0,
+          "witness": {
+            "span": 0,
+            "u": 0.0,
+            "section_angle_rad": 0.0,
+            "signed_support_change_cm": 0.0,
+            "center_separation_cm": 0.0
+          }
+        }
+      }
+    },
+    {
+      "canonical_member": "coil_1008",
+      "successor_member": "coil_1010",
+      "quarter_turns": 1,
+      "cases": {
+        "original": {
+          "max_sampled_support_difference_cm": 2.0000465760362207,
+          "witness": {
+            "span": 28,
+            "u": 0.5,
+            "section_angle_rad": 1.5707963267948966,
+            "signed_support_change_cm": 2.0000465760362207,
+            "center_separation_cm": 5.895790397016367e-05
+          }
+        },
+        "frame": {
+          "max_sampled_support_difference_cm": 5.969760779578337e-05,
+          "witness": {
+            "span": 16,
+            "u": 0.25,
+            "section_angle_rad": 1.3744467859455345,
+            "signed_support_change_cm": 5.969760779578337e-05,
+            "center_separation_cm": 5.980156374173347e-05
+          }
+        },
+        "exact": {
+          "max_sampled_support_difference_cm": 0.0,
+          "witness": {
+            "span": 0,
+            "u": 0.0,
+            "section_angle_rad": 0.0,
+            "signed_support_change_cm": 0.0,
+            "center_separation_cm": 0.0
+          }
+        }
+      }
+    },
+    {
+      "canonical_member": "coil_1008",
+      "successor_member": "coil_1012",
+      "quarter_turns": 2,
+      "cases": {
+        "original": {
+          "max_sampled_support_difference_cm": 0.00011924921101957864,
+          "witness": {
+            "span": 16,
+            "u": 0.25,
+            "section_angle_rad": 1.7671458676442586,
+            "signed_support_change_cm": 0.00011924921101957864,
+            "center_separation_cm": 0.00011960312734191525
+          }
+        },
+        "frame": {
+          "max_sampled_support_difference_cm": 0.00011939521524162444,
+          "witness": {
+            "span": 16,
+            "u": 0.25,
+            "section_angle_rad": 1.3744467859455345,
+            "signed_support_change_cm": 0.00011939521524162444,
+            "center_separation_cm": 0.00011960312734191525
+          }
+        },
+        "exact": {
+          "max_sampled_support_difference_cm": 0.0,
+          "witness": {
+            "span": 0,
+            "u": 0.0,
+            "section_angle_rad": 0.0,
+            "signed_support_change_cm": 0.0,
+            "center_separation_cm": 0.0
+          }
+        }
+      }
+    },
+    {
+      "canonical_member": "coil_1008",
+      "successor_member": "coil_1014",
+      "quarter_turns": 3,
+      "cases": {
+        "original": {
+          "max_sampled_support_difference_cm": 2.000162632535327,
+          "witness": {
+            "span": 28,
+            "u": 0.5,
+            "section_angle_rad": 1.5707963267948966,
+            "signed_support_change_cm": 2.000162632535327,
+            "center_separation_cm": 0.00017687371142980312
+          }
+        },
+        "frame": {
+          "max_sampled_support_difference_cm": 0.00017909282240680113,
+          "witness": {
+            "span": 16,
+            "u": 0.25,
+            "section_angle_rad": 1.3744467859455345,
+            "signed_support_change_cm": 0.00017909282240680113,
+            "center_separation_cm": 0.0001794046907419969
+          }
+        },
+        "exact": {
+          "max_sampled_support_difference_cm": 0.0,
+          "witness": {
+            "span": 0,
+            "u": 0.0,
+            "section_angle_rad": 0.0,
+            "signed_support_change_cm": 0.0,
+            "center_separation_cm": 0.0
+          }
+        }
+      }
+    },
+    {
+      "canonical_member": "coil_1009",
+      "successor_member": "coil_1015",
+      "quarter_turns": 1,
+      "cases": {
+        "original": {
+          "max_sampled_support_difference_cm": 2.000162632535327,
+          "witness": {
+            "span": 28,
+            "u": 0.5,
+            "section_angle_rad": 1.5707963267948966,
+            "signed_support_change_cm": 2.000162632535327,
+            "center_separation_cm": 0.00017687371142980312
+          }
+        },
+        "frame": {
+          "max_sampled_support_difference_cm": 0.00017909282240680113,
+          "witness": {
+            "span": 16,
+            "u": 0.25,
+            "section_angle_rad": 1.3744467859455345,
+            "signed_support_change_cm": 0.00017909282240680113,
+            "center_separation_cm": 0.0001794046907419969
+          }
+        },
+        "exact": {
+          "max_sampled_support_difference_cm": 0.0,
+          "witness": {
+            "span": 0,
+            "u": 0.0,
+            "section_angle_rad": 0.0,
+            "signed_support_change_cm": 0.0,
+            "center_separation_cm": 0.0
+          }
+        }
+      }
+    },
+    {
+      "canonical_member": "coil_1009",
+      "successor_member": "coil_1013",
+      "quarter_turns": 2,
+      "cases": {
+        "original": {
+          "max_sampled_support_difference_cm": 0.00011924921101957864,
+          "witness": {
+            "span": 16,
+            "u": 0.25,
+            "section_angle_rad": 1.7671458676442586,
+            "signed_support_change_cm": 0.00011924921101957864,
+            "center_separation_cm": 0.00011960312734191525
+          }
+        },
+        "frame": {
+          "max_sampled_support_difference_cm": 0.00011939521524162444,
+          "witness": {
+            "span": 16,
+            "u": 0.25,
+            "section_angle_rad": 1.3744467859455345,
+            "signed_support_change_cm": 0.00011939521524162444,
+            "center_separation_cm": 0.00011960312734191525
+          }
+        },
+        "exact": {
+          "max_sampled_support_difference_cm": 0.0,
+          "witness": {
+            "span": 0,
+            "u": 0.0,
+            "section_angle_rad": 0.0,
+            "signed_support_change_cm": 0.0,
+            "center_separation_cm": 0.0
+          }
+        }
+      }
+    },
+    {
+      "canonical_member": "coil_1009",
+      "successor_member": "coil_1011",
+      "quarter_turns": 3,
+      "cases": {
+        "original": {
+          "max_sampled_support_difference_cm": 2.0000465760362207,
+          "witness": {
+            "span": 28,
+            "u": 0.5,
+            "section_angle_rad": 1.5707963267948966,
+            "signed_support_change_cm": 2.0000465760362207,
+            "center_separation_cm": 5.895790397016367e-05
+          }
+        },
+        "frame": {
+          "max_sampled_support_difference_cm": 5.969760779578337e-05,
+          "witness": {
+            "span": 16,
+            "u": 0.25,
+            "section_angle_rad": 1.3744467859455345,
+            "signed_support_change_cm": 5.969760779578337e-05,
+            "center_separation_cm": 5.980156374173347e-05
+          }
+        },
+        "exact": {
+          "max_sampled_support_difference_cm": 0.0,
+          "witness": {
+            "span": 0,
+            "u": 0.0,
+            "section_angle_rad": 0.0,
+            "signed_support_change_cm": 0.0,
+            "center_separation_cm": 0.0
+          }
+        }
+      }
+    },
+    {
+      "canonical_member": "coil_1016",
+      "successor_member": "coil_1018",
+      "quarter_turns": 1,
+      "cases": {
+        "original": {
+          "max_sampled_support_difference_cm": 5.555364392861861e-05,
+          "witness": {
+            "span": 251,
+            "u": 0.5,
+            "section_angle_rad": 5.105088062083414,
+            "signed_support_change_cm": -5.555364392861861e-05,
+            "center_separation_cm": 5.567630296675329e-05
+          }
+        },
+        "frame": {
+          "max_sampled_support_difference_cm": 5.555364406006902e-05,
+          "witness": {
+            "span": 251,
+            "u": 0.5,
+            "section_angle_rad": 5.105088062083414,
+            "signed_support_change_cm": -5.555364406006902e-05,
+            "center_separation_cm": 5.567630308290701e-05
+          }
+        },
+        "exact": {
+          "max_sampled_support_difference_cm": 0.0,
+          "witness": {
+            "span": 0,
+            "u": 0.0,
+            "section_angle_rad": 0.0,
+            "signed_support_change_cm": 0.0,
+            "center_separation_cm": 0.0
+          }
+        }
+      }
+    },
+    {
+      "canonical_member": "coil_1016",
+      "successor_member": "coil_1020",
+      "quarter_turns": 2,
+      "cases": {
+        "original": {
+          "max_sampled_support_difference_cm": 0.00011110728783236823,
+          "witness": {
+            "span": 251,
+            "u": 0.5,
+            "section_angle_rad": 5.105088062083414,
+            "signed_support_change_cm": -0.00011110728783236823,
+            "center_separation_cm": 0.00011135260572677928
+          }
+        },
+        "frame": {
+          "max_sampled_support_difference_cm": 0.00011110728770091782,
+          "witness": {
+            "span": 251,
+            "u": 0.5,
+            "section_angle_rad": 5.105088062083414,
+            "signed_support_change_cm": -0.00011110728770091782,
+            "center_separation_cm": 0.00011135260561062555
+          }
+        },
+        "exact": {
+          "max_sampled_support_difference_cm": 0.0,
+          "witness": {
+            "span": 0,
+            "u": 0.0,
+            "section_angle_rad": 0.0,
+            "signed_support_change_cm": 0.0,
+            "center_separation_cm": 0.0
+          }
+        }
+      }
+    },
+    {
+      "canonical_member": "coil_1016",
+      "successor_member": "coil_1022",
+      "quarter_turns": 3,
+      "cases": {
+        "original": {
+          "max_sampled_support_difference_cm": 0.000166660932578111,
+          "witness": {
+            "span": 251,
+            "u": 0.5,
+            "section_angle_rad": 5.105088062083414,
+            "signed_support_change_cm": -0.000166660932578111,
+            "center_separation_cm": 0.00016702890909878461
+          }
+        },
+        "frame": {
+          "max_sampled_support_difference_cm": 0.000166660932578111,
+          "witness": {
+            "span": 251,
+            "u": 0.5,
+            "section_angle_rad": 5.105088062083414,
+            "signed_support_change_cm": -0.000166660932578111,
+            "center_separation_cm": 0.00016702890909878461
+          }
+        },
+        "exact": {
+          "max_sampled_support_difference_cm": 0.0,
+          "witness": {
+            "span": 0,
+            "u": 0.0,
+            "section_angle_rad": 0.0,
+            "signed_support_change_cm": 0.0,
+            "center_separation_cm": 0.0
+          }
+        }
+      }
+    },
+    {
+      "canonical_member": "coil_1017",
+      "successor_member": "coil_1023",
+      "quarter_turns": 1,
+      "cases": {
+        "original": {
+          "max_sampled_support_difference_cm": 0.000166660932578111,
+          "witness": {
+            "span": 251,
+            "u": 0.5,
+            "section_angle_rad": 1.9634954084936207,
+            "signed_support_change_cm": -0.000166660932578111,
+            "center_separation_cm": 0.00016702890909878461
+          }
+        },
+        "frame": {
+          "max_sampled_support_difference_cm": 0.00016666093257988734,
+          "witness": {
+            "span": 251,
+            "u": 0.5,
+            "section_angle_rad": 1.9634954084936207,
+            "signed_support_change_cm": -0.00016666093257988734,
+            "center_separation_cm": 0.00016702890909878461
+          }
+        },
+        "exact": {
+          "max_sampled_support_difference_cm": 0.0,
+          "witness": {
+            "span": 0,
+            "u": 0.0,
+            "section_angle_rad": 0.0,
+            "signed_support_change_cm": 0.0,
+            "center_separation_cm": 0.0
+          }
+        }
+      }
+    },
+    {
+      "canonical_member": "coil_1017",
+      "successor_member": "coil_1021",
+      "quarter_turns": 2,
+      "cases": {
+        "original": {
+          "max_sampled_support_difference_cm": 0.00011110728783236823,
+          "witness": {
+            "span": 251,
+            "u": 0.5,
+            "section_angle_rad": 1.9634954084936207,
+            "signed_support_change_cm": -0.00011110728783236823,
+            "center_separation_cm": 0.00011135260572677928
+          }
+        },
+        "frame": {
+          "max_sampled_support_difference_cm": 0.00011110728770269418,
+          "witness": {
+            "span": 251,
+            "u": 0.5,
+            "section_angle_rad": 1.9634954084936207,
+            "signed_support_change_cm": -0.00011110728770269418,
+            "center_separation_cm": 0.00011135260561062555
+          }
+        },
+        "exact": {
+          "max_sampled_support_difference_cm": 0.0,
+          "witness": {
+            "span": 0,
+            "u": 0.0,
+            "section_angle_rad": 0.0,
+            "signed_support_change_cm": 0.0,
+            "center_separation_cm": 0.0
+          }
+        }
+      }
+    },
+    {
+      "canonical_member": "coil_1017",
+      "successor_member": "coil_1019",
+      "quarter_turns": 3,
+      "cases": {
+        "original": {
+          "max_sampled_support_difference_cm": 5.555364392861861e-05,
+          "witness": {
+            "span": 251,
+            "u": 0.5,
+            "section_angle_rad": 1.9634954084936207,
+            "signed_support_change_cm": -5.555364392861861e-05,
+            "center_separation_cm": 5.567630296675329e-05
+          }
+        },
+        "frame": {
+          "max_sampled_support_difference_cm": 5.5553644061845375e-05,
+          "witness": {
+            "span": 251,
+            "u": 0.5,
+            "section_angle_rad": 1.9634954084936207,
+            "signed_support_change_cm": -5.5553644061845375e-05,
+            "center_separation_cm": 5.567630308290701e-05
+          }
+        },
+        "exact": {
+          "max_sampled_support_difference_cm": 0.0,
+          "witness": {
+            "span": 0,
+            "u": 0.0,
+            "section_angle_rad": 0.0,
+            "signed_support_change_cm": 0.0,
+            "center_separation_cm": 0.0
+          }
+        }
+      }
+    },
+    {
+      "canonical_member": "coil_1024",
+      "successor_member": "coil_1026",
+      "quarter_turns": 1,
+      "cases": {
+        "original": {
+          "max_sampled_support_difference_cm": 5.3323876464617115e-05,
+          "witness": {
+            "span": 254,
+            "u": 0.25,
+            "section_angle_rad": 1.9634954084936207,
+            "signed_support_change_cm": -5.3323876464617115e-05,
+            "center_separation_cm": 5.362826759088317e-05
+          }
+        },
+        "frame": {
+          "max_sampled_support_difference_cm": 5.332387664580551e-05,
+          "witness": {
+            "span": 254,
+            "u": 0.25,
+            "section_angle_rad": 1.9634954084936207,
+            "signed_support_change_cm": -5.332387664580551e-05,
+            "center_separation_cm": 5.362826777472818e-05
+          }
+        },
+        "exact": {
+          "max_sampled_support_difference_cm": 0.0,
+          "witness": {
+            "span": 0,
+            "u": 0.0,
+            "section_angle_rad": 0.0,
+            "signed_support_change_cm": 0.0,
+            "center_separation_cm": 0.0
+          }
+        }
+      }
+    },
+    {
+      "canonical_member": "coil_1024",
+      "successor_member": "coil_1028",
+      "quarter_turns": 2,
+      "cases": {
+        "original": {
+          "max_sampled_support_difference_cm": 0.00010664775325253117,
+          "witness": {
+            "span": 254,
+            "u": 0.25,
+            "section_angle_rad": 1.9634954084936207,
+            "signed_support_change_cm": -0.00010664775325253117,
+            "center_separation_cm": 0.00010725653528141037
+          }
+        },
+        "frame": {
+          "max_sampled_support_difference_cm": 0.00010664775334134902,
+          "witness": {
+            "span": 254,
+            "u": 0.25,
+            "section_angle_rad": 1.9634954084936207,
+            "signed_support_change_cm": -0.00010664775334134902,
+            "center_separation_cm": 0.00010725653537333288
+          }
+        },
+        "exact": {
+          "max_sampled_support_difference_cm": 0.0,
+          "witness": {
+            "span": 0,
+            "u": 0.0,
+            "section_angle_rad": 0.0,
+            "signed_support_change_cm": 0.0,
+            "center_separation_cm": 0.0
+          }
+        }
+      }
+    },
+    {
+      "canonical_member": "coil_1024",
+      "successor_member": "coil_1030",
+      "quarter_turns": 3,
+      "cases": {
+        "original": {
+          "max_sampled_support_difference_cm": 0.00015997163040104567,
+          "witness": {
+            "span": 254,
+            "u": 0.25,
+            "section_angle_rad": 1.9634954084936207,
+            "signed_support_change_cm": -0.00015997163040104567,
+            "center_separation_cm": 0.00016088480350616682
+          }
+        },
+        "frame": {
+          "max_sampled_support_difference_cm": 0.00015997163058578678,
+          "witness": {
+            "span": 254,
+            "u": 0.25,
+            "section_angle_rad": 1.9634954084936207,
+            "signed_support_change_cm": -0.00015997163058578678,
+            "center_separation_cm": 0.0001608848036900118
+          }
+        },
+        "exact": {
+          "max_sampled_support_difference_cm": 0.0,
+          "witness": {
+            "span": 0,
+            "u": 0.0,
+            "section_angle_rad": 0.0,
+            "signed_support_change_cm": 0.0,
+            "center_separation_cm": 0.0
+          }
+        }
+      }
+    },
+    {
+      "canonical_member": "coil_1025",
+      "successor_member": "coil_1031",
+      "quarter_turns": 1,
+      "cases": {
+        "original": {
+          "max_sampled_support_difference_cm": 0.00015997163039926932,
+          "witness": {
+            "span": 254,
+            "u": 0.25,
+            "section_angle_rad": 5.105088062083414,
+            "signed_support_change_cm": -0.00015997163039926932,
+            "center_separation_cm": 0.00016088480350616682
+          }
+        },
+        "frame": {
+          "max_sampled_support_difference_cm": 0.00015997163058223407,
+          "witness": {
+            "span": 254,
+            "u": 0.25,
+            "section_angle_rad": 5.105088062083414,
+            "signed_support_change_cm": -0.00015997163058223407,
+            "center_separation_cm": 0.0001608848036900118
+          }
+        },
+        "exact": {
+          "max_sampled_support_difference_cm": 0.0,
+          "witness": {
+            "span": 0,
+            "u": 0.0,
+            "section_angle_rad": 0.0,
+            "signed_support_change_cm": 0.0,
+            "center_separation_cm": 0.0
+          }
+        }
+      }
+    },
+    {
+      "canonical_member": "coil_1025",
+      "successor_member": "coil_1029",
+      "quarter_turns": 2,
+      "cases": {
+        "original": {
+          "max_sampled_support_difference_cm": 0.00010664775325075482,
+          "witness": {
+            "span": 254,
+            "u": 0.25,
+            "section_angle_rad": 5.105088062083414,
+            "signed_support_change_cm": -0.00010664775325075482,
+            "center_separation_cm": 0.00010725653528141037
+          }
+        },
+        "frame": {
+          "max_sampled_support_difference_cm": 0.0001066477533377963,
+          "witness": {
+            "span": 254,
+            "u": 0.25,
+            "section_angle_rad": 5.105088062083414,
+            "signed_support_change_cm": -0.0001066477533377963,
+            "center_separation_cm": 0.00010725653537333288
+          }
+        },
+        "exact": {
+          "max_sampled_support_difference_cm": 0.0,
+          "witness": {
+            "span": 0,
+            "u": 0.0,
+            "section_angle_rad": 0.0,
+            "signed_support_change_cm": 0.0,
+            "center_separation_cm": 0.0
+          }
+        }
+      }
+    },
+    {
+      "canonical_member": "coil_1025",
+      "successor_member": "coil_1027",
+      "quarter_turns": 3,
+      "cases": {
+        "original": {
+          "max_sampled_support_difference_cm": 5.33238764610644e-05,
+          "witness": {
+            "span": 254,
+            "u": 0.25,
+            "section_angle_rad": 5.105088062083414,
+            "signed_support_change_cm": -5.33238764610644e-05,
+            "center_separation_cm": 5.362826759088317e-05
+          }
+        },
+        "frame": {
+          "max_sampled_support_difference_cm": 5.33238766422528e-05,
+          "witness": {
+            "span": 254,
+            "u": 0.25,
+            "section_angle_rad": 5.105088062083414,
+            "signed_support_change_cm": -5.33238766422528e-05,
+            "center_separation_cm": 5.362826777472818e-05
+          }
+        },
+        "exact": {
+          "max_sampled_support_difference_cm": 0.0,
+          "witness": {
+            "span": 0,
+            "u": 0.0,
+            "section_angle_rad": 0.0,
+            "signed_support_change_cm": 0.0,
+            "center_separation_cm": 0.0
+          }
+        }
+      }
+    },
+    {
+      "canonical_member": "coil_1032",
+      "successor_member": "coil_1034",
+      "quarter_turns": 1,
+      "cases": {
+        "original": {
+          "max_sampled_support_difference_cm": 1.9989508477551627,
+          "witness": {
+            "span": 66,
+            "u": 0.5,
+            "section_angle_rad": 1.5707963267948966,
+            "signed_support_change_cm": 1.9989508477551627,
+            "center_separation_cm": 4.176449171586241e-05
+          }
+        },
+        "frame": {
+          "max_sampled_support_difference_cm": 5.668649713719276e-05,
+          "witness": {
+            "span": 16,
+            "u": 0.0,
+            "section_angle_rad": 1.3744467859455345,
+            "signed_support_change_cm": 5.668649713719276e-05,
+            "center_separation_cm": 5.676337443356474e-05
+          }
+        },
+        "exact": {
+          "max_sampled_support_difference_cm": 0.0,
+          "witness": {
+            "span": 0,
+            "u": 0.0,
+            "section_angle_rad": 0.0,
+            "signed_support_change_cm": 0.0,
+            "center_separation_cm": 0.0
+          }
+        }
+      }
+    },
+    {
+      "canonical_member": "coil_1032",
+      "successor_member": "coil_1036",
+      "quarter_turns": 2,
+      "cases": {
+        "original": {
+          "max_sampled_support_difference_cm": 0.00011324833634773768,
+          "witness": {
+            "span": 16,
+            "u": 0.0,
+            "section_angle_rad": 5.6941366846315,
+            "signed_support_change_cm": -0.00011324833634773768,
+            "center_separation_cm": 0.00011352674929182143
+          }
+        },
+        "frame": {
+          "max_sampled_support_difference_cm": 0.00011337299455860261,
+          "witness": {
+            "span": 16,
+            "u": 0.0,
+            "section_angle_rad": 1.3744467859455345,
+            "signed_support_change_cm": 0.00011337299455860261,
+            "center_separation_cm": 0.00011352674929182143
+          }
+        },
+        "exact": {
+          "max_sampled_support_difference_cm": 0.0,
+          "witness": {
+            "span": 0,
+            "u": 0.0,
+            "section_angle_rad": 0.0,
+            "signed_support_change_cm": 0.0,
+            "center_separation_cm": 0.0
+          }
+        }
+      }
+    },
+    {
+      "canonical_member": "coil_1032",
+      "successor_member": "coil_1038",
+      "quarter_turns": 3,
+      "cases": {
+        "original": {
+          "max_sampled_support_difference_cm": 1.9990056029276388,
+          "witness": {
+            "span": 66,
+            "u": 0.5,
+            "section_angle_rad": 1.5707963267948966,
+            "signed_support_change_cm": 1.9990056029276388,
+            "center_separation_cm": 0.0001252934728724499
+          }
+        },
+        "frame": {
+          "max_sampled_support_difference_cm": 0.00017005949165671552,
+          "witness": {
+            "span": 16,
+            "u": 0.0,
+            "section_angle_rad": 1.3744467859455345,
+            "signed_support_change_cm": 0.00017005949165671552,
+            "center_separation_cm": 0.00017029012396064562
+          }
+        },
+        "exact": {
+          "max_sampled_support_difference_cm": 0.0,
+          "witness": {
+            "span": 0,
+            "u": 0.0,
+            "section_angle_rad": 0.0,
+            "signed_support_change_cm": 0.0,
+            "center_separation_cm": 0.0
+          }
+        }
+      }
+    },
+    {
+      "canonical_member": "coil_1033",
+      "successor_member": "coil_1039",
+      "quarter_turns": 1,
+      "cases": {
+        "original": {
+          "max_sampled_support_difference_cm": 1.9990056029276388,
+          "witness": {
+            "span": 66,
+            "u": 0.5,
+            "section_angle_rad": 1.5707963267948966,
+            "signed_support_change_cm": 1.9990056029276388,
+            "center_separation_cm": 0.0001252934728724499
+          }
+        },
+        "frame": {
+          "max_sampled_support_difference_cm": 0.00017005949165671552,
+          "witness": {
+            "span": 16,
+            "u": 0.0,
+            "section_angle_rad": 1.3744467859455345,
+            "signed_support_change_cm": 0.00017005949165671552,
+            "center_separation_cm": 0.00017029012396064562
+          }
+        },
+        "exact": {
+          "max_sampled_support_difference_cm": 0.0,
+          "witness": {
+            "span": 0,
+            "u": 0.0,
+            "section_angle_rad": 0.0,
+            "signed_support_change_cm": 0.0,
+            "center_separation_cm": 0.0
+          }
+        }
+      }
+    },
+    {
+      "canonical_member": "coil_1033",
+      "successor_member": "coil_1037",
+      "quarter_turns": 2,
+      "cases": {
+        "original": {
+          "max_sampled_support_difference_cm": 0.00011324833634773768,
+          "witness": {
+            "span": 16,
+            "u": 0.0,
+            "section_angle_rad": 5.6941366846315,
+            "signed_support_change_cm": -0.00011324833634773768,
+            "center_separation_cm": 0.00011352674929182143
+          }
+        },
+        "frame": {
+          "max_sampled_support_difference_cm": 0.00011337299455860261,
+          "witness": {
+            "span": 16,
+            "u": 0.0,
+            "section_angle_rad": 1.3744467859455345,
+            "signed_support_change_cm": 0.00011337299455860261,
+            "center_separation_cm": 0.00011352674929182143
+          }
+        },
+        "exact": {
+          "max_sampled_support_difference_cm": 0.0,
+          "witness": {
+            "span": 0,
+            "u": 0.0,
+            "section_angle_rad": 0.0,
+            "signed_support_change_cm": 0.0,
+            "center_separation_cm": 0.0
+          }
+        }
+      }
+    },
+    {
+      "canonical_member": "coil_1033",
+      "successor_member": "coil_1035",
+      "quarter_turns": 3,
+      "cases": {
+        "original": {
+          "max_sampled_support_difference_cm": 1.9989508477551627,
+          "witness": {
+            "span": 66,
+            "u": 0.5,
+            "section_angle_rad": 1.5707963267948966,
+            "signed_support_change_cm": 1.9989508477551627,
+            "center_separation_cm": 4.176449171586241e-05
+          }
+        },
+        "frame": {
+          "max_sampled_support_difference_cm": 5.668649713719276e-05,
+          "witness": {
+            "span": 16,
+            "u": 0.0,
+            "section_angle_rad": 1.3744467859455345,
+            "signed_support_change_cm": 5.668649713719276e-05,
+            "center_separation_cm": 5.676337443356474e-05
+          }
+        },
+        "exact": {
+          "max_sampled_support_difference_cm": 0.0,
+          "witness": {
+            "span": 0,
+            "u": 0.0,
+            "section_angle_rad": 0.0,
+            "signed_support_change_cm": 0.0,
+            "center_separation_cm": 0.0
+          }
+        }
+      }
+    },
+    {
+      "canonical_member": "coil_1040",
+      "successor_member": "coil_1042",
+      "quarter_turns": 1,
+      "cases": {
+        "original": {
+          "max_sampled_support_difference_cm": 6.182314804270561e-05,
+          "witness": {
+            "span": 11,
+            "u": 0.0,
+            "section_angle_rad": 0.7853981633974483,
+            "signed_support_change_cm": 6.182314804270561e-05,
+            "center_separation_cm": 6.202069502996237e-05
+          }
+        },
+        "frame": {
+          "max_sampled_support_difference_cm": 6.182314804092925e-05,
+          "witness": {
+            "span": 11,
+            "u": 0.0,
+            "section_angle_rad": 0.7853981633974483,
+            "signed_support_change_cm": 6.182314804092925e-05,
+            "center_separation_cm": 6.202069502996237e-05
+          }
+        },
+        "exact": {
+          "max_sampled_support_difference_cm": 0.0,
+          "witness": {
+            "span": 0,
+            "u": 0.0,
+            "section_angle_rad": 0.0,
+            "signed_support_change_cm": 0.0,
+            "center_separation_cm": 0.0
+          }
+        }
+      }
+    },
+    {
+      "canonical_member": "coil_1040",
+      "successor_member": "coil_1044",
+      "quarter_turns": 2,
+      "cases": {
+        "original": {
+          "max_sampled_support_difference_cm": 0.0001236462966378582,
+          "witness": {
+            "span": 11,
+            "u": 0.0,
+            "section_angle_rad": 0.7853981633974483,
+            "signed_support_change_cm": 0.0001236462966378582,
+            "center_separation_cm": 0.0001240413899043067
+          }
+        },
+        "frame": {
+          "max_sampled_support_difference_cm": 0.00012364629663608184,
+          "witness": {
+            "span": 11,
+            "u": 0.0,
+            "section_angle_rad": 0.7853981633974483,
+            "signed_support_change_cm": 0.00012364629663608184,
+            "center_separation_cm": 0.0001240413899043067
+          }
+        },
+        "exact": {
+          "max_sampled_support_difference_cm": 0.0,
+          "witness": {
+            "span": 0,
+            "u": 0.0,
+            "section_angle_rad": 0.0,
+            "signed_support_change_cm": 0.0,
+            "center_separation_cm": 0.0
+          }
+        }
+      }
+    },
+    {
+      "canonical_member": "coil_1040",
+      "successor_member": "coil_1046",
+      "quarter_turns": 3,
+      "cases": {
+        "original": {
+          "max_sampled_support_difference_cm": 0.00018546944517616737,
+          "witness": {
+            "span": 11,
+            "u": 0.0,
+            "section_angle_rad": 0.7853981633974483,
+            "signed_support_change_cm": 0.00018546944517616737,
+            "center_separation_cm": 0.0001860620845970968
+          }
+        },
+        "frame": {
+          "max_sampled_support_difference_cm": 0.000185469445174391,
+          "witness": {
+            "span": 11,
+            "u": 0.0,
+            "section_angle_rad": 0.7853981633974483,
+            "signed_support_change_cm": 0.000185469445174391,
+            "center_separation_cm": 0.0001860620845970968
+          }
+        },
+        "exact": {
+          "max_sampled_support_difference_cm": 0.0,
+          "witness": {
+            "span": 0,
+            "u": 0.0,
+            "section_angle_rad": 0.0,
+            "signed_support_change_cm": 0.0,
+            "center_separation_cm": 0.0
+          }
+        }
+      }
+    },
+    {
+      "canonical_member": "coil_1041",
+      "successor_member": "coil_1047",
+      "quarter_turns": 1,
+      "cases": {
+        "original": {
+          "max_sampled_support_difference_cm": 0.00018546944517616737,
+          "witness": {
+            "span": 11,
+            "u": 0.0,
+            "section_angle_rad": 3.9269908169872414,
+            "signed_support_change_cm": 0.00018546944517616737,
+            "center_separation_cm": 0.0001860620845970968
+          }
+        },
+        "frame": {
+          "max_sampled_support_difference_cm": 0.00018546944517616737,
+          "witness": {
+            "span": 11,
+            "u": 0.0,
+            "section_angle_rad": 3.9269908169872414,
+            "signed_support_change_cm": 0.00018546944517616737,
+            "center_separation_cm": 0.0001860620845970968
+          }
+        },
+        "exact": {
+          "max_sampled_support_difference_cm": 0.0,
+          "witness": {
+            "span": 0,
+            "u": 0.0,
+            "section_angle_rad": 0.0,
+            "signed_support_change_cm": 0.0,
+            "center_separation_cm": 0.0
+          }
+        }
+      }
+    },
+    {
+      "canonical_member": "coil_1041",
+      "successor_member": "coil_1045",
+      "quarter_turns": 2,
+      "cases": {
+        "original": {
+          "max_sampled_support_difference_cm": 0.00012364629663963456,
+          "witness": {
+            "span": 11,
+            "u": 0.0,
+            "section_angle_rad": 3.9269908169872414,
+            "signed_support_change_cm": 0.00012364629663963456,
+            "center_separation_cm": 0.0001240413899043067
+          }
+        },
+        "frame": {
+          "max_sampled_support_difference_cm": 0.0001236462966378582,
+          "witness": {
+            "span": 11,
+            "u": 0.0,
+            "section_angle_rad": 3.9269908169872414,
+            "signed_support_change_cm": 0.0001236462966378582,
+            "center_separation_cm": 0.0001240413899043067
+          }
+        },
+        "exact": {
+          "max_sampled_support_difference_cm": 0.0,
+          "witness": {
+            "span": 0,
+            "u": 0.0,
+            "section_angle_rad": 0.0,
+            "signed_support_change_cm": 0.0,
+            "center_separation_cm": 0.0
+          }
+        }
+      }
+    },
+    {
+      "canonical_member": "coil_1041",
+      "successor_member": "coil_1043",
+      "quarter_turns": 3,
+      "cases": {
+        "original": {
+          "max_sampled_support_difference_cm": 6.182314804270561e-05,
+          "witness": {
+            "span": 11,
+            "u": 0.0,
+            "section_angle_rad": 3.9269908169872414,
+            "signed_support_change_cm": 6.182314804270561e-05,
+            "center_separation_cm": 6.202069502996237e-05
+          }
+        },
+        "frame": {
+          "max_sampled_support_difference_cm": 6.182314804270561e-05,
+          "witness": {
+            "span": 11,
+            "u": 0.0,
+            "section_angle_rad": 3.9269908169872414,
+            "signed_support_change_cm": 6.182314804270561e-05,
+            "center_separation_cm": 6.202069502996237e-05
+          }
+        },
+        "exact": {
+          "max_sampled_support_difference_cm": 0.0,
+          "witness": {
+            "span": 0,
+            "u": 0.0,
+            "section_angle_rad": 0.0,
+            "signed_support_change_cm": 0.0,
+            "center_separation_cm": 0.0
+          }
+        }
+      }
+    }
+  ],
+  "claim_boundary": "Support differences of corresponding filled elliptical cross-sections at 1024 spline parameters and 32 in-plane directions per member. Rotational pairs compare each 90-degree canonical image with its stored successor. A sampled witness is a local section-support difference, not a global full-coil surface Hausdorff bound. The original and frame candidates are separate payloads; no source filament, winding-pack, wall or transport fidelity is certified."
+}

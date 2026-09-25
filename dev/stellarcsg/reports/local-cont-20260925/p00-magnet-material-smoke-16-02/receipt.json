@@ -1,0 +1,69 @@
+{
+  "schema": "stellarcsg.p00-magnet-material-smoke/v1",
+  "state": "PASS_LOCAL_MAGNET_MATERIAL_ENTRY",
+  "volume_id": 16,
+  "expected_cell_id": 2016,
+  "source_outside_cm": [
+    841.9555757355049,
+    861.8029694823365,
+    -127.44973704078163
+  ],
+  "source_direction": [
+    -0.6081775523528958,
+    0.35756742365378047,
+    0.7087069933023369
+  ],
+  "material": {
+    "id": 7,
+    "name": "magnets",
+    "nuclides": 51,
+    "density_g_cm3": 7.957317449024001
+  },
+  "cross_section_neutron_files": 51,
+  "cross_section_neutron_bytes": 200757944,
+  "outcome": {
+    "exit_code": 0,
+    "stdout_tail": "A/openc-hts-dpa/.data/openmc/FENDL-3.1d_Pb20\n 8.h5\n Reading S32 from\n /mnt/c/Users/joshu/Documents/2026_DPA/openc-hts-dpa/.data/openmc/FENDL-3.1d_S32.\n h5\n Reading S33 from\n /mnt/c/Users/joshu/Documents/2026_DPA/openc-hts-dpa/.data/openmc/FENDL-3.1d_S33.\n h5\n Reading S34 from\n /mnt/c/Users/joshu/Documents/2026_DPA/openc-hts-dpa/.data/openmc/FENDL-3.1d_S34.\n h5\n Reading S36 from\n /mnt/c/Users/joshu/Documents/2026_DPA/openc-hts-dpa/.data/openmc/FENDL-3.1d_S36.\n h5\n Reading Si28 from\n /mnt/c/Users/joshu/Documents/2026_DPA/openc-hts-dpa/.data/openmc/FENDL-3.1d_Si28\n .h5\n Reading Si29 from\n /mnt/c/Users/joshu/Documents/2026_DPA/openc-hts-dpa/.data/openmc/FENDL-3.1d_Si29\n .h5\n Reading Si30 from\n /mnt/c/Users/joshu/Documents/2026_DPA/openc-hts-dpa/.data/openmc/FENDL-3.1d_Si30\n .h5\n Reading Sn112 from\n /mnt/c/Users/joshu/Documents/2026_DPA/openc-hts-dpa/.data/openmc/FENDL-3.1d_Sn11\n 2.h5\n Reading Sn114 from\n /mnt/c/Users/joshu/Documents/2026_DPA/openc-hts-dpa/.data/openmc/FENDL-3.1d_Sn11\n 4.h5\n Reading Sn115 from\n /mnt/c/Users/joshu/Documents/2026_DPA/openc-hts-dpa/.data/openmc/FENDL-3.1d_Sn11\n 5.h5\n Reading Sn116 from\n /mnt/c/Users/joshu/Documents/2026_DPA/openc-hts-dpa/.data/openmc/FENDL-3.1d_Sn11\n 6.h5\n Reading Sn117 from\n /mnt/c/Users/joshu/Documents/2026_DPA/openc-hts-dpa/.data/openmc/FENDL-3.1d_Sn11\n 7.h5\n Reading Sn118 from\n /mnt/c/Users/joshu/Documents/2026_DPA/openc-hts-dpa/.data/openmc/FENDL-3.1d_Sn11\n 8.h5\n Reading Sn119 from\n /mnt/c/Users/joshu/Documents/2026_DPA/openc-hts-dpa/.data/openmc/FENDL-3.1d_Sn11\n 9.h5\n Reading Sn120 from\n /mnt/c/Users/joshu/Documents/2026_DPA/openc-hts-dpa/.data/openmc/FENDL-3.1d_Sn12\n 0.h5\n Reading Sn122 from\n /mnt/c/Users/joshu/Documents/2026_DPA/openc-hts-dpa/.data/openmc/FENDL-3.1d_Sn12\n 2.h5\n Reading Sn124 from\n /mnt/c/Users/joshu/Documents/2026_DPA/openc-hts-dpa/.data/openmc/FENDL-3.1d_Sn12\n 4.h5\n Minimum neutron data temperature: 300 K\n Maximum neutron data temperature: 300 K\n Preparing distributed cell instances...\n Reading plot XML file...\n Writing summary.h5 file...\n Maximum neutron transport energy: 60000000 eV for He3\n\n ===============>     FIXED SOURCE TRANSPORT SIMULATION     <===============\n\n Simulating batch 1\n Creating state point statepoint.1.h5...\n\n =======================>     TIMING STATISTICS     <=======================\n\n Total time for initialization     = 4.3556e+01 seconds\n   Reading cross sections          = 3.9861e+01 seconds\n Total time in simulation          = 1.7272e-02 seconds\n   Time in transport only          = 3.1577e-03 seconds\n   Time in active batches          = 1.7272e-02 seconds\n   Time accumulating tallies       = 5.5650e-04 seconds\n   Time writing statepoints        = 1.3081e-02 seconds\n Total time for finalization       = 2.0515e-03 seconds\n Total time elapsed                = 4.3589e+01 seconds\n Calculation Rate (active)         = 57.8965 particles/second\n\n ============================>     RESULTS     <============================\n\n Leakage Fraction           = 1.00000\n\n",
+    "stderr_tail": " WARNING: Negative value(s) found on probability table for nuclide Mo100 at 300K\n WARNING: Negative value(s) found on probability table for nuclide Mo92 at 300K\n WARNING: Negative value(s) found on probability table for nuclide Mo94 at 300K\n WARNING: Negative value(s) found on probability table for nuclide Mo95 at 300K\n WARNING: Negative value(s) found on probability table for nuclide Mo96 at 300K\n WARNING: Negative value(s) found on probability table for nuclide Mo97 at 300K\n WARNING: Negative value(s) found on probability table for nuclide Mo98 at 300K\n WARNING: Could not compute uncertainties -- only one active batch simulated!\n",
+    "cell_sequence": [
+      2000,
+      2016,
+      2016,
+      2016,
+      2000,
+      2000
+    ],
+    "material_sequence": [
+      -1,
+      7,
+      7,
+      7,
+      -1,
+      -1
+    ],
+    "first_entry_cm": [
+      841.8339402250343,
+      861.8744829670673,
+      -127.3079956421211
+    ],
+    "entry_pass": true
+  },
+  "hashes": {
+    "auditor": "b3538d12395e360625a0ac1f4b3c907013a3ad917af8bfdbe66605ede7aab913",
+    "region_receipt": "7796088ae3374a549fd5ad3e86e0e85e072a6d52729cae721fb8c0e3a0a2deed",
+    "side_bank": "37918fd9c88c3b28a60366ab67a4e3599fbefacb446e1afaee4d515105a679e4",
+    "h5m": "549c42bf66b290f8f56b6f4d7523940c3b32b9d256d993ea42605f4dddb33e39",
+    "model_xml": "afee680e3fe7e1e417bb37e289f2ce775fe16fb8fc11298237ea3d959c864027",
+    "smoke_receipt": "716ed09c45402c47e9f480f495358260b8c9d1112233a36519916e9a4ab35931",
+    "cross_sections_index": "218236803b2c4a21b038992af93dacfdfe5c0c0401cbbc57f3ff3a947c63abc7",
+    "binary": "dd0f316e5bd0965092f2a080167da9bbde83416392b6473763063fd95ec63dde",
+    "library": "fbc38dedc17e20342a56dd50e2d56f86330238dae00b95ab3e4602864967cba4",
+    "geometry.xml": "7a7205105faf26522170153620c3f3e73e69d026f43b1bc1600c836677f067e8",
+    "materials.xml": "13a9562640cb8add8fe8a74ff32acc8f0cfde1236642f42a821484399475016d",
+    "settings.xml": "6b6bd601882c0710cdd14998590d85bf6b6733a60f2491ccf94af182fd98897e",
+    "tracks.h5": "f401fd431f4cacd4eab0c61e15cac86c5e5501385b2b6a334391cc3a52b058d2",
+    "statepoint.1.h5": "9ae0e5c29114855b77151d7589d4c4087e2e3b382ef93a7475950d73b79d8a3c",
+    "summary.h5": "b1b9b92435daa4c9cc7cd8d530ade73b0a0371a969a7b5fe4853270bd20cd372"
+  },
+  "claim_boundary": "One fixed 1 MeV neutron ray from an accepted facet side probe enters a deterministic-priority P00 coil cell filled with the accepted H5M's common magnet material 7. This is local material-loading and first-entry tracking only; it does not qualify plasma source, whole one-period wall/plasma materials, collision physics benchmark, tallies, CAD fidelity, material priority for per-coil attribution, or performance."
+}

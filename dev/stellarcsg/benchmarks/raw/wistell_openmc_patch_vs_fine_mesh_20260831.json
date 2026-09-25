@@ -1,0 +1,40 @@
+{
+  "schema": "stellarcsg.wistell-fastpath-gate/v1",
+  "case": "wistell_d",
+  "hardware": "Intel Core i9-10850K",
+  "threads": 1,
+  "cpu_affinity": "Docker --cpuset-cpus=2",
+  "histories_per_repetition": 10000,
+  "warmups": 1,
+  "measured_repetitions": 5,
+  "container_image": "parastell-openmc:0.16.0",
+  "container_image_id": "sha256:ca0c3b1fba39ce27af6ebdb79df14795041922e72521f232cdd770ff1c416191",
+  "binary_sha256": "6d78fe4b70456483807aae6e4330415c536790826d27adca8eba93781974a307",
+  "libopenmc_sha256": "1f1efd3bf5366d698857f75ccab2050a9635ba4bcbc5e17bde58dcacd5583be6",
+  "native_source_sha256": "223293dba92e73675224c5fc258250a5cabb779b3369c86f3b65ff76a269abd8",
+  "fine_mesh_sha256": "861997912a5d8a64d7f527817e8d4b6f0ed1e6a1cdac27110c7ea3b4441cdbd8",
+  "native_csg": {
+    "warmup_histories_per_s": 26332.1,
+    "histories_per_s_raw": [26640.6, 26347.0, 26766.6, 26643.8, 27147.2],
+    "transport_s_raw": [0.36314, 0.36733, 0.36177, 0.36358, 0.35671],
+    "histories_per_s_median": 26643.8,
+    "leakage_fraction": 0.9955,
+    "lost_particles": 0,
+    "geometry_errors": 0,
+    "production_global_reference_calls": 0
+  },
+  "fine_direct_dagmc": {
+    "warmup_histories_per_s": 21214.6,
+    "histories_per_s_raw": [21536.0, 21511.8, 21495.6, 21524.1, 21464.2],
+    "transport_s_raw": [0.45151, 0.45281, 0.45359, 0.45129, 0.45399],
+    "histories_per_s_median": 21511.8,
+    "leakage_fraction": 1.0,
+    "lost_particles": 0,
+    "geometry_errors": 0
+  },
+  "native_csg_over_fine_mesh": 1.2385667401147278,
+  "minimum_speed_gate": "PASS",
+  "preferred_1_3x_gate": "FAIL",
+  "accuracy_closure": "NOT_YET_QUALIFIED",
+  "accuracy_note": "The 0.0045 absolute leakage difference requires common-surface and independent classification follow-up; this file establishes the geometry-speed gate only."
+}

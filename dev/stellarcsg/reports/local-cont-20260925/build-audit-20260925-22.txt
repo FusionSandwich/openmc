@@ -1,0 +1,7 @@
+2026-09-25 local build preflight (extreme-scale frame normalization)
+Windows RAM: 33,457,440 KiB total; 3,012,620 KiB free.
+Free disk: C: 83,671,920,640 B; D: 504,412,098,560 B. Build target is C:.
+Largest resident processes: vmmemWSL 1,949,974,528 B; ChatGPT 1,261,187,072 B; chrome 940,761,088 B; codex 887,336,960 B; another ChatGPT 711,602,176 B; another chrome 672,976,896 B.
+Existing WSL OpenMC-Dev-D: GCC 14.2.0, CMake 3.31.6, Ninja 1.12.1, HDF5 1.14.5, Python 3.13.5 in /opt/openmc-venv (606 MiB); pip cache 152 MiB. Existing local source checkout, configured standalone build (7.2 MiB), native build (16 MiB), and native libopenmc.so are present. Twenty-seven local StellarCSG/OpenMC source checkouts were observed in the same parent directory.
+Existing capabilities suffice. Planned download/install/acquisition: 0 B. One-job incremental standalone compiled-surface test will reproduce the prior frame-normalization failure, then validate a bounded normalization repair. A one-job native libopenmc.so rebuild follows if it passes. Targets are the two existing C: build directories, allowing under 200 MiB regenerated objects/libraries. No dependency environment change or remote execution.
+Rollback: revert the vector/test edits and rebuild the same existing targets from the prior commit; retain audit and regression evidence. No package/cache removal is needed.

@@ -1,0 +1,62 @@
+{
+  "schema": "stellarcsg.dagmc-exact-torus-fidelity/v1",
+  "units": "cm",
+  "source_geometry": {
+    "type": "exact_circular_torus",
+    "major_radius_cm": 500.0,
+    "minor_radius_cm": 100.0
+  },
+  "generator": {
+    "container_image": "parastell-openmc:0.16.0",
+    "container_image_id": "sha256:ca0c3b1fba39ce27af6ebdb79df14795041922e72521f232cdd770ff1c416191",
+    "cad_to_dagmc": "0.11.5",
+    "cadquery": "2.7.0",
+    "meshing_backend": "gmsh",
+    "h5m_backend": "pymoab"
+  },
+  "error_method": "Exact torus distance sampled at every triangle vertex, edge midpoint, and centroid.",
+  "meshes": [
+    {
+      "path": "/work/dev/stellarcsg/qualified/dagmc_exact_torus_coarse.h5m",
+      "bytes": 395172,
+      "sha256": "393ec6ef79718aa0c90996e74cc68303fc000ea0c9b258dcdf19fc7d57215a0b",
+      "vertices": 4341,
+      "triangles": 8682,
+      "sample_points": 60774,
+      "sampled_surface_error_max_cm": 1.4733454075289671,
+      "sampled_surface_error_rms_cm": 0.3330024977768103,
+      "sampled_surface_error_p95_cm": 0.6926593709466223,
+      "mesh_area_cm2": 1970559.0852694206,
+      "exact_area_cm2": 1973920.8802178716,
+      "area_relative_error": -0.0017031052166994742,
+      "mesh_signed_volume_cm3": 98016008.06260616,
+      "mesh_abs_volume_cm3": 98016008.06260616,
+      "exact_volume_cm3": 98696044.01089358,
+      "volume_relative_error": -0.00689020471998214,
+      "gmsh_min_mesh_size_cm": 10.0,
+      "gmsh_max_mesh_size_cm": 25.0,
+      "name": "coarse"
+    },
+    {
+      "path": "/work/dev/stellarcsg/qualified/dagmc_exact_torus_fine.h5m",
+      "bytes": 2215788,
+      "sha256": "2377cfa960399ce18ece599a736d8e9adb602a632339f541f4fb73530afdcb56",
+      "vertices": 26015,
+      "triangles": 52030,
+      "sample_points": 364210,
+      "sampled_surface_error_max_cm": 0.23657640692130144,
+      "sampled_surface_error_rms_cm": 0.056430817921549754,
+      "sampled_surface_error_p95_cm": 0.11771099117707706,
+      "mesh_area_cm2": 1973355.3438534024,
+      "exact_area_cm2": 1973920.8802178716,
+      "area_relative_error": -0.00028650406920405214,
+      "mesh_signed_volume_cm3": 98580256.11467747,
+      "mesh_abs_volume_cm3": 98580256.11467747,
+      "exact_volume_cm3": 98696044.01089358,
+      "volume_relative_error": -0.0011731766696072565,
+      "gmsh_min_mesh_size_cm": 3.0,
+      "gmsh_max_mesh_size_cm": 10.0,
+      "name": "fine"
+    }
+  ]
+}

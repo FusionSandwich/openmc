@@ -1,0 +1,51 @@
+{
+  "schema": "stellarcsg.periodic-facet-tracking-audit/v1",
+  "state": "PASS_LOCAL_VOID_ONLY_PERIODIC_FACET_TRACK",
+  "histories": 10,
+  "selected_tracks": 1,
+  "selected_track_cell_ids": [
+    1002,
+    1001,
+    1001,
+    1002,
+    1001,
+    1002,
+    1002
+  ],
+  "selected_track_state_count": 7,
+  "periodic_handoff_cell_id": 1001,
+  "periodic_handoff_position_cm": [
+    5.498163816919899e-14,
+    897.9182929719711,
+    -328.65592592990714
+  ],
+  "periodic_handoff_direction": [
+    0.9537528794351806,
+    0.2631701123476562,
+    0.14524784657964493
+  ],
+  "terminal_position_cm": [
+    2030.6506077419779,
+    1458.2380153037896,
+    -19.406397787103884
+  ],
+  "terminal_vacuum_surface": "outer-cylinder",
+  "exit_code": 0,
+  "stdout": "                                %%%%%%%%%%%%%%%\n                           %%%%%%%%%%%%%%%%%%%%%%%%\n                        %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%\n                      %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%\n                    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%\n                   %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%\n                                    %%%%%%%%%%%%%%%%%%%%%%%%\n                                     %%%%%%%%%%%%%%%%%%%%%%%%\n                 ###############      %%%%%%%%%%%%%%%%%%%%%%%%\n                ##################     %%%%%%%%%%%%%%%%%%%%%%%\n                ###################     %%%%%%%%%%%%%%%%%%%%%%%\n                ####################     %%%%%%%%%%%%%%%%%%%%%%\n                #####################     %%%%%%%%%%%%%%%%%%%%%\n                ######################     %%%%%%%%%%%%%%%%%%%%\n                #######################     %%%%%%%%%%%%%%%%%%\n                 #######################     %%%%%%%%%%%%%%%%%\n                 ######################     %%%%%%%%%%%%%%%%%\n                  ####################     %%%%%%%%%%%%%%%%%\n                    #################     %%%%%%%%%%%%%%%%%\n                     ###############     %%%%%%%%%%%%%%%%\n                       ############     %%%%%%%%%%%%%%%\n                          ########     %%%%%%%%%%%%%%\n                                      %%%%%%%%%%%\n\n                 | The OpenMC Monte Carlo Code\n       Copyright | 2011-2026 MIT, UChicago Argonne LLC, and contributors\n         License | https://docs.openmc.org/en/latest/license.html\n         Version | 0.0.0\n     Commit Hash | \n       Date/Time | 2026-09-25 15:44:23\n\n Reading settings XML file...\n Reading cross sections XML file...\n Reading materials XML file...\n Reading geometry XML file...\n Minimum neutron data temperature: 1.7976931348623157e+308 K\n Maximum neutron data temperature: 0 K\n Preparing distributed cell instances...\n Reading plot XML file...\n Writing summary.h5 file...\n\n ===============>     FIXED SOURCE TRANSPORT SIMULATION     <===============\n\n Simulating batch 1\n Creating state point statepoint.1.h5...\n\n =======================>     TIMING STATISTICS     <=======================\n\n Total time for initialization     = 2.1306e-01 seconds\n   Reading cross sections          = 3.8100e-05 seconds\n Total time in simulation          = 1.9814e-02 seconds\n   Time in transport only          = 7.5640e-03 seconds\n   Time in active batches          = 1.9814e-02 seconds\n   Time accumulating tallies       = 4.5530e-04 seconds\n   Time writing statepoints        = 1.1527e-02 seconds\n Total time for finalization       = 1.9933e-03 seconds\n Total time elapsed                = 2.3724e-01 seconds\n Calculation Rate (active)         = 504.704 particles/second\n\n ============================>     RESULTS     <============================\n\n Leakage Fraction           = 1.00000\n\n",
+  "stderr": " WARNING: Could not compute uncertainties -- only one active batch simulated!\n",
+  "loader_binding": "libopenmc.so => /mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-local-continuation-20260925/build/native-local-20260925/lib/libopenmc.so (0x000075b33a601000)",
+  "hashes": {
+    "auditor": "38f368cb72f7cf7ed91fdeea4f909d85829e36ac5e1463f9f7bd6ede1f747a53",
+    "staged_receipt": "cd4f5ac18bc7894716a088b768096c79833435f287b09087b15c6fb9c912b663",
+    "geometry_xml": "113b938390a0a75fa30555402f54b9bf88d6199071432cbf9f7d8b55f9814fc7",
+    "settings_xml": "dd80d6fed189cfaeeaa1af5c0cdded466ff36c5ccdc27e40af9b46aec72c6a14",
+    "materials_xml": "387f4241a1cea79740ac3564b5480fab039201fbf2445c0c7c693de852500f4d",
+    "binary": "dd0f316e5bd0965092f2a080167da9bbde83416392b6473763063fd95ec63dde",
+    "library": "f5a2d438974499e36fae7668d466f0ffec64b9998dc769d99c37186d0765fd94",
+    "cross_sections_index": "19c7b90ca97fe2b11748c69359bf04112ab2ad537e23a9165b615b3de73fb10a",
+    "tracks": "cd398e36ce88e91a6c9d7a79516eef3525edc88eef62c48f382b95de81f598f7",
+    "statepoint": "8d84d0160af24ba500bd3880eebd5c85314b4848bae5c5a18ea9d049467889bf",
+    "summary": "15b3640d7010e8fd6ddbdc04336308b3effcfcad7b06a2eaea14082930ff6b2a"
+  },
+  "claim_boundary": "Ten void-only OpenMC histories completed locally; one selected history entered a facet coil cell, crossed a rotational periodic plane while retaining that cell, then leaked at the vacuum enclosure. This is a geometry-tracking smoke only; it has no material interactions, physical source distribution, tally uncertainty, CAD fidelity, or matched performance claim."
+}

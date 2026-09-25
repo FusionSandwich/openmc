@@ -1,0 +1,7 @@
+2026-09-25 local build preflight (scan all earlier unresolved spans)
+Windows RAM: 33,457,440 KiB total; 3,466,608 KiB free.
+Free disk: C: 82,258,272,256 B; D: 504,188,121,088 B. Build target is C:.
+Largest resident processes: vmmemWSL 1,849,442,304 B; ChatGPT 1,238,224,896 B; chrome 952,619,008 B; codex 863,592,448 B; another chrome 697,868,288 B; another ChatGPT 666,902,528 B; another chrome 653,967,360 B; OneDrive 633,413,632 B.
+Existing WSL OpenMC-Dev-D: GCC 14.2.0, CMake 3.31.6, Ninja 1.12.1, HDF5 1.14.5, Python 3.13.5 in /opt/openmc-venv (606 MiB); pip cache 152 MiB. Existing local source checkout, standalone build (7.3 MiB), native build (16 MiB), and 31 local StellarCSG workspace directories are present.
+Existing capabilities suffice. Planned download/install/acquisition: 0 B. One-job rebuild of the existing standalone test and bank-replay targets needs less than 30 MiB incremental output on C:, followed by a bounded one-CPU replay writing under 2 MiB. No dependency environment, external software, or remote system change.
+Rollback: restore the solver and test sources from commit a657cf496 and rebuild the same targets; retain the earlier comparison receipt. No package/cache removal is needed.

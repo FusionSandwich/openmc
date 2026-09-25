@@ -1,0 +1,8 @@
+2026-09-25 local build preflight (explicit noncontiguous swept collection selector)
+Windows RAM: 33,457,440 KiB total; 3,393,552 KiB free.
+Free disk: C: 86,135,554,048 B; D: 504,673,308,672 B. Build target is C:.
+Largest resident processes: vmmemWSL 1,909,182,464 B; ChatGPT 1,291,575,296 B; chrome 934,518,784 B; codex 868,737,024 B; another ChatGPT 675,287,040 B; another chrome 668,536,832 B.
+Existing WSL OpenMC-Dev-D: GCC 14.2.0, CMake 3.31.6, Ninja 1.12.1, HDF5 1.14.5, Python 3.13.5 in /opt/openmc-venv (606 MiB); pip cache 152 MiB.
+Existing local source checkout, configured build directories build/local-cont-20260925 (7.0 MiB) and build/native-local-20260925 (16 MiB), and /usr/bin/g++, /usr/bin/cmake, /usr/bin/ninja are present. No acquisition is needed.
+Planned download/install/acquisition: 0 B. Planned one-job native adapter build under 20 MiB in the existing native build directory and one-job test-double adapter compile under 20 MiB in a new no-overwrite transport-contracts-indexed-01 receipt directory on C:. Python tests reuse /opt/openmc-venv. No dependency environment changes or remote execution.
+Rollback: revert the exact selector source edit and rebuild the existing native target from the prior commit; remove only the new test-double binary after retaining its receipt. No package/cache removal is needed.

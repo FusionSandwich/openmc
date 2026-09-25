@@ -1,0 +1,167 @@
+cmake_minimum_required(VERSION 3.16)
+project(stellarcsg_reference_kernel LANGUAGES CXX)
+
+option(STELLARCSG_BUILD_TESTS "Build StellarCSG tests" ON)
+option(STELLARCSG_BUILD_BENCHMARKS "Build geometry microbenchmarks" ON)
+option(STELLARCSG_BUILD_TOOLS "Build local inspection tools" ON)
+option(STELLARCSG_BUILD_CAMPAIGNS "Build deterministic qualification campaigns" ON)
+option(STELLARCSG_ENABLE_HDF5 "Build the coefficient-file HDF5 adapter" ON)
+option(STELLARCSG_ENABLE_SANITIZERS "Enable ASan/UBSan for standalone tests" OFF)
+option(STELLARCSG_ENABLE_PERFORMANCE_COUNTERS
+  "Enable thread-local surface performance counters" OFF)
+option(STELLARCSG_VERIFY_FAST_WITH_ORACLE
+  "Sample fast surface results against the independent oracle" OFF)
+
+add_library(stellarcsg_reference STATIC
+  src/performance_counters.cpp
+  src/periodic_radial_surface.cpp
+  src/root_solver.cpp
+  src/sha256.cpp
+  src/uniform_periodic_bicubic_spline.cpp
+  src/uniform_periodic_cubic_spline.cpp
+  src/compiled_periodic_surface.cpp
+  src/compiled_swept_surface.cpp
+  src/compiled_swept_surface_set.cpp
+  src/compiled_facet_surface_set.cpp
+  ../../src/external/quartic_solver.cpp
+)
+add_library(StellarCSG::reference ALIAS stellarcsg_reference)
+target_compile_features(stellarcsg_reference PUBLIC cxx_std_17)
+if(STELLARCSG_ENABLE_PERFORMANCE_COUNTERS)
+  target_compile_definitions(stellarcsg_reference
+    PUBLIC STELLARCSG_ENABLE_PERFORMANCE_COUNTERS)
+endif()
+if(STELLARCSG_VERIFY_FAST_WITH_ORACLE)
+  target_compile_definitions(stellarcsg_reference
+    PUBLIC STELLARCSG_VERIFY_FAST_WITH_ORACLE)
+endif()
+target_include_directories(stellarcsg_reference PUBLIC
+  $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>)
+
+if(STELLARCSG_ENABLE_HDF5)
+  find_package(HDF5 REQUIRED COMPONENTS C HL)
+  target_sources(stellarcsg_reference PRIVATE src/coefficient_file.cpp)
+  target_sources(stellarcsg_reference PRIVATE src/swept_coefficient_file.cpp)
+  target_sources(stellarcsg_reference PRIVATE src/facet_payload_file.cpp)
+  target_include_directories(stellarcsg_reference PUBLIC ${HDF5_INCLUDE_DIRS})
+  target_link_libraries(stellarcsg_reference PUBLIC
+    ${HDF5_LIBRARIES} ${HDF5_HL_LIBRARIES})
+  target_compile_definitions(stellarcsg_reference PUBLIC STELLARCSG_HAS_HDF5)
+endif()
+
+if(STELLARCSG_BUILD_CAMPAIGNS)
+  add_executable(stellarcsg_periodic_root_campaign
+    qualification/periodic_root_campaign.cpp)
+  target_link_libraries(stellarcsg_periodic_root_campaign
+    PRIVATE StellarCSG::reference)
+  target_compile_features(stellarcsg_periodic_root_campaign PRIVATE cxx_std_17)
+  if(CMAKE_CXX_COMPILER_ID MATCHES "GNU|Clang")
+    target_compile_options(stellarcsg_periodic_root_campaign PRIVATE
+      -O3 -Wall -Wextra -Wpedantic -Wconversion -Wshadow)
+  endif()
+endif()
+
+if(CMAKE_CXX_COMPILER_ID MATCHES "GNU|Clang")
+  target_compile_options(stellarcsg_reference PRIVATE
+    -Wall -Wextra -Wpedantic -Wconversion -Wshadow)
+  if(STELLARCSG_ENABLE_SANITIZERS)
+    target_compile_options(stellarcsg_reference PRIVATE
+      -fsanitize=address,undefined -fno-omit-frame-pointer)
+    target_link_options(stellarcsg_reference PRIVATE
+      -fsanitize=address,undefined)
+  endif()
+elseif(MSVC)
+  target_compile_options(stellarcsg_reference PRIVATE /W4 /permissive-)
+endif()
+
+if(STELLARCSG_BUILD_TESTS)
+  enable_testing()
+
+  add_executable(stellarcsg_reference_tests
+    tests/test_reference_kernel.cpp)
+  target_link_libraries(stellarcsg_reference_tests
+    PRIVATE StellarCSG::reference)
+  target_compile_features(stellarcsg_reference_tests PRIVATE cxx_std_17)
+  add_test(NAME stellarcsg_reference_tests
+    COMMAND stellarcsg_reference_tests)
+
+  add_executable(stellarcsg_compiled_surface_tests
+    tests/test_compiled_surface.cpp)
+  target_link_libraries(stellarcsg_compiled_surface_tests
+    PRIVATE StellarCSG::reference)
+  target_compile_features(stellarcsg_compiled_surface_tests PRIVATE cxx_std_17)
+  if(STELLARCSG_ENABLE_HDF5)
+    target_compile_definitions(stellarcsg_compiled_surface_tests PRIVATE
+      STELLARCSG_QUALIFIED_SWEPT_FILE="${CMAKE_CURRENT_SOURCE_DIR}/qualified/analytic_swept_coils.h5")
+  endif()
+  add_test(NAME stellarcsg_compiled_surface_tests
+    COMMAND stellarcsg_compiled_surface_tests)
+
+  add_executable(stellarcsg_facet_surface_tests
+    tests/test_compiled_facet_surface_set.cpp)
+  target_link_libraries(stellarcsg_facet_surface_tests
+    PRIVATE StellarCSG::reference)
+  target_compile_features(stellarcsg_facet_surface_tests PRIVATE cxx_std_17)
+  add_test(NAME stellarcsg_facet_surface_tests
+    COMMAND stellarcsg_facet_surface_tests)
+  add_test(NAME stellarcsg_facet_p00_tests
+    COMMAND stellarcsg_facet_surface_tests)
+  set_tests_properties(stellarcsg_facet_p00_tests PROPERTIES
+    ENVIRONMENT "STELLARCSG_FACET_FIXTURE=${CMAKE_CURRENT_SOURCE_DIR}/reports/local-cont-20260925/p00-accepted-facet-fixture.txt")
+  if(STELLARCSG_ENABLE_HDF5)
+    add_test(NAME stellarcsg_facet_p00_payload_tests
+      COMMAND stellarcsg_facet_surface_tests)
+    set_tests_properties(stellarcsg_facet_p00_payload_tests PROPERTIES
+      ENVIRONMENT "STELLARCSG_FACET_PAYLOAD=${CMAKE_CURRENT_SOURCE_DIR}/reports/local-cont-20260925/p00-accepted-facet-payload-01.h5;STELLARCSG_FACET_CONTENT_ID=sha256:c580f1c228ee9633df197aed32e5f41bc6bcb7b382d8a68f677e69787e8c57a6")
+  endif()
+
+  if(CMAKE_CXX_COMPILER_ID MATCHES "GNU|Clang")
+    foreach(target stellarcsg_reference_tests stellarcsg_compiled_surface_tests
+        stellarcsg_facet_surface_tests)
+      target_compile_options(${target} PRIVATE
+        -Wall -Wextra -Wpedantic -Wconversion -Wshadow)
+      if(STELLARCSG_ENABLE_SANITIZERS)
+        target_compile_options(${target} PRIVATE
+          -fsanitize=address,undefined -fno-omit-frame-pointer)
+        target_link_options(${target} PRIVATE
+          -fsanitize=address,undefined)
+      endif()
+    endforeach()
+  endif()
+endif()
+
+if(STELLARCSG_BUILD_BENCHMARKS)
+  if(STELLARCSG_ENABLE_HDF5)
+    add_executable(stellarcsg_recovery04_bank qualification/recovery04_frozen_bank.cpp)
+    target_link_libraries(stellarcsg_recovery04_bank PRIVATE StellarCSG::reference)
+  endif()
+  add_executable(stellarcsg_surface_benchmark
+    benchmarks/benchmark_compiled_surface.cpp)
+  target_link_libraries(stellarcsg_surface_benchmark
+    PRIVATE StellarCSG::reference)
+  target_compile_features(stellarcsg_surface_benchmark PRIVATE cxx_std_17)
+
+  add_executable(stellarcsg_file_surface_benchmark
+    benchmarks/benchmark_file_surface.cpp)
+  target_link_libraries(stellarcsg_file_surface_benchmark
+    PRIVATE StellarCSG::reference)
+  target_compile_features(stellarcsg_file_surface_benchmark PRIVATE cxx_std_17)
+
+  add_executable(stellarcsg_file_swept_benchmark
+    benchmarks/benchmark_file_swept.cpp)
+  target_link_libraries(stellarcsg_file_swept_benchmark
+    PRIVATE StellarCSG::reference)
+  target_compile_features(stellarcsg_file_swept_benchmark PRIVATE cxx_std_17)
+
+  add_executable(stellarcsg_file_swept_set_benchmark
+    benchmarks/benchmark_file_swept_set.cpp)
+  target_link_libraries(stellarcsg_file_swept_set_benchmark
+    PRIVATE StellarCSG::reference)
+  target_compile_features(stellarcsg_file_swept_set_benchmark PRIVATE cxx_std_17)
+endif()
+
+if(STELLARCSG_BUILD_TOOLS)
+  add_executable(stellarcsg_inspect_surface tools/inspect_surface.cpp)
+  target_link_libraries(stellarcsg_inspect_surface PRIVATE StellarCSG::reference)
+  target_compile_features(stellarcsg_inspect_surface PRIVATE cxx_std_17)
+endif()

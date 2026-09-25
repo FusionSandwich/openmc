@@ -1,0 +1,419 @@
+{
+  "claim_boundary": "Numerical samples before CadQuery spline interpolation, ruled faces, sector intersection, zero-volume filtering, and STEP export. These controls are neither a complete physical surface nor a transport-qualified StellarCSG payload.",
+  "classification": "PARASTELL_NUMERICAL_PRE_CAD_CONTROLS",
+  "input_sha256": {
+    "coils": "7748369407d28a70f35b5c4a7c0ab860495a08fd0030002112ea933fe570159b",
+    "provenance": "a47c5e4b07084821829a60a8532cfd2cc4122c84c03d681c05407747846c231c",
+    "provisional_ellipse_manifest": "9b60ff7f924ee2e766a0e832857754c55bed313f72685942d520cc4cd2729686"
+  },
+  "members": [
+    {
+      "coordinate_max_cm": [
+        1287.1514804210453,
+        12.320480326242066,
+        310.3848539750379
+      ],
+      "coordinate_min_cm": [
+        823.1515445639305,
+        -549.1189633089351,
+        -536.2332929514363
+      ],
+      "edge_control_shape": [
+        4,
+        65,
+        3
+      ],
+      "max_corner_mean_to_center_error_cm": 1.2710574864626038e-13,
+      "max_side_length_error_cm": 2.0250467969162855e-13,
+      "max_tangent_to_corner_offset_dot_cm": 1.9184653865522705e-13,
+      "member": "coil_1009",
+      "raw_filament_index": 9
+    },
+    {
+      "coordinate_max_cm": [
+        1456.4628661217698,
+        71.12916847861025,
+        344.0711773815177
+      ],
+      "coordinate_min_cm": [
+        959.9283755376609,
+        -441.0361215990205,
+        -550.4808312464685
+      ],
+      "edge_control_shape": [
+        4,
+        65,
+        3
+      ],
+      "max_corner_mean_to_center_error_cm": 2.3437142008433856e-13,
+      "max_side_length_error_cm": 1.8829382497642655e-13,
+      "max_tangent_to_corner_offset_dot_cm": 1.509903313490213e-13,
+      "member": "coil_1046",
+      "raw_filament_index": 46
+    },
+    {
+      "coordinate_max_cm": [
+        1562.6683744897018,
+        136.0339949743994,
+        393.4830483789295
+      ],
+      "coordinate_min_cm": [
+        1006.732493165598,
+        -286.0306535117214,
+        -485.19606916592227
+      ],
+      "edge_control_shape": [
+        4,
+        65,
+        3
+      ],
+      "max_corner_mean_to_center_error_cm": 2.2737367544323206e-13,
+      "max_side_length_error_cm": 2.1316282072803006e-13,
+      "max_tangent_to_corner_offset_dot_cm": 1.7508217098338719e-13,
+      "member": "coil_1001",
+      "raw_filament_index": 1
+    },
+    {
+      "coordinate_max_cm": [
+        1562.6683744897018,
+        286.0306535117214,
+        485.19606916592227
+      ],
+      "coordinate_min_cm": [
+        1006.732493165598,
+        -136.0339949743994,
+        -393.4830483789295
+      ],
+      "edge_control_shape": [
+        4,
+        65,
+        3
+      ],
+      "max_corner_mean_to_center_error_cm": 2.2737367544323206e-13,
+      "max_side_length_error_cm": 2.1316282072803006e-13,
+      "max_tangent_to_corner_offset_dot_cm": 1.7508217098338719e-13,
+      "member": "coil_1000",
+      "raw_filament_index": 0
+    },
+    {
+      "coordinate_max_cm": [
+        1456.4628661217698,
+        441.0361215990205,
+        550.4808312464685
+      ],
+      "coordinate_min_cm": [
+        959.9283755376609,
+        -71.12916847861025,
+        -344.0711773815177
+      ],
+      "edge_control_shape": [
+        4,
+        65,
+        3
+      ],
+      "max_corner_mean_to_center_error_cm": 2.3437142008433856e-13,
+      "max_side_length_error_cm": 1.8829382497642655e-13,
+      "max_tangent_to_corner_offset_dot_cm": 1.509903313490213e-13,
+      "member": "coil_1047",
+      "raw_filament_index": 47
+    },
+    {
+      "coordinate_max_cm": [
+        1287.1514804210453,
+        549.1189633089351,
+        536.2332929514363
+      ],
+      "coordinate_min_cm": [
+        823.1515445639305,
+        -12.320480326242066,
+        -310.3848539750379
+      ],
+      "edge_control_shape": [
+        4,
+        65,
+        3
+      ],
+      "max_corner_mean_to_center_error_cm": 1.2710574864626038e-13,
+      "max_side_length_error_cm": 2.0250467969162855e-13,
+      "max_tangent_to_corner_offset_dot_cm": 1.9184653865522705e-13,
+      "member": "coil_1008",
+      "raw_filament_index": 8
+    },
+    {
+      "coordinate_max_cm": [
+        1185.17366987056,
+        690.3395254414838,
+        529.312883360891
+      ],
+      "coordinate_min_cm": [
+        575.8850671887121,
+        45.8834634301997,
+        -258.63469813864236
+      ],
+      "edge_control_shape": [
+        4,
+        65,
+        3
+      ],
+      "max_corner_mean_to_center_error_cm": 1.1368683772161603e-13,
+      "max_side_length_error_cm": 2.0961010704922955e-13,
+      "max_tangent_to_corner_offset_dot_cm": 1.1834977442504169e-13,
+      "member": "coil_1039",
+      "raw_filament_index": 39
+    },
+    {
+      "coordinate_max_cm": [
+        1117.4031614348035,
+        786.0985483145647,
+        461.9738422717437
+      ],
+      "coordinate_min_cm": [
+        425.00227023775057,
+        84.2359569127022,
+        -227.52147357872198
+      ],
+      "edge_control_shape": [
+        4,
+        65,
+        3
+      ],
+      "max_corner_mean_to_center_error_cm": 1.1457157353758233e-13,
+      "max_side_length_error_cm": 1.3855583347321954e-13,
+      "max_tangent_to_corner_offset_dot_cm": 1.2967404927621828e-13,
+      "member": "coil_1016",
+      "raw_filament_index": 16
+    },
+    {
+      "coordinate_max_cm": [
+        1020.5074884410725,
+        913.285603362112,
+        357.55350989788144
+      ],
+      "coordinate_min_cm": [
+        335.4390994379114,
+        162.5562240706177,
+        -220.91657937524025
+      ],
+      "edge_control_shape": [
+        4,
+        65,
+        3
+      ],
+      "max_corner_mean_to_center_error_cm": 1.1368683772161603e-13,
+      "max_side_length_error_cm": 1.5631940186722204e-13,
+      "max_tangent_to_corner_offset_dot_cm": 1.0658141036401503e-13,
+      "member": "coil_1031",
+      "raw_filament_index": 31
+    },
+    {
+      "coordinate_max_cm": [
+        913.2857146867793,
+        1020.5073934041174,
+        220.91657937524008
+      ],
+      "coordinate_min_cm": [
+        162.55631352976079,
+        335.43901446210947,
+        -357.55350989788144
+      ],
+      "edge_control_shape": [
+        4,
+        65,
+        3
+      ],
+      "max_corner_mean_to_center_error_cm": 1.1718571004216928e-13,
+      "max_side_length_error_cm": 1.1013412404281553e-13,
+      "max_tangent_to_corner_offset_dot_cm": 8.704148513061227e-14,
+      "member": "coil_1024",
+      "raw_filament_index": 24
+    },
+    {
+      "coordinate_max_cm": [
+        786.0986710512548,
+        1117.4030768079526,
+        227.52147357872195
+      ],
+      "coordinate_min_cm": [
+        84.23604768292607,
+        425.0022321818432,
+        -461.9738422717437
+      ],
+      "edge_control_shape": [
+        4,
+        65,
+        3
+      ],
+      "max_corner_mean_to_center_error_cm": 1.1374233532693354e-13,
+      "max_side_length_error_cm": 1.2434497875801753e-13,
+      "max_tangent_to_corner_offset_dot_cm": 9.886536034287019e-14,
+      "member": "coil_1023",
+      "raw_filament_index": 23
+    },
+    {
+      "coordinate_max_cm": [
+        690.3396499912571,
+        1185.1735954664314,
+        258.63469813864236
+      ],
+      "coordinate_min_cm": [
+        45.88356686802386,
+        575.8850361462868,
+        -529.312883360891
+      ],
+      "edge_control_shape": [
+        4,
+        65,
+        3
+      ],
+      "max_corner_mean_to_center_error_cm": 1.1368683772161603e-13,
+      "max_side_length_error_cm": 1.5276668818842154e-13,
+      "max_tangent_to_corner_offset_dot_cm": 9.769962616701378e-14,
+      "member": "coil_1032",
+      "raw_filament_index": 32
+    },
+    {
+      "coordinate_max_cm": [
+        549.1191254365045,
+        1287.1514123080738,
+        310.3848539750379
+      ],
+      "coordinate_min_cm": [
+        -12.32036168706749,
+        823.1515226829076,
+        -536.2332929514364
+      ],
+      "edge_control_shape": [
+        4,
+        65,
+        3
+      ],
+      "max_corner_mean_to_center_error_cm": 1.1718571004216928e-13,
+      "max_side_length_error_cm": 2.0961010704922955e-13,
+      "max_tangent_to_corner_offset_dot_cm": 1.404432126150823e-13,
+      "member": "coil_1015",
+      "raw_filament_index": 15
+    },
+    {
+      "coordinate_max_cm": [
+        441.03629957352854,
+        1456.462821580774,
+        344.0711773815177
+      ],
+      "coordinate_min_cm": [
+        -71.12903840581411,
+        959.9283790019082,
+        -550.4808312464685
+      ],
+      "edge_control_shape": [
+        4,
+        65,
+        3
+      ],
+      "max_corner_mean_to_center_error_cm": 2.2737367544323206e-13,
+      "max_side_length_error_cm": 1.9184653865522705e-13,
+      "max_tangent_to_corner_offset_dot_cm": 1.7474910407599964e-13,
+      "member": "coil_1040",
+      "raw_filament_index": 40
+    },
+    {
+      "coordinate_max_cm": [
+        286.03084305715794,
+        1562.6683671608737,
+        393.4830483789294
+      ],
+      "coordinate_min_cm": [
+        -136.0338560776085,
+        1006.7325033309147,
+        -485.19606916592227
+      ],
+      "edge_control_shape": [
+        4,
+        65,
+        3
+      ],
+      "max_corner_mean_to_center_error_cm": 2.2737410912368746e-13,
+      "max_side_length_error_cm": 2.1316282072803006e-13,
+      "max_tangent_to_corner_offset_dot_cm": 1.3145040611561853e-13,
+      "member": "coil_1007",
+      "raw_filament_index": 7
+    },
+    {
+      "coordinate_max_cm": [
+        136.03394867546933,
+        1562.668372046762,
+        485.19606916592227
+      ],
+      "coordinate_min_cm": [
+        -286.0307166935341,
+        1006.7324965540383,
+        -393.4830483789295
+      ],
+      "edge_control_shape": [
+        4,
+        65,
+        3
+      ],
+      "max_corner_mean_to_center_error_cm": 2.2737367544323206e-13,
+      "max_side_length_error_cm": 2.0250467969162855e-13,
+      "max_tangent_to_corner_offset_dot_cm": 1.8207657603852567e-13,
+      "member": "coil_1002",
+      "raw_filament_index": 2
+    },
+    {
+      "coordinate_max_cm": [
+        71.1291251210117,
+        1456.4628512747738,
+        550.4808312464685
+      ],
+      "coordinate_min_cm": [
+        -441.03618092385733,
+        959.9283766924118,
+        -344.0711773815177
+      ],
+      "edge_control_shape": [
+        4,
+        65,
+        3
+      ],
+      "max_corner_mean_to_center_error_cm": 2.2737367544323206e-13,
+      "max_side_length_error_cm": 2.0250467969162855e-13,
+      "max_tangent_to_corner_offset_dot_cm": 1.6964207816272392e-13,
+      "member": "coil_1045",
+      "raw_filament_index": 45
+    },
+    {
+      "coordinate_max_cm": [
+        12.320440779850575,
+        1287.1514577167238,
+        536.2332929514363
+      ],
+      "coordinate_min_cm": [
+        -549.1190173514592,
+        823.1515372702577,
+        -310.3848539750379
+      ],
+      "edge_control_shape": [
+        4,
+        65,
+        3
+      ],
+      "max_corner_mean_to_center_error_cm": 1.154495294690031e-13,
+      "max_side_length_error_cm": 1.8829382497642655e-13,
+      "max_tangent_to_corner_offset_dot_cm": 1.7985612998927536e-13,
+      "member": "coil_1010",
+      "raw_filament_index": 10
+    }
+  ],
+  "output_npz_sha256": "3a35367b904dc1135eed00db859fabbdb8099741c68ec45a7b2860325062600b",
+  "pre_cad_candidate_count": 18,
+  "pre_cad_only_members": [],
+  "prefilter_tolerance_rad": 0.057963117732313205,
+  "provisional_ellipse_candidate_count": 18,
+  "provisional_ellipse_only_members": [],
+  "raw_filament_count": 48,
+  "sample_mod": 6,
+  "schema": "stellarcsg.p00-edge-controls/v1",
+  "thickness_cm": 30.0,
+  "toroidal_extent_deg": 90.0,
+  "width_cm": 30.0
+}

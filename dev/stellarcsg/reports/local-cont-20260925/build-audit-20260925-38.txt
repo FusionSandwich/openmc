@@ -1,0 +1,7 @@
+2026-09-25 local endpoint-proxy-seed standalone rebuild preflight
+Windows RAM: 33,457,440 KiB total; 3,985,488 KiB free at observation.
+Free disk: C: 84,226,777,088 B; D: 503,768,338,432 B. Build target is C:.
+Largest resident processes: vmmemWSL 1,952,530,432 B; ChatGPT 1,351,806,976 B; chrome 935,256,064 B; codex 877,723,648 B; ChatGPT 739,840,000 B; chrome 682,823,680 B; chrome 672,604,160 B; OneDrive 644,288,512 B.
+Existing WSL OpenMC-Dev-D: GCC 14.2.0, CMake 3.31.6, Ninja 1.12.1, Python 3.13.5, /opt/openmc-venv 606 MiB and pip cache 152 MiB. Existing standalone and native CMake build directories and this local source checkout were observed. Windows Git, Python 3.12 and CMake 4.4 are installed; no Windows Ninja was found on PATH. No active CONDA_PREFIX or VIRTUAL_ENV was reported by PowerShell. Related local OpenMC and StellarCSG checkouts were observed under the StellarCGS workspace.
+Existing capabilities suffice. Planned software download/install/upgrade/acquisition: 0 B. One-job Ninja rebuild of the existing standalone reference library and compiled-surface test executable, expected under 10 MiB new output, targets build/local-cont-20260925 on C:. No dependency environment or remote system changes.
+Rollback: preserve Git source-control history and this receipt; revert the named source/test changes and rebuild only the existing standalone targets if needed. No package/cache rollback is needed.

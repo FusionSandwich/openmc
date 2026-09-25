@@ -1,0 +1,39 @@
+#ifndef OPENMC_SURFACE_SWEPT_SPLINE_H
+#define OPENMC_SURFACE_SWEPT_SPLINE_H
+
+#include "openmc/surface.h"
+#include "stellarcsg/compiled_swept_surface.hpp"
+#include "stellarcsg/compiled_swept_surface_set.hpp"
+
+#include <memory>
+#include <string>
+#include <vector>
+
+namespace openmc {
+
+class SurfaceSweptSpline final : public Surface {
+public:
+  explicit SurfaceSweptSpline(pugi::xml_node surf_node);
+  ~SurfaceSweptSpline() override;
+  double evaluate(Position r) const override;
+  double distance(Position r, Direction u, bool coincident) const override;
+  Direction normal(Position r) const override;
+  BoundingBox bounding_box(bool pos_side) const override;
+  void to_hdf5_inner(hid_t group_id) const override;
+
+private:
+  std::string data_file_;
+  std::string dataset_;
+  std::string dataset_prefix_;
+  std::string content_id_;
+  std::vector<std::string> member_content_ids_;
+  int dataset_start_ {0};
+  int dataset_count_ {0};
+  std::vector<int> dataset_indices_;
+  std::unique_ptr<stellarcsg::CompiledSweptSplineSurface> surface_;
+  std::unique_ptr<stellarcsg::CompiledSweptSplineSurfaceSet> surface_set_;
+};
+
+} // namespace openmc
+
+#endif

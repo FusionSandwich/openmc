@@ -1,0 +1,285 @@
+{
+  "schema": "stellarcsg.frozen-oracle-comparison/v1",
+  "candidate_jsonl_sha256": "9cfb1a95e233b772ba5982bfe3c95c81ec20a5bbd6ff0efcdee4afa67586b9b4",
+  "exact_jsonl_sha256": "678539b89e3dad8edf891744be674d3d6631b4d53331a6e620146d277df00f3a",
+  "candidate_summary": {
+    "kind": "summary",
+    "query_count": 160,
+    "candidate_failures": 0,
+    "candidate_nearest_failures": 0,
+    "reference_disagreements": 0,
+    "blocked": 51,
+    "cache_policy": "unique_queries_fresh_process",
+    "claim": "bounded_replay_not_completeness"
+  },
+  "exact_summary": {
+    "kind": "summary",
+    "query_count": 160,
+    "candidate_failures": 0,
+    "candidate_nearest_failures": 0,
+    "reference_disagreements": 0,
+    "blocked": 0,
+    "cache_policy": "unique_queries_fresh_process",
+    "claim": "bounded_replay_not_completeness"
+  },
+  "matched_queries": 160,
+  "failures": [
+    {
+      "id": "a02",
+      "kind": "BLOCKED",
+      "reason": "terminal_unresolved"
+    },
+    {
+      "id": "a03",
+      "kind": "BLOCKED",
+      "reason": "terminal_unresolved"
+    },
+    {
+      "id": "a06",
+      "kind": "BLOCKED",
+      "reason": "terminal_unresolved"
+    },
+    {
+      "id": "a08",
+      "kind": "BLOCKED",
+      "reason": "terminal_unresolved"
+    },
+    {
+      "id": "a13",
+      "kind": "BLOCKED",
+      "reason": "terminal_unresolved"
+    },
+    {
+      "id": "a15",
+      "kind": "BLOCKED",
+      "reason": "terminal_unresolved"
+    },
+    {
+      "id": "h102",
+      "kind": "BLOCKED",
+      "reason": "terminal_unresolved"
+    },
+    {
+      "id": "h109",
+      "kind": "BLOCKED",
+      "reason": "terminal_unresolved"
+    },
+    {
+      "id": "h110",
+      "kind": "BLOCKED",
+      "reason": "terminal_unresolved"
+    },
+    {
+      "id": "h111",
+      "kind": "BLOCKED",
+      "reason": "terminal_unresolved"
+    },
+    {
+      "id": "h117",
+      "kind": "BLOCKED",
+      "reason": "terminal_unresolved"
+    },
+    {
+      "id": "h121",
+      "kind": "BLOCKED",
+      "reason": "terminal_unresolved"
+    },
+    {
+      "id": "h123",
+      "kind": "BLOCKED",
+      "reason": "terminal_unresolved"
+    },
+    {
+      "id": "h127",
+      "kind": "BLOCKED",
+      "reason": "terminal_unresolved"
+    },
+    {
+      "id": "h133",
+      "kind": "BLOCKED",
+      "reason": "terminal_unresolved"
+    },
+    {
+      "id": "h135",
+      "kind": "BLOCKED",
+      "reason": "terminal_unresolved"
+    },
+    {
+      "id": "h14",
+      "kind": "BLOCKED",
+      "reason": "terminal_unresolved"
+    },
+    {
+      "id": "h26",
+      "kind": "BLOCKED",
+      "reason": "terminal_unresolved"
+    },
+    {
+      "id": "h27",
+      "kind": "BLOCKED",
+      "reason": "terminal_unresolved"
+    },
+    {
+      "id": "h28",
+      "kind": "BLOCKED",
+      "reason": "terminal_unresolved"
+    },
+    {
+      "id": "h35",
+      "kind": "BLOCKED",
+      "reason": "terminal_unresolved"
+    },
+    {
+      "id": "h37",
+      "kind": "BLOCKED",
+      "reason": "terminal_unresolved"
+    },
+    {
+      "id": "h40",
+      "kind": "BLOCKED",
+      "reason": "terminal_unresolved"
+    },
+    {
+      "id": "h41",
+      "kind": "BLOCKED",
+      "reason": "terminal_unresolved"
+    },
+    {
+      "id": "h42",
+      "kind": "BLOCKED",
+      "reason": "terminal_unresolved"
+    },
+    {
+      "id": "h43",
+      "kind": "BLOCKED",
+      "reason": "terminal_unresolved"
+    },
+    {
+      "id": "h44",
+      "kind": "BLOCKED",
+      "reason": "terminal_unresolved"
+    },
+    {
+      "id": "h49",
+      "kind": "BLOCKED",
+      "reason": "terminal_unresolved"
+    },
+    {
+      "id": "h5",
+      "kind": "BLOCKED",
+      "reason": "terminal_unresolved"
+    },
+    {
+      "id": "h52",
+      "kind": "BLOCKED",
+      "reason": "terminal_unresolved"
+    },
+    {
+      "id": "h53",
+      "kind": "BLOCKED",
+      "reason": "terminal_unresolved"
+    },
+    {
+      "id": "h57",
+      "kind": "BLOCKED",
+      "reason": "terminal_unresolved"
+    },
+    {
+      "id": "h59",
+      "kind": "BLOCKED",
+      "reason": "terminal_unresolved"
+    },
+    {
+      "id": "h65",
+      "kind": "BLOCKED",
+      "reason": "terminal_unresolved"
+    },
+    {
+      "id": "h68",
+      "kind": "BLOCKED",
+      "reason": "terminal_unresolved"
+    },
+    {
+      "id": "h69",
+      "kind": "BLOCKED",
+      "reason": "terminal_unresolved"
+    },
+    {
+      "id": "h71",
+      "kind": "BLOCKED",
+      "reason": "terminal_unresolved"
+    },
+    {
+      "id": "h73",
+      "kind": "BLOCKED",
+      "reason": "terminal_unresolved"
+    },
+    {
+      "id": "h75",
+      "kind": "BLOCKED",
+      "reason": "terminal_unresolved"
+    },
+    {
+      "id": "h79",
+      "kind": "BLOCKED",
+      "reason": "terminal_unresolved"
+    },
+    {
+      "id": "h80",
+      "kind": "BLOCKED",
+      "reason": "terminal_unresolved"
+    },
+    {
+      "id": "h81",
+      "kind": "BLOCKED",
+      "reason": "terminal_unresolved"
+    },
+    {
+      "id": "h82",
+      "kind": "BLOCKED",
+      "reason": "terminal_unresolved"
+    },
+    {
+      "id": "h83",
+      "kind": "BLOCKED",
+      "reason": "terminal_unresolved"
+    },
+    {
+      "id": "h84",
+      "kind": "BLOCKED",
+      "reason": "terminal_unresolved"
+    },
+    {
+      "id": "h85",
+      "kind": "BLOCKED",
+      "reason": "terminal_unresolved"
+    },
+    {
+      "id": "h90",
+      "kind": "BLOCKED",
+      "reason": "terminal_unresolved"
+    },
+    {
+      "id": "h91",
+      "kind": "BLOCKED",
+      "reason": "terminal_unresolved"
+    },
+    {
+      "id": "h92",
+      "kind": "BLOCKED",
+      "reason": "terminal_unresolved"
+    },
+    {
+      "id": "h93",
+      "kind": "BLOCKED",
+      "reason": "terminal_unresolved"
+    },
+    {
+      "id": "h99",
+      "kind": "BLOCKED",
+      "reason": "terminal_unresolved"
+    }
+  ],
+  "status": "FAIL",
+  "claim_boundary": "Agreement with this retained exact lane is a bounded-corpus result, not a general root-completeness proof."
+}

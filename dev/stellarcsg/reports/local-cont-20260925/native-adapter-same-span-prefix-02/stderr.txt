@@ -1,0 +1,4 @@
+native single: StellarCSG surface 902 has an unresolved nearest-boundary query
+native member 2: StellarCSG surface 904 has an unresolved nearest-boundary query
+native member 3: StellarCSG surface 904 has an unresolved nearest-boundary query
+native adapter smoke: collection: Swept-spline member has an unresolved nearest-boundary query

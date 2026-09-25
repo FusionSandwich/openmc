@@ -1,0 +1,63 @@
+{
+  "schema": "stellarcsg.native-adapter-smoke/v2",
+  "state": "BLOCKED_COLLECTION_UNRESOLVED",
+  "command": [
+    "/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-local-continuation-20260925/build/native-local-20260925/native_adapter_smoke",
+    "/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-local-continuation-20260925/dev/stellarcsg/qualified/analytic_swept_coils.h5"
+  ],
+  "exit_code": 1,
+  "loader_binding": "libopenmc.so => /mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-local-continuation-20260925/build/native-local-20260925/lib/libopenmc.so (0x0000717facd61000)",
+  "affinity": [
+    0
+  ],
+  "hashes": {
+    "/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-local-continuation-20260925/build/native-local-20260925/native_adapter_smoke": "a92770ac8859c4adcb150ef3c7c7edfe98f82bca908b9f6fe94f4d977563b2da",
+    "/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-local-continuation-20260925/build/native-local-20260925/lib/libopenmc.so": "e05059f2d9ba28ced1e1fe82b39ebaedb3855cc394b716b0272d30af9a4ffe0a",
+    "/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-local-continuation-20260925/dev/stellarcsg/qualified/analytic_swept_coils.h5": "39f77da5ab1fe427cce58b153e9b52cf8915e9973a9b8f3dfad5ab3b00a9e46d",
+    "/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-local-continuation-20260925/dev/stellarcsg/qualification/native_adapter_smoke.cpp": "a87fb73ef99fbea5aab556435c3041f934efd07c60b715ac1a466bf3cd2ad8d7",
+    "/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-local-continuation-20260925/dev/stellarcsg/qualification/run_native_adapter_smoke.py": "52dc1de66bad32de74bead14cfa0eb20e4a842804f7304990e4f9a779119d42a"
+  },
+  "single_expected_cm": 25.0,
+  "single_tolerance_cm": 1e-06,
+  "single_distance_cm": 25.000000000000078,
+  "single_pass": true,
+  "solver_probes": [
+    {
+      "kind": "native_stellarcsg_solver_probe",
+      "member": 2,
+      "found": true,
+      "terminal_unresolved": true,
+      "unresolved_intervals": 4,
+      "lead_distance_cm": 16,
+      "reference_found": true,
+      "reference_distance_cm": 16.00000000067265
+    },
+    {
+      "kind": "native_stellarcsg_solver_probe",
+      "member": 3,
+      "found": true,
+      "terminal_unresolved": true,
+      "unresolved_intervals": 5,
+      "lead_distance_cm": 17.000000000000227,
+      "reference_found": true,
+      "reference_distance_cm": 17.000000000038547
+    }
+  ],
+  "solver_probe_complete": true,
+  "member_probes": [
+    {
+      "kind": "native_stellarcsg_member_probe",
+      "member": 2,
+      "state": "ERROR"
+    },
+    {
+      "kind": "native_stellarcsg_member_probe",
+      "member": 3,
+      "state": "ERROR"
+    }
+  ],
+  "probe_complete": true,
+  "collection_blocked": true,
+  "native_transport_run": false,
+  "claim_boundary": "The faithful circular spline registered through native OpenMC and returned the analytic fixture crossing within 1e-6 cm. Shaped member and collection root queries remain terminal unresolved; no particle transport ran."
+}

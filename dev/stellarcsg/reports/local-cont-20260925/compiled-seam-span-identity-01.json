@@ -1,0 +1,280 @@
+{
+  "schema": "stellarcsg.compiled-seam-span-identity/v1",
+  "state": "COMPILED_SEAM_POWERS_MATCH_MODEL_BITWISE",
+  "source_sha256": "7bdc83cb8a1abc08ee9e519fd1f5aee1329ac41f248584107f374cd244dbebeb",
+  "helper_source_sha256": "751dc3c9d28620a942b41b5b008e5cb9191ddd43cb33c39b8d0dd1847d8ae4ee",
+  "helper_executable_sha256": "c7c4b0399937dd823e29ab171b35f413958768bb0c3e44009702d8f72837e2bb",
+  "static_library_sha256": "5cb8273552738defc8102321b55b592e855f32b43249ae4728e87359a229cbb9",
+  "production_source_sha256": "d2823d12de04bd062987fc91e82ee69a6af36c3adc285ed6929399577f3d8a73",
+  "h5_sha256": "39f77da5ab1fe427cce58b153e9b52cf8915e9973a9b8f3dfad5ab3b00a9e46d",
+  "angle_receipt_sha256": "d4185980d428f64a444c9f8fcd1263073996d77f8ee30f67c4861c2d9942001b",
+  "compiled_spans": [
+    {
+      "member": 2,
+      "sample_count": 256,
+      "span": 0,
+      "angle_min_hex": "0x0p+0",
+      "angle_max_hex": "0x1.921fb54442d18p-6",
+      "power_hex": [
+        [
+          "0x1.04p+9",
+          "-0x1p-42",
+          "-0x1.893fd8af47p-3",
+          "0x1.1aa15972p-14"
+        ],
+        [
+          "0x0p+0",
+          "0x1.75e7ef494bfefp+3",
+          "0x1.1ap-43",
+          "-0x1.1386e358b9p-9"
+        ],
+        [
+          "0x0p+0",
+          "0x0p+0",
+          "0x0p+0",
+          "0x0p+0"
+        ],
+        [
+          "0x0p+0",
+          "0x0p+0",
+          "0x0p+0",
+          "0x0p+0"
+        ],
+        [
+          "0x0p+0",
+          "0x0p+0",
+          "0x0p+0",
+          "0x0p+0"
+        ],
+        [
+          "0x1.ffffffffffffep-1",
+          "0x1.8p-53",
+          "0x1.8p-53",
+          "-0x1.4p-53"
+        ],
+        [
+          "0x1.8p+4",
+          "0x0p+0",
+          "0x0p+0",
+          "0x0p+0"
+        ],
+        [
+          "0x1.bfffffffffffep+3",
+          "0x0p+0",
+          "0x0p+0",
+          "0x0p+0"
+        ]
+      ]
+    },
+    {
+      "member": 2,
+      "sample_count": 256,
+      "span": 255,
+      "angle_min_hex": "0x1.908d958efe8ebp+2",
+      "angle_max_hex": "0x1.921fb54442d18p+2",
+      "power_hex": [
+        [
+          "0x1.03e76e37b7be8p+9",
+          "0x1.890ada6e82cp-2",
+          "-0x1.88d5dc2dc08p-3",
+          "-0x1.1aa15967p-14"
+        ],
+        [
+          "-0x1.75d6b6db1674fp+3",
+          "0x1.75b445feab656p+3",
+          "0x1.9d4a5504a9201p-8",
+          "-0x1.1386e358598p-9"
+        ],
+        [
+          "0x0p+0",
+          "0x0p+0",
+          "0x0p+0",
+          "0x0p+0"
+        ],
+        [
+          "0x0p+0",
+          "0x0p+0",
+          "0x0p+0",
+          "0x0p+0"
+        ],
+        [
+          "0x0p+0",
+          "0x0p+0",
+          "0x0p+0",
+          "0x0p+0"
+        ],
+        [
+          "0x1.fffffffffffffp-1",
+          "-0x1.8p-53",
+          "0x1.8p-53",
+          "0x0p+0"
+        ],
+        [
+          "0x1.8p+4",
+          "0x0p+0",
+          "0x0p+0",
+          "0x0p+0"
+        ],
+        [
+          "0x1.bfffffffffffep+3",
+          "0x0p+0",
+          "0x0p+0",
+          "0x0p+0"
+        ]
+      ]
+    },
+    {
+      "member": 3,
+      "sample_count": 384,
+      "span": 0,
+      "angle_min_hex": "0x0p+0",
+      "angle_max_hex": "0x1.0c152382d7365p-6",
+      "power_hex": [
+        [
+          "0x1.107fffffffffep+9",
+          "0x1p-43",
+          "-0x1.bc0c44a946p-4",
+          "0x1.d8a403f4p-16"
+        ],
+        [
+          "0x1.2p-48",
+          "0x1.077231599ac62p+3",
+          "-0x1.4p-43",
+          "-0x1.d11f32afa8p-11"
+        ],
+        [
+          "0x1.4p-52",
+          "0x1.f6b907b79df02p+0",
+          "-0x1.fep-46",
+          "-0x1.1a43c99663p-12"
+        ],
+        [
+          "-0x1.a41b71p-50",
+          "0x1.f6d3f0cfa4aaap-20",
+          "0x1.fa4ap-56",
+          "-0x1.6be85c2f69823p-22"
+        ],
+        [
+          "-0x1.db2eb3f2a12b7p-3",
+          "0x1.cp-54",
+          "0x1.45c06e6ba7p-16",
+          "-0x1.1b17d366p-25"
+        ],
+        [
+          "0x1.f207183bdf892p-1",
+          "-0x1p-52",
+          "0x1.36d27e262p-18",
+          "-0x1.1bf51acp-27"
+        ],
+        [
+          "0x1.2p+4",
+          "0x0p+0",
+          "0x0p+0",
+          "0x0p+0"
+        ],
+        [
+          "0x1.8p+3",
+          "0x0p+0",
+          "0x0p+0",
+          "0x0p+0"
+        ]
+      ]
+    },
+    {
+      "member": 3,
+      "sample_count": 384,
+      "span": 383,
+      "angle_min_hex": "0x1.9113a020bffa4p+2",
+      "angle_max_hex": "0x1.921fb54442d17p+2",
+      "power_hex": [
+        [
+          "0x1.1072208a2cb7ap+9",
+          "0x1.bbdff548e68p-3",
+          "-0x1.bbb3a5e885p-4",
+          "-0x1.d8a40408p-16"
+        ],
+        [
+          "-0x1.076aecdcd0009p+3",
+          "0x1.075c63e33a70ep+3",
+          "0x1.5cd76605a3718p-9",
+          "-0x1.d11f32b29bp-11"
+        ],
+        [
+          "-0x1.f6a7637b047dfp+0",
+          "0x1.f6841b01d192p+0",
+          "0x1.a765ae633077ep-11",
+          "-0x1.1a43c997a08p-12"
+        ],
+        [
+          "-0x1.9bd9d9ca60f0bp-20",
+          "0x1.cbcb57588fb0bp-21",
+          "0x1.10ee45233d2dbp-20",
+          "-0x1.6be85c2ed20c4p-22"
+        ],
+        [
+          "-0x1.db248a5b8d1bap-3",
+          "-0x1.44ec1c8d2ap-15",
+          "0x1.4417caaeb4p-16",
+          "0x1.1b17d34cp-25"
+        ],
+        [
+          "0x1.f207b35e21558p-1",
+          "-0x1.35fd8651d8p-17",
+          "0x1.35288e7d5p-18",
+          "0x1.1bf51b4p-27"
+        ],
+        [
+          "0x1.2p+4",
+          "0x0p+0",
+          "0x0p+0",
+          "0x0p+0"
+        ],
+        [
+          "0x1.8p+3",
+          "0x0p+0",
+          "0x0p+0",
+          "0x0p+0"
+        ]
+      ]
+    }
+  ],
+  "checks": [
+    {
+      "member": 2,
+      "span": 0,
+      "sample_count": 256,
+      "coefficients_compared": 32,
+      "power_mismatch_count": 0,
+      "power_mismatches": [],
+      "last_span_angle_limits_match": null
+    },
+    {
+      "member": 2,
+      "span": 255,
+      "sample_count": 256,
+      "coefficients_compared": 32,
+      "power_mismatch_count": 0,
+      "power_mismatches": [],
+      "last_span_angle_limits_match": true
+    },
+    {
+      "member": 3,
+      "span": 0,
+      "sample_count": 384,
+      "coefficients_compared": 32,
+      "power_mismatch_count": 0,
+      "power_mismatches": [],
+      "last_span_angle_limits_match": null
+    },
+    {
+      "member": 3,
+      "span": 383,
+      "sample_count": 384,
+      "coefficients_compared": 32,
+      "power_mismatch_count": 0,
+      "power_mismatches": [],
+      "last_span_angle_limits_match": true
+    }
+  ],
+  "claim_boundary": "Reads actual CompiledSweptSplineSurface spans from the existing static library. Bitwise power/angle identity does not enclose floating frame evaluation or root solving, prove the static library's build provenance, or admit a native crossing."
+}

@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<model>
+  <materials/>
+  <geometry>
+    <surface id="1" type="periodic-spline"
+      data_file="@ROOT@/dev/stellarcsg/qualified/analytic_periodic_surfaces.h5"
+      dataset="/surfaces/exact_torus"
+      content_id="sha256:d3e32dde20ceb78d7bd802694703920dd8b74b56ce7a9a952ddb63ec76a89a30"
+      solver="layered" units="cm"/>
+    <surface id="2" type="sphere" coeffs="0 0 0 1000" boundary="vacuum"/>
+    <cell id="1" material="void" region="-1"/>
+    <cell id="2" material="void" region="1 -2"/>
+  </geometry>
+  <settings>
+    <run_mode>fixed source</run_mode>
+    <batches>5</batches>
+    <particles>200000</particles>
+    <seed>918273645</seed>
+    <source><space type="point"><parameters>500 0 0</parameters></space></source>
+  </settings>
+</model>

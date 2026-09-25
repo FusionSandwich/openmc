@@ -1,0 +1,23 @@
+{
+  "schema": "stellarcsg.native-swept-identity-gate/v1",
+  "classification": "NATIVE_OPAQUE_CONTENT_ID_REJECTED",
+  "claim_boundary": "The rebuilt native OpenMC swept adapter rejects a copied analytic HDF5 member whose content_id was replaced with an opaque label. The original qualified file loads and then stops at the separately known unresolved-root gate; this is an adapter identity check, not transport or root-completeness qualification.",
+  "input_sha256": {
+    "qualified_analytic_h5": "39f77da5ab1fe427cce58b153e9b52cf8915e9973a9b8f3dfad5ab3b00a9e46d",
+    "opaque_id_copy_h5": "cef6f3b0b1e2006a0f578bea86fb0fd158f365b9d88554a67c34dea827028edc"
+  },
+  "native_binary_sha256": {
+    "adapter_smoke": "a92770ac8859c4adcb150ef3c7c7edfe98f82bca908b9f6fe94f4d977563b2da",
+    "libopenmc_so": "5dfe2ad2a8f346119f2a7e8138c861d8316dc42333987e5610bcab1f1252b09b"
+  },
+  "fixture_change": "Copied analytic_swept_coils.h5 and replaced /coils/coil_001 content_id with unbound-test-label; coefficients and other members unchanged.",
+  "standalone_ctest": "stellarcsg_compiled_surface_tests PASS",
+  "native_original": {
+    "exit_code": 1,
+    "error": "native adapter smoke: single: StellarCSG surface 902 has an unresolved nearest-boundary query"
+  },
+  "native_opaque_copy": {
+    "exit_code": 1,
+    "error": "Unable to initialize swept-spline surface 902: Swept-spline content_id must be a canonical SHA-256 ID"
+  }
+}

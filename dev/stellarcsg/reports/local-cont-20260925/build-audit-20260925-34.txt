@@ -1,0 +1,7 @@
+2026-09-25 local convex fast-path rebuild preflight
+Windows RAM: 33,457,440 KiB total; 3,915,740 KiB free at observation.
+Free disk: C: 82,521,481,216 B; D: 503,900,258,304 B. Build target is C:.
+Largest resident processes: vmmemWSL 1,994,145,792 B; ChatGPT 1,333,637,120 B; chrome 946,429,952 B; codex 877,187,072 B; ChatGPT 720,060,416 B; chrome 689,385,472 B; chrome 672,190,464 B; OneDrive 637,440,000 B.
+Existing WSL OpenMC-Dev-D: GCC 14.2.0, CMake 3.31.6, Ninja 1.12.1, Python 3.13.5, /opt/openmc-venv 606 MiB, pip cache 152 MiB. Existing local source worktree and configured 7.8 MiB standalone build are present.
+Existing capabilities suffice. Planned software download/install/upgrade/acquisition: 0 B. One-job CMake rebuild of existing static library, compiled-surface test and frozen-bank executable, under 20 MiB output, targets build/local-cont-20260925 on C:. No dependency environment or remote system changes.
+Rollback: preserve the source-control history and diagnostic receipts. Revert only the named solver/test edits and rebuild those targets if the experimental repair fails; no package/cache removal is needed.

@@ -1,0 +1,21 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<settings>
+  <run_mode>fixed source</run_mode>
+  <particles>1</particles>
+  <batches>1</batches>
+  <inactive>0</inactive>
+  <source type="independent" strength="1.0" particle="neutron">
+    <space type="point">
+      <parameters>984.9410159314219 594.1559310563775 -235.77154336457613</parameters>
+    </space>
+    <angle type="monodirectional" reference_uvw="-0.12218898552531512 0.7407340887771608 0.6605928106933677"/>
+    <energy type="discrete">
+      <parameters>1000000.0 1.0</parameters>
+    </energy>
+  </source>
+  <output>
+    <summary>false</summary>
+    <tallies>false</tallies>
+  </output>
+  <track>1 1 1</track>
+</settings>

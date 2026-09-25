@@ -1,0 +1,24 @@
+{
+  "schema": "stellarcsg.native-period-particle/v1",
+  "state": "NATIVE_PERIOD_PARTICLE_CONTROLS_PASS",
+  "command": [
+    "/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-local-continuation-20260925/build/native-local-20260925/probe_native_period_particle",
+    "/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-local-continuation-20260925/dev/stellarcsg/reports/local-cont-20260925/provisional-period-region-01"
+  ],
+  "exit_code": 0,
+  "loader_binding": "libopenmc.so => /mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-local-continuation-20260925/build/native-local-20260925/lib/libopenmc.so (0x00007c6f6ad87000)",
+  "affinity": [
+    0
+  ],
+  "hashes": {
+    "auditor": "87ca012e961606b4a5024603fca0b7dcf7562087f4dccfbba5b95dcc23537e48",
+    "helper_source": "3a24397becb0699940b58e4b95835a2a66468b5dfe752b454b02e82931563ad2",
+    "helper": "30406380d18800030d22c6b19fd85239ebe365a51a6254a0868c4de71ca2e7cb",
+    "libopenmc": "51acdf0e99ae549dfe6f8017f370c7bbbd83316b473049addf6874a4ff8f400b",
+    "geometry_xml": "b7361f3b71ebe8066696cfeaabb16a10f50d4412b4264cde2df10ebfcee2869c",
+    "native_region_receipt": "35da9a0cca0b89a1e6bdc3392cc9621cb72baf8d81eaf19131755d963dc4a67d",
+    "stdout": "116d24837079ce2dbf544003b32e5b8dceb015b525ccab57124f628e5b04ee11",
+    "stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  "claim_boundary": "Two deterministic native OpenMC particles cross the x=0 and y=0 rotational periodic planes in opposite directions at radius 2300 cm, beyond the selected coils' bounding box, and reenter the complement cell with expected phase space. This verifies the periodic BC control and model cell handoff only. No histories or swept-coil crossings, physical materials, source clearance or one-period transport are certified."
+}

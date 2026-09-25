@@ -1,0 +1,50 @@
+{
+  "schema_version": 1,
+  "cases": [
+    {
+      "case": "exact_circular_torus",
+      "classification": "PASS_SINGLE_CHART",
+      "independent_points": 197633,
+      "maximum_cartesian_error_cm": 5.684341886080802e-14,
+      "rms_cartesian_error_cm": 1.4433668124306452e-14,
+      "p95_cartesian_error_cm": 2.842170943040401e-14,
+      "approximate_hausdorff_error_cm": 5.684341886080802e-14,
+      "maximum_normal_angle_deg": 1.7075472925031877e-06,
+      "rms_normal_angle_deg": 4.867117512195022e-07,
+      "surface_area_relative_error": 0.0,
+      "volume_relative_error": 0.0,
+      "minimum_radius_cm": 99.99999999999994,
+      "content_id": "sha256:d3e32dde20ceb78d7bd802694703920dd8b74b56ce7a9a952ddb63ec76a89a30"
+    },
+    {
+      "case": "shaped_axisymmetric_miller_like",
+      "classification": "PASS_SINGLE_CHART",
+      "independent_points": 197633,
+      "maximum_cartesian_error_cm": 3.1750357720738975e-07,
+      "rms_cartesian_error_cm": 1.1433534789059062e-07,
+      "p95_cartesian_error_cm": 2.471062572340088e-07,
+      "approximate_hausdorff_error_cm": 3.1750357720738975e-07,
+      "maximum_normal_angle_deg": 2.5670064528288854e-05,
+      "rms_normal_angle_deg": 9.059105986351762e-06,
+      "surface_area_relative_error": -3.507431744108852e-10,
+      "volume_relative_error": 3.4484816918374303e-09,
+      "minimum_radius_cm": 80.18039515010848,
+      "content_id": "sha256:5c02d9a4bd08d23bbc555aeb29ba75c180541ae02cf7fa6fc8bf7e41339348a2"
+    },
+    {
+      "case": "synthetic_multi_harmonic_helical",
+      "classification": "PASS_SINGLE_CHART",
+      "independent_points": 197633,
+      "maximum_cartesian_error_cm": 1.1659439422828655e-06,
+      "rms_cartesian_error_cm": 4.196270657165759e-07,
+      "p95_cartesian_error_cm": 8.255993918737657e-07,
+      "approximate_hausdorff_error_cm": 1.1659439422828655e-06,
+      "maximum_normal_angle_deg": 4.535459047277713e-05,
+      "rms_normal_angle_deg": 1.6627346061900373e-05,
+      "surface_area_relative_error": -1.2291525862379555e-09,
+      "volume_relative_error": -2.472530226291156e-10,
+      "minimum_radius_cm": 89.00027261611966,
+      "content_id": "sha256:e65e84592086019b0c97dfa6fbd19ffbed2bfed3f02e6385d2f3b443132e114d"
+    }
+  ]
+}

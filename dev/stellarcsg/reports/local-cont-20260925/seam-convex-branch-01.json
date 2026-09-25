@@ -1,0 +1,82 @@
+{
+  "schema": "stellarcsg.seam-convex-branch-model/v1",
+  "state": "REAL_BERNSTEIN_CONVEX_WITH_BRACKETED_ROOT",
+  "source_sha256": "e172360cc9eea80a8f93ccf6db6538e9c3212edb67c6b835e42c9b3fac9c362d",
+  "stationary_sha256": "72b1d18fd9d301180f4cd588d3b835027eaaabb10bb51899fc2d6f3173b50374",
+  "compiled_all_spans_sha256": "64b038d56be85866e3dd364134061059885e04e64c01b042cc782d1f773edf3a",
+  "results": [
+    {
+      "member": 2,
+      "span": 255,
+      "distance_strip_cm": [
+        15.99998999999757,
+        16.000000999999962
+      ],
+      "bernstein_lower": [
+        141.82607635971524,
+        141.86438132885675,
+        141.89036920443723,
+        141.90403833019167,
+        141.90545340055002
+      ],
+      "bernstein_upper": [
+        141.8260805796276,
+        141.86438554988095,
+        141.89037342657326,
+        141.90404255343955,
+        141.90545762490973
+      ],
+      "minimum_bernstein_lower": 141.82607635971524,
+      "source_margin_upper_assuming_binary80": 9.856926108509221e-16,
+      "sum_absolute_terms_upper": 284.6893041745,
+      "conservative_64eps_term_budget": 1.975428877244029e-15,
+      "stationary_at_zero": [
+        -141.87806794688282,
+        -141.8780637247468
+      ],
+      "stationary_at_one": [
+        3.3770043273175984e-12,
+        3.377006984748008e-12
+      ],
+      "real_convex_margin_exceeds_source_margin": true,
+      "real_bracketed_root": true
+    },
+    {
+      "member": 3,
+      "span": 383,
+      "distance_strip_cm": [
+        16.99998999999946,
+        17.000001000000257
+      ],
+      "bernstein_lower": [
+        69.01020002819335,
+        69.02146106749625,
+        69.02879273001626,
+        69.03219738181996,
+        69.03169029333176
+      ],
+      "bernstein_upper": [
+        69.01020241135723,
+        69.02146345112494,
+        69.02879511410978,
+        69.03219976637833,
+        69.03169267835496
+      ],
+      "minimum_bernstein_lower": 69.01020002819335,
+      "source_margin_upper_assuming_binary80": 4.793307778454918e-16,
+      "sum_absolute_terms_upper": 148.65664984480617,
+      "conservative_64eps_term_budget": 1.031512721383397e-15,
+      "stationary_at_zero": [
+        -69.024870684264,
+        -69.02486830017047
+      ],
+      "stationary_at_one": [
+        1.0485710887754576e-12,
+        1.0485720266919368e-12
+      ],
+      "real_convex_margin_exceeds_source_margin": true,
+      "real_bracketed_root": true
+    }
+  ],
+  "claim_boundary": "The exact real degree-five stationary polynomial made from compiled binary64 powers has positive derivative Bernstein controls and opposing endpoint signs over each native-lead strip. The source-code 64-epsilon branch margin is compared under binary80 epsilon, but C++ long-double rounding, root iteration, BVH choice, rounded frame, and implicit surface remain unproved."
+}

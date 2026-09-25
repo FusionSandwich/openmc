@@ -1,0 +1,11 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<geometry>
+  <cell id="1001" name="accepted-mesh-coil-region" material="void" region="901 902 -904 905 -906 -903" universe="1"/>
+  <cell id="1002" name="accepted-mesh-complement" material="void" region="901 902 -904 905 -906 903" universe="1"/>
+  <surface id="901" type="x-plane" boundary="periodic" coeffs="0.0" periodic_surface_id="902"/>
+  <surface id="902" type="y-plane" boundary="periodic" coeffs="0.0" periodic_surface_id="901"/>
+  <surface id="903" type="facet-set" data_file="/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-local-continuation-20260925/dev/stellarcsg/reports/local-cont-20260925/p00-accepted-facet-payload-01.h5" dataset="/facets/one_period" content_id="sha256:c580f1c228ee9633df197aed32e5f41bc6bcb7b382d8a68f677e69787e8c57a6" units="cm" periodic_caps="x0 y0"/>
+  <surface id="904" type="z-cylinder" boundary="vacuum" coeffs="0.0 0.0 2500.0"/>
+  <surface id="905" type="z-plane" boundary="vacuum" coeffs="-700.0"/>
+  <surface id="906" type="z-plane" boundary="vacuum" coeffs="700.0"/>
+</geometry>

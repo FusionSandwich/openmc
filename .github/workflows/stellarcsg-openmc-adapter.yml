@@ -1,0 +1,33 @@
+name: StellarCSG experimental OpenMC adapter
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  build-adapter:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          submodules: recursive
+      - name: Install build dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y cmake ninja-build libhdf5-dev zlib1g-dev libpng-dev
+      - name: Configure opt-in adapter build
+        run: |
+          cmake -S . -B build/openmc-stellarcsg -G Ninja \
+            -DCMAKE_BUILD_TYPE=Release \
+            -DOPENMC_BUILD_TESTS=OFF \
+            -DOPENMC_USE_OPENMP=ON \
+            -DSTELLARCSG_BUILD_OPENMC_ADAPTER_TESTS=ON \
+            -DCMAKE_PROJECT_INCLUDE="$PWD/dev/stellarcsg/openmc_adapter/enable.cmake"
+      - name: Build and test adapter
+        run: |
+          cmake --build build/openmc-stellarcsg \
+            --target stellarcsg_openmc_adapter_tests --parallel
+          ctest --test-dir build/openmc-stellarcsg \
+            -R stellarcsg_openmc_adapter_tests --output-on-failure

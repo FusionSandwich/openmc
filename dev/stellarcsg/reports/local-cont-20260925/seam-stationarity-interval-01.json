@@ -1,0 +1,91 @@
+{
+  "schema": "stellarcsg.seam-stationarity-interval/v1",
+  "state": "MODEL_LOCAL_STATIONARY_MINIMA_ENCLOSED",
+  "source_sha256": "2c90919d5e50008c3ef4c94b39797b8fb3a2c563d5b2061882d5357f8ca005c5",
+  "h5_sha256": "39f77da5ab1fe427cce58b153e9b52cf8915e9973a9b8f3dfad5ab3b00a9e46d",
+  "conditioning_sha256": "5d611d2a5033bc8cbd9c38ca34a0ff3e49b4e041932ff6cff2f3352da7e19262",
+  "compiled_spans_sha256": "90ad1bf611e86d1d63b8bc355c6bfddd55e420152916e78b7eefc64dc5647884",
+  "results": [
+    {
+      "member": 2,
+      "span": 255,
+      "native_lead_cm": 15.99999999999757,
+      "model_root_cm": 15.999999999999961,
+      "distance_strip_cm": [
+        15.99998999999757,
+        16.000000999999962
+      ],
+      "parameter_tile": [
+        0.99999999,
+        1.0
+      ],
+      "stationarity_at_tile_left": [
+        1.4190511239210676e-06,
+        1.419051253848759e-06
+      ],
+      "stationarity_at_tile_right": [
+        -3.426029212547125e-12,
+        -3.3383398079822674e-12
+      ],
+      "stationarity_u_derivative": [
+        -141.90545762712088,
+        -141.9054533982823
+      ],
+      "uniform_local_minimum": true,
+      "stationary_u_enclosure": [
+        0.9999999999999758,
+        0.9999999999999766
+      ],
+      "separate_round_angle_hex": [
+        "0x1.921fb54442d17p+2",
+        "0x1.921fb54442d17p+2"
+      ],
+      "fused_round_angle_hex": [
+        "0x1.921fb54442d17p+2",
+        "0x1.921fb54442d17p+2"
+      ],
+      "same_angle_cell_for_exact_root": true
+    },
+    {
+      "member": 3,
+      "span": 383,
+      "native_lead_cm": 16.99999999999946,
+      "model_root_cm": 17.000000000000256,
+      "distance_strip_cm": [
+        16.99998999999946,
+        17.000001000000257
+      ],
+      "parameter_tile": [
+        0.99999999,
+        1.0
+      ],
+      "stationarity_at_tile_left": [
+        6.903158339932303e-07,
+        6.903159200837506e-07
+      ],
+      "stationarity_at_tile_right": [
+        -1.083985730599865e-12,
+        -1.0217454444546918e-12
+      ],
+      "stationarity_u_derivative": [
+        -69.03169267908032,
+        -69.0316902926267
+      ],
+      "uniform_local_minimum": true,
+      "stationary_u_enclosure": [
+        0.9999999999999842,
+        0.9999999999999853
+      ],
+      "separate_round_angle_hex": [
+        "0x1.921fb54442d17p+2",
+        "0x1.921fb54442d17p+2"
+      ],
+      "fused_round_angle_hex": [
+        "0x1.921fb54442d17p+2",
+        "0x1.921fb54442d17p+2"
+      ],
+      "same_angle_cell_for_exact_root": true
+    }
+  ],
+  "claim_boundary": "For each ray distance in the stated strip, the real stored-power last-span centerline has exactly one local squared-distance minimum within the stated u tile. Mapping that exact root through the source angle expression selects the reported binary64 cell under separate and fused arithmetic. This does not bound the numerical nearest-root algorithm, prove global nearest selection across spans, enclose C++ frame/evaluate rounding, or admit a production hit."
+}

@@ -1,0 +1,307 @@
+{
+  "schema": "stellarcsg.implicit-seam-sample/v1",
+  "state": "SAMPLED_DIAGNOSTIC_NOT_INTERVAL_CERTIFIED",
+  "h5_sha256": "39f77da5ab1fe427cce58b153e9b52cf8915e9973a9b8f3dfad5ab3b00a9e46d",
+  "source_sha256": "a61770c2142a93a89905b24517cd6f52e332397d521a7131d83e5b51d49b1bf7",
+  "ray_origin_cm": [
+    550.0,
+    0.0,
+    0.0
+  ],
+  "ray_direction": [
+    -1.0,
+    0.0,
+    0.0
+  ],
+  "rows": [
+    {
+      "member": 2,
+      "span": 0,
+      "samples": 65537,
+      "tangent_x_range": [
+        -0.03284936683487612,
+        -2.9188984846760115e-14
+      ],
+      "positive_quadratic_discriminants": 65537,
+      "branches": [
+        {
+          "branch": -1,
+          "gap_cm": 1.0,
+          "quadratic_roots_in_prefix": 0,
+          "minimum_plane_residual": null
+        },
+        {
+          "branch": -1,
+          "gap_cm": 1e-05,
+          "quadratic_roots_in_prefix": 65073,
+          "minimum_plane_residual": {
+            "u": 0.007080078125,
+            "t_cm": 15.99998999571127,
+            "abs_plane_residual_cm": 0.08598538364581948
+          }
+        },
+        {
+          "branch": -1,
+          "gap_cm": 0.0,
+          "quadratic_roots_in_prefix": 65536,
+          "minimum_plane_residual": {
+            "u": 1.52587890625e-05,
+            "t_cm": 15.999999999953504,
+            "abs_plane_residual_cm": 0.000185313349932073
+          }
+        },
+        {
+          "branch": -1,
+          "gap_cm": -4.0,
+          "quadratic_roots_in_prefix": 65537,
+          "minimum_plane_residual": {
+            "u": 0.0,
+            "t_cm": 16.000000000000004,
+            "abs_plane_residual_cm": 4.086457878546416e-13
+          }
+        },
+        {
+          "branch": 1,
+          "gap_cm": 1.0,
+          "quadratic_roots_in_prefix": 0,
+          "minimum_plane_residual": null
+        },
+        {
+          "branch": 1,
+          "gap_cm": 1e-05,
+          "quadratic_roots_in_prefix": 0,
+          "minimum_plane_residual": null
+        },
+        {
+          "branch": 1,
+          "gap_cm": 0.0,
+          "quadratic_roots_in_prefix": 0,
+          "minimum_plane_residual": null
+        },
+        {
+          "branch": 1,
+          "gap_cm": -4.0,
+          "quadratic_roots_in_prefix": 0,
+          "minimum_plane_residual": null
+        }
+      ]
+    },
+    {
+      "member": 2,
+      "span": 255,
+      "samples": 65537,
+      "tangent_x_range": [
+        -2.9188984846760115e-14,
+        0.03284936683490524
+      ],
+      "positive_quadratic_discriminants": 65537,
+      "branches": [
+        {
+          "branch": -1,
+          "gap_cm": 1.0,
+          "quadratic_roots_in_prefix": 0,
+          "minimum_plane_residual": null
+        },
+        {
+          "branch": -1,
+          "gap_cm": 1e-05,
+          "quadratic_roots_in_prefix": 65073,
+          "minimum_plane_residual": {
+            "u": 0.992919921875,
+            "t_cm": 15.999989995711156,
+            "abs_plane_residual_cm": 0.08598538364500798
+          }
+        },
+        {
+          "branch": -1,
+          "gap_cm": 0.0,
+          "quadratic_roots_in_prefix": 65536,
+          "minimum_plane_residual": {
+            "u": 0.9999847412109375,
+            "t_cm": 15.999999999953504,
+            "abs_plane_residual_cm": 0.0001853133491147939
+          }
+        },
+        {
+          "branch": -1,
+          "gap_cm": -4.0,
+          "quadratic_roots_in_prefix": 65537,
+          "minimum_plane_residual": {
+            "u": 1.0,
+            "t_cm": 16.000000000000004,
+            "abs_plane_residual_cm": 4.086457878546416e-13
+          }
+        },
+        {
+          "branch": 1,
+          "gap_cm": 1.0,
+          "quadratic_roots_in_prefix": 0,
+          "minimum_plane_residual": null
+        },
+        {
+          "branch": 1,
+          "gap_cm": 1e-05,
+          "quadratic_roots_in_prefix": 0,
+          "minimum_plane_residual": null
+        },
+        {
+          "branch": 1,
+          "gap_cm": 0.0,
+          "quadratic_roots_in_prefix": 0,
+          "minimum_plane_residual": null
+        },
+        {
+          "branch": 1,
+          "gap_cm": -4.0,
+          "quadratic_roots_in_prefix": 0,
+          "minimum_plane_residual": null
+        }
+      ]
+    },
+    {
+      "member": 3,
+      "span": 0,
+      "samples": 65537,
+      "tangent_x_range": [
+        -0.025607808853169517,
+        0.0
+      ],
+      "positive_quadratic_discriminants": 65537,
+      "branches": [
+        {
+          "branch": -1,
+          "gap_cm": 1.0,
+          "quadratic_roots_in_prefix": 0,
+          "minimum_plane_residual": null
+        },
+        {
+          "branch": -1,
+          "gap_cm": 1e-05,
+          "quadratic_roots_in_prefix": 0,
+          "minimum_plane_residual": null
+        },
+        {
+          "branch": -1,
+          "gap_cm": 0.0,
+          "quadratic_roots_in_prefix": 0,
+          "minimum_plane_residual": null
+        },
+        {
+          "branch": -1,
+          "gap_cm": -4.0,
+          "quadratic_roots_in_prefix": 0,
+          "minimum_plane_residual": null
+        },
+        {
+          "branch": 1,
+          "gap_cm": 1.0,
+          "quadratic_roots_in_prefix": 0,
+          "minimum_plane_residual": null
+        },
+        {
+          "branch": 1,
+          "gap_cm": 1e-05,
+          "quadratic_roots_in_prefix": 64895,
+          "minimum_plane_residual": {
+            "u": 0.009796142578125,
+            "t_cm": 16.999989974407082,
+            "abs_plane_residual_cm": 0.07989976274397208
+          }
+        },
+        {
+          "branch": 1,
+          "gap_cm": 0.0,
+          "quadratic_roots_in_prefix": 65537,
+          "minimum_plane_residual": {
+            "u": 0.0,
+            "t_cm": 17.000000000000117,
+            "abs_plane_residual_cm": 4.1004142266386344e-15
+          }
+        },
+        {
+          "branch": 1,
+          "gap_cm": -4.0,
+          "quadratic_roots_in_prefix": 65537,
+          "minimum_plane_residual": {
+            "u": 0.0,
+            "t_cm": 17.000000000000117,
+            "abs_plane_residual_cm": 4.1004142266386344e-15
+          }
+        }
+      ]
+    },
+    {
+      "member": 3,
+      "span": 383,
+      "samples": 65537,
+      "tangent_x_range": [
+        4.029704989630805e-14,
+        0.025607808853170898
+      ],
+      "positive_quadratic_discriminants": 65537,
+      "branches": [
+        {
+          "branch": -1,
+          "gap_cm": 1.0,
+          "quadratic_roots_in_prefix": 0,
+          "minimum_plane_residual": null
+        },
+        {
+          "branch": -1,
+          "gap_cm": 1e-05,
+          "quadratic_roots_in_prefix": 0,
+          "minimum_plane_residual": null
+        },
+        {
+          "branch": -1,
+          "gap_cm": 0.0,
+          "quadratic_roots_in_prefix": 0,
+          "minimum_plane_residual": null
+        },
+        {
+          "branch": -1,
+          "gap_cm": -4.0,
+          "quadratic_roots_in_prefix": 0,
+          "minimum_plane_residual": null
+        },
+        {
+          "branch": 1,
+          "gap_cm": 1.0,
+          "quadratic_roots_in_prefix": 0,
+          "minimum_plane_residual": null
+        },
+        {
+          "branch": 1,
+          "gap_cm": 1e-05,
+          "quadratic_roots_in_prefix": 64895,
+          "minimum_plane_residual": {
+            "u": 0.990203857421875,
+            "t_cm": 16.999989974407082,
+            "abs_plane_residual_cm": 0.07989976274348978
+          }
+        },
+        {
+          "branch": 1,
+          "gap_cm": 0.0,
+          "quadratic_roots_in_prefix": 65537,
+          "minimum_plane_residual": {
+            "u": 1.0,
+            "t_cm": 17.000000000000117,
+            "abs_plane_residual_cm": 4.876650129823353e-13
+          }
+        },
+        {
+          "branch": 1,
+          "gap_cm": -4.0,
+          "quadratic_roots_in_prefix": 65537,
+          "minimum_plane_residual": {
+            "u": 1.0,
+            "t_cm": 17.000000000000117,
+            "abs_plane_residual_cm": 4.876650129823353e-13
+          }
+        }
+      ]
+    }
+  ],
+  "claim_boundary": "Finite spline samples and ordinary NumPy arithmetic; no interval exclusion, C++ path enclosure, or root uniqueness claim."
+}

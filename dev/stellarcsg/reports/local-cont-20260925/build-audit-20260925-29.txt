@@ -1,0 +1,7 @@
+2026-09-25 local native build preflight (earlier unresolved candidate scan)
+Windows RAM: 33,457,440 KiB total; 3,129,652 KiB free.
+Free disk: C: 82,000,465,920 B; D: 504,169,246,720 B. Build target is C:.
+Largest resident processes: vmmemWSL 1,859,141,632 B; ChatGPT 1,257,660,416 B; chrome 941,281,280 B; codex 864,165,888 B; another ChatGPT 708,087,808 B; another chrome 700,002,304 B; another chrome 656,920,576 B; OneDrive 634,343,424 B.
+Existing WSL OpenMC-Dev-D: GCC 14.2.0, CMake 3.31.6, Ninja 1.12.1, HDF5 1.14.5, Python 3.13.5 in /opt/openmc-venv (606 MiB); pip cache 152 MiB. Existing local source checkout, standalone build (7.3 MiB), native build (16 MiB), libopenmc.so (3,880,488 B), and 31 local StellarCSG workspace directories are present.
+Existing capabilities suffice. Planned download/install/acquisition: 0 B. One-job native library rebuild in build/native-local-20260925 needs less than 30 MiB incremental output on C:, then bounded one-CPU native smoke/selector checks may write under 2 MiB. No dependency environment, external software, or remote system change.
+Rollback: restore solver source from commit a657cf496 and rebuild the same native target; retain prior native receipts. No package/cache removal is needed.

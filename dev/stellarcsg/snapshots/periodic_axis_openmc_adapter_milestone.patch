@@ -1,0 +1,131 @@
+From f5d2ba78682a701c4a6184fb1427bd74e86e3195 Mon Sep 17 00:00:00 2001
+From: OpenAI <openai@example.invalid>
+Date: Sat, 29 Aug 2026 01:18:01 +0000
+Subject: [PATCH] Add periodic-axis bounds OpenMC adapter and normal-distance
+ layers
+
+---
+ dev/stellarcsg/CMakeLists.txt                 |  53 ++
+ dev/stellarcsg/README.md                      | 129 +++--
+ .../benchmarks/IDENTICAL_HISTORY_BENCHMARK.md |  26 +
+ .../benchmarks/benchmark_periodic_axis.cpp    | 173 ++++++
+ .../benchmarks/openmc_identical_history.py    | 166 ++++++
+ dev/stellarcsg/docs/MATHEMATICAL_CONTRACT.md  |  59 ++
+ ...ONE_PERIODIC_AXIS_OPENMC_ADAPTER_REPORT.md | 164 ++++++
+ .../docs/NORMAL_DISTANCE_LAYER_COMPILER.md    |  94 ++++
+ .../docs/PAPER_REVIEW_AND_ADOPTION_NOTES.md   | 203 +++++++
+ dev/stellarcsg/implementation_manifest.json   |  62 ++-
+ .../include/stellarcsg/coefficient_digest.hpp |  46 ++
+ .../include/stelarcsg/interval.hp          | 157 ++++++
+ .../stellarcsg/periodic_spline_surface.hpp    | 133 +++++
+ dev/stellarcsg/include/stellarcsg/sha256.hpp  |  44 ++
+ .../uniform_periodic_bicubic_spline.hpp       |  19 +
+ .../uniform_periodic_cubic_spline.hpp         |  48 ++
+ dev/stellarcsg/openmc_adapter/INTEGRATION.md  |  64 +++
+ .../include/openmc/surface_periodic_spline.h  |  33 ++
+ .../openmc_periodic_spline.patch              | 206 +++++++
+ .../src/surface_periodic_spline.cpp           | 258 +++++++++
+ .../openmc_adapter/tests/stubs/fmt/core.h     |   6 +
+ .../openmc_adapter/tests/stubs/openmc/array.h |   3 +
+ .../tests/stubs/openmc/boundary_condition.h   |   2 +
+ .../tests/stubs/openmc/bounding_box.h         |  11 +
+ .../tests/stubs/openmc/constants.h            |   3 +
+ .../openmc_adapter/tests/stubs/openmc/error.h |   4 +
+ .../tests/stubs/openmc/hdf5_interface.h       |  31 ++
+ .../tests/stubs/openmc/memory.h               |   3 +
+ .../tests/stubs/openmc/particle.h             |   2 +
+ .../tests/stubs/openmc/position.h             |   2 +
+ .../tests/stubs/openmc/settings.h             |   3 +
+ .../tests/stubs/openmc/surface.h              |  22 +
+ .../tests/stubs/openmc/vector.h               |   3 +
+ .../tests/stubs/openmc/xml_interface.h        |   8 +
+ .../openmc_adapter/tests/stubs/pugixml.hpp    |   8 +
+ .../tests/test_adapter_smoke.cpp              |  36 ++
+ dev/stellarcsg/python/stellarcsg/__init__.py  |  39 ++
+ .../python/stellarcsg/coefficient_schema.py   | 287 ++++++++++
+ .../stellarcsg/normal_distance_layers.py      | 480 ++++++++++++++++
+ .../python/stellarcsg/openmc_surface.py       | 130 +++++
+ .../schemas/periodic_spline_surface_v1.md     |  78 +++
+ dev/stellarcsg/src/coefficient_digest.cpp     | 126 +++++
+ .../src/periodic_spline_surface.cpp           | 517 ++++++++++++++++++
+ dev/stellarcsg/src/sha256.cpp                 | 180 ++++++
+ .../src/uniform_periodic_bicubic_spline.cpp   |  84 ++-
+ .../src/uniform_periodic_cubic_spline.cpp     | 145 +++++
+ .../tests/python/test_coefficient_schema.py   |  70 +++
+ .../python/test_normal_distance_layers.py     | 154 ++++++
+ .../python/test_openmc_surface_wrapper.py     |  79 +++
+ dev/stellarcsg/tests/test_digest.cpp          |  58 ++
+ .../tests/test_periodic_spline_surface.cpp    | 270 +++++++++
+ 51 files changed, 4887 insertions(+), 94 deletions(-)
+ create mode 100644 dev/stellarcsg/benchmarks/IDENTICAL_HISTORY_BENCHMARK.md
+ create mode 100644 dev/stellarcsg/benchmarks/benchmark_periodic_axis.cpp
+ create mode 100755 dev/stellarcsg/benchmarks/openmc_identical_history.py
+ create mode 100644 dev/stellarcsg/docs/MILESTONE_PERIODIC_AXIS_OPENMC_ADAPTER_REPORT.md
+ create mode 100644 dev/stellarcsg/docs/NORMAL_DISTANCE_LAYER_COMPILER.md
+ create mode 100644 dev/stellarcsg/docs/PAPER_REVIEW_AND_ADOPTION_NOTES.md
+ create mode 100644 dev/stellarcsg/include/stellarcsg/coefficient_digest.hpp
+ create mode 100644 dev/stellarcsg/include/stellarcsg/interval.hpp
+ create mode 100644 dev/stellarcsg/include/stellarcsg/periodic_spline_surface.hpp
+ create mode 100644 dev/stellarcsg/include/stellarcsg/sha256.hpp
+ create mode 100644 dev/stellarcsg/include/stellarcsg/uniform_periodic_bicubic_spline.hpp
+ create mode 100644 dev/stellarcsg/openmc_adapter/INTEGRATION.md
+ create mode 100644 dev/stellarcsg/openmc_adapter/include/openmc/surface_periodic_spline.h
+ create mode 100644 dev/stellarcsg/openmc_adapter/openmc_periodic_spline.patch
+ create mode 100644 dev/stellarcsg/openmc_adapter/src/surface_periodic_spline.cpp
+ create mode 100644 dev/stellarcsg/openmc_adapter/tests/stubs/fmt/core.h
+ create mode 100644 dev/stellarcsg/openmc_adapter/tests/stubs/openmc/array.h
+ create mode 100644 dev/stellarcsg/openmc_adapter/tests/stubs/openmc/boundary_condition.h
+ create mode 100644 dev/stellarcsg/openmc_adapter/tests/stubs/openmc/bounding_box.h
+ create mode 100644 dev/stellarcsg/openmc_adapter/tests/stubs/openmc/constants.h
+ create mode 100644 dev/stellarcsg/openmc_adapter/tests/stubs/openmc/error.h
+ create mode 100644 dev/stellarcsg/openmc_adapter/tests/stubs/openmc/hdf5_interface.h
+ create mode 100644 dev/stellarcsg/openmc_adapter/tests/stubs/openmc/memory.h
+ create mode 100644 dev/stellarcsg/openmc_adapter/tests/stubs/openmc/particle.h
+ create mode 100644 dev/stellarcsg/openmc_adapter/tests/stubs/openmc/position.h
+ create mode 100644 dev/stellarcsg/openmc_adapter/tests/stubs/openmc/settings.h
+ create mode 100644 dev/stellarcsg/openmc_adapter/tests/stubs/openmc/surface.h
+ create mode 100644 dev/stellarcsg/openmc_adapter/tests/stubs/openmc/vector.h
+ create mode 100644 dev/stellarcsg/openmc_adapter/tests/stubs/openmc/xml_interface.h
+ create mode 100644 dev/stellarcsg/openmc_adapter/tests/stubs/pugixml.hpp
+ create mode 100644 dev/stellarcsg/openmc_adapter/tests/test_adapter_smoke.cpp
+ create mode 100644 dev/stellarcsg/python/stellarcsg/__init__.py
+ create mode 100644 dev/stellarcsg/python/stellarcsg/coefficient_schema.py
+ create mode 100644 dev/stellarcsg/python/stellarcsg/normal_distance_layers.py
+ create mode 100644 dev/stellarcsg/python/stellarcsg/openmc_surface.py
+ create mode 100644 dev/stellarcsg/schemas/periodic_spline_surface_v1.md
+ create mode 100644 dev/stellarcsg/src/coefficient_digest.cpp
+ create mode 100644 dev/stellarcsg/src/periodic_spline_surface.cpp
+ create mode 100644 dev/stellarcsg/src/sha256.cpp
+ create mode 100644 dev/stellarcsg/src/uniform_periodic_cubic_spline.cpp
+ create mode 100644 dev/stellarcsg/tests/python/test_coefficient_schema.py
+ create mode 100644 dev/stellarcsg/tests/python/test_normal_distance_layers.py
+ create mode 100644 dev/stellarcsg/tests/python/test_openmc_surface_wrapper.py
+ create mode 100644 dev/stellarcsg/tests/test_digest.cpp
+ create mode 100644 dev/stellarcsg/tests/test_periodic_spline_surface.cpp
+
+diff --git a/dev/stellarcsg/CMakeLists.txt b/dev/stellarcsg/CMakeLists.txt
+index 991ef96..2507b3d 100644
+--- a/dev/stellarcsg/CMakeLists.txt
++++ b/dev/stellarcsg/CMakeLists.txt
+@@ -4,10 +4,16 @@ project(stellarcsg_reference_kernel LANGUAGES CSX)
+ 
+ option(STELLARCSG_BUILD_TESTS "Build the standalone StellarCSG tests" ON)
+ 
++option(STELLARCSG_BUILD_BENCHMARKS "Build standalone StellarCSG benchmarks" ON)
++
+ add_library(stellarcsg_reference STATIC
++  src/coefficient_digest.cpp
+   src/periodic_radial_surface.cpp
++  src/periodic_spline_surface.cpp
+   src/root_solver.cpp
++  src/sha256.cpp
+   src/uniform_periodic_bicubic_spline.cpp
++  src/uniform_periodic_cubic_spline.cpp
+ )
+ 
+ add_library(StellarCSG::reference ALIAS stellarcsg_reference)
+@@ -39,4 +45,51 @@ if(STELLARCSG_BUILD_TESTS)
+     target_compile_options(stellarcsg_reference_tests PRIVATE -Wall -Wextra -Wpedantic -Wconversion -Wshadow)
+     target_compile_options(stellarcsg_reference_tests PRIVATE -Wall -Wextra -Wpedantic -Wconversion -Wshadow)
+     add_test(NAME stellarcsg_reference_tests COMMAND stellarcsg_reference_tests)
+ endif()

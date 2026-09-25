@@ -1,0 +1,35 @@
+{
+  "schema": "stellarcsg.recovery04.measure/v1",
+  "hashes": {
+    "dev/stellarcsg/qualification/recovery04_frozen_bank.csv": "7348483e39128259a844d22a7618869a3f111604ea48d01e196a87fe0d396af7",
+    "/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-root-repair-07/dev/stellarcsg/reports/recovery04/wistell-coils-1cm.h5": "9bb178c308e7f3ec659e1651a7d57e0ecbff734d3320000df1c2bf79fcf3262b",
+    "/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-local-continuation-20260925/build/local-cont-20260925/stellarcsg_recovery04_bank": "b7c65d52e51e087412dc685f822240598300ba37d3ba9a3648809043026653c8"
+  },
+  "source_commit": "caba11d92+working",
+  "affinity": [
+    0
+  ],
+  "attempts": [
+    {
+      "lane": "candidate",
+      "repeat": 0,
+      "command": [
+        "/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-local-continuation-20260925/build/local-cont-20260925/stellarcsg_recovery04_bank",
+        "--replay",
+        "dev/stellarcsg/qualification/recovery04_frozen_bank.csv",
+        "--wistell-h5",
+        "/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-root-repair-07/dev/stellarcsg/reports/recovery04/wistell-coils-1cm.h5",
+        "--skip-reference"
+      ],
+      "started": 1790338388.2613268,
+      "exit_code": 2,
+      "finished": 1790338388.3868473,
+      "stdout": "candidate-0.jsonl",
+      "stderr": "candidate-0.stderr"
+    }
+  ],
+  "native_attempts": [],
+  "native_openmc_loader_binding": null,
+  "state": "BLOCKED",
+  "note": "One unique bank per fresh process; reference calls disabled. Per-call timer overhead is included; setup, classification and normal calls are outside distance timers."
+}

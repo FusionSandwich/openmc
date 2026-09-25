@@ -1,0 +1,323 @@
+{
+  "schema": "stellarcsg.quadratic-seam-interval/v2",
+  "state": "EXPERIMENTAL_NARROW_PREFIX_NOT_ROOT_CERTIFIED",
+  "command": [
+    "/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-local-continuation-20260925/build/native-local-20260925/swept_prefix_quadratic_seams",
+    "/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-local-continuation-20260925/dev/stellarcsg/qualified/analytic_swept_coils.h5",
+    "--quadratic-seams"
+  ],
+  "exit_code": 0,
+  "loader_binding": "libopenmc.so => /mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-local-continuation-20260925/build/native-local-20260925/lib/libopenmc.so (0x00007370a945e000)",
+  "affinity": [
+    0
+  ],
+  "hashes": {
+    "/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-local-continuation-20260925/build/native-local-20260925/swept_prefix_quadratic_seams": "665e0ae508456b36b42f6369a60360e26c9cb5533aa11ec2d82d4325c7a32826",
+    "/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-local-continuation-20260925/build/native-local-20260925/lib/libopenmc.so": "3a3dd136201abb937e8940165178b09d681de2acb624daecebb1c5f8eb2cd31b",
+    "/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-local-continuation-20260925/dev/stellarcsg/qualified/analytic_swept_coils.h5": "39f77da5ab1fe427cce58b153e9b52cf8915e9973a9b8f3dfad5ab3b00a9e46d",
+    "/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-local-continuation-20260925/dev/stellarcsg/experiments/swept_prefix_interval.cpp": "b09b660d8e0c10c68772b31a626c50bc57ffe4c969bf627a0d1e120dd83b25b7",
+    "/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-local-continuation-20260925/dev/stellarcsg/experiments/probe_implicit_seam.py": "a61770c2142a93a89905b24517cd6f52e332397d521a7131d83e5b51d49b1bf7",
+    "/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-local-continuation-20260925/dev/stellarcsg/qualification/run_quadratic_seam_probe.py": "302f518477fd4acc187398a8868bc8cfdd19bad3b3db71b8dc8089a17df4b630"
+  },
+  "compile_contract": "GCC 14.2 -O2 -fno-fast-math -ffp-contract=off",
+  "outcome_order": [
+    "excluded_value",
+    "excluded_no_real_root",
+    "excluded_root_interval",
+    "excluded_plane",
+    "undecided_frame",
+    "undecided_root"
+  ],
+  "narrow_prefix_excluded_count": 4,
+  "rows": [
+    {
+      "kind": "quadratic_seam",
+      "member": 2,
+      "span": 0,
+      "gap_cm": 1,
+      "slack": 1e-06,
+      "plane_slack_cm": 0.0001,
+      "nodes": 1,
+      "undecided": 0,
+      "outcomes": [
+        1,
+        0,
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "kind": "quadratic_seam",
+      "member": 2,
+      "span": 0,
+      "gap_cm": 1e-05,
+      "slack": 1e-06,
+      "plane_slack_cm": 0.0001,
+      "nodes": 19,
+      "undecided": 0,
+      "outcomes": [
+        1,
+        0,
+        0,
+        9,
+        0,
+        0
+      ]
+    },
+    {
+      "kind": "quadratic_seam",
+      "member": 2,
+      "span": 0,
+      "gap_cm": 0,
+      "slack": 1e-06,
+      "plane_slack_cm": 0.0001,
+      "nodes": 10001,
+      "undecided": 4987,
+      "outcomes": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        4986
+      ]
+    },
+    {
+      "kind": "quadratic_seam",
+      "member": 2,
+      "span": 0,
+      "gap_cm": -4,
+      "slack": 1e-06,
+      "plane_slack_cm": 0.0001,
+      "nodes": 10001,
+      "undecided": 4987,
+      "outcomes": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        4986
+      ]
+    },
+    {
+      "kind": "quadratic_seam",
+      "member": 2,
+      "span": 255,
+      "gap_cm": 1,
+      "slack": 1e-06,
+      "plane_slack_cm": 0.0001,
+      "nodes": 1,
+      "undecided": 0,
+      "outcomes": [
+        1,
+        0,
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "kind": "quadratic_seam",
+      "member": 2,
+      "span": 255,
+      "gap_cm": 1e-05,
+      "slack": 1e-06,
+      "plane_slack_cm": 0.0001,
+      "nodes": 35,
+      "undecided": 0,
+      "outcomes": [
+        2,
+        0,
+        0,
+        16,
+        0,
+        0
+      ]
+    },
+    {
+      "kind": "quadratic_seam",
+      "member": 2,
+      "span": 255,
+      "gap_cm": 0,
+      "slack": 1e-06,
+      "plane_slack_cm": 0.0001,
+      "nodes": 10001,
+      "undecided": 4969,
+      "outcomes": [
+        0,
+        0,
+        0,
+        27,
+        0,
+        4968
+      ]
+    },
+    {
+      "kind": "quadratic_seam",
+      "member": 2,
+      "span": 255,
+      "gap_cm": -4,
+      "slack": 1e-06,
+      "plane_slack_cm": 0.0001,
+      "nodes": 10001,
+      "undecided": 4969,
+      "outcomes": [
+        0,
+        0,
+        0,
+        27,
+        0,
+        4968
+      ]
+    },
+    {
+      "kind": "quadratic_seam",
+      "member": 3,
+      "span": 0,
+      "gap_cm": 1,
+      "slack": 1e-06,
+      "plane_slack_cm": 0.0001,
+      "nodes": 1,
+      "undecided": 0,
+      "outcomes": [
+        1,
+        0,
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "kind": "quadratic_seam",
+      "member": 3,
+      "span": 0,
+      "gap_cm": 1e-05,
+      "slack": 1e-06,
+      "plane_slack_cm": 0.0001,
+      "nodes": 19,
+      "undecided": 0,
+      "outcomes": [
+        2,
+        0,
+        0,
+        8,
+        0,
+        0
+      ]
+    },
+    {
+      "kind": "quadratic_seam",
+      "member": 3,
+      "span": 0,
+      "gap_cm": 0,
+      "slack": 1e-06,
+      "plane_slack_cm": 0.0001,
+      "nodes": 10001,
+      "undecided": 4987,
+      "outcomes": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        4986
+      ]
+    },
+    {
+      "kind": "quadratic_seam",
+      "member": 3,
+      "span": 0,
+      "gap_cm": -4,
+      "slack": 1e-06,
+      "plane_slack_cm": 0.0001,
+      "nodes": 10001,
+      "undecided": 4987,
+      "outcomes": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        4986
+      ]
+    },
+    {
+      "kind": "quadratic_seam",
+      "member": 3,
+      "span": 383,
+      "gap_cm": 1,
+      "slack": 1e-06,
+      "plane_slack_cm": 0.0001,
+      "nodes": 1,
+      "undecided": 0,
+      "outcomes": [
+        1,
+        0,
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "kind": "quadratic_seam",
+      "member": 3,
+      "span": 383,
+      "gap_cm": 1e-05,
+      "slack": 1e-06,
+      "plane_slack_cm": 0.0001,
+      "nodes": 33,
+      "undecided": 0,
+      "outcomes": [
+        2,
+        0,
+        0,
+        15,
+        0,
+        0
+      ]
+    },
+    {
+      "kind": "quadratic_seam",
+      "member": 3,
+      "span": 383,
+      "gap_cm": 0,
+      "slack": 1e-06,
+      "plane_slack_cm": 0.0001,
+      "nodes": 10001,
+      "undecided": 4972,
+      "outcomes": [
+        0,
+        0,
+        0,
+        25,
+        0,
+        4971
+      ]
+    },
+    {
+      "kind": "quadratic_seam",
+      "member": 3,
+      "span": 383,
+      "gap_cm": -4,
+      "slack": 1e-06,
+      "plane_slack_cm": 0.0001,
+      "nodes": 10001,
+      "undecided": 4972,
+      "outcomes": [
+        0,
+        0,
+        0,
+        25,
+        0,
+        4971
+      ]
+    }
+  ],
+  "claim_boundary": "Off-production interval model on compiled powers; its algebraic ellipse condition and stress slack are not an audited enclosure of the production parametric/libm path. The finite lead neighborhood, root uniqueness and other floating bounds remain unproved. No transport or performance qualification."
+}

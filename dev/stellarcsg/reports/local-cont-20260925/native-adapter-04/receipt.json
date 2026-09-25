@@ -1,0 +1,35 @@
+{
+  "schema": "stellarcsg.native-adapter-smoke/v1",
+  "state": "BLOCKED_COLLECTION_UNRESOLVED",
+  "command": [
+    "/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-local-continuation-20260925/build/native-local-20260925/native_adapter_smoke",
+    "/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-local-continuation-20260925/dev/stellarcsg/qualified/analytic_swept_coils.h5"
+  ],
+  "exit_code": 1,
+  "loader_binding": "libopenmc.so => /mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-local-continuation-20260925/build/native-local-20260925/lib/libopenmc.so (0x00007aeb734f5000)",
+  "affinity": [
+    0
+  ],
+  "hashes": {
+    "/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-local-continuation-20260925/build/native-local-20260925/native_adapter_smoke": "4607fbca355cc8aa46f85fd418b362fcbf01d5778d82bc69698486589696d4c4",
+    "/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-local-continuation-20260925/build/native-local-20260925/lib/libopenmc.so": "31578a499d905e0c1c12fd71270e39a7cf905cc3d5d12cb73c412cdf5707f65a",
+    "/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-local-continuation-20260925/dev/stellarcsg/qualified/analytic_swept_coils.h5": "39f77da5ab1fe427cce58b153e9b52cf8915e9973a9b8f3dfad5ab3b00a9e46d",
+    "/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-local-continuation-20260925/dev/stellarcsg/qualification/native_adapter_smoke.cpp": "820e3e2c84d8ab2fd3ddc7beb9abaf48604511ef5f7347093bbcef5335531a61"
+  },
+  "single_pass": true,
+  "member_probes": [
+    {
+      "kind": "native_stellarcsg_member_probe",
+      "member": 2,
+      "state": "ERROR"
+    },
+    {
+      "kind": "native_stellarcsg_member_probe",
+      "member": 3,
+      "state": "ERROR"
+    }
+  ],
+  "probe_complete": true,
+  "collection_blocked": true,
+  "native_transport_run": false
+}

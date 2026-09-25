@@ -1,0 +1,57 @@
+StellarCSG generic swept-coil baseline profile
+Recorded: 2026-08-31
+Source commit: 379850112dad4f89645005b27e40468e7c89413a
+Case: WISTELL-D representative most-non-planar coil id 31 of 48
+Payload SHA-256: 9bb178c308e7f3ec659e1651a7d57e0ecbff734d3320000df1c2bf79fcf3262b
+Threads/affinity: one OpenMP thread, Docker --cpuset-cpus=2
+
+SAMPLING PROFILER STATUS
+BLOCKED_BY_ENVIRONMENT
+
+Linux perf is absent in both the pinned parastell-openmc:0.16.0 image and the
+available WSL environment. /proc/sys/kernel/perf_event_paranoid is 2. Windows
+WPR is present but cannot reliably resolve optimized Linux-container user-space
+symbols. No dependency or profiling package was added to the frozen baseline.
+
+MEASURED TRANSPORT (three histories per run)
+warm-up: 0.237379 histories/s; transport 12.626 s
+measured 1: 0.237785 histories/s; transport 12.604 s
+measured 2: 0.237502 histories/s; transport 12.619 s
+measured median: 0.2376435 histories/s
+matched fine direct mesh measured median: 199.783 histories/s
+fine mesh / native: 840.6836290493953
+Both representations: zero lost particles, zero detected geometry errors,
+leakage 1.0. The short mesh run is adequate to reproduce the order-of-magnitude
+gap but is not a final stable fine-mesh throughput estimate.
+
+CALL GRAPH
+OpenMC tracking
+  -> SurfaceSweptSpline::distance
+  -> CompiledSweptSplineSurface::distance_reference
+  -> find_nearest_root_reference over the complete coil bounding-box ray interval
+  -> evaluate for every root-function sample
+  -> local_coordinates
+  -> squared_distance over 4*sample_count centerline samples
+  -> 48 golden-section iterations around the best global sample
+  -> frame, which samples 11 periodic spline fields
+
+The numerical ray derivative is a centered finite difference. Each derivative
+sample therefore calls evaluate twice, and each evaluate repeats the complete
+centerline scan and golden-section refinement. OpenMC requests 48 initial ray
+subdivisions and up to 6 global refinement levels. The root solver additionally
+searches stationary points and bisects detected brackets.
+
+STATIC WORK ACCOUNTING
+For N centerline samples, one generic evaluate performs 4N squared-distance
+checks plus approximately 100 additional squared-distance/frame evaluations
+from golden-section setup and its 48 iterations. Each frame evaluates center x,
+y,z; normal x,y,z; binormal x,y,z; and two radii. A root sample plus its numeric
+derivative requires three complete evaluate calls. This work is repeated for
+every globally sampled t value before any local hit is accepted.
+
+DIAGNOSIS
+CONFIRMED: the generic swept production path nests a global ray search around a
+global closest-centerline search. This directly explains the roughly 4.2 seconds
+of transport per history and the 841x matched-mesh gap. The replacement needs a
+two-level coil/span BVH and a local (span,cross-section) solve; the full
+centerline and global ray scans cannot remain on the production path.

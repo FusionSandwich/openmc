@@ -1,0 +1,33 @@
+Facet seam handoff helper and corrected standalone test build preflight, 2026-09-25.
+Windows RAM total/free B: 34260418560 / 9452564480
+Drive free bytes:
+C: 82697072640
+D: 501463289856
+Largest process working sets:
+
+ProcessName           Id      RAM_B
+-----------           --      -----
+ChatGPT            29076 1846833152
+codex              26516 1417633792
+Memory Compression  3228 1373483008
+vmmemWSL           51388 1093287936
+ChatGPT            46276 1035182080
+chrome             59888  733032448
+OneDrive           47340  631816192
+chrome             59272  597676032
+
+
+WSL disks/RAM/executables/caches:
+Filesystem         1B-blocks          Used    Available Use% Mounted on
+/dev/sde       1081101176832   63105708032 963003113472   7% /
+C:\             998965768192  916267925504  82697842688  92% /mnt/c
+D:\            2000397791232 1498934501376 501463289856  75% /mnt/d
+               total        used        free      shared  buff/cache   available
+Mem:     25200033792   894849024 24288018432     3641344   331960320 24305184768
+Swap:    34359738368           0 34359738368
+g++ (Debian 14.2.0-19) 14.2.0
+cmake version 3.31.6
+/opt/openmc-fes-venv/bin/python
+/home/sman/.cache/pip
+/home/sman/.local/share/mamba/pkgs
+Existing local capabilities: this StellarCSG checkout, built libopenmc.so, local optimization and ParaStell checkouts on D:, /opt/openmc-fes-venv, Windows Python 3.12.10 / Git 2.55 / CMake 4.4, WSL G++ 14.2 / CMake 3.31.6 / HDF5 1.14.5 / cached Ninja 1.13.2, pip and mamba caches. Prior audits 66-69 contain full inventory. Existing local tools suffice. Planned acquisition 0 B. Compile one native seam helper and one corrected standalone test into existing C: build trees, expected net bytes below 10 MiB. No download, installation, upgrade, dependency environment change, or remote access. Rollback: remove the two generated executables.

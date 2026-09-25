@@ -1,0 +1,468 @@
+{
+  "schema": "stellarcsg.p00-magnet-material-bank/v1",
+  "state": "PASS_SAMPLED_18_MAGNET_MATERIAL_ENTRIES",
+  "histories": 360,
+  "source_rows": [
+    {
+      "dagmc_volume_id": 8,
+      "facet_id": "facet-bb4b1a33cac92fedf825452305ad379bafefd0ce2b7e0182ba7ec8b4976e3fb7",
+      "outside_cm": [
+        896.7235845282671,
+        4.3297341331944255,
+        -329.3153048661797
+      ],
+      "direction": [
+        0.26317011234765625,
+        -0.9537528794351806,
+        0.14524784657964493
+      ],
+      "facet_centroid_cm": [
+        896.7762185507366,
+        4.138983557307382,
+        -329.28625529686377
+      ]
+    },
+    {
+      "dagmc_volume_id": 9,
+      "facet_id": "facet-2254876d2fac567ba7602663c2af684ffa5147a555e7ac4084d83aad911bee2d",
+      "outside_cm": [
+        988.6048337703086,
+        25.101168934577046,
+        -367.22939617284726
+      ],
+      "direction": [
+        0.8649672055939951,
+        0.5018007899959122,
+        -0.005263117554647406
+      ],
+      "facet_centroid_cm": [
+        988.7778272114274,
+        25.20152909257624,
+        -367.2304487963582
+      ]
+    },
+    {
+      "dagmc_volume_id": 10,
+      "facet_id": "facet-487571ecae298648adcc96b78f8ef61d9504fa7e242111bc06adbc4055164cf6",
+      "outside_cm": [
+        1069.6964056787983,
+        93.63891751003223,
+        -346.5365803514107
+      ],
+      "direction": [
+        0.6127135644010832,
+        0.772830965264584,
+        0.16527064811130582
+      ],
+      "facet_centroid_cm": [
+        1069.8189483916785,
+        93.79348370308513,
+        -346.50352622178843
+      ]
+    },
+    {
+      "dagmc_volume_id": 11,
+      "facet_id": "facet-71e1d3cfcc4183883b46ca74a9bd92485ee0559725efff8e77572dbf8e8fc48d",
+      "outside_cm": [
+        1150.4632020627942,
+        208.03191258830367,
+        -342.683317571569
+      ],
+      "direction": [
+        -0.1857684043693724,
+        -0.9629860881744357,
+        -0.19531485842238208
+      ],
+      "facet_centroid_cm": [
+        1150.4260483819203,
+        207.8393153706688,
+        -342.72238054325345
+      ]
+    },
+    {
+      "dagmc_volume_id": 12,
+      "facet_id": "facet-a21b33d68c15afa1eb3564fd1ee68893675df5d74ae05fb51abbc889609a8d68",
+      "outside_cm": [
+        1131.279740349871,
+        130.24572583352665,
+        544.7644359730731
+      ],
+      "direction": [
+        -0.1456706843964794,
+        0.1910331089040288,
+        -0.9707143776672533
+      ],
+      "facet_centroid_cm": [
+        1131.2506062129917,
+        130.28393245530745,
+        544.5702930975397
+      ]
+    },
+    {
+      "dagmc_volume_id": 13,
+      "facet_id": "facet-7e655da43bb98ec73bddadfc9ec02e7c2e4232b38da758b0df930e9de2db8ebc",
+      "outside_cm": [
+        872.8320657499287,
+        204.29814380167286,
+        520.5845103992793
+      ],
+      "direction": [
+        0.19959499852407372,
+        0.08089439466062794,
+        -0.9765336315133574
+      ],
+      "facet_centroid_cm": [
+        872.8719847496335,
+        204.314322680605,
+        520.3892036729767
+      ]
+    },
+    {
+      "dagmc_volume_id": 14,
+      "facet_id": "facet-6f434982878fadd5de0c3404ca8236df031d0d866cc96b61d305e7458f9e52b3",
+      "outside_cm": [
+        984.9410159314219,
+        594.1559310563775,
+        -235.77154336457613
+      ],
+      "direction": [
+        -0.12218898552531512,
+        0.7407340887771608,
+        0.6605928106933677
+      ],
+      "facet_centroid_cm": [
+        984.9165781343169,
+        594.304077874133,
+        -235.63942480243745
+      ]
+    },
+    {
+      "dagmc_volume_id": 15,
+      "facet_id": "facet-54d04d8c0969b56a53ba23ae587ccb763ae3539c6448fcb4713e0a8ec3c55e29",
+      "outside_cm": [
+        521.1925344051424,
+        666.1151506171631,
+        300.12160678127634
+      ],
+      "direction": [
+        0.26231241962251484,
+        -0.6540505957025572,
+        -0.7095139271169466
+      ],
+      "facet_centroid_cm": [
+        521.2449968890669,
+        665.9843404980226,
+        299.97970399585296
+      ]
+    },
+    {
+      "dagmc_volume_id": 16,
+      "facet_id": "facet-6df83a296a3773b0e08b4ecb00e1ca7d1823c8860738a24003eba59e21c3177e",
+      "outside_cm": [
+        841.9555757355049,
+        861.8029694823365,
+        -127.44973704078163
+      ],
+      "direction": [
+        -0.6081775523528958,
+        0.35756742365378047,
+        0.7087069933023369
+      ],
+      "facet_centroid_cm": [
+        841.8339402250343,
+        861.8744829670673,
+        -127.30799564212116
+      ]
+    },
+    {
+      "dagmc_volume_id": 17,
+      "facet_id": "facet-76b929e71b457c5248e728ad8006c04faebdf4ca4dce59d5ed12eeef4e3b821e",
+      "outside_cm": [
+        861.8030801898003,
+        841.9554627453812,
+        127.44973702678193
+      ],
+      "direction": [
+        0.35756734136334595,
+        -0.6081775992823861,
+        -0.7087069945481432
+      ],
+      "facet_centroid_cm": [
+        861.874593658073,
+        841.8338272255247,
+        127.30799562787233
+      ]
+    },
+    {
+      "dagmc_volume_id": 18,
+      "facet_id": "facet-47053a44dfe4fab12b6d589eb326a8d9c99d2f13d129c2b411f33fa30ee861ba",
+      "outside_cm": [
+        666.1152192518199,
+        521.1924474195735,
+        -300.1216066792137
+      ],
+      "direction": [
+        -0.6540505604313129,
+        0.26231250398444017,
+        0.7095139284417878
+      ],
+      "facet_centroid_cm": [
+        665.9844091397337,
+        521.2449099203703,
+        -299.97970389352537
+      ]
+    },
+    {
+      "dagmc_volume_id": 19,
+      "facet_id": "facet-1feddd4e0607df9ba0d856cbde83fd5b2c7e7c0ed7afa9fe145f345c84701e8f",
+      "outside_cm": [
+        594.1560602066857,
+        984.9409380040619,
+        235.77154335911678
+      ],
+      "direction": [
+        0.7407340729310136,
+        -0.12218908266448046,
+        -0.6605928104942141
+      ],
+      "facet_centroid_cm": [
+        594.3042070212718,
+        984.916500187529,
+        235.63942479701794
+      ]
+    },
+    {
+      "dagmc_volume_id": 20,
+      "facet_id": "facet-17af7c1aa9dcc70715eefa7be3b52fb48eb147ce030bb95d71e3c980854edd02",
+      "outside_cm": [
+        204.29766707560847,
+        872.8316306388134,
+        -520.5843337400388
+      ],
+      "direction": [
+        0.08089367668617149,
+        0.19959673395703229,
+        0.9765333362798624
+      ],
+      "facet_centroid_cm": [
+        204.3138458109457,
+        872.8715499856048,
+        -520.3890270727828
+      ]
+    },
+    {
+      "dagmc_volume_id": 21,
+      "facet_id": "facet-24263a0f34c030f0efda519269dc03b0cc847ae042899967df5882eb2151790a",
+      "outside_cm": [
+        130.2457904866726,
+        1131.2795876378777,
+        -544.7644365015856
+      ],
+      "direction": [
+        0.19103331366680326,
+        -0.1456703208157329,
+        0.9707143919314898
+      ],
+      "facet_centroid_cm": [
+        130.28399714940596,
+        1131.2504535737146,
+        -544.5702936231993
+      ]
+    },
+    {
+      "dagmc_volume_id": 22,
+      "facet_id": "facet-cd75e77af6a6a03043143dd3be9c559bf8cbc07bfe5d63bd653c7c421afb2fc9",
+      "outside_cm": [
+        208.0320656534806,
+        1150.463054776352,
+        342.6832470608369
+      ],
+      "direction": [
+        -0.9629859901943502,
+        -0.1857686418725298,
+        0.19531511561126733
+      ],
+      "facet_centroid_cm": [
+        207.83946845544173,
+        1150.4259010479775,
+        342.72231008395914
+      ]
+    },
+    {
+      "dagmc_volume_id": 23,
+      "facet_id": "facet-6a95c63b1cdc1e9683a5e99b266de17541d32baae76cb82a8c366ac80a0b903f",
+      "outside_cm": [
+        93.638897022017,
+        1069.696336507311,
+        346.53644595412976
+      ],
+      "direction": [
+        0.7728309060045551,
+        0.6127136333213554,
+        -0.16527066970978868
+      ],
+      "facet_centroid_cm": [
+        93.79346320321793,
+        1069.8188792339752,
+        346.5033918201878
+      ]
+    },
+    {
+      "dagmc_volume_id": 24,
+      "facet_id": "facet-43e3626b5445d919e3fc46952c679956c5400f2e32353002520accf4919829f9",
+      "outside_cm": [
+        25.10114208516208,
+        988.6048268425043,
+        367.22936045363656
+      ],
+      "direction": [
+        0.5018008066608586,
+        0.8649671960363146,
+        0.005263099427849394
+      ],
+      "facet_centroid_cm": [
+        25.201502246494268,
+        988.7778202817116,
+        367.23041307352213
+      ]
+    },
+    {
+      "dagmc_volume_id": 25,
+      "facet_id": "facet-869de9b588b80d0c81e7684e087d7ac3eae96b7ea6307df05842bd52a5f84212",
+      "outside_cm": [
+        4.329720972982128,
+        896.7235631932399,
+        329.31511126729623
+      ],
+      "direction": [
+        -0.9537527206221594,
+        0.26317084782020117,
+        -0.14524755682429133
+      ],
+      "facet_centroid_cm": [
+        4.138970428857682,
+        896.7761973628039,
+        329.28606175593137
+      ]
+    }
+  ],
+  "per_volume": {
+    "8": {
+      "sampled": 15,
+      "passed": 15,
+      "failed_history_ids": []
+    },
+    "9": {
+      "sampled": 27,
+      "passed": 27,
+      "failed_history_ids": []
+    },
+    "10": {
+      "sampled": 14,
+      "passed": 14,
+      "failed_history_ids": []
+    },
+    "11": {
+      "sampled": 20,
+      "passed": 20,
+      "failed_history_ids": []
+    },
+    "12": {
+      "sampled": 16,
+      "passed": 16,
+      "failed_history_ids": []
+    },
+    "13": {
+      "sampled": 19,
+      "passed": 19,
+      "failed_history_ids": []
+    },
+    "14": {
+      "sampled": 17,
+      "passed": 17,
+      "failed_history_ids": []
+    },
+    "15": {
+      "sampled": 21,
+      "passed": 21,
+      "failed_history_ids": []
+    },
+    "16": {
+      "sampled": 24,
+      "passed": 24,
+      "failed_history_ids": []
+    },
+    "17": {
+      "sampled": 25,
+      "passed": 25,
+      "failed_history_ids": []
+    },
+    "18": {
+      "sampled": 19,
+      "passed": 19,
+      "failed_history_ids": []
+    },
+    "19": {
+      "sampled": 22,
+      "passed": 22,
+      "failed_history_ids": []
+    },
+    "20": {
+      "sampled": 30,
+      "passed": 30,
+      "failed_history_ids": []
+    },
+    "21": {
+      "sampled": 19,
+      "passed": 19,
+      "failed_history_ids": []
+    },
+    "22": {
+      "sampled": 22,
+      "passed": 22,
+      "failed_history_ids": []
+    },
+    "23": {
+      "sampled": 21,
+      "passed": 21,
+      "failed_history_ids": []
+    },
+    "24": {
+      "sampled": 17,
+      "passed": 17,
+      "failed_history_ids": []
+    },
+    "25": {
+      "sampled": 12,
+      "passed": 12,
+      "failed_history_ids": []
+    }
+  },
+  "unmatched": [],
+  "run": {
+    "exit_code": 0,
+    "run_identity": true,
+    "stdout_tail": "A/openc-hts-dpa/.data/openmc/FENDL-3.1d_Pb20\n 8.h5\n Reading S32 from\n /mnt/c/Users/joshu/Documents/2026_DPA/openc-hts-dpa/.data/openmc/FENDL-3.1d_S32.\n h5\n Reading S33 from\n /mnt/c/Users/joshu/Documents/2026_DPA/openc-hts-dpa/.data/openmc/FENDL-3.1d_S33.\n h5\n Reading S34 from\n /mnt/c/Users/joshu/Documents/2026_DPA/openc-hts-dpa/.data/openmc/FENDL-3.1d_S34.\n h5\n Reading S36 from\n /mnt/c/Users/joshu/Documents/2026_DPA/openc-hts-dpa/.data/openmc/FENDL-3.1d_S36.\n h5\n Reading Si28 from\n /mnt/c/Users/joshu/Documents/2026_DPA/openc-hts-dpa/.data/openmc/FENDL-3.1d_Si28\n .h5\n Reading Si29 from\n /mnt/c/Users/joshu/Documents/2026_DPA/openc-hts-dpa/.data/openmc/FENDL-3.1d_Si29\n .h5\n Reading Si30 from\n /mnt/c/Users/joshu/Documents/2026_DPA/openc-hts-dpa/.data/openmc/FENDL-3.1d_Si30\n .h5\n Reading Sn112 from\n /mnt/c/Users/joshu/Documents/2026_DPA/openc-hts-dpa/.data/openmc/FENDL-3.1d_Sn11\n 2.h5\n Reading Sn114 from\n /mnt/c/Users/joshu/Documents/2026_DPA/openc-hts-dpa/.data/openmc/FENDL-3.1d_Sn11\n 4.h5\n Reading Sn115 from\n /mnt/c/Users/joshu/Documents/2026_DPA/openc-hts-dpa/.data/openmc/FENDL-3.1d_Sn11\n 5.h5\n Reading Sn116 from\n /mnt/c/Users/joshu/Documents/2026_DPA/openc-hts-dpa/.data/openmc/FENDL-3.1d_Sn11\n 6.h5\n Reading Sn117 from\n /mnt/c/Users/joshu/Documents/2026_DPA/openc-hts-dpa/.data/openmc/FENDL-3.1d_Sn11\n 7.h5\n Reading Sn118 from\n /mnt/c/Users/joshu/Documents/2026_DPA/openc-hts-dpa/.data/openmc/FENDL-3.1d_Sn11\n 8.h5\n Reading Sn119 from\n /mnt/c/Users/joshu/Documents/2026_DPA/openc-hts-dpa/.data/openmc/FENDL-3.1d_Sn11\n 9.h5\n Reading Sn120 from\n /mnt/c/Users/joshu/Documents/2026_DPA/openc-hts-dpa/.data/openmc/FENDL-3.1d_Sn12\n 0.h5\n Reading Sn122 from\n /mnt/c/Users/joshu/Documents/2026_DPA/openc-hts-dpa/.data/openmc/FENDL-3.1d_Sn12\n 2.h5\n Reading Sn124 from\n /mnt/c/Users/joshu/Documents/2026_DPA/openc-hts-dpa/.data/openmc/FENDL-3.1d_Sn12\n 4.h5\n Minimum neutron data temperature: 300 K\n Maximum neutron data temperature: 300 K\n Preparing distributed cell instances...\n Reading plot XML file...\n Writing summary.h5 file...\n Maximum neutron transport energy: 60000000 eV for He3\n\n ===============>     FIXED SOURCE TRANSPORT SIMULATION     <===============\n\n Simulating batch 1\n Creating state point statepoint.1.h5...\n\n =======================>     TIMING STATISTICS     <=======================\n\n Total time for initialization     = 3.9842e+01 seconds\n   Reading cross sections          = 3.6027e+01 seconds\n Total time in simulation          = 3.8506e-01 seconds\n   Time in transport only          = 3.7243e-01 seconds\n   Time in active batches          = 3.8506e-01 seconds\n   Time accumulating tallies       = 2.8310e-04 seconds\n   Time writing statepoints        = 1.2329e-02 seconds\n Total time for finalization       = 5.5051e-02 seconds\n Total time elapsed                = 4.0296e+01 seconds\n Calculation Rate (active)         = 934.926 particles/second\n\n ============================>     RESULTS     <============================\n\n Leakage Fraction           = 0.91667\n\n",
+    "stderr_tail": " WARNING: Negative value(s) found on probability table for nuclide Mo100 at 300K\n WARNING: Negative value(s) found on probability table for nuclide Mo92 at 300K\n WARNING: Negative value(s) found on probability table for nuclide Mo94 at 300K\n WARNING: Negative value(s) found on probability table for nuclide Mo95 at 300K\n WARNING: Negative value(s) found on probability table for nuclide Mo96 at 300K\n WARNING: Negative value(s) found on probability table for nuclide Mo97 at 300K\n WARNING: Negative value(s) found on probability table for nuclide Mo98 at 300K\n WARNING: Could not compute uncertainties -- only one active batch simulated!\n"
+  },
+  "hashes": {
+    "auditor": "52ff4a0d197a57a5426a15ca4a180dbec16b75c9f9cfe31329c2f77e9ef3d259",
+    "accepted_h5m": "549c42bf66b290f8f56b6f4d7523940c3b32b9d256d993ea42605f4dddb33e39",
+    "accepted_model_xml": "afee680e3fe7e1e417bb37e289f2ce775fe16fb8fc11298237ea3d959c864027",
+    "accepted_smoke_receipt": "716ed09c45402c47e9f480f495358260b8c9d1112233a36519916e9a4ab35931",
+    "side_bank": "37918fd9c88c3b28a60366ab67a4e3599fbefacb446e1afaee4d515105a679e4",
+    "region_receipt": "7796088ae3374a549fd5ad3e86e0e85e072a6d52729cae721fb8c0e3a0a2deed",
+    "facet_payload": "3db1723d250319d7e6e3d0a4cbbba7b88a68c830fba4214d001a8c2c2545c2d4",
+    "cross_sections_index": "218236803b2c4a21b038992af93dacfdfe5c0c0401cbbc57f3ff3a947c63abc7",
+    "binary": "dd0f316e5bd0965092f2a080167da9bbde83416392b6473763063fd95ec63dde",
+    "library": "fbc38dedc17e20342a56dd50e2d56f86330238dae00b95ab3e4602864967cba4",
+    "geometry.xml": "7a7205105faf26522170153620c3f3e73e69d026f43b1bc1600c836677f067e8",
+    "materials.xml": "13a9562640cb8add8fe8a74ff32acc8f0cfde1236642f42a821484399475016d",
+    "settings.xml": "4dd237041e010889dfb02c223bd82cabadd2ad95b7cf443e51222e0e55defd47",
+    "source.h5": "d13553a31262d45067a8e096e73857d459054b482cf7bf0ccb52b927c611b442",
+    "tracks.h5": "09d8ed47dcc506153414ea3bfa58817f290e22910eb18fb723516e26af396101",
+    "statepoint.1.h5": "57ad462750510b80af564d15da56fe2d26a11ee979ffe623dc5e036c91b2ad0d",
+    "summary.h5": "a6ab5f348cbe5fb100dc5a5743092fd6cb15020b7d9cda1132f04767a8809280"
+  },
+  "claim_boundary": "A bounded local 1 MeV file-source sample enters each of 18 deterministic-priority faceted coil cells with accepted common magnet material 7. Sources are sampled with replacement, so counts differ. This is not a plasma source, collision-physics benchmark, statistical tally qualification, continuous CAD or winding-pack clearance proof, or matched performance comparison."
+}

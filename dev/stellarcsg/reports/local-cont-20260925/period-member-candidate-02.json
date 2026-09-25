@@ -1,0 +1,1320 @@
+{
+  "schema": "stellarcsg.period-member-inventory/v1",
+  "h5_sha256": "9571b71cff1f2f1e4bbeb079d779bfcc9b614da87e16cf2cfd49dae931918018",
+  "member_count": 48,
+  "controls_per_member": 256,
+  "rotation_degrees": 90,
+  "rows": [
+    {
+      "member": "coil_1000",
+      "rotated_match": "coil_1002",
+      "centroid_distance_cm": 5.5477161526870124e-05,
+      "centerline_alignment": {
+        "reverse": false,
+        "shift": 0,
+        "rms_cm": 5.6420173631225925e-05,
+        "maximum_cm": 6.769014192788538e-05
+      },
+      "frame_maximum_residuals": {
+        "normal_coefficients": 4.372071574697887e-08,
+        "binormal_coefficients": 4.377093853702634e-08
+      },
+      "radius_maximum_residuals_cm": {
+        "major_radius_coefficients": 0.0,
+        "minor_radius_coefficients": 0.0
+      },
+      "ellipse_tensor_maximum_frobenius_cm2": 6.18359801021027e-06,
+      "angular_extent_degrees_unwrapped": [
+        -6.25202664263014,
+        10.459380431518127
+      ],
+      "crosses_90_degree_seam": true
+    },
+    {
+      "member": "coil_1001",
+      "rotated_match": "coil_1007",
+      "centroid_distance_cm": 0.00016643148502526513,
+      "centerline_alignment": {
+        "reverse": false,
+        "shift": 0,
+        "rms_cm": 0.00016926052087452528,
+        "maximum_cm": 0.00020307042562629055
+      },
+      "frame_maximum_residuals": {
+        "normal_coefficients": 1.3116210475378044e-07,
+        "binormal_coefficients": 1.3131073760870726e-07
+      },
+      "radius_maximum_residuals_cm": {
+        "major_radius_coefficients": 0.0,
+        "minor_radius_coefficients": 0.0
+      },
+      "ellipse_tensor_maximum_frobenius_cm2": 1.8550805702467167e-05,
+      "angular_extent_degrees_unwrapped": [
+        -10.459380431518127,
+        6.25202664263014
+      ],
+      "crosses_90_degree_seam": true
+    },
+    {
+      "member": "coil_1002",
+      "rotated_match": "coil_1004",
+      "centroid_distance_cm": 5.547716165077397e-05,
+      "centerline_alignment": {
+        "reverse": false,
+        "shift": 0,
+        "rms_cm": 5.642017354768013e-05,
+        "maximum_cm": 6.76901418523763e-05
+      },
+      "frame_maximum_residuals": {
+        "normal_coefficients": 4.372071013135631e-08,
+        "binormal_coefficients": 4.3768827533799185e-08
+      },
+      "radius_maximum_residuals_cm": {
+        "major_radius_coefficients": 0.0,
+        "minor_radius_coefficients": 0.0
+      },
+      "ellipse_tensor_maximum_frobenius_cm2": 6.183607326343744e-06,
+      "angular_extent_degrees_unwrapped": [
+        83.74797586184803,
+        100.4593829359963
+      ],
+      "crosses_90_degree_seam": true
+    },
+    {
+      "member": "coil_1003",
+      "rotated_match": "coil_1001",
+      "centroid_distance_cm": 5.5477161526870124e-05,
+      "centerline_alignment": {
+        "reverse": false,
+        "shift": 0,
+        "rms_cm": 5.6420173631225925e-05,
+        "maximum_cm": 6.769014192788538e-05
+      },
+      "frame_maximum_residuals": {
+        "normal_coefficients": 4.372071574697887e-08,
+        "binormal_coefficients": 4.377093853702634e-08
+      },
+      "radius_maximum_residuals_cm": {
+        "major_radius_coefficients": 0.0,
+        "minor_radius_coefficients": 0.0
+      },
+      "ellipse_tensor_maximum_frobenius_cm2": 6.18359801021027e-06,
+      "angular_extent_degrees_unwrapped": [
+        -100.4593829359963,
+        -83.74797586184803
+      ],
+      "crosses_90_degree_seam": true
+    },
+    {
+      "member": "coil_1004",
+      "rotated_match": "coil_1006",
+      "centroid_distance_cm": 5.547716184762113e-05,
+      "centerline_alignment": {
+        "reverse": false,
+        "shift": 0,
+        "rms_cm": 5.642017369561933e-05,
+        "maximum_cm": 6.769014184602897e-05
+      },
+      "frame_maximum_residuals": {
+        "normal_coefficients": 4.372067887615092e-08,
+        "binormal_coefficients": 4.377097156344238e-08
+      },
+      "radius_maximum_residuals_cm": {
+        "major_radius_coefficients": 0.0,
+        "minor_radius_coefficients": 0.0
+      },
+      "ellipse_tensor_maximum_frobenius_cm2": 6.183600365926271e-06,
+      "angular_extent_degrees_unwrapped": [
+        -186.25202163367382,
+        -169.54061455952555
+      ],
+      "crosses_90_degree_seam": true
+    },
+    {
+      "member": "coil_1005",
+      "rotated_match": "coil_1003",
+      "centroid_distance_cm": 5.547716165077397e-05,
+      "centerline_alignment": {
+        "reverse": false,
+        "shift": 0,
+        "rms_cm": 5.642017354768013e-05,
+        "maximum_cm": 6.76901418523763e-05
+      },
+      "frame_maximum_residuals": {
+        "normal_coefficients": 4.372071013135631e-08,
+        "binormal_coefficients": 4.3768827533799185e-08
+      },
+      "radius_maximum_residuals_cm": {
+        "major_radius_coefficients": 0.0,
+        "minor_radius_coefficients": 0.0
+      },
+      "ellipse_tensor_maximum_frobenius_cm2": 6.183607326343743e-06,
+      "angular_extent_degrees_unwrapped": [
+        169.54061455952555,
+        186.25202163367382
+      ],
+      "crosses_90_degree_seam": true
+    },
+    {
+      "member": "coil_1006",
+      "rotated_match": "coil_1000",
+      "centroid_distance_cm": 0.00016643148502526513,
+      "centerline_alignment": {
+        "reverse": false,
+        "shift": 0,
+        "rms_cm": 0.00016926052087452528,
+        "maximum_cm": 0.00020307042562629055
+      },
+      "frame_maximum_residuals": {
+        "normal_coefficients": 1.3116210475378044e-07,
+        "binormal_coefficients": 1.3131073760870726e-07
+      },
+      "radius_maximum_residuals_cm": {
+        "major_radius_coefficients": 0.0,
+        "minor_radius_coefficients": 0.0
+      },
+      "ellipse_tensor_maximum_frobenius_cm2": 1.8550805702467163e-05,
+      "angular_extent_degrees_unwrapped": [
+        -96.25201912919566,
+        -79.54061205504739
+      ],
+      "crosses_90_degree_seam": true
+    },
+    {
+      "member": "coil_1007",
+      "rotated_match": "coil_1005",
+      "centroid_distance_cm": 5.547716184762113e-05,
+      "centerline_alignment": {
+        "reverse": false,
+        "shift": 0,
+        "rms_cm": 5.642017369561933e-05,
+        "maximum_cm": 6.769014184602897e-05
+      },
+      "frame_maximum_residuals": {
+        "normal_coefficients": 4.372067887615092e-08,
+        "binormal_coefficients": 4.377097156344238e-08
+      },
+      "radius_maximum_residuals_cm": {
+        "major_radius_coefficients": 0.0,
+        "minor_radius_coefficients": 0.0
+      },
+      "ellipse_tensor_maximum_frobenius_cm2": 6.183600365926271e-06,
+      "angular_extent_degrees_unwrapped": [
+        79.54061205504739,
+        96.25201912919566
+      ],
+      "crosses_90_degree_seam": true
+    },
+    {
+      "member": "coil_1008",
+      "rotated_match": "coil_1010",
+      "centroid_distance_cm": 4.796371986718494e-05,
+      "centerline_alignment": {
+        "reverse": false,
+        "shift": 0,
+        "rms_cm": 4.8990689417143074e-05,
+        "maximum_cm": 5.983602142675337e-05
+      },
+      "frame_maximum_residuals": {
+        "normal_coefficients": 4.3721416097585056e-08,
+        "binormal_coefficients": 4.379827527557738e-08
+      },
+      "radius_maximum_residuals_cm": {
+        "major_radius_coefficients": 0.0,
+        "minor_radius_coefficients": 0.0
+      },
+      "ellipse_tensor_maximum_frobenius_cm2": 4.448957277938946e-06,
+      "angular_extent_degrees_unwrapped": [
+        0.4653985321249406,
+        24.256076817478046
+      ],
+      "crosses_90_degree_seam": false
+    },
+    {
+      "member": "coil_1009",
+      "rotated_match": "coil_1015",
+      "centroid_distance_cm": 0.00014389115957203093,
+      "centerline_alignment": {
+        "reverse": false,
+        "shift": 0,
+        "rms_cm": 0.0001469720682045856,
+        "maximum_cm": 0.00017950806593861472
+      },
+      "frame_maximum_residuals": {
+        "normal_coefficients": 1.3116410089527702e-07,
+        "binormal_coefficients": 1.3139472782777288e-07
+      },
+      "radius_maximum_residuals_cm": {
+        "major_radius_coefficients": 0.0,
+        "minor_radius_coefficients": 0.0
+      },
+      "ellipse_tensor_maximum_frobenius_cm2": 1.3346870542752794e-05,
+      "angular_extent_degrees_unwrapped": [
+        -24.256076817478046,
+        -0.4653985321249406
+      ],
+      "crosses_90_degree_seam": false
+    },
+    {
+      "member": "coil_1010",
+      "rotated_match": "coil_1012",
+      "centroid_distance_cm": 4.7963720004649246e-05,
+      "centerline_alignment": {
+        "reverse": false,
+        "shift": 0,
+        "rms_cm": 4.8990689423046175e-05,
+        "maximum_cm": 5.9836021899461866e-05
+      },
+      "frame_maximum_residuals": {
+        "normal_coefficients": 4.372128521592296e-08,
+        "binormal_coefficients": 4.37981636029464e-08
+      },
+      "radius_maximum_residuals_cm": {
+        "major_radius_coefficients": 0.0,
+        "minor_radius_coefficients": 0.0
+      },
+      "ellipse_tensor_maximum_frobenius_cm2": 4.448954609097176e-06,
+      "angular_extent_degrees_unwrapped": [
+        90.46540103660311,
+        114.25607932195622
+      ],
+      "crosses_90_degree_seam": false
+    },
+    {
+      "member": "coil_1011",
+      "rotated_match": "coil_1009",
+      "centroid_distance_cm": 4.796371986718494e-05,
+      "centerline_alignment": {
+        "reverse": false,
+        "shift": 0,
+        "rms_cm": 4.8990689417143074e-05,
+        "maximum_cm": 5.983602142675337e-05
+      },
+      "frame_maximum_residuals": {
+        "normal_coefficients": 4.3721416097585056e-08,
+        "binormal_coefficients": 4.379827527557738e-08
+      },
+      "radius_maximum_residuals_cm": {
+        "major_radius_coefficients": 0.0,
+        "minor_radius_coefficients": 0.0
+      },
+      "ellipse_tensor_maximum_frobenius_cm2": 4.448957277938946e-06,
+      "angular_extent_degrees_unwrapped": [
+        -114.25607932195622,
+        -90.46540103660311
+      ],
+      "crosses_90_degree_seam": false
+    },
+    {
+      "member": "coil_1012",
+      "rotated_match": "coil_1014",
+      "centroid_distance_cm": 4.7963719700196847e-05,
+      "centerline_alignment": {
+        "reverse": false,
+        "shift": 0,
+        "rms_cm": 4.8990689364396496e-05,
+        "maximum_cm": 5.983602261239971e-05
+      },
+      "frame_maximum_residuals": {
+        "normal_coefficients": 4.3721399591145276e-08,
+        "binormal_coefficients": 4.3798288949399214e-08
+      },
+      "radius_maximum_residuals_cm": {
+        "major_radius_coefficients": 0.0,
+        "minor_radius_coefficients": 0.0
+      },
+      "ellipse_tensor_maximum_frobenius_cm2": 4.448958655716753e-06,
+      "angular_extent_degrees_unwrapped": [
+        -179.53459645891877,
+        -155.7439181735656
+      ],
+      "crosses_90_degree_seam": false
+    },
+    {
+      "member": "coil_1013",
+      "rotated_match": "coil_1011",
+      "centroid_distance_cm": 4.7963720004649246e-05,
+      "centerline_alignment": {
+        "reverse": false,
+        "shift": 0,
+        "rms_cm": 4.8990689423046175e-05,
+        "maximum_cm": 5.9836021899461866e-05
+      },
+      "frame_maximum_residuals": {
+        "normal_coefficients": 4.372128521592296e-08,
+        "binormal_coefficients": 4.37981636029464e-08
+      },
+      "radius_maximum_residuals_cm": {
+        "major_radius_coefficients": 0.0,
+        "minor_radius_coefficients": 0.0
+      },
+      "ellipse_tensor_maximum_frobenius_cm2": 4.448954609097176e-06,
+      "angular_extent_degrees_unwrapped": [
+        155.7439181735656,
+        179.53459645891877
+      ],
+      "crosses_90_degree_seam": false
+    },
+    {
+      "member": "coil_1014",
+      "rotated_match": "coil_1008",
+      "centroid_distance_cm": 0.00014389115957203093,
+      "centerline_alignment": {
+        "reverse": false,
+        "shift": 0,
+        "rms_cm": 0.0001469720682045856,
+        "maximum_cm": 0.00017950806593861472
+      },
+      "frame_maximum_residuals": {
+        "normal_coefficients": 1.3116410089527702e-07,
+        "binormal_coefficients": 1.3139472782777288e-07
+      },
+      "radius_maximum_residuals_cm": {
+        "major_radius_coefficients": 0.0,
+        "minor_radius_coefficients": 0.0
+      },
+      "ellipse_tensor_maximum_frobenius_cm2": 1.3346870542752794e-05,
+      "angular_extent_degrees_unwrapped": [
+        -89.53459395444057,
+        -65.74391566908746
+      ],
+      "crosses_90_degree_seam": false
+    },
+    {
+      "member": "coil_1015",
+      "rotated_match": "coil_1013",
+      "centroid_distance_cm": 4.7963719700196847e-05,
+      "centerline_alignment": {
+        "reverse": false,
+        "shift": 0,
+        "rms_cm": 4.8990689364396496e-05,
+        "maximum_cm": 5.983602261239971e-05
+      },
+      "frame_maximum_residuals": {
+        "normal_coefficients": 4.3721399591145276e-08,
+        "binormal_coefficients": 4.3798288949399214e-08
+      },
+      "radius_maximum_residuals_cm": {
+        "major_radius_coefficients": 0.0,
+        "minor_radius_coefficients": 0.0
+      },
+      "ellipse_tensor_maximum_frobenius_cm2": 4.448958655716753e-06,
+      "angular_extent_degrees_unwrapped": [
+        65.74391566908746,
+        89.53459395444057
+      ],
+      "crosses_90_degree_seam": false
+    },
+    {
+      "member": "coil_1016",
+      "rotated_match": "coil_1018",
+      "centroid_distance_cm": 3.820492455674133e-05,
+      "centerline_alignment": {
+        "reverse": false,
+        "shift": 0,
+        "rms_cm": 3.995395140164187e-05,
+        "maximum_cm": 5.618705905493045e-05
+      },
+      "frame_maximum_residuals": {
+        "normal_coefficients": 4.3880052954535844e-08,
+        "binormal_coefficients": 4.384389596835758e-08
+      },
+      "radius_maximum_residuals_cm": {
+        "major_radius_coefficients": 0.0,
+        "minor_radius_coefficients": 0.0
+      },
+      "ellipse_tensor_maximum_frobenius_cm2": 6.194760188044983e-06,
+      "angular_extent_degrees_unwrapped": [
+        8.378183037311528,
+        52.59523434830211
+      ],
+      "crosses_90_degree_seam": false
+    },
+    {
+      "member": "coil_1017",
+      "rotated_match": "coil_1023",
+      "centroid_distance_cm": 0.00011461477360171415,
+      "centerline_alignment": {
+        "reverse": false,
+        "shift": 0,
+        "rms_cm": 0.00011986185392167801,
+        "maximum_cm": 0.00016856117570997753
+      },
+      "frame_maximum_residuals": {
+        "normal_coefficients": 1.3163970396287438e-07,
+        "binormal_coefficients": 1.3153169870598648e-07
+      },
+      "radius_maximum_residuals_cm": {
+        "major_radius_coefficients": 0.0,
+        "minor_radius_coefficients": 0.0
+      },
+      "ellipse_tensor_maximum_frobenius_cm2": 1.8584287295238184e-05,
+      "angular_extent_degrees_unwrapped": [
+        -52.59523434830211,
+        -8.378183037311528
+      ],
+      "crosses_90_degree_seam": false
+    },
+    {
+      "member": "coil_1018",
+      "rotated_match": "coil_1020",
+      "centroid_distance_cm": 3.820492513701242e-05,
+      "centerline_alignment": {
+        "reverse": false,
+        "shift": 0,
+        "rms_cm": 3.995395132906669e-05,
+        "maximum_cm": 5.618705802833587e-05
+      },
+      "frame_maximum_residuals": {
+        "normal_coefficients": 4.3879718116515016e-08,
+        "binormal_coefficients": 4.38439250186677e-08
+      },
+      "radius_maximum_residuals_cm": {
+        "major_radius_coefficients": 0.0,
+        "minor_radius_coefficients": 0.0
+      },
+      "ellipse_tensor_maximum_frobenius_cm2": 6.194768128718377e-06,
+      "angular_extent_degrees_unwrapped": [
+        98.3781855417897,
+        142.59523685278026
+      ],
+      "crosses_90_degree_seam": false
+    },
+    {
+      "member": "coil_1019",
+      "rotated_match": "coil_1017",
+      "centroid_distance_cm": 3.820492455674133e-05,
+      "centerline_alignment": {
+        "reverse": false,
+        "shift": 0,
+        "rms_cm": 3.995395140164187e-05,
+        "maximum_cm": 5.618705905493045e-05
+      },
+      "frame_maximum_residuals": {
+        "normal_coefficients": 4.3880052954535844e-08,
+        "binormal_coefficients": 4.384389596835758e-08
+      },
+      "radius_maximum_residuals_cm": {
+        "major_radius_coefficients": 0.0,
+        "minor_radius_coefficients": 0.0
+      },
+      "ellipse_tensor_maximum_frobenius_cm2": 6.194760188044983e-06,
+      "angular_extent_degrees_unwrapped": [
+        -142.59523685278026,
+        -98.3781855417897
+      ],
+      "crosses_90_degree_seam": false
+    },
+    {
+      "member": "coil_1020",
+      "rotated_match": "coil_1022",
+      "centroid_distance_cm": 3.820492390796047e-05,
+      "centerline_alignment": {
+        "reverse": false,
+        "shift": 0,
+        "rms_cm": 3.995395119096955e-05,
+        "maximum_cm": 5.618705862671128e-05
+      },
+      "frame_maximum_residuals": {
+        "normal_coefficients": 4.387993289407137e-08,
+        "binormal_coefficients": 4.384387771896507e-08
+      },
+      "radius_maximum_residuals_cm": {
+        "major_radius_coefficients": 0.0,
+        "minor_radius_coefficients": 0.0
+      },
+      "ellipse_tensor_maximum_frobenius_cm2": 6.194758978475086e-06,
+      "angular_extent_degrees_unwrapped": [
+        -171.62181195373213,
+        -127.40476064274158
+      ],
+      "crosses_90_degree_seam": false
+    },
+    {
+      "member": "coil_1021",
+      "rotated_match": "coil_1019",
+      "centroid_distance_cm": 3.820492513701242e-05,
+      "centerline_alignment": {
+        "reverse": false,
+        "shift": 0,
+        "rms_cm": 3.995395132906669e-05,
+        "maximum_cm": 5.618705802833587e-05
+      },
+      "frame_maximum_residuals": {
+        "normal_coefficients": 4.3879718116515016e-08,
+        "binormal_coefficients": 4.38439250186677e-08
+      },
+      "radius_maximum_residuals_cm": {
+        "major_radius_coefficients": 0.0,
+        "minor_radius_coefficients": 0.0
+      },
+      "ellipse_tensor_maximum_frobenius_cm2": 6.194768128718377e-06,
+      "angular_extent_degrees_unwrapped": [
+        127.40476064274158,
+        171.62181195373213
+      ],
+      "crosses_90_degree_seam": false
+    },
+    {
+      "member": "coil_1022",
+      "rotated_match": "coil_1016",
+      "centroid_distance_cm": 0.00011461477360171415,
+      "centerline_alignment": {
+        "reverse": false,
+        "shift": 0,
+        "rms_cm": 0.00011986185392167801,
+        "maximum_cm": 0.00016856117570997753
+      },
+      "frame_maximum_residuals": {
+        "normal_coefficients": 1.3163970396287438e-07,
+        "binormal_coefficients": 1.3153169870598648e-07
+      },
+      "radius_maximum_residuals_cm": {
+        "major_radius_coefficients": 0.0,
+        "minor_radius_coefficients": 0.0
+      },
+      "ellipse_tensor_maximum_frobenius_cm2": 1.8584287295238184e-05,
+      "angular_extent_degrees_unwrapped": [
+        -81.62180944925397,
+        -37.40475813826342
+      ],
+      "crosses_90_degree_seam": false
+    },
+    {
+      "member": "coil_1023",
+      "rotated_match": "coil_1021",
+      "centroid_distance_cm": 3.820492390796047e-05,
+      "centerline_alignment": {
+        "reverse": false,
+        "shift": 0,
+        "rms_cm": 3.995395119096955e-05,
+        "maximum_cm": 5.618705862671128e-05
+      },
+      "frame_maximum_residuals": {
+        "normal_coefficients": 4.387993289407137e-08,
+        "binormal_coefficients": 4.384387771896507e-08
+      },
+      "radius_maximum_residuals_cm": {
+        "major_radius_coefficients": 0.0,
+        "minor_radius_coefficients": 0.0
+      },
+      "ellipse_tensor_maximum_frobenius_cm2": 6.194758978475086e-06,
+      "angular_extent_degrees_unwrapped": [
+        37.40475813826342,
+        81.62180944925397
+      ],
+      "crosses_90_degree_seam": false
+    },
+    {
+      "member": "coil_1024",
+      "rotated_match": "coil_1026",
+      "centroid_distance_cm": 3.624837078453211e-05,
+      "centerline_alignment": {
+        "reverse": false,
+        "shift": 0,
+        "rms_cm": 3.8325262412151893e-05,
+        "maximum_cm": 5.534421596239788e-05
+      },
+      "frame_maximum_residuals": {
+        "normal_coefficients": 4.3963495750226885e-08,
+        "binormal_coefficients": 4.388055364284437e-08
+      },
+      "radius_maximum_residuals_cm": {
+        "major_radius_coefficients": 0.0,
+        "minor_radius_coefficients": 0.0
+      },
+      "ellipse_tensor_maximum_frobenius_cm2": 6.1884334189530135e-06,
+      "angular_extent_degrees_unwrapped": [
+        28.66272585238642,
+        75.12378715974664
+      ],
+      "crosses_90_degree_seam": false
+    },
+    {
+      "member": "coil_1025",
+      "rotated_match": "coil_1031",
+      "centroid_distance_cm": 0.0001087451111006419,
+      "centerline_alignment": {
+        "reverse": false,
+        "shift": 0,
+        "rms_cm": 0.00011497578721539114,
+        "maximum_cm": 0.00016603264781834932
+      },
+      "frame_maximum_residuals": {
+        "normal_coefficients": 1.3189041204576623e-07,
+        "binormal_coefficients": 1.3164141968416645e-07
+      },
+      "radius_maximum_residuals_cm": {
+        "major_radius_coefficients": 0.0,
+        "minor_radius_coefficients": 0.0
+      },
+      "ellipse_tensor_maximum_frobenius_cm2": 1.8565283732343826e-05,
+      "angular_extent_degrees_unwrapped": [
+        -75.12378715974664,
+        -28.66272585238642
+      ],
+      "crosses_90_degree_seam": false
+    },
+    {
+      "member": "coil_1026",
+      "rotated_match": "coil_1028",
+      "centroid_distance_cm": 3.6248369901667025e-05,
+      "centerline_alignment": {
+        "reverse": false,
+        "shift": 0,
+        "rms_cm": 3.832526247790999e-05,
+        "maximum_cm": 5.5344216084812896e-05
+      },
+      "frame_maximum_residuals": {
+        "normal_coefficients": 4.3963376680148215e-08,
+        "binormal_coefficients": 4.388034857486647e-08
+      },
+      "radius_maximum_residuals_cm": {
+        "major_radius_coefficients": 0.0,
+        "minor_radius_coefficients": 0.0
+      },
+      "ellipse_tensor_maximum_frobenius_cm2": 6.188437941952409e-06,
+      "angular_extent_degrees_unwrapped": [
+        118.66272835686459,
+        165.1237896642248
+      ],
+      "crosses_90_degree_seam": false
+    },
+    {
+      "member": "coil_1027",
+      "rotated_match": "coil_1025",
+      "centroid_distance_cm": 3.624837078453211e-05,
+      "centerline_alignment": {
+        "reverse": false,
+        "shift": 0,
+        "rms_cm": 3.8325262412151893e-05,
+        "maximum_cm": 5.534421596239788e-05
+      },
+      "frame_maximum_residuals": {
+        "normal_coefficients": 4.3963495750226885e-08,
+        "binormal_coefficients": 4.388055364284437e-08
+      },
+      "radius_maximum_residuals_cm": {
+        "major_radius_coefficients": 0.0,
+        "minor_radius_coefficients": 0.0
+      },
+      "ellipse_tensor_maximum_frobenius_cm2": 6.1884334189530135e-06,
+      "angular_extent_degrees_unwrapped": [
+        -165.1237896642248,
+        -118.66272835686459
+      ],
+      "crosses_90_degree_seam": false
+    },
+    {
+      "member": "coil_1028",
+      "rotated_match": "coil_1030",
+      "centroid_distance_cm": 3.624837041444283e-05,
+      "centerline_alignment": {
+        "reverse": false,
+        "shift": 0,
+        "rms_cm": 3.832526232532934e-05,
+        "maximum_cm": 5.534421577113864e-05
+      },
+      "frame_maximum_residuals": {
+        "normal_coefficients": 4.396353961541028e-08,
+        "binormal_coefficients": 4.388051746669666e-08
+      },
+      "radius_maximum_residuals_cm": {
+        "major_radius_coefficients": 0.0,
+        "minor_radius_coefficients": 0.0
+      },
+      "ellipse_tensor_maximum_frobenius_cm2": 6.188412371440654e-06,
+      "angular_extent_degrees_unwrapped": [
+        -151.3372691386573,
+        -104.87620783129708
+      ],
+      "crosses_90_degree_seam": false
+    },
+    {
+      "member": "coil_1029",
+      "rotated_match": "coil_1027",
+      "centroid_distance_cm": 3.6248369901667025e-05,
+      "centerline_alignment": {
+        "reverse": false,
+        "shift": 0,
+        "rms_cm": 3.832526247790999e-05,
+        "maximum_cm": 5.5344216084812896e-05
+      },
+      "frame_maximum_residuals": {
+        "normal_coefficients": 4.3963376680148215e-08,
+        "binormal_coefficients": 4.388034857486647e-08
+      },
+      "radius_maximum_residuals_cm": {
+        "major_radius_coefficients": 0.0,
+        "minor_radius_coefficients": 0.0
+      },
+      "ellipse_tensor_maximum_frobenius_cm2": 6.188437941952408e-06,
+      "angular_extent_degrees_unwrapped": [
+        104.87620783129708,
+        151.3372691386573
+      ],
+      "crosses_90_degree_seam": false
+    },
+    {
+      "member": "coil_1030",
+      "rotated_match": "coil_1024",
+      "centroid_distance_cm": 0.0001087451111006419,
+      "centerline_alignment": {
+        "reverse": false,
+        "shift": 0,
+        "rms_cm": 0.00011497578721539114,
+        "maximum_cm": 0.00016603264781834932
+      },
+      "frame_maximum_residuals": {
+        "normal_coefficients": 1.3189041204576623e-07,
+        "binormal_coefficients": 1.3164141968416645e-07
+      },
+      "radius_maximum_residuals_cm": {
+        "major_radius_coefficients": 0.0,
+        "minor_radius_coefficients": 0.0
+      },
+      "ellipse_tensor_maximum_frobenius_cm2": 1.8565283732343826e-05,
+      "angular_extent_degrees_unwrapped": [
+        -61.33726663417911,
+        -14.876205326818901
+      ],
+      "crosses_90_degree_seam": false
+    },
+    {
+      "member": "coil_1031",
+      "rotated_match": "coil_1029",
+      "centroid_distance_cm": 3.624837041444283e-05,
+      "centerline_alignment": {
+        "reverse": false,
+        "shift": 0,
+        "rms_cm": 3.832526232532934e-05,
+        "maximum_cm": 5.534421577113864e-05
+      },
+      "frame_maximum_residuals": {
+        "normal_coefficients": 4.396353961541028e-08,
+        "binormal_coefficients": 4.388051746669666e-08
+      },
+      "radius_maximum_residuals_cm": {
+        "major_radius_coefficients": 0.0,
+        "minor_radius_coefficients": 0.0
+      },
+      "ellipse_tensor_maximum_frobenius_cm2": 6.1884123714406545e-06,
+      "angular_extent_degrees_unwrapped": [
+        14.876205326818901,
+        61.33726663417911
+      ],
+      "crosses_90_degree_seam": false
+    },
+    {
+      "member": "coil_1032",
+      "rotated_match": "coil_1034",
+      "centroid_distance_cm": 4.306248751001178e-05,
+      "centerline_alignment": {
+        "reverse": false,
+        "shift": 0,
+        "rms_cm": 4.438470922815715e-05,
+        "maximum_cm": 5.6773256473009395e-05
+      },
+      "frame_maximum_residuals": {
+        "normal_coefficients": 4.372675657588749e-08,
+        "binormal_coefficients": 4.39049516158493e-08
+      },
+      "radius_maximum_residuals_cm": {
+        "major_radius_coefficients": 0.0,
+        "minor_radius_coefficients": 0.0
+      },
+      "ellipse_tensor_maximum_frobenius_cm2": 5.220401775214204e-06,
+      "angular_extent_degrees_unwrapped": [
+        53.31704102331549,
+        85.2530144127047
+      ],
+      "crosses_90_degree_seam": false
+    },
+    {
+      "member": "coil_1033",
+      "rotated_match": "coil_1039",
+      "centroid_distance_cm": 0.0001291874634649568,
+      "centerline_alignment": {
+        "reverse": false,
+        "shift": 0,
+        "rms_cm": 0.0001331541278400867,
+        "maximum_cm": 0.00017031976939259528
+      },
+      "frame_maximum_residuals": {
+        "normal_coefficients": 1.3118030755482086e-07,
+        "binormal_coefficients": 1.317148166315323e-07
+      },
+      "radius_maximum_residuals_cm": {
+        "major_radius_coefficients": 0.0,
+        "minor_radius_coefficients": 0.0
+      },
+      "ellipse_tensor_maximum_frobenius_cm2": 1.566118639166896e-05,
+      "angular_extent_degrees_unwrapped": [
+        -85.2530144127047,
+        -53.31704102331549
+      ],
+      "crosses_90_degree_seam": false
+    },
+    {
+      "member": "coil_1034",
+      "rotated_match": "coil_1036",
+      "centroid_distance_cm": 4.306248803389608e-05,
+      "centerline_alignment": {
+        "reverse": false,
+        "shift": 0,
+        "rms_cm": 4.438470938624756e-05,
+        "maximum_cm": 5.677325680548322e-05
+      },
+      "frame_maximum_residuals": {
+        "normal_coefficients": 4.3726761825667234e-08,
+        "binormal_coefficients": 4.3904900599846144e-08
+      },
+      "radius_maximum_residuals_cm": {
+        "major_radius_coefficients": 0.0,
+        "minor_radius_coefficients": 0.0
+      },
+      "ellipse_tensor_maximum_frobenius_cm2": 5.220390920639715e-06,
+      "angular_extent_degrees_unwrapped": [
+        143.31704352779363,
+        175.25301691718283
+      ],
+      "crosses_90_degree_seam": false
+    },
+    {
+      "member": "coil_1035",
+      "rotated_match": "coil_1033",
+      "centroid_distance_cm": 4.306248751001178e-05,
+      "centerline_alignment": {
+        "reverse": false,
+        "shift": 0,
+        "rms_cm": 4.438470922815715e-05,
+        "maximum_cm": 5.6773256473009395e-05
+      },
+      "frame_maximum_residuals": {
+        "normal_coefficients": 4.372675657588749e-08,
+        "binormal_coefficients": 4.39049516158493e-08
+      },
+      "radius_maximum_residuals_cm": {
+        "major_radius_coefficients": 0.0,
+        "minor_radius_coefficients": 0.0
+      },
+      "ellipse_tensor_maximum_frobenius_cm2": 5.220401775214205e-06,
+      "angular_extent_degrees_unwrapped": [
+        -175.25301691718283,
+        -143.31704352779363
+      ],
+      "crosses_90_degree_seam": false
+    },
+    {
+      "member": "coil_1036",
+      "rotated_match": "coil_1038",
+      "centroid_distance_cm": 4.306248792104899e-05,
+      "centerline_alignment": {
+        "reverse": false,
+        "shift": 0,
+        "rms_cm": 4.438470922568217e-05,
+        "maximum_cm": 5.6773256114102894e-05
+      },
+      "frame_maximum_residuals": {
+        "normal_coefficients": 4.372678915326785e-08,
+        "binormal_coefficients": 4.390496441584305e-08
+      },
+      "radius_maximum_residuals_cm": {
+        "major_radius_coefficients": 0.0,
+        "minor_radius_coefficients": 0.0
+      },
+      "ellipse_tensor_maximum_frobenius_cm2": 5.220393695816635e-06,
+      "angular_extent_degrees_unwrapped": [
+        -126.6829539677282,
+        -94.74698057833899
+      ],
+      "crosses_90_degree_seam": false
+    },
+    {
+      "member": "coil_1037",
+      "rotated_match": "coil_1035",
+      "centroid_distance_cm": 4.306248803389608e-05,
+      "centerline_alignment": {
+        "reverse": false,
+        "shift": 0,
+        "rms_cm": 4.438470938624756e-05,
+        "maximum_cm": 5.677325680548322e-05
+      },
+      "frame_maximum_residuals": {
+        "normal_coefficients": 4.3726761825667234e-08,
+        "binormal_coefficients": 4.3904900599846144e-08
+      },
+      "radius_maximum_residuals_cm": {
+        "major_radius_coefficients": 0.0,
+        "minor_radius_coefficients": 0.0
+      },
+      "ellipse_tensor_maximum_frobenius_cm2": 5.220390920639715e-06,
+      "angular_extent_degrees_unwrapped": [
+        94.74698057833899,
+        126.6829539677282
+      ],
+      "crosses_90_degree_seam": false
+    },
+    {
+      "member": "coil_1038",
+      "rotated_match": "coil_1032",
+      "centroid_distance_cm": 0.0001291874634649568,
+      "centerline_alignment": {
+        "reverse": false,
+        "shift": 0,
+        "rms_cm": 0.0001331541278400867,
+        "maximum_cm": 0.00017031976939259528
+      },
+      "frame_maximum_residuals": {
+        "normal_coefficients": 1.3118030755482086e-07,
+        "binormal_coefficients": 1.317148166315323e-07
+      },
+      "radius_maximum_residuals_cm": {
+        "major_radius_coefficients": 0.0,
+        "minor_radius_coefficients": 0.0
+      },
+      "ellipse_tensor_maximum_frobenius_cm2": 1.566118639166896e-05,
+      "angular_extent_degrees_unwrapped": [
+        -36.68295146325003,
+        -4.746978073860809
+      ],
+      "crosses_90_degree_seam": false
+    },
+    {
+      "member": "coil_1039",
+      "rotated_match": "coil_1037",
+      "centroid_distance_cm": 4.306248792104899e-05,
+      "centerline_alignment": {
+        "reverse": false,
+        "shift": 0,
+        "rms_cm": 4.438470922568217e-05,
+        "maximum_cm": 5.6773256114102894e-05
+      },
+      "frame_maximum_residuals": {
+        "normal_coefficients": 4.372678915326785e-08,
+        "binormal_coefficients": 4.390496441584305e-08
+      },
+      "radius_maximum_residuals_cm": {
+        "major_radius_coefficients": 0.0,
+        "minor_radius_coefficients": 0.0
+      },
+      "ellipse_tensor_maximum_frobenius_cm2": 5.220393695816635e-06,
+      "angular_extent_degrees_unwrapped": [
+        4.746978073860809,
+        36.68295146325003
+      ],
+      "crosses_90_degree_seam": false
+    },
+    {
+      "member": "coil_1040",
+      "rotated_match": "coil_1042",
+      "centroid_distance_cm": 5.225771797531483e-05,
+      "centerline_alignment": {
+        "reverse": false,
+        "shift": 0,
+        "rms_cm": 5.317424069829359e-05,
+        "maximum_cm": 6.470017026564746e-05
+      },
+      "frame_maximum_residuals": {
+        "normal_coefficients": 4.3738478180979585e-08,
+        "binormal_coefficients": 4.393072033646711e-08
+      },
+      "radius_maximum_residuals_cm": {
+        "major_radius_coefficients": 0.0,
+        "minor_radius_coefficients": 0.0
+      },
+      "ellipse_tensor_maximum_frobenius_cm2": 5.789446372997007e-06,
+      "angular_extent_degrees_unwrapped": [
+        72.77826121453646,
+        92.91273299458925
+      ],
+      "crosses_90_degree_seam": true
+    },
+    {
+      "member": "coil_1041",
+      "rotated_match": "coil_1047",
+      "centroid_distance_cm": 0.0001567731545951469,
+      "centerline_alignment": {
+        "reverse": false,
+        "shift": 0,
+        "rms_cm": 0.00015952272226979345,
+        "maximum_cm": 0.00019410051007354363
+      },
+      "frame_maximum_residuals": {
+        "normal_coefficients": 1.3121524024461536e-07,
+        "binormal_coefficients": 1.3179208980519833e-07
+      },
+      "radius_maximum_residuals_cm": {
+        "major_radius_coefficients": 0.0,
+        "minor_radius_coefficients": 0.0
+      },
+      "ellipse_tensor_maximum_frobenius_cm2": 1.7368342420961662e-05,
+      "angular_extent_degrees_unwrapped": [
+        -92.91273299458925,
+        -72.77826121453646
+      ],
+      "crosses_90_degree_seam": true
+    },
+    {
+      "member": "coil_1042",
+      "rotated_match": "coil_1044",
+      "centroid_distance_cm": 5.225771822885917e-05,
+      "centerline_alignment": {
+        "reverse": false,
+        "shift": 0,
+        "rms_cm": 5.317424078620892e-05,
+        "maximum_cm": 6.470016971201946e-05
+      },
+      "frame_maximum_residuals": {
+        "normal_coefficients": 4.373837239995923e-08,
+        "binormal_coefficients": 4.393087795195413e-08
+      },
+      "radius_maximum_residuals_cm": {
+        "major_radius_coefficients": 0.0,
+        "minor_radius_coefficients": 0.0
+      },
+      "ellipse_tensor_maximum_frobenius_cm2": 5.789451038715602e-06,
+      "angular_extent_degrees_unwrapped": [
+        162.7782637190146,
+        182.9127354990674
+      ],
+      "crosses_90_degree_seam": true
+    },
+    {
+      "member": "coil_1043",
+      "rotated_match": "coil_1041",
+      "centroid_distance_cm": 5.225771797531483e-05,
+      "centerline_alignment": {
+        "reverse": false,
+        "shift": 0,
+        "rms_cm": 5.317424069829359e-05,
+        "maximum_cm": 6.470017026564746e-05
+      },
+      "frame_maximum_residuals": {
+        "normal_coefficients": 4.3738478180979585e-08,
+        "binormal_coefficients": 4.393072033646711e-08
+      },
+      "radius_maximum_residuals_cm": {
+        "major_radius_coefficients": 0.0,
+        "minor_radius_coefficients": 0.0
+      },
+      "ellipse_tensor_maximum_frobenius_cm2": 5.789446372997008e-06,
+      "angular_extent_degrees_unwrapped": [
+        -182.9127354990674,
+        -162.7782637190146
+      ],
+      "crosses_90_degree_seam": true
+    },
+    {
+      "member": "coil_1044",
+      "rotated_match": "coil_1046",
+      "centroid_distance_cm": 5.225771839097305e-05,
+      "centerline_alignment": {
+        "reverse": false,
+        "shift": 0,
+        "rms_cm": 5.3174240785291075e-05,
+        "maximum_cm": 6.470017009587677e-05
+      },
+      "frame_maximum_residuals": {
+        "normal_coefficients": 4.3738389665942755e-08,
+        "binormal_coefficients": 4.393049152007152e-08
+      },
+      "radius_maximum_residuals_cm": {
+        "major_radius_coefficients": 0.0,
+        "minor_radius_coefficients": 0.0
+      },
+      "ellipse_tensor_maximum_frobenius_cm2": 5.78944500925455e-06,
+      "angular_extent_degrees_unwrapped": [
+        -107.22173377650725,
+        -87.08726199645443
+      ],
+      "crosses_90_degree_seam": true
+    },
+    {
+      "member": "coil_1045",
+      "rotated_match": "coil_1043",
+      "centroid_distance_cm": 5.225771822885917e-05,
+      "centerline_alignment": {
+        "reverse": false,
+        "shift": 0,
+        "rms_cm": 5.317424078620892e-05,
+        "maximum_cm": 6.470016971201946e-05
+      },
+      "frame_maximum_residuals": {
+        "normal_coefficients": 4.373837239995923e-08,
+        "binormal_coefficients": 4.393087795195413e-08
+      },
+      "radius_maximum_residuals_cm": {
+        "major_radius_coefficients": 0.0,
+        "minor_radius_coefficients": 0.0
+      },
+      "ellipse_tensor_maximum_frobenius_cm2": 5.789451038715602e-06,
+      "angular_extent_degrees_unwrapped": [
+        87.08726199645443,
+        107.22173377650725
+      ],
+      "crosses_90_degree_seam": true
+    },
+    {
+      "member": "coil_1046",
+      "rotated_match": "coil_1040",
+      "centroid_distance_cm": 0.0001567731545951469,
+      "centerline_alignment": {
+        "reverse": false,
+        "shift": 0,
+        "rms_cm": 0.00015952272226979345,
+        "maximum_cm": 0.00019410051007354363
+      },
+      "frame_maximum_residuals": {
+        "normal_coefficients": 1.3121524024461536e-07,
+        "binormal_coefficients": 1.3179208980519833e-07
+      },
+      "radius_maximum_residuals_cm": {
+        "major_radius_coefficients": 0.0,
+        "minor_radius_coefficients": 0.0
+      },
+      "ellipse_tensor_maximum_frobenius_cm2": 1.7368342420961662e-05,
+      "angular_extent_degrees_unwrapped": [
+        -17.221731272029054,
+        2.912740508023741
+      ],
+      "crosses_90_degree_seam": true
+    },
+    {
+      "member": "coil_1047",
+      "rotated_match": "coil_1045",
+      "centroid_distance_cm": 5.225771839097305e-05,
+      "centerline_alignment": {
+        "reverse": false,
+        "shift": 0,
+        "rms_cm": 5.3174240785291075e-05,
+        "maximum_cm": 6.470017009587677e-05
+      },
+      "frame_maximum_residuals": {
+        "normal_coefficients": 4.3738389665942755e-08,
+        "binormal_coefficients": 4.393049152007152e-08
+      },
+      "radius_maximum_residuals_cm": {
+        "major_radius_coefficients": 0.0,
+        "minor_radius_coefficients": 0.0
+      },
+      "ellipse_tensor_maximum_frobenius_cm2": 5.789445009254549e-06,
+      "angular_extent_degrees_unwrapped": [
+        -2.912740508023741,
+        17.221731272029054
+      ],
+      "crosses_90_degree_seam": true
+    }
+  ],
+  "cycles": [
+    {
+      "members": [
+        "coil_1000",
+        "coil_1002",
+        "coil_1004",
+        "coil_1006"
+      ],
+      "closes": true
+    },
+    {
+      "members": [
+        "coil_1001",
+        "coil_1007",
+        "coil_1005",
+        "coil_1003"
+      ],
+      "closes": true
+    },
+    {
+      "members": [
+        "coil_1008",
+        "coil_1010",
+        "coil_1012",
+        "coil_1014"
+      ],
+      "closes": true
+    },
+    {
+      "members": [
+        "coil_1009",
+        "coil_1015",
+        "coil_1013",
+        "coil_1011"
+      ],
+      "closes": true
+    },
+    {
+      "members": [
+        "coil_1016",
+        "coil_1018",
+        "coil_1020",
+        "coil_1022"
+      ],
+      "closes": true
+    },
+    {
+      "members": [
+        "coil_1017",
+        "coil_1023",
+        "coil_1021",
+        "coil_1019"
+      ],
+      "closes": true
+    },
+    {
+      "members": [
+        "coil_1024",
+        "coil_1026",
+        "coil_1028",
+        "coil_1030"
+      ],
+      "closes": true
+    },
+    {
+      "members": [
+        "coil_1025",
+        "coil_1031",
+        "coil_1029",
+        "coil_1027"
+      ],
+      "closes": true
+    },
+    {
+      "members": [
+        "coil_1032",
+        "coil_1034",
+        "coil_1036",
+        "coil_1038"
+      ],
+      "closes": true
+    },
+    {
+      "members": [
+        "coil_1033",
+        "coil_1039",
+        "coil_1037",
+        "coil_1035"
+      ],
+      "closes": true
+    },
+    {
+      "members": [
+        "coil_1040",
+        "coil_1042",
+        "coil_1044",
+        "coil_1046"
+      ],
+      "closes": true
+    },
+    {
+      "members": [
+        "coil_1041",
+        "coil_1047",
+        "coil_1045",
+        "coil_1043"
+      ],
+      "closes": true
+    }
+  ],
+  "claim_boundary": "Control-point comparison only; continuous span geometry, winding-pack fidelity, interface ownership and transport remain unqualified."
+}

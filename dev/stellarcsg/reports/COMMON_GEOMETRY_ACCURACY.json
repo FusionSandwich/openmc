@@ -1,0 +1,40 @@
+{
+  "schema": "stellarcsg.common-geometry-accuracy/v1",
+  "recorded_date": "2026-08-31",
+  "case": "WISTELL-D complete 48-coil standardized 1 cm tube set",
+  "reference": "authoritative compiled swept-spline finite surface",
+  "source_sha256": "7748369407d28a70f35b5c4a7c0ab860495a08fd0030002112ea933fe570159b",
+  "native": {
+    "representation": "authoritative reference evaluated directly",
+    "surface_distance_cm": 0.0,
+    "volume_cm3": 415060.9191636846,
+    "volume_error_fraction": 0.0,
+    "seam_closure_error_cm": 0.0
+  },
+  "dagmc_coarse": {
+    "sampling": "64 axial by 12 angular bins per coil",
+    "triangles": 73728,
+    "sampled_maximum_surface_distance_cm": 6.249654346289777,
+    "sampled_rms_surface_distance_cm": 1.6047506562413574,
+    "sampled_p95_surface_distance_cm": 3.570050280786384,
+    "volume_cm3": 388767.07130359905,
+    "volume_error_fraction": -0.06334937028777751,
+    "boundary_edges": 0
+  },
+  "dagmc_fine": {
+    "sampling": "512 axial by 48 angular bins per coil",
+    "triangles": 2359296,
+    "sampled_maximum_surface_distance_cm": 0.1026156671124645,
+    "sampled_rms_surface_distance_cm": 0.027040365823168766,
+    "sampled_p95_surface_distance_cm": 0.063633584523604,
+    "volume_cm3": 413800.59707307373,
+    "volume_error_fraction": -0.003036474966494828,
+    "boundary_edges": 0
+  },
+  "not_measured": {
+    "approximate_two_sided_hausdorff_distance": "NOT_RUN; retained distance samples are face-centroid and edge-midpoint chordal deviations, not a symmetric Hausdorff estimator",
+    "maximum_normal_angle_error": "NOT_RUN",
+    "minimum_quantitative_coil_clearance": "NOT_RUN; independent topology validation found no overlaps but did not retain a distance"
+  },
+  "interpretation": "The speed comparison is conservative in native accuracy because native evaluates the common reference while both meshes approximate it. Full common-axis qualification remains incomplete because symmetric Hausdorff and normal-angle metrics were not run."
+}

@@ -1,0 +1,7 @@
+2026-09-25 local nearest-centerline solver rebuild preflight
+Windows RAM: 33,457,440 KiB total; 4,117,832 KiB free at observation.
+Free disk: C: 82,684,780,544 B; D: 503,938,207,744 B. Build target is C:.
+Largest resident processes: vmmemWSL 1,880,440,832 B; ChatGPT 1,244,921,856 B; chrome 944,590,848 B; codex 877,076,480 B; ChatGPT 724,303,872 B; chrome 687,599,616 B; chrome 664,854,528 B; OneDrive 636,231,680 B.
+Existing WSL OpenMC-Dev-D: GCC 14.2.0, CMake 3.31.6, Ninja 1.12.1, Python 3.13.5, /opt/openmc-venv 606 MiB and pip cache 152 MiB. The current local source worktree and configured 7.8 MiB build/local-cont-20260925 directory are present.
+Existing capabilities suffice. Planned software download/install/upgrade/acquisition: 0 B. One-job CMake rebuild of the existing standalone static library, compiled-surface test binary and frozen-bank executable, estimated output under 20 MiB, targets build/local-cont-20260925 on C:. No dependency environment or remote system changes.
+Rollback: retain the existing source control history and audit witness. Revert only the named source/test edits and rebuild the existing targets if this solver experiment fails; no package or cache removal is needed.

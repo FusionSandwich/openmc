@@ -1,0 +1,445 @@
+{
+  "schema": "stellarcsg.local-old-native-sentinel/v1",
+  "started_utc": "2026-09-25T05:51:21.009159+00:00",
+  "affinity": [
+    0
+  ],
+  "source_commit": "c67b68fdaf7be2049308db7da449f14a25123847",
+  "inputs": {
+    "/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-local-continuation-20260925/build/local-cont-20260925/stellarcsg_file_swept_benchmark": "7d62710c4777e2ba2b6de1cedbdb7c0d7af734250e5ba0fded9ba10c988d731b",
+    "/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-local-continuation-20260925/dev/stellarcsg/qualified/wistell_d_swept_coils.h5": "caeed2e41da2082b93d32758e40932d9ac268966998dc2664e8164cb8cb7a89b",
+    "/mnt/d/codex-verification/stellarcsg-20260913-03/native-torus-query-control-02": "9ec5ecf208507fd0a39e87e79a3cc36cbed236ed9c2ea63361e1b5554d34486d",
+    "/mnt/d/codex-verification/stellarcsg-20260913-03/native/lib/libopenmc.so": "451b21536d4178a81c4ec5c9a44f6e04eac194c58c87a639d643441ff2717d48"
+  },
+  "geometry_comparable": false,
+  "bank_comparable": false,
+  "interpretation": "Same-session absolute-cost sentinel ratio only. The old coil uses 1000 unique distance directions and one untimed oracle ray; native ZTorus repeats 64 rays 10000 times without an application result cache. Neither classification nor normal has a native matching control here. No candidate or transport is measured.",
+  "attempts": [
+    {
+      "command": [
+        "/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-local-continuation-20260925/build/local-cont-20260925/stellarcsg_file_swept_benchmark",
+        "/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-local-continuation-20260925/dev/stellarcsg/qualified/wistell_d_swept_coils.h5",
+        "/coils/coil_1031",
+        "1"
+      ],
+      "exit_code": 0,
+      "stdout": "{\n  \"distance_ns_per_call\": 4855.6,\n  \"classification_ns_per_call\": 809.8,\n  \"span_count\": 256,\n  \"bvh_node_count\": 127,\n  \"found_fraction\": 1,\n  \"candidate_nodes_per_call\": 0,\n  \"candidate_spans_per_call\": 0,\n  \"newton_iterations_per_call\": 0,\n  \"newton_failures_per_call\": 0,\n  \"local_subdivision_calls_per_call\": 0,\n  \"production_global_reference_calls\": 0,\n  \"oracle_rays\": 1,\n  \"oracle_mismatches\": 0,\n  \"sink\": 13275.0958416\n}\n",
+      "stderr": "",
+      "result": {
+        "distance_ns_per_call": 4855.6,
+        "classification_ns_per_call": 809.8,
+        "span_count": 256,
+        "bvh_node_count": 127,
+        "found_fraction": 1,
+        "candidate_nodes_per_call": 0,
+        "candidate_spans_per_call": 0,
+        "newton_iterations_per_call": 0,
+        "newton_failures_per_call": 0,
+        "local_subdivision_calls_per_call": 0,
+        "production_global_reference_calls": 0,
+        "oracle_rays": 1,
+        "oracle_mismatches": 0,
+        "sink": 13275.0958416
+      },
+      "lane": "old_coil",
+      "repetition": 0
+    },
+    {
+      "command": [
+        "/mnt/d/codex-verification/stellarcsg-20260913-03/native-torus-query-control-02",
+        "--banks",
+        "10000"
+      ],
+      "exit_code": 0,
+      "stdout": "{\"kind\":\"native_ztorus_absolute_control\",\"banks\":10000,\"count\":64,\"queries\":640000,\"ns_per_query\":172.15953124999999,\"checksum\":438967.4254054692,\"geometry\":{\"x0\":0,\"y0\":0,\"z0\":0,\"A\":5,\"B\":0.25,\"C\":0.25}}\n",
+      "stderr": "",
+      "result": {
+        "kind": "native_ztorus_absolute_control",
+        "banks": 10000,
+        "count": 64,
+        "queries": 640000,
+        "ns_per_query": 172.15953125,
+        "checksum": 438967.4254054692,
+        "geometry": {
+          "x0": 0,
+          "y0": 0,
+          "z0": 0,
+          "A": 5,
+          "B": 0.25,
+          "C": 0.25
+        }
+      },
+      "lane": "native_ztorus",
+      "repetition": 0
+    },
+    {
+      "command": [
+        "/mnt/d/codex-verification/stellarcsg-20260913-03/native-torus-query-control-02",
+        "--banks",
+        "10000"
+      ],
+      "exit_code": 0,
+      "stdout": "{\"kind\":\"native_ztorus_absolute_control\",\"banks\":10000,\"count\":64,\"queries\":640000,\"ns_per_query\":200.61265624999999,\"checksum\":438967.4254054692,\"geometry\":{\"x0\":0,\"y0\":0,\"z0\":0,\"A\":5,\"B\":0.25,\"C\":0.25}}\n",
+      "stderr": "",
+      "result": {
+        "kind": "native_ztorus_absolute_control",
+        "banks": 10000,
+        "count": 64,
+        "queries": 640000,
+        "ns_per_query": 200.61265625,
+        "checksum": 438967.4254054692,
+        "geometry": {
+          "x0": 0,
+          "y0": 0,
+          "z0": 0,
+          "A": 5,
+          "B": 0.25,
+          "C": 0.25
+        }
+      },
+      "lane": "native_ztorus",
+      "repetition": 1
+    },
+    {
+      "command": [
+        "/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-local-continuation-20260925/build/local-cont-20260925/stellarcsg_file_swept_benchmark",
+        "/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-local-continuation-20260925/dev/stellarcsg/qualified/wistell_d_swept_coils.h5",
+        "/coils/coil_1031",
+        "1"
+      ],
+      "exit_code": 0,
+      "stdout": "{\n  \"distance_ns_per_call\": 4862.6,\n  \"classification_ns_per_call\": 863.5,\n  \"span_count\": 256,\n  \"bvh_node_count\": 127,\n  \"found_fraction\": 1,\n  \"candidate_nodes_per_call\": 0,\n  \"candidate_spans_per_call\": 0,\n  \"newton_iterations_per_call\": 0,\n  \"newton_failures_per_call\": 0,\n  \"local_subdivision_calls_per_call\": 0,\n  \"production_global_reference_calls\": 0,\n  \"oracle_rays\": 1,\n  \"oracle_mismatches\": 0,\n  \"sink\": 13275.0958416\n}\n",
+      "stderr": "",
+      "result": {
+        "distance_ns_per_call": 4862.6,
+        "classification_ns_per_call": 863.5,
+        "span_count": 256,
+        "bvh_node_count": 127,
+        "found_fraction": 1,
+        "candidate_nodes_per_call": 0,
+        "candidate_spans_per_call": 0,
+        "newton_iterations_per_call": 0,
+        "newton_failures_per_call": 0,
+        "local_subdivision_calls_per_call": 0,
+        "production_global_reference_calls": 0,
+        "oracle_rays": 1,
+        "oracle_mismatches": 0,
+        "sink": 13275.0958416
+      },
+      "lane": "old_coil",
+      "repetition": 1
+    },
+    {
+      "command": [
+        "/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-local-continuation-20260925/build/local-cont-20260925/stellarcsg_file_swept_benchmark",
+        "/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-local-continuation-20260925/dev/stellarcsg/qualified/wistell_d_swept_coils.h5",
+        "/coils/coil_1031",
+        "1"
+      ],
+      "exit_code": 0,
+      "stdout": "{\n  \"distance_ns_per_call\": 4758.1,\n  \"classification_ns_per_call\": 811.2,\n  \"span_count\": 256,\n  \"bvh_node_count\": 127,\n  \"found_fraction\": 1,\n  \"candidate_nodes_per_call\": 0,\n  \"candidate_spans_per_call\": 0,\n  \"newton_iterations_per_call\": 0,\n  \"newton_failures_per_call\": 0,\n  \"local_subdivision_calls_per_call\": 0,\n  \"production_global_reference_calls\": 0,\n  \"oracle_rays\": 1,\n  \"oracle_mismatches\": 0,\n  \"sink\": 13275.0958416\n}\n",
+      "stderr": "",
+      "result": {
+        "distance_ns_per_call": 4758.1,
+        "classification_ns_per_call": 811.2,
+        "span_count": 256,
+        "bvh_node_count": 127,
+        "found_fraction": 1,
+        "candidate_nodes_per_call": 0,
+        "candidate_spans_per_call": 0,
+        "newton_iterations_per_call": 0,
+        "newton_failures_per_call": 0,
+        "local_subdivision_calls_per_call": 0,
+        "production_global_reference_calls": 0,
+        "oracle_rays": 1,
+        "oracle_mismatches": 0,
+        "sink": 13275.0958416
+      },
+      "lane": "old_coil",
+      "repetition": 2
+    },
+    {
+      "command": [
+        "/mnt/d/codex-verification/stellarcsg-20260913-03/native-torus-query-control-02",
+        "--banks",
+        "10000"
+      ],
+      "exit_code": 0,
+      "stdout": "{\"kind\":\"native_ztorus_absolute_control\",\"banks\":10000,\"count\":64,\"queries\":640000,\"ns_per_query\":173.30234375000001,\"checksum\":438967.4254054692,\"geometry\":{\"x0\":0,\"y0\":0,\"z0\":0,\"A\":5,\"B\":0.25,\"C\":0.25}}\n",
+      "stderr": "",
+      "result": {
+        "kind": "native_ztorus_absolute_control",
+        "banks": 10000,
+        "count": 64,
+        "queries": 640000,
+        "ns_per_query": 173.30234375,
+        "checksum": 438967.4254054692,
+        "geometry": {
+          "x0": 0,
+          "y0": 0,
+          "z0": 0,
+          "A": 5,
+          "B": 0.25,
+          "C": 0.25
+        }
+      },
+      "lane": "native_ztorus",
+      "repetition": 2
+    },
+    {
+      "command": [
+        "/mnt/d/codex-verification/stellarcsg-20260913-03/native-torus-query-control-02",
+        "--banks",
+        "10000"
+      ],
+      "exit_code": 0,
+      "stdout": "{\"kind\":\"native_ztorus_absolute_control\",\"banks\":10000,\"count\":64,\"queries\":640000,\"ns_per_query\":174.16812343749999,\"checksum\":438967.4254054692,\"geometry\":{\"x0\":0,\"y0\":0,\"z0\":0,\"A\":5,\"B\":0.25,\"C\":0.25}}\n",
+      "stderr": "",
+      "result": {
+        "kind": "native_ztorus_absolute_control",
+        "banks": 10000,
+        "count": 64,
+        "queries": 640000,
+        "ns_per_query": 174.1681234375,
+        "checksum": 438967.4254054692,
+        "geometry": {
+          "x0": 0,
+          "y0": 0,
+          "z0": 0,
+          "A": 5,
+          "B": 0.25,
+          "C": 0.25
+        }
+      },
+      "lane": "native_ztorus",
+      "repetition": 3
+    },
+    {
+      "command": [
+        "/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-local-continuation-20260925/build/local-cont-20260925/stellarcsg_file_swept_benchmark",
+        "/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-local-continuation-20260925/dev/stellarcsg/qualified/wistell_d_swept_coils.h5",
+        "/coils/coil_1031",
+        "1"
+      ],
+      "exit_code": 0,
+      "stdout": "{\n  \"distance_ns_per_call\": 4842.3,\n  \"classification_ns_per_call\": 790.9,\n  \"span_count\": 256,\n  \"bvh_node_count\": 127,\n  \"found_fraction\": 1,\n  \"candidate_nodes_per_call\": 0,\n  \"candidate_spans_per_call\": 0,\n  \"newton_iterations_per_call\": 0,\n  \"newton_failures_per_call\": 0,\n  \"local_subdivision_calls_per_call\": 0,\n  \"production_global_reference_calls\": 0,\n  \"oracle_rays\": 1,\n  \"oracle_mismatches\": 0,\n  \"sink\": 13275.0958416\n}\n",
+      "stderr": "",
+      "result": {
+        "distance_ns_per_call": 4842.3,
+        "classification_ns_per_call": 790.9,
+        "span_count": 256,
+        "bvh_node_count": 127,
+        "found_fraction": 1,
+        "candidate_nodes_per_call": 0,
+        "candidate_spans_per_call": 0,
+        "newton_iterations_per_call": 0,
+        "newton_failures_per_call": 0,
+        "local_subdivision_calls_per_call": 0,
+        "production_global_reference_calls": 0,
+        "oracle_rays": 1,
+        "oracle_mismatches": 0,
+        "sink": 13275.0958416
+      },
+      "lane": "old_coil",
+      "repetition": 3
+    },
+    {
+      "command": [
+        "/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-local-continuation-20260925/build/local-cont-20260925/stellarcsg_file_swept_benchmark",
+        "/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-local-continuation-20260925/dev/stellarcsg/qualified/wistell_d_swept_coils.h5",
+        "/coils/coil_1031",
+        "1"
+      ],
+      "exit_code": 0,
+      "stdout": "{\n  \"distance_ns_per_call\": 5306.5,\n  \"classification_ns_per_call\": 922.4,\n  \"span_count\": 256,\n  \"bvh_node_count\": 127,\n  \"found_fraction\": 1,\n  \"candidate_nodes_per_call\": 0,\n  \"candidate_spans_per_call\": 0,\n  \"newton_iterations_per_call\": 0,\n  \"newton_failures_per_call\": 0,\n  \"local_subdivision_calls_per_call\": 0,\n  \"production_global_reference_calls\": 0,\n  \"oracle_rays\": 1,\n  \"oracle_mismatches\": 0,\n  \"sink\": 13275.0958416\n}\n",
+      "stderr": "",
+      "result": {
+        "distance_ns_per_call": 5306.5,
+        "classification_ns_per_call": 922.4,
+        "span_count": 256,
+        "bvh_node_count": 127,
+        "found_fraction": 1,
+        "candidate_nodes_per_call": 0,
+        "candidate_spans_per_call": 0,
+        "newton_iterations_per_call": 0,
+        "newton_failures_per_call": 0,
+        "local_subdivision_calls_per_call": 0,
+        "production_global_reference_calls": 0,
+        "oracle_rays": 1,
+        "oracle_mismatches": 0,
+        "sink": 13275.0958416
+      },
+      "lane": "old_coil",
+      "repetition": 4
+    },
+    {
+      "command": [
+        "/mnt/d/codex-verification/stellarcsg-20260913-03/native-torus-query-control-02",
+        "--banks",
+        "10000"
+      ],
+      "exit_code": 0,
+      "stdout": "{\"kind\":\"native_ztorus_absolute_control\",\"banks\":10000,\"count\":64,\"queries\":640000,\"ns_per_query\":174.44203125000001,\"checksum\":438967.4254054692,\"geometry\":{\"x0\":0,\"y0\":0,\"z0\":0,\"A\":5,\"B\":0.25,\"C\":0.25}}\n",
+      "stderr": "",
+      "result": {
+        "kind": "native_ztorus_absolute_control",
+        "banks": 10000,
+        "count": 64,
+        "queries": 640000,
+        "ns_per_query": 174.44203125,
+        "checksum": 438967.4254054692,
+        "geometry": {
+          "x0": 0,
+          "y0": 0,
+          "z0": 0,
+          "A": 5,
+          "B": 0.25,
+          "C": 0.25
+        }
+      },
+      "lane": "native_ztorus",
+      "repetition": 4
+    },
+    {
+      "command": [
+        "/mnt/d/codex-verification/stellarcsg-20260913-03/native-torus-query-control-02",
+        "--banks",
+        "10000"
+      ],
+      "exit_code": 0,
+      "stdout": "{\"kind\":\"native_ztorus_absolute_control\",\"banks\":10000,\"count\":64,\"queries\":640000,\"ns_per_query\":187.965,\"checksum\":438967.4254054692,\"geometry\":{\"x0\":0,\"y0\":0,\"z0\":0,\"A\":5,\"B\":0.25,\"C\":0.25}}\n",
+      "stderr": "",
+      "result": {
+        "kind": "native_ztorus_absolute_control",
+        "banks": 10000,
+        "count": 64,
+        "queries": 640000,
+        "ns_per_query": 187.965,
+        "checksum": 438967.4254054692,
+        "geometry": {
+          "x0": 0,
+          "y0": 0,
+          "z0": 0,
+          "A": 5,
+          "B": 0.25,
+          "C": 0.25
+        }
+      },
+      "lane": "native_ztorus",
+      "repetition": 5
+    },
+    {
+      "command": [
+        "/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-local-continuation-20260925/build/local-cont-20260925/stellarcsg_file_swept_benchmark",
+        "/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-local-continuation-20260925/dev/stellarcsg/qualified/wistell_d_swept_coils.h5",
+        "/coils/coil_1031",
+        "1"
+      ],
+      "exit_code": 0,
+      "stdout": "{\n  \"distance_ns_per_call\": 5211.7,\n  \"classification_ns_per_call\": 793.6,\n  \"span_count\": 256,\n  \"bvh_node_count\": 127,\n  \"found_fraction\": 1,\n  \"candidate_nodes_per_call\": 0,\n  \"candidate_spans_per_call\": 0,\n  \"newton_iterations_per_call\": 0,\n  \"newton_failures_per_call\": 0,\n  \"local_subdivision_calls_per_call\": 0,\n  \"production_global_reference_calls\": 0,\n  \"oracle_rays\": 1,\n  \"oracle_mismatches\": 0,\n  \"sink\": 13275.0958416\n}\n",
+      "stderr": "",
+      "result": {
+        "distance_ns_per_call": 5211.7,
+        "classification_ns_per_call": 793.6,
+        "span_count": 256,
+        "bvh_node_count": 127,
+        "found_fraction": 1,
+        "candidate_nodes_per_call": 0,
+        "candidate_spans_per_call": 0,
+        "newton_iterations_per_call": 0,
+        "newton_failures_per_call": 0,
+        "local_subdivision_calls_per_call": 0,
+        "production_global_reference_calls": 0,
+        "oracle_rays": 1,
+        "oracle_mismatches": 0,
+        "sink": 13275.0958416
+      },
+      "lane": "old_coil",
+      "repetition": 5
+    },
+    {
+      "command": [
+        "/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-local-continuation-20260925/build/local-cont-20260925/stellarcsg_file_swept_benchmark",
+        "/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-local-continuation-20260925/dev/stellarcsg/qualified/wistell_d_swept_coils.h5",
+        "/coils/coil_1031",
+        "1"
+      ],
+      "exit_code": 0,
+      "stdout": "{\n  \"distance_ns_per_call\": 4808,\n  \"classification_ns_per_call\": 790,\n  \"span_count\": 256,\n  \"bvh_node_count\": 127,\n  \"found_fraction\": 1,\n  \"candidate_nodes_per_call\": 0,\n  \"candidate_spans_per_call\": 0,\n  \"newton_iterations_per_call\": 0,\n  \"newton_failures_per_call\": 0,\n  \"local_subdivision_calls_per_call\": 0,\n  \"production_global_reference_calls\": 0,\n  \"oracle_rays\": 1,\n  \"oracle_mismatches\": 0,\n  \"sink\": 13275.0958416\n}\n",
+      "stderr": "",
+      "result": {
+        "distance_ns_per_call": 4808,
+        "classification_ns_per_call": 790,
+        "span_count": 256,
+        "bvh_node_count": 127,
+        "found_fraction": 1,
+        "candidate_nodes_per_call": 0,
+        "candidate_spans_per_call": 0,
+        "newton_iterations_per_call": 0,
+        "newton_failures_per_call": 0,
+        "local_subdivision_calls_per_call": 0,
+        "production_global_reference_calls": 0,
+        "oracle_rays": 1,
+        "oracle_mismatches": 0,
+        "sink": 13275.0958416
+      },
+      "lane": "old_coil",
+      "repetition": 6
+    },
+    {
+      "command": [
+        "/mnt/d/codex-verification/stellarcsg-20260913-03/native-torus-query-control-02",
+        "--banks",
+        "10000"
+      ],
+      "exit_code": 0,
+      "stdout": "{\"kind\":\"native_ztorus_absolute_control\",\"banks\":10000,\"count\":64,\"queries\":640000,\"ns_per_query\":172.89874843749999,\"checksum\":438967.4254054692,\"geometry\":{\"x0\":0,\"y0\":0,\"z0\":0,\"A\":5,\"B\":0.25,\"C\":0.25}}\n",
+      "stderr": "",
+      "result": {
+        "kind": "native_ztorus_absolute_control",
+        "banks": 10000,
+        "count": 64,
+        "queries": 640000,
+        "ns_per_query": 172.8987484375,
+        "checksum": 438967.4254054692,
+        "geometry": {
+          "x0": 0,
+          "y0": 0,
+          "z0": 0,
+          "A": 5,
+          "B": 0.25,
+          "C": 0.25
+        }
+      },
+      "lane": "native_ztorus",
+      "repetition": 6
+    }
+  ],
+  "metrics": {
+    "old_distance_ns_median_of_bank_means": 4855.6,
+    "old_distance_ns_min_max": [
+      4758.1,
+      5306.5
+    ],
+    "native_distance_ns_median_of_bank_means": 174.1681234375,
+    "native_distance_ns_min_max": [
+      172.15953125,
+      200.61265625
+    ],
+    "old_over_native_sentinel_cost_ratio": 27.878809877298966,
+    "candidate_over_native_cost_ratio": null,
+    "classification_cost_ratio": null,
+    "normal_cost_ratio": null,
+    "transport_throughput_ratio": null,
+    "old_oracle_mismatches": [
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+    ]
+  },
+  "finished_utc": "2026-09-25T05:51:22.672228+00:00"
+}
