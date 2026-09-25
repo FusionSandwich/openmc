@@ -39,6 +39,8 @@ std::unordered_map<OverlapKey, int, OverlapKeyHash> overlap_key_index;
 //==============================================================================
 
 #ifdef OPENMC_DAGMC_ENABLED
+namespace {
+
 bool is_expected_dagmc_boundary_neighbor(
   const GeometryState& p, int level, int32_t candidate_index)
 {
@@ -66,6 +68,8 @@ bool is_expected_dagmc_boundary_neighbor(
   return rval == moab::MB_SUCCESS &&
          adjacent_volume == current->mesh_handle();
 }
+
+} // namespace
 #endif
 
 //==============================================================================
@@ -84,18 +88,18 @@ int check_cell_overlap(GeometryState& p, bool error)
     // Loop through each cell on this level
     for (auto index_cell : univ.cells_) {
       Cell& c = *model::cells[index_cell];
-#ifdef OPENMC_DAGMC_ENABLED
-      // A point on a shared DAGMC facet can be classified as belonging to both
-      // topological neighbors. The old/new neighbor pair is not an overlap,
-      // but every other candidate cell still needs to be checked.
-      if (univ.geom_type() == GeometryType::DAG &&
-          is_expected_dagmc_boundary_neighbor(p, j, index_cell))
-        continue;
-#endif
       if (c.contains(p.coord(j).r(), p.coord(j).u(), p.surface())) {
 #pragma omp atomic
         ++model::overlap_check_count[index_cell];
         if (index_cell != p.coord(j).cell()) {
+#ifdef OPENMC_DAGMC_ENABLED
+          // A point on a shared DAGMC facet can be classified as belonging to
+          // both topological neighbors. The old/new neighbor pair is not an
+          // overlap, but every other candidate cell still needs to be checked.
+          if (univ.geom_type() == GeometryType::DAG &&
+              is_expected_dagmc_boundary_neighbor(p, j, index_cell))
+            continue;
+#endif
           if (error) {
             fatal_error(
               fmt::format("Overlapping cells detected: {}, {} on universe {}",
