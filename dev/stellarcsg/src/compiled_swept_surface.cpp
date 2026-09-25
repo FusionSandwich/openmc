@@ -176,17 +176,13 @@ CompiledSweptSplineSurface::CompiledSweptSplineSurface(
   instance_id_ = next_swept_surface_instance.fetch_add(
     1, std::memory_order_relaxed);
   circular_radius_ = data_.major_radius_coefficients.front();
-  const double circular_tolerance = std::max(
-    64.0 * std::numeric_limits<double>::epsilon()
-      * data_.characteristic_length,
-    1.0e-12 * data_.characteristic_length);
   circular_cross_section_ = std::all_of(
     data_.major_radius_coefficients.begin(),
     data_.major_radius_coefficients.end(), [&](double value) {
-      return std::abs(value - circular_radius_) <= circular_tolerance;
+      return value == circular_radius_;
     }) && std::all_of(data_.minor_radius_coefficients.begin(),
       data_.minor_radius_coefficients.end(), [&](double value) {
-        return std::abs(value - circular_radius_) <= circular_tolerance;
+        return value == circular_radius_;
       });
   const double radius_max = std::max(
     *std::max_element(data_.major_radius_coefficients.begin(),

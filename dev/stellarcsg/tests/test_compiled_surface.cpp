@@ -334,6 +334,20 @@ void test_exact_circular_swept_coil()
   }
   auto forced_data = data;
   auto near_torus_data = data;
+  auto varying_radius_data = data;
+  varying_radius_data.characteristic_length = 1.0e8;
+  varying_radius_data.major_radius_coefficients[0] += 5.0e-5;
+  const stellarcsg::CompiledSweptSplineSurface varying_radius {
+    std::move(varying_radius_data)};
+  const auto varying_crossing = varying_radius.distance(
+    {major, 0.0, 1.0}, {0.0, 0.0, -1.0}, false);
+  check(varying_crossing.found,
+    "varying swept radius produces an axial crossing candidate");
+  if (varying_crossing.found) {
+    check_near(varying_crossing.distance,
+      1.0 - (minor + (2.0 / 3.0) * 5.0e-5), 5.0e-6,
+      "varying swept radius uses the faithful spline crossing");
+  }
   const stellarcsg::CompiledSweptSplineSurface coil {std::move(data), false,
     stellarcsg::SweptTorusMode::approximate_torus_surrogate};
   const stellarcsg::CompiledSweptSplineSurface forced_coil {
