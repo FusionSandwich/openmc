@@ -1,0 +1,52 @@
+{
+  "schema": "stellarcsg.cpp-prefix-interval-probe/v1",
+  "state": "EXPERIMENTAL_PREFIX_EXCLUDED_NOT_ROOT_CERTIFIED",
+  "command": [
+    "/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-local-continuation-20260925/build/native-local-20260925/swept_prefix_interval",
+    "/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-local-continuation-20260925/dev/stellarcsg/qualified/analytic_swept_coils.h5"
+  ],
+  "exit_code": 0,
+  "loader_binding": "libopenmc.so => /mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-local-continuation-20260925/build/native-local-20260925/lib/libopenmc.so (0x0000718f68e78000)",
+  "affinity": [
+    0
+  ],
+  "hashes": {
+    "/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-local-continuation-20260925/build/native-local-20260925/swept_prefix_interval": "9ade2419763b7bc9dd321bccd0ff6c2147f3f731bf2e6afd4abd50982817ff73",
+    "/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-local-continuation-20260925/build/native-local-20260925/lib/libopenmc.so": "31578a499d905e0c1c12fd71270e39a7cf905cc3d5d12cb73c412cdf5707f65a",
+    "/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-local-continuation-20260925/dev/stellarcsg/qualified/analytic_swept_coils.h5": "39f77da5ab1fe427cce58b153e9b52cf8915e9973a9b8f3dfad5ab3b00a9e46d",
+    "/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-local-continuation-20260925/dev/stellarcsg/experiments/swept_prefix_interval.cpp": "c96150c53f674968c156e400d452b4eb39908c504afad4cec25955e05f9541b7"
+  },
+  "compile_contract": "GCC 14.2 -O2 -fno-fast-math -ffp-contract=off",
+  "underflow_control": [
+    {
+      "kind": "underflow_control",
+      "state": "undecided_frame"
+    }
+  ],
+  "span_counts_match": true,
+  "summaries": [
+    {
+      "kind": "member_summary",
+      "member": 2,
+      "lead_cm": 16,
+      "selected": 6,
+      "prefix_excluded": 6,
+      "negative_control_undecided": 1,
+      "nodes": 76,
+      "terminal_unresolved": true
+    },
+    {
+      "kind": "member_summary",
+      "member": 3,
+      "lead_cm": 17.000000000000227,
+      "selected": 6,
+      "prefix_excluded": 6,
+      "negative_control_undecided": 2,
+      "nodes": 114,
+      "terminal_unresolved": true
+    }
+  ],
+  "production_solver_modified": false,
+  "native_transport_run": false,
+  "claim_boundary": "Stored compiled powers tested, but no complete floating-path audit or finite root-tile uniqueness proof; no tracking admission."
+}
