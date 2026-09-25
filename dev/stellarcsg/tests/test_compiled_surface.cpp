@@ -637,6 +637,42 @@ void test_swept_span_horner_bounds()
     "swept surface box encloses the same center despite small tube radius");
 }
 
+void test_swept_earlier_unresolved_candidate()
+{
+  // Frozen recovery04 a03 has an entry 0.002 cm from the origin and a
+  // later Newton candidate at 0.502 cm. The scan may improve the candidate,
+  // but cannot certify that all earlier possibilities have been exhausted.
+  constexpr std::size_t count = 64;
+  constexpr double pi = 3.1415926535897932384626433832795;
+  stellarcsg::SweptSplineSurfaceData data;
+  data.coil_id = 9040;
+  data.sample_count = count;
+  data.length = 2.0 * pi * 5.0;
+  data.characteristic_length = 5.0;
+  data.major_radius_coefficients.assign(count, 0.25);
+  data.minor_radius_coefficients.assign(count, 0.25);
+  for (std::size_t i = 0; i < count; ++i) {
+    const double angle = 2.0 * pi * static_cast<double>(i) / count;
+    const double c = std::cos(angle), s = std::sin(angle);
+    for (double x : {5.0 * c, 5.0 * s, 0.0})
+      data.centerline_coefficients.push_back(x);
+    for (double x : {0.0, 0.0, 1.0})
+      data.normal_coefficients.push_back(x);
+    for (double x : {c, s, 0.0})
+      data.binormal_coefficients.push_back(x);
+  }
+  const stellarcsg::CompiledSweptSplineSurface surface {std::move(data), true};
+  const double knot_radius = 5.0 *
+    (2.0 / 3.0 + std::cos(2.0 * pi / count) / 3.0);
+  const auto result = surface.distance(
+    {knot_radius + 0.252, 0.0, 0.0}, {-1.0, 0.0, 0.0}, false);
+  check(result.found, "earlier unresolved span yields a candidate");
+  if (result.found) check_near(result.distance, 0.002, 3.0e-7,
+    "unresolved-span sign scan finds entry before later Newton candidate");
+  check(result.terminal_unresolved,
+    "earlier candidate remains terminal unresolved without root certificate");
+}
+
 void test_sha256_known_vector()
 {
   stellarcsg::Sha256 digest;
@@ -669,6 +705,7 @@ int main()
     test_near_parallel_ray_box_interval();
     test_extreme_scale_frame_normalization();
     test_swept_span_horner_bounds();
+    test_swept_earlier_unresolved_candidate();
     test_sha256_known_vector();
 #ifdef STELLARCSG_HAS_HDF5
     test_hdf5_round_trip();

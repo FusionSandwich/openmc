@@ -1189,10 +1189,14 @@ DistanceResult CompiledSweptSplineSurface::distance(
         : StackEntry {node.right, right->enter};
     }
   }
-  if (!std::isfinite(best_t)) {
+  // A Newton root in one span does not resolve earlier spans. Probe every
+  // unresolved interval that could precede it for a closer implicit crossing,
+  // while retaining terminal_unresolved until the interval is certified.
+  if (unresolved_count != 0) {
     for (std::size_t unresolved_index = 0;
          unresolved_index < unresolved_count; ++unresolved_index) {
       const auto item = unresolved[unresolved_index];
+      if (item.enter >= best_t) continue;
       const auto& span = spans_[item.span];
       add_performance_counter(PerformanceCounter::local_subdivision_calls);
       constexpr int scan_segments = 8;
@@ -1233,7 +1237,6 @@ DistanceResult CompiledSweptSplineSurface::distance(
         previous_t = current_t;
         previous_value = current_value;
       }
-      if (std::isfinite(best_t)) break;
     }
   }
   record_candidate_count(candidates);
