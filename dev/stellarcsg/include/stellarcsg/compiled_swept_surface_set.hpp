@@ -29,6 +29,8 @@ class CompiledSweptSplineSurfaceSet {
 public:
   explicit CompiledSweptSplineSurfaceSet(
     std::vector<SweptSplineSurfaceData> coils);
+  CompiledSweptSplineSurfaceSet(std::vector<SweptSplineSurfaceData> coils,
+    SweptTorusMode torus_mode);
 
   [[nodiscard]] double evaluate(const Vec3& point) const;
   [[nodiscard]] Vec3 normal(const Vec3& point) const;

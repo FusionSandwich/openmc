@@ -332,13 +332,15 @@ void test_exact_circular_swept_coil()
     data.binormal_coefficients[3 * i + 2] = 0.0;
   }
   auto forced_data = data;
-  const stellarcsg::CompiledSweptSplineSurface coil {std::move(data)};
+  auto near_torus_data = data;
+  const stellarcsg::CompiledSweptSplineSurface coil {std::move(data), false,
+    stellarcsg::SweptTorusMode::approximate_torus_surrogate};
   const stellarcsg::CompiledSweptSplineSurface forced_coil {
     std::move(forced_data), true};
-  check(coil.exact_torus_specialization(),
-    "planar circular swept coil selects exact torus specialization");
-  check(!forced_coil.exact_torus_specialization(),
-    "planar circular swept coil can force the general span solver");
+  check(coil.approximate_torus_surrogate(),
+    "analytic control explicitly selects approximate torus surrogate");
+  check(!forced_coil.approximate_torus_surrogate(),
+    "faithful swept spline does not select torus surrogate");
   check_near(coil.evaluate({major + minor, 0.0, 0.0}), 0.0, 1.0e-12,
     "swept circular coil evaluates as exact torus");
   const auto crossing = coil.distance_reference(
@@ -367,6 +369,26 @@ void test_exact_circular_swept_coil()
         "forced-general circular coil preserves nearest root");
     }
   }
+  near_torus_data.major_radius_coefficients[0] += 2.0e-6;
+  near_torus_data.minor_radius_coefficients[0] += 2.0e-6;
+  auto surrogate_data = near_torus_data;
+  auto set_data = near_torus_data;
+  const stellarcsg::CompiledSweptSplineSurface near_torus {
+    std::move(near_torus_data)};
+  const stellarcsg::CompiledSweptSplineSurface near_surrogate {
+    std::move(surrogate_data), false,
+    stellarcsg::SweptTorusMode::approximate_torus_surrogate};
+  check(!near_torus.approximate_torus_surrogate()
+      && near_surrogate.approximate_torus_surrogate(),
+    "near-torus coefficient payload defaults to faithful spline");
+  check(std::abs(near_torus.evaluate({major + minor, 0.0, 0.0})
+        - near_surrogate.evaluate({major + minor, 0.0, 0.0})) > 5.0e-7,
+    "sample-tolerance torus surrogate changes near-torus surface value");
+  const stellarcsg::CompiledSweptSplineSurfaceSet faithful_set {
+    {std::move(set_data)}};
+  check_near(faithful_set.evaluate({major + minor, 0.0, 0.0}),
+    near_torus.evaluate({major + minor, 0.0, 0.0}), 1.0e-12,
+    "default coil set retains its member's faithful spline value");
 }
 
 void test_swept_coil_set_bvh()
@@ -408,7 +430,8 @@ void test_swept_coil_set_bvh()
   data.push_back(make_coil(10, -2.0));
   data.push_back(make_coil(20, 0.0));
   data.push_back(make_coil(30, 2.0));
-  const stellarcsg::CompiledSweptSplineSurfaceSet set {std::move(data)};
+  const stellarcsg::CompiledSweptSplineSurfaceSet set {std::move(data),
+    stellarcsg::SweptTorusMode::approximate_torus_surrogate};
   check(set.size() == 3, "coil-set BVH retains every coil");
   check(set.coil_bvh().size() == 3, "three-coil set builds a top-level BVH");
   check(set.evaluate({major, 0.0, 0.0}) < 0.0,
@@ -431,7 +454,8 @@ void test_swept_coil_set_bvh()
   overlapping.push_back(make_coil(40, 0.0));
   overlapping.push_back(make_coil(50, 0.3));
   const stellarcsg::CompiledSweptSplineSurfaceSet overlapping_set {
-    std::move(overlapping)};
+    std::move(overlapping),
+    stellarcsg::SweptTorusMode::approximate_torus_surrogate};
   const auto union_exit = overlapping_set.distance(
     {major, 0.0, 0.0}, {0.0, 0.0, 1.0}, false);
   check(union_exit.root.found, "overlapping swept tori find union exit");

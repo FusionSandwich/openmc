@@ -131,6 +131,13 @@ double point_box_distance_squared(const Vec3& point, const BoundingBox& box)
 
 CompiledSweptSplineSurface::CompiledSweptSplineSurface(
   SweptSplineSurfaceData data, bool force_general_solver)
+  : CompiledSweptSplineSurface(std::move(data), force_general_solver,
+      SweptTorusMode::faithful_spline)
+{}
+
+CompiledSweptSplineSurface::CompiledSweptSplineSurface(
+  SweptSplineSurfaceData data, bool force_general_solver,
+  SweptTorusMode torus_mode)
   : data_ {[&data]() { validate(data); return std::move(data); }()}
   , center_x_ {data_.sample_count, 1,
       component(data_.centerline_coefficients, data_.sample_count, 0)}
@@ -196,6 +203,8 @@ CompiledSweptSplineSurface::CompiledSweptSplineSurface(
   bounds_.lower = bounds_.lower - Vec3 {radius_max, radius_max, radius_max};
   bounds_.upper = bounds_.upper + Vec3 {radius_max, radius_max, radius_max};
   build_spans();
+  if (force_general_solver
+      || torus_mode != SweptTorusMode::approximate_torus_surrogate) return;
 
   double radius_sum = 0.0;
   double z_sum = 0.0;
@@ -225,9 +234,9 @@ CompiledSweptSplineSurface::CompiledSweptSplineSurface(
       && std::abs(value.major_radius - mean_cross) <= tolerance
       && std::abs(value.minor_radius - mean_cross) <= tolerance;
   }
-  if (circular && !force_general_solver) {
+  if (circular) {
     PeriodicSplineSurfaceData torus;
-    torus.content_id = "swept-exact-torus-specialization";
+    torus.content_id = "swept-approximate-torus-surrogate";
     torus.axis_r_coefficients.assign(8, mean_radius);
     torus.axis_z_coefficients.assign(8, mean_z);
     torus.n_theta = 12;

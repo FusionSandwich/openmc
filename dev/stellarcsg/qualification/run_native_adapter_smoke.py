@@ -5,6 +5,7 @@ from __future__ import annotations
 import argparse
 import hashlib
 import json
+import math
 import os
 from pathlib import Path
 import subprocess
@@ -49,9 +50,12 @@ def main() -> int:
     (args.output / "stdout.jsonl").write_text(result.stdout)
     (args.output / "stderr.txt").write_text(result.stderr)
     rows = [json.loads(line) for line in result.stdout.splitlines()]
+    single_distance = (rows[0].get("distance_cm") if rows else None)
     single_pass = (len(rows) == 5 and
                    rows[0].get("kind") == "native_stellarcsg_adapter_single" and
-                   0 < rows[0].get("distance_cm", 0) <= 25 and
+                   isinstance(single_distance, (int, float)) and
+                   math.isfinite(single_distance) and
+                   abs(single_distance - 25.0) <= 1.0e-6 and
                    rows[0].get("native_transport") is False)
     solver_probes = rows[1:3]
     solver_probe_complete = (
@@ -67,7 +71,7 @@ def main() -> int:
                           "collection: Swept-spline member has an unresolved"
                           in result.stderr)
     receipt = {
-        "schema": "stellarcsg.native-adapter-smoke/v1",
+        "schema": "stellarcsg.native-adapter-smoke/v2",
         "state": ("BLOCKED_COLLECTION_UNRESOLVED" if single_pass and
                   solver_probe_complete and probe_complete and
                   blocked_collection else "FAIL"),
@@ -76,7 +80,11 @@ def main() -> int:
         "loader_binding": binding[0],
         "affinity": sorted(os.sched_getaffinity(0)),
         "hashes": {str(path): sha256(path) for path in
-                   (args.binary, args.library, args.analytic_h5, args.source)},
+                   (args.binary, args.library, args.analytic_h5, args.source,
+                    Path(__file__).resolve())},
+        "single_expected_cm": 25.0,
+        "single_tolerance_cm": 1.0e-6,
+        "single_distance_cm": single_distance,
         "single_pass": single_pass,
         "solver_probes": solver_probes,
         "solver_probe_complete": solver_probe_complete,
@@ -84,6 +92,7 @@ def main() -> int:
         "probe_complete": probe_complete,
         "collection_blocked": blocked_collection,
         "native_transport_run": False,
+        "claim_boundary": "The faithful circular spline registered through native OpenMC and returned the analytic fixture crossing within 1e-6 cm. Shaped member and collection root queries remain terminal unresolved; no particle transport ran.",
     }
     (args.output / "receipt.json").write_text(json.dumps(receipt, indent=2) + "\n")
     print(json.dumps({"state": receipt["state"], "single_pass": single_pass,

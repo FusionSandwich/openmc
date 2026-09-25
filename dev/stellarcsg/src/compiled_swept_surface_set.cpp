@@ -57,6 +57,12 @@ bool contains(const BoundingBox& box, const Vec3& point)
 
 CompiledSweptSplineSurfaceSet::CompiledSweptSplineSurfaceSet(
   std::vector<SweptSplineSurfaceData> coils)
+  : CompiledSweptSplineSurfaceSet(std::move(coils),
+      SweptTorusMode::faithful_spline)
+{}
+
+CompiledSweptSplineSurfaceSet::CompiledSweptSplineSurfaceSet(
+  std::vector<SweptSplineSurfaceData> coils, SweptTorusMode torus_mode)
 {
   if (coils.empty()) {
     throw std::invalid_argument("Swept-spline surface set cannot be empty");
@@ -70,7 +76,8 @@ CompiledSweptSplineSurfaceSet::CompiledSweptSplineSurfaceSet(
     }
     coil_ids_.push_back(data.coil_id);
     coils_.push_back(
-      std::make_unique<CompiledSweptSplineSurface>(std::move(data)));
+      std::make_unique<CompiledSweptSplineSurface>(
+        std::move(data), false, torus_mode));
   }
   indices_.resize(coils_.size());
   std::iota(indices_.begin(), indices_.end(), 0U);

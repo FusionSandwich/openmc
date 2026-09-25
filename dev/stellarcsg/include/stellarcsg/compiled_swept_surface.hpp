@@ -65,10 +65,17 @@ struct SweptSpanBVHNode {
   [[nodiscard]] bool leaf() const noexcept { return count != 0; }
 };
 
+enum class SweptTorusMode {
+  faithful_spline,
+  approximate_torus_surrogate
+};
+
 class CompiledSweptSplineSurface {
 public:
   explicit CompiledSweptSplineSurface(
     SweptSplineSurfaceData data, bool force_general_solver = false);
+  CompiledSweptSplineSurface(SweptSplineSurfaceData data,
+    bool force_general_solver, SweptTorusMode torus_mode);
 
   [[nodiscard]] SweptLocalCoordinates local_coordinates(const Vec3& point) const;
   [[nodiscard]] double evaluate(const Vec3& point) const;
@@ -80,7 +87,7 @@ public:
     const Vec3& direction, bool coincident,
     const RootSearchOptions& options = {}) const;
   [[nodiscard]] const BoundingBox& bounding_box() const noexcept { return bounds_; }
-  [[nodiscard]] bool exact_torus_specialization() const noexcept
+  [[nodiscard]] bool approximate_torus_surrogate() const noexcept
   {
     return static_cast<bool>(exact_torus_);
   }
