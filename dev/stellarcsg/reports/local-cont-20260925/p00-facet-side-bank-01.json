@@ -1,0 +1,3189 @@
+{
+  "claim_boundary": "The 108 probe points lie inside the positive x/y sector and pass three finite triangle-ray parity directions each against their hashed accepted-P00 facet-catalog group. These are finite mesh controls, not an independent readback of H5M triangles, a bound to continuous STEP CAD, a certified clearance envelope, or a StellarCSG root/transport pass.",
+  "classification": "P00_ACCEPTED_MESH_FACET_SIDE_CONTROLS",
+  "coil_count": 18,
+  "input_sha256": {
+    "dagmc_h5m": "549c42bf66b290f8f56b6f4d7523940c3b32b9d256d993ea42605f4dddb33e39",
+    "facet_catalog": "e1bb8ca2bbda5d7a41e02303f5507aa964e822469eb503e4c8ad84ccc6a1bfb9",
+    "mapping": "108c23f9b84c2e90f596b08021fdc0aea883e7b9259054709e0b9dc6aaabc358"
+  },
+  "minimum_hit_barycentric_margin": 0.00044001089940015614,
+  "minimum_positive_hit_distance_cm": 0.051612410713444495,
+  "offsets_cm": [
+    0.05,
+    0.1,
+    0.2
+  ],
+  "probe_count": 108,
+  "ray_check_count": 324,
+  "ray_directions": [
+    [
+      0.5738424452547034,
+      0.7120453378291346,
+      0.40459397536282754
+    ],
+    [
+      0.7968936218017603,
+      -0.3629515492020564,
+      0.4829355324093478
+    ],
+    [
+      -0.2990541336977424,
+      0.8211486413573462,
+      0.486087989889976
+    ]
+  ],
+  "rows": [
+    {
+      "dagmc_volume_id": 8,
+      "facet_area_cm2": 717.7178171899521,
+      "facet_centroid_cm": [
+        896.7762185507366,
+        4.138983557307382,
+        -329.28625529686377
+      ],
+      "facet_id": "facet-bb4b1a33cac92fedf825452305ad379bafefd0ce2b7e0182ba7ec8b4976e3fb7",
+      "facet_index": 11,
+      "outward_normal": [
+        -0.26317011234746795,
+        0.953752879435215,
+        -0.14524784657975892
+      ],
+      "probes": [
+        {
+          "offset_cm": 0.05,
+          "point_cm": [
+            896.789377056354,
+            4.091295913335621,
+            -329.2789929045348
+          ],
+          "rays": [
+            {
+              "hit_count": 1,
+              "minimum_hit_barycentric_margin": 0.32939711016680134,
+              "nearest_hit_distance_cm": 0.1065346871110569
+            },
+            {
+              "hit_count": 1,
+              "minimum_hit_barycentric_margin": 0.01579944024217894,
+              "nearest_hit_distance_cm": 11.272292189771015
+            },
+            {
+              "hit_count": 1,
+              "minimum_hit_barycentric_margin": 0.33258049424500213,
+              "nearest_hit_distance_cm": 0.06318941569355725
+            }
+          ],
+          "side": "inside"
+        },
+        {
+          "offset_cm": 0.05,
+          "point_cm": [
+            896.7630600451192,
+            4.186671201279143,
+            -329.29351768919275
+          ],
+          "rays": [
+            {
+              "hit_count": 0,
+              "minimum_hit_barycentric_margin": 1.0,
+              "nearest_hit_distance_cm": null
+            },
+            {
+              "hit_count": 2,
+              "minimum_hit_barycentric_margin": 0.0075275297692359855,
+              "nearest_hit_distance_cm": 0.0798683749699428
+            },
+            {
+              "hit_count": 0,
+              "minimum_hit_barycentric_margin": 1.0,
+              "nearest_hit_distance_cm": null
+            }
+          ],
+          "side": "outside"
+        },
+        {
+          "offset_cm": 0.1,
+          "point_cm": [
+            896.8025355619714,
+            4.043608269363861,
+            -329.2717305122058
+          ],
+          "rays": [
+            {
+              "hit_count": 1,
+              "minimum_hit_barycentric_margin": 0.3254608870002775,
+              "nearest_hit_distance_cm": 0.2130693742220468
+            },
+            {
+              "hit_count": 1,
+              "minimum_hit_barycentric_margin": 0.01993539547865597,
+              "nearest_hit_distance_cm": 11.1409037328913
+            },
+            {
+              "hit_count": 1,
+              "minimum_hit_barycentric_margin": 0.331827655156668,
+              "nearest_hit_distance_cm": 0.12637883138707479
+            }
+          ],
+          "side": "inside"
+        },
+        {
+          "offset_cm": 0.1,
+          "point_cm": [
+            896.7499015395019,
+            4.234358845250903,
+            -329.30078008152174
+          ],
+          "rays": [
+            {
+              "hit_count": 0,
+              "minimum_hit_barycentric_margin": 1.0,
+              "nearest_hit_distance_cm": null
+            },
+            {
+              "hit_count": 2,
+              "minimum_hit_barycentric_margin": 0.0033915745327589564,
+              "nearest_hit_distance_cm": 0.15973674993983614
+            },
+            {
+              "hit_count": 0,
+              "minimum_hit_barycentric_margin": 1.0,
+              "nearest_hit_distance_cm": null
+            }
+          ],
+          "side": "outside"
+        },
+        {
+          "offset_cm": 0.2,
+          "point_cm": [
+            896.8288525732062,
+            3.948232981420339,
+            -329.25720572754784
+          ],
+          "rays": [
+            {
+              "hit_count": 1,
+              "minimum_hit_barycentric_margin": 0.31758844066721337,
+              "nearest_hit_distance_cm": 0.42613874844415894
+            },
+            {
+              "hit_count": 1,
+              "minimum_hit_barycentric_margin": 0.028207305951599038,
+              "nearest_hit_distance_cm": 10.878126819131866
+            },
+            {
+              "hit_count": 1,
+              "minimum_hit_barycentric_margin": 0.3303219769800058,
+              "nearest_hit_distance_cm": 0.25275766277418826
+            }
+          ],
+          "side": "inside"
+        },
+        {
+          "offset_cm": 0.2,
+          "point_cm": [
+            896.7235845282671,
+            4.3297341331944255,
+            -329.3153048661797
+          ],
+          "rays": [
+            {
+              "hit_count": 0,
+              "minimum_hit_barycentric_margin": 1.0,
+              "nearest_hit_distance_cm": null
+            },
+            {
+              "hit_count": 2,
+              "minimum_hit_barycentric_margin": 0.005057292920631895,
+              "nearest_hit_distance_cm": 0.31947349987971996
+            },
+            {
+              "hit_count": 0,
+              "minimum_hit_barycentric_margin": 1.0,
+              "nearest_hit_distance_cm": null
+            }
+          ],
+          "side": "outside"
+        }
+      ],
+      "source_member": "coil_1009"
+    },
+    {
+      "dagmc_volume_id": 9,
+      "facet_area_cm2": 2173.72669569588,
+      "facet_centroid_cm": [
+        988.7778272114274,
+        25.20152909257624,
+        -367.2304487963582
+      ],
+      "facet_id": "facet-2254876d2fac567ba7602663c2af684ffa5147a555e7ac4084d83aad911bee2d",
+      "facet_index": 9,
+      "outward_normal": [
+        -0.8649672055939599,
+        -0.501800789995972,
+        0.005263117554715058
+      ],
+      "probes": [
+        {
+          "offset_cm": 0.05,
+          "point_cm": [
+            988.8210755717071,
+            25.22661913207604,
+            -367.23071195223594
+          ],
+          "rays": [
+            {
+              "hit_count": 1,
+              "minimum_hit_barycentric_margin": 0.20669895279747996,
+              "nearest_hit_distance_cm": 35.051479783499666
+            },
+            {
+              "hit_count": 1,
+              "minimum_hit_barycentric_margin": 0.15771689457216367,
+              "nearest_hit_distance_cm": 12.149693413841302
+            },
+            {
+              "hit_count": 1,
+              "minimum_hit_barycentric_margin": 0.060560804716008845,
+              "nearest_hit_distance_cm": 32.046906653170524
+            }
+          ],
+          "side": "inside"
+        },
+        {
+          "offset_cm": 0.05,
+          "point_cm": [
+            988.7345788511477,
+            25.176439053076443,
+            -367.23018564048044
+          ],
+          "rays": [
+            {
+              "hit_count": 2,
+              "minimum_hit_barycentric_margin": 0.20667977212417799,
+              "nearest_hit_distance_cm": 0.05871781084595673
+            },
+            {
+              "hit_count": 2,
+              "minimum_hit_barycentric_margin": 0.1616095930510487,
+              "nearest_hit_distance_cm": 0.09908529830797765
+            },
+            {
+              "hit_count": 2,
+              "minimum_hit_barycentric_margin": 0.062317699540706706,
+              "nearest_hit_distance_cm": 0.3315151267770092
+            }
+          ],
+          "side": "outside"
+        },
+        {
+          "offset_cm": 0.1,
+          "point_cm": [
+            988.8643239319867,
+            25.25170917157584,
+            -367.2309751081137
+          ],
+          "rays": [
+            {
+              "hit_count": 1,
+              "minimum_hit_barycentric_margin": 0.2067085431341309,
+              "nearest_hit_distance_cm": 34.99521190640546
+            },
+            {
+              "hit_count": 1,
+              "minimum_hit_barycentric_margin": 0.155770545332721,
+              "nearest_hit_distance_cm": 12.131062369513467
+            },
+            {
+              "hit_count": 1,
+              "minimum_hit_barycentric_margin": 0.05968235730365985,
+              "nearest_hit_distance_cm": 32.06377155948795
+            }
+          ],
+          "side": "inside"
+        },
+        {
+          "offset_cm": 0.1,
+          "point_cm": [
+            988.691330490868,
+            25.15134901357664,
+            -367.2299224846027
+          ],
+          "rays": [
+            {
+              "hit_count": 2,
+              "minimum_hit_barycentric_margin": 0.20667018178752705,
+              "nearest_hit_distance_cm": 0.11743562169195769
+            },
+            {
+              "hit_count": 2,
+              "minimum_hit_barycentric_margin": 0.16355594229049136,
+              "nearest_hit_distance_cm": 0.1981705966160299
+            },
+            {
+              "hit_count": 2,
+              "minimum_hit_barycentric_margin": 0.06319614695305574,
+              "nearest_hit_distance_cm": 0.663030253554268
+            }
+          ],
+          "side": "outside"
+        },
+        {
+          "offset_cm": 0.2,
+          "point_cm": [
+            988.9508206525462,
+            25.301889250575435,
+            -367.2315014198691
+          ],
+          "rays": [
+            {
+              "hit_count": 1,
+              "minimum_hit_barycentric_margin": 0.20672772380743132,
+              "nearest_hit_distance_cm": 34.88267615221694
+            },
+            {
+              "hit_count": 1,
+              "minimum_hit_barycentric_margin": 0.15187784685383376,
+              "nearest_hit_distance_cm": 12.093800280857696
+            },
+            {
+              "hit_count": 1,
+              "minimum_hit_barycentric_margin": 0.05792546247896075,
+              "nearest_hit_distance_cm": 32.09750137212291
+            }
+          ],
+          "side": "inside"
+        },
+        {
+          "offset_cm": 0.2,
+          "point_cm": [
+            988.6048337703086,
+            25.101168934577046,
+            -367.22939617284726
+          ],
+          "rays": [
+            {
+              "hit_count": 2,
+              "minimum_hit_barycentric_margin": 0.20665100111422685,
+              "nearest_hit_distance_cm": 0.2348712433840667
+            },
+            {
+              "hit_count": 2,
+              "minimum_hit_barycentric_margin": 0.1674486407693786,
+              "nearest_hit_distance_cm": 0.3963411932323152
+            },
+            {
+              "hit_count": 2,
+              "minimum_hit_barycentric_margin": 0.06495304177775485,
+              "nearest_hit_distance_cm": 1.3260605071093905
+            }
+          ],
+          "side": "outside"
+        }
+      ],
+      "source_member": "coil_1046"
+    },
+    {
+      "dagmc_volume_id": 10,
+      "facet_area_cm2": 2224.5454643357857,
+      "facet_centroid_cm": [
+        1069.8189483916785,
+        93.79348370308513,
+        -346.50352622178843
+      ],
+      "facet_id": "facet-487571ecae298648adcc96b78f8ef61d9504fa7e242111bc06adbc4055164cf6",
+      "facet_index": 33,
+      "outward_normal": [
+        -0.6127135644011894,
+        -0.7728309652645069,
+        -0.16527064811127257
+      ],
+      "probes": [
+        {
+          "offset_cm": 0.05,
+          "point_cm": [
+            1069.8495840698986,
+            93.83212525134836,
+            -346.49526268938286
+          ],
+          "rays": [
+            {
+              "hit_count": 1,
+              "minimum_hit_barycentric_margin": 0.0428808292457634,
+              "nearest_hit_distance_cm": 31.059109910485564
+            },
+            {
+              "hit_count": 1,
+              "minimum_hit_barycentric_margin": 0.11627706836745398,
+              "nearest_hit_distance_cm": 12.132074531024497
+            },
+            {
+              "hit_count": 1,
+              "minimum_hit_barycentric_margin": 0.010836227289417378,
+              "nearest_hit_distance_cm": 46.57526354419501
+            }
+          ],
+          "side": "inside"
+        },
+        {
+          "offset_cm": 0.05,
+          "point_cm": [
+            1069.7883127134585,
+            93.7548421548219,
+            -346.511789754194
+          ],
+          "rays": [
+            {
+              "hit_count": 2,
+              "minimum_hit_barycentric_margin": 0.04314272458788476,
+              "nearest_hit_distance_cm": 0.051612410713444495
+            },
+            {
+              "hit_count": 2,
+              "minimum_hit_barycentric_margin": 0.11325676523334476,
+              "nearest_hit_distance_cm": 0.17386321048061135
+            },
+            {
+              "hit_count": 2,
+              "minimum_hit_barycentric_margin": 0.011564591431208828,
+              "nearest_hit_distance_cm": 0.0940361077881574
+            }
+          ],
+          "side": "outside"
+        },
+        {
+          "offset_cm": 0.1,
+          "point_cm": [
+            1069.8802197481186,
+            93.87076679961159,
+            -346.48699915697733
+          ],
+          "rays": [
+            {
+              "hit_count": 1,
+              "minimum_hit_barycentric_margin": 0.042749881574702144,
+              "nearest_hit_distance_cm": 31.00824224386462
+            },
+            {
+              "hit_count": 1,
+              "minimum_hit_barycentric_margin": 0.11778721993450857,
+              "nearest_hit_distance_cm": 12.118035019449552
+            },
+            {
+              "hit_count": 1,
+              "minimum_hit_barycentric_margin": 0.010472045218521216,
+              "nearest_hit_distance_cm": 46.58656960821098
+            }
+          ],
+          "side": "inside"
+        },
+        {
+          "offset_cm": 0.1,
+          "point_cm": [
+            1069.7576770352384,
+            93.71620060655867,
+            -346.52005328659953
+          ],
+          "rays": [
+            {
+              "hit_count": 2,
+              "minimum_hit_barycentric_margin": 0.04327367225894601,
+              "nearest_hit_distance_cm": 0.10322482142693287
+            },
+            {
+              "hit_count": 2,
+              "minimum_hit_barycentric_margin": 0.11174661366629023,
+              "nearest_hit_distance_cm": 0.3477264209613705
+            },
+            {
+              "hit_count": 2,
+              "minimum_hit_barycentric_margin": 0.011928773502105004,
+              "nearest_hit_distance_cm": 0.18807221557639475
+            }
+          ],
+          "side": "outside"
+        },
+        {
+          "offset_cm": 0.2,
+          "point_cm": [
+            1069.9414911045587,
+            93.94804989613803,
+            -346.4704720921662
+          ],
+          "rays": [
+            {
+              "hit_count": 1,
+              "minimum_hit_barycentric_margin": 0.042487986232580835,
+              "nearest_hit_distance_cm": 30.906506910622717
+            },
+            {
+              "hit_count": 1,
+              "minimum_hit_barycentric_margin": 0.12080752306861743,
+              "nearest_hit_distance_cm": 12.089955996299619
+            },
+            {
+              "hit_count": 1,
+              "minimum_hit_barycentric_margin": 0.009743681076729852,
+              "nearest_hit_distance_cm": 46.60918173624294
+            }
+          ],
+          "side": "inside"
+        },
+        {
+          "offset_cm": 0.2,
+          "point_cm": [
+            1069.6964056787983,
+            93.63891751003223,
+            -346.5365803514107
+          ],
+          "rays": [
+            {
+              "hit_count": 2,
+              "minimum_hit_barycentric_margin": 0.043535567601067304,
+              "nearest_hit_distance_cm": 0.2064496428539164
+            },
+            {
+              "hit_count": 2,
+              "minimum_hit_barycentric_margin": 0.10872631053218136,
+              "nearest_hit_distance_cm": 0.6954528419229117
+            },
+            {
+              "hit_count": 2,
+              "minimum_hit_barycentric_margin": 0.012657137643896367,
+              "nearest_hit_distance_cm": 0.3761444311528818
+            }
+          ],
+          "side": "outside"
+        }
+      ],
+      "source_member": "coil_1001"
+    },
+    {
+      "dagmc_volume_id": 11,
+      "facet_area_cm2": 2203.322136451473,
+      "facet_centroid_cm": [
+        1150.4260483819203,
+        207.8393153706688,
+        -342.72238054325345
+      ],
+      "facet_id": "facet-71e1d3cfcc4183883b46ca74a9bd92485ee0559725efff8e77572dbf8e8fc48d",
+      "facet_index": 74,
+      "outward_normal": [
+        0.18576840436986017,
+        0.9629860881743724,
+        0.19531485842223079
+      ],
+      "probes": [
+        {
+          "offset_cm": 0.05,
+          "point_cm": [
+            1150.4167599617017,
+            207.79116606626008,
+            -342.73214628617455
+          ],
+          "rays": [
+            {
+              "hit_count": 1,
+              "minimum_hit_barycentric_margin": 0.3327002951793752,
+              "nearest_hit_distance_cm": 0.05738454346651761
+            },
+            {
+              "hit_count": 1,
+              "minimum_hit_barycentric_margin": 0.05018367818092828,
+              "nearest_hit_distance_cm": 13.981147224369238
+            },
+            {
+              "hit_count": 1,
+              "minimum_hit_barycentric_margin": 0.3330653939860369,
+              "nearest_hit_distance_cm": 0.060230796052415124
+            }
+          ],
+          "side": "inside"
+        },
+        {
+          "offset_cm": 0.05,
+          "point_cm": [
+            1150.4353368021389,
+            207.88746467507752,
+            -342.71261480033235
+          ],
+          "rays": [
+            {
+              "hit_count": 0,
+              "minimum_hit_barycentric_margin": 1.0,
+              "nearest_hit_distance_cm": null
+            },
+            {
+              "hit_count": 2,
+              "minimum_hit_barycentric_margin": 0.047087668056394937,
+              "nearest_hit_distance_cm": 0.46661312689154694
+            },
+            {
+              "hit_count": 0,
+              "minimum_hit_barycentric_margin": 1.0,
+              "nearest_hit_distance_cm": null
+            }
+          ],
+          "side": "outside"
+        },
+        {
+          "offset_cm": 0.1,
+          "point_cm": [
+            1150.4074715414833,
+            207.74301676185135,
+            -342.74191202909566
+          ],
+          "rays": [
+            {
+              "hit_count": 1,
+              "minimum_hit_barycentric_margin": 0.33206725702541473,
+              "nearest_hit_distance_cm": 0.11476908693301391
+            },
+            {
+              "hit_count": 1,
+              "minimum_hit_barycentric_margin": 0.05173168324319327,
+              "nearest_hit_distance_cm": 13.960201034873911
+            },
+            {
+              "hit_count": 1,
+              "minimum_hit_barycentric_margin": 0.33279745463874444,
+              "nearest_hit_distance_cm": 0.12046159210480788
+            }
+          ],
+          "side": "inside"
+        },
+        {
+          "offset_cm": 0.1,
+          "point_cm": [
+            1150.4446252223572,
+            207.93561397948625,
+            -342.70284905741124
+          ],
+          "rays": [
+            {
+              "hit_count": 0,
+              "minimum_hit_barycentric_margin": 1.0,
+              "nearest_hit_distance_cm": null
+            },
+            {
+              "hit_count": 2,
+              "minimum_hit_barycentric_margin": 0.04553966299413001,
+              "nearest_hit_distance_cm": 0.9332262537825046
+            },
+            {
+              "hit_count": 0,
+              "minimum_hit_barycentric_margin": 1.0,
+              "nearest_hit_distance_cm": null
+            }
+          ],
+          "side": "outside"
+        },
+        {
+          "offset_cm": 0.2,
+          "point_cm": [
+            1150.3888947010464,
+            207.64671815303393,
+            -342.7614435149379
+          ],
+          "rays": [
+            {
+              "hit_count": 1,
+              "minimum_hit_barycentric_margin": 0.33080118071749776,
+              "nearest_hit_distance_cm": 0.22953817386603587
+            },
+            {
+              "hit_count": 1,
+              "minimum_hit_barycentric_margin": 0.054827693367724605,
+              "nearest_hit_distance_cm": 13.918308655883417
+            },
+            {
+              "hit_count": 1,
+              "minimum_hit_barycentric_margin": 0.33226157594415473,
+              "nearest_hit_distance_cm": 0.2409231842096242
+            }
+          ],
+          "side": "inside"
+        },
+        {
+          "offset_cm": 0.2,
+          "point_cm": [
+            1150.4632020627942,
+            208.03191258830367,
+            -342.683317571569
+          ],
+          "rays": [
+            {
+              "hit_count": 0,
+              "minimum_hit_barycentric_margin": 1.0,
+              "nearest_hit_distance_cm": null
+            },
+            {
+              "hit_count": 2,
+              "minimum_hit_barycentric_margin": 0.04244365286959875,
+              "nearest_hit_distance_cm": 1.8664525075646545
+            },
+            {
+              "hit_count": 0,
+              "minimum_hit_barycentric_margin": 1.0,
+              "nearest_hit_distance_cm": null
+            }
+          ],
+          "side": "outside"
+        }
+      ],
+      "source_member": "coil_1000"
+    },
+    {
+      "dagmc_volume_id": 12,
+      "facet_area_cm2": 2335.5957489670413,
+      "facet_centroid_cm": [
+        1131.2506062129917,
+        130.28393245530745,
+        544.5702930975397
+      ],
+      "facet_id": "facet-a21b33d68c15afa1eb3564fd1ee68893675df5d74ae05fb51abbc889609a8d68",
+      "facet_index": 131,
+      "outward_normal": [
+        0.14567068439688777,
+        -0.19103310890396724,
+        0.970714377667204
+      ],
+      "probes": [
+        {
+          "offset_cm": 0.05,
+          "point_cm": [
+            1131.2433226787718,
+            130.29348411075264,
+            544.5217573786563
+          ],
+          "rays": [
+            {
+              "hit_count": 1,
+              "minimum_hit_barycentric_margin": 0.3315092869337802,
+              "nearest_hit_distance_cm": 0.1469235777089502
+            },
+            {
+              "hit_count": 1,
+              "minimum_hit_barycentric_margin": 0.3322321120925081,
+              "nearest_hit_distance_cm": 0.07642779343908032
+            },
+            {
+              "hit_count": 1,
+              "minimum_hit_barycentric_margin": 0.3309329102502708,
+              "nearest_hit_distance_cm": 0.1842145773810651
+            }
+          ],
+          "side": "inside"
+        },
+        {
+          "offset_cm": 0.05,
+          "point_cm": [
+            1131.2578897472115,
+            130.27438079986226,
+            544.618828816423
+          ],
+          "rays": [
+            {
+              "hit_count": 0,
+              "minimum_hit_barycentric_margin": 1.0,
+              "nearest_hit_distance_cm": null
+            },
+            {
+              "hit_count": 0,
+              "minimum_hit_barycentric_margin": 1.0,
+              "nearest_hit_distance_cm": null
+            },
+            {
+              "hit_count": 0,
+              "minimum_hit_barycentric_margin": 1.0,
+              "nearest_hit_distance_cm": null
+            }
+          ],
+          "side": "outside"
+        },
+        {
+          "offset_cm": 0.1,
+          "point_cm": [
+            1131.236039144552,
+            130.30303576619784,
+            544.4732216597729
+          ],
+          "rays": [
+            {
+              "hit_count": 1,
+              "minimum_hit_barycentric_margin": 0.329685240534227,
+              "nearest_hit_distance_cm": 0.29384715541788065
+            },
+            {
+              "hit_count": 1,
+              "minimum_hit_barycentric_margin": 0.3311308908516824,
+              "nearest_hit_distance_cm": 0.15285558687815037
+            },
+            {
+              "hit_count": 1,
+              "minimum_hit_barycentric_margin": 0.3285324871672083,
+              "nearest_hit_distance_cm": 0.3684291547621054
+            }
+          ],
+          "side": "inside"
+        },
+        {
+          "offset_cm": 0.1,
+          "point_cm": [
+            1131.2651732814313,
+            130.26482914441706,
+            544.6673645353064
+          ],
+          "rays": [
+            {
+              "hit_count": 0,
+              "minimum_hit_barycentric_margin": 1.0,
+              "nearest_hit_distance_cm": null
+            },
+            {
+              "hit_count": 0,
+              "minimum_hit_barycentric_margin": 1.0,
+              "nearest_hit_distance_cm": null
+            },
+            {
+              "hit_count": 0,
+              "minimum_hit_barycentric_margin": 1.0,
+              "nearest_hit_distance_cm": null
+            }
+          ],
+          "side": "outside"
+        },
+        {
+          "offset_cm": 0.2,
+          "point_cm": [
+            1131.2214720761124,
+            130.32213907708825,
+            544.3761502220062
+          ],
+          "rays": [
+            {
+              "hit_count": 1,
+              "minimum_hit_barycentric_margin": 0.32603714773512354,
+              "nearest_hit_distance_cm": 0.5876943108354309
+            },
+            {
+              "hit_count": 1,
+              "minimum_hit_barycentric_margin": 0.3289284483700348,
+              "nearest_hit_distance_cm": 0.30571117375612883
+            },
+            {
+              "hit_count": 1,
+              "minimum_hit_barycentric_margin": 0.3237316410010875,
+              "nearest_hit_distance_cm": 0.7368583095237965
+            }
+          ],
+          "side": "inside"
+        },
+        {
+          "offset_cm": 0.2,
+          "point_cm": [
+            1131.279740349871,
+            130.24572583352665,
+            544.7644359730731
+          ],
+          "rays": [
+            {
+              "hit_count": 0,
+              "minimum_hit_barycentric_margin": 1.0,
+              "nearest_hit_distance_cm": null
+            },
+            {
+              "hit_count": 0,
+              "minimum_hit_barycentric_margin": 1.0,
+              "nearest_hit_distance_cm": null
+            },
+            {
+              "hit_count": 0,
+              "minimum_hit_barycentric_margin": 1.0,
+              "nearest_hit_distance_cm": null
+            }
+          ],
+          "side": "outside"
+        }
+      ],
+      "source_member": "coil_1047"
+    },
+    {
+      "dagmc_volume_id": 13,
+      "facet_area_cm2": 2610.294613681408,
+      "facet_centroid_cm": [
+        872.8719847496335,
+        204.314322680605,
+        520.3892036729767
+      ],
+      "facet_id": "facet-7e655da43bb98ec73bddadfc9ec02e7c2e4232b38da758b0df930e9de2db8ebc",
+      "facet_index": 104,
+      "outward_normal": [
+        -0.19959499852389934,
+        -0.08089439466063345,
+        0.9765336315133925
+      ],
+      "probes": [
+        {
+          "offset_cm": 0.05,
+          "point_cm": [
+            872.8819644995597,
+            204.31836740033802,
+            520.3403769914011
+          ],
+          "rays": [
+            {
+              "hit_count": 1,
+              "minimum_hit_barycentric_margin": 0.33093422464907296,
+              "nearest_hit_distance_cm": 0.2242523886034525
+            },
+            {
+              "hit_count": 1,
+              "minimum_hit_barycentric_margin": 0.33076347238432663,
+              "nearest_hit_distance_cm": 0.14623836015743644
+            },
+            {
+              "hit_count": 1,
+              "minimum_hit_barycentric_margin": 0.331622270259996,
+              "nearest_hit_distance_cm": 0.10685024231100172
+            }
+          ],
+          "side": "inside"
+        },
+        {
+          "offset_cm": 0.05,
+          "point_cm": [
+            872.8620049997073,
+            204.31027796087196,
+            520.4380303545523
+          ],
+          "rays": [
+            {
+              "hit_count": 0,
+              "minimum_hit_barycentric_margin": 1.0,
+              "nearest_hit_distance_cm": null
+            },
+            {
+              "hit_count": 0,
+              "minimum_hit_barycentric_margin": 1.0,
+              "nearest_hit_distance_cm": null
+            },
+            {
+              "hit_count": 0,
+              "minimum_hit_barycentric_margin": 1.0,
+              "nearest_hit_distance_cm": null
+            }
+          ],
+          "side": "outside"
+        },
+        {
+          "offset_cm": 0.1,
+          "point_cm": [
+            872.8919442494858,
+            204.32241212007105,
+            520.2915503098253
+          ],
+          "rays": [
+            {
+              "hit_count": 1,
+              "minimum_hit_barycentric_margin": 0.3285351159648116,
+              "nearest_hit_distance_cm": 0.44850477720699405
+            },
+            {
+              "hit_count": 1,
+              "minimum_hit_barycentric_margin": 0.32819361143531983,
+              "nearest_hit_distance_cm": 0.29247672031493094
+            },
+            {
+              "hit_count": 1,
+              "minimum_hit_barycentric_margin": 0.3299112071866579,
+              "nearest_hit_distance_cm": 0.21370048462204588
+            }
+          ],
+          "side": "inside"
+        },
+        {
+          "offset_cm": 0.1,
+          "point_cm": [
+            872.8520252497811,
+            204.30623324113893,
+            520.4868570361281
+          ],
+          "rays": [
+            {
+              "hit_count": 0,
+              "minimum_hit_barycentric_margin": 1.0,
+              "nearest_hit_distance_cm": null
+            },
+            {
+              "hit_count": 0,
+              "minimum_hit_barycentric_margin": 1.0,
+              "nearest_hit_distance_cm": null
+            },
+            {
+              "hit_count": 0,
+              "minimum_hit_barycentric_margin": 1.0,
+              "nearest_hit_distance_cm": null
+            }
+          ],
+          "side": "outside"
+        },
+        {
+          "offset_cm": 0.2,
+          "point_cm": [
+            872.9119037493383,
+            204.3305015595371,
+            520.193896946674
+          ],
+          "rays": [
+            {
+              "hit_count": 1,
+              "minimum_hit_barycentric_margin": 0.32373689859629834,
+              "nearest_hit_distance_cm": 0.8970095544132146
+            },
+            {
+              "hit_count": 1,
+              "minimum_hit_barycentric_margin": 0.32305388953731434,
+              "nearest_hit_distance_cm": 0.5849534406293575
+            },
+            {
+              "hit_count": 1,
+              "minimum_hit_barycentric_margin": 0.3264890810399885,
+              "nearest_hit_distance_cm": 0.42740096924372317
+            }
+          ],
+          "side": "inside"
+        },
+        {
+          "offset_cm": 0.2,
+          "point_cm": [
+            872.8320657499287,
+            204.29814380167286,
+            520.5845103992793
+          ],
+          "rays": [
+            {
+              "hit_count": 0,
+              "minimum_hit_barycentric_margin": 1.0,
+              "nearest_hit_distance_cm": null
+            },
+            {
+              "hit_count": 0,
+              "minimum_hit_barycentric_margin": 1.0,
+              "nearest_hit_distance_cm": null
+            },
+            {
+              "hit_count": 0,
+              "minimum_hit_barycentric_margin": 1.0,
+              "nearest_hit_distance_cm": null
+            }
+          ],
+          "side": "outside"
+        }
+      ],
+      "source_member": "coil_1008"
+    },
+    {
+      "dagmc_volume_id": 14,
+      "facet_area_cm2": 2503.949856260861,
+      "facet_centroid_cm": [
+        984.9165781343169,
+        594.304077874133,
+        -235.63942480243745
+      ],
+      "facet_id": "facet-6f434982878fadd5de0c3404ca8236df031d0d866cc96b61d305e7458f9e52b3",
+      "facet_index": 109,
+      "outward_normal": [
+        0.12218898552547977,
+        -0.7407340887770918,
+        -0.6605928106934146
+      ],
+      "probes": [
+        {
+          "offset_cm": 0.05,
+          "point_cm": [
+            984.9104686850405,
+            594.3411145785718,
+            -235.60639516190278
+          ],
+          "rays": [
+            {
+              "hit_count": 1,
+              "minimum_hit_barycentric_margin": 0.08316359714861576,
+              "nearest_hit_distance_cm": 43.34036129351824
+            },
+            {
+              "hit_count": 1,
+              "minimum_hit_barycentric_margin": 0.31786706388368197,
+              "nearest_hit_distance_cm": 1.0593564281928702
+            },
+            {
+              "hit_count": 1,
+              "minimum_hit_barycentric_margin": 0.1980153386173213,
+              "nearest_hit_distance_cm": 29.30709593999218
+            }
+          ],
+          "side": "inside"
+        },
+        {
+          "offset_cm": 0.05,
+          "point_cm": [
+            984.9226875835932,
+            594.2670411696942,
+            -235.6724544429721
+          ],
+          "rays": [
+            {
+              "hit_count": 2,
+              "minimum_hit_barycentric_margin": 0.08466389629757543,
+              "nearest_hit_distance_cm": 0.0690044548254696
+            },
+            {
+              "hit_count": 0,
+              "minimum_hit_barycentric_margin": 1.0,
+              "nearest_hit_distance_cm": null
+            },
+            {
+              "hit_count": 2,
+              "minimum_hit_barycentric_margin": 0.197832030414627,
+              "nearest_hit_distance_cm": 0.05176518540395197
+            }
+          ],
+          "side": "outside"
+        },
+        {
+          "offset_cm": 0.1,
+          "point_cm": [
+            984.9043592357643,
+            594.3781512830107,
+            -235.57336552136812
+          ],
+          "rays": [
+            {
+              "hit_count": 1,
+              "minimum_hit_barycentric_margin": 0.08241344757413727,
+              "nearest_hit_distance_cm": 43.28009792102375
+            },
+            {
+              "hit_count": 1,
+              "minimum_hit_barycentric_margin": 0.30240079443404994,
+              "nearest_hit_distance_cm": 2.118712856384278
+            },
+            {
+              "hit_count": 1,
+              "minimum_hit_barycentric_margin": 0.19810699271866763,
+              "nearest_hit_distance_cm": 29.255961853768945
+            }
+          ],
+          "side": "inside"
+        },
+        {
+          "offset_cm": 0.1,
+          "point_cm": [
+            984.9287970328694,
+            594.2300044652553,
+            -235.70548408350678
+          ],
+          "rays": [
+            {
+              "hit_count": 2,
+              "minimum_hit_barycentric_margin": 0.0854140458720537,
+              "nearest_hit_distance_cm": 0.13800890965099635
+            },
+            {
+              "hit_count": 0,
+              "minimum_hit_barycentric_margin": 1.0,
+              "nearest_hit_distance_cm": null
+            },
+            {
+              "hit_count": 2,
+              "minimum_hit_barycentric_margin": 0.19774037631328065,
+              "nearest_hit_distance_cm": 0.1035303708079468
+            }
+          ],
+          "side": "outside"
+        },
+        {
+          "offset_cm": 0.2,
+          "point_cm": [
+            984.8921403372118,
+            594.4522246918884,
+            -235.50730624029876
+          ],
+          "rays": [
+            {
+              "hit_count": 1,
+              "minimum_hit_barycentric_margin": 0.08091314842517894,
+              "nearest_hit_distance_cm": 43.159571176034646
+            },
+            {
+              "hit_count": 1,
+              "minimum_hit_barycentric_margin": 0.27146825553475223,
+              "nearest_hit_distance_cm": 4.237425712769587
+            },
+            {
+              "hit_count": 1,
+              "minimum_hit_barycentric_margin": 0.1982903009213604,
+              "nearest_hit_distance_cm": 29.153693681322345
+            }
+          ],
+          "side": "inside"
+        },
+        {
+          "offset_cm": 0.2,
+          "point_cm": [
+            984.9410159314219,
+            594.1559310563775,
+            -235.77154336457613
+          ],
+          "rays": [
+            {
+              "hit_count": 2,
+              "minimum_hit_barycentric_margin": 0.08691434502101214,
+              "nearest_hit_distance_cm": 0.27601781930221125
+            },
+            {
+              "hit_count": 0,
+              "minimum_hit_barycentric_margin": 1.0,
+              "nearest_hit_distance_cm": null
+            },
+            {
+              "hit_count": 2,
+              "minimum_hit_barycentric_margin": 0.1975570681105879,
+              "nearest_hit_distance_cm": 0.20706074161605756
+            }
+          ],
+          "side": "outside"
+        }
+      ],
+      "source_member": "coil_1039"
+    },
+    {
+      "dagmc_volume_id": 15,
+      "facet_area_cm2": 2645.5975089137346,
+      "facet_centroid_cm": [
+        521.2449968890669,
+        665.9843404980226,
+        299.97970399585296
+      ],
+      "facet_id": "facet-54d04d8c0969b56a53ba23ae587ccb763ae3539c6448fcb4713e0a8ec3c55e29",
+      "facet_index": 127,
+      "outward_normal": [
+        -0.2623124196225584,
+        0.6540505957026375,
+        0.7095139271168565
+      ],
+      "probes": [
+        {
+          "offset_cm": 0.05,
+          "point_cm": [
+            521.258112510048,
+            665.9516379682374,
+            299.9442282994971
+          ],
+          "rays": [
+            {
+              "hit_count": 1,
+              "minimum_hit_barycentric_margin": 0.33287903218358705,
+              "nearest_hit_distance_cm": 0.08302162346958405
+            },
+            {
+              "hit_count": 1,
+              "minimum_hit_barycentric_margin": 0.07176238090505639,
+              "nearest_hit_distance_cm": 17.23800147582862
+            },
+            {
+              "hit_count": 1,
+              "minimum_hit_barycentric_margin": 0.33313201233684014,
+              "nearest_hit_distance_cm": 0.05206139324792765
+            }
+          ],
+          "side": "inside"
+        },
+        {
+          "offset_cm": 0.05,
+          "point_cm": [
+            521.2318812680858,
+            666.0170430278077,
+            300.0151796922088
+          ],
+          "rays": [
+            {
+              "hit_count": 0,
+              "minimum_hit_barycentric_margin": 1.0,
+              "nearest_hit_distance_cm": null
+            },
+            {
+              "hit_count": 2,
+              "minimum_hit_barycentric_margin": 0.06792181127095996,
+              "nearest_hit_distance_cm": 0.4818149316011606
+            },
+            {
+              "hit_count": 0,
+              "minimum_hit_barycentric_margin": 1.0,
+              "nearest_hit_distance_cm": null
+            }
+          ],
+          "side": "outside"
+        },
+        {
+          "offset_cm": 0.1,
+          "point_cm": [
+            521.2712281310291,
+            665.9189354384523,
+            299.9087526031413
+          ],
+          "rays": [
+            {
+              "hit_count": 1,
+              "minimum_hit_barycentric_margin": 0.33242473103384257,
+              "nearest_hit_distance_cm": 0.1660432469390357
+            },
+            {
+              "hit_count": 1,
+              "minimum_hit_barycentric_margin": 0.073682665722102,
+              "nearest_hit_distance_cm": 17.230349942639414
+            },
+            {
+              "hit_count": 1,
+              "minimum_hit_barycentric_margin": 0.3329306913403455,
+              "nearest_hit_distance_cm": 0.10412278649577225
+            }
+          ],
+          "side": "inside"
+        },
+        {
+          "offset_cm": 0.1,
+          "point_cm": [
+            521.2187656471046,
+            666.0497455575928,
+            300.0506553885646
+          ],
+          "rays": [
+            {
+              "hit_count": 0,
+              "minimum_hit_barycentric_margin": 1.0,
+              "nearest_hit_distance_cm": null
+            },
+            {
+              "hit_count": 2,
+              "minimum_hit_barycentric_margin": 0.06600152645391437,
+              "nearest_hit_distance_cm": 0.9636298632015262
+            },
+            {
+              "hit_count": 0,
+              "minimum_hit_barycentric_margin": 1.0,
+              "nearest_hit_distance_cm": null
+            }
+          ],
+          "side": "outside"
+        },
+        {
+          "offset_cm": 0.2,
+          "point_cm": [
+            521.2974593729914,
+            665.853530378882,
+            299.8378012104296
+          ],
+          "rays": [
+            {
+              "hit_count": 1,
+              "minimum_hit_barycentric_margin": 0.33151612873435216,
+              "nearest_hit_distance_cm": 0.3320864938781353
+            },
+            {
+              "hit_count": 1,
+              "minimum_hit_barycentric_margin": 0.07752323535619751,
+              "nearest_hit_distance_cm": 17.215046876260963
+            },
+            {
+              "hit_count": 1,
+              "minimum_hit_barycentric_margin": 0.33252804934735625,
+              "nearest_hit_distance_cm": 0.20824557299158458
+            }
+          ],
+          "side": "inside"
+        },
+        {
+          "offset_cm": 0.2,
+          "point_cm": [
+            521.1925344051424,
+            666.1151506171631,
+            300.12160678127634
+          ],
+          "rays": [
+            {
+              "hit_count": 0,
+              "minimum_hit_barycentric_margin": 1.0,
+              "nearest_hit_distance_cm": null
+            },
+            {
+              "hit_count": 2,
+              "minimum_hit_barycentric_margin": 0.062160956819818876,
+              "nearest_hit_distance_cm": 1.9272597264035294
+            },
+            {
+              "hit_count": 0,
+              "minimum_hit_barycentric_margin": 1.0,
+              "nearest_hit_distance_cm": null
+            }
+          ],
+          "side": "outside"
+        }
+      ],
+      "source_member": "coil_1016"
+    },
+    {
+      "dagmc_volume_id": 16,
+      "facet_area_cm2": 2714.4254384261544,
+      "facet_centroid_cm": [
+        841.8339402250343,
+        861.8744829670673,
+        -127.30799564212116
+      ],
+      "facet_id": "facet-6df83a296a3773b0e08b4ecb00e1ca7d1823c8860738a24003eba59e21c3177e",
+      "facet_index": 149,
+      "outward_normal": [
+        0.6081775523526908,
+        -0.35756742365405036,
+        -0.7087069933023764
+      ],
+      "probes": [
+        {
+          "offset_cm": 0.05,
+          "point_cm": [
+            841.8035313474167,
+            861.89236133825,
+            -127.27256029245603
+          ],
+          "rays": [
+            {
+              "hit_count": 1,
+              "minimum_hit_barycentric_margin": 0.19701490767361635,
+              "nearest_hit_distance_cm": 45.59632217920666
+            },
+            {
+              "hit_count": 1,
+              "minimum_hit_barycentric_margin": 0.33155333123425457,
+              "nearest_hit_distance_cm": 0.1837069068507646
+            },
+            {
+              "hit_count": 1,
+              "minimum_hit_barycentric_margin": 0.11694315302840674,
+              "nearest_hit_distance_cm": 40.98374163515396
+            }
+          ],
+          "side": "inside"
+        },
+        {
+          "offset_cm": 0.05,
+          "point_cm": [
+            841.864349102652,
+            861.8566045958845,
+            -127.34343099178628
+          ],
+          "rays": [
+            {
+              "hit_count": 2,
+              "minimum_hit_barycentric_margin": 0.198138422473024,
+              "nearest_hit_distance_cm": 0.25994997121487723
+            },
+            {
+              "hit_count": 0,
+              "minimum_hit_barycentric_margin": 1.0,
+              "nearest_hit_distance_cm": null
+            },
+            {
+              "hit_count": 2,
+              "minimum_hit_barycentric_margin": 0.11797677221187342,
+              "nearest_hit_distance_cm": 0.060976504104901845
+            }
+          ],
+          "side": "outside"
+        },
+        {
+          "offset_cm": 0.1,
+          "point_cm": [
+            841.7731224697991,
+            861.9102397094326,
+            -127.23712494279091
+          ],
+          "rays": [
+            {
+              "hit_count": 1,
+              "minimum_hit_barycentric_margin": 0.19645315027391436,
+              "nearest_hit_distance_cm": 45.638474158961394
+            },
+            {
+              "hit_count": 1,
+              "minimum_hit_barycentric_margin": 0.3297733291351746,
+              "nearest_hit_distance_cm": 0.36741381370144055
+            },
+            {
+              "hit_count": 1,
+              "minimum_hit_barycentric_margin": 0.11642634343667557,
+              "nearest_hit_distance_cm": 40.93497639142007
+            }
+          ],
+          "side": "inside"
+        },
+        {
+          "offset_cm": 0.1,
+          "point_cm": [
+            841.8947579802696,
+            861.8387262247019,
+            -127.3788663414514
+          ],
+          "rays": [
+            {
+              "hit_count": 2,
+              "minimum_hit_barycentric_margin": 0.19870017987272598,
+              "nearest_hit_distance_cm": 0.5198999424287616
+            },
+            {
+              "hit_count": 0,
+              "minimum_hit_barycentric_margin": 1.0,
+              "nearest_hit_distance_cm": null
+            },
+            {
+              "hit_count": 2,
+              "minimum_hit_barycentric_margin": 0.11849358180360536,
+              "nearest_hit_distance_cm": 0.12195300820957078
+            }
+          ],
+          "side": "outside"
+        },
+        {
+          "offset_cm": 0.2,
+          "point_cm": [
+            841.7123047145637,
+            861.945996451798,
+            -127.16625424346068
+          ],
+          "rays": [
+            {
+              "hit_count": 1,
+              "minimum_hit_barycentric_margin": 0.19532963547450743,
+              "nearest_hit_distance_cm": 45.722778118470956
+            },
+            {
+              "hit_count": 1,
+              "minimum_hit_barycentric_margin": 0.32621332493701055,
+              "nearest_hit_distance_cm": 0.7348276274034278
+            },
+            {
+              "hit_count": 1,
+              "minimum_hit_barycentric_margin": 0.11539272425320768,
+              "nearest_hit_distance_cm": 40.83744590395212
+            }
+          ],
+          "side": "inside"
+        },
+        {
+          "offset_cm": 0.2,
+          "point_cm": [
+            841.9555757355049,
+            861.8029694823365,
+            -127.44973704078163
+          ],
+          "rays": [
+            {
+              "hit_count": 2,
+              "minimum_hit_barycentric_margin": 0.1998236946721333,
+              "nearest_hit_distance_cm": 1.0397998848573733
+            },
+            {
+              "hit_count": 0,
+              "minimum_hit_barycentric_margin": 1.0,
+              "nearest_hit_distance_cm": null
+            },
+            {
+              "hit_count": 2,
+              "minimum_hit_barycentric_margin": 0.1195272009870727,
+              "nearest_hit_distance_cm": 0.24390601641910642
+            }
+          ],
+          "side": "outside"
+        }
+      ],
+      "source_member": "coil_1031"
+    },
+    {
+      "dagmc_volume_id": 17,
+      "facet_area_cm2": 2714.4254530201842,
+      "facet_centroid_cm": [
+        861.874593658073,
+        841.8338272255247,
+        127.30799562787233
+      ],
+      "facet_id": "facet-76b929e71b457c5248e728ad8006c04faebdf4ca4dce59d5ed12eeef4e3b821e",
+      "facet_index": 164,
+      "outward_normal": [
+        -0.35756734136345814,
+        0.6081775992825114,
+        0.708706994547979
+      ],
+      "probes": [
+        {
+          "offset_cm": 0.05,
+          "point_cm": [
+            861.8924720251412,
+            841.8034183455605,
+            127.27256027814494
+          ],
+          "rays": [
+            {
+              "hit_count": 1,
+              "minimum_hit_barycentric_margin": 0.3321735978752053,
+              "nearest_hit_distance_cm": 0.09716260194207277
+            },
+            {
+              "hit_count": 1,
+              "minimum_hit_barycentric_margin": 0.12957776677337532,
+              "nearest_hit_distance_cm": 37.50545449227146
+            },
+            {
+              "hit_count": 1,
+              "minimum_hit_barycentric_margin": 0.33319731441936706,
+              "nearest_hit_distance_cm": 0.052585626899612076
+            }
+          ],
+          "side": "inside"
+        },
+        {
+          "offset_cm": 0.05,
+          "point_cm": [
+            861.8567152910048,
+            841.8642361054889,
+            127.34343097759972
+          ],
+          "rays": [
+            {
+              "hit_count": 0,
+              "minimum_hit_barycentric_margin": 1.0,
+              "nearest_hit_distance_cm": null
+            },
+            {
+              "hit_count": 2,
+              "minimum_hit_barycentric_margin": 0.12572322279349415,
+              "nearest_hit_distance_cm": 0.30595571096131086
+            },
+            {
+              "hit_count": 0,
+              "minimum_hit_barycentric_margin": 1.0,
+              "nearest_hit_distance_cm": null
+            }
+          ],
+          "side": "outside"
+        },
+        {
+          "offset_cm": 0.1,
+          "point_cm": [
+            861.9103503922094,
+            841.7730094655965,
+            127.23712492841753
+          ],
+          "rays": [
+            {
+              "hit_count": 1,
+              "minimum_hit_barycentric_margin": 0.33101386241707825,
+              "nearest_hit_distance_cm": 0.19432520388399968
+            },
+            {
+              "hit_count": 1,
+              "minimum_hit_barycentric_margin": 0.13150503876331449,
+              "nearest_hit_distance_cm": 37.52379570236099
+            },
+            {
+              "hit_count": 1,
+              "minimum_hit_barycentric_margin": 0.3330612955054004,
+              "nearest_hit_distance_cm": 0.10517125379914521
+            }
+          ],
+          "side": "inside"
+        },
+        {
+          "offset_cm": 0.1,
+          "point_cm": [
+            861.8388369239366,
+            841.8946449854529,
+            127.37886632732713
+          ],
+          "rays": [
+            {
+              "hit_count": 0,
+              "minimum_hit_barycentric_margin": 1.0,
+              "nearest_hit_distance_cm": null
+            },
+            {
+              "hit_count": 2,
+              "minimum_hit_barycentric_margin": 0.1237959508035548,
+              "nearest_hit_distance_cm": 0.6119114219223265
+            },
+            {
+              "hit_count": 0,
+              "minimum_hit_barycentric_margin": 1.0,
+              "nearest_hit_distance_cm": null
+            }
+          ],
+          "side": "outside"
+        },
+        {
+          "offset_cm": 0.2,
+          "point_cm": [
+            861.9461071263456,
+            841.7121917056683,
+            127.16625422896273
+          ],
+          "rays": [
+            {
+              "hit_count": 1,
+              "minimum_hit_barycentric_margin": 0.3286943915008261,
+              "nearest_hit_distance_cm": 0.3886504077679056
+            },
+            {
+              "hit_count": 1,
+              "minimum_hit_barycentric_margin": 0.13535958274319282,
+              "nearest_hit_distance_cm": 37.56047812254014
+            },
+            {
+              "hit_count": 1,
+              "minimum_hit_barycentric_margin": 0.3327892576774695,
+              "nearest_hit_distance_cm": 0.2103425075982397
+            }
+          ],
+          "side": "inside"
+        },
+        {
+          "offset_cm": 0.2,
+          "point_cm": [
+            861.8030801898003,
+            841.9554627453812,
+            127.44973702678193
+          ],
+          "rays": [
+            {
+              "hit_count": 0,
+              "minimum_hit_barycentric_margin": 1.0,
+              "nearest_hit_distance_cm": null
+            },
+            {
+              "hit_count": 2,
+              "minimum_hit_barycentric_margin": 0.11994140682367657,
+              "nearest_hit_distance_cm": 1.2238228438444563
+            },
+            {
+              "hit_count": 0,
+              "minimum_hit_barycentric_margin": 1.0,
+              "nearest_hit_distance_cm": null
+            }
+          ],
+          "side": "outside"
+        }
+      ],
+      "source_member": "coil_1024"
+    },
+    {
+      "dagmc_volume_id": 18,
+      "facet_area_cm2": 2645.5975091086398,
+      "facet_centroid_cm": [
+        665.9844091397337,
+        521.2449099203703,
+        -299.97970389352537
+      ],
+      "facet_id": "facet-47053a44dfe4fab12b6d589eb326a8d9c99d2f13d129c2b411f33fa30ee861ba",
+      "facet_index": 104,
+      "outward_normal": [
+        0.6540505604313631,
+        -0.2623125039846211,
+        -0.7095139284416748
+      ],
+      "probes": [
+        {
+          "offset_cm": 0.05,
+          "point_cm": [
+            665.9517066117121,
+            521.2580255455696,
+            -299.94422819710326
+          ],
+          "rays": [
+            {
+              "hit_count": 1,
+              "minimum_hit_barycentric_margin": 0.002840806695520671,
+              "nearest_hit_distance_cm": 68.88648176137309
+            },
+            {
+              "hit_count": 1,
+              "minimum_hit_barycentric_margin": 0.33100411717869554,
+              "nearest_hit_distance_cm": 0.18263775188992368
+            },
+            {
+              "hit_count": 1,
+              "minimum_hit_barycentric_margin": 0.08017736321041112,
+              "nearest_hit_distance_cm": 36.25789496046321
+            }
+          ],
+          "side": "inside"
+        },
+        {
+          "offset_cm": 0.05,
+          "point_cm": [
+            666.0171116677552,
+            521.2317942951711,
+            -300.0151795899475
+          ],
+          "rays": [
+            {
+              "hit_count": 2,
+              "minimum_hit_barycentric_margin": 0.00178053907371128,
+              "nearest_hit_distance_cm": 0.5075035234239303
+            },
+            {
+              "hit_count": 0,
+              "minimum_hit_barycentric_margin": 1.0,
+              "nearest_hit_distance_cm": null
+            },
+            {
+              "hit_count": 2,
+              "minimum_hit_barycentric_margin": 0.08016199074247858,
+              "nearest_hit_distance_cm": 0.06614804139064566
+            }
+          ],
+          "side": "outside"
+        },
+        {
+          "offset_cm": 0.1,
+          "point_cm": [
+            665.9190040836905,
+            521.2711411707688,
+            -299.9087525006812
+          ],
+          "rays": [
+            {
+              "hit_count": 1,
+              "minimum_hit_barycentric_margin": 0.0045601413692872,
+              "nearest_hit_distance_cm": 68.87792918083109
+            },
+            {
+              "hit_count": 1,
+              "minimum_hit_barycentric_margin": 0.3286749010240607,
+              "nearest_hit_distance_cm": 0.36527550377971674
+            },
+            {
+              "hit_count": 1,
+              "minimum_hit_barycentric_margin": 0.08018504944437793,
+              "nearest_hit_distance_cm": 36.196213219744116
+            }
+          ],
+          "side": "inside"
+        },
+        {
+          "offset_cm": 0.1,
+          "point_cm": [
+            666.0498141957768,
+            521.2186786699718,
+            -300.05065528636953
+          ],
+          "rays": [
+            {
+              "hit_count": 2,
+              "minimum_hit_barycentric_margin": 0.0069010170917081694,
+              "nearest_hit_distance_cm": 1.0150070468474282
+            },
+            {
+              "hit_count": 0,
+              "minimum_hit_barycentric_margin": 1.0,
+              "nearest_hit_distance_cm": null
+            },
+            {
+              "hit_count": 2,
+              "minimum_hit_barycentric_margin": 0.08015430450851177,
+              "nearest_hit_distance_cm": 0.13229608278123492
+            }
+          ],
+          "side": "outside"
+        },
+        {
+          "offset_cm": 0.2,
+          "point_cm": [
+            665.8535990276474,
+            521.2973724211672,
+            -299.83780110783704
+          ],
+          "rays": [
+            {
+              "hit_count": 1,
+              "minimum_hit_barycentric_margin": 0.007998810716821831,
+              "nearest_hit_distance_cm": 68.86082401974701
+            },
+            {
+              "hit_count": 1,
+              "minimum_hit_barycentric_margin": 0.3240164687147902,
+              "nearest_hit_distance_cm": 0.730551007559328
+            },
+            {
+              "hit_count": 1,
+              "minimum_hit_barycentric_margin": 0.08020042191231076,
+              "nearest_hit_distance_cm": 36.07284973830591
+            }
+          ],
+          "side": "inside"
+        },
+        {
+          "offset_cm": 0.2,
+          "point_cm": [
+            666.1152192518199,
+            521.1924474195735,
+            -300.1216066792137
+          ],
+          "rays": [
+            {
+              "hit_count": 2,
+              "minimum_hit_barycentric_margin": 0.017141973127704827,
+              "nearest_hit_distance_cm": 2.0300140936945352
+            },
+            {
+              "hit_count": 0,
+              "minimum_hit_barycentric_margin": 1.0,
+              "nearest_hit_distance_cm": null
+            },
+            {
+              "hit_count": 2,
+              "minimum_hit_barycentric_margin": 0.08013893204057894,
+              "nearest_hit_distance_cm": 0.26459216556242804
+            }
+          ],
+          "side": "outside"
+        }
+      ],
+      "source_member": "coil_1023"
+    },
+    {
+      "dagmc_volume_id": 19,
+      "facet_area_cm2": 2503.949855802988,
+      "facet_centroid_cm": [
+        594.3042070212718,
+        984.916500187529,
+        235.63942479701794
+      ],
+      "facet_id": "facet-1feddd4e0607df9ba0d856cbde83fd5b2c7e7c0ed7afa9fe145f345c84701e8f",
+      "facet_index": 24,
+      "outward_normal": [
+        -0.7407340729310923,
+        0.12218908266422239,
+        0.6605928104941737
+      ],
+      "probes": [
+        {
+          "offset_cm": 0.05,
+          "point_cm": [
+            594.3412437249184,
+            984.9103907333957,
+            235.60639515649322
+          ],
+          "rays": [
+            {
+              "hit_count": 1,
+              "minimum_hit_barycentric_margin": 0.17110133508356382,
+              "nearest_hit_distance_cm": 33.59354085108614
+            },
+            {
+              "hit_count": 1,
+              "minimum_hit_barycentric_margin": 0.09858682288950926,
+              "nearest_hit_distance_cm": 32.333628986570126
+            },
+            {
+              "hit_count": 1,
+              "minimum_hit_barycentric_margin": 0.3326849625912597,
+              "nearest_hit_distance_cm": 0.0777651881188459
+            }
+          ],
+          "side": "inside"
+        },
+        {
+          "offset_cm": 0.05,
+          "point_cm": [
+            594.2671703176253,
+            984.9226096416622,
+            235.67245443754265
+          ],
+          "rays": [
+            {
+              "hit_count": 2,
+              "minimum_hit_barycentric_margin": 0.16764771226155226,
+              "nearest_hit_distance_cm": 0.7063282828596671
+            },
+            {
+              "hit_count": 2,
+              "minimum_hit_barycentric_margin": 0.09763451132046602,
+              "nearest_hit_distance_cm": 0.1584227510112679
+            },
+            {
+              "hit_count": 0,
+              "minimum_hit_barycentric_margin": 1.0,
+              "nearest_hit_distance_cm": null
+            }
+          ],
+          "side": "outside"
+        },
+        {
+          "offset_cm": 0.1,
+          "point_cm": [
+            594.378280428565,
+            984.9042812792626,
+            235.57336551596853
+          ],
+          "rays": [
+            {
+              "hit_count": 1,
+              "minimum_hit_barycentric_margin": 0.1728281464945686,
+              "nearest_hit_distance_cm": 33.617688825225486
+            },
+            {
+              "hit_count": 1,
+              "minimum_hit_barycentric_margin": 0.09906297867403119,
+              "nearest_hit_distance_cm": 32.33147156719229
+            },
+            {
+              "hit_count": 1,
+              "minimum_hit_barycentric_margin": 0.33203659184918477,
+              "nearest_hit_distance_cm": 0.1555303762376839
+            }
+          ],
+          "side": "inside"
+        },
+        {
+          "offset_cm": 0.1,
+          "point_cm": [
+            594.2301336139788,
+            984.9287190957954,
+            235.70548407806734
+          ],
+          "rays": [
+            {
+              "hit_count": 2,
+              "minimum_hit_barycentric_margin": 0.1659209008505475,
+              "nearest_hit_distance_cm": 1.4126565657184824
+            },
+            {
+              "hit_count": 2,
+              "minimum_hit_barycentric_margin": 0.09715835553594376,
+              "nearest_hit_distance_cm": 0.31684550202234474
+            },
+            {
+              "hit_count": 0,
+              "minimum_hit_barycentric_margin": 1.0,
+              "nearest_hit_distance_cm": null
+            }
+          ],
+          "side": "outside"
+        },
+        {
+          "offset_cm": 0.2,
+          "point_cm": [
+            594.452353835858,
+            984.8920623709961,
+            235.5073062349191
+          ],
+          "rays": [
+            {
+              "hit_count": 1,
+              "minimum_hit_barycentric_margin": 0.17316144112824786,
+              "nearest_hit_distance_cm": 33.665984773504306
+            },
+            {
+              "hit_count": 1,
+              "minimum_hit_barycentric_margin": 0.10001529024307448,
+              "nearest_hit_distance_cm": 32.327156728436684
+            },
+            {
+              "hit_count": 1,
+              "minimum_hit_barycentric_margin": 0.33073985036503645,
+              "nearest_hit_distance_cm": 0.31106075247546217
+            }
+          ],
+          "side": "inside"
+        },
+        {
+          "offset_cm": 0.2,
+          "point_cm": [
+            594.1560602066857,
+            984.9409380040619,
+            235.77154335911678
+          ],
+          "rays": [
+            {
+              "hit_count": 2,
+              "minimum_hit_barycentric_margin": 0.16246727802853586,
+              "nearest_hit_distance_cm": 2.8253131314370465
+            },
+            {
+              "hit_count": 2,
+              "minimum_hit_barycentric_margin": 0.09620604396690041,
+              "nearest_hit_distance_cm": 0.6336910040447079
+            },
+            {
+              "hit_count": 0,
+              "minimum_hit_barycentric_margin": 1.0,
+              "nearest_hit_distance_cm": null
+            }
+          ],
+          "side": "outside"
+        }
+      ],
+      "source_member": "coil_1032"
+    },
+    {
+      "dagmc_volume_id": 20,
+      "facet_area_cm2": 2610.2808190709393,
+      "facet_centroid_cm": [
+        204.3138458109457,
+        872.8715499856048,
+        -520.3890270727828
+      ],
+      "facet_id": "facet-17af7c1aa9dcc70715eefa7be3b52fb48eb147ce030bb95d71e3c980854edd02",
+      "facet_index": 16,
+      "outward_normal": [
+        -0.08089367668616682,
+        -0.19959673395701558,
+        -0.9765333362798663
+      ],
+      "probes": [
+        {
+          "offset_cm": 0.05,
+          "point_cm": [
+            204.31789049478002,
+            872.8815298223027,
+            -520.3402004059689
+          ],
+          "rays": [
+            {
+              "hit_count": 3,
+              "minimum_hit_barycentric_margin": 0.00044001089940015614,
+              "nearest_hit_distance_cm": 46.72337073127553
+            },
+            {
+              "hit_count": 1,
+              "minimum_hit_barycentric_margin": 0.05938592739841729,
+              "nearest_hit_distance_cm": 31.223156893972483
+            },
+            {
+              "hit_count": 1,
+              "minimum_hit_barycentric_margin": 0.18583923748896397,
+              "nearest_hit_distance_cm": 16.033992290841564
+            }
+          ],
+          "side": "inside"
+        },
+        {
+          "offset_cm": 0.05,
+          "point_cm": [
+            204.3098011271114,
+            872.8615701489069,
+            -520.4378537395968
+          ],
+          "rays": [
+            {
+              "hit_count": 4,
+              "minimum_hit_barycentric_margin": 0.0011911269305866223,
+              "nearest_hit_distance_cm": 0.08566900543080355
+            },
+            {
+              "hit_count": 2,
+              "minimum_hit_barycentric_margin": 0.05807854143715371,
+              "nearest_hit_distance_cm": 0.1078463951364409
+            },
+            {
+              "hit_count": 2,
+              "minimum_hit_barycentric_margin": 0.18802232259962104,
+              "nearest_hit_distance_cm": 0.08138178126442028
+            }
+          ],
+          "side": "outside"
+        },
+        {
+          "offset_cm": 0.1,
+          "point_cm": [
+            204.32193517861432,
+            872.8915096590005,
+            -520.2913737391549
+          ],
+          "rays": [
+            {
+              "hit_count": 3,
+              "minimum_hit_barycentric_margin": 0.0010399719045847133,
+              "nearest_hit_distance_cm": 46.64847848226256
+            },
+            {
+              "hit_count": 1,
+              "minimum_hit_barycentric_margin": 0.06003962037904893,
+              "nearest_hit_distance_cm": 31.19433849102807
+            },
+            {
+              "hit_count": 1,
+              "minimum_hit_barycentric_margin": 0.18474769493363424,
+              "nearest_hit_distance_cm": 16.01299839786653
+            }
+          ],
+          "side": "inside"
+        },
+        {
+          "offset_cm": 0.1,
+          "point_cm": [
+            204.3057564432771,
+            872.8515903122092,
+            -520.4866804064108
+          ],
+          "rays": [
+            {
+              "hit_count": 4,
+              "minimum_hit_barycentric_margin": 0.0021315391712586895,
+              "nearest_hit_distance_cm": 0.17133801086145786
+            },
+            {
+              "hit_count": 2,
+              "minimum_hit_barycentric_margin": 0.05742484845652201,
+              "nearest_hit_distance_cm": 0.21569279027269392
+            },
+            {
+              "hit_count": 2,
+              "minimum_hit_barycentric_margin": 0.18911386515495088,
+              "nearest_hit_distance_cm": 0.16276356252869878
+            }
+          ],
+          "side": "outside"
+        },
+        {
+          "offset_cm": 0.2,
+          "point_cm": [
+            204.33002454628294,
+            872.9114693323962,
+            -520.1937204055268
+          ],
+          "rays": [
+            {
+              "hit_count": 3,
+              "minimum_hit_barycentric_margin": 0.002239893914954161,
+              "nearest_hit_distance_cm": 46.49869398423636
+            },
+            {
+              "hit_count": 1,
+              "minimum_hit_barycentric_margin": 0.06134700634031415,
+              "nearest_hit_distance_cm": 31.13670168513932
+            },
+            {
+              "hit_count": 1,
+              "minimum_hit_barycentric_margin": 0.18256460982297457,
+              "nearest_hit_distance_cm": 15.971010611916242
+            }
+          ],
+          "side": "inside"
+        },
+        {
+          "offset_cm": 0.2,
+          "point_cm": [
+            204.29766707560847,
+            872.8316306388134,
+            -520.5843337400388
+          ],
+          "rays": [
+            {
+              "hit_count": 4,
+              "minimum_hit_barycentric_margin": 0.004012363652603296,
+              "nearest_hit_distance_cm": 0.3426760217230339
+            },
+            {
+              "hit_count": 2,
+              "minimum_hit_barycentric_margin": 0.056117462495256794,
+              "nearest_hit_distance_cm": 0.4313855805455366
+            },
+            {
+              "hit_count": 2,
+              "minimum_hit_barycentric_margin": 0.1912969502656105,
+              "nearest_hit_distance_cm": 0.32552712505750986
+            }
+          ],
+          "side": "outside"
+        }
+      ],
+      "source_member": "coil_1015"
+    },
+    {
+      "dagmc_volume_id": 21,
+      "facet_area_cm2": 2335.596951737407,
+      "facet_centroid_cm": [
+        130.28399714940596,
+        1131.2504535737146,
+        -544.5702936231993
+      ],
+      "facet_id": "facet-24263a0f34c030f0efda519269dc03b0cc847ae042899967df5882eb2151790a",
+      "facet_index": 27,
+      "outward_normal": [
+        -0.19103331366682183,
+        0.14567032081534942,
+        -0.9707143919315437
+      ],
+      "probes": [
+        {
+          "offset_cm": 0.05,
+          "point_cm": [
+            130.2935488150893,
+            1131.2431700576738,
+            -544.5217579036027
+          ],
+          "rays": [
+            {
+              "hit_count": 1,
+              "minimum_hit_barycentric_margin": 0.16319611837905443,
+              "nearest_hit_distance_cm": 93.46636853157948
+            },
+            {
+              "hit_count": 1,
+              "minimum_hit_barycentric_margin": 0.018302819134843884,
+              "nearest_hit_distance_cm": 31.0010451794203
+            },
+            {
+              "hit_count": 1,
+              "minimum_hit_barycentric_margin": 0.18658097889374103,
+              "nearest_hit_distance_cm": 17.40541488523397
+            }
+          ],
+          "side": "inside"
+        },
+        {
+          "offset_cm": 0.05,
+          "point_cm": [
+            130.27444548372262,
+            1131.2577370897554,
+            -544.6188293427958
+          ],
+          "rays": [
+            {
+              "hit_count": 2,
+              "minimum_hit_barycentric_margin": 0.16581507991973088,
+              "nearest_hit_distance_cm": 0.1254250825945617
+            },
+            {
+              "hit_count": 2,
+              "minimum_hit_barycentric_margin": 0.018101328496737068,
+              "nearest_hit_distance_cm": 0.07419531807098845
+            },
+            {
+              "hit_count": 2,
+              "minimum_hit_barycentric_margin": 0.18298586793212732,
+              "nearest_hit_distance_cm": 0.1694304618913792
+            }
+          ],
+          "side": "outside"
+        },
+        {
+          "offset_cm": 0.1,
+          "point_cm": [
+            130.30310048077266,
+            1131.2358865416331,
+            -544.4732221840061
+          ],
+          "rays": [
+            {
+              "hit_count": 1,
+              "minimum_hit_barycentric_margin": 0.16188663760871283,
+              "nearest_hit_distance_cm": 93.44181192272602
+            },
+            {
+              "hit_count": 1,
+              "minimum_hit_barycentric_margin": 0.018403564453895793,
+              "nearest_hit_distance_cm": 30.988171659198184
+            },
+            {
+              "hit_count": 1,
+              "minimum_hit_barycentric_margin": 0.1883785343745487,
+              "nearest_hit_distance_cm": 17.405303717116706
+            }
+          ],
+          "side": "inside"
+        },
+        {
+          "offset_cm": 0.1,
+          "point_cm": [
+            130.26489381803927,
+            1131.265020605796,
+            -544.6673650623925
+          ],
+          "rays": [
+            {
+              "hit_count": 2,
+              "minimum_hit_barycentric_margin": 0.1671245606900725,
+              "nearest_hit_distance_cm": 0.2508501651895337
+            },
+            {
+              "hit_count": 2,
+              "minimum_hit_barycentric_margin": 0.01800058317768516,
+              "nearest_hit_distance_cm": 0.1483906361422196
+            },
+            {
+              "hit_count": 2,
+              "minimum_hit_barycentric_margin": 0.1811883124513196,
+              "nearest_hit_distance_cm": 0.3388609237833126
+            }
+          ],
+          "side": "outside"
+        },
+        {
+          "offset_cm": 0.2,
+          "point_cm": [
+            130.32220381213932,
+            1131.2213195095514,
+            -544.376150744813
+          ],
+          "rays": [
+            {
+              "hit_count": 1,
+              "minimum_hit_barycentric_margin": 0.15926767606803582,
+              "nearest_hit_distance_cm": 93.39269870501863
+            },
+            {
+              "hit_count": 1,
+              "minimum_hit_barycentric_margin": 0.018605055092003164,
+              "nearest_hit_distance_cm": 30.96242461875358
+            },
+            {
+              "hit_count": 1,
+              "minimum_hit_barycentric_margin": 0.1919736453361619,
+              "nearest_hit_distance_cm": 17.405081380882507
+            }
+          ],
+          "side": "inside"
+        },
+        {
+          "offset_cm": 0.2,
+          "point_cm": [
+            130.2457904866726,
+            1131.2795876378777,
+            -544.7644365015856
+          ],
+          "rays": [
+            {
+              "hit_count": 2,
+              "minimum_hit_barycentric_margin": 0.1697435222307496,
+              "nearest_hit_distance_cm": 0.501700330379078
+            },
+            {
+              "hit_count": 2,
+              "minimum_hit_barycentric_margin": 0.017799092539578232,
+              "nearest_hit_distance_cm": 0.2967812722844455
+            },
+            {
+              "hit_count": 2,
+              "minimum_hit_barycentric_margin": 0.17759320148970645,
+              "nearest_hit_distance_cm": 0.6777218475666398
+            }
+          ],
+          "side": "outside"
+        }
+      ],
+      "source_member": "coil_1040"
+    },
+    {
+      "dagmc_volume_id": 22,
+      "facet_area_cm2": 2203.3222263168072,
+      "facet_centroid_cm": [
+        207.83946845544173,
+        1150.4259010479775,
+        342.72231008395914
+      ],
+      "facet_id": "facet-cd75e77af6a6a03043143dd3be9c559bf8cbc07bfe5d63bd653c7c421afb2fc9",
+      "facet_index": 136,
+      "outward_normal": [
+        0.9629859901943518,
+        0.18576864187237466,
+        -0.1953151156114065
+      ],
+      "probes": [
+        {
+          "offset_cm": 0.05,
+          "point_cm": [
+            207.791319155932,
+            1150.4166126158839,
+            342.7320758397397
+          ],
+          "rays": [
+            {
+              "hit_count": 1,
+              "minimum_hit_barycentric_margin": 0.33268052479708693,
+              "nearest_hit_distance_cm": 0.08252805052386925
+            },
+            {
+              "hit_count": 1,
+              "minimum_hit_barycentric_margin": 0.3320826505647016,
+              "nearest_hit_distance_cm": 0.08255623592006693
+            },
+            {
+              "hit_count": 1,
+              "minimum_hit_barycentric_margin": 0.005755019888311982,
+              "nearest_hit_distance_cm": 92.34667854142721
+            }
+          ],
+          "side": "inside"
+        },
+        {
+          "offset_cm": 0.05,
+          "point_cm": [
+            207.88761775495146,
+            1150.4351894800711,
+            342.7125443281786
+          ],
+          "rays": [
+            {
+              "hit_count": 0,
+              "minimum_hit_barycentric_margin": 1.0,
+              "nearest_hit_distance_cm": null
+            },
+            {
+              "hit_count": 0,
+              "minimum_hit_barycentric_margin": 1.0,
+              "nearest_hit_distance_cm": null
+            },
+            {
+              "hit_count": 2,
+              "minimum_hit_barycentric_margin": 0.006914746241085208,
+              "nearest_hit_distance_cm": 0.21703121641732784
+            }
+          ],
+          "side": "outside"
+        },
+        {
+          "offset_cm": 0.1,
+          "point_cm": [
+            207.7431698564223,
+            1150.4073241837903,
+            342.74184159552027
+          ],
+          "rays": [
+            {
+              "hit_count": 1,
+              "minimum_hit_barycentric_margin": 0.3320277162608412,
+              "nearest_hit_distance_cm": 0.16505610104770918
+            },
+            {
+              "hit_count": 1,
+              "minimum_hit_barycentric_margin": 0.3308319677960688,
+              "nearest_hit_distance_cm": 0.16511247184010455
+            },
+            {
+              "hit_count": 1,
+              "minimum_hit_barycentric_margin": 0.005175156711925663,
+              "nearest_hit_distance_cm": 92.27912464929973
+            }
+          ],
+          "side": "inside"
+        },
+        {
+          "offset_cm": 0.1,
+          "point_cm": [
+            207.93576705446117,
+            1150.4444779121648,
+            342.702778572398
+          ],
+          "rays": [
+            {
+              "hit_count": 0,
+              "minimum_hit_barycentric_margin": 1.0,
+              "nearest_hit_distance_cm": null
+            },
+            {
+              "hit_count": 0,
+              "minimum_hit_barycentric_margin": 1.0,
+              "nearest_hit_distance_cm": null
+            },
+            {
+              "hit_count": 2,
+              "minimum_hit_barycentric_margin": 0.007494609417471635,
+              "nearest_hit_distance_cm": 0.43406243283448903
+            }
+          ],
+          "side": "outside"
+        },
+        {
+          "offset_cm": 0.2,
+          "point_cm": [
+            207.64687125740286,
+            1150.388747319603,
+            342.7613731070814
+          ],
+          "rays": [
+            {
+              "hit_count": 1,
+              "minimum_hit_barycentric_margin": 0.33072209918834977,
+              "nearest_hit_distance_cm": 0.3301122020954354
+            },
+            {
+              "hit_count": 1,
+              "minimum_hit_barycentric_margin": 0.3283306022588029,
+              "nearest_hit_distance_cm": 0.33022494368022615
+            },
+            {
+              "hit_count": 1,
+              "minimum_hit_barycentric_margin": 0.00401543035915265,
+              "nearest_hit_distance_cm": 92.14401686504469
+            }
+          ],
+          "side": "inside"
+        },
+        {
+          "offset_cm": 0.2,
+          "point_cm": [
+            208.0320656534806,
+            1150.463054776352,
+            342.6832470608369
+          ],
+          "rays": [
+            {
+              "hit_count": 0,
+              "minimum_hit_barycentric_margin": 1.0,
+              "nearest_hit_distance_cm": null
+            },
+            {
+              "hit_count": 0,
+              "minimum_hit_barycentric_margin": 1.0,
+              "nearest_hit_distance_cm": null
+            },
+            {
+              "hit_count": 2,
+              "minimum_hit_barycentric_margin": 0.008654335770244541,
+              "nearest_hit_distance_cm": 0.8681248656689369
+            }
+          ],
+          "side": "outside"
+        }
+      ],
+      "source_member": "coil_1007"
+    },
+    {
+      "dagmc_volume_id": 23,
+      "facet_area_cm2": 2224.54249196627,
+      "facet_centroid_cm": [
+        93.79346320321793,
+        1069.8188792339752,
+        346.5033918201878
+      ],
+      "facet_id": "facet-6a95c63b1cdc1e9683a5e99b266de17541d32baae76cb82a8c366ac80a0b903f",
+      "facet_index": 42,
+      "outward_normal": [
+        -0.7728309060046098,
+        -0.6127136333212536,
+        0.16527066970991047
+      ],
+      "probes": [
+        {
+          "offset_cm": 0.05,
+          "point_cm": [
+            93.83210474851816,
+            1069.8495149156413,
+            346.4951282867023
+          ],
+          "rays": [
+            {
+              "hit_count": 1,
+              "minimum_hit_barycentric_margin": 0.013106173927092398,
+              "nearest_hit_distance_cm": 37.02682609944844
+            },
+            {
+              "hit_count": 1,
+              "minimum_hit_barycentric_margin": 0.08493170441512816,
+              "nearest_hit_distance_cm": 24.81702981865155
+            },
+            {
+              "hit_count": 3,
+              "minimum_hit_barycentric_margin": 0.10793852595856651,
+              "nearest_hit_distance_cm": 21.95847097238363
+            }
+          ],
+          "side": "inside"
+        },
+        {
+          "offset_cm": 0.05,
+          "point_cm": [
+            93.75482165791769,
+            1069.788243552309,
+            346.5116553536733
+          ],
+          "rays": [
+            {
+              "hit_count": 2,
+              "minimum_hit_barycentric_margin": 0.012807523582809916,
+              "nearest_hit_distance_cm": 0.06150851763022723
+            },
+            {
+              "hit_count": 2,
+              "minimum_hit_barycentric_margin": 0.08241098512279832,
+              "nearest_hit_distance_cm": 0.15940645787043425
+            },
+            {
+              "hit_count": 4,
+              "minimum_hit_barycentric_margin": 0.10474187967077636,
+              "nearest_hit_distance_cm": 0.26085876408724323
+            }
+          ],
+          "side": "outside"
+        },
+        {
+          "offset_cm": 0.1,
+          "point_cm": [
+            93.87074629381839,
+            1069.8801505973072,
+            346.4868647532168
+          ],
+          "rays": [
+            {
+              "hit_count": 1,
+              "minimum_hit_barycentric_margin": 0.013255499099237834,
+              "nearest_hit_distance_cm": 36.96563735151652
+            },
+            {
+              "hit_count": 1,
+              "minimum_hit_barycentric_margin": 0.08619206406128918,
+              "nearest_hit_distance_cm": 24.81009712561104
+            },
+            {
+              "hit_count": 3,
+              "minimum_hit_barycentric_margin": 0.10953684910246037,
+              "nearest_hit_distance_cm": 21.933060158568605
+            }
+          ],
+          "side": "inside"
+        },
+        {
+          "offset_cm": 0.1,
+          "point_cm": [
+            93.71618011261747,
+            1069.7576078706431,
+            346.5199188871588
+          ],
+          "rays": [
+            {
+              "hit_count": 2,
+              "minimum_hit_barycentric_margin": 0.01265819841066448,
+              "nearest_hit_distance_cm": 0.12301703526027138
+            },
+            {
+              "hit_count": 2,
+              "minimum_hit_barycentric_margin": 0.08115062547663723,
+              "nearest_hit_distance_cm": 0.31881291574039405
+            },
+            {
+              "hit_count": 4,
+              "minimum_hit_barycentric_margin": 0.1031435565268829,
+              "nearest_hit_distance_cm": 0.52171752817371
+            }
+          ],
+          "side": "outside"
+        },
+        {
+          "offset_cm": 0.2,
+          "point_cm": [
+            93.94802938441885,
+            1069.9414219606394,
+            346.47033768624584
+          ],
+          "rays": [
+            {
+              "hit_count": 1,
+              "minimum_hit_barycentric_margin": 0.013554149443519905,
+              "nearest_hit_distance_cm": 36.84325985565239
+            },
+            {
+              "hit_count": 1,
+              "minimum_hit_barycentric_margin": 0.08871278335361886,
+              "nearest_hit_distance_cm": 24.79623173953026
+            },
+            {
+              "hit_count": 3,
+              "minimum_hit_barycentric_margin": 0.11273349539024946,
+              "nearest_hit_distance_cm": 21.88223853093794
+            }
+          ],
+          "side": "inside"
+        },
+        {
+          "offset_cm": 0.2,
+          "point_cm": [
+            93.638897022017,
+            1069.696336507311,
+            346.53644595412976
+          ],
+          "rays": [
+            {
+              "hit_count": 2,
+              "minimum_hit_barycentric_margin": 0.01235954806638241,
+              "nearest_hit_distance_cm": 0.2460340705207158
+            },
+            {
+              "hit_count": 2,
+              "minimum_hit_barycentric_margin": 0.0786299061843076,
+              "nearest_hit_distance_cm": 0.6376258314812365
+            },
+            {
+              "hit_count": 4,
+              "minimum_hit_barycentric_margin": 0.09994691023909336,
+              "nearest_hit_distance_cm": 1.0434350563481538
+            }
+          ],
+          "side": "outside"
+        }
+      ],
+      "source_member": "coil_1002"
+    },
+    {
+      "dagmc_volume_id": 24,
+      "facet_area_cm2": 2173.724494124376,
+      "facet_centroid_cm": [
+        25.201502246494268,
+        988.7778202817116,
+        367.23041307352213
+      ],
+      "facet_id": "facet-43e3626b5445d919e3fc46952c679956c5400f2e32353002520accf4919829f9",
+      "facet_index": 10,
+      "outward_normal": [
+        -0.5018008066609404,
+        -0.864967196036267,
+        -0.00526309942788299
+      ],
+      "probes": [
+        {
+          "offset_cm": 0.05,
+          "point_cm": [
+            25.226592286827316,
+            988.8210686415134,
+            367.2306762284935
+          ],
+          "rays": [
+            {
+              "hit_count": 1,
+              "minimum_hit_barycentric_margin": 0.03418260497452252,
+              "nearest_hit_distance_cm": 33.703889587611876
+            },
+            {
+              "hit_count": 1,
+              "minimum_hit_barycentric_margin": 0.03447347967947845,
+              "nearest_hit_distance_cm": 24.379902579918706
+            },
+            {
+              "hit_count": 1,
+              "minimum_hit_barycentric_margin": 0.10797494495334198,
+              "nearest_hit_distance_cm": 17.145004964728027
+            }
+          ],
+          "side": "inside"
+        },
+        {
+          "offset_cm": 0.05,
+          "point_cm": [
+            25.17641220616122,
+            988.7345719219097,
+            367.23014991855075
+          ],
+          "rays": [
+            {
+              "hit_count": 2,
+              "minimum_hit_barycentric_margin": 0.0341321003832178,
+              "nearest_hit_distance_cm": 0.055188863602969776
+            },
+            {
+              "hit_count": 2,
+              "minimum_hit_barycentric_margin": 0.03031200637910081,
+              "nearest_hit_distance_cm": 0.5650840265392404
+            },
+            {
+              "hit_count": 2,
+              "minimum_hit_barycentric_margin": 0.1117150919788876,
+              "nearest_hit_distance_cm": 0.0888479222190556
+            }
+          ],
+          "side": "outside"
+        },
+        {
+          "offset_cm": 0.1,
+          "point_cm": [
+            25.251682327160363,
+            988.8643170013152,
+            367.23093938346494
+          ],
+          "rays": [
+            {
+              "hit_count": 1,
+              "minimum_hit_barycentric_margin": 0.03420785727017425,
+              "nearest_hit_distance_cm": 33.64908616328534
+            },
+            {
+              "hit_count": 1,
+              "minimum_hit_barycentric_margin": 0.036554216329662936,
+              "nearest_hit_distance_cm": 24.388054865573974
+            },
+            {
+              "hit_count": 1,
+              "minimum_hit_barycentric_margin": 0.10610487144057096,
+              "nearest_hit_distance_cm": 17.11871385898167
+            }
+          ],
+          "side": "inside"
+        },
+        {
+          "offset_cm": 0.1,
+          "point_cm": [
+            25.151322165828173,
+            988.691323562108,
+            367.2298867635793
+          ],
+          "rays": [
+            {
+              "hit_count": 2,
+              "minimum_hit_barycentric_margin": 0.03410684808756611,
+              "nearest_hit_distance_cm": 0.11037772720590261
+            },
+            {
+              "hit_count": 2,
+              "minimum_hit_barycentric_margin": 0.02823126972891654,
+              "nearest_hit_distance_cm": 1.1301680530781024
+            },
+            {
+              "hit_count": 2,
+              "minimum_hit_barycentric_margin": 0.11358516549165858,
+              "nearest_hit_distance_cm": 0.17769584443805173
+            }
+          ],
+          "side": "outside"
+        },
+        {
+          "offset_cm": 0.2,
+          "point_cm": [
+            25.301862407826455,
+            988.9508137209189,
+            367.2314656934077
+          ],
+          "rays": [
+            {
+              "hit_count": 1,
+              "minimum_hit_barycentric_margin": 0.034258361861478966,
+              "nearest_hit_distance_cm": 33.53947931463204
+            },
+            {
+              "hit_count": 1,
+              "minimum_hit_barycentric_margin": 0.04071568963004035,
+              "nearest_hit_distance_cm": 24.40435943688471
+            },
+            {
+              "hit_count": 1,
+              "minimum_hit_barycentric_margin": 0.1023647244150255,
+              "nearest_hit_distance_cm": 17.06613164748866
+            }
+          ],
+          "side": "inside"
+        },
+        {
+          "offset_cm": 0.2,
+          "point_cm": [
+            25.10114208516208,
+            988.6048268425043,
+            367.22936045363656
+          ],
+          "rays": [
+            {
+              "hit_count": 2,
+              "minimum_hit_barycentric_margin": 0.034056343496261354,
+              "nearest_hit_distance_cm": 0.2207554544119835
+            },
+            {
+              "hit_count": 2,
+              "minimum_hit_barycentric_margin": 0.024069796428538903,
+              "nearest_hit_distance_cm": 2.2603361061580305
+            },
+            {
+              "hit_count": 2,
+              "minimum_hit_barycentric_margin": 0.11732531251720404,
+              "nearest_hit_distance_cm": 0.35539168887639044
+            }
+          ],
+          "side": "outside"
+        }
+      ],
+      "source_member": "coil_1045"
+    },
+    {
+      "dagmc_volume_id": 25,
+      "facet_area_cm2": 717.7208945427747,
+      "facet_centroid_cm": [
+        4.138970428857682,
+        896.7761973628039,
+        329.28606175593137
+      ],
+      "facet_id": "facet-869de9b588b80d0c81e7684e087d7ac3eae96b7ea6307df05842bd52a5f84212",
+      "facet_index": 9,
+      "outward_normal": [
+        0.9537527206222263,
+        -0.2631708478199446,
+        0.14524755682431725
+      ],
+      "probes": [
+        {
+          "offset_cm": 0.05,
+          "point_cm": [
+            4.091282792826571,
+            896.789355905195,
+            329.2787993780901
+          ],
+          "rays": [
+            {
+              "hit_count": 1,
+              "minimum_hit_barycentric_margin": 0.32784672271559884,
+              "nearest_hit_distance_cm": 0.11942280439644581
+            },
+            {
+              "hit_count": 1,
+              "minimum_hit_barycentric_margin": 0.3329592455841367,
+              "nearest_hit_distance_cm": 0.054013008083342764
+            },
+            {
+              "hit_count": 1,
+              "minimum_hit_barycentric_margin": 0.10934063334735167,
+              "nearest_hit_distance_cm": 9.140852910923574
+            }
+          ],
+          "side": "inside"
+        },
+        {
+          "offset_cm": 0.05,
+          "point_cm": [
+            4.186658064888793,
+            896.7630388204129,
+            329.2933241337726
+          ],
+          "rays": [
+            {
+              "hit_count": 0,
+              "minimum_hit_barycentric_margin": 1.0,
+              "nearest_hit_distance_cm": null
+            },
+            {
+              "hit_count": 0,
+              "minimum_hit_barycentric_margin": 1.0,
+              "nearest_hit_distance_cm": null
+            },
+            {
+              "hit_count": 2,
+              "minimum_hit_barycentric_margin": 0.11758869147209816,
+              "nearest_hit_distance_cm": 0.11608389094930344
+            }
+          ],
+          "side": "outside"
+        },
+        {
+          "offset_cm": 0.1,
+          "point_cm": [
+            4.04359515679546,
+            896.802514447586,
+            329.27153700024894
+          ],
+          "rays": [
+            {
+              "hit_count": 1,
+              "minimum_hit_barycentric_margin": 0.32236011209787463,
+              "nearest_hit_distance_cm": 0.23884560879277963
+            },
+            {
+              "hit_count": 1,
+              "minimum_hit_barycentric_margin": 0.33258515783493675,
+              "nearest_hit_distance_cm": 0.10802601616663488
+            },
+            {
+              "hit_count": 1,
+              "minimum_hit_barycentric_margin": 0.10521660428497859,
+              "nearest_hit_distance_cm": 9.152623579116975
+            }
+          ],
+          "side": "inside"
+        },
+        {
+          "offset_cm": 0.1,
+          "point_cm": [
+            4.234345700919905,
+            896.7498802780219,
+            329.3005865116138
+          ],
+          "rays": [
+            {
+              "hit_count": 0,
+              "minimum_hit_barycentric_margin": 1.0,
+              "nearest_hit_distance_cm": null
+            },
+            {
+              "hit_count": 0,
+              "minimum_hit_barycentric_margin": 1.0,
+              "nearest_hit_distance_cm": null
+            },
+            {
+              "hit_count": 2,
+              "minimum_hit_barycentric_margin": 0.12171272053447124,
+              "nearest_hit_distance_cm": 0.2321677818986786
+            }
+          ],
+          "side": "outside"
+        },
+        {
+          "offset_cm": 0.2,
+          "point_cm": [
+            3.948219884733237,
+            896.828831532368,
+            329.2570122445665
+          ],
+          "rays": [
+            {
+              "hit_count": 1,
+              "minimum_hit_barycentric_margin": 0.31138689086242577,
+              "nearest_hit_distance_cm": 0.4776912175854696
+            },
+            {
+              "hit_count": 1,
+              "minimum_hit_barycentric_margin": 0.3318369823365375,
+              "nearest_hit_distance_cm": 0.2160520323332292
+            },
+            {
+              "hit_count": 1,
+              "minimum_hit_barycentric_margin": 0.0969685461602322,
+              "nearest_hit_distance_cm": 9.176164915503795
+            }
+          ],
+          "side": "inside"
+        },
+        {
+          "offset_cm": 0.2,
+          "point_cm": [
+            4.329720972982128,
+            896.7235631932399,
+            329.31511126729623
+          ],
+          "rays": [
+            {
+              "hit_count": 0,
+              "minimum_hit_barycentric_margin": 1.0,
+              "nearest_hit_distance_cm": null
+            },
+            {
+              "hit_count": 0,
+              "minimum_hit_barycentric_margin": 1.0,
+              "nearest_hit_distance_cm": null
+            },
+            {
+              "hit_count": 2,
+              "minimum_hit_barycentric_margin": 0.1299607786592173,
+              "nearest_hit_distance_cm": 0.4643355637974487
+            }
+          ],
+          "side": "outside"
+        }
+      ],
+      "source_member": "coil_1010"
+    }
+  ],
+  "schema": "stellarcsg.p00-facet-side-bank/v1"
+}
