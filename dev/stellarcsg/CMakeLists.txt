@@ -22,6 +22,7 @@ add_library(stellarcsg_reference STATIC
   src/compiled_periodic_surface.cpp
   src/compiled_swept_surface.cpp
   src/compiled_swept_surface_set.cpp
+  src/compiled_facet_surface_set.cpp
   ../../src/external/quartic_solver.cpp
 )
 add_library(StellarCSG::reference ALIAS stellarcsg_reference)
@@ -91,8 +92,21 @@ if(STELLARCSG_BUILD_TESTS)
   add_test(NAME stellarcsg_compiled_surface_tests
     COMMAND stellarcsg_compiled_surface_tests)
 
+  add_executable(stellarcsg_facet_surface_tests
+    tests/test_compiled_facet_surface_set.cpp)
+  target_link_libraries(stellarcsg_facet_surface_tests
+    PRIVATE StellarCSG::reference)
+  target_compile_features(stellarcsg_facet_surface_tests PRIVATE cxx_std_17)
+  add_test(NAME stellarcsg_facet_surface_tests
+    COMMAND stellarcsg_facet_surface_tests)
+  add_test(NAME stellarcsg_facet_p00_tests
+    COMMAND stellarcsg_facet_surface_tests)
+  set_tests_properties(stellarcsg_facet_p00_tests PROPERTIES
+    ENVIRONMENT "STELLARCSG_FACET_FIXTURE=${CMAKE_CURRENT_SOURCE_DIR}/reports/local-cont-20260925/p00-accepted-facet-fixture.txt")
+
   if(CMAKE_CXX_COMPILER_ID MATCHES "GNU|Clang")
-    foreach(target stellarcsg_reference_tests stellarcsg_compiled_surface_tests)
+    foreach(target stellarcsg_reference_tests stellarcsg_compiled_surface_tests
+        stellarcsg_facet_surface_tests)
       target_compile_options(${target} PRIVATE
         -Wall -Wextra -Wpedantic -Wconversion -Wshadow)
       if(STELLARCSG_ENABLE_SANITIZERS)

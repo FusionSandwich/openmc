@@ -1,0 +1,9 @@
+# WISTELL-D input provenance, 2026-09-25
+
+The user identified the local stellarator optimization repository's WISTELL-D data as authoritative. The clean repository checkout is `D:/Scratch/stellarator_optimization` at commit `398032b8c0b4e7c0459c602f2af1e73b3fca0b9a`. Its `wistell-d_data/coils.wistell-d` has SHA-256 `7748369407d28a70f35b5c4a7c0ab860495a08fd0030002112ea933fe570159b`, exactly matching `dev/stellarcsg/test_data/wistell_d/coils.wistell-d`. The MAKEGRID header specifies four field periods. Use these filaments for the WISTELL-D centerlines and period identity.
+
+The same repository's `stellarator_optimization/geometry/constants.py` sets `magnet_thickness = 30` cm, but its geometry README says the blanket model approximates magnets with a *continuous layer at the winding surface* over a 45-degree half period. Thus this repository identifies the correct filament and plasma input and a 30 cm layer parameter; it does not by itself define a discrete elliptical winding-pack section or section frame.
+
+For the accepted discrete P00 coil mesh, the local provenance in `wistell-pack-provenance-01.json` identifies a ParaStell construction recipe with nominal rectangular `30 cm × 30 cm` width and thickness, and a 90-degree one-period build. The accepted P00 H5M is hash-bound at SHA-256 `549c42bf66b290f8f56b6f4d7523940c3b32b9d256d993ea42605f4dddb33e39`. The sampled facet-side and exact centerline-distance checks in the earlier local reports reject the provisional `10 cm × 8 cm` ellipse as a representation of those accepted P00 coil volumes. Continue validation against the accepted mesh and rectangular construction; do not infer a different discrete pack shape from the filament file alone.
+
+This establishes source identity and the selected nominal section. The exact continuous CAD frame and swept-root completeness still require their separate geometric and transport checks.
