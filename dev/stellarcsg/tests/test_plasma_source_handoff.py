@@ -110,13 +110,20 @@ def synthetic_bundle(directory: Path, *, clearance_status="QUALIFIED_BOUNDED_SOU
     return directory / _write(directory, "admission.json", handoff)["name"]
 
 
+def _load(handoff: Path):
+    return load_bounded_plasma_source(
+        handoff, expected_wall_sha256=_sha(handoff.parent / "synthetic-wall.h5m"))
+
+
 class PlasmaSourceHandoffTests(unittest.TestCase):
     def test_synthetic_constructor_contract(self):
         with TemporaryDirectory() as temporary:
             handoff = synthetic_bundle(Path(temporary))
-            admitted = load_bounded_plasma_source(handoff)
+            admitted = _load(handoff)
             self.assertIsNone(admitted.physical_rate_n_s)
             self.assertEqual(admitted.probabilities, (1.0,))
+            self.assertEqual(admitted.wall_sha256,
+                             _sha(handoff.parent / "synthetic-wall.h5m"))
             import openmc
             mesh, source = admitted.make_openmc_source(openmc)
             self.assertEqual(mesh.library, "moab")
@@ -127,25 +134,25 @@ class PlasmaSourceHandoffTests(unittest.TestCase):
             handoff = synthetic_bundle(Path(temporary),
                                        clearance_status="FACET_SURFACES_INTERSECT_OR_TOUCH")
             with self.assertRaisesRegex(ValueError, "clearance"):
-                load_bounded_plasma_source(handoff)
+                _load(handoff)
 
     def test_clearance_margin_rejected(self):
         with TemporaryDirectory() as temporary:
             handoff = synthetic_bundle(Path(temporary), gap=1.05)
             with self.assertRaisesRegex(ValueError, "clearance"):
-                load_bounded_plasma_source(handoff)
+                _load(handoff)
 
     def test_sampling_gate_rejected(self):
         with TemporaryDirectory() as temporary:
             handoff = synthetic_bundle(Path(temporary), sampling_valid=False)
             with self.assertRaisesRegex(ValueError, "sampling"):
-                load_bounded_plasma_source(handoff)
+                _load(handoff)
 
     def test_rate_stays_separate(self):
         with TemporaryDirectory() as temporary:
             handoff = synthetic_bundle(Path(temporary), physical_rate=1e19)
             with self.assertRaisesRegex(ValueError, "not admitted"):
-                load_bounded_plasma_source(handoff)
+                _load(handoff)
 
     def test_cell_probability_and_orientation_rejected(self):
         for overrides, message in (({"source_probability": .9}, "probabilities"),
@@ -153,21 +160,30 @@ class PlasmaSourceHandoffTests(unittest.TestCase):
             with self.subTest(overrides=overrides), TemporaryDirectory() as temporary:
                 handoff = synthetic_bundle(Path(temporary), **overrides)
                 with self.assertRaisesRegex(ValueError, message):
-                    load_bounded_plasma_source(handoff)
+                    _load(handoff)
 
     def test_tampered_mesh_rejected(self):
         with TemporaryDirectory() as temporary:
             handoff = synthetic_bundle(Path(temporary))
             (handoff.parent / "synthetic-mesh.h5m").write_bytes(b"changed")
             with self.assertRaisesRegex(ValueError, "SHA-256"):
-                load_bounded_plasma_source(handoff)
+                _load(handoff)
 
     def test_tampered_wall_rejected(self):
         with TemporaryDirectory() as temporary:
             handoff = synthetic_bundle(Path(temporary))
             (handoff.parent / "synthetic-wall.h5m").write_bytes(b"changed")
             with self.assertRaisesRegex(ValueError, "SHA-256"):
-                load_bounded_plasma_source(handoff)
+                _load(handoff)
+
+    def test_caller_fixed_wall_identity_required(self):
+        with TemporaryDirectory() as temporary:
+            handoff = synthetic_bundle(Path(temporary))
+            with self.assertRaisesRegex(ValueError, "required"):
+                load_bounded_plasma_source(handoff, expected_wall_sha256="")
+            with self.assertRaisesRegex(ValueError, "expected fixed geometry"):
+                load_bounded_plasma_source(
+                    handoff, expected_wall_sha256="0" * 64)
 
 
 if __name__ == "__main__":

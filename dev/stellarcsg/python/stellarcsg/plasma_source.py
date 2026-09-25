@@ -117,6 +117,7 @@ class BoundedPlasmaSource:
     spectra: tuple[tuple[tuple[float, ...], tuple[float, ...]], ...]
     handoff_sha256: str
     mesh_sha256: str
+    wall_sha256: str
     physical_rate_n_s: None = None
 
     def make_openmc_source(self, openmc_module=None):
@@ -135,8 +136,13 @@ class BoundedPlasmaSource:
         return mesh, source
 
 
-def load_bounded_plasma_source(handoff_path: Path) -> BoundedPlasmaSource:
-    """Validate a portable UQ bundle and its separate clearance admission."""
+def load_bounded_plasma_source(
+    handoff_path: Path, *, expected_wall_sha256: str
+) -> BoundedPlasmaSource:
+    """Validate a UQ bundle against the caller's fixed geometry wall hash."""
+    if not isinstance(expected_wall_sha256, str) or not _SHA.fullmatch(
+            expected_wall_sha256):
+        raise ValueError("expected fixed-wall SHA-256 is required")
     handoff_path = Path(handoff_path).resolve(strict=True)
     directory = handoff_path.parent
     handoff = json.loads(handoff_path.read_text())
@@ -155,6 +161,8 @@ def load_bounded_plasma_source(handoff_path: Path) -> BoundedPlasmaSource:
         json.loads(bound[name][0].read_text()) for name in
         ("source_result", "sampling_result", "clearance_result", "mesh_data", "case"))
     hashes = {name: binding[1] for name, binding in bound.items()}
+    if hashes["wall"] != expected_wall_sha256:
+        raise ValueError("source wall differs from the expected fixed geometry")
     if (source_result.get("status") != "VMEC_SOURCE_MESH_EXPORTED_PENDING_CONTAINMENT"
             or source_result.get("exit_code") != 0
             or source_result.get("evidence_class") != "B"
@@ -228,4 +236,5 @@ def load_bounded_plasma_source(handoff_path: Path) -> BoundedPlasmaSource:
             raise ValueError("invalid conditional birth spectrum")
         spectra.append((energies, weights))
     return BoundedPlasmaSource(bound["mesh"][0], handoff["case_id"],
-        probabilities, tuple(spectra), _sha256(handoff_path), hashes["mesh"])
+        probabilities, tuple(spectra), _sha256(handoff_path), hashes["mesh"],
+        hashes["wall"])
