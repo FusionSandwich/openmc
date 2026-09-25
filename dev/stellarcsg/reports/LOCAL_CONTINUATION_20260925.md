@@ -12,6 +12,12 @@
 - Acquisition decision: no external software or data needed for the present patch/test milestone; planned download/install bytes: 0. The isolated local worktree uses already-local Git objects on C:. Any later build must use the existing compiler/HDF5/toolchain, be bounded by free RAM/disk, and record its exact output target and rollback before starting. The worktree and its branch are retained for review, not automatically removed.
 - No SSH, remote jobs, protected-ref changes, or publication occurred in this task.
 
+### Standalone build preflight
+
+- The pre-build refresh showed 3,111,672 KiB Windows RAM free, 89,178,779,648 B free on C: and 506,235,297,792 B on D:. The build target `build/local-cont-20260925` did not exist. The earlier significant-process inventory still applies; memory is tight, so compilation is limited to one job.
+- WSL already has HDF5 1.14.5, Ninja, C++, linker, taskset, and `/opt/openmc-venv`; no package acquisition is needed. The standalone `dev/stellarcsg/CMakeLists.txt` has no detected FetchContent/ExternalProject/download/pip-install hooks.
+- Planned new software acquisition bytes: 0. Expected local build output budget: at most 1 GiB on C:, within the observed 89 GB free. The target is this continuation worktree's `build/local-cont-20260925`. Rollback, if needed after retaining receipts, is removal of that exact build directory; no shared build or environment is modified.
+
 ## Portable benchmark runner recovery
 
 - Chat artifact `benchmark-portability.patch` was downloaded through the saved ordinary ChatGPT conversation after the local resource gate. Its SHA-256 is `a86eb95596b462b60eb062b2889245e69619ee6e98953498bd6bfd669ba8dc8d`, matching the review. `git apply --check` succeeded against this full local checkout.
@@ -21,4 +27,16 @@
 
 ## Outstanding qualification
 
-Native ZTorus, recovered-old and any corrected candidate have not yet been measured in the same session here. The root, floating enclosure, adapter, physical fidelity, period transport and source interface gates remain open. No benchmark or physics pass is inferred from the 76 runner tests.
+Native ZTorus and recovered-old have a same-session unlike-bank sentinel below; no corrected candidate has been measured. The root, floating enclosure, adapter, physical fidelity, period transport and source interface gates remain open. No benchmark or physics pass is inferred from the 76 runner tests.
+
+## Recovered-old and native ZTorus sentinel
+
+- Built the unmodified recovered-old standalone library and benchmark from `c67b68fdaf7be2049308db7da449f14a25123847` in `build/local-cont-20260925` with WSL GCC 14.2, HDF5 1.14.5, CMake/Ninja Release, one build job, benchmarks and tests ON, campaigns/tools OFF. No dependency was downloaded or installed. Build exit 0; CTest 2/2 pass.
+- The local native control executable at `D:/codex-verification/stellarcsg-20260913-03/native-torus-query-control-02` has the expected SHA-256 `9ec5ecf208507fd0a39e87e79a3cc36cbed236ed9c2ea63361e1b5554d34486d`. Its source calls `openmc::torus_distance`; `nm` shows that symbol unresolved in the executable, and `ldd` resolves `libopenmc.so` from the existing local native OpenMC build. The new runner checks that loader binding before timing.
+- An initial command used `/coils/coil_031`, which does not exist in the qualified HDF5. It exited 1 with HDF5 group-not-found diagnostics; no timing was accepted. The file contains 48 groups, `/coils/coil_1000` through `/coils/coil_1047`; the corrected query uses `/coils/coil_1031`. A deliberate nonexistent-dataset check then confirmed the revised coordinator exits 1, writes `state=FAIL` with child exit 1, and omits metrics. Its receipt is `local-cont-20260925/failure-invalid-dataset.json`.
+- Final same-session interleaved sentinel receipt: `local-cont-20260925/old-native-sentinel-03.json`. Seven one-core, one-thread repetitions each; all children exited 0. Recovered-old distance median of complete bank means: **4,832 ns/query** (range 4,756.1–4,991.5); native ZTorus median: **175.06546875 ns/query** (range 171.0868765625–181.43890625). The arithmetic old/native sentinel cost ratio is **27.6011**, explicitly **not** a matched geometry or bank speed comparison. Earlier successful runs are preserved as `old-native-sentinel.json` and `old-native-sentinel-02.json`.
+- The old coil executable timed 1,000 unique direction rays from one origin and checked one oracle ray outside its timed loop; all seven single-ray oracle checks reported zero mismatches. ZTorus timed 64 frozen rays repeated 10,000 times, with no application result cache. Distinct geometry, query mix, repetition structure and missing native class/normal controls make this insufficient for the <=1 us or >=80% native targets. Candidate, class/normal native ratios, P95/P99, transport, allocations and full error counts remain null. The stronger frozen-bank replay and matched native query controls are next.
+
+### Exact local restart
+
+From WSL `OpenMC-Dev-D` in this worktree, use the already configured `build/local-cont-20260925`; `ctest --test-dir build/local-cont-20260925 --output-on-failure -j1` repeats the standalone tests. Run `dev/stellarcsg/qualification/local_old_native_sentinel.py --help` for the bounded sentinel coordinator; give it a **new** output path. The committed `old-native-sentinel-03.json` records input/binary/library hashes, loader binding, commands, exits, raw stdout/stderr and repetition order.
