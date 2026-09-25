@@ -38,42 +38,6 @@ std::unordered_map<OverlapKey, int, OverlapKeyHash> overlap_key_index;
 // Non-member functions
 //==============================================================================
 
-#ifdef OPENMC_DAGMC_ENABLED
-namespace {
-
-bool is_expected_dagmc_boundary_neighbor(
-  const GeometryState& p, int level, int32_t candidate_index)
-{
-  if (p.surface() == SURFACE_NONE)
-    return false;
-
-  int32_t surface_index = std::abs(p.surface()) - 1;
-  auto* surface =
-    dynamic_cast<DAGSurface*>(model::surfaces[surface_index].get());
-  auto* current =
-    dynamic_cast<DAGCell*>(model::cells[p.coord(level).cell()].get());
-  auto* candidate =
-    dynamic_cast<DAGCell*>(model::cells[candidate_index].get());
-
-  if (surface == nullptr || current == nullptr || candidate == nullptr ||
-      surface->dagmc_ptr() != current->dagmc_ptr() ||
-      surface->dagmc_ptr() != candidate->dagmc_ptr()) {
-    return false;
-  }
-
-  moab::EntityHandle adjacent_volume {};
-  auto rval = candidate->dagmc_ptr()->next_vol(surface->mesh_handle(),
-    candidate->mesh_handle(), adjacent_volume);
-
-  return rval == moab::MB_SUCCESS &&
-         adjacent_volume == current->mesh_handle();
-}
-
-} // namespace
-#endif
-
-//==============================================================================
-
 int check_cell_overlap(GeometryState& p, bool error)
 {
   int n_coord = p.n_coord();
@@ -97,7 +61,9 @@ int check_cell_overlap(GeometryState& p, bool error)
           // both topological neighbors. The old/new neighbor pair is not an
           // overlap, but every other candidate cell still needs to be checked.
           if (univ.geom_type() == GeometryType::DAG &&
-              is_expected_dagmc_boundary_neighbor(p, j, index_cell))
+              p.surface() != SURFACE_NONE &&
+              next_cell(p.surface_index(), index_cell, p.coord(j).universe()) ==
+                p.coord(j).cell())
             continue;
 #endif
           if (error) {
