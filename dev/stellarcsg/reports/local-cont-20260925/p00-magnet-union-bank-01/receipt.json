@@ -1,0 +1,121 @@
+{
+  "schema": "stellarcsg.p00-magnet-union-bank/v1",
+  "state": "PASS_SAMPLED_18_MAGNET_UNION_ENTRIES",
+  "histories": 360,
+  "per_source_volume": {
+    "8": {
+      "sampled": 15,
+      "passed": 15,
+      "failed": []
+    },
+    "9": {
+      "sampled": 27,
+      "passed": 27,
+      "failed": []
+    },
+    "10": {
+      "sampled": 14,
+      "passed": 14,
+      "failed": []
+    },
+    "11": {
+      "sampled": 20,
+      "passed": 20,
+      "failed": []
+    },
+    "12": {
+      "sampled": 16,
+      "passed": 16,
+      "failed": []
+    },
+    "13": {
+      "sampled": 19,
+      "passed": 19,
+      "failed": []
+    },
+    "14": {
+      "sampled": 17,
+      "passed": 17,
+      "failed": []
+    },
+    "15": {
+      "sampled": 21,
+      "passed": 21,
+      "failed": []
+    },
+    "16": {
+      "sampled": 24,
+      "passed": 24,
+      "failed": []
+    },
+    "17": {
+      "sampled": 25,
+      "passed": 25,
+      "failed": []
+    },
+    "18": {
+      "sampled": 19,
+      "passed": 19,
+      "failed": []
+    },
+    "19": {
+      "sampled": 22,
+      "passed": 22,
+      "failed": []
+    },
+    "20": {
+      "sampled": 30,
+      "passed": 30,
+      "failed": []
+    },
+    "21": {
+      "sampled": 19,
+      "passed": 19,
+      "failed": []
+    },
+    "22": {
+      "sampled": 22,
+      "passed": 22,
+      "failed": []
+    },
+    "23": {
+      "sampled": 21,
+      "passed": 21,
+      "failed": []
+    },
+    "24": {
+      "sampled": 17,
+      "passed": 17,
+      "failed": []
+    },
+    "25": {
+      "sampled": 12,
+      "passed": 12,
+      "failed": []
+    }
+  },
+  "unmatched": [],
+  "run": {
+    "exit_code": 0,
+    "run_identity": true,
+    "stdout_tail": "A/openc-hts-dpa/.data/openmc/FENDL-3.1d_Pb20\n 8.h5\n Reading S32 from\n /mnt/c/Users/joshu/Documents/2026_DPA/openc-hts-dpa/.data/openmc/FENDL-3.1d_S32.\n h5\n Reading S33 from\n /mnt/c/Users/joshu/Documents/2026_DPA/openc-hts-dpa/.data/openmc/FENDL-3.1d_S33.\n h5\n Reading S34 from\n /mnt/c/Users/joshu/Documents/2026_DPA/openc-hts-dpa/.data/openmc/FENDL-3.1d_S34.\n h5\n Reading S36 from\n /mnt/c/Users/joshu/Documents/2026_DPA/openc-hts-dpa/.data/openmc/FENDL-3.1d_S36.\n h5\n Reading Si28 from\n /mnt/c/Users/joshu/Documents/2026_DPA/openc-hts-dpa/.data/openmc/FENDL-3.1d_Si28\n .h5\n Reading Si29 from\n /mnt/c/Users/joshu/Documents/2026_DPA/openc-hts-dpa/.data/openmc/FENDL-3.1d_Si29\n .h5\n Reading Si30 from\n /mnt/c/Users/joshu/Documents/2026_DPA/openc-hts-dpa/.data/openmc/FENDL-3.1d_Si30\n .h5\n Reading Sn112 from\n /mnt/c/Users/joshu/Documents/2026_DPA/openc-hts-dpa/.data/openmc/FENDL-3.1d_Sn11\n 2.h5\n Reading Sn114 from\n /mnt/c/Users/joshu/Documents/2026_DPA/openc-hts-dpa/.data/openmc/FENDL-3.1d_Sn11\n 4.h5\n Reading Sn115 from\n /mnt/c/Users/joshu/Documents/2026_DPA/openc-hts-dpa/.data/openmc/FENDL-3.1d_Sn11\n 5.h5\n Reading Sn116 from\n /mnt/c/Users/joshu/Documents/2026_DPA/openc-hts-dpa/.data/openmc/FENDL-3.1d_Sn11\n 6.h5\n Reading Sn117 from\n /mnt/c/Users/joshu/Documents/2026_DPA/openc-hts-dpa/.data/openmc/FENDL-3.1d_Sn11\n 7.h5\n Reading Sn118 from\n /mnt/c/Users/joshu/Documents/2026_DPA/openc-hts-dpa/.data/openmc/FENDL-3.1d_Sn11\n 8.h5\n Reading Sn119 from\n /mnt/c/Users/joshu/Documents/2026_DPA/openc-hts-dpa/.data/openmc/FENDL-3.1d_Sn11\n 9.h5\n Reading Sn120 from\n /mnt/c/Users/joshu/Documents/2026_DPA/openc-hts-dpa/.data/openmc/FENDL-3.1d_Sn12\n 0.h5\n Reading Sn122 from\n /mnt/c/Users/joshu/Documents/2026_DPA/openc-hts-dpa/.data/openmc/FENDL-3.1d_Sn12\n 2.h5\n Reading Sn124 from\n /mnt/c/Users/joshu/Documents/2026_DPA/openc-hts-dpa/.data/openmc/FENDL-3.1d_Sn12\n 4.h5\n Minimum neutron data temperature: 300 K\n Maximum neutron data temperature: 300 K\n Preparing distributed cell instances...\n Reading plot XML file...\n Writing summary.h5 file...\n Maximum neutron transport energy: 60000000 eV for He3\n\n ===============>     FIXED SOURCE TRANSPORT SIMULATION     <===============\n\n Simulating batch 1\n Creating state point statepoint.1.h5...\n\n =======================>     TIMING STATISTICS     <=======================\n\n Total time for initialization     = 4.4800e+01 seconds\n   Reading cross sections          = 4.0871e+01 seconds\n Total time in simulation          = 7.3965e-01 seconds\n   Time in transport only          = 7.2726e-01 seconds\n   Time in active batches          = 7.3965e-01 seconds\n   Time accumulating tallies       = 3.0440e-04 seconds\n   Time writing statepoints        = 1.2073e-02 seconds\n Total time for finalization       = 5.2476e-02 seconds\n Total time elapsed                = 4.5606e+01 seconds\n Calculation Rate (active)         = 486.718 particles/second\n\n ============================>     RESULTS     <============================\n\n Leakage Fraction           = 0.91667\n\n",
+    "stderr_tail": " WARNING: Negative value(s) found on probability table for nuclide Mo100 at 300K\n WARNING: Negative value(s) found on probability table for nuclide Mo92 at 300K\n WARNING: Negative value(s) found on probability table for nuclide Mo94 at 300K\n WARNING: Negative value(s) found on probability table for nuclide Mo95 at 300K\n WARNING: Negative value(s) found on probability table for nuclide Mo96 at 300K\n WARNING: Negative value(s) found on probability table for nuclide Mo97 at 300K\n WARNING: Negative value(s) found on probability table for nuclide Mo98 at 300K\n WARNING: Could not compute uncertainties -- only one active batch simulated!\n"
+  },
+  "hashes": {
+    "auditor": "2bf8d48bf5d3a660983328ec27105dbba8eb20666554e7ed28fa2c9bf2d880ce",
+    "priority_region_receipt": "7796088ae3374a549fd5ad3e86e0e85e072a6d52729cae721fb8c0e3a0a2deed",
+    "priority_material_bank_receipt": "d70216c45c454feef68e20d76318ee77b79772764760ce3a4a8bb3644842a5da",
+    "facet_payload": "3db1723d250319d7e6e3d0a4cbbba7b88a68c830fba4214d001a8c2c2545c2d4",
+    "cross_sections_index": "218236803b2c4a21b038992af93dacfdfe5c0c0401cbbc57f3ff3a947c63abc7",
+    "binary": "dd0f316e5bd0965092f2a080167da9bbde83416392b6473763063fd95ec63dde",
+    "library": "fbc38dedc17e20342a56dd50e2d56f86330238dae00b95ab3e4602864967cba4",
+    "geometry.xml": "7d14a4a0abccab3dbdf2a4cd8609d83b1e65e7dd262bcb6f7f9eee94415b72ec",
+    "materials.xml": "13a9562640cb8add8fe8a74ff32acc8f0cfde1236642f42a821484399475016d",
+    "settings.xml": "06e78cf3f0caef50c613fc562aebfedbd5188e7bb2754a24da108014758c5020",
+    "source.h5": "d13553a31262d45067a8e096e73857d459054b482cf7bf0ccb52b927c611b442",
+    "tracks.h5": "9a8820db0b6b0f52736928b5a2abc66cc90716e2621db8f9722f8bcb024f4aef",
+    "statepoint.1.h5": "2f31e19fe620a5a5a40936140368826df8919f004e2058d412f38018e9d42b01",
+    "summary.h5": "cd9ade7a237891f31cac84a48e12a654421270f883d0da9a41ec4e00088acad7"
+  },
+  "claim_boundary": "The common accepted magnet material is represented by one Boolean union cell rather than arbitrary overlap priority. A bounded 360-history local 1 MeV facet-side source sample first enters that material union for all 18 labeled source groups. The labels identify source probes, not per-coil transport ownership. This does not qualify continuous CAD, plasma-source/wall clearance, collision physics, statistical tallies, generic import, or matched performance."
+}
