@@ -694,6 +694,14 @@ void test_swept_earlier_unresolved_candidate()
     "unresolved-span sign scan finds entry before later Newton candidate");
   check(result.terminal_unresolved,
     "earlier candidate remains terminal unresolved without root certificate");
+  const auto ordinary_entry = surface.distance(
+    {knot_radius + 0.752, 0.0, 0.0}, {-1.0, 0.0, 0.0}, false);
+  check(ordinary_entry.found,
+    "ordinary entry still yields a diagnostic candidate");
+  if (ordinary_entry.found) check_near(ordinary_entry.distance, 0.502, 3.0e-7,
+    "ordinary entry retains its candidate distance");
+  check(ordinary_entry.terminal_unresolved,
+    "a solved seed does not certify its own span's earlier prefix");
 }
 
 void test_swept_multimodal_centerline_span()

@@ -1263,7 +1263,6 @@ DistanceResult CompiledSweptSplineSurface::distance(
         }
         add_performance_counter(PerformanceCounter::proxy_intersections);
         add_performance_counter(PerformanceCounter::proxy_seeds, proxy_count);
-        bool solved = false;
         for (std::size_t seed = 0; seed < proxy_count; ++seed) {
           if (proxy_t[seed] >= best_t) break;
           const Vec3 proxy_point = origin + proxy_t[seed] * ray_direction;
@@ -1278,17 +1277,18 @@ DistanceResult CompiledSweptSplineSurface::distance(
           const double alpha = std::atan2(
             dot(transverse, frame_value.binormal) / frame_value.minor_radius,
             dot(transverse, frame_value.normal) / frame_value.major_radius);
-          solved = solve_seed(
-            span, span_id, proxy_t[seed], angle, alpha) || solved;
+          (void) solve_seed(
+            span, span_id, proxy_t[seed], angle, alpha);
         }
 
-        if (!solved) {
-          const double enter = std::max(minimum_t, interval->enter);
-          earliest_unresolved = std::min(earliest_unresolved, enter);
-          ++diagnostics.unresolved_intervals;
-          if (unresolved_count < unresolved.size()) {
-            unresolved[unresolved_count++] = {span_id, enter, interval->exit};
-          }
+        // A Newton hit establishes one parametric crossing, not that the
+        // prefix of this same span is root-free. Retain every intersected
+        // candidate span until its earlier ray interval is certified.
+        const double enter = std::max(minimum_t, interval->enter);
+        earliest_unresolved = std::min(earliest_unresolved, enter);
+        ++diagnostics.unresolved_intervals;
+        if (unresolved_count < unresolved.size()) {
+          unresolved[unresolved_count++] = {span_id, enter, interval->exit};
         }
       }
       continue;
@@ -1319,9 +1319,9 @@ DistanceResult CompiledSweptSplineSurface::distance(
         : StackEntry {node.right, right->enter};
     }
   }
-  // A Newton root in one span does not resolve earlier spans. Probe every
-  // unresolved interval that could precede it for a closer implicit crossing,
-  // while retaining terminal_unresolved until the interval is certified.
+  // A Newton root does not resolve earlier intervals, including the prefix
+  // of its own span. Probe each retained interval for a closer implicit
+  // crossing while retaining terminal_unresolved until it is certified.
   if (unresolved_count != 0) {
     for (std::size_t unresolved_index = 0;
          unresolved_index < unresolved_count; ++unresolved_index) {

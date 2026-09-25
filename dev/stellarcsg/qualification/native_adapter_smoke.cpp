@@ -9,6 +9,7 @@
 #include <cmath>
 #include <iomanip>
 #include <iostream>
+#include <limits>
 #include <set>
 #include <stdexcept>
 #include <string>
@@ -64,15 +65,20 @@ int main(int argc, char** argv)
       "<geometry><surface id='903' type='swept-spline' data_file='" + file
       + "' dataset_prefix='/coils/coil_' dataset_start='1' "
         "dataset_count='3' units='cm'/></geometry>";
-    double single_distance;
+    double single_distance = std::numeric_limits<double>::quiet_NaN();
     double collection_distance;
+    bool single_blocked = false;
     try { single_distance = run_surface(one, 902); }
     catch (const std::exception& error) {
-      throw std::runtime_error(std::string("single: ") + error.what());
+      single_blocked = true;
+      std::cerr << "native single: " << error.what() << '\n';
     }
     std::cout << "{\"kind\":\"native_stellarcsg_adapter_single\","
-                 "\"distance_cm\":" << single_distance << ","
-              << "\"native_transport\":false}\n" << std::flush;
+                 "\"distance_cm\":";
+    if (std::isfinite(single_distance)) std::cout << single_distance;
+    else std::cout << "null";
+    std::cout << ",\"state\":\"" << (single_blocked ? "ERROR" : "HIT")
+              << "\",\"native_transport\":false}\n" << std::flush;
     for (int member = 2; member <= 3; ++member) {
       const std::string dataset = "/coils/coil_00" + std::to_string(member);
       const auto data = stellarcsg::read_swept_spline_surface_hdf5(file, dataset);
@@ -137,10 +143,13 @@ int main(int argc, char** argv)
       throw std::runtime_error(std::string("collection: ") + error.what());
     }
     std::cout << "{\"kind\":\"native_stellarcsg_adapter_smoke\","
-                 "\"single_distance_cm\":" << single_distance << ','
+                 "\"single_distance_cm\":";
+    if (std::isfinite(single_distance)) std::cout << single_distance;
+    else std::cout << "null";
+    std::cout << ','
               << "\"collection_distance_cm\":" << collection_distance << ','
               << "\"native_transport\":false}\n";
-    return 0;
+    return single_blocked ? 1 : 0;
   } catch (const std::exception& error) {
     std::cerr << "native adapter smoke: " << error.what() << '\n';
     return 1;

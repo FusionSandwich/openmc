@@ -56,11 +56,21 @@ def main() -> int:
                    isinstance(single_distance, (int, float)) and
                    math.isfinite(single_distance) and
                    abs(single_distance - 25.0) <= 1.0e-6 and
+                   rows[0].get("state") == "HIT" and
                    rows[0].get("native_transport") is False)
+    single_unresolved = (
+        len(rows) == 5 and
+        rows[0].get("kind") == "native_stellarcsg_adapter_single" and
+        rows[0].get("state") == "ERROR" and
+        single_distance is None and
+        "native single: StellarCSG surface 902 has an unresolved nearest-boundary query"
+        in result.stderr)
     solver_probes = rows[1:3]
     solver_probe_complete = (
         [row.get("member") for row in solver_probes] == [2, 3]
         and all(row.get("kind") == "native_stellarcsg_solver_probe"
+                and row.get("found") is True
+                and row.get("terminal_unresolved") is True
                 and all(isinstance(row.get(field), (int, float))
                         and math.isfinite(row[field])
                         for field in ("lead_implicit_residual",
@@ -70,15 +80,42 @@ def main() -> int:
     probe_complete = ([row.get("member") for row in member_probes] == [2, 3]
                       and all(row.get("kind") ==
                               "native_stellarcsg_member_probe"
-                              for row in member_probes))
+                              and row.get("state") == "ERROR"
+                              for row in member_probes)
+                      and all(
+                          f"native member {member}: StellarCSG surface 904 has an unresolved nearest-boundary query"
+                          in result.stderr for member in (2, 3)))
     blocked_collection = (result.returncode == 1 and
                           "collection: Swept-spline member has an unresolved"
                           in result.stderr)
+    if solver_probe_complete and probe_complete and blocked_collection:
+        if single_unresolved:
+            state = "BLOCKED_SINGLE_AND_COLLECTION_UNRESOLVED"
+        elif single_pass:
+            state = "BLOCKED_COLLECTION_UNRESOLVED"
+        else:
+            state = "FAIL"
+    else:
+        state = "FAIL"
+    if state == "BLOCKED_SINGLE_AND_COLLECTION_UNRESOLVED":
+        claim_boundary = (
+            "The circular and shaped members registered through native OpenMC, "
+            "but their member queries and the collection reject uncertified "
+            "nearest-boundary results. Shaped diagnostic leads are reported "
+            "separately; no distance is admitted and no transport ran.")
+    elif state == "BLOCKED_COLLECTION_UNRESOLVED":
+        claim_boundary = (
+            "The circular spline registered through native OpenMC and returned "
+            "the analytic crossing within 1e-6 cm. Shaped diagnostic leads "
+            "remain terminal unresolved, as do their member adapters and "
+            "collection; no transport ran.")
+    else:
+        claim_boundary = (
+            "Native smoke failed outside its recognized blocked outcomes. "
+            "No member crossing or transport is claimed.")
     receipt = {
-        "schema": "stellarcsg.native-adapter-smoke/v3",
-        "state": ("BLOCKED_COLLECTION_UNRESOLVED" if single_pass and
-                  solver_probe_complete and probe_complete and
-                  blocked_collection else "FAIL"),
+        "schema": "stellarcsg.native-adapter-smoke/v4",
+        "state": state,
         "command": command,
         "exit_code": result.returncode,
         "loader_binding": binding[0],
@@ -90,6 +127,7 @@ def main() -> int:
         "single_tolerance_cm": 1.0e-6,
         "single_distance_cm": single_distance,
         "single_pass": single_pass,
+        "single_unresolved": single_unresolved,
         "solver_probes": solver_probes,
         "solver_probe_complete": solver_probe_complete,
         "default_implicit_residual_acceptance_limit": 1.0e-8,
@@ -97,12 +135,12 @@ def main() -> int:
         "probe_complete": probe_complete,
         "collection_blocked": blocked_collection,
         "native_transport_run": False,
-        "claim_boundary": "The faithful circular spline registered through native OpenMC and returned the analytic fixture crossing within 1e-6 cm. Shaped member candidate leads now report implicit evaluated residuals, but both member adapters and the collection remain terminal unresolved; no particle transport ran.",
+        "claim_boundary": claim_boundary,
     }
     (args.output / "receipt.json").write_text(json.dumps(receipt, indent=2) + "\n")
     print(json.dumps({"state": receipt["state"], "single_pass": single_pass,
                       "collection_blocked": blocked_collection}))
-    return 2 if receipt["state"] == "BLOCKED_COLLECTION_UNRESOLVED" else 1
+    return 2 if state.startswith("BLOCKED_") else 1
 
 
 if __name__ == "__main__":
