@@ -1,0 +1,21 @@
+Native analytic member-probe build audit, 2026-09-25.
+
+Observed before build: Windows RAM 33,457,440 KiB total and 3,097,732 KiB
+free; C: 86,401,675,264 B free and D: 505,601,814,528 B free. Largest
+residents: ChatGPT 1.34 GiB, Chrome 1.00/0.91 GiB, Julia 0.80 GiB and
+Codex 0.73 GiB. Windows Python 3.12.10 and Git 2.55.0 are present; no
+Conda command was found. WSL OpenMC-Dev-D has GCC 14.2, CMake 3.31.6,
+Ninja 1.12.1, HDF5 1.14.5, /opt/openmc-venv and an existing pip cache.
+The existing native libopenmc.so and 29,248-byte native smoke executable,
+analytic HDF5 fixture, locally checked-out OpenMC source and D:
+verification checkout are present. The exact fmt and pugixml source
+headers are in the already-local main OpenMC checkout; CMakeCache points
+to its existing package configurations. native-adapter-04 is absent.
+
+These local capabilities suffice. Planned external acquisition: 0 bytes.
+Recompile only the native_adapter_smoke helper against existing headers
+and native libopenmc.so, one compiler job, expected new output under
+20 MiB on C:. Run once with one-CPU affinity into new native-adapter-04.
+Rollback is restoring the helper source from the prior commit and
+recompiling after preserving the hash-bound receipt; no dependency
+environment, shared source checkout or remote resource is modified.

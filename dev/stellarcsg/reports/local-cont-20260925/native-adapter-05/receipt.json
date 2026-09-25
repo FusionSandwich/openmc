@@ -1,0 +1,54 @@
+{
+  "schema": "stellarcsg.native-adapter-smoke/v1",
+  "state": "BLOCKED_COLLECTION_UNRESOLVED",
+  "command": [
+    "/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-local-continuation-20260925/build/native-local-20260925/native_adapter_smoke",
+    "/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-local-continuation-20260925/dev/stellarcsg/qualified/analytic_swept_coils.h5"
+  ],
+  "exit_code": 1,
+  "loader_binding": "libopenmc.so => /mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-local-continuation-20260925/build/native-local-20260925/lib/libopenmc.so (0x0000742dd8166000)",
+  "affinity": [
+    0
+  ],
+  "hashes": {
+    "/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-local-continuation-20260925/build/native-local-20260925/native_adapter_smoke": "e9af61c5f5f770357982d2b3f3c6fda54f46e91c8d7d1fb363a92c3c923a8fba",
+    "/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-local-continuation-20260925/build/native-local-20260925/lib/libopenmc.so": "31578a499d905e0c1c12fd71270e39a7cf905cc3d5d12cb73c412cdf5707f65a",
+    "/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-local-continuation-20260925/dev/stellarcsg/qualified/analytic_swept_coils.h5": "39f77da5ab1fe427cce58b153e9b52cf8915e9973a9b8f3dfad5ab3b00a9e46d",
+    "/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-local-continuation-20260925/dev/stellarcsg/qualification/native_adapter_smoke.cpp": "66bf544a41e38d1c06de2b4848d34ecc8bc59a5429debcf06b98066ce98f9699"
+  },
+  "single_pass": true,
+  "solver_probes": [
+    {
+      "kind": "native_stellarcsg_solver_probe",
+      "member": 2,
+      "found": true,
+      "terminal_unresolved": true,
+      "unresolved_intervals": 4,
+      "lead_distance_cm": 16
+    },
+    {
+      "kind": "native_stellarcsg_solver_probe",
+      "member": 3,
+      "found": true,
+      "terminal_unresolved": true,
+      "unresolved_intervals": 5,
+      "lead_distance_cm": 17
+    }
+  ],
+  "solver_probe_complete": true,
+  "member_probes": [
+    {
+      "kind": "native_stellarcsg_member_probe",
+      "member": 2,
+      "state": "ERROR"
+    },
+    {
+      "kind": "native_stellarcsg_member_probe",
+      "member": 3,
+      "state": "ERROR"
+    }
+  ],
+  "probe_complete": true,
+  "collection_blocked": true,
+  "native_transport_run": false
+}

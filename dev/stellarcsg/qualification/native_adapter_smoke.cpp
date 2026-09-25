@@ -3,6 +3,8 @@
 #include "openmc/settings.h"
 #include "openmc/surface.h"
 #include "openmc/surface_swept_spline.h"
+#include "stellarcsg/compiled_swept_surface.hpp"
+#include "stellarcsg/swept_coefficient_file.hpp"
 
 #include <cmath>
 #include <iostream>
@@ -32,13 +34,15 @@ double run_surface(const std::string& xml, int id)
   if (!surface || surface->id_ != id) {
     throw std::runtime_error("Native swept-spline dispatch failed");
   }
-  const double distance = surface->distance(
-    {550.0, 0.0, 0.0}, {-1.0, 0.0, 0.0}, false);
-  if (!std::isfinite(distance) || distance <= 0.0 || distance > 25.0) {
-    throw std::runtime_error("Native swept-spline distance outside smoke bound");
+  try {
+    const double distance = surface->distance(
+      {550.0, 0.0, 0.0}, {-1.0, 0.0, 0.0}, false);
+    openmc::free_memory_surfaces();
+    return distance;
+  } catch (...) {
+    openmc::free_memory_surfaces();
+    throw;
   }
-  openmc::free_memory_surfaces();
-  return distance;
 }
 
 } // namespace
@@ -67,6 +71,55 @@ int main(int argc, char** argv)
     std::cout << "{\"kind\":\"native_stellarcsg_adapter_single\","
                  "\"distance_cm\":" << single_distance << ","
               << "\"native_transport\":false}\n" << std::flush;
+    for (int member = 2; member <= 3; ++member) {
+      const std::string dataset = "/coils/coil_00" + std::to_string(member);
+      const auto data = stellarcsg::read_swept_spline_surface_hdf5(file, dataset);
+      const stellarcsg::CompiledSweptSplineSurface surface {data};
+      const auto result = surface.distance(
+        {550.0, 0.0, 0.0}, {-1.0, 0.0, 0.0}, false);
+      const auto reference = surface.distance_reference(
+        {550.0, 0.0, 0.0}, {-1.0, 0.0, 0.0}, false);
+      std::cout << "{\"kind\":\"native_stellarcsg_solver_probe\","
+                   "\"member\":" << member << ",\"found\":"
+                << (result.found ? "true" : "false")
+                << ",\"terminal_unresolved\":"
+                << (result.terminal_unresolved ? "true" : "false")
+                << ",\"unresolved_intervals\":"
+                << result.root_diagnostics.unresolved_intervals
+                << ",\"lead_distance_cm\":";
+      if (result.found && std::isfinite(result.distance))
+        std::cout << result.distance;
+      else std::cout << "null";
+      std::cout << ",\"reference_found\":"
+                << (reference.found ? "true" : "false")
+                << ",\"reference_distance_cm\":";
+      if (reference.found && std::isfinite(reference.distance))
+        std::cout << reference.distance;
+      else std::cout << "null";
+      std::cout << "}\n" << std::flush;
+    }
+    for (int member = 2; member <= 3; ++member) {
+      const std::string dataset = "/coils/coil_00" + std::to_string(member);
+      const std::string xml =
+        "<geometry><surface id='904' type='swept-spline' data_file='"
+        + file + "' dataset='" + dataset + "' units='cm'/></geometry>";
+      try {
+        const double distance = run_surface(xml, 904);
+        std::cout << "{\"kind\":\"native_stellarcsg_member_probe\","
+                     "\"member\":" << member << ",\"distance_cm\":";
+        if (std::isfinite(distance)) std::cout << distance;
+        else std::cout << "null";
+        std::cout << ",\"state\":\""
+                  << (std::isfinite(distance) ? "HIT" : "NO_HIT")
+                  << "\"}\n" << std::flush;
+      } catch (const std::exception& error) {
+        std::cout << "{\"kind\":\"native_stellarcsg_member_probe\","
+                     "\"member\":" << member
+                  << ",\"state\":\"ERROR\"}\n" << std::flush;
+        std::cerr << "native member " << member << ": " << error.what()
+                  << '\n';
+      }
+    }
     try { collection_distance = run_surface(collection, 903); }
     catch (const std::exception& error) {
       throw std::runtime_error(std::string("collection: ") + error.what());

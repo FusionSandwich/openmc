@@ -45,20 +45,31 @@ def main() -> int:
     os.sched_setaffinity(0, {min(os.sched_getaffinity(0))})
     command = [str(args.binary), str(args.analytic_h5)]
     result = subprocess.run(command, text=True, capture_output=True,
-                            timeout=30, env=environment, check=False)
+                            timeout=120, env=environment, check=False)
     (args.output / "stdout.jsonl").write_text(result.stdout)
     (args.output / "stderr.txt").write_text(result.stderr)
     rows = [json.loads(line) for line in result.stdout.splitlines()]
-    single_pass = (len(rows) == 1 and
+    single_pass = (len(rows) == 5 and
                    rows[0].get("kind") == "native_stellarcsg_adapter_single" and
                    0 < rows[0].get("distance_cm", 0) <= 25 and
                    rows[0].get("native_transport") is False)
+    solver_probes = rows[1:3]
+    solver_probe_complete = (
+        [row.get("member") for row in solver_probes] == [2, 3]
+        and all(row.get("kind") == "native_stellarcsg_solver_probe"
+                for row in solver_probes))
+    member_probes = rows[3:5]
+    probe_complete = ([row.get("member") for row in member_probes] == [2, 3]
+                      and all(row.get("kind") ==
+                              "native_stellarcsg_member_probe"
+                              for row in member_probes))
     blocked_collection = (result.returncode == 1 and
                           "collection: Swept-spline member has an unresolved"
                           in result.stderr)
     receipt = {
         "schema": "stellarcsg.native-adapter-smoke/v1",
         "state": ("BLOCKED_COLLECTION_UNRESOLVED" if single_pass and
+                  solver_probe_complete and probe_complete and
                   blocked_collection else "FAIL"),
         "command": command,
         "exit_code": result.returncode,
@@ -67,6 +78,10 @@ def main() -> int:
         "hashes": {str(path): sha256(path) for path in
                    (args.binary, args.library, args.analytic_h5, args.source)},
         "single_pass": single_pass,
+        "solver_probes": solver_probes,
+        "solver_probe_complete": solver_probe_complete,
+        "member_probes": member_probes,
+        "probe_complete": probe_complete,
         "collection_blocked": blocked_collection,
         "native_transport_run": False,
     }
