@@ -41,3 +41,5 @@ dev/stellarcsg/reports/local-cont-20260925/p00-accepted-facet-fixture.txt text e
 dev/stellarcsg/reports/local-cont-20260925/p00-accepted-facet-fixture.txt.receipt.json text eol=lf
 dev/stellarcsg/reports/local-cont-20260925/p00-facet-query-01.json text eol=lf
 dev/stellarcsg/reports/local-cont-20260925/wistell-authoritative-input-02.md text eol=lf
+dev/stellarcsg/qualification/audit_p00_h5m_catalog.py text eol=lf
+dev/stellarcsg/reports/local-cont-20260925/p00-h5m-catalog-readback-01.json text eol=lf
