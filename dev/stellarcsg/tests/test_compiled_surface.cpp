@@ -707,6 +707,15 @@ void test_swept_multimodal_centerline_span()
   check_near(stellarcsg::norm_squared(nearest.center),
     0.17279940860022003, 1.0e-10,
     "multimodal span selects the globally nearer centerline point");
+  bool rejected_nonfinite_point = false;
+  try {
+    (void) surface.local_coordinates(
+      {std::numeric_limits<double>::quiet_NaN(), 0.0, 0.0});
+  } catch (const std::invalid_argument&) {
+    rejected_nonfinite_point = true;
+  }
+  check(rejected_nonfinite_point,
+    "swept local-coordinate query rejects a nonfinite point");
 }
 
 void test_sha256_known_vector()

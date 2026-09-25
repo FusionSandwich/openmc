@@ -245,15 +245,46 @@ Vec3 centroid(const BoundingBox& box)
 
 double point_box_distance_squared(const Vec3& point, const BoundingBox& box)
 {
+  const auto lower_nonnegative = [](double rounded) {
+    if (!std::isfinite(rounded))
+      return std::numeric_limits<double>::max();
+    return rounded > 0.0
+      ? std::nextafter(rounded, -std::numeric_limits<double>::infinity())
+      : 0.0;
+  };
   const auto axis_distance = [](double value, double lower, double upper) {
     if (value < lower) return lower - value;
     if (value > upper) return value - upper;
     return 0.0;
   };
-  const double dx = axis_distance(point.x, box.lower.x, box.upper.x);
-  const double dy = axis_distance(point.y, box.lower.y, box.upper.y);
-  const double dz = axis_distance(point.z, box.lower.z, box.upper.z);
-  return dx * dx + dy * dy + dz * dz;
+  const double dx = lower_nonnegative(
+    axis_distance(point.x, box.lower.x, box.upper.x));
+  const double dy = lower_nonnegative(
+    axis_distance(point.y, box.lower.y, box.upper.y));
+  const double dz = lower_nonnegative(
+    axis_distance(point.z, box.lower.z, box.upper.z));
+  const double sx = lower_nonnegative(dx * dx);
+  const double sy = lower_nonnegative(dy * dy);
+  const double sz = lower_nonnegative(dz * dz);
+  return lower_nonnegative(lower_nonnegative(sx + sy) + sz);
+}
+
+double point_distance_squared_upper(const Vec3& first, const Vec3& second)
+{
+  const auto upper_nonnegative = [](double rounded) {
+    if (!std::isfinite(rounded))
+      return std::numeric_limits<double>::infinity();
+    return rounded > 0.0
+      ? std::nextafter(rounded, std::numeric_limits<double>::infinity())
+      : 0.0;
+  };
+  const double dx = upper_nonnegative(std::abs(first.x - second.x));
+  const double dy = upper_nonnegative(std::abs(first.y - second.y));
+  const double dz = upper_nonnegative(std::abs(first.z - second.z));
+  const double sx = upper_nonnegative(dx * dx);
+  const double sy = upper_nonnegative(dy * dy);
+  const double sz = upper_nonnegative(dz * dz);
+  return upper_nonnegative(upper_nonnegative(sx + sy) + sz);
 }
 
 } // namespace
@@ -797,32 +828,37 @@ double CompiledSweptSplineSurface::evaluate_in_span(
 SweptLocalCoordinates CompiledSweptSplineSurface::local_coordinates(
   const Vec3& point) const
 {
+  if (!std::isfinite(point.x) || !std::isfinite(point.y)
+      || !std::isfinite(point.z))
+    throw std::invalid_argument("Swept local-coordinate point must be finite");
   struct StackEntry { std::uint32_t node; double lower_bound; };
   std::array<StackEntry, 64> stack {};
   std::size_t stack_size = 0;
   double best_angle = 0.0;
   std::size_t refined_span = 0;
   double refined_distance = std::numeric_limits<double>::infinity();
+  double refined_distance_upper = std::numeric_limits<double>::infinity();
   if (!span_bvh_.empty()) {
     stack[stack_size++] = {
       0U, point_box_distance_squared(point, span_bvh_[0].centerline_bbox)};
   }
   while (stack_size != 0) {
     const auto entry = stack[--stack_size];
-    if (entry.lower_bound >= refined_distance) continue;
+    if (entry.lower_bound > refined_distance_upper) continue;
     const auto& node = span_bvh_[entry.node];
     if (node.leaf()) {
       for (std::uint32_t local = 0; local < node.count; ++local) {
         const std::size_t candidate = span_indices_[node.first + local];
         const auto& span = spans_[candidate];
         if (point_box_distance_squared(point, span.centerline_bbox)
-            >= refined_distance) continue;
+            > refined_distance_upper) continue;
         double angle = 0.0;
         (void) evaluate_in_span(point, span, &angle);
-        const double distance = norm_squared(
-          point - frame_in_span(span, angle).center);
+        const Vec3 center = frame_in_span(span, angle).center;
+        const double distance = norm_squared(point - center);
         if (distance < refined_distance) {
           refined_distance = distance;
+          refined_distance_upper = point_distance_squared_upper(point, center);
           best_angle = angle;
           refined_span = candidate;
         }
@@ -840,11 +876,13 @@ SweptLocalCoordinates CompiledSweptSplineSurface::local_coordinates(
     const StackEntry far_entry = left_first
       ? StackEntry {node.right, right_bound}
       : StackEntry {node.left, left_bound};
-    if (far_entry.lower_bound < refined_distance)
+    if (far_entry.lower_bound <= refined_distance_upper)
       stack[stack_size++] = far_entry;
-    if (near_entry.lower_bound < refined_distance)
+    if (near_entry.lower_bound <= refined_distance_upper)
       stack[stack_size++] = near_entry;
   }
+  if (!std::isfinite(refined_distance))
+    throw std::runtime_error("Swept nearest-centerline distance is nonfinite");
   auto result = frame_in_span(spans_[refined_span], best_angle);
   const Vec3 offset = point - result.center;
   result.u = dot(offset, result.normal);
