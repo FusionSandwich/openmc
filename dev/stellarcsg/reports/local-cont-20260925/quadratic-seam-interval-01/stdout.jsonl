@@ -1,0 +1,16 @@
+{"kind":"quadratic_seam","member":2,"span":0,"gap_cm":1,"slack":9.9999999999999995e-07,"nodes":1,"undecided":0,"outcomes":[1,0,0,0,0]}
+{"kind":"quadratic_seam","member":2,"span":0,"gap_cm":1.0000000000000001e-05,"slack":9.9999999999999995e-07,"nodes":10001,"undecided":4942,"outcomes":[49,0,0,0,4941]}
+{"kind":"quadratic_seam","member":2,"span":0,"gap_cm":0,"slack":9.9999999999999995e-07,"nodes":10001,"undecided":4987,"outcomes":[0,0,0,0,4986]}
+{"kind":"quadratic_seam","member":2,"span":0,"gap_cm":-4,"slack":9.9999999999999995e-07,"nodes":10001,"undecided":4987,"outcomes":[0,0,0,0,4986]}
+{"kind":"quadratic_seam","member":2,"span":255,"gap_cm":1,"slack":9.9999999999999995e-07,"nodes":1,"undecided":0,"outcomes":[1,0,0,0,0]}
+{"kind":"quadratic_seam","member":2,"span":255,"gap_cm":1.0000000000000001e-05,"slack":9.9999999999999995e-07,"nodes":10001,"undecided":4987,"outcomes":[0,0,0,0,4986]}
+{"kind":"quadratic_seam","member":2,"span":255,"gap_cm":0,"slack":9.9999999999999995e-07,"nodes":10001,"undecided":4987,"outcomes":[0,0,0,0,4986]}
+{"kind":"quadratic_seam","member":2,"span":255,"gap_cm":-4,"slack":9.9999999999999995e-07,"nodes":10001,"undecided":4987,"outcomes":[0,0,0,0,4986]}
+{"kind":"quadratic_seam","member":3,"span":0,"gap_cm":1,"slack":9.9999999999999995e-07,"nodes":1,"undecided":0,"outcomes":[1,0,0,0,0]}
+{"kind":"quadratic_seam","member":3,"span":0,"gap_cm":1.0000000000000001e-05,"slack":9.9999999999999995e-07,"nodes":10001,"undecided":4938,"outcomes":[52,0,0,0,4937]}
+{"kind":"quadratic_seam","member":3,"span":0,"gap_cm":0,"slack":9.9999999999999995e-07,"nodes":10001,"undecided":4987,"outcomes":[0,0,0,0,4986]}
+{"kind":"quadratic_seam","member":3,"span":0,"gap_cm":-4,"slack":9.9999999999999995e-07,"nodes":10001,"undecided":4987,"outcomes":[0,0,0,0,4986]}
+{"kind":"quadratic_seam","member":3,"span":383,"gap_cm":1,"slack":9.9999999999999995e-07,"nodes":1,"undecided":0,"outcomes":[1,0,0,0,0]}
+{"kind":"quadratic_seam","member":3,"span":383,"gap_cm":1.0000000000000001e-05,"slack":9.9999999999999995e-07,"nodes":10001,"undecided":4987,"outcomes":[0,0,0,0,4986]}
+{"kind":"quadratic_seam","member":3,"span":383,"gap_cm":0,"slack":9.9999999999999995e-07,"nodes":10001,"undecided":4987,"outcomes":[0,0,0,0,4986]}
+{"kind":"quadratic_seam","member":3,"span":383,"gap_cm":-4,"slack":9.9999999999999995e-07,"nodes":10001,"undecided":4987,"outcomes":[0,0,0,0,4986]}

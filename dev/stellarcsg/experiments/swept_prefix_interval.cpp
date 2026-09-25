@@ -353,18 +353,167 @@ SpanResult analyze_span(const stellarcsg::SweptSpan& span,
   return result;
 }
 
+enum class QuadraticOutcome {
+  separated_value, no_real_root, outside_prefix,
+  undecided_frame, undecided_root
+};
+
+bool quadratic_excluded(QuadraticOutcome state)
+{
+  return state == QuadraticOutcome::separated_value
+    || state == QuadraticOutcome::no_real_root
+    || state == QuadraticOutcome::outside_prefix;
+}
+
+QuadraticOutcome exclude_quadratic_tile(
+  const stellarcsg::SweptSpan& span, I u, double cutoff,
+  double implicit_slack)
+{
+  const double scale = 1.0 / (span.angle_max - span.angle_min);
+  V center, center_derivative, supplied;
+  for (int axis = 0; axis < 3; ++axis) {
+    center[axis] = polynomial(span, axis, u);
+    center_derivative[axis] = derivative(span, axis, u, scale);
+    supplied[axis] = polynomial(span, 3 + axis, u);
+  }
+  const auto tangent = normalized(center_derivative);
+  if (!tangent) return QuadraticOutcome::undecided_frame;
+  const I projection = dot(supplied, *tangent);
+  V raw_normal;
+  for (int axis = 0; axis < 3; ++axis)
+    raw_normal[axis] = supplied[axis] - projection * (*tangent)[axis];
+  auto normal = normalized(raw_normal);
+  if (!normal) return QuadraticOutcome::undecided_frame;
+  const auto binormal = normalized(cross(*tangent, *normal));
+  if (!binormal) return QuadraticOutcome::undecided_frame;
+  normal = cross(*binormal, *tangent);
+  const I major = polynomial(span, 6, u);
+  const I minor = polynomial(span, 7, u);
+  if (major.contains_zero() || minor.contains_zero())
+    return QuadraticOutcome::undecided_frame;
+  const V offset {I::point(550.0) - center[0], -center[1], -center[2]};
+  const I an = dot(offset, *normal) / major;
+  const I ab = dot(offset, *binormal) / minor;
+  const I bn = (*normal)[0] / major;
+  const I bb = (*binormal)[0] / minor;
+  const I t {0.0, cutoff};
+  const I value = square(an - bn * t) + square(ab - bb * t)
+    - I::point(1.0);
+  if (value.lo > implicit_slack || value.hi < -implicit_slack)
+    return QuadraticOutcome::separated_value;
+  const I qa = square(bn) + square(bb);
+  if (!(qa.lo > 0.0) || !std::isfinite(qa.hi))
+    return QuadraticOutcome::undecided_root;
+  const I qb = -I::point(2.0) * (an * bn + ab * bb);
+  const I qc = square(an) + square(ab) - I::point(1.0)
+    + I {-implicit_slack, implicit_slack};
+  const I discriminant = square(qb) - I::point(4.0) * qa * qc;
+  if (discriminant.hi < 0.0) return QuadraticOutcome::no_real_root;
+  const I root = square_root(discriminant);
+  const I denominator = I::point(2.0) * qa;
+  const I first = (-qb - root) / denominator;
+  const I second = (-qb + root) / denominator;
+  const auto away = [cutoff](I candidate) {
+    return candidate.hi < 0.0 || candidate.lo > cutoff;
+  };
+  return away(first) && away(second)
+    ? QuadraticOutcome::outside_prefix
+    : QuadraticOutcome::undecided_root;
+}
+
+struct QuadraticResult {
+  std::size_t nodes {0};
+  std::size_t undecided {0};
+  std::array<std::size_t, 5> outcomes {};
+};
+
+QuadraticResult analyze_quadratic_span(
+  const stellarcsg::SweptSpan& span, double cutoff,
+  double implicit_slack, int max_depth = 36,
+  std::size_t max_nodes = 10000)
+{
+  struct Tile { double lo, hi; int depth; };
+  const double scale = 1.0 / (span.angle_max - span.angle_min);
+  const I angle = I::bounds(span.angle_min, span.angle_max);
+  const I local_u = (angle - I::point(span.angle_min)) * I::point(scale);
+  std::vector<Tile> stack {{local_u.lo, local_u.hi, 0}};
+  QuadraticResult result;
+  while (!stack.empty()) {
+    const auto tile = stack.back();
+    stack.pop_back();
+    if (++result.nodes > max_nodes) {
+      ++result.undecided;
+      break;
+    }
+    const auto state = exclude_quadratic_tile(
+      span, I::bounds(tile.lo, tile.hi), cutoff, implicit_slack);
+    if (quadratic_excluded(state) || tile.depth == max_depth) {
+      ++result.outcomes[static_cast<std::size_t>(state)];
+      if (!quadratic_excluded(state)) ++result.undecided;
+      continue;
+    }
+    const double midpoint = 0.5 * (tile.lo + tile.hi);
+    if (!(midpoint > tile.lo && midpoint < tile.hi)) {
+      ++result.undecided;
+      break;
+    }
+    stack.push_back({midpoint, tile.hi, tile.depth + 1});
+    stack.push_back({tile.lo, midpoint, tile.depth + 1});
+  }
+  return result;
+}
+
+int quadratic_seam_main(const char* h5)
+{
+  constexpr double slack = 1.0e-6;
+  std::cout << std::setprecision(17);
+  const stellarcsg::Vec3 origin {550.0, 0.0, 0.0};
+  const stellarcsg::Vec3 direction {-1.0, 0.0, 0.0};
+  for (int member : {2, 3}) {
+    const auto data = stellarcsg::read_swept_spline_surface_hdf5(
+      h5, "/coils/coil_00" + std::to_string(member));
+    const stellarcsg::CompiledSweptSplineSurface surface {data};
+    const auto lead = surface.distance(origin, direction, false);
+    if (!lead.found || !lead.terminal_unresolved)
+      throw std::runtime_error("expected unresolved lead fixture changed");
+    for (std::size_t span_id : {std::size_t {0}, surface.spans().size() - 1}) {
+      for (double gap : {1.0, 1.0e-5, 0.0, -4.0}) {
+        const auto result = analyze_quadratic_span(
+          surface.spans()[span_id], lead.distance - gap, slack);
+        std::cout << "{\"kind\":\"quadratic_seam\",\"member\":"
+                  << member << ",\"span\":" << span_id
+                  << ",\"gap_cm\":" << gap
+                  << ",\"slack\":" << slack
+                  << ",\"nodes\":" << result.nodes
+                  << ",\"undecided\":" << result.undecided
+                  << ",\"outcomes\":[";
+        for (std::size_t i = 0; i < result.outcomes.size(); ++i) {
+          if (i != 0) std::cout << ',';
+          std::cout << result.outcomes[i];
+        }
+        std::cout << "]}\n";
+      }
+    }
+  }
+  return 0;
+}
+
 } // namespace
 
 int main(int argc, char** argv)
 {
   try {
-    if (argc != 2) throw std::invalid_argument("usage: swept_prefix_interval H5");
     if (!std::numeric_limits<double>::is_iec559
         || std::fegetround() != FE_TONEAREST
         || std::numeric_limits<double>::has_denorm != std::denorm_present
         || std::ldexp(1.0, -1022) * 0.5 == 0.0) {
       throw std::runtime_error("IEEE nearest and subnormal preflight failed");
     }
+    if (argc == 3 && std::string(argv[2]) == "--quadratic-seams") {
+      return quadratic_seam_main(argv[1]);
+    }
+    if (argc != 2) throw std::invalid_argument(
+      "usage: swept_prefix_interval H5 [--quadratic-seams]");
     std::cout << std::setprecision(17);
     const stellarcsg::Vec3 origin {550.0, 0.0, 0.0};
     const stellarcsg::Vec3 direction {-1.0, 0.0, 0.0};
