@@ -1,0 +1,20 @@
+{
+  "repository": "FusionSandwich/openmc",
+  "commit": "c08eea92ca3fb63eb8adbf44cfb4ea8612639e30",
+  "access": "GitHub connector pinned file reads succeeded; direct HTTPS DNS failed; no upstream clone",
+  "source_scope": "Only dispatch, relevant wrapper/harness/build metadata and root agent instructions",
+  "files": {
+    "AGENTS.md": "19abba7d97b35050a65aa77c174161ac796ac809",
+    "dev/stellarcsg/reports/cloud-methods/benchmark-portability.md": "bf801c2e85be116d3833be96ec137a0e5359f5e2",
+    "dev/stellarcsg/reports/CLOUD_METHOD_HANDOFF.md": "1083661635c6e2c9dece09dfe468f92dd1ec1159",
+    "dev/stellarcsg/reports/REMAINING_WORK_DISPATCH.md": "652a3ac9da901b5a246ae16d3b2e48999c2f7be0",
+    "dev/stellarcsg/reports/REPAIR_07_CHECKPOINT.md": "02c820afe34c2775c0584a2f35e25f6462e4b90a",
+    "dev/stellarcsg/qualification/recovery04_measure.py": "a4286c66ac3bb92e4e7dcba5ad02ca269a179419",
+    "dev/stellarcsg/qualification/recovery04_frozen_bank.cpp": "01b8456ce474348894e2c3eb94b1e06676853d89",
+    "dev/stellarcsg/CMakeLists.txt": "b5759d93fc024d4add88385480ec5bbd913592b4"
+  },
+  "hash_kind": "Git blob SHA1 values from pinned connector reads, not SHA256",
+  "local_original_wrapper": "Copied source verified against its full Git blob SHA1 before synthetic negative reproduction",
+  "cpp_execution": "NONE; native analytic controls inspected only, not built or executed",
+  "experimental_features_default": "OFF"
+}
