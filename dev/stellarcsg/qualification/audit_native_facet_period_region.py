@@ -7,7 +7,9 @@ import hashlib
 import json
 import os
 from pathlib import Path
+import re
 import subprocess
+import xml.etree.ElementTree as ET
 
 import h5py
 import numpy as np
@@ -59,6 +61,19 @@ def main() -> None:
             or selector["hashes"]["library"] != sha256(args.library)
             or selector["hashes"]["payload"] != sha256(args.payload)):
         raise ValueError("region, payload, library or selector receipt mismatch")
+    args.output.mkdir(parents=True)
+    unpaired_dir = args.output / "unpaired-cap-planes-negative"
+    unpaired_dir.mkdir()
+    unpaired_tree = ET.parse(args.region / "geometry.xml")
+    for surface_id in ("901", "902"):
+        plane = unpaired_tree.find(f".//surface[@id='{surface_id}']")
+        if plane is None or plane.get("coeffs") != "0.0" \
+                or plane.get("boundary") != "periodic":
+            raise ValueError("expected paired zero plane missing from staged region")
+        plane.set("boundary", "transmission")
+        plane.attrib.pop("periodic_surface_id", None)
+    unpaired_xml = unpaired_dir / "geometry.xml"
+    unpaired_tree.write(unpaired_xml, encoding="utf-8", xml_declaration=True)
     with h5py.File(args.payload, "r") as handle:
         vertices = handle["facets/one_period/triangle_vertices"][:]
     planar_caps = {axis: int(np.count_nonzero(
@@ -72,6 +87,11 @@ def main() -> None:
     seam = invoke(args.seam_binary,
                   [str(args.region.resolve()), str(args.payload.resolve()),
                    prior["facet_content_id"]], args.library)
+    unpaired = invoke(args.region_binary, [str(unpaired_dir.resolve())],
+                      args.library)
+    unpaired_rejected = (unpaired["exit_code"] != 0
+                         and "Periodic facet caps require reciprocal x=0/y=0 rotation"
+                         in re.sub(r"\s+", " ", unpaired["stderr"]))
     expected_native = {"state": "NATIVE_FACET_PERIOD_REGION_INITIALIZED",
                        "surfaces": 6, "cells": 2,
                        "rotational_periodic_pair": [901, 902],
@@ -91,14 +111,16 @@ def main() -> None:
                   expected_periodic, separators=(",", ":"))]
               and seam["exit_code"] == 0 and not seam["stderr"]
               and seam["stdout"].splitlines() == [json.dumps(
-                  expected_seam, separators=(",", ":"))])
-    args.output.mkdir(parents=True)
+                  expected_seam, separators=(",", ":"))]
+              and unpaired_rejected)
     receipt = {
         "schema": "stellarcsg.native-facet-period-region/v1",
         "state": "NATIVE_FACET_PERIOD_CONTROLS_PASS" if passed else "FAIL",
         "native_region": native,
         "periodic_plane_controls": periodic,
         "coil_cap_handoffs": seam,
+        "unpaired_cap_planes_negative": unpaired,
+        "unpaired_caps_rejected": unpaired_rejected,
         "plane_cap_triangles": {"x_zero": planar_caps[0],
                                  "y_zero": planar_caps[1]},
         "affinity": sorted(os.sched_getaffinity(0)),
@@ -109,11 +131,12 @@ def main() -> None:
             "seam_helper": sha256(args.seam_binary),
             "libopenmc": sha256(args.library),
             "geometry_xml": sha256(args.region / "geometry.xml"),
+            "unpaired_geometry_xml": sha256(unpaired_xml),
             "python_region_receipt": sha256(args.region / "receipt.json"),
             "selector_receipt": sha256(args.selector_receipt),
             "payload": sha256(args.payload),
         },
-        "claim_boundary": "The accepted facet union initializes natively in a 90-degree sector. Two complement particles cross the periodic planes at radius 2300 cm; 160 cap-interior coil particles select a periodic plane first and map back into the coil cell. This qualifies those deterministic cap points, not all seam edges, non-cap coil crossings, histories, materials, source clearance, continuous CAD fidelity or transport performance."
+        "claim_boundary": "The accepted facet union initializes natively in a 90-degree sector. Two complement particles cross the periodic planes at radius 2300 cm; 160 cap-interior coil particles select a periodic plane first and map back into the coil cell. An unpaired x=0/y=0 cap model is rejected before geometry use. This qualifies those deterministic cap points, not all seam edges, non-cap coil crossings, histories, materials, source clearance, continuous CAD fidelity or transport performance."
     }
     (args.output / "receipt.json").write_text(json.dumps(receipt, indent=2) + "\n")
     print(json.dumps({"state": receipt["state"],

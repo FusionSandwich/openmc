@@ -17,6 +17,7 @@ public:
   Direction normal(Position r) const override;
   BoundingBox bounding_box(bool pos_side) const override;
   void to_hdf5_inner(hid_t group_id) const override;
+  void validate_periodic_caps() const;
 
 private:
   std::string data_file_;

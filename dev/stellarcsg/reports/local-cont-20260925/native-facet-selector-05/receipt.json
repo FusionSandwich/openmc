@@ -1,0 +1,75 @@
+{
+  "schema": "stellarcsg.native-facet-selector/v1",
+  "state": "PASS_NATIVE_REGISTRATION_ONLY",
+  "positive": {
+    "command": [
+      "/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-local-continuation-20260925/build/native-local-20260925/native_facet_selector",
+      "/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-local-continuation-20260925/dev/stellarcsg/reports/local-cont-20260925/p00-accepted-facet-payload-01.h5",
+      "sha256:c580f1c228ee9633df197aed32e5f41bc6bcb7b382d8a68f677e69787e8c57a6",
+      "/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-local-continuation-20260925/dev/stellarcsg/reports/local-cont-20260925/p00-accepted-facet-fixture.txt",
+      "dev/stellarcsg/reports/local-cont-20260925/native-facet-selector-05/statepoint-facet.h5"
+    ],
+    "exit_code": 0,
+    "stdout": "{\"native_registered\":true,\"inside_probes\":54,\"outside_probes\":54,\"transport_run\":false}\n",
+    "stderr": ""
+  },
+  "wrong_expected_id": {
+    "command": [
+      "/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-local-continuation-20260925/build/native-local-20260925/native_facet_selector",
+      "/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-local-continuation-20260925/dev/stellarcsg/reports/local-cont-20260925/p00-accepted-facet-payload-01.h5",
+      "sha256:0000000000000000000000000000000000000000000000000000000000000000",
+      "/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-local-continuation-20260925/dev/stellarcsg/reports/local-cont-20260925/p00-accepted-facet-fixture.txt",
+      "dev/stellarcsg/reports/local-cont-20260925/native-facet-selector-05/wrong-id-statepoint.h5"
+    ],
+    "exit_code": 255,
+    "stdout": "",
+    "stderr": " ERROR: Unable to initialize facet-set surface 9901: Facet content_id mismatch\n"
+  },
+  "tampered_payload": {
+    "command": [
+      "/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-local-continuation-20260925/build/native-local-20260925/native_facet_selector",
+      "dev/stellarcsg/reports/local-cont-20260925/native-facet-selector-05/tampered-one-ulp.h5",
+      "sha256:c580f1c228ee9633df197aed32e5f41bc6bcb7b382d8a68f677e69787e8c57a6",
+      "/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-local-continuation-20260925/dev/stellarcsg/reports/local-cont-20260925/p00-accepted-facet-fixture.txt",
+      "dev/stellarcsg/reports/local-cont-20260925/native-facet-selector-05/tampered-statepoint.h5"
+    ],
+    "exit_code": 255,
+    "stdout": "",
+    "stderr": " ERROR: Unable to initialize facet-set surface 9901: Facet canonical payload\n        SHA-256 does not verify\n"
+  },
+  "inward_winding": {
+    "command": [
+      "/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-local-continuation-20260925/build/native-local-20260925/native_facet_selector",
+      "dev/stellarcsg/reports/local-cont-20260925/native-facet-selector-05/inward-winding.h5",
+      "sha256:ea501dd8c0ec3f0fc96d34582ba2ebe92522b6d35f8989b39226b2c7e833ca24",
+      "/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-local-continuation-20260925/dev/stellarcsg/reports/local-cont-20260925/p00-accepted-facet-fixture.txt",
+      "dev/stellarcsg/reports/local-cont-20260925/native-facet-selector-05/inward-statepoint.h5"
+    ],
+    "exit_code": 255,
+    "stdout": "",
+    "stderr": " ERROR: Unable to initialize facet-set surface 9901: Each connected facet shell\n        must wind outward\n"
+  },
+  "native_registered": true,
+  "statepoint_serialized": true,
+  "python_statepoint_roundtrip": true,
+  "wrong_id_rejected": true,
+  "tamper_rejected": true,
+  "inward_winding_rejected": true,
+  "loader_binding": "libopenmc.so => /mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-local-continuation-20260925/build/native-local-20260925/lib/libopenmc.so (0x00007e7224d30000)",
+  "affinity": [
+    0
+  ],
+  "hashes": {
+    "binary": "428494080fb61cee4fc2ac1f3ba74b728f703b0f61bdea372279cc708c32b7e3",
+    "library": "f5a2d438974499e36fae7668d466f0ffec64b9998dc769d99c37186d0765fd94",
+    "helper_source": "af39bfdf38afa7d4ff5e65ed6d1d080893f74981696c89e1e1540764cd5ef8c8",
+    "auditor": "04889889877314df66c7bebd493c2ce397299fe8801bc87a2e31a200b9f7eb76",
+    "payload": "126fdbec0a5795036ad75c7409f760652e47722d02f28fada89ddaf2fa71d9df",
+    "payload_receipt": "acb484e5942dcd380c6fbbd741ab68df3f282c41cc6d7bf1170941abbb24b8ba",
+    "fixture": "e3bb70b70012f7899fadb3d8b736123b96e5e472afa3bc645d303013ef715b05",
+    "statepoint": "f4c4ad43fd8a2fc9ab0a409143f5c7c23f2bb0edb42a10b14e08cfad13970cbe",
+    "tampered_payload": "85c6527d7a19edb6fe18623854cf7d337ba84ed82bf91a9f88c86e385c1e3af6",
+    "inward_winding_payload": "46751424e434c05677e181d84f727b780334a43ae141034b88e1c74fb921d7e5"
+  },
+  "claim_boundary": "Native OpenMC facet-set registration, 108 accepted P00 probe sides, selector serialization and Python readback, plus wrong-ID, one-ULP tamper and hash-valid inward-winding rejection. No particle transport, continuous CAD bound, overlap proof or performance qualification."
+}

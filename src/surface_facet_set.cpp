@@ -7,6 +7,7 @@
 
 #include <fmt/core.h>
 
+#include "openmc/boundary_condition.h"
 #include "openmc/constants.h"
 #include "openmc/error.h"
 #include "openmc/hdf5_interface.h"
@@ -37,12 +38,11 @@ SurfaceFacetSet::SurfaceFacetSet(pugi::xml_node node) : Surface(node)
   content_id_ = get_node_value(node, "content_id", false, true);
   if (check_for_node(node, "periodic_caps")) {
     periodic_caps_ = get_node_value(node, "periodic_caps", false, true);
-    if (periodic_caps_ != "x0" && periodic_caps_ != "y0"
-        && periodic_caps_ != "x0 y0")
+    if (periodic_caps_ != "x0 y0")
       fatal_error(fmt::format("Facet-set surface {} periodic_caps must be "
-                              "x0, y0 or 'x0 y0'", id_));
-    skip_x_cap_ = periodic_caps_.find("x0") != std::string::npos;
-    skip_y_cap_ = periodic_caps_.find("y0") != std::string::npos;
+                              "'x0 y0'", id_));
+    skip_x_cap_ = true;
+    skip_y_cap_ = true;
   }
   if (dataset_.empty() || dataset_.front() != '/')
     fatal_error(fmt::format("Facet-set surface {} requires an absolute "
@@ -67,6 +67,37 @@ SurfaceFacetSet::SurfaceFacetSet(pugi::xml_node node) : Surface(node)
     fatal_error(fmt::format("Unable to initialize facet-set surface {}: {}",
       id_, error.what()));
   }
+}
+
+void SurfaceFacetSet::validate_periodic_caps() const
+{
+  if (periodic_caps_.empty()) return;
+  int x_index = -1;
+  int y_index = -1;
+  for (int index = 0; index < model::surfaces.size(); ++index) {
+    const auto* surface = model::surfaces[index].get();
+    if (const auto* x = dynamic_cast<const SurfaceXPlane*>(surface);
+        x && x->x0_ == 0.0) {
+      if (x_index >= 0)
+        fatal_error("Periodic facet caps require one x=0 plane");
+      x_index = index;
+    }
+    if (const auto* y = dynamic_cast<const SurfaceYPlane*>(surface);
+        y && y->y0_ == 0.0) {
+      if (y_index >= 0)
+        fatal_error("Periodic facet caps require one y=0 plane");
+      y_index = index;
+    }
+  }
+  if (x_index < 0 || y_index < 0)
+    fatal_error("Periodic facet caps require x=0 and y=0 planes");
+  const auto* x_bc = dynamic_cast<const RotationalPeriodicBC*>(
+    model::surfaces[x_index]->bc_.get());
+  const auto* y_bc = dynamic_cast<const RotationalPeriodicBC*>(
+    model::surfaces[y_index]->bc_.get());
+  if (!x_bc || !y_bc || x_bc->j_surf() != y_index
+      || y_bc->j_surf() != x_index)
+    fatal_error("Periodic facet caps require reciprocal x=0/y=0 rotation");
 }
 
 double SurfaceFacetSet::evaluate(Position r) const

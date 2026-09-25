@@ -3089,7 +3089,7 @@ class FacetSetSurface(Surface):
         Absolute HDF5 group path.
     content_id : str
         SHA-256 ID binding metadata, vertices and component IDs.
-    periodic_caps : {'', 'x0', 'y0', 'x0 y0'}
+    periodic_caps : {'', 'x0 y0'}
         Explicitly delegate outward cap triangles on the selected zero planes
         to the corresponding periodic plane surfaces during distance queries.
     """
@@ -3104,8 +3104,8 @@ class FacetSetSurface(Surface):
         check_type('dataset', dataset, str)
         check_type('content_id', content_id, str)
         check_type('periodic_caps', periodic_caps, str)
-        if periodic_caps not in ('', 'x0', 'y0', 'x0 y0'):
-            raise ValueError("periodic_caps must be '', 'x0', 'y0' or 'x0 y0'")
+        if periodic_caps not in ('', 'x0 y0'):
+            raise ValueError("periodic_caps must be '' or 'x0 y0'")
         if not dataset.startswith('/'):
             raise ValueError('dataset must be an absolute HDF5 group path')
         if len(content_id) != 71 or not content_id.startswith('sha256:') \
