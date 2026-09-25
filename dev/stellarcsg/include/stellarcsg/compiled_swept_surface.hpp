@@ -133,7 +133,8 @@ private:
   void surface_derivatives(const SweptSpan& span, double angle, double alpha,
     Vec3& position, Vec3& dangle, Vec3& dalpha) const;
   [[nodiscard]] double evaluate_in_span(
-    const Vec3& point, const SweptSpan& span, double* angle = nullptr) const;
+    const Vec3& point, const SweptSpan& span, double* angle = nullptr,
+    long double* model_distance_squared = nullptr) const;
   void build_spans();
   [[nodiscard]] std::uint32_t build_span_bvh_node(
     std::uint32_t first, std::uint32_t last);

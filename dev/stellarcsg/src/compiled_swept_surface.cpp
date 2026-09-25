@@ -730,7 +730,8 @@ std::uint32_t CompiledSweptSplineSurface::build_span_bvh_node(
 }
 
 double CompiledSweptSplineSurface::evaluate_in_span(
-  const Vec3& point, const SweptSpan& span, double* angle) const
+  const Vec3& point, const SweptSpan& span, double* angle,
+  long double* model_distance_squared) const
 {
   const std::array<long double, 3> query {
     static_cast<long double>(point.x), static_cast<long double>(point.y),
@@ -815,6 +816,7 @@ double CompiledSweptSplineSurface::evaluate_in_span(
       consider(candidates.points[i]);
   }
   consider(1.0L);
+  if (model_distance_squared) *model_distance_squared = best_distance;
   const double q = span.angle_min
     + static_cast<double>(best_u) * (span.angle_max - span.angle_min);
   if (angle) *angle = q;
@@ -837,6 +839,8 @@ SweptLocalCoordinates CompiledSweptSplineSurface::local_coordinates(
   double best_angle = 0.0;
   std::size_t refined_span = 0;
   double refined_distance = std::numeric_limits<double>::infinity();
+  long double refined_model_distance =
+    std::numeric_limits<long double>::infinity();
   double refined_distance_upper = std::numeric_limits<double>::infinity();
   if (!span_bvh_.empty()) {
     stack[stack_size++] = {
@@ -853,11 +857,19 @@ SweptLocalCoordinates CompiledSweptSplineSurface::local_coordinates(
         if (point_box_distance_squared(point, span.centerline_bbox)
             > refined_distance_upper) continue;
         double angle = 0.0;
-        (void) evaluate_in_span(point, span, &angle);
+        long double model_distance =
+          std::numeric_limits<long double>::infinity();
+        (void) evaluate_in_span(point, span, &angle, &model_distance);
         const Vec3 center = frame_in_span(span, angle).center;
         const double distance = norm_squared(point - center);
-        if (distance < refined_distance) {
+        // The rounded center distances of two seam spans can tie despite a
+        // strict difference between their stored-power centerline minima.
+        // Rank a binary64 tie by the same long-double model used to find u.
+        if (distance < refined_distance
+            || (distance == refined_distance
+                && model_distance < refined_model_distance)) {
           refined_distance = distance;
+          refined_model_distance = model_distance;
           refined_distance_upper = point_distance_squared_upper(point, center);
           best_angle = angle;
           refined_span = candidate;

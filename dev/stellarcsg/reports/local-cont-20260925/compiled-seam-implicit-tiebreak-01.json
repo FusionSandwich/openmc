@@ -1,0 +1,353 @@
+{
+  "schema": "stellarcsg.compiled-seam-implicit-samples/v1",
+  "state": "SAMPLED_SIGN_BRACKET_STABLE_FRAME",
+  "source_sha256": "ab510cbea0b31f5768193cc7157feda2e58861bb1a92df3365152bdd16d0c659",
+  "helper_source_sha256": "e31f2ccb87e216a11c41e1041612b81fd3607d0a4ece58001995e08124934ed4",
+  "helper_executable_sha256": "6b4615afb73996d1c68be4818d902d4cdd1ac3ffb8bea2caad7e69fb7fa5d283",
+  "static_library_sha256": "2df52fefeedb3841734fb264b6a8b8bea5e32402b2a14b45473f93cf855b5a26",
+  "production_source_sha256": "7621703c5ec038acca75747fb03f9c0d973cc74eea356723e8c9ddb5c41f9149",
+  "h5_sha256": "39f77da5ab1fe427cce58b153e9b52cf8915e9973a9b8f3dfad5ab3b00a9e46d",
+  "krawczyk_sha256": "99e88793fbb5053f8d4154a99d509f7440f178ce4d37961a415e6f00d0b63b54",
+  "native_receipt_sha256": "56bd35d0d1706bc8cb15559092e6e4552a799b5ecd33efa60c8f71be2b8c81f7",
+  "results": [
+    {
+      "member": 2,
+      "span": 255,
+      "model_krawczyk_t_cm": [
+        15.999999999999552,
+        16.00000000000039
+      ],
+      "native_diagnostic_lead_cm": 15.99999999999757,
+      "opposite_implicit_signs_at_model_box_edges": true,
+      "sampled_frame_constant": true,
+      "samples": [
+        {
+          "member": 2,
+          "t_cm": 15.99999999998757,
+          "point_x_cm": 534.0000000000124,
+          "implicit_value": 1.7705836796721997e-12,
+          "arc_coordinate_cm": 2991.1382605086387,
+          "center_cm": [
+            520,
+            -4.227729277772596e-13,
+            0
+          ],
+          "normal": [
+            0,
+            0,
+            1
+          ],
+          "binormal": [
+            1,
+            1.9487828099187824e-14,
+            0
+          ],
+          "major_radius_cm": 24,
+          "minor_radius_cm": 13.999999999999996,
+          "local_u_cm": 0,
+          "local_v_cm": 14.000000000012392
+        },
+        {
+          "member": 2,
+          "t_cm": 15.99999999999757,
+          "point_x_cm": 534.0000000000024,
+          "implicit_value": 3.4150460237469815e-13,
+          "arc_coordinate_cm": 2991.1382605086387,
+          "center_cm": [
+            520,
+            -4.227729277772596e-13,
+            0
+          ],
+          "normal": [
+            0,
+            0,
+            1
+          ],
+          "binormal": [
+            1,
+            1.9487828099187824e-14,
+            0
+          ],
+          "major_radius_cm": 24,
+          "minor_radius_cm": 13.999999999999996,
+          "local_u_cm": 0,
+          "local_v_cm": 14.000000000002387
+        },
+        {
+          "member": 2,
+          "t_cm": 15.999999999999552,
+          "point_x_cm": 534.0000000000005,
+          "implicit_value": 6.52811138479592e-14,
+          "arc_coordinate_cm": 2991.1382605086387,
+          "center_cm": [
+            520,
+            -4.227729277772596e-13,
+            0
+          ],
+          "normal": [
+            0,
+            0,
+            1
+          ],
+          "binormal": [
+            1,
+            1.9487828099187824e-14,
+            0
+          ],
+          "major_radius_cm": 24,
+          "minor_radius_cm": 13.999999999999996,
+          "local_u_cm": 0,
+          "local_v_cm": 14.000000000000455
+        },
+        {
+          "member": 2,
+          "t_cm": 15.999999999999972,
+          "point_x_cm": 534,
+          "implicit_value": 4.440892098500626e-16,
+          "arc_coordinate_cm": 2991.1382605086387,
+          "center_cm": [
+            520,
+            -4.227729277772596e-13,
+            0
+          ],
+          "normal": [
+            0,
+            0,
+            1
+          ],
+          "binormal": [
+            1,
+            1.9487828099187824e-14,
+            0
+          ],
+          "major_radius_cm": 24,
+          "minor_radius_cm": 13.999999999999996,
+          "local_u_cm": 0,
+          "local_v_cm": 14
+        },
+        {
+          "member": 2,
+          "t_cm": 16.00000000000039,
+          "point_x_cm": 533.9999999999997,
+          "implicit_value": -4.8183679268731794e-14,
+          "arc_coordinate_cm": 2991.1382605086387,
+          "center_cm": [
+            520,
+            -4.227729277772596e-13,
+            0
+          ],
+          "normal": [
+            0,
+            0,
+            1
+          ],
+          "binormal": [
+            1,
+            1.9487828099187824e-14,
+            0
+          ],
+          "major_radius_cm": 24,
+          "minor_radius_cm": 13.999999999999996,
+          "local_u_cm": 0,
+          "local_v_cm": 13.999999999999659
+        },
+        {
+          "member": 2,
+          "t_cm": 16.00000000000757,
+          "point_x_cm": 533.9999999999924,
+          "implicit_value": -1.0875744749228033e-12,
+          "arc_coordinate_cm": 2991.1382605086387,
+          "center_cm": [
+            520,
+            -4.227729277772596e-13,
+            0
+          ],
+          "normal": [
+            0,
+            0,
+            1
+          ],
+          "binormal": [
+            1,
+            1.9487828099187824e-14,
+            0
+          ],
+          "major_radius_cm": 24,
+          "minor_radius_cm": 13.999999999999996,
+          "local_u_cm": 0,
+          "local_v_cm": 13.999999999992383
+        }
+      ]
+    },
+    {
+      "member": 3,
+      "span": 383,
+      "model_krawczyk_t_cm": [
+        16.999999999999826,
+        17.000000000000682
+      ],
+      "native_diagnostic_lead_cm": 16.99999999999946,
+      "opposite_implicit_signs_at_model_box_edges": true,
+      "sampled_frame_constant": true,
+      "samples": [
+        {
+          "member": 3,
+          "t_cm": 16.99999999998946,
+          "point_x_cm": 533.0000000000106,
+          "implicit_value": -1.8001156121272288e-12,
+          "arc_coordinate_cm": 3249.810816765693,
+          "center_cm": [
+            544.9999999999998,
+            3.552713678800501e-15,
+            2.220446049250313e-16
+          ],
+          "normal": [
+            -1.457539253540853e-15,
+            -0.23202266265539967,
+            0.9727103803364588
+          ],
+          "binormal": [
+            1,
+            -1.0137521821300083e-14,
+            -9.196936418576821e-16
+          ],
+          "major_radius_cm": 18,
+          "minor_radius_cm": 12,
+          "local_u_cm": 1.8098796037773758e-14,
+          "local_v_cm": -11.9999999999892
+        },
+        {
+          "member": 3,
+          "t_cm": 16.99999999999946,
+          "point_x_cm": 533.0000000000006,
+          "implicit_value": -1.325606291402437e-13,
+          "arc_coordinate_cm": 3249.810816765693,
+          "center_cm": [
+            544.9999999999998,
+            3.552713678800501e-15,
+            2.220446049250313e-16
+          ],
+          "normal": [
+            -1.457539253540853e-15,
+            -0.23202266265539967,
+            0.9727103803364588
+          ],
+          "binormal": [
+            1,
+            -1.0137521821300083e-14,
+            -9.196936418576821e-16
+          ],
+          "major_radius_cm": 18,
+          "minor_radius_cm": 12,
+          "local_u_cm": 1.8098796037788342e-14,
+          "local_v_cm": -11.999999999999204
+        },
+        {
+          "member": 3,
+          "t_cm": 16.999999999999826,
+          "point_x_cm": 533.0000000000002,
+          "implicit_value": -7.571721027943568e-14,
+          "arc_coordinate_cm": 3249.810816765693,
+          "center_cm": [
+            544.9999999999998,
+            3.552713678800501e-15,
+            2.220446049250313e-16
+          ],
+          "normal": [
+            -1.457539253540853e-15,
+            -0.23202266265539967,
+            0.9727103803364588
+          ],
+          "binormal": [
+            1,
+            -1.0137521821300083e-14,
+            -9.196936418576821e-16
+          ],
+          "major_radius_cm": 18,
+          "minor_radius_cm": 12,
+          "local_u_cm": 1.8098796037788838e-14,
+          "local_v_cm": -11.999999999999545
+        },
+        {
+          "member": 3,
+          "t_cm": 17.000000000000256,
+          "point_x_cm": 532.9999999999998,
+          "implicit_value": 0,
+          "arc_coordinate_cm": 3249.810816765693,
+          "center_cm": [
+            544.9999999999998,
+            3.552713678800501e-15,
+            2.220446049250313e-16
+          ],
+          "normal": [
+            -1.457539253540853e-15,
+            -0.23202266265539967,
+            0.9727103803364588
+          ],
+          "binormal": [
+            1,
+            -1.0137521821300083e-14,
+            -9.196936418576821e-16
+          ],
+          "major_radius_cm": 18,
+          "minor_radius_cm": 12,
+          "local_u_cm": 1.80987960377895e-14,
+          "local_v_cm": -12
+        },
+        {
+          "member": 3,
+          "t_cm": 17.000000000000682,
+          "point_x_cm": 532.9999999999993,
+          "implicit_value": 7.593925488436071e-14,
+          "arc_coordinate_cm": 3249.810816765693,
+          "center_cm": [
+            544.9999999999998,
+            3.552713678800501e-15,
+            2.220446049250313e-16
+          ],
+          "normal": [
+            -1.457539253540853e-15,
+            -0.23202266265539967,
+            0.9727103803364588
+          ],
+          "binormal": [
+            1,
+            -1.0137521821300083e-14,
+            -9.196936418576821e-16
+          ],
+          "major_radius_cm": 18,
+          "minor_radius_cm": 12,
+          "local_u_cm": 1.8098796037790163e-14,
+          "local_v_cm": -12.000000000000455
+        },
+        {
+          "member": 3,
+          "t_cm": 17.00000000000946,
+          "point_x_cm": 532.9999999999906,
+          "implicit_value": 1.5347723092418164e-12,
+          "arc_coordinate_cm": 3249.810816765693,
+          "center_cm": [
+            544.9999999999998,
+            3.552713678800501e-15,
+            2.220446049250313e-16
+          ],
+          "normal": [
+            -1.457539253540853e-15,
+            -0.23202266265539967,
+            0.9727103803364588
+          ],
+          "binormal": [
+            1,
+            -1.0137521821300083e-14,
+            -9.196936418576821e-16
+          ],
+          "major_radius_cm": 18,
+          "minor_radius_cm": 12,
+          "local_u_cm": 1.8098796037802923e-14,
+          "local_v_cm": -12.000000000009209
+        }
+      ]
+    }
+  ],
+  "claim_boundary": "Only six binary64 ray distances per shaped member were sampled through the compiled standalone implicit evaluator. Opposite signs do not prove a continuous root when nearest-centerline frame selection can jump; identical sampled frames do not certify the interval between them or earlier spans. No native OpenMC distance is admitted."
+}
