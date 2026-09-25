@@ -1,0 +1,145 @@
+{
+  "repository": "FusionSandwich/openmc",
+  "baseline": "c08eea92ca3fb63eb8adbf44cfb4ea8612639e30",
+  "sources": [
+    {
+      "path": "dev/stellarcsg/reports/cloud-methods/certification-audit.md",
+      "ref": "c08eea92ca3fb63eb8adbf44cfb4ea8612639e30",
+      "connector_reported_git_blob_sha1": "345fd79a6f8ef758bf491d1b818741fe0caa652c",
+      "read_scope": "full brief",
+      "url": "https://github.com/FusionSandwich/openmc/blob/c08eea92ca3fb63eb8adbf44cfb4ea8612639e30/dev/stellarcsg/reports/cloud-methods/certification-audit.md"
+    },
+    {
+      "path": "dev/stellarcsg/reports/CLOUD_METHOD_HANDOFF.md",
+      "ref": "c08eea92ca3fb63eb8adbf44cfb4ea8612639e30",
+      "connector_reported_git_blob_sha1": "1083661635c6e2c9dece09dfe468f92dd1ec1159",
+      "read_scope": "full handoff",
+      "url": "https://github.com/FusionSandwich/openmc/blob/c08eea92ca3fb63eb8adbf44cfb4ea8612639e30/dev/stellarcsg/reports/CLOUD_METHOD_HANDOFF.md"
+    },
+    {
+      "path": "dev/stellarcsg/reports/REMAINING_WORK_DISPATCH.md",
+      "ref": "c08eea92ca3fb63eb8adbf44cfb4ea8612639e30",
+      "connector_reported_git_blob_sha1": "652a3ac9da901b5a246ae16d3b2e48999c2f7be0",
+      "read_scope": "full dispatch including geometry provenance",
+      "url": "https://github.com/FusionSandwich/openmc/blob/c08eea92ca3fb63eb8adbf44cfb4ea8612639e30/dev/stellarcsg/reports/REMAINING_WORK_DISPATCH.md"
+    },
+    {
+      "path": "dev/stellarcsg/reports/REPAIR_07_CHECKPOINT.md",
+      "ref": "c08eea92ca3fb63eb8adbf44cfb4ea8612639e30",
+      "connector_reported_git_blob_sha1": "02c820afe34c2775c0584a2f35e25f6462e4b90a",
+      "read_scope": "full checkpoint; reported results not rerun",
+      "url": "https://github.com/FusionSandwich/openmc/blob/c08eea92ca3fb63eb8adbf44cfb4ea8612639e30/dev/stellarcsg/reports/REPAIR_07_CHECKPOINT.md"
+    },
+    {
+      "path": "AGENTS.md",
+      "ref": "c08eea92ca3fb63eb8adbf44cfb4ea8612639e30",
+      "connector_reported_git_blob_sha1": "19abba7d97b35050a65aa77c174161ac796ac809",
+      "read_scope": "repository contributor instructions; narrower dispatch owns scope",
+      "url": "https://github.com/FusionSandwich/openmc/blob/c08eea92ca3fb63eb8adbf44cfb4ea8612639e30/AGENTS.md"
+    },
+    {
+      "path": "dev/stellarcsg/CMakeLists.txt",
+      "ref": "c08eea92ca3fb63eb8adbf44cfb4ea8612639e30",
+      "connector_reported_git_blob_sha1": "b5759d93fc024d4add88385480ec5bbd913592b4",
+      "read_scope": "standalone build declarations; unchanged",
+      "url": "https://github.com/FusionSandwich/openmc/blob/c08eea92ca3fb63eb8adbf44cfb4ea8612639e30/dev/stellarcsg/CMakeLists.txt"
+    },
+    {
+      "path": "dev/stellarcsg/src/compiled_swept_surface.cpp",
+      "ref": "c08eea92ca3fb63eb8adbf44cfb4ea8612639e30",
+      "connector_reported_git_blob_sha1": "43575885e1e1651f3fcc6500ca4225ff2154e0b1",
+      "read_scope": "entire file, read in sequential source-line ranges 1-1351",
+      "url": "https://github.com/FusionSandwich/openmc/blob/c08eea92ca3fb63eb8adbf44cfb4ea8612639e30/dev/stellarcsg/src/compiled_swept_surface.cpp"
+    },
+    {
+      "path": "dev/stellarcsg/src/swept_span_bounds.hpp",
+      "ref": "c08eea92ca3fb63eb8adbf44cfb4ea8612639e30",
+      "connector_reported_git_blob_sha1": "2c576398257a7e1f118fa99b99e55d92c4003bc9",
+      "read_scope": "full header; materialized and exact Git blob hash verified",
+      "url": "https://github.com/FusionSandwich/openmc/blob/c08eea92ca3fb63eb8adbf44cfb4ea8612639e30/dev/stellarcsg/src/swept_span_bounds.hpp"
+    },
+    {
+      "path": "dev/stellarcsg/include/stellarcsg/vector.hpp",
+      "ref": "c08eea92ca3fb63eb8adbf44cfb4ea8612639e30",
+      "connector_reported_git_blob_sha1": "af3fc2b8a86f6945adeb27b4f46157e172137349",
+      "read_scope": "full header; materialized and exact Git blob hash verified",
+      "url": "https://github.com/FusionSandwich/openmc/blob/c08eea92ca3fb63eb8adbf44cfb4ea8612639e30/dev/stellarcsg/include/stellarcsg/vector.hpp"
+    },
+    {
+      "path": "dev/stellarcsg/tests/test_swept_span_bounds.cpp",
+      "ref": "c08eea92ca3fb63eb8adbf44cfb4ea8612639e30",
+      "connector_reported_git_blob_sha1": "fdbb83692963868a0a17dd113b9a6eb90556a165",
+      "read_scope": "full source read; unchanged test not run",
+      "url": "https://github.com/FusionSandwich/openmc/blob/c08eea92ca3fb63eb8adbf44cfb4ea8612639e30/dev/stellarcsg/tests/test_swept_span_bounds.cpp"
+    },
+    {
+      "path": "dev/stellarcsg/tests/test_swept_seed_regression.cpp",
+      "ref": "c08eea92ca3fb63eb8adbf44cfb4ea8612639e30",
+      "connector_reported_git_blob_sha1": "28757a147d0098d9bf6ac510927a319988ea45eb",
+      "read_scope": "full source read; full regression executable not run",
+      "url": "https://github.com/FusionSandwich/openmc/blob/c08eea92ca3fb63eb8adbf44cfb4ea8612639e30/dev/stellarcsg/tests/test_swept_seed_regression.cpp"
+    },
+    {
+      "path": "dev/stellarcsg/qualification/recovery04_frozen_bank.csv",
+      "ref": "c08eea92ca3fb63eb8adbf44cfb4ea8612639e30",
+      "connector_reported_git_blob_sha1": "c186cefe34987102eff59ead7c76f7da229998ed",
+      "read_scope": "source lines 1-26, reference ray conventions only",
+      "url": "https://github.com/FusionSandwich/openmc/blob/c08eea92ca3fb63eb8adbf44cfb4ea8612639e30/dev/stellarcsg/qualification/recovery04_frozen_bank.csv"
+    },
+    {
+      "path": "dev/stellarcsg/reports/repair07/baseline-strict/exact_reference-0.jsonl",
+      "ref": "c08eea92ca3fb63eb8adbf44cfb4ea8612639e30",
+      "connector_reported_git_blob_sha1": "0b0e352af29e742176fbbea474ecaac376806915",
+      "read_scope": "source lines 1-10; a06 and a08 inspected, no timing reuse",
+      "url": "https://github.com/FusionSandwich/openmc/blob/c08eea92ca3fb63eb8adbf44cfb4ea8612639e30/dev/stellarcsg/reports/repair07/baseline-strict/exact_reference-0.jsonl"
+    },
+    {
+      "path": "dev/stellarcsg/reports/recovery04/retained-exact-reference.jsonl",
+      "ref": "c08eea92ca3fb63eb8adbf44cfb4ea8612639e30",
+      "connector_reported_git_blob_sha1": "dd564529ee947f59601491de0c144d752a7c5e4f",
+      "read_scope": "source lines 1-12, 259-264 and 382-387; shape-2 fixture/reason, not a full independent disposition recount",
+      "url": "https://github.com/FusionSandwich/openmc/blob/c08eea92ca3fb63eb8adbf44cfb4ea8612639e30/dev/stellarcsg/reports/recovery04/retained-exact-reference.jsonl"
+    },
+    {
+      "path": "dev/stellarcsg/src/compiled_swept_surface.cpp",
+      "ref": "5ed327ade33b31ecdb5e3b4b4111c55f321991fd",
+      "connector_reported_git_blob_sha1": "722d36c0e39854b523125ccfdddb8dedf36effe7",
+      "read_scope": "archived control only: source lines 1-460 and 475-690; separation and root-contract proof review, not complete oracle verification",
+      "url": "https://github.com/FusionSandwich/openmc/blob/5ed327ade33b31ecdb5e3b4b4111c55f321991fd/dev/stellarcsg/src/compiled_swept_surface.cpp"
+    }
+  ],
+  "materialized_byte_verification": [
+    {
+      "path": "dev/stellarcsg/include/stellarcsg/vector.hpp",
+      "bytes": 3488,
+      "git_blob_sha1": "af3fc2b8a86f6945adeb27b4f46157e172137349",
+      "expected_git_blob_sha1": "af3fc2b8a86f6945adeb27b4f46157e172137349",
+      "verified": true,
+      "sha256": "66ec50198271695ffa42309f7d2ebff5718c9e37e0887b1fbc61713249297c4f",
+      "upstream_commit": "c08eea92ca3fb63eb8adbf44cfb4ea8612639e30",
+      "acquisition": "manually transferred exact connector content, verified by Git blob hash"
+    },
+    {
+      "path": "dev/stellarcsg/src/swept_span_bounds.hpp",
+      "bytes": 9654,
+      "git_blob_sha1": "2c576398257a7e1f118fa99b99e55d92c4003bc9",
+      "expected_git_blob_sha1": "2c576398257a7e1f118fa99b99e55d92c4003bc9",
+      "verified": true,
+      "sha256": "088caad224717ee419b77df5bc10432424f67435f766d844b2e511b1dbce8403",
+      "upstream_commit": "c08eea92ca3fb63eb8adbf44cfb4ea8612639e30",
+      "acquisition": "manually transferred exact connector content, verified by Git blob hash"
+    }
+  ],
+  "pinned_subtree_observation": {
+    "path": "dev/stellarcsg",
+    "tree_sha": "bb5d3100fb7488d57f7f4be7046617813a055e4b",
+    "nonrecursive_listing_complete": true,
+    "experiments_directory_present": false
+  },
+  "missing_new_lane_evidence": {
+    "bernstein_32_of_160": "UNVERIFIED: exact newer source/patch and raw stress artifacts not identified in inspected baseline",
+    "bezier_accepted_t": "UNVERIFIED as implementation finding: exact newer experiment source/patch not identified; independent analytic residual counterexample supplied"
+  },
+  "strict_bank_sha256_from_handoff": "7348483e39128259a844d22a7618869a3f111604ea48d01e196a87fe0d396af7",
+  "strict_bank_hash_recomputed_here": false
+}
