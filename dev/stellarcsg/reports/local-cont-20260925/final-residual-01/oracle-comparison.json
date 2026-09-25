@@ -1,0 +1,62 @@
+{
+  "schema": "stellarcsg.frozen-oracle-comparison/v1",
+  "candidate_jsonl_sha256": "6e06f3ef0591a9c7ae161b6709397a50431d303ea15a6c1b6eea7b9ec7f08d6e",
+  "exact_jsonl_sha256": "678539b89e3dad8edf891744be674d3d6631b4d53331a6e620146d277df00f3a",
+  "candidate_summary": {
+    "kind": "summary",
+    "query_count": 160,
+    "candidate_failures": 1,
+    "candidate_nearest_failures": 1,
+    "reference_disagreements": 0,
+    "blocked": 0,
+    "cache_policy": "unique_queries_fresh_process",
+    "claim": "bounded_replay_not_completeness"
+  },
+  "exact_summary": {
+    "kind": "summary",
+    "query_count": 160,
+    "candidate_failures": 0,
+    "candidate_nearest_failures": 0,
+    "reference_disagreements": 0,
+    "blocked": 0,
+    "cache_policy": "unique_queries_fresh_process",
+    "claim": "bounded_replay_not_completeness"
+  },
+  "matched_queries": 160,
+  "failures": [
+    {
+      "id": "a03",
+      "kind": "WRONG",
+      "candidate_found": true,
+      "candidate_distance": 0.5019999999999999,
+      "exact_found": true,
+      "exact_distance": 0.0020000000017442853
+    },
+    {
+      "id": "a06",
+      "kind": "WRONG",
+      "candidate_found": false,
+      "candidate_distance": null,
+      "exact_found": true,
+      "exact_distance": 8.326672684688674e-17
+    },
+    {
+      "id": "a08",
+      "kind": "WRONG",
+      "candidate_found": false,
+      "candidate_distance": null,
+      "exact_found": true,
+      "exact_distance": 2
+    },
+    {
+      "id": "a15",
+      "kind": "WRONG",
+      "candidate_found": true,
+      "candidate_distance": 1.9527655626516804,
+      "exact_found": true,
+      "exact_distance": 1.9527658734094704
+    }
+  ],
+  "status": "FAIL",
+  "claim_boundary": "Agreement with this retained exact lane is a bounded-corpus result, not a general root-completeness proof."
+}

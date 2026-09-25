@@ -112,16 +112,17 @@ def status_signature(query: dict[str, Any]) -> tuple[Any, ...]:
 
 
 def load_frozen_bank(hashes: dict[str, Any]) -> tuple[dict[str, dict[str, str]], list[str]]:
-    csv_paths = [Path(path) for path in hashes if str(path).endswith(".csv")]
-    if len(csv_paths) != 1:
+    csv_keys = [path for path in hashes if str(path).endswith(".csv")]
+    if len(csv_keys) != 1:
         return {}, ["receipt_requires_exactly_one_bank_csv_hash"]
+    bank_path = Path(csv_keys[0])
     try:
-        with csv_paths[0].open(newline="", encoding="ascii") as stream:
+        with bank_path.open(newline="", encoding="ascii") as stream:
             rows = list(csv.DictReader(stream))
     except OSError as error:
         return {}, [f"cannot_read_frozen_bank:{error}"]
     errors = []
-    if hashlib.sha256(csv_paths[0].read_bytes()).hexdigest() != hashes[str(csv_paths[0])]:
+    if hashlib.sha256(bank_path.read_bytes()).hexdigest() != hashes[csv_keys[0]]:
         errors.append('frozen_bank_hash_changed')
     if len(rows) != QUERY_COUNT:
         errors.append(f"frozen_bank_row_count_not_160:{len(rows)}")
