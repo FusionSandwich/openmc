@@ -11,3 +11,4 @@ dev/stellarcsg/reports/local-cont-20260925/period-selector-check-frame-02/receip
 dev/stellarcsg/experiments/swept_prefix_interval.cpp text eol=lf
 dev/stellarcsg/qualification/run_cpp_prefix_probe.py text eol=lf
 dev/stellarcsg/qualification/run_native_adapter_smoke.py text eol=lf
+dev/stellarcsg/qualification/native_adapter_smoke.cpp text eol=lf

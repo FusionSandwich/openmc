@@ -98,6 +98,16 @@ int main(int argc, char** argv)
       if (reference.found && std::isfinite(reference.distance))
         std::cout << reference.distance;
       else std::cout << "null";
+      std::cout << ",\"lead_implicit_residual\":";
+      if (result.found && std::isfinite(result.distance))
+        std::cout << std::abs(surface.evaluate(
+          {550.0 - result.distance, 0.0, 0.0}));
+      else std::cout << "null";
+      std::cout << ",\"reference_implicit_residual\":";
+      if (reference.found && std::isfinite(reference.distance))
+        std::cout << std::abs(surface.evaluate(
+          {550.0 - reference.distance, 0.0, 0.0}));
+      else std::cout << "null";
       std::cout << "}\n" << std::flush;
     }
     for (int member = 2; member <= 3; ++member) {

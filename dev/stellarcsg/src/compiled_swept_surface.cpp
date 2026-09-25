@@ -1155,7 +1155,7 @@ DistanceResult CompiledSweptSplineSurface::distance(
     static_cast<long>(iterations_total);
   diagnostics.certified_excluded_intervals =
     static_cast<long>(spans_.size()) - static_cast<long>(candidates);
-  const bool terminal_unresolved = traversal_incomplete
+  bool terminal_unresolved = traversal_incomplete
     || (std::isfinite(earliest_unresolved)
       && (!std::isfinite(best_t) || earliest_unresolved <= best_t));
   if (!std::isfinite(best_t)) {
@@ -1163,6 +1163,19 @@ DistanceResult CompiledSweptSplineSurface::distance(
     return {false, std::numeric_limits<double>::infinity(),
       RootKind::sign_change, std::numeric_limits<double>::infinity(),
       diagnostics, terminal_unresolved};
+  }
+  // Newton solves the parametric projected equations. Before a distance can
+  // leave the fail-closed path, verify it against the implicit value used by
+  // OpenMC point classification. This also guards against a mismatch between
+  // the parametric and nearest-centerline representations.
+  if (!terminal_unresolved) {
+    const double implicit_residual = std::abs(
+      evaluate(origin + best_t * ray_direction));
+    if (!std::isfinite(implicit_residual)
+        || implicit_residual > 100.0 * options.absolute_f_tolerance) {
+      terminal_unresolved = true;
+      add_performance_counter(PerformanceCounter::rejected_roots);
+    }
   }
   add_performance_counter(PerformanceCounter::accepted_roots);
   record_residual(best_residual, data_.characteristic_length);

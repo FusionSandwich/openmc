@@ -61,6 +61,10 @@ def main() -> int:
     solver_probe_complete = (
         [row.get("member") for row in solver_probes] == [2, 3]
         and all(row.get("kind") == "native_stellarcsg_solver_probe"
+                and all(isinstance(row.get(field), (int, float))
+                        and math.isfinite(row[field])
+                        for field in ("lead_implicit_residual",
+                                      "reference_implicit_residual"))
                 for row in solver_probes))
     member_probes = rows[3:5]
     probe_complete = ([row.get("member") for row in member_probes] == [2, 3]
@@ -71,7 +75,7 @@ def main() -> int:
                           "collection: Swept-spline member has an unresolved"
                           in result.stderr)
     receipt = {
-        "schema": "stellarcsg.native-adapter-smoke/v2",
+        "schema": "stellarcsg.native-adapter-smoke/v3",
         "state": ("BLOCKED_COLLECTION_UNRESOLVED" if single_pass and
                   solver_probe_complete and probe_complete and
                   blocked_collection else "FAIL"),
@@ -88,11 +92,12 @@ def main() -> int:
         "single_pass": single_pass,
         "solver_probes": solver_probes,
         "solver_probe_complete": solver_probe_complete,
+        "default_implicit_residual_acceptance_limit": 1.0e-8,
         "member_probes": member_probes,
         "probe_complete": probe_complete,
         "collection_blocked": blocked_collection,
         "native_transport_run": False,
-        "claim_boundary": "The faithful circular spline registered through native OpenMC and returned the analytic fixture crossing within 1e-6 cm. Shaped member and collection root queries remain terminal unresolved; no particle transport ran.",
+        "claim_boundary": "The faithful circular spline registered through native OpenMC and returned the analytic fixture crossing within 1e-6 cm. Shaped member candidate leads now report implicit evaluated residuals, but both member adapters and the collection remain terminal unresolved; no particle transport ran.",
     }
     (args.output / "receipt.json").write_text(json.dumps(receipt, indent=2) + "\n")
     print(json.dumps({"state": receipt["state"], "single_pass": single_pass,
