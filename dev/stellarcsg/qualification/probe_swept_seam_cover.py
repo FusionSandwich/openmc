@@ -22,11 +22,19 @@ def sha256(path: Path) -> str:
     return hashlib.sha256(path.read_bytes()).hexdigest()
 
 
-def intersects_zero(value: I) -> bool:
+def intersects_band(value: I, slack: float) -> bool:
     if not (math.isfinite(value.lo) and math.isfinite(value.hi)
             and value.lo <= value.hi):
         return True
-    return value.lo <= 0.0 <= value.hi
+    return value.lo <= slack and value.hi >= -slack
+
+
+def separation_margin(value: I) -> float:
+    if value.hi < 0.0:
+        return -value.hi
+    if value.lo > 0.0:
+        return value.lo
+    raise ValueError("interval does not exclude zero")
 
 
 def split_box(box: tuple[float, float, float, float]):
@@ -49,12 +57,17 @@ def split_box(box: tuple[float, float, float, float]):
 
 
 def check_strip(power: np.ndarray, initial: list[tuple[float, float, float, float]],
-                cap: int) -> dict:
+                cap: int, ellipse_slack: float,
+                stationarity_slack: float) -> dict:
     pending = [(box, 0) for box in initial]
     evaluated = 0
     rejected_ellipse = rejected_stationarity = 0
     deepest = 0
     nonfinite_nodes = 0
+    smallest_ellipse_margin = math.inf
+    smallest_stationarity_margin = math.inf
+    tightest_ellipse_box = None
+    tightest_stationarity_box = None
     unresolved = []
     while pending and evaluated < cap:
         box, depth = pending.pop()
@@ -65,11 +78,19 @@ def check_strip(power: np.ndarray, initial: list[tuple[float, float, float, floa
         if any(not (math.isfinite(item.value.lo) and math.isfinite(item.value.hi)
                     and item.value.lo <= item.value.hi) for item in result):
             nonfinite_nodes += 1
-        if not intersects_zero(result[0].value):
+        if not intersects_band(result[0].value, ellipse_slack):
             rejected_ellipse += 1
+            margin = separation_margin(result[0].value)
+            if margin < smallest_ellipse_margin:
+                smallest_ellipse_margin = margin
+                tightest_ellipse_box = box
             continue
-        if not intersects_zero(result[1].value):
+        if not intersects_band(result[1].value, stationarity_slack):
             rejected_stationarity += 1
+            margin = separation_margin(result[1].value)
+            if margin < smallest_stationarity_margin:
+                smallest_stationarity_margin = margin
+                tightest_stationarity_box = box
             continue
         pair = split_box(box)
         if pair is None:
@@ -81,6 +102,14 @@ def check_strip(power: np.ndarray, initial: list[tuple[float, float, float, floa
             "evaluated_nodes": evaluated, "max_depth": deepest,
             "excluded_by_ellipse": rejected_ellipse,
             "excluded_by_stationarity": rejected_stationarity,
+            "smallest_ellipse_margin": (smallest_ellipse_margin
+                                        if math.isfinite(smallest_ellipse_margin)
+                                        else None),
+            "smallest_stationarity_margin_cm2_per_u": (
+                smallest_stationarity_margin
+                if math.isfinite(smallest_stationarity_margin) else None),
+            "tightest_ellipse_box": tightest_ellipse_box,
+            "tightest_stationarity_box": tightest_stationarity_box,
             "nonfinite_nodes": nonfinite_nodes,
             "unresolved_count": len(unresolved),
             "unresolved_preview": unresolved[:16],
@@ -94,9 +123,20 @@ def main() -> None:
     parser.add_argument("--krawczyk", type=Path, required=True)
     parser.add_argument("--output", type=Path, required=True)
     parser.add_argument("--cap", type=int, default=2000)
+    parser.add_argument("--ellipse-slack", type=float, default=0.0)
+    parser.add_argument("--stationarity-slack", type=float, default=0.0)
+    parser.add_argument("--earlier-gap", type=float)
     args = parser.parse_args()
-    if args.output.exists() or args.cap < 1:
-        parser.error("output must be new and cap positive")
+    if (args.output.exists() or args.cap < 1
+            or not math.isfinite(args.ellipse_slack)
+            or not math.isfinite(args.stationarity_slack)
+            or args.ellipse_slack < 0.0 or args.stationarity_slack < 0.0):
+        parser.error("output must be new, cap positive, and slacks finite/nonnegative")
+    if args.earlier_gap is not None and not (math.isfinite(args.earlier_gap)
+                                            and 0.0 < args.earlier_gap < 1e-5):
+        parser.error("earlier gap must be finite and in (0, 1e-5) cm")
+    if args.earlier_gap is None and (args.ellipse_slack or args.stationarity_slack):
+        parser.error("nonzero slacks require an earlier gap; root-island carving uses exact equations")
     conditioned = json.loads(args.conditioning.read_text())
     certified = json.loads(args.krawczyk.read_text())
     if (conditioned.get("h5_sha256") != sha256(args.h5)
@@ -113,9 +153,13 @@ def main() -> None:
                                       group["major_radius_coefficients"][:],
                                       group["minor_radius_coefficients"][:]))
             power = power_for_span(fields, span)
-            lead = float(prior["candidate_distance_cm"])
-            lower = lead - 1e-5
-            upper = lead + 1e-6
+            native_lead = float(prior["initial_distance_cm"])
+            model_root = float(prior["candidate_distance_cm"])
+            lower = native_lead - 1e-5
+            upper = (native_lead - args.earlier_gap
+                     if args.earlier_gap is not None else model_root + 1e-6)
+            if not lower < upper:
+                raise ValueError("rounded strip bounds are empty")
             initial = [(lower, upper, 0.0, 1.0)]
             known_root = None
             matching = [r for r in certified["results"]
@@ -124,7 +168,8 @@ def main() -> None:
             if len(matching) != 1:
                 raise ValueError("missing unique seam tile receipt")
             tile = matching[0]
-            if tile["state"] == "MODEL_UNIQUE_EXISTENCE_CANDIDATE":
+            if (args.earlier_gap is None and tile["state"]
+                    == "MODEL_UNIQUE_EXISTENCE_CANDIDATE"):
                 if not (tile["strict_inside"] and not tile["disjoint"]
                         and tile["contraction_norm_inf"] < 1.0):
                     raise ValueError("invalid root-island receipt")
@@ -137,11 +182,15 @@ def main() -> None:
                            (tlo, thi, 0.0, ulo)]
                 if thi < upper:
                     initial.append((thi, upper, 0.0, 1.0))
-            outcome = check_strip(power, initial, args.cap)
+            outcome = check_strip(power, initial, args.cap,
+                                  args.ellipse_slack,
+                                  args.stationarity_slack)
             if known_root is not None and outcome["state"] == "MODEL_STRIP_EXCLUDED":
                 outcome["state"] = "MODEL_COMPLEMENT_EXCLUDED"
             outcome.update({"member": member, "span": span,
-                            "lead_cm": lead, "strip_cm": [lower, upper],
+                            "native_lead_cm": native_lead,
+                            "model_root_cm": model_root,
+                            "strip_cm": [lower, upper],
                             "known_root_box": known_root})
             results.append(outcome)
             print(member, span, outcome["state"],
@@ -153,8 +202,12 @@ def main() -> None:
               "h5_sha256": sha256(args.h5),
               "conditioning_sha256": sha256(args.conditioning),
               "krawczyk_sha256": sha256(args.krawczyk),
-              "node_cap_per_chart": args.cap, "results": results,
-              "claim_boundary": "Interval subdivision checks only two necessary equations of reconstructed powers. Root island reuses an experimental Krawczyk result. No floating C++ or nearest-centerline enclosure, full-spans proof, or production hit admission."}
+              "node_cap_per_chart": args.cap,
+              "ellipse_slack": args.ellipse_slack,
+              "stationarity_slack_cm2_per_u": args.stationarity_slack,
+              "earlier_gap_cm": args.earlier_gap,
+              "results": results,
+              "claim_boundary": "Interval subdivision checks only two necessary equations of reconstructed powers. Slacks are hypothetical additive residual bands, not derived C++ floating error bounds. Root island reuses an experimental Krawczyk result. No floating C++ or nearest-centerline enclosure, full-spans proof, or production hit admission."}
     args.output.write_text(json.dumps(report, indent=2, allow_nan=False) + "\n")
 
 
