@@ -22,7 +22,7 @@ namespace {
 constexpr double infinity = std::numeric_limits<double>::infinity();
 // Experimental allowance for sin/cos roundoff. This is not an audited libm
 // error bound and is one reason the result cannot admit a production root.
-constexpr double unit_circle_slack = 1.0e-12;
+double unit_circle_slack = 1.0e-12;
 
 double down(double value) { return std::nextafter(value, -infinity); }
 double up(double value) { return std::nextafter(value, infinity); }
@@ -323,6 +323,8 @@ int main(int argc, char** argv)
       if (!lead.found || !lead.terminal_unresolved)
         throw std::runtime_error("expected unresolved lead fixture changed");
       std::size_t selected = 0, excluded_prefix = 0, rectangle_excluded = 0;
+      std::array<std::size_t, 3> slack_excluded {};
+      std::array<std::array<std::size_t, 3>, 3> gap_slack_excluded {};
       std::size_t zero_gap_unknown = 0;
       std::size_t negative_unknown = 0;
       std::size_t nodes = 0;
@@ -337,6 +339,30 @@ int main(int argc, char** argv)
           dominant_axis, lead.distance, true);
         const auto negative = analyze_span(span, origin, direction,
           dominant_axis, lead.distance + 4.0, true);
+        std::array<bool, 3> slack_result {};
+        constexpr std::array<double, 3> comparison_slacks {
+          1.0e-10, 1.0e-8, 1.0e-6};
+        for (std::size_t i = 0; i < comparison_slacks.size(); ++i) {
+          unit_circle_slack = comparison_slacks[i];
+          slack_result[i] = analyze_span(span, origin, direction,
+            dominant_axis, lead.distance - gap, true).undecided == 0;
+          slack_excluded[i] += slack_result[i];
+        }
+        constexpr std::array<double, 3> comparison_gaps {
+          1.0e-11, 1.0e-8, 1.0e-5};
+        constexpr std::array<double, 3> matrix_slacks {
+          1.0e-12, 1.0e-8, 1.0e-6};
+        std::array<std::array<bool, 3>, 3> matrix_result {};
+        for (std::size_t g = 0; g < comparison_gaps.size(); ++g) {
+          for (std::size_t s = 0; s < matrix_slacks.size(); ++s) {
+            unit_circle_slack = matrix_slacks[s];
+            matrix_result[g][s] = analyze_span(span, origin, direction,
+              dominant_axis, lead.distance - comparison_gaps[g], true)
+              .undecided == 0;
+            gap_slack_excluded[g][s] += matrix_result[g][s];
+          }
+        }
+        unit_circle_slack = 1.0e-12;
         nodes += prefix.nodes;
         excluded_prefix += prefix.undecided == 0;
         rectangle_excluded += rectangle.undecided == 0;
@@ -349,6 +375,21 @@ int main(int argc, char** argv)
                   << ",\"rectangle_excluded\":"
                   << (rectangle.undecided == 0 ? "true" : "false")
                   << ",\"rectangle_nodes\":" << rectangle.nodes
+                  << ",\"slack_excluded\":["
+                  << (slack_result[0] ? "true" : "false") << ','
+                  << (slack_result[1] ? "true" : "false") << ','
+                  << (slack_result[2] ? "true" : "false") << ']'
+                  << ",\"gap_slack_excluded\":[";
+        for (std::size_t g = 0; g < matrix_result.size(); ++g) {
+          if (g != 0) std::cout << ',';
+          std::cout << '[';
+          for (std::size_t s = 0; s < matrix_result[g].size(); ++s) {
+            if (s != 0) std::cout << ',';
+            std::cout << (matrix_result[g][s] ? "true" : "false");
+          }
+          std::cout << ']';
+        }
+        std::cout << ']'
                   << ",\"zero_gap_undecided\":"
                   << (zero_gap.undecided != 0 ? "true" : "false")
                   << ",\"negative_control_undecided\":"
@@ -360,6 +401,19 @@ int main(int argc, char** argv)
                 << ",\"selected\":" << selected
                 << ",\"prefix_excluded\":" << excluded_prefix
                 << ",\"rectangle_excluded\":" << rectangle_excluded
+                << ",\"slack_excluded\":[" << slack_excluded[0] << ','
+                << slack_excluded[1] << ',' << slack_excluded[2] << ']'
+                << ",\"gap_slack_excluded\":[";
+      for (std::size_t g = 0; g < gap_slack_excluded.size(); ++g) {
+        if (g != 0) std::cout << ',';
+        std::cout << '[';
+        for (std::size_t s = 0; s < gap_slack_excluded[g].size(); ++s) {
+          if (s != 0) std::cout << ',';
+          std::cout << gap_slack_excluded[g][s];
+        }
+        std::cout << ']';
+      }
+      std::cout << ']'
                 << ",\"zero_gap_undecided\":" << zero_gap_unknown
                 << ",\"negative_control_undecided\":"
                 << negative_unknown << ",\"nodes\":" << nodes

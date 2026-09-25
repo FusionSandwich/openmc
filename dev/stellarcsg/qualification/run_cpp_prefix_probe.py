@@ -59,6 +59,20 @@ def main() -> int:
                          and all(not row.get("rectangle_excluded")
                                  or row.get("prefix_excluded") is True
                                  for row in span_rows)
+                         and all(len(row.get("slack_excluded", [])) == 3
+                                 and (not row["slack_excluded"][i + 1]
+                                      or row["slack_excluded"][i])
+                                 for row in span_rows for i in range(2))
+                         and all(len(row.get("gap_slack_excluded", [])) == 3
+                                 and all(len(line) == 3 for line in
+                                         row["gap_slack_excluded"])
+                                 and all(not row["gap_slack_excluded"][g][s + 1]
+                                         or row["gap_slack_excluded"][g][s]
+                                         for g in range(3) for s in range(2))
+                                 and all(not row["gap_slack_excluded"][g][s]
+                                         or row["gap_slack_excluded"][g + 1][s]
+                                         for g in range(2) for s in range(3))
+                                 for row in span_rows)
                          and all(sum(item.get("prefix_excluded") is True
                                      for item in span_rows
                                      if item.get("member") == row.get("member"))
@@ -75,6 +89,20 @@ def main() -> int:
                                          is True for item in span_rows
                                          if item.get("member") == row.get("member"))
                                  == row.get("negative_control_undecided")
+                                 and len(row.get("slack_excluded", [])) == 3
+                                 and all(sum(item["slack_excluded"][i]
+                                             for item in span_rows
+                                             if item.get("member") == row.get("member"))
+                                         == row.get("slack_excluded", [])[i]
+                                         for i in range(3))
+                                 and len(row.get("gap_slack_excluded", [])) == 3
+                                 and all(len(line) == 3 for line in
+                                         row["gap_slack_excluded"])
+                                 and all(sum(item["gap_slack_excluded"][g][s]
+                                             for item in span_rows
+                                             if item.get("member") == row.get("member"))
+                                         == row["gap_slack_excluded"][g][s]
+                                         for g in range(3) for s in range(3))
                                  for row in summaries))
     valid = (result.returncode == 0
              and underflow == [{"kind": "underflow_control",
@@ -88,22 +116,26 @@ def main() -> int:
                      and row.get("terminal_unresolved") is True
                      for row in summaries))
     receipt = {
-        "schema": "stellarcsg.cpp-prefix-interval-probe/v2",
-        "state": "EXPERIMENTAL_RECTANGLE_COMPARISON_NOT_ROOT_CERTIFIED" if valid
+        "schema": "stellarcsg.cpp-prefix-interval-probe/v4",
+        "state": "EXPERIMENTAL_GAP_SLACK_MATRIX_NOT_ROOT_CERTIFIED" if valid
                  else "EXPERIMENT_INCOMPLETE",
         "command": command,
         "exit_code": result.returncode,
         "loader_binding": matches[0],
         "affinity": sorted(os.sched_getaffinity(0)),
         "hashes": {str(path): sha256(path) for path in
-                   (args.binary, args.library, args.h5, args.source)},
+                   (args.binary, args.library, args.h5, args.source,
+                    Path(__file__).resolve())},
         "compile_contract": "GCC 14.2 -O2 -fno-fast-math -ffp-contract=off",
+        "unit_circle_slack_sweep": [1e-10, 1e-8, 1e-6],
+        "gap_slack_matrix": {"gaps_cm": [1e-11, 1e-8, 1e-5],
+                             "slacks": [1e-12, 1e-8, 1e-6]},
         "underflow_control": underflow,
         "span_counts_match": span_counts_match,
         "summaries": summaries,
         "production_solver_modified": False,
         "native_transport_run": False,
-        "claim_boundary": "The rectangle comparison tests whether unit-circle slack is needed for exclusions. Stored compiled powers are tested, but no complete floating-path audit or finite root-tile uniqueness proof exists; no tracking admission.",
+        "claim_boundary": "The gap-slack matrix is a sensitivity test, not a proved libm error bound. Stored compiled powers are tested, but no complete floating-path audit or finite root-tile uniqueness proof exists; no tracking admission.",
     }
     (args.output / "receipt.json").write_text(json.dumps(receipt, indent=2)
                                                 + "\n")
