@@ -1,0 +1,24 @@
+{
+  "schema": "stellarcsg.native-period-region/v1",
+  "state": "NATIVE_PERIOD_REGION_INITIALIZED_NO_TRANSPORT",
+  "command": [
+    "/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-local-continuation-20260925/build/native-local-20260925/probe_native_period_region",
+    "/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-local-continuation-20260925/dev/stellarcsg/reports/local-cont-20260925/provisional-period-region-bound-02"
+  ],
+  "exit_code": 0,
+  "loader_binding": "libopenmc.so => /mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-local-continuation-20260925/build/native-local-20260925/lib/libopenmc.so (0x00007ac6feb7a000)",
+  "affinity": [
+    0
+  ],
+  "hashes": {
+    "auditor": "0103675a19c90851b52d2b76d4f1e1cacfa80639343f6599b2a47f9901c1800c",
+    "helper_source": "c049bacb3904d3fa476a271f8f76271546f1315140a80b8433ada6b88d304bea",
+    "helper": "dbfd0209f5f88cc9377c73c953a2c03add6ac7144802604fd2a0e36b2d93cbda",
+    "libopenmc": "332118939749376a5eebef69e140e00313c8cc2e675e19079a2061ddf237873c",
+    "geometry_xml": "c73c996cfdb94ea0e4efb9c2bddb42300423705adf2ae75639ee08526ae8d86b",
+    "python_region_receipt": "3dd46a9794fcbdcebae593e442320493066817def04384680bddf4190f877fea",
+    "stdout": "e4d6e71a46848f73dfaf1df58fae3a4f4cc7e9183da268624530d91795e036c6",
+    "stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  "claim_boundary": "Native OpenMC read_geometry_xml initialized the two unfilled sector cells, six surfaces, reciprocal rotational periodic pair and swept selector without transport. No particle crossed a periodic plane; the physical winding pack, general swept root completeness, source, materials and one-period simulation remain unqualified."
+}

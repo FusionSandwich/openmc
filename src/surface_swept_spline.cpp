@@ -33,11 +33,13 @@ SurfaceSweptSpline::SurfaceSweptSpline(pugi::xml_node node) : Surface(node)
   const bool has_count = check_for_node(node, "dataset_count");
   const bool has_start = check_for_node(node, "dataset_start");
   const bool has_indices = check_for_node(node, "dataset_indices");
+  const bool has_member_ids = check_for_node(node, "member_content_ids");
   const bool contiguous = has_prefix && has_count && !has_indices;
   const bool indexed = has_prefix && has_indices && !has_count && !has_start;
   const bool collection = contiguous || indexed;
   if (!check_for_node(node, "data_file") ||
-      (single && (has_prefix || has_count || has_start || has_indices)) ||
+      (single && (has_prefix || has_count || has_start || has_indices
+                  || has_member_ids)) ||
       (!single && !collection))
     fatal_error(fmt::format(
       "Swept-spline surface {} requires data_file and exactly one of dataset "
@@ -104,6 +106,17 @@ SurfaceSweptSpline::SurfaceSweptSpline(pugi::xml_node node) : Surface(node)
   }
   if (check_for_node(node, "content_id"))
     content_id_ = get_node_value(node, "content_id", false, true);
+  if (collection && has_member_ids) {
+    const auto values = get_node_value(node, "member_content_ids", false, true);
+    std::istringstream stream {values};
+    std::string value;
+    while (stream >> value) member_content_ids_.push_back(value);
+    if (member_content_ids_.size()
+        != static_cast<std::size_t>(dataset_count_)) {
+      fatal_error(fmt::format("Swept-spline collection surface {} requires one "
+                              "member_content_id per selected dataset", id_));
+    }
+  }
   if (check_for_node(node, "units")
       && get_node_value(node, "units", true, true) != "cm")
     fatal_error(fmt::format("Swept-spline surface {} requires units='cm'", id_));
@@ -126,8 +139,11 @@ SurfaceSweptSpline::SurfaceSweptSpline(pugi::xml_node node) : Surface(node)
       for (int offset = 0; offset < dataset_count_; ++offset) {
         const int coil_id = indexed ? dataset_indices_[offset]
                                     : dataset_start_ + offset;
-        coils.push_back(stellarcsg::read_swept_spline_surface_hdf5(
-          filename, fmt::format("{}{:03d}", dataset_prefix_, coil_id)));
+        auto coil = stellarcsg::read_swept_spline_surface_hdf5(
+          filename, fmt::format("{}{:03d}", dataset_prefix_, coil_id),
+          has_member_ids ? member_content_ids_[offset] : std::string {});
+        if (!has_member_ids) member_content_ids_.push_back(coil.content_id);
+        coils.push_back(std::move(coil));
       }
       surface_set_ =
         std::make_unique<stellarcsg::CompiledSweptSplineSurfaceSet>(
@@ -206,6 +222,12 @@ void SurfaceSweptSpline::to_hdf5_inner(hid_t group) const
     write_string(group, "content_id", content_id_, false);
   } else {
     write_string(group, "dataset_prefix", dataset_prefix_, false);
+    std::string ids;
+    for (const auto& value : member_content_ids_) {
+      if (!ids.empty()) ids += ' ';
+      ids += value;
+    }
+    write_string(group, "member_content_ids", ids, false);
     if (!dataset_indices_.empty()) {
       std::string indices;
       for (const int value : dataset_indices_) {

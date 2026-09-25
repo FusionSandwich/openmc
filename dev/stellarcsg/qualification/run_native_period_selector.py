@@ -44,6 +44,7 @@ def main() -> int:
         raise ValueError("candidate manifest is not bound to the HDF5 input")
     selected = [row for row in manifest["members"] if row["sector_candidate"]]
     indices = [row["coil_id"] for row in selected]
+    content_ids = [row["content_id"] for row in selected]
     if len(indices) != manifest["sector_candidate_count"] or len(indices) != 18 \
             or len(indices) != len(set(indices)) or any(
                 row["dataset"] != f"/coils/coil_{row['coil_id']:03d}"
@@ -74,6 +75,7 @@ def main() -> int:
         rows[0].get("native_registered") is True and \
         rows[0].get("transport_run") is False
     serialized = False
+    identities_serialized = False
     python_roundtrip = False
     if registered and summary.is_file():
         with h5py.File(summary, "r") as handle:
@@ -83,24 +85,32 @@ def main() -> int:
                 value = value.decode()
             serialized = (value == selection and "dataset_count" not in group
                           and "dataset_start" not in group)
+            identities = group["member_content_ids"][()]
+            if isinstance(identities, bytes):
+                identities = identities.decode()
+            identities_serialized = identities == " ".join(content_ids)
             imported = openmc.Surface.from_hdf5(group)
             python_roundtrip = (
                 isinstance(imported, openmc.SweptSplineSurface)
                 and imported.dataset_indices == tuple(indices)
+                and imported.member_content_ids == tuple(content_ids)
                 and imported.dataset_prefix == "/coils/coil_"
                 and imported.data_file == str(args.h5.resolve()))
     receipt = {
         "schema": "stellarcsg.native-period-selector/v1",
         "state": "PASS_REPRESENTATION_ONLY" if registered and serialized
+                 and identities_serialized
                  and python_roundtrip else "FAIL",
         "command": command,
         "exit_code": result.returncode,
         "loader_binding": bindings[0],
         "affinity": sorted(os.sched_getaffinity(0)),
         "selected_member_ids": indices,
+        "selected_member_content_ids": content_ids,
         "selected_member_count": len(indices),
         "native_registered": registered,
         "statepoint_selector_roundtrip": serialized,
+        "statepoint_member_content_ids_roundtrip": identities_serialized,
         "python_statepoint_roundtrip": python_roundtrip,
         "native_transport_run": False,
         "hashes": {str(path.resolve()): sha256(path) for path in
@@ -108,7 +118,7 @@ def main() -> int:
                     args.source, Path(__file__), source_root / "openmc/surface.py")},
         "statepoint_sha256": sha256(summary) if summary.is_file() else None,
         "python_openmc_source": str(Path(openmc.__file__).resolve()),
-        "claim_boundary": "Native registration and selector serialization of the 18 provisional whole-coil candidates only; no seam ownership, clipping, material transport or root proof.",
+        "claim_boundary": "Native registration, ordered member-ID serialization and Python readback of the 18 provisional whole-coil candidates only; no seam ownership, clipping, material transport or root proof.",
     }
     (args.output / "receipt.json").write_text(json.dumps(receipt, indent=2) + "\n")
     print(json.dumps({"state": receipt["state"], "selected": len(indices)}))

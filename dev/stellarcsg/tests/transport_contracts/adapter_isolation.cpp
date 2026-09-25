@@ -208,6 +208,24 @@ int main(int argc,char** argv) {
       && test_reads[1].second=="/members/010"
       && s.distance({-2,0,0},{1,0,0},false)==1;
   });
+  check("indexed_collection_binds_ordered_member_ids","BLOCKED_COLLECTION_IDENTITY",[] {
+    auto n=indexed_collection();
+    n.attrs["member_content_ids"]="member-99 member-7";
+    openmc::SurfaceSweptSpline s(n);
+    return test_reads.size()==2 && test_reads[0].second=="/members/030"
+      && test_reads[1].second=="/members/010";
+  });
+  check("indexed_collection_rejects_swapped_member_ids","BLOCKED_COLLECTION_IDENTITY",[] {
+    auto n=indexed_collection();
+    n.attrs["member_content_ids"]="member-7 member-99";
+    return throws_any([&]{openmc::SurfaceSweptSpline s(n);})
+      && test_reads.size()==1;
+  });
+  check("indexed_collection_rejects_wrong_id_count","BLOCKED_COLLECTION_IDENTITY",[] {
+    auto n=indexed_collection(); n.attrs["member_content_ids"]="member-99";
+    return throws_any([&]{openmc::SurfaceSweptSpline s(n);})
+      && test_reads.empty();
+  });
   check("indexed_collection_rejects_duplicate_indices","BLOCKED_EXPLICIT_SELECTION",[] {
     auto n=indexed_collection(); n.attrs["dataset_indices"]="10 10";
     return throws_any([&]{openmc::SurfaceSweptSpline s(n);}) && test_reads.empty();
@@ -348,7 +366,8 @@ int main(int argc,char** argv) {
       H5P_DEFAULT,H5P_DEFAULT);
     indexed.to_hdf5_inner(indexed_group);
     const bool shape=H5Lexists(indexed_group,"dataset_indices",H5P_DEFAULT)>0
-      && H5Lexists(indexed_group,"dataset_count",H5P_DEFAULT)==0;
+      && H5Lexists(indexed_group,"dataset_count",H5P_DEFAULT)==0
+      && H5Lexists(indexed_group,"member_content_ids",H5P_DEFAULT)>0;
     const hid_t indices=H5Dopen2(indexed_group,"dataset_indices",H5P_DEFAULT);
     const hid_t indices_type=indices>=0 ? H5Dget_type(indices) : -1;
     char values[5]{};

@@ -2849,6 +2849,8 @@ class SweptSplineSurface(Surface):
         Positive number of consecutive collection groups.
     dataset_indices : sequence of int, optional
         Explicit numbered groups for a noncontiguous collection.
+    member_content_ids : sequence of str, optional
+        Canonical payload IDs in the same order as the selected groups.
     """
 
     _type = 'swept-spline'
@@ -2856,12 +2858,13 @@ class SweptSplineSurface(Surface):
 
     def __init__(self, data_file, dataset=None, content_id=None, *,
                  dataset_prefix=None, dataset_start=None, dataset_count=None,
-                 dataset_indices=None,
+                 dataset_indices=None, member_content_ids=None,
                  **kwargs):
         super().__init__(**kwargs)
         check_type('data_file', data_file, (str, Path))
         collection = (dataset_prefix is not None or dataset_count is not None
-                      or dataset_indices is not None)
+                      or dataset_indices is not None
+                      or member_content_ids is not None)
         if collection:
             if dataset is not None or content_id is not None:
                 raise ValueError('collection and single-member selectors cannot be mixed')
@@ -2879,6 +2882,7 @@ class SweptSplineSurface(Surface):
                 if len(set(dataset_indices)) != len(dataset_indices):
                     raise ValueError('dataset_indices must be unique')
                 dataset_indices = tuple(dataset_indices)
+                selected_count = len(dataset_indices)
             else:
                 if type(dataset_count) is not int or dataset_count <= 0:
                     raise ValueError('dataset_count must be a positive integer')
@@ -2888,6 +2892,15 @@ class SweptSplineSurface(Surface):
                     raise ValueError('dataset_start must be a nonnegative integer')
                 if dataset_start > 2**31 - dataset_count:
                     raise ValueError('dataset selector range exceeds signed 32-bit indices')
+                selected_count = dataset_count
+            if member_content_ids is not None:
+                if (not isinstance(member_content_ids, (list, tuple))
+                        or len(member_content_ids) != selected_count
+                        or any(not isinstance(value, str) or not value
+                               or any(character.isspace() for character in value)
+                               for value in member_content_ids)):
+                    raise ValueError('member_content_ids must match the selected datasets')
+                member_content_ids = tuple(member_content_ids)
         else:
             if dataset_start is not None:
                 raise ValueError('dataset_start requires a collection selector')
@@ -2904,16 +2917,17 @@ class SweptSplineSurface(Surface):
         self.dataset_start = dataset_start
         self.dataset_count = dataset_count
         self.dataset_indices = dataset_indices
+        self.member_content_ids = member_content_ids
 
     def is_equal(self, other):
         if type(other) is not type(self):
             return False
         return (self.data_file, self.dataset, self.content_id,
                 self.dataset_prefix, self.dataset_start, self.dataset_count,
-                self.dataset_indices) == (
+                self.dataset_indices, self.member_content_ids) == (
                     other.data_file, other.dataset, other.content_id,
                     other.dataset_prefix, other.dataset_start, other.dataset_count,
-                    other.dataset_indices)
+                    other.dataset_indices, other.member_content_ids)
 
     def _get_base_coeffs(self):
         return ()
@@ -2938,8 +2952,14 @@ class SweptSplineSurface(Surface):
                                       self.dataset_start + self.dataset_count))
                 datasets = [f'{self.dataset_prefix}{index:03d}' for index in indices]
             lower, upper = None, None
-            for dataset in datasets:
+            for position, dataset in enumerate(datasets):
                 group = h5[dataset]
+                if self.member_content_ids is not None:
+                    stored = group.attrs['content_id']
+                    if isinstance(stored, bytes):
+                        stored = stored.decode()
+                    if stored != self.member_content_ids[position]:
+                        raise ValueError('swept-spline member content ID mismatch')
                 if group.attrs['units'] not in ('cm', b'cm'):
                     raise ValueError("swept-spline payload units must be 'cm'")
                 for _, _, span_lower, span_upper in _swept_compiled_member_boxes(group):
@@ -2968,6 +2988,8 @@ class SweptSplineSurface(Surface):
             element.set('content_id', self.content_id)
         else:
             element.set('dataset_prefix', self.dataset_prefix)
+            if self.member_content_ids is not None:
+                element.set('member_content_ids', ' '.join(self.member_content_ids))
             if self.dataset_indices is not None:
                 element.set('dataset_indices', ' '.join(map(str, self.dataset_indices)))
             else:
@@ -2993,6 +3015,7 @@ class SweptSplineSurface(Surface):
         start = get_text(elem, 'dataset_start')
         count = get_text(elem, 'dataset_count')
         indices = get_text(elem, 'dataset_indices')
+        member_ids = get_text(elem, 'member_content_ids')
         if any(value is not None for value in (prefix, start, count, indices)):
             if dataset is not None or content_id is not None:
                 raise ValueError('collection and single-member selectors cannot be mixed')
@@ -3014,8 +3037,11 @@ class SweptSplineSurface(Surface):
                     if value is None or not value.isascii() or not value.isdecimal():
                         raise ValueError(f'{key} must be an unsigned decimal integer')
                     selectors[key] = int(value)
+            if member_ids is not None:
+                selectors['member_content_ids'] = member_ids.split()
         else:
-            selectors = {'dataset': dataset, 'content_id': content_id}
+            selectors = {'dataset': dataset, 'content_id': content_id,
+                         'member_content_ids': member_ids}
         return cls(data_file=get_text(elem, 'data_file'), **selectors, **kwargs)
 
     @classmethod
@@ -3041,9 +3067,13 @@ class SweptSplineSurface(Surface):
                              'dataset_start': int(group['dataset_start'][()])
                              if 'dataset_start' in group else 0,
                              'dataset_count': int(group['dataset_count'][()])}
+            if 'member_content_ids' in group:
+                selectors['member_content_ids'] = text('member_content_ids').split()
         else:
             selectors = {'dataset': text('dataset'),
-                         'content_id': text('content_id')}
+                         'content_id': text('content_id'),
+                         'member_content_ids': text('member_content_ids').split()
+                         if 'member_content_ids' in group else None}
         return cls(data_file=text('data_file'), **selectors, **kwargs)
 
 

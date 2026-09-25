@@ -44,6 +44,8 @@ def main() -> None:
     if (len(ids) != 18 or len(set(ids)) != 18
             or set(ids) != {row["coil_id"] for row in selected}):
         raise ValueError("candidate selected-set identity differs")
+    content_by_coil = {row["coil_id"]: row["content_id"] for row in selected}
+    member_content_ids = [content_by_coil[coil_id] for coil_id in ids]
     with h5py.File(args.h5) as h5:
         for row in selected:
             stored = h5[row["dataset"]].attrs["content_id"]
@@ -66,7 +68,8 @@ def main() -> None:
     x0.periodic_surface = y0
     coils = openmc.SweptSplineSurface(
         args.h5.resolve(), dataset_prefix="/coils/coil_",
-        dataset_indices=ids, surface_id=903)
+        dataset_indices=ids, member_content_ids=member_content_ids,
+        surface_id=903)
     radial = openmc.ZCylinder(r=radial_limit, boundary_type="vacuum",
                               surface_id=904)
     zmin = openmc.ZPlane(-axial_limit, boundary_type="vacuum", surface_id=905)
@@ -102,6 +105,7 @@ def main() -> None:
         "state": "PROVISIONAL_SECTOR_XML_ROUNDTRIP_ONLY",
         "field_period_degrees": 90,
         "selected_member_ids": ids,
+        "selected_member_content_ids": member_content_ids,
         "sector_halfspaces": ["x>=0", "y>=0"],
         "periodic_plane_ids": [901, 902],
         "coil_surface_id": 903,

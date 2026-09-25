@@ -150,6 +150,43 @@ def test_swept_collection_python_roundtrip_and_bounds(tmp_path):
     assert reloaded_geometry.get_all_surfaces()[302].is_equal(collection)
 
 
+def test_swept_collection_member_content_binding(tmp_path):
+    payload = tmp_path / 'bound-coils.h5'
+    ids = ('sha256:' + 'a' * 64, 'sha256:' + 'b' * 64)
+    with h5py.File(payload, 'w') as h5:
+        for index, content_id in zip((10, 11), ids):
+            group = h5.create_group(f'members/coil_{index:03d}')
+            group.attrs['units'] = 'cm'
+            group.attrs['content_id'] = content_id
+            group.attrs['length_cm'] = 20.0
+            group['centerline_coefficients'] = np.tile([float(index), 0., 0.], (4, 1))
+            group['major_radius_coefficients'] = np.full(4, 2.0)
+            group['minor_radius_coefficients'] = np.full(4, 1.0)
+    surface = openmc.SweptSplineSurface(
+        payload, dataset_prefix='/members/coil_', dataset_indices=[10, 11],
+        member_content_ids=ids)
+    xml = surface.to_xml_element()
+    assert xml.get('member_content_ids') == ' '.join(ids)
+    assert openmc.Surface.from_xml_element(xml).is_equal(surface)
+    assert surface.bounding_box('-').lower_left[0] < 8.0
+    with h5py.File(tmp_path / 'bound-summary.h5', 'w') as h5:
+        group = h5.create_group('surface 305')
+        for key, value in dict(type='swept-spline', boundary_type='transmission',
+                               data_file=str(payload), dataset_prefix='/members/coil_',
+                               dataset_indices='10 11',
+                               member_content_ids=' '.join(ids)).items():
+            group[key] = np.bytes_(value)
+        assert openmc.Surface.from_hdf5(group).is_equal(surface)
+    with pytest.raises(ValueError):
+        openmc.SweptSplineSurface(
+            payload, dataset_prefix='/members/coil_', dataset_indices=[10, 11],
+            member_content_ids=ids[:1])
+    with h5py.File(payload, 'r+') as h5:
+        h5['members/coil_011'].attrs.modify('content_id', 'sha256:' + 'c' * 64)
+    with pytest.raises(ValueError, match='member content ID mismatch'):
+        surface.bounding_box('-')
+
+
 def test_swept_python_box_contains_rounded_stored_power_witness(tmp_path):
     # Rounded cubic-power conversion can leave the rounded control hull by
     # one centimeter at this magnitude; the old Python bound missed it.

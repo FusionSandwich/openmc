@@ -1,0 +1,7 @@
+Isolated C++ adapter-contract build preflight, 2026-09-25.
+
+Current Windows RAM: 33,457,440 KiB total, 11,625,872 KiB free; C: free 82,099,752,960 B; D: free 501,475,790,848 B. OpenMC-Dev-D reports 25,200,033,792 B RAM total, 23,904,460,800 B free, WSL root 1,021,385,379,840 B free, and C:/D: mount free bytes consistent with Windows. Significant processes: ChatGPT 1.61/0.92 GB, vmmemWSL 1.51 GB, codex 1.25 GB, Memory Compression 0.93 GB, OneDrive 0.61 GB, MsMpEng 0.56 GB and Chrome 0.53 GB.
+
+Existing Windows Git 2.55, Python 3.12 and CMake 4.4; WSL GCC/G++ 14.2, CMake 3.31, Ninja 1.12, HDF5 1.14.5 and /opt/openmc-venv Python 3.13.5 are sufficient. Existing /opt/openmc-venv and /root/.cache/pip were confirmed; prior measured sizes 606 MiB and 152 MiB. Windows pip cache and local source checkouts (this StellarCSG worktree, D:/Scratch/stellarator_optimization, D:/Scratch/parastell and C:/HTS_transport/wistell-d-openmc) remain available. No Conda or ccache executable is needed. The existing native and standalone libraries are present.
+
+Planned software acquisition: 0 B. Planned command: use the existing g++ and HDF5 package flags in dev/stellarcsg/tests/transport_contracts/run_isolation.sh with one pinned CPU, 1.5 GiB address-space cap and bounded compile/test timeouts; write a new isolated output under the existing C: worktree. Estimated output below 20 MiB. Rollback is removal of only that verified new output directory after evidence capture, or leaving its files in place; no dependency environment, remote system or user data changes.

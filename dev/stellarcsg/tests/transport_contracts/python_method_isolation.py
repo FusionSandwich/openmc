@@ -134,17 +134,20 @@ def main():
         check('cpp_inner_hdf5_collection_keys', lambda:
               int(group['dataset_start'][()]) == 10
               and int(group['dataset_count'][()]) == 2
-              and group['dataset_prefix'][()].decode() == '/members/')
+              and group['dataset_prefix'][()].decode() == '/members/'
+              and group['member_content_ids'][()].decode() == 'member-7 member-42')
         check('cpp_collection_hdf5_python_roundtrip', lambda:
               (lambda loaded: loaded.data_file == 'payload.h5'
                and loaded.dataset is None and loaded.content_id is None
                and loaded.dataset_prefix == '/members/'
+               and loaded.member_content_ids == ('member-7', 'member-42')
                and loaded.dataset_start == 10 and loaded.dataset_count == 2)(
                    cls._from_hdf5(group, surface_id=902)),
               'BLOCKED_COLLECTION_PYTHON_REPRESENTATION')
         indexed_group = h5['surface 904']
         check('cpp_indexed_collection_hdf5_python_roundtrip', lambda:
               (lambda loaded: loaded.dataset_indices == (30, 10)
+               and loaded.member_content_ids == ('member-99', 'member-7')
                and loaded.dataset_count is None and loaded.dataset_start is None)(
                    cls._from_hdf5(indexed_group, surface_id=904)),
               'BLOCKED_EXPLICIT_SELECTION')
