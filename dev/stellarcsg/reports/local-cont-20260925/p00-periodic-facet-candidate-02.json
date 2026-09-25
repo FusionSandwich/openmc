@@ -1,0 +1,41 @@
+{
+  "schema": "stellarcsg.periodic-p00-facet-candidate/v1",
+  "classification": "DERIVED_PERIODIC_CAP_CANDIDATE_NOT_ACCEPTED_H5M",
+  "dataset": "/facets/one_period",
+  "content_id": "sha256:2167ba06b820b747143de1a22f4704e67a538cdec217bf7ffa0fd9b418536f4c",
+  "triangle_count": 3348,
+  "component_ids": [
+    8,
+    9,
+    10,
+    11,
+    12,
+    13,
+    14,
+    15,
+    16,
+    17,
+    18,
+    19,
+    20,
+    21,
+    22,
+    23,
+    24,
+    25
+  ],
+  "paired_cap_vertices": 90,
+  "paired_cap_triangles": 80,
+  "accepted_h5m_sha256": "549c42bf66b290f8f56b6f4d7523940c3b32b9d256d993ea42605f4dddb33e39",
+  "moved_vertex_occurrences": 938,
+  "maximum_accepted_vertex_displacement_cm": 0.003328773593059041,
+  "maximum_displacement_outward_cm": 0.0033287735930590413,
+  "piecewise_linear_hausdorff_upper_cm": 0.0033287735930590413,
+  "input_hashes": {
+    "accepted_payload": "126fdbec0a5795036ad75c7409f760652e47722d02f28fada89ddaf2fa71d9df",
+    "accepted_receipt": "acb484e5942dcd380c6fbbd741ab68df3f282c41cc6d7bf1170941abbb24b8ba",
+    "transformer": "8205f8099c849b6b8724568b249a3056bf5aa4fa70c174e3aa5d9728a4fa99e3"
+  },
+  "output_h5_sha256": "3db1723d250319d7e6e3d0a4cbbba7b88a68c830fba4214d001a8c2c2545c2d4",
+  "claim_boundary": "The derived candidate keeps the accepted triangle connectivity and component IDs, moving only vertices on paired periodic caps. Corresponding piecewise-linear triangles differ pointwise by at most the maximum vertex displacement, which also bounds their set Hausdorff distance. The derived payload is not byte-identical to the accepted H5M and is not a continuous-CAD or transport certification."
+}

@@ -39,16 +39,30 @@ def main() -> None:
     parser.add_argument("--source", required=True, type=Path)
     parser.add_argument("--payload", required=True, type=Path)
     parser.add_argument("--payload-receipt", required=True, type=Path)
+    parser.add_argument("--accepted-receipt", type=Path)
     parser.add_argument("--fixture", required=True, type=Path)
     parser.add_argument("--output", required=True, type=Path)
     args = parser.parse_args()
     if args.output.exists():
         parser.error("output directory must be new")
     source_receipt = json.loads(args.payload_receipt.read_text())
-    if (source_receipt["schema"] != "stellarcsg.p00-facet-payload/v1"
-            or source_receipt["output_h5_sha256"] != sha256(args.payload)
-            or source_receipt["input_sha256"]["fixture"] != sha256(args.fixture)):
+    accepted = source_receipt["schema"] == "stellarcsg.p00-facet-payload/v1"
+    derived = source_receipt["schema"] == "stellarcsg.periodic-p00-facet-candidate/v1"
+    if not (accepted or derived) or source_receipt["output_h5_sha256"] != sha256(args.payload):
         raise ValueError("facet payload or fixture differs from its receipt")
+    if accepted:
+        if source_receipt["input_sha256"]["fixture"] != sha256(args.fixture):
+            raise ValueError("accepted facet fixture differs")
+    else:
+        if args.accepted_receipt is None:
+            raise ValueError("derived payload requires --accepted-receipt")
+        ancestor = json.loads(args.accepted_receipt.read_text())
+        if (source_receipt["input_hashes"]["accepted_receipt"]
+                != sha256(args.accepted_receipt)
+                or source_receipt["input_hashes"]["accepted_payload"]
+                != ancestor["output_h5_sha256"]
+                or ancestor["input_sha256"]["fixture"] != sha256(args.fixture)):
+            raise ValueError("derived facet ancestry or fixture differs")
     identity = source_receipt["content_id"]
     args.output.mkdir(parents=True)
     summary = args.output / "statepoint-facet.h5"
@@ -137,6 +151,7 @@ def main() -> None:
     receipt = {
         "schema": "stellarcsg.native-facet-selector/v1",
         "state": "PASS_NATIVE_REGISTRATION_ONLY" if passed else "FAIL",
+        "payload_classification": source_receipt["classification"],
         "positive": positive, "wrong_expected_id": wrong_id,
         "tampered_payload": tamper,
         "inward_winding": inversion,
@@ -155,12 +170,14 @@ def main() -> None:
             "auditor": sha256(Path(__file__)),
             "payload": sha256(args.payload),
             "payload_receipt": sha256(args.payload_receipt),
+            "accepted_receipt": sha256(args.accepted_receipt)
+            if args.accepted_receipt else None,
             "fixture": sha256(args.fixture),
             "statepoint": sha256(summary) if summary.is_file() else None,
             "tampered_payload": sha256(tampered),
             "inward_winding_payload": sha256(inverted),
         },
-        "claim_boundary": "Native OpenMC facet-set registration, 108 accepted P00 probe sides, selector serialization and Python readback, plus wrong-ID, one-ULP tamper and hash-valid inward-winding rejection. No particle transport, continuous CAD bound, overlap proof or performance qualification."
+        "claim_boundary": "Native OpenMC facet-set registration, 108 P00 reference probe sides, selector serialization and Python readback, plus wrong-ID, one-ULP tamper and hash-valid inward-winding rejection. Payload classification distinguishes accepted H5M facets from the derived periodic candidate. No particle transport, continuous CAD bound, overlap proof or performance qualification."
     }
     (args.output / "receipt.json").write_text(json.dumps(receipt, indent=2) + "\n")
     print(json.dumps({"state": receipt["state"],

@@ -1,0 +1,50 @@
+{
+  "schema": "stellarcsg.native-facet-period-region/v1",
+  "state": "NATIVE_FACET_PERIOD_CONTROLS_PASS",
+  "payload_classification": "DERIVED_PERIODIC_CAP_CANDIDATE_NOT_ACCEPTED_H5M",
+  "native_region": {
+    "exit_code": 0,
+    "stdout": "{\"state\":\"NATIVE_FACET_PERIOD_REGION_INITIALIZED\",\"surfaces\":6,\"cells\":2,\"rotational_periodic_pair\":[901,902],\"facet_surface_id\":903,\"transport_run\":false}\n",
+    "stderr": "",
+    "loader_binding": "libopenmc.so => /mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-local-continuation-20260925/build/native-local-20260925/lib/libopenmc.so (0x00007e2bd56b1000)"
+  },
+  "periodic_plane_controls": {
+    "exit_code": 0,
+    "stdout": "{\"state\":\"NATIVE_PERIOD_PARTICLE_CROSSINGS_PASS\",\"crossings\":2,\"cell_id\":1002,\"transport_histories\":0}\n",
+    "stderr": "",
+    "loader_binding": "libopenmc.so => /mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-local-continuation-20260925/build/native-local-20260925/lib/libopenmc.so (0x00007c1f2db9e000)"
+  },
+  "coil_cap_handoffs": {
+    "exit_code": 0,
+    "stdout": "{\"cap_count\":[80,80],\"facet_first\":[0,0],\"periodic_plane_first\":[80,80],\"coil_handoff\":[80,80],\"further_facet_hit\":[0,0],\"histories\":0}\n",
+    "stderr": "",
+    "loader_binding": "libopenmc.so => /mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-local-continuation-20260925/build/native-local-20260925/lib/libopenmc.so (0x00007a3de98c8000)"
+  },
+  "unpaired_cap_planes_negative": {
+    "exit_code": 255,
+    "stdout": "",
+    "stderr": " ERROR: Periodic facet caps require reciprocal x=0/y=0 rotation\n",
+    "loader_binding": "libopenmc.so => /mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-local-continuation-20260925/build/native-local-20260925/lib/libopenmc.so (0x00007c5ebae44000)"
+  },
+  "unpaired_caps_rejected": true,
+  "plane_cap_triangles": {
+    "x_zero": 80,
+    "y_zero": 80
+  },
+  "affinity": [
+    0
+  ],
+  "hashes": {
+    "auditor": "61a328369efd42c174f13dcea92dda1844786a2db1523678bbd6ea20a7b0aa49",
+    "region_helper": "56cf5069673a0c82bd87d9e4ae4d9af00053b5c44372c30a981921855e2b1d0e",
+    "particle_helper": "30406380d18800030d22c6b19fd85239ebe365a51a6254a0868c4de71ca2e7cb",
+    "seam_helper": "72ec95f25c3381ce9279fe3bdb9715b19e51e7f6c7a821ff942a864cd139bf54",
+    "libopenmc": "f5a2d438974499e36fae7668d466f0ffec64b9998dc769d99c37186d0765fd94",
+    "geometry_xml": "113b938390a0a75fa30555402f54b9bf88d6199071432cbf9f7d8b55f9814fc7",
+    "unpaired_geometry_xml": "789adfce44ad4a72f1b33c8494e58b900e1603b33b67a3769de57d12ae854c88",
+    "python_region_receipt": "b9936c2741547e0fad1e7431eeeed655f974cbe0cf263559080e8b503997642e",
+    "selector_receipt": "520b6bbac978b7a7c2ee2b9a39b431ef05ccbea3532153c338cf790560a66226",
+    "payload": "3db1723d250319d7e6e3d0a4cbbba7b88a68c830fba4214d001a8c2c2545c2d4"
+  },
+  "claim_boundary": "The classified P00 facet union initializes natively in a 90-degree sector. Two complement particles cross the periodic planes at radius 2300 cm; 160 cap-interior coil particles select a periodic plane first and map back into the coil cell. An unpaired x=0/y=0 cap model is rejected before geometry use. This qualifies those deterministic cap points, not all seam edges, non-cap coil crossings, histories, materials, source clearance, continuous CAD fidelity or transport performance."
+}

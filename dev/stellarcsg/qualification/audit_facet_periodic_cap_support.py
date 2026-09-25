@@ -16,6 +16,12 @@ def sha256(path: Path) -> str:
     return hashlib.sha256(path.read_bytes()).hexdigest()
 
 
+def bitwise_triangle_keys(projected: np.ndarray) -> set:
+    bits = np.asarray(projected, dtype="<f8").view("<u8").reshape(-1, 3, 2)
+    return {tuple(sorted(tuple(map(int, vertex)) for vertex in triangle))
+            for triangle in bits}
+
+
 def boundary_edges(vertices: np.ndarray, axis: int):
     cap = vertices[np.max(np.abs(vertices[:, :, axis]), axis=1) <= 1e-10]
     projected = cap[:, :, [1, 2] if axis == 0 else [0, 2]]
@@ -102,15 +108,23 @@ def main() -> None:
     if args.output.exists():
         parser.error("output file must be new")
     prior = json.loads(args.payload_receipt.read_text())
-    if (prior["schema"] != "stellarcsg.p00-facet-payload/v1"
+    if (prior["schema"] not in (
+            "stellarcsg.p00-facet-payload/v1",
+            "stellarcsg.periodic-p00-facet-candidate/v1")
             or prior["output_h5_sha256"] != sha256(args.payload)):
-        raise ValueError("accepted payload hash differs from receipt")
+        raise ValueError("P00 payload hash differs from receipt")
     with h5py.File(args.payload, "r") as handle:
         vertices = handle["facets/one_period/triangle_vertices"][:]
     x_edges, x_third, x_triangles = boundary_edges(vertices, 0)
     y_edges, y_third, y_triangles = boundary_edges(vertices, 1)
     if len(x_edges) != 80 or len(y_edges) != 80:
-        raise ValueError("unexpected accepted cap boundary edge count")
+        raise ValueError("unexpected P00 cap boundary edge count")
+    x_cap = vertices[np.max(np.abs(vertices[:, :, 0]), axis=1) <= 1e-10]
+    y_cap = vertices[np.max(np.abs(vertices[:, :, 1]), axis=1) <= 1e-10]
+    x_triangle_keys = bitwise_triangle_keys(x_cap[:, :, [1, 2]])
+    y_triangle_keys = bitwise_triangle_keys(y_cap[:, :, [0, 2]])
+    bitwise_cap_match = (len(x_triangle_keys) == 80
+                         and x_triangle_keys == y_triangle_keys)
     x_to_y = sampled_directed_gap(x_edges, y_edges)
     y_to_x = sampled_directed_gap(y_edges, x_edges)
     outline_disagreement = {
@@ -118,12 +132,15 @@ def main() -> None:
                                              x_triangles, y_triangles),
         "y_to_x": near_outline_disagreement(y_edges, y_third,
                                              y_triangles, x_triangles)}
-    state = ("PERIODIC_CAP_OUTLINES_DIFFER"
+    state = ("PERIODIC_CAP_TRIANGLES_BITWISE_MATCH" if bitwise_cap_match
+             else "PERIODIC_CAP_OUTLINES_DIFFER"
              if max(x_to_y["maximum_cm"], y_to_x["maximum_cm"]) > 1e-8
              else "NO_SAMPLED_CAP_DIFFERENCE")
     receipt = {
         "schema": "stellarcsg.facet-periodic-cap-support/v1",
         "state": state,
+        "payload_classification": prior["classification"],
+        "bitwise_rotated_cap_triangle_match": bitwise_cap_match,
         "rotation_map": "x=0 cap (y,z) maps to y=0 cap (x,z)",
         "boundary_edge_count": {"x_zero": len(x_edges),
                                 "y_zero": len(y_edges)},
@@ -132,7 +149,7 @@ def main() -> None:
         "hashes": {"payload": sha256(args.payload),
                    "payload_receipt": sha256(args.payload_receipt),
                    "auditor": sha256(Path(__file__))},
-        "claim_boundary": "Distances are from 65 evenly spaced points per planar cap boundary edge to the opposite cap polyline after rotation. Inward offsets from each boundary-edge midpoint test whether points inside one cap are outside the paired cap. This demonstrates unequal accepted-mesh support at sampled points, but does not provide an exact continuous-CAD error bound or the area of the symmetric difference."
+        "claim_boundary": "Triangle equality compares unordered projected cap vertex triples bitwise after rotation. Distances sample 65 points per boundary edge; inward offsets test coverage near each edge midpoint. An exact triangle match applies only to this faceted representation and does not establish continuous-CAD equivalence or transport correctness."
     }
     args.output.write_text(json.dumps(receipt, indent=2) + "\n")
     print(json.dumps({"state": state,

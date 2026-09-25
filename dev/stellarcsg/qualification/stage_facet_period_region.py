@@ -1,4 +1,4 @@
-"""Stage an unfilled 90-degree CSG region using accepted P00 facets."""
+"""Stage an unfilled 90-degree CSG region from a bound P00 facet payload."""
 
 from __future__ import annotations
 
@@ -27,11 +27,16 @@ def main() -> None:
     if Path(openmc.__file__).resolve() != (repo / "openmc/__init__.py").resolve():
         raise ValueError("not using this OpenMC checkout")
     source = json.loads(args.payload_receipt.read_text())
-    if (source["schema"] != "stellarcsg.p00-facet-payload/v1"
+    accepted = source["schema"] == "stellarcsg.p00-facet-payload/v1"
+    derived = source["schema"] == "stellarcsg.periodic-p00-facet-candidate/v1"
+    if (not (accepted or derived)
             or source["output_h5_sha256"] != sha256(args.payload)
             or source["triangle_count"] != 3348
             or source["component_ids"] != list(range(8, 26))):
-        raise ValueError("accepted facet payload identity differs")
+        raise ValueError("P00 facet payload identity differs")
+    if derived and source["classification"] != \
+            "DERIVED_PERIODIC_CAP_CANDIDATE_NOT_ACCEPTED_H5M":
+        raise ValueError("derived facet classification differs")
     identity = source["content_id"]
     openmc.reset_auto_ids()
     x0 = openmc.XPlane(0.0, boundary_type="periodic", surface_id=901)
@@ -52,9 +57,10 @@ def main() -> None:
     zmin = openmc.ZPlane(-700.0, boundary_type="vacuum", surface_id=905)
     zmax = openmc.ZPlane(700.0, boundary_type="vacuum", surface_id=906)
     sector = +x0 & +y0 & -radial & +zmin & -zmax
-    coil_cell = openmc.Cell(cell_id=1001, name="accepted-mesh-coil-region",
+    label = "accepted-mesh" if accepted else "derived-periodic-mesh"
+    coil_cell = openmc.Cell(cell_id=1001, name=f"{label}-coil-region",
                             region=sector & -coils)
-    complement = openmc.Cell(cell_id=1002, name="accepted-mesh-complement",
+    complement = openmc.Cell(cell_id=1002, name=f"{label}-complement",
                              region=sector & +coils)
     args.output.mkdir(parents=True)
     xml = args.output / "geometry.xml"
@@ -73,7 +79,9 @@ def main() -> None:
         raise ValueError("facet period geometry roundtrip changed ownership")
     receipt = {
         "schema": "stellarcsg.facet-period-region/v1",
-        "state": "ACCEPTED_MESH_SECTOR_XML_ROUNDTRIP_ONLY",
+        "state": ("ACCEPTED_MESH_SECTOR_XML_ROUNDTRIP_ONLY" if accepted
+                  else "DERIVED_PERIODIC_FACET_SECTOR_XML_ROUNDTRIP_ONLY"),
+        "facet_source_classification": source["classification"],
         "field_period_degrees": 90,
         "facet_triangle_count": 3348,
         "facet_component_ids": list(range(8, 26)),
@@ -90,7 +98,7 @@ def main() -> None:
                    "payload": sha256(args.payload),
                    "payload_receipt": sha256(args.payload_receipt),
                    "geometry_xml": sha256(xml)},
-        "claim_boundary": "Python XML contains two complementary unfilled cells in a 90-degree x/y sector, with a hash-bound accepted P00 facet union, paired periodic planes and explicit facet cap delegation. Native seam ownership, mesh-to-continuous-CAD fidelity, histories, materials, source clearance and transport remain unqualified."
+        "claim_boundary": ("Python XML contains two complementary unfilled cells in a 90-degree x/y sector, with a hash-bound P00 facet union, paired periodic planes and explicit facet cap delegation. The source classification identifies whether the payload preserves accepted H5M triangles or is a derived periodic candidate. Native seam ownership, mesh-to-continuous-CAD fidelity, histories, materials, source clearance and transport remain unqualified.")
     }
     (args.output / "receipt.json").write_text(json.dumps(receipt, indent=2) + "\n")
     print(receipt["state"])

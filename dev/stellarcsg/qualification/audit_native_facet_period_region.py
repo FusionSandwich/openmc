@@ -53,11 +53,20 @@ def main() -> None:
         parser.error("output directory must be new")
     prior = json.loads((args.region / "receipt.json").read_text())
     selector = json.loads(args.selector_receipt.read_text())
-    if (prior["state"] != "ACCEPTED_MESH_SECTOR_XML_ROUNDTRIP_ONLY"
+    classification = prior.get(
+        "facet_source_classification", "ACCEPTED_P00_TRIANGLES_PRESERVED_IN_HDF5")
+    selector_classification = selector.get(
+        "payload_classification", "ACCEPTED_P00_TRIANGLES_PRESERVED_IN_HDF5")
+    if (prior["state"] not in (
+            "ACCEPTED_MESH_SECTOR_XML_ROUNDTRIP_ONLY",
+            "DERIVED_PERIODIC_FACET_SECTOR_XML_ROUNDTRIP_ONLY")
             or prior["hashes"]["geometry_xml"] != sha256(args.region / "geometry.xml")
             or prior["hashes"]["payload"] != sha256(args.payload)
             or prior["periodic_caps"] != "x0 y0"
             or selector["state"] != "PASS_NATIVE_REGISTRATION_ONLY"
+            or selector_classification != classification
+            or selector["hashes"]["payload_receipt"]
+            != prior["hashes"]["payload_receipt"]
             or selector["hashes"]["library"] != sha256(args.library)
             or selector["hashes"]["payload"] != sha256(args.payload)):
         raise ValueError("region, payload, library or selector receipt mismatch")
@@ -116,6 +125,7 @@ def main() -> None:
     receipt = {
         "schema": "stellarcsg.native-facet-period-region/v1",
         "state": "NATIVE_FACET_PERIOD_CONTROLS_PASS" if passed else "FAIL",
+        "payload_classification": classification,
         "native_region": native,
         "periodic_plane_controls": periodic,
         "coil_cap_handoffs": seam,
@@ -136,7 +146,7 @@ def main() -> None:
             "selector_receipt": sha256(args.selector_receipt),
             "payload": sha256(args.payload),
         },
-        "claim_boundary": "The accepted facet union initializes natively in a 90-degree sector. Two complement particles cross the periodic planes at radius 2300 cm; 160 cap-interior coil particles select a periodic plane first and map back into the coil cell. An unpaired x=0/y=0 cap model is rejected before geometry use. This qualifies those deterministic cap points, not all seam edges, non-cap coil crossings, histories, materials, source clearance, continuous CAD fidelity or transport performance."
+        "claim_boundary": "The classified P00 facet union initializes natively in a 90-degree sector. Two complement particles cross the periodic planes at radius 2300 cm; 160 cap-interior coil particles select a periodic plane first and map back into the coil cell. An unpaired x=0/y=0 cap model is rejected before geometry use. This qualifies those deterministic cap points, not all seam edges, non-cap coil crossings, histories, materials, source clearance, continuous CAD fidelity or transport performance."
     }
     (args.output / "receipt.json").write_text(json.dumps(receipt, indent=2) + "\n")
     print(json.dumps({"state": receipt["state"],

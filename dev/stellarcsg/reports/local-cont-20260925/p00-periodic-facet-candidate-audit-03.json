@@ -1,0 +1,18 @@
+{
+  "schema": "stellarcsg.periodic-p00-facet-candidate-audit/v1",
+  "state": "PASS_PERIODIC_CANDIDATE_MESH_COMPARISON",
+  "triangle_count": 3348,
+  "changed_distinct_cap_vertices": 180,
+  "changed_vertex_occurrences": 938,
+  "maximum_vertex_displacement_cm": 0.003328773593059041,
+  "piecewise_linear_hausdorff_upper_cm": 0.0033287735930590413,
+  "rotated_cap_triangles_bitwise_equal": true,
+  "hashes": {
+    "auditor": "ccc71ac13101a8c2b22c1422294601c07c8378250de88c01cd15503d988dfe73",
+    "accepted_payload": "126fdbec0a5795036ad75c7409f760652e47722d02f28fada89ddaf2fa71d9df",
+    "accepted_receipt": "acb484e5942dcd380c6fbbd741ab68df3f282c41cc6d7bf1170941abbb24b8ba",
+    "candidate_payload": "3db1723d250319d7e6e3d0a4cbbba7b88a68c830fba4214d001a8c2c2545c2d4",
+    "candidate_receipt": "ccd8a119a10a18be0eeddfd5bb051b44fd883c6555e0dc3b6f40af3874a38c4e"
+  },
+  "claim_boundary": "Independent vertex-array comparison confirms identical triangle order and component IDs, movement only of the 180 original cap vertices, bitwise paired cap triangles and the stated maximum displacement. The same barycentric point on each pair of corresponding triangles differs by at most the maximum vertex displacement; therefore it bounds the piecewise-linear surface Hausdorff distance. This does not bound accepted-mesh error relative to continuous CAD or qualify histories."
+}

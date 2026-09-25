@@ -1,0 +1,8 @@
+audit_facet_periodic_cap_support.py text eol=lf
+audit_native_facet_period_region.py text eol=lf
+audit_native_facet_selector.py text eol=lf
+audit_periodic_facet_tracking_smoke.py text eol=lf
+audit_periodic_p00_facet_candidate.py text eol=lf
+stage_facet_period_region.py text eol=lf
+stage_periodic_facet_tracking_smoke.py text eol=lf
+stage_periodic_p00_facet_candidate.py text eol=lf
