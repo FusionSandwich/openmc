@@ -57,8 +57,21 @@ void validate(const SweptSplineSurfaceData& data)
       || data.minor_radius_coefficients.size() != data.sample_count) {
     throw std::invalid_argument("Swept-spline coefficient dimensions are inconsistent");
   }
-  if (!(data.length > 0.0) || !(data.characteristic_length > 0.0)) {
-    throw std::invalid_argument("Swept-spline length scales must be positive");
+  if (!std::isfinite(data.length) || !(data.length > 0.0)
+      || !std::isfinite(data.characteristic_length)
+      || !(data.characteristic_length > 0.0)) {
+    throw std::invalid_argument("Swept-spline length scales must be finite and positive");
+  }
+  const auto finite_coefficients = [](const std::vector<double>& values) {
+    return std::all_of(values.begin(), values.end(),
+      [](double value) { return std::isfinite(value); });
+  };
+  if (!finite_coefficients(data.centerline_coefficients)
+      || !finite_coefficients(data.normal_coefficients)
+      || !finite_coefficients(data.binormal_coefficients)
+      || !finite_coefficients(data.major_radius_coefficients)
+      || !finite_coefficients(data.minor_radius_coefficients)) {
+    throw std::invalid_argument("Swept-spline coefficients must be finite");
   }
   for (const double radius : data.major_radius_coefficients) {
     if (!(radius > 0.0)) throw std::invalid_argument("Major radii must be positive");

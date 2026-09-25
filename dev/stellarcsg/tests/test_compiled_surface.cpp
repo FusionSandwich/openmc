@@ -10,6 +10,7 @@
 #include <cstdlib>
 #include <iostream>
 #include <iomanip>
+#include <limits>
 #include <stdexcept>
 #include <string>
 #include <vector>
@@ -371,6 +372,31 @@ void test_exact_circular_swept_coil()
   }
   near_torus_data.major_radius_coefficients[0] += 2.0e-6;
   near_torus_data.minor_radius_coefficients[0] += 2.0e-6;
+  const auto rejects_invalid = [&](const auto& mutate) {
+    auto invalid = near_torus_data;
+    mutate(invalid);
+    try {
+      const stellarcsg::CompiledSweptSplineSurface rejected {std::move(invalid)};
+      return false;
+    } catch (const std::invalid_argument&) {
+      return true;
+    }
+  };
+  check(rejects_invalid([](auto& invalid) {
+    invalid.centerline_coefficients[0] =
+      std::numeric_limits<double>::quiet_NaN();
+  }), "nonfinite centerline coefficient is rejected before compilation");
+  check(rejects_invalid([](auto& invalid) {
+    invalid.normal_coefficients[0] =
+      std::numeric_limits<double>::infinity();
+  }), "nonfinite frame coefficient is rejected before compilation");
+  check(rejects_invalid([](auto& invalid) {
+    invalid.major_radius_coefficients[0] =
+      std::numeric_limits<double>::infinity();
+  }), "nonfinite radius coefficient is rejected before compilation");
+  check(rejects_invalid([](auto& invalid) {
+    invalid.length = std::numeric_limits<double>::infinity();
+  }), "nonfinite sweep length is rejected before compilation");
   auto surrogate_data = near_torus_data;
   auto set_data = near_torus_data;
   const stellarcsg::CompiledSweptSplineSurface near_torus {
