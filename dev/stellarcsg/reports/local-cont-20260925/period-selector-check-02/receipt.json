@@ -1,0 +1,375 @@
+{
+  "schema": "stellarcsg.period-candidate-selector-check/v1",
+  "state": "PYTHON_SELECTORS_18_OF_18_NO_TRANSPORT",
+  "hashes": {
+    "h5_sha256": "caeed2e41da2082b93d32758e40932d9ac268966998dc2664e8164cb8cb7a89b",
+    "manifest_sha256": "1c0df0e1e3b5ad635c296cc216d67fee1a53e93f5d2457734c7aa892a1b93481",
+    "surface_py_sha256": "4b8a8d3ce51e4bcd291600903a18c675f535e29cd9dd5ac86bba269ae1d98b6d",
+    "verifier_sha256": "4fe6218f820e73213ec83b6d9354fd8eeae9f57c3f11fc3a4cc05625d901cedf"
+  },
+  "selected_count": 18,
+  "rows": [
+    {
+      "member": "coil_1000",
+      "surface_id": 1000,
+      "rotational_family": 0,
+      "quarter_turns_from_canonical": 0,
+      "dataset": "/coils/coil_1000",
+      "content_id": "sha256:fc256b0b2214b4c93150ac8f05f339b9da2bca757b6bcaba5fbc9a262c2c9904",
+      "bounds_cm": [
+        [
+          1016.2265552319808,
+          -125.45937484591077,
+          -387.7614468233464
+        ],
+        [
+          1555.3585514716315,
+          275.64895135271166,
+          477.9730382842597
+        ]
+      ]
+    },
+    {
+      "member": "coil_1002",
+      "surface_id": 1002,
+      "rotational_family": 0,
+      "quarter_turns_from_canonical": 1,
+      "dataset": "/coils/coil_1002",
+      "content_id": "sha256:ad02afd912f55b74e2ce26f9811c101c7ad60a1634aef929b3aa04fc626d3fde",
+      "bounds_cm": [
+        [
+          -275.6490146925845,
+          1016.2265589741961,
+          -387.7614468233463
+        ],
+        [
+          125.45932872313293,
+          1555.358548193727,
+          477.9730382842597
+        ]
+      ]
+    },
+    {
+      "member": "coil_1001",
+      "surface_id": 1001,
+      "rotational_family": 1,
+      "quarter_turns_from_canonical": 0,
+      "dataset": "/coils/coil_1001",
+      "content_id": "sha256:483b0b89d9e5e3b1a4b4f96163bdf71a4ef6cdad10b49cd9ddf8972d8a12c61d",
+      "bounds_cm": [
+        [
+          1016.2265552319808,
+          -275.64895135271166,
+          -477.9730382842597
+        ],
+        [
+          1555.3585514716315,
+          125.45937484591077,
+          387.7614468233464
+        ]
+      ]
+    },
+    {
+      "member": "coil_1007",
+      "surface_id": 1007,
+      "rotational_family": 1,
+      "quarter_turns_from_canonical": 1,
+      "dataset": "/coils/coil_1007",
+      "content_id": "sha256:82bd83436dee8d74490af47a5f13e205524f832e8b058d4756970c73187d8810",
+      "bounds_cm": [
+        [
+          -125.45923647757648,
+          1016.2265664586245,
+          -477.97303828426
+        ],
+        [
+          275.6491413723287,
+          1555.3585416379092,
+          387.7614468233463
+        ]
+      ]
+    },
+    {
+      "member": "coil_1008",
+      "surface_id": 1008,
+      "rotational_family": 2,
+      "quarter_turns_from_canonical": 0,
+      "dataset": "/coils/coil_1008",
+      "content_id": "sha256:3a9d39884407b1a1afe6e342ba6d619fd05627f3e8bd491d07a9bc0dadc2e2b4",
+      "bounds_cm": [
+        [
+          833.0256451792826,
+          -2.7119523703191053,
+          -301.14643976617987
+        ],
+        [
+          1276.3663263173842,
+          538.0567862618653,
+          530.9768184514119
+        ]
+      ]
+    },
+    {
+      "member": "coil_1010",
+      "surface_id": 1010,
+      "rotational_family": 2,
+      "quarter_turns_from_canonical": 1,
+      "dataset": "/coils/coil_1010",
+      "content_id": "sha256:7e8594ac9684559d8aaaae6d44a8b7441908e643dad6c67c49634dda4d690391",
+      "bounds_cm": [
+        [
+          -538.0568403681948,
+          833.0256379256487,
+          -301.14643976618
+        ],
+        [
+          2.711913151555885,
+          1276.3663036244157,
+          530.976818451412
+        ]
+      ]
+    },
+    {
+      "member": "coil_1009",
+      "surface_id": 1009,
+      "rotational_family": 3,
+      "quarter_turns_from_canonical": 0,
+      "dataset": "/coils/coil_1009",
+      "content_id": "sha256:02a5bce378a671e7c29877a6a07756cfaddd2da404ae1f8bc7df4a5b61e54b7b",
+      "bounds_cm": [
+        [
+          833.0256451792826,
+          -538.0567862618653,
+          -530.9768184514119
+        ],
+        [
+          1276.3663263173842,
+          2.7119523703191053,
+          301.14643976617987
+        ]
+      ]
+    },
+    {
+      "member": "coil_1015",
+      "surface_id": 1015,
+      "rotational_family": 3,
+      "quarter_turns_from_canonical": 1,
+      "dataset": "/coils/coil_1015",
+      "content_id": "sha256:f1f18848fab28de112d11a6963da52aa89234bdb4e59788ea12c67e54e529471",
+      "bounds_cm": [
+        [
+          -2.711834714030127,
+          833.0256234183732,
+          -530.9768184514119
+        ],
+        [
+          538.0569485808504,
+          1276.3662582384688,
+          301.14643976618
+        ]
+      ]
+    },
+    {
+      "member": "coil_1016",
+      "surface_id": 1016,
+      "rotational_family": 4,
+      "quarter_turns_from_canonical": 0,
+      "dataset": "/coils/coil_1016",
+      "content_id": "sha256:b97f4c3f7eab12c4eff72e5b1fd134c838801e8476752724acb97e9ac6df8616",
+      "bounds_cm": [
+        [
+          430.5917470280116,
+          90.68538553870067,
+          -221.63431871392007
+        ],
+        [
+          1110.855343246982,
+          775.1464781659873,
+          456.02614135738014
+        ]
+      ]
+    },
+    {
+      "member": "coil_1023",
+      "surface_id": 1023,
+      "rotational_family": 5,
+      "quarter_turns_from_canonical": 1,
+      "dataset": "/coils/coil_1023",
+      "content_id": "sha256:6c3c2c8567941b956123bf374c1f74135cd73181e05db8ceeaff3250885f8929",
+      "bounds_cm": [
+        [
+          90.68547456562621,
+          430.59171122993354,
+          -456.02614135737997
+        ],
+        [
+          775.1465994787978,
+          1110.8552564387135,
+          221.63431871392018
+        ]
+      ]
+    },
+    {
+      "member": "coil_1024",
+      "surface_id": 1024,
+      "rotational_family": 6,
+      "quarter_turns_from_canonical": 0,
+      "dataset": "/coils/coil_1024",
+      "content_id": "sha256:aca4f29c49061eb76ce8ded08d6cf001fbdd368bffda6e2ba825c9884c2ab330",
+      "bounds_cm": [
+        [
+          164.49930475188862,
+          344.4599142800989,
+          -346.7594936194436
+        ],
+        [
+          903.3731208079349,
+          1015.7343325298453,
+          213.27813865415789
+        ]
+      ]
+    },
+    {
+      "member": "coil_1031",
+      "surface_id": 1031,
+      "rotational_family": 7,
+      "quarter_turns_from_canonical": 1,
+      "dataset": "/coils/coil_1031",
+      "content_id": "sha256:086d4b8325b80a847acddfbf92b1253eed3728b97963e14aec5097ce8c8d743c",
+      "bounds_cm": [
+        [
+          344.4599968014656,
+          164.49922027644254,
+          -213.27813865415797
+        ],
+        [
+          1015.7344306632928,
+          903.3730101251982,
+          346.7594936194435
+        ]
+      ]
+    },
+    {
+      "member": "coil_1032",
+      "surface_id": 1032,
+      "rotational_family": 8,
+      "quarter_turns_from_canonical": 0,
+      "dataset": "/coils/coil_1032",
+      "content_id": "sha256:1a3b8abf4d011ddf508a5829f2c43dd9755980e090786d050660f301771d7617",
+      "bounds_cm": [
+        [
+          54.65893954640304,
+          584.60156643118,
+          -521.9535041145501
+        ],
+        [
+          682.8741693002395,
+          1175.8471173617088,
+          248.4037054571238
+        ]
+      ]
+    },
+    {
+      "member": "coil_1039",
+      "surface_id": 1039,
+      "rotational_family": 9,
+      "quarter_turns_from_canonical": 1,
+      "dataset": "/coils/coil_1039",
+      "content_id": "sha256:a96313718bee1aac6c1f601e2aa180c1f686bde96017990968353ba0ec628b3b",
+      "bounds_cm": [
+        [
+          584.6016004222519,
+          54.65883743978767,
+          -248.40370545712383
+        ],
+        [
+          1175.847192406712,
+          682.8740483061681,
+          521.9535041145505
+        ]
+      ]
+    },
+    {
+      "member": "coil_1040",
+      "surface_id": 1040,
+      "rotational_family": 10,
+      "quarter_turns_from_canonical": 0,
+      "dataset": "/coils/coil_1040",
+      "content_id": "sha256:4d6dcce8a877e3db3e3ba3289788b4257ff470110b47e1a8cc28050efb92d30d",
+      "bounds_cm": [
+        [
+          -60.32528233218568,
+          970.6194447264885,
+          -544.9338858121237
+        ],
+        [
+          429.90974972848124,
+          1446.4317953118473,
+          335.7049547107261
+        ]
+      ]
+    },
+    {
+      "member": "coil_1046",
+      "surface_id": 1046,
+      "rotational_family": 10,
+      "quarter_turns_from_canonical": 3,
+      "dataset": "/coils/coil_1046",
+      "content_id": "sha256:9d4b536441e2b0a877adc2cd71dbf74b6fff48a5ec364dfac0cc48877ae80617",
+      "bounds_cm": [
+        [
+          970.619442064138,
+          -429.9095716813561,
+          -544.9338858121235
+        ],
+        [
+          1446.4318413601886,
+          60.325412035088135,
+          335.7049547107262
+        ]
+      ]
+    },
+    {
+      "member": "coil_1047",
+      "surface_id": 1047,
+      "rotational_family": 11,
+      "quarter_turns_from_canonical": 1,
+      "dataset": "/coils/coil_1047",
+      "content_id": "sha256:0b837ebadc0e3546cba559a318b2cc983cddb1a157d7ea57d756a54c47083983",
+      "bounds_cm": [
+        [
+          970.619442064138,
+          -60.325412035088135,
+          -335.7049547107262
+        ],
+        [
+          1446.4318413601886,
+          429.9095716813561,
+          544.9338858121235
+        ]
+      ]
+    },
+    {
+      "member": "coil_1045",
+      "surface_id": 1045,
+      "rotational_family": 11,
+      "quarter_turns_from_canonical": 2,
+      "dataset": "/coils/coil_1045",
+      "content_id": "sha256:157e3805ed202ffc4d881f7be99a8127704f68a5019657e63e6919066a6a7309",
+      "bounds_cm": [
+        [
+          -429.90963103039877,
+          970.6194429515898,
+          -335.704954710726
+        ],
+        [
+          60.3253688007872,
+          1446.431826010744,
+          544.9338858121238
+        ]
+      ]
+    }
+  ],
+  "native_cpp_transport_run": false,
+  "claim_boundary": "Actual candidate HDF5 selectors round-trip through the local OpenMC Python API with finite broad bounds. Whole surfaces remain untrimmed; physical-image identity, seam ownership, C++ roots, one-period transport and fidelity are unqualified."
+}
