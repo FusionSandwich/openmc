@@ -77,3 +77,6 @@ dev/stellarcsg/reports/local-cont-20260925/p00-magnet-union-bank-01/*.json text 
 dev/stellarcsg/qualification/audit_p00_magnet_union_equivalence.py text eol=lf
 dev/stellarcsg/reports/local-cont-20260925/p00-magnet-union-equivalence-01.json text eol=lf
 dev/stellarcsg/reports/local-cont-20260925/p00-magnet-union-equivalence-02.json text eol=lf
+dev/stellarcsg/qualification/audit_compiled_horner_enclosure.py text eol=lf
+dev/stellarcsg/reports/local-cont-20260925/compiled-horner-enclosure-02.json text eol=lf
+dev/stellarcsg/reports/local-cont-20260925/compiled-horner-enclosure-03.json text eol=lf
