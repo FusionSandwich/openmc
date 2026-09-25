@@ -1,0 +1,23 @@
+{
+  "schema": "stellarcsg.compiled-span-box-exact/v1",
+  "state": "ALL_ANALYTIC_REAL_CENTERLINE_BOXES_ENCLOSE",
+  "member_spans": {
+    "2": 256,
+    "3": 384
+  },
+  "axes_per_span": 3,
+  "tiles_per_axis": 16,
+  "exact_interval_tests": 30720,
+  "minimum_exact_margin_cm": 1e-323,
+  "sha256": {
+    "auditor": "932604601619f8bea445c7062ac0044a48f67cd16285556dae77adbbfade4016",
+    "boxes": "c14b80516f33ab741f2bc2a72d981c97f10955312c91af27489e1f066d4430f1",
+    "previous_powers": "64b038d56be85866e3dd364134061059885e04e64c01b042cc782d1f773edf3a",
+    "helper_source": "af58db1de0749c96723279dcc366575538600be186417b0cf65b9ff3c93296df",
+    "production_source": "dd4db0fb66dda806f0061f67e4d3ad0b673c5a46d1598f667191016a2157c163",
+    "helper_executable": "05c5d30edc3f55b5bebf69c078ef36512262feb3a4778739f44771b834a8b30b",
+    "standalone_library": "f932ab34f0c369f014e9a5cae2e96b7d9e5c9220ae25adb07f84cd85960f6946",
+    "analytic_h5": "39f77da5ab1fe427cce58b153e9b52cf8915e9973a9b8f3dfad5ab3b00a9e46d"
+  },
+  "claim_boundary": "All 640 current compiled analytic span boxes enclose the continuous real cubic represented by their bitwise-matched stored powers, by exact rational interval Horner on 16 local-u tiles. This does not independently enclose rounded C++ frame evaluation, validate BVH node traversal, certify nearest-center selection, prove earlier surface roots absent, or generalize to arbitrary imported coils."
+}

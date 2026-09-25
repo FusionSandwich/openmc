@@ -12,3 +12,5 @@ dev/stellarcsg/experiments/swept_prefix_interval.cpp text eol=lf
 dev/stellarcsg/qualification/run_cpp_prefix_probe.py text eol=lf
 dev/stellarcsg/qualification/run_native_adapter_smoke.py text eol=lf
 dev/stellarcsg/qualification/native_adapter_smoke.cpp text eol=lf
+dev/stellarcsg/experiments/dump_compiled_span_boxes.cpp text eol=lf
+dev/stellarcsg/qualification/audit_compiled_span_boxes.py text eol=lf
