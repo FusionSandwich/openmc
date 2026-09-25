@@ -673,6 +673,42 @@ void test_swept_earlier_unresolved_candidate()
     "earlier candidate remains terminal unresolved without root certificate");
 }
 
+void test_swept_multimodal_centerline_span()
+{
+  // A cubic span has two distance minima from the origin. The prior single
+  // golden-section bracket selected another span's 0.23890634 cm^2 point
+  // instead of the interior 0.17279941 cm^2 point in span zero.
+  stellarcsg::SweptSplineSurfaceData data;
+  data.coil_id = 9001;
+  data.sample_count = 8;
+  data.length = 8.0;
+  data.characteristic_length = 30.0;
+  data.centerline_coefficients = {
+     0.6829578857775811,   0.4558376479511903, -0.24574062740129754,
+     1.3166620668636353,  -0.6659930105554357, -0.3817898110933077,
+    -9.058890596848563,   10.948100204060806,   3.1376619635957796,
+   -20.0,                 20.0,                 0.0,
+   -20.0,                  0.0,                 0.0,
+   -20.0,                -20.0,                 0.0,
+   -10.0,                -15.0,                 0.0,
+    -3.6241791045456067,  -3.3552421145334383,  3.2594525742483245};
+  for (int i = 0; i < 8; ++i) {
+    data.normal_coefficients.insert(data.normal_coefficients.end(),
+      {0.0, 0.0, 1.0});
+    data.binormal_coefficients.insert(data.binormal_coefficients.end(),
+      {0.0, 1.0, 0.0});
+  }
+  data.major_radius_coefficients.assign(8, 1.0);
+  data.minor_radius_coefficients.assign(8, 1.0);
+  const stellarcsg::CompiledSweptSplineSurface surface {std::move(data)};
+  const auto nearest = surface.local_coordinates({0.0, 0.0, 0.0});
+  check_near(nearest.arc_coordinate, 0.08048901989047327, 1.0e-10,
+    "multimodal span selects the interior nearest centerline parameter");
+  check_near(stellarcsg::norm_squared(nearest.center),
+    0.17279940860022003, 1.0e-10,
+    "multimodal span selects the globally nearer centerline point");
+}
+
 void test_sha256_known_vector()
 {
   stellarcsg::Sha256 digest;
@@ -706,6 +742,7 @@ int main()
     test_extreme_scale_frame_normalization();
     test_swept_span_horner_bounds();
     test_swept_earlier_unresolved_candidate();
+    test_swept_multimodal_centerline_span();
     test_sha256_known_vector();
 #ifdef STELLARCSG_HAS_HDF5
     test_hdf5_round_trip();

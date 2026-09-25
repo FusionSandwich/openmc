@@ -173,6 +173,71 @@ OutwardInterval stored_power_range(const double* power, OutwardInterval u)
   return value;
 }
 
+// A squared distance to a cubic centerline is degree six. Its stationary
+// polynomial is degree five, so a single golden-section bracket can discard
+// the global minimum. Recursively partition at derivative roots; each open
+// partition is monotone and can contain at most one sign-changing root.
+struct PolynomialGrid {
+  std::array<long double, 31> points {};
+  std::size_t count {0};
+};
+
+long double polynomial_value(
+  const std::array<long double, 6>& coefficients, int degree, long double u)
+{
+  long double value = coefficients[static_cast<std::size_t>(degree)];
+  for (int term = degree - 1; term >= 0; --term)
+    value = value * u + coefficients[static_cast<std::size_t>(term)];
+  return value;
+}
+
+PolynomialGrid polynomial_root_grid(
+  const std::array<long double, 6>& coefficients, int degree)
+{
+  while (degree > 0 && coefficients[static_cast<std::size_t>(degree)] == 0.0L)
+    --degree;
+  if (degree == 0) return {};
+  if (degree == 1) {
+    const long double root = -coefficients[0] / coefficients[1];
+    PolynomialGrid result;
+    if (root > 0.0L && root < 1.0L) result.points[result.count++] = root;
+    return result;
+  }
+  std::array<long double, 6> derivative {};
+  for (int term = 1; term <= degree; ++term)
+    derivative[static_cast<std::size_t>(term - 1)] =
+      static_cast<long double>(term)
+        * coefficients[static_cast<std::size_t>(term)];
+  const PolynomialGrid critical = polynomial_root_grid(derivative, degree - 1);
+  PolynomialGrid result = critical;
+  for (std::size_t interval = 0; interval <= critical.count; ++interval) {
+    long double left = interval == 0 ? 0.0L : critical.points[interval - 1];
+    long double right = interval == critical.count
+      ? 1.0L : critical.points[interval];
+    long double f_left = polynomial_value(coefficients, degree, left);
+    const long double f_right = polynomial_value(coefficients, degree, right);
+    if (!((f_left < 0.0L && f_right > 0.0L)
+          || (f_left > 0.0L && f_right < 0.0L))) continue;
+    for (int iteration = 0; iteration < 80; ++iteration) {
+      const long double midpoint = left + 0.5L * (right - left);
+      if (midpoint == left || midpoint == right) break;
+      const long double f_mid = polynomial_value(
+        coefficients, degree, midpoint);
+      if (f_mid == 0.0L) { left = right = midpoint; break; }
+      if (std::signbit(f_left) != std::signbit(f_mid)) right = midpoint;
+      else { left = midpoint; f_left = f_mid; }
+    }
+    if (result.count == result.points.size())
+      throw std::runtime_error("Cubic centerline stationary grid overflow");
+    result.points[result.count++] = left + 0.5L * (right - left);
+  }
+  std::sort(result.points.begin(), result.points.begin() + result.count);
+  result.count = static_cast<std::size_t>(std::unique(
+    result.points.begin(), result.points.begin() + result.count)
+    - result.points.begin());
+  return result;
+}
+
 Vec3 centroid(const BoundingBox& box)
 {
   return 0.5 * (box.lower + box.upper);
@@ -636,60 +701,91 @@ std::uint32_t CompiledSweptSplineSurface::build_span_bvh_node(
 double CompiledSweptSplineSurface::evaluate_in_span(
   const Vec3& point, const SweptSpan& span, double* angle) const
 {
-  const auto local_squared_distance = [&](double candidate) {
-    const double coordinate_scale = 1.0
-      / (span.angle_max - span.angle_min);
-    const double u = (candidate - span.angle_min) * coordinate_scale;
-    Vec3 center;
+  const std::array<long double, 3> query {
+    static_cast<long double>(point.x), static_cast<long double>(point.y),
+    static_cast<long double>(point.z)};
+  std::array<std::array<long double, 4>, 3> center {};
+  std::array<long double, 6> stationary {};
+  for (std::size_t axis = 0; axis < 3; ++axis) {
+    for (std::size_t term = 0; term < 4; ++term)
+      center[axis][term] = static_cast<long double>(
+        span.power[4 * axis + term]);
+    std::array<long double, 4> offset = center[axis];
+    offset[0] -= query[axis];
+    for (std::size_t i = 0; i < offset.size(); ++i)
+      for (std::size_t j = 0; j < 3; ++j)
+        stationary[i + j] += offset[i] * static_cast<long double>(j + 1)
+          * center[axis][j + 1];
+  }
+  const auto distance_squared = [&](long double u) {
+    long double result = 0.0L;
     for (std::size_t axis = 0; axis < 3; ++axis) {
-      const double* coefficient = span.power.data() + 4 * axis;
-      const double value = ((coefficient[3] * u + coefficient[2]) * u
-                             + coefficient[1]) * u + coefficient[0];
-      if (axis == 0) center.x = value;
-      else if (axis == 1) center.y = value;
-      else center.z = value;
+      const auto& c = center[axis];
+      const long double difference = ((c[3] * u + c[2]) * u + c[1]) * u
+        + c[0] - query[axis];
+      result += difference * difference;
     }
-    return norm_squared(point - center);
+    return result;
   };
-  double left = span.angle_min;
-  double right = span.angle_max;
-  constexpr double ratio = 0.6180339887498948482;
-  double c = right - ratio * (right - left);
-  double d = left + ratio * (right - left);
-  double fc = local_squared_distance(c);
-  double fd = local_squared_distance(d);
-  for (int iteration = 0; iteration < 8; ++iteration) {
-    if (fc < fd) {
-      right = d;
-      d = c;
-      fd = fc;
-      c = right - ratio * (right - left);
-      fc = local_squared_distance(c);
-    } else {
-      left = c;
-      c = d;
-      fc = fd;
-      d = left + ratio * (right - left);
-      fd = local_squared_distance(d);
+  long double best_u = 0.0L;
+  long double best_distance = distance_squared(best_u);
+  const auto consider = [&](long double u) {
+    const long double distance = distance_squared(u);
+    if (distance < best_distance) {
+      best_distance = distance;
+      best_u = u;
     }
-  }
-  double q = 0.5 * (left + right);
-  for (int iteration = 0; iteration < 5; ++iteration) {
-    Vec3 center;
-    Vec3 first;
-    Vec3 second;
-    center_derivatives(span, q, center, first, second);
-    const Vec3 offset = center - point;
-    const double gradient = dot(offset, first);
-    const double hessian = norm_squared(first) + dot(offset, second);
-    if (!(hessian > 0.0) || !std::isfinite(hessian)) break;
-    const double next = std::clamp(q - gradient / hessian, left, right);
-    if (std::abs(next - q) <= 1.0e-14) {
-      q = next;
-      break;
+  };
+  // Positive/negative Bernstein controls are a sufficient real-polynomial
+  // convexity/concavity condition. The long-double margin avoids relying on
+  // near-zero rounded controls; other spans use the stationary grid.
+  const std::array<long double, 5> slope {
+    stationary[1], 2.0L * stationary[2], 3.0L * stationary[3],
+    4.0L * stationary[4], 5.0L * stationary[5]};
+  const std::array<long double, 5> bernstein {
+    slope[0], slope[0] + slope[1] / 4.0L,
+    slope[0] + slope[1] / 2.0L + slope[2] / 6.0L,
+    slope[0] + 3.0L * slope[1] / 4.0L + slope[2] / 2.0L
+      + slope[3] / 4.0L,
+    slope[0] + slope[1] + slope[2] + slope[3] + slope[4]};
+  long double slope_scale = 0.0L;
+  for (const long double value : slope) slope_scale += std::abs(value);
+  const long double margin = 64.0L
+    * std::numeric_limits<long double>::epsilon() * slope_scale;
+  const bool strictly_convex = std::all_of(bernstein.begin(), bernstein.end(),
+    [&](long double value) { return value > margin; });
+  const bool strictly_concave = std::all_of(bernstein.begin(), bernstein.end(),
+    [&](long double value) { return value < -margin; });
+  if (strictly_convex) {
+    const long double first = polynomial_value(stationary, 5, 0.0L);
+    const long double last = polynomial_value(stationary, 5, 1.0L);
+    if (first < 0.0L && last > 0.0L) {
+      std::array<long double, 6> slope_power {};
+      std::copy(slope.begin(), slope.end(), slope_power.begin());
+      long double left = 0.0L, right = 1.0L, u = 0.5L;
+      for (int iteration = 0; iteration < 80; ++iteration) {
+        const long double value = polynomial_value(stationary, 5, u);
+        if (value == 0.0L) break;
+        if (value < 0.0L) left = u;
+        else right = u;
+        const long double derivative = polynomial_value(slope_power, 4, u);
+        long double next = derivative > 0.0L
+          ? u - value / derivative : left + 0.5L * (right - left);
+        if (!(next > left && next < right))
+          next = left + 0.5L * (right - left);
+        if (next == u) break;
+        u = next;
+      }
+      consider(u);
     }
-    q = next;
+  } else if (!strictly_concave) {
+    const PolynomialGrid candidates = polynomial_root_grid(stationary, 5);
+    for (std::size_t i = 0; i < candidates.count; ++i)
+      consider(candidates.points[i]);
   }
+  consider(1.0L);
+  const double q = span.angle_min
+    + static_cast<double>(best_u) * (span.angle_max - span.angle_min);
   if (angle) *angle = q;
   const auto value = frame_in_span(span, q);
   const Vec3 offset = point - value.center;
