@@ -89,6 +89,10 @@ if(STELLARCSG_BUILD_TESTS)
   target_link_libraries(stellarcsg_compiled_surface_tests
     PRIVATE StellarCSG::reference)
   target_compile_features(stellarcsg_compiled_surface_tests PRIVATE cxx_std_17)
+  if(STELLARCSG_ENABLE_HDF5)
+    target_compile_definitions(stellarcsg_compiled_surface_tests PRIVATE
+      STELLARCSG_QUALIFIED_SWEPT_FILE="${CMAKE_CURRENT_SOURCE_DIR}/qualified/analytic_swept_coils.h5")
+  endif()
   add_test(NAME stellarcsg_compiled_surface_tests
     COMMAND stellarcsg_compiled_surface_tests)
 

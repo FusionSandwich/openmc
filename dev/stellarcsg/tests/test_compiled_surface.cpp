@@ -4,11 +4,17 @@
 #include "stellarcsg/compiled_swept_surface_set.hpp"
 #include "stellarcsg/performance_counters.hpp"
 #include "stellarcsg/sha256.hpp"
+#ifdef STELLARCSG_HAS_HDF5
+#include "stellarcsg/swept_coefficient_file.hpp"
+#include <hdf5.h>
+#include <hdf5_hl.h>
+#endif
 
 #include <array>
 #include <cmath>
 #include <cstdio>
 #include <cstdlib>
+#include <filesystem>
 #include <iostream>
 #include <iomanip>
 #include <limits>
@@ -549,6 +555,42 @@ void test_hdf5_round_trip()
   check(mismatch_rejected, "HDF5 content-ID mismatch is rejected");
   std::remove(filename.c_str());
 }
+
+void test_swept_hdf5_identity()
+{
+  const std::string source = STELLARCSG_QUALIFIED_SWEPT_FILE;
+  const std::string dataset = "/coils/coil_001";
+  const auto original = stellarcsg::read_swept_spline_surface_hdf5(
+    source, dataset);
+  check(original.content_id.rfind("sha256:", 0) == 0,
+    "qualified swept payload uses a SHA-256 ID");
+
+  const std::string changed = "stellarcsg_swept_identity_changed.h5";
+  std::filesystem::copy_file(source, changed,
+    std::filesystem::copy_options::overwrite_existing);
+  const hid_t file = H5Fopen(changed.c_str(), H5F_ACC_RDWR, H5P_DEFAULT);
+  check(file >= 0, "swept identity fixture opened");
+  if (file < 0) return;
+  const hid_t group = H5Gopen2(file, dataset.c_str(), H5P_DEFAULT);
+  check(group >= 0, "swept identity group opened");
+  if (group < 0) { H5Fclose(file); return; }
+  const bool altered = H5Adelete(group, "content_id") >= 0
+    && H5LTset_attribute_string(group, ".", "content_id",
+      "unbound-test-label") >= 0;
+  H5Gclose(group);
+  H5Fclose(file);
+  check(altered, "swept identity fixture label altered");
+  if (altered) {
+    bool rejected = false;
+    try {
+      (void) stellarcsg::read_swept_spline_surface_hdf5(changed, dataset);
+    } catch (const std::runtime_error&) {
+      rejected = true;
+    }
+    check(rejected, "unbound swept content label is rejected");
+  }
+  std::remove(changed.c_str());
+}
 #endif
 
 void test_near_parallel_ray_box_interval()
@@ -787,6 +829,7 @@ int main()
     test_sha256_known_vector();
 #ifdef STELLARCSG_HAS_HDF5
     test_hdf5_round_trip();
+    test_swept_hdf5_identity();
 #endif
   } catch (const std::exception& error) {
     ++failures;

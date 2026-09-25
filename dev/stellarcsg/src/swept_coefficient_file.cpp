@@ -134,8 +134,9 @@ SweptSplineSurfaceData read_swept_spline_surface_hdf5(
   data.characteristic_length = data.length;
   H5Gclose(group);
   H5Fclose(file);
-  require(data.content_id.rfind("sha256:", 0) != 0
-      || swept_spline_content_id(data) == data.content_id,
+  require(data.content_id.rfind("sha256:", 0) == 0,
+    "Swept-spline content_id must be a canonical SHA-256 ID");
+  require(swept_spline_content_id(data) == data.content_id,
     "Swept-spline canonical payload SHA-256 does not verify");
   return data;
 }
