@@ -1,6 +1,6 @@
 # StellarCSG WISTELL-D handoff — 2026-09-25
 
-**Status: research and qualification in progress.** Use branch `JS/stellarcsg-local-continuation-20260925` of `FusionSandwich/openmc`, based on `develop`. This branch is a reviewable checkpoint, not a merge-ready or production-qualified one-period simulation. Start with this page, then read [the detailed local continuation receipt](LOCAL_CONTINUATION_20260925.md) and [the matched benchmark protocol](../experiments/benchmark_portability/MATCHED_PROTOCOL.md). The receipts under `local-cont-20260925/` provide hashes, commands, raw outputs, and limits for individual claims. Some earlier status files are superseded; use the newest named receipt for each gate.
+**Status: research and qualification in progress.** Use branch `JS/stellarcsg-local-continuation-20260925` of `FusionSandwich/openmc`, based on `develop`; [draft PR #3](https://github.com/FusionSandwich/openmc/pull/3) is the GitHub entry point. This branch is a reviewable checkpoint, not a merge-ready or production-qualified one-period simulation. Start with this page, then read [the detailed local continuation receipt](LOCAL_CONTINUATION_20260925.md) and [the matched benchmark protocol](../experiments/benchmark_portability/MATCHED_PROTOCOL.md). The receipts under `local-cont-20260925/` provide hashes, commands, raw outputs, and limits for individual claims. Some earlier status files are superseded; use the newest named receipt for each gate.
 
 ## What is established
 
