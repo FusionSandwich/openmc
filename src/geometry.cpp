@@ -6,6 +6,9 @@
 #include "openmc/array.h"
 #include "openmc/cell.h"
 #include "openmc/constants.h"
+#ifdef OPENMC_DAGMC_ENABLED
+#include "openmc/dagmc.h"
+#endif
 #include "openmc/error.h"
 #include "openmc/lattice.h"
 #include "openmc/settings.h"
@@ -35,6 +38,38 @@ std::unordered_map<OverlapKey, int, OverlapKeyHash> overlap_key_index;
 // Non-member functions
 //==============================================================================
 
+#ifdef OPENMC_DAGMC_ENABLED
+bool is_expected_dagmc_boundary_neighbor(
+  const GeometryState& p, int level, int32_t candidate_index)
+{
+  if (p.surface() == SURFACE_NONE)
+    return false;
+
+  int32_t surface_index = std::abs(p.surface()) - 1;
+  auto* surface =
+    dynamic_cast<DAGSurface*>(model::surfaces[surface_index].get());
+  auto* current =
+    dynamic_cast<DAGCell*>(model::cells[p.coord(level).cell()].get());
+  auto* candidate =
+    dynamic_cast<DAGCell*>(model::cells[candidate_index].get());
+
+  if (surface == nullptr || current == nullptr || candidate == nullptr ||
+      surface->dagmc_ptr() != current->dagmc_ptr() ||
+      surface->dagmc_ptr() != candidate->dagmc_ptr()) {
+    return false;
+  }
+
+  moab::EntityHandle adjacent_volume {};
+  auto rval = candidate->dagmc_ptr()->next_vol(surface->mesh_handle(),
+    candidate->mesh_handle(), adjacent_volume);
+
+  return rval == moab::MB_SUCCESS &&
+         adjacent_volume == current->mesh_handle();
+}
+#endif
+
+//==============================================================================
+
 int check_cell_overlap(GeometryState& p, bool error)
 {
   int n_coord = p.n_coord();
@@ -49,6 +84,14 @@ int check_cell_overlap(GeometryState& p, bool error)
     // Loop through each cell on this level
     for (auto index_cell : univ.cells_) {
       Cell& c = *model::cells[index_cell];
+#ifdef OPENMC_DAGMC_ENABLED
+      // A point on a shared DAGMC facet can be classified as belonging to both
+      // topological neighbors. The old/new neighbor pair is not an overlap,
+      // but every other candidate cell still needs to be checked.
+      if (univ.geom_type() == GeometryType::DAG &&
+          is_expected_dagmc_boundary_neighbor(p, j, index_cell))
+        continue;
+#endif
       if (c.contains(p.coord(j).r(), p.coord(j).u(), p.surface())) {
 #pragma omp atomic
         ++model::overlap_check_count[index_cell];

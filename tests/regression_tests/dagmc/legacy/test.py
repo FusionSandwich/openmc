@@ -102,6 +102,14 @@ def test_surf_source(model):
     assert np.allclose(rad, 7.0)
 
 
+def test_geometry_debug(model):
+    """Shared DAGMC facets are not reported as volume overlaps."""
+    kwargs = {'openmc_exec': config['exe'], 'geometry_debug': True}
+    if config['mpi']:
+        kwargs['mpi_args'] = [config['mpiexec'], '-n', config['mpi_np']]
+    model.run(**kwargs)
+
+
 def test_dagmc(model):
     harness = PyAPITestHarness('statepoint.5.h5', model)
     harness.main()
