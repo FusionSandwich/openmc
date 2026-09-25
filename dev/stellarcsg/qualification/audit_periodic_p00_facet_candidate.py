@@ -69,6 +69,47 @@ def exact_displacement_upper(original: np.ndarray, candidate: np.ndarray) -> flo
     return upper
 
 
+def expected_midpoint_mesh(original: np.ndarray) -> np.ndarray:
+    caps = [np.max(np.abs(original[:, :, axis]), axis=1) <= 2.5e-13
+            for axis in (0, 1)]
+    x = np.unique(original[caps[0]][:, :, [1, 2]].reshape(-1, 2), axis=0)
+    y = np.unique(original[caps[1]][:, :, [0, 2]].reshape(-1, 2), axis=0)
+    if x.shape != (90, 2) or y.shape != (90, 2):
+        raise ValueError("accepted cap vertex counts differ")
+    distances = np.linalg.norm(x[:, None, :] - y[None, :, :], axis=2)
+    xy = np.argmin(distances, axis=1)
+    yx = np.argmin(distances, axis=0)
+    if (len(set(map(int, xy))) != 90
+            or not np.array_equal(yx[xy], np.arange(90))
+            or float(np.max(distances[np.arange(90), xy])) > 0.01):
+        raise ValueError("accepted caps lack a reciprocal close vertex pairing")
+    replacements = {}
+    for i, j in enumerate(xy):
+        midpoint = 0.5 * (x[i] + y[j])
+        for axis, old_projected, new in (
+                (0, x[i], (0.0, midpoint[0], midpoint[1])),
+                (1, y[j], (midpoint[0], 0.0, midpoint[1]))):
+            projected_axes = [1, 2] if axis == 0 else [0, 2]
+            matches = original[caps[axis]].reshape(-1, 3)
+            old = next((vertex for vertex in matches
+                        if np.array_equal(vertex[projected_axes], old_projected)),
+                       None)
+            if old is None:
+                raise ValueError("accepted cap vertex pairing disappeared")
+            old_key = key(old)
+            replacement = np.asarray(new, dtype="<f8")
+            prior = replacements.setdefault(old_key, replacement)
+            if prior.tobytes() != replacement.tobytes():
+                raise ValueError("cap vertex has conflicting midpoint images")
+    expected = original.copy()
+    for triangle in expected:
+        for vertex in triangle:
+            replacement = replacements.get(key(vertex))
+            if replacement is not None:
+                vertex[:] = replacement
+    return expected
+
+
 def main() -> None:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--accepted-payload", type=Path, required=True)
@@ -124,6 +165,8 @@ def main() -> None:
         raise ValueError("a non-cap accepted vertex moved")
     if len(changed_keys) != 180:
         raise ValueError("unexpected number of changed cap vertices")
+    if expected_midpoint_mesh(original).tobytes() != candidate.tobytes():
+        raise ValueError("candidate differs from deterministic shared midpoint transform")
     if cap_keys(candidate, 0) != cap_keys(candidate, 1):
         raise ValueError("candidate cap triangles are not bitwise periodic")
     displacement = np.linalg.norm(candidate - original, axis=2)
@@ -139,6 +182,7 @@ def main() -> None:
         "triangle_count": 3348,
         "changed_distinct_cap_vertices": len(changed_keys),
         "changed_vertex_occurrences": int(np.count_nonzero(changed)),
+        "deterministic_midpoint_transform_verified": True,
         "maximum_vertex_displacement_cm": maximum,
         "piecewise_linear_hausdorff_upper_cm": upper,
         "rotated_cap_triangles_bitwise_equal": True,
@@ -148,7 +192,7 @@ def main() -> None:
             "accepted_receipt": sha256(args.accepted_receipt),
             "candidate_payload": sha256(args.candidate_payload),
             "candidate_receipt": sha256(args.candidate_receipt)},
-        "claim_boundary": "Independent vertex-array comparison confirms identical triangle order and component IDs, movement only of the 180 original cap vertices, bitwise paired cap triangles and the stated maximum displacement. The same barycentric point on each pair of corresponding triangles differs by at most the maximum vertex displacement; therefore it bounds the piecewise-linear surface Hausdorff distance. This does not bound accepted-mesh error relative to continuous CAD or qualify histories."
+        "claim_boundary": "Independent vertex-array comparison confirms identical triangle order and component IDs, exact deterministic shared-midpoint replacement of the 180 original cap vertices, bitwise paired projected cap triangles and the stated maximum displacement. The same barycentric point on each pair of corresponding triangles differs by at most the maximum vertex displacement; therefore it bounds the piecewise-linear surface Hausdorff distance. This does not bound accepted-mesh error relative to continuous CAD or qualify histories."
     }
     args.output.write_text(json.dumps(receipt, indent=2) + "\n")
     print(json.dumps({"state": receipt["state"],
