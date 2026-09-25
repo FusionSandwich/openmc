@@ -62,8 +62,8 @@ int check_cell_overlap(GeometryState& p, bool error)
           // overlap, but every other candidate cell still needs to be checked.
           if (univ.geom_type() == GeometryType::DAG &&
               p.surface() != SURFACE_NONE &&
-              next_cell(p.surface_index(), index_cell, p.coord(j).universe()) ==
-                p.coord(j).cell())
+              (next_cell(p.surface_index(), index_cell, p.coord(j).universe()) -
+                1) == p.coord(j).cell())
             continue;
 #endif
           if (error) {
