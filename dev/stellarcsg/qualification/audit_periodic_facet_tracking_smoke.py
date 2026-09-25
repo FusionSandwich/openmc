@@ -8,6 +8,7 @@ import json
 import os
 from pathlib import Path
 import subprocess
+import xml.etree.ElementTree as ET
 
 import h5py
 import numpy as np
@@ -70,8 +71,39 @@ def main() -> None:
     if (len(states) < 4 or cells[:4] != [1002, 1001, 1001, 1002]
             or int(states["material_id"][0]) != -1
             or not np.all(states["material_id"] == -1)
-            or float(states["wgt"][-1]) != 0.0):
+            or float(states["wgt"][-1]) != 0.0
+            or cells[-1] != 1002):
         raise ValueError("void-only facet entry, periodic handoff or leakage differs")
+    geometry = ET.parse(model / "geometry.xml")
+    vacuum = {int(surface.get("id")): surface for surface in
+              geometry.findall(".//surface")
+              if surface.get("boundary") == "vacuum"}
+    if set(vacuum) != {904, 905, 906}:
+        raise ValueError("expected vacuum enclosure surfaces differ")
+    cylinder = vacuum[904]
+    lower_plane = vacuum[905]
+    upper_plane = vacuum[906]
+    if (cylinder.get("type") != "z-cylinder"
+            or lower_plane.get("type") != "z-plane"
+            or upper_plane.get("type") != "z-plane"):
+        raise ValueError("vacuum enclosure types differ")
+    cx, cy, radius = map(float, cylinder.get("coeffs").split())
+    zmin = float(lower_plane.get("coeffs"))
+    zmax = float(upper_plane.get("coeffs"))
+    terminal = np.array(tuple(states["r"][-1]), dtype=float)
+    terminal_radius = float(np.hypot(terminal[0] - cx, terminal[1] - cy))
+    vacuum_surface = ("outer-cylinder" if abs(terminal_radius - radius) <= 1e-8
+                      else "lower-z-plane" if abs(terminal[2] - zmin) <= 1e-8
+                      else "upper-z-plane" if abs(terminal[2] - zmax) <= 1e-8
+                      else None)
+    if (not np.isfinite(terminal).all()
+            or not np.isfinite((cx, cy, radius, zmin, zmax)).all()
+            or not (zmin < zmax)
+            or radius <= 0 or vacuum_surface is None
+            or terminal[0] < -1e-8 or terminal[1] < -1e-8
+            or terminal_radius > radius + 1e-8
+            or terminal[2] < zmin - 1e-8 or terminal[2] > zmax + 1e-8):
+        raise ValueError("terminal track state is not on a vacuum boundary")
     source = np.asarray(staged["source_outside_cm"], dtype=float)
     direction = np.asarray(staged["source_direction"], dtype=float)
     first = np.array(tuple(states["r"][0]), dtype=float)
@@ -98,6 +130,8 @@ def main() -> None:
         "periodic_handoff_cell_id": int(states["cell_id"][2]),
         "periodic_handoff_position_cm": periodic.tolist(),
         "periodic_handoff_direction": periodic_direction.tolist(),
+        "terminal_position_cm": terminal.tolist(),
+        "terminal_vacuum_surface": vacuum_surface,
         "exit_code": run.returncode,
         "stdout": run.stdout, "stderr": run.stderr,
         "loader_binding": bindings[0].strip(),

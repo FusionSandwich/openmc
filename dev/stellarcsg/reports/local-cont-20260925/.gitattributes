@@ -12,3 +12,5 @@ native-periodic-facet-region-02/**/*.json text eol=lf
 native-periodic-facet-region-02/**/*.xml text eol=lf
 periodic-facet-tracking-smoke-02/*.json text eol=lf
 periodic-facet-tracking-smoke-02/*.xml text eol=lf
+periodic-facet-tracking-smoke-04/*.json text eol=lf
+periodic-facet-tracking-smoke-04/*.xml text eol=lf
