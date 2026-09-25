@@ -26,12 +26,16 @@ inline std::vector<TestCall> test_calls;
 inline std::vector<std::pair<std::string,std::string>> test_reads;
 inline std::map<std::string,SweptSplineSurfaceData> test_payloads;
 inline std::string test_solver_path;
+enum class SweptTorusMode { faithful_spline, approximate_torus_surrogate };
 class CompiledSweptSplineSurface {
 public:
-  explicit CompiledSweptSplineSurface(SweptSplineSurfaceData d) : data_(std::move(d)) {
+  explicit CompiledSweptSplineSurface(SweptSplineSurfaceData d,
+    bool = false) : data_(std::move(d)) {
     const Vec3 r{data_.radius,data_.radius,data_.radius};
     bounds_={data_.center-r,data_.center+r};
   }
+  CompiledSweptSplineSurface(SweptSplineSurfaceData d, bool,
+    SweptTorusMode) : CompiledSweptSplineSurface(std::move(d)) {}
   double evaluate(const Vec3& p) const {
     if(data_.fault==TestFault::evaluate_exception) throw UnresolvedTestError(data_.coil_id);
     return norm_squared(p-data_.center)-data_.radius*data_.radius;

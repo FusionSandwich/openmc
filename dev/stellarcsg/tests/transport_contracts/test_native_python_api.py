@@ -183,6 +183,44 @@ def test_swept_selector_identity_and_invalid_collections():
         openmc.Surface.from_xml_element(malformed)
 
 
+def test_swept_explicit_index_selector_roundtrip(tmp_path):
+    payload = tmp_path / 'coils.h5'
+    with h5py.File(payload, 'w') as h5:
+        for index, center_x in ((10, 0.0), (11, 100.0), (30, 30.0)):
+            group = h5.create_group(f'members/coil_{index:03d}')
+            group.attrs['units'] = 'cm'
+            group.attrs['length_cm'] = 20.0
+            group['centerline_coefficients'] = np.tile([center_x, 0., 0.], (4, 1))
+            group['major_radius_coefficients'] = np.full(4, 2.0)
+            group['minor_radius_coefficients'] = np.full(4, 1.0)
+    selected = openmc.SweptSplineSurface(
+        payload, dataset_prefix='/members/coil_', dataset_indices=[30, 10],
+        surface_id=304)
+    assert selected.dataset_indices == (30, 10)
+    assert selected.to_xml_element().get('dataset_indices') == '30 10'
+    assert selected.to_xml_element().get('dataset_count') is None
+    assert openmc.Surface.from_xml_element(selected.to_xml_element()).is_equal(selected)
+    bounds = selected.bounding_box('-')
+    assert bounds.lower_left[0] < -2.0 and bounds.upper_right[0] > 32.0
+    assert bounds.upper_right[0] < 33.0  # omitted member 11 is not selected
+    with h5py.File(tmp_path / 'summary.h5', 'w') as h5:
+        group = h5.create_group('surface 304')
+        for key, value in dict(type='swept-spline', boundary_type='transmission',
+                               data_file=str(payload),
+                               dataset_prefix='/members/coil_',
+                               dataset_indices='30 10').items():
+            group[key] = np.bytes_(value)
+        assert openmc.Surface.from_hdf5(group).is_equal(selected)
+    for invalid in ([], [10, 10], [-1], [2**31], [True]):
+        with pytest.raises(ValueError):
+            openmc.SweptSplineSurface(
+                payload, dataset_prefix='/members/coil_', dataset_indices=invalid)
+    with pytest.raises(ValueError):
+        openmc.SweptSplineSurface(
+            payload, dataset_prefix='/members/coil_', dataset_indices=[30],
+            dataset_count=1)
+
+
 @pytest.mark.parametrize('kind', [openmc.PeriodicSplineSurface, openmc.SweptSplineSurface])
 def test_payload_equality_has_defined_semantics(kind):
     first = kind('toy.h5', '/member', 'sha256:'+'1'*64)

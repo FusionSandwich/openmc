@@ -142,6 +142,12 @@ def main():
                and loaded.dataset_start == 10 and loaded.dataset_count == 2)(
                    cls._from_hdf5(group, surface_id=902)),
               'BLOCKED_COLLECTION_PYTHON_REPRESENTATION')
+        indexed_group = h5['surface 904']
+        check('cpp_indexed_collection_hdf5_python_roundtrip', lambda:
+              (lambda loaded: loaded.dataset_indices == (30, 10)
+               and loaded.dataset_count is None and loaded.dataset_start is None)(
+                   cls._from_hdf5(indexed_group, surface_id=904)),
+              'BLOCKED_EXPLICIT_SELECTION')
     collection = ET.Element('surface', id='902', type='swept-spline',
                             data_file='payload.h5', dataset_prefix='/members/',
                             dataset_start='10', dataset_count='2')

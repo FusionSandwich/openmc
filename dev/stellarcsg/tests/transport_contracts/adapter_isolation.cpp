@@ -48,11 +48,17 @@ pugi::xml_node collection() {
     {"dataset_prefix","/members/"},{"dataset_start","10"},
     {"dataset_count","2"},{"units","cm"}}};
 }
+pugi::xml_node indexed_collection() {
+  return {{{"id","903"},{"data_file","payload.h5"},
+    {"dataset_prefix","/members/"},{"dataset_indices","30 10"},
+    {"units","cm"}}};
+}
 void reset() {
   observed.clear(); test_calls.clear(); test_reads.clear(); test_payloads.clear();
   test_payloads["/member"]=member(7);
   test_payloads["/members/010"]=member(7);
   test_payloads["/members/011"]=member(42,{4,0,0});
+  test_payloads["/members/030"]=member(99,{8,0,0});
   openmc::settings::path_input="/fixture/input";
 }
 template<class F> bool throws_any(F f) {
@@ -196,6 +202,24 @@ int main(int argc,char** argv) {
     observed="distance="+number(hit.root.distance)+" union_value="+number(s.evaluate({hit.root.distance,0,0}))+" expected_exit=3";
     return hit.root.found && hit.root.distance==3 && s.evaluate({3,0,0})==0;
   });
+  check("indexed_collection_selects_exact_members_in_order","BLOCKED_EXPLICIT_SELECTION",[] {
+    openmc::SurfaceSweptSpline s(indexed_collection());
+    return test_reads.size()==2 && test_reads[0].second=="/members/030"
+      && test_reads[1].second=="/members/010"
+      && s.distance({-2,0,0},{1,0,0},false)==1;
+  });
+  check("indexed_collection_rejects_duplicate_indices","BLOCKED_EXPLICIT_SELECTION",[] {
+    auto n=indexed_collection(); n.attrs["dataset_indices"]="10 10";
+    return throws_any([&]{openmc::SurfaceSweptSpline s(n);}) && test_reads.empty();
+  });
+  check("indexed_collection_rejects_invalid_index","BLOCKED_EXPLICIT_SELECTION",[] {
+    auto n=indexed_collection(); n.attrs["dataset_indices"]="10 -1";
+    return throws_any([&]{openmc::SurfaceSweptSpline s(n);}) && test_reads.empty();
+  });
+  check("indexed_collection_rejects_mixed_window","BLOCKED_EXPLICIT_SELECTION",[] {
+    auto n=indexed_collection(); n.attrs["dataset_count"]="2";
+    return throws_any([&]{openmc::SurfaceSweptSpline s(n);}) && test_reads.empty();
+  });
   check("masked_entry_then_same_member_exterior_exit","BLOCKED_UNION_REENTRY",[] {
     // The first A root is inside B; B's exit is then inside A.  A's second
     // root is the first union exterior boundary.
@@ -319,7 +343,23 @@ int main(int argc,char** argv) {
       openmc::write_string(g,"boundary_type","transmission",false);
       item->to_hdf5_inner(g); H5Gclose(g);
     }
-    const auto rc=H5Fclose(f); observed=output_file; return rc>=0;
+    openmc::SurfaceSweptSpline indexed(indexed_collection());
+    const hid_t indexed_group=H5Gcreate2(f,"surface 904",H5P_DEFAULT,
+      H5P_DEFAULT,H5P_DEFAULT);
+    indexed.to_hdf5_inner(indexed_group);
+    const bool shape=H5Lexists(indexed_group,"dataset_indices",H5P_DEFAULT)>0
+      && H5Lexists(indexed_group,"dataset_count",H5P_DEFAULT)==0;
+    const hid_t indices=H5Dopen2(indexed_group,"dataset_indices",H5P_DEFAULT);
+    const hid_t indices_type=indices>=0 ? H5Dget_type(indices) : -1;
+    char values[5]{};
+    const bool bytes=indices_type>=0 && H5Dread(indices,indices_type,
+      H5S_ALL,H5S_ALL,H5P_DEFAULT,values)>=0
+      && std::string(values,5)=="30 10";
+    if(indices_type>=0) H5Tclose(indices_type);
+    if(indices>=0) H5Dclose(indices);
+    H5Gclose(indexed_group);
+    const auto rc=H5Fclose(f); observed=output_file;
+    return rc>=0 && shape && bytes;
   });
   std::cerr<<"checks="<<checks<<" passed="<<checks-failures<<" failed="<<failures
     <<" evidence=actual-adapters-with-test-doubles; native-transport=NOT_RUN\n";

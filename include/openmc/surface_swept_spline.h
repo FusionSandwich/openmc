@@ -7,6 +7,7 @@
 
 #include <memory>
 #include <string>
+#include <vector>
 
 namespace openmc {
 
@@ -27,6 +28,7 @@ private:
   std::string content_id_;
   int dataset_start_ {0};
   int dataset_count_ {0};
+  std::vector<int> dataset_indices_;
   std::unique_ptr<stellarcsg::CompiledSweptSplineSurface> surface_;
   std::unique_ptr<stellarcsg::CompiledSweptSplineSurfaceSet> surface_set_;
 };

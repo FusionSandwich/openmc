@@ -1,0 +1,1 @@
+checks=53 passed=53 failed=0 evidence=actual-adapters-with-test-doubles; native-transport=NOT_RUN
