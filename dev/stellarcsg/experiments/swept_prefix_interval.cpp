@@ -20,6 +20,7 @@
 namespace {
 
 constexpr double infinity = std::numeric_limits<double>::infinity();
+constexpr double two_pi = 6.283185307179586476925286766559005768;
 // Experimental allowance for sin/cos roundoff. This is not an audited libm
 // error bound and is one reason the result cannot admit a production root.
 double unit_circle_slack = 1.0e-12;
@@ -83,6 +84,13 @@ I square_root(I x)
   return {x.lo <= 0.0 ? 0.0 : down(std::sqrt(x.lo)),
           up(std::sqrt(x.hi))};
 }
+std::optional<I> intersection(I a, I b)
+{
+  const double lo = std::max(a.lo, b.lo);
+  const double hi = std::min(a.hi, b.hi);
+  if (lo > hi) return std::nullopt;
+  return I {lo, hi};
+}
 
 using V = std::array<I, 3>;
 I dot(const V& a, const V& b)
@@ -122,7 +130,7 @@ I derivative(const stellarcsg::SweptSpan& span, int field, I u,
 
 enum class Outcome {
   projection, single_prefix, unit_branches, unit_circle, ray_prefix,
-  undecided_frame, undecided_projection, undecided_root
+  undecided_frame, undecided_projection, undecided_root, alpha_arcs
 };
 const char* name(Outcome outcome)
 {
@@ -135,6 +143,7 @@ const char* name(Outcome outcome)
   case Outcome::undecided_frame: return "undecided_frame";
   case Outcome::undecided_projection: return "undecided_projection";
   case Outcome::undecided_root: return "undecided_root";
+  case Outcome::alpha_arcs: return "excluded_alpha_arcs";
   }
   return "invalid";
 }
@@ -142,7 +151,7 @@ bool excluded(Outcome state)
 {
   return state == Outcome::projection || state == Outcome::single_prefix
     || state == Outcome::unit_branches || state == Outcome::unit_circle
-    || state == Outcome::ray_prefix;
+    || state == Outcome::ray_prefix || state == Outcome::alpha_arcs;
 }
 
 std::array<I, 2> complementary_branches(I known)
@@ -159,7 +168,8 @@ Outcome exclude_tile(const stellarcsg::SweptSpan& span, I u,
                      const stellarcsg::Vec3& origin,
                      const stellarcsg::Vec3& direction,
                      int dominant_axis, double cutoff, bool use_unit_circle,
-                     double projection_slack = 0.0)
+                     double projection_slack = 0.0,
+                     int alpha_arc_count = 0)
 {
   const double scale = 1.0 / (span.angle_max - span.angle_min);
   V center, center_derivative, supplied;
@@ -210,6 +220,48 @@ Outcome exclude_tile(const stellarcsg::SweptSpan& span, I u,
       / I::point(d[dominant_axis]);
   };
   const auto away = [&](I t) { return t.hi < 0.0 || t.lo > cutoff; };
+  // An experimental alternative to the unit-circle test: cover one complete
+  // alpha period by correlated cosine/sine rectangles. The 1e-6 endpoint
+  // allowance is not a certified error bound for the production libm path.
+  const auto arcs_exclude = [&]() {
+    if (alpha_arc_count == 0) return false;
+    constexpr double trig_slack = 1.0e-6;
+    for (int arc = 0; arc < alpha_arc_count; ++arc) {
+      const double a = two_pi * static_cast<double>(arc)
+        / static_cast<double>(alpha_arc_count);
+      const double b = two_pi * static_cast<double>(arc + 1)
+        / static_cast<double>(alpha_arc_count);
+      // Arc counts are multiples of four, so extrema lie on arc endpoints.
+      const double ca = std::cos(a), cb = std::cos(b);
+      const double sa = std::sin(a), sb = std::sin(b);
+      I cosine = I::bounds(
+        std::max(-1.0, std::min(ca, cb) - trig_slack),
+        std::min(1.0, std::max(ca, cb) + trig_slack));
+      I sine = I::bounds(
+        std::max(-1.0, std::min(sa, sb) - trig_slack),
+        std::min(1.0, std::max(sa, sb) + trig_slack));
+      const auto contract = [&](const std::array<I, 3>& equation) {
+        const I rhs = equation[0], c = equation[1], s = equation[2];
+        if (!c.contains_zero()) {
+          const auto narrowed = intersection(cosine, (rhs - s * sine) / c);
+          if (!narrowed) return false;
+          cosine = *narrowed;
+        }
+        if (!s.contains_zero()) {
+          const auto narrowed = intersection(sine, (rhs - c * cosine) / s);
+          if (!narrowed) return false;
+          sine = *narrowed;
+        }
+        const I projected = c * cosine + s * sine;
+        return projected.lo <= rhs.hi && projected.hi >= rhs.lo;
+      };
+      bool possible = true;
+      for (int pass = 0; pass < 3 && possible; ++pass)
+        possible = contract(first) && contract(second);
+      if (possible && !away(ray_t(cosine, sine))) return false;
+    }
+    return true;
+  };
   for (const auto& equation : {first, second}) {
     const I rhs = equation[0], a = equation[1], b = equation[2];
     if (!a.contains_zero()) {
@@ -236,7 +288,9 @@ Outcome exclude_tile(const stellarcsg::SweptSpan& span, I u,
     }
   }
   const I determinant = first[1] * second[2] - first[2] * second[1];
-  if (determinant.contains_zero()) return Outcome::undecided_projection;
+  if (determinant.contains_zero())
+    return arcs_exclude() ? Outcome::alpha_arcs
+                          : Outcome::undecided_projection;
   const auto cosine = ((first[0] * second[2]
     - first[2] * second[0]) / determinant).clip_unit();
   const auto sine = ((first[1] * second[0]
@@ -247,21 +301,24 @@ Outcome exclude_tile(const stellarcsg::SweptSpan& span, I u,
       || length_squared.lo > 1.0 + unit_circle_slack))
     return Outcome::unit_circle;
   if (away(ray_t(*cosine, *sine))) return Outcome::ray_prefix;
-  return Outcome::undecided_root;
+  return arcs_exclude() ? Outcome::alpha_arcs : Outcome::undecided_root;
 }
 
 struct SpanResult {
   std::size_t nodes {0};
   std::size_t undecided {0};
-  std::array<std::size_t, 8> outcomes {};
+  std::array<std::size_t, 9> outcomes {};
 };
 SpanResult analyze_span(const stellarcsg::SweptSpan& span,
                         const stellarcsg::Vec3& origin,
                         const stellarcsg::Vec3& direction,
                         int dominant_axis, double cutoff, bool use_unit_circle,
                         double projection_slack = 0.0,
-                        int max_depth = 36, std::size_t max_nodes = 10000)
+                        int max_depth = 36, std::size_t max_nodes = 10000,
+                        int alpha_arc_count = 0)
 {
+  if (alpha_arc_count < 0 || alpha_arc_count % 4 != 0)
+    throw std::invalid_argument("alpha arc count must be a multiple of four");
   struct Tile { double lo, hi; int depth; };
   // frame_in_span computes (angle - angle_min) * a rounded reciprocal.
   // Its evaluated endpoint may lie outside [0, 1] by more than one ulp.
@@ -279,7 +336,7 @@ SpanResult analyze_span(const stellarcsg::SweptSpan& span,
     }
     const Outcome state = exclude_tile(span, I::bounds(tile.lo, tile.hi),
       origin, direction, dominant_axis, cutoff, use_unit_circle,
-      projection_slack);
+      projection_slack, alpha_arc_count);
     if (excluded(state) || tile.depth == max_depth) {
       ++result.outcomes[static_cast<std::size_t>(state)];
       if (!excluded(state)) ++result.undecided;
@@ -350,6 +407,10 @@ int main(int argc, char** argv)
       constexpr std::array<double, 6> rectangle_gaps {
         1.0e-5, 1.0e-4, 1.0e-3, 1.0e-2, 1.0e-1, 1.0};
       std::array<std::size_t, rectangle_gaps.size()> rectangle_gap_excluded {};
+      constexpr std::array<int, 3> alpha_arc_counts {64, 256, 4096};
+      std::array<std::size_t, alpha_arc_counts.size()> alpha_arc_excluded {};
+      std::size_t alpha_arc_zero_gap_unknown = 0;
+      std::size_t alpha_arc_negative_unknown = 0;
       std::size_t zero_gap_unknown = 0;
       std::size_t negative_unknown = 0;
       std::size_t nodes = 0;
@@ -410,6 +471,21 @@ int main(int argc, char** argv)
         const bool padded_negative = analyze_span(span, origin, direction,
           dominant_axis, lead.distance + 4.0, true,
           projection_slack).undecided != 0;
+        std::array<bool, alpha_arc_counts.size()> arc_result {};
+        for (std::size_t i = 0; i < alpha_arc_counts.size(); ++i) {
+          arc_result[i] = analyze_span(span, origin, direction,
+            dominant_axis, lead.distance - 1.0e-5, false,
+            projection_slack, 36, 10000, alpha_arc_counts[i]).undecided == 0;
+          alpha_arc_excluded[i] += arc_result[i];
+        }
+        const bool arc_zero_gap = analyze_span(span, origin, direction,
+          dominant_axis, lead.distance, false, projection_slack,
+          36, 10000, alpha_arc_counts.back()).undecided != 0;
+        const bool arc_negative = analyze_span(span, origin, direction,
+          dominant_axis, lead.distance + 4.0, false, projection_slack,
+          36, 10000, alpha_arc_counts.back()).undecided != 0;
+        alpha_arc_zero_gap_unknown += arc_zero_gap;
+        alpha_arc_negative_unknown += arc_negative;
         padded_excluded += padded;
         padded_zero_gap_unknown += padded_zero_gap;
         padded_negative_unknown += padded_negative;
@@ -448,6 +524,16 @@ int main(int argc, char** argv)
         std::cout << ']'
                   << ",\"rectangle_last_gap_undecided\":"
                   << rectangle_last_gap.undecided
+                  << ",\"alpha_arc_excluded\":[";
+        for (std::size_t i = 0; i < arc_result.size(); ++i) {
+          if (i != 0) std::cout << ',';
+          std::cout << (arc_result[i] ? "true" : "false");
+        }
+        std::cout << ']'
+                  << ",\"alpha_arc_zero_gap_undecided\":"
+                  << (arc_zero_gap ? "true" : "false")
+                  << ",\"alpha_arc_negative_undecided\":"
+                  << (arc_negative ? "true" : "false")
                   << ",\"slack_excluded\":["
                   << (slack_result[0] ? "true" : "false") << ','
                   << (slack_result[1] ? "true" : "false") << ','
@@ -488,6 +574,16 @@ int main(int argc, char** argv)
         std::cout << rectangle_gap_excluded[i];
       }
       std::cout << ']'
+                << ",\"alpha_arc_excluded\":[";
+      for (std::size_t i = 0; i < alpha_arc_excluded.size(); ++i) {
+        if (i != 0) std::cout << ',';
+        std::cout << alpha_arc_excluded[i];
+      }
+      std::cout << ']'
+                << ",\"alpha_arc_zero_gap_undecided\":"
+                << alpha_arc_zero_gap_unknown
+                << ",\"alpha_arc_negative_undecided\":"
+                << alpha_arc_negative_unknown
                 << ",\"slack_excluded\":[" << slack_excluded[0] << ','
                 << slack_excluded[1] << ',' << slack_excluded[2] << ']'
                 << ",\"gap_slack_excluded\":[";

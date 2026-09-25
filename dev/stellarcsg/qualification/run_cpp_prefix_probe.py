@@ -71,9 +71,18 @@ def main() -> int:
                                          for i in range(5))
                                  and (not row.get("rectangle_excluded")
                                       or row["rectangle_gap_excluded"][0])
-                                 and len(row.get("rectangle_last_gap_outcomes", [])) == 8
+                                 and len(row.get("rectangle_last_gap_outcomes", [])) == 9
                                  and (row.get("rectangle_last_gap_undecided", 0)
                                       == 0) == row["rectangle_gap_excluded"][-1]
+                                 for row in span_rows)
+                         and all(len(row.get("alpha_arc_excluded", [])) == 3
+                                 and all(not row["alpha_arc_excluded"][i]
+                                         or row["alpha_arc_excluded"][i + 1]
+                                         for i in range(2))
+                                 and isinstance(row.get(
+                                     "alpha_arc_zero_gap_undecided"), bool)
+                                 and isinstance(row.get(
+                                     "alpha_arc_negative_undecided"), bool)
                                  for row in span_rows)
                          and all(len(row.get("slack_excluded", [])) == 3
                                  and (not row["slack_excluded"][i + 1]
@@ -122,6 +131,19 @@ def main() -> int:
                                              if item.get("member") == row.get("member"))
                                          == row["rectangle_gap_excluded"][i]
                                          for i in range(6))
+                                 and len(row.get("alpha_arc_excluded", [])) == 3
+                                 and all(sum(item["alpha_arc_excluded"][i]
+                                             for item in span_rows
+                                             if item.get("member") == row.get("member"))
+                                         == row["alpha_arc_excluded"][i]
+                                         for i in range(3))
+                                 and all(sum(item.get(field) is True
+                                             for item in span_rows
+                                             if item.get("member") == row.get("member"))
+                                         == row.get(field)
+                                         for field in
+                                         ("alpha_arc_zero_gap_undecided",
+                                          "alpha_arc_negative_undecided"))
                                  and sum(item.get("negative_control_undecided")
                                          is True for item in span_rows
                                          if item.get("member") == row.get("member"))
@@ -153,11 +175,13 @@ def main() -> int:
                      and row.get("negative_control_undecided", 0) > 0
                      and row.get("padded_zero_gap_undecided", 0) > 0
                      and row.get("padded_negative_undecided", 0) > 0
+                     and row.get("alpha_arc_zero_gap_undecided", 0) > 0
+                     and row.get("alpha_arc_negative_undecided", 0) > 0
                      and row.get("terminal_unresolved") is True
                      for row in summaries))
     receipt = {
-        "schema": "stellarcsg.cpp-prefix-interval-probe/v8",
-        "state": "EXPERIMENTAL_RECTANGLE_GAP_SWEEP_NOT_ROOT_CERTIFIED" if valid
+        "schema": "stellarcsg.cpp-prefix-interval-probe/v9",
+        "state": "EXPERIMENTAL_ALPHA_ARC_SWEEP_NOT_ROOT_CERTIFIED" if valid
                  else "EXPERIMENT_INCOMPLETE",
         "command": command,
         "exit_code": result.returncode,
@@ -171,11 +195,14 @@ def main() -> int:
         "gap_slack_matrix": {"gaps_cm": [1e-11, 1e-8, 1e-5],
                              "slacks": [1e-12, 1e-8, 1e-6]},
         "rectangle_gaps_cm": [1e-5, 1e-4, 1e-3, 1e-2, 1e-1, 1.0],
+        "alpha_arc_counts": [64, 256, 4096],
+        "alpha_arc_endpoint_slack": 1e-6,
         "rectangle_last_gap_outcome_order": [
             "excluded_projection", "excluded_single_prefix",
             "excluded_unit_branches", "excluded_unit_circle",
             "excluded_ray_prefix", "undecided_frame",
-            "undecided_projection", "undecided_root"],
+            "undecided_projection", "undecided_root",
+            "excluded_alpha_arcs"],
         "padded_case": {"gap_cm": 1e-5, "unit_circle_slack": 1e-6,
                         "projection_slack_formula":
                         "2*projected_tolerance+256*DBL_EPSILON*characteristic_length"},
@@ -184,7 +211,7 @@ def main() -> int:
         "summaries": summaries,
         "production_solver_modified": False,
         "native_transport_run": False,
-        "claim_boundary": "The rectangle sweep measures whether the seam prefix can be excluded without a unit-circle identity. The arithmetic intervals and padded equations are not yet a proved enclosure of all production floating operations, and finite root-tile existence/uniqueness remain unaudited; no tracking admission.",
+        "claim_boundary": "The alpha-arc rectangles are an experimental correlation alternative to the unit-circle test. Their 1e-6 trigonometric endpoint allowance and the arithmetic intervals are not a proved enclosure of the production floating path; finite root-tile existence/uniqueness remain unaudited. No tracking admission.",
     }
     (args.output / "receipt.json").write_text(json.dumps(receipt, indent=2)
                                                 + "\n")
