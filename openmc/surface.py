@@ -2735,6 +2735,96 @@ class PeriodicSplineSurface(Surface):
         )
 
 
+def _swept_compiled_member_boxes(group):
+    """Mirror the compiled swept span bounds for Python geometry operations.
+
+    The compiled kernel evaluates stored cubic powers, which can leave the
+    rounded control hull. Keep the Python bounding box on that same arithmetic
+    path instead of assuming the HDF5 control extrema enclose it.
+    """
+    center = np.asarray(group['centerline_coefficients'][...], dtype=float)
+    major = np.asarray(group['major_radius_coefficients'][...], dtype=float)
+    minor = np.asarray(group['minor_radius_coefficients'][...], dtype=float)
+    if (center.ndim != 2 or center.shape[1] != 3 or len(center) < 4
+            or major.shape != (len(center),) or minor.shape != (len(center),)
+            or not np.all(np.isfinite(center)) or not np.all(np.isfinite(major))
+            or not np.all(np.isfinite(minor)) or np.any(major <= 0)
+            or np.any(minor <= 0)):
+        raise ValueError('invalid swept-spline coefficients for bounds')
+    length = float(group.attrs['length_cm'])
+    if not math.isfinite(length) or length <= 0:
+        raise ValueError('invalid swept-spline length for bounds')
+
+    def outward(value, direction):
+        if not math.isfinite(value):
+            raise ValueError('swept-spline bounds overflow')
+        result = math.nextafter(value, direction)
+        if not math.isfinite(result):
+            raise ValueError('swept-spline bounds overflow')
+        return result
+
+    def product(coefficient, interval):
+        low = coefficient * (interval[0] if coefficient >= 0 else interval[1])
+        high = coefficient * (interval[1] if coefficient >= 0 else interval[0])
+        return outward(low, -math.inf), outward(high, math.inf)
+
+    def power_range(power, u):
+        value = power[3], power[3]
+        for degree in (2, 1, 0):
+            left, right = product(value[0], u), product(value[1], u)
+            value = (outward(min(*left, *right) + power[degree], -math.inf),
+                     outward(max(*left, *right) + power[degree], math.inf))
+        return value
+
+    to_power = ((1.0 / 6.0, 4.0 / 6.0, 1.0 / 6.0, 0.0),
+                (-0.5, 0.0, 0.5, 0.0),
+                (0.5, -1.0, 0.5, 0.0),
+                (-1.0 / 6.0, 0.5, -0.5, 1.0 / 6.0))
+    count = len(center)
+    step = (2.0 * math.pi) / float(count)
+    rounding = max(64.0 * np.finfo(float).eps * length, 1.0e-12 * length)
+    boxes = []
+    for index in range(count):
+        controls = [((float(center[(index + offset - 1) % count, 0]),
+                      float(center[(index + offset - 1) % count, 1]),
+                      float(center[(index + offset - 1) % count, 2]),
+                      float(major[(index + offset - 1) % count]),
+                      float(minor[(index + offset - 1) % count])))
+                    for offset in range(4)]
+        powers = []
+        for field in range(5):
+            field_power = []
+            for row in to_power:
+                coefficient = 0.0
+                for offset in range(4):
+                    coefficient += row[offset] * controls[offset][field]
+                field_power.append(coefficient)
+            powers.append(field_power)
+        angle_min = step * float(index)
+        angle_max = angle_min + step
+        width = angle_max - angle_min
+        upper_u = outward(width * (1.0 / width), math.inf)
+        center_lower, center_upper = [math.inf] * 3, [-math.inf] * 3
+        radius = 0.0
+        for tile in range(16):
+            left = upper_u * float(tile) / 16.0
+            right = upper_u * float(tile + 1) / 16.0
+            u = (0.0 if tile == 0 else outward(left, -math.inf),
+                 upper_u if tile == 15 else outward(right, math.inf))
+            fields = [power_range(power, u) for power in powers]
+            for axis in range(3):
+                center_lower[axis] = min(center_lower[axis], fields[axis][0])
+                center_upper[axis] = max(center_upper[axis], fields[axis][1])
+            radius = max(radius, fields[3][1], fields[4][1])
+        inflation = outward(radius + rounding, math.inf)
+        lower = [outward(value - inflation, -math.inf)
+                 for value in center_lower]
+        upper = [outward(value + inflation, math.inf)
+                 for value in center_upper]
+        boxes.append((center_lower, center_upper, lower, upper))
+    return boxes
+
+
 class SweptSplineSurface(Surface):
     """Experimental native swept cubic-spline coil surface.
 
@@ -2852,19 +2942,9 @@ class SweptSplineSurface(Surface):
                 group = h5[dataset]
                 if group.attrs['units'] not in ('cm', b'cm'):
                     raise ValueError("swept-spline payload units must be 'cm'")
-                centerline = group['centerline_coefficients'][...]
-                radius = max(
-                    float(np.max(group['major_radius_coefficients'][...])),
-                    float(np.max(group['minor_radius_coefficients'][...])),
-                )
-                characteristic = float(group.attrs['length_cm'])
-                rounding = max(64.0 * np.finfo(float).eps * characteristic,
-                               1.0e-12 * characteristic)
-                radius += rounding
-                member_lower = np.min(centerline, axis=0) - radius
-                member_upper = np.max(centerline, axis=0) + radius
-                lower = member_lower if lower is None else np.minimum(lower, member_lower)
-                upper = member_upper if upper is None else np.maximum(upper, member_upper)
+                for _, _, span_lower, span_upper in _swept_compiled_member_boxes(group):
+                    lower = span_lower if lower is None else np.minimum(lower, span_lower)
+                    upper = span_upper if upper is None else np.maximum(upper, span_upper)
         return BoundingBox(
             lower, upper,
         )

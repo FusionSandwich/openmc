@@ -150,6 +150,30 @@ def test_swept_collection_python_roundtrip_and_bounds(tmp_path):
     assert reloaded_geometry.get_all_surfaces()[302].is_equal(collection)
 
 
+def test_swept_python_box_contains_rounded_stored_power_witness(tmp_path):
+    # Rounded cubic-power conversion can leave the rounded control hull by
+    # one centimeter at this magnitude; the old Python bound missed it.
+    controls = [9007199254740992., 9007199254740994.,
+                9007199254740990., 9007199254741000.,
+                9007199254740988., 9007199254740988.,
+                9007199254740988., 9007199254740992.]
+    payload = tmp_path / 'rounded-power.h5'
+    with h5py.File(payload, 'w') as h5:
+        group = h5.create_group('members/coil_010')
+        group.attrs['units'] = 'cm'
+        group.attrs['length_cm'] = 1.0
+        group['centerline_coefficients'] = np.column_stack(
+            (controls, np.arange(8, dtype=float), np.zeros(8)))
+        group['major_radius_coefficients'] = np.full(8, .25)
+        group['minor_radius_coefficients'] = np.full(8, .25)
+    surface = openmc.SweptSplineSurface(
+        payload, dataset_prefix='/members/coil_', dataset_indices=[10])
+    rounded_center_x = 9007199254740987.0
+    old_control_bound = float(min(controls) - .25 - 1e-12)
+    assert old_control_bound > rounded_center_x
+    assert surface.bounding_box('-').lower_left[0] <= rounded_center_x
+
+
 def test_swept_selector_identity_and_invalid_collections():
     single = openmc.SweptSplineSurface('coils.h5', '/coil', 'content-a')
     assert single.is_equal(openmc.SweptSplineSurface(
