@@ -56,6 +56,12 @@ def main() -> int:
     span_counts_match = (len(unique_spans) == len(span_rows)
                          and len(span_rows) == sum(
                              row.get("selected", 0) for row in summaries)
+                         and all(isinstance(row.get("u_endpoint_above_one_ulp"),
+                                            bool) for row in span_rows)
+                         and all(isinstance(row.get("padded_excluded"), bool)
+                                 and (not row["padded_excluded"]
+                                      or row["gap_slack_excluded"][2][2])
+                                 for row in span_rows)
                          and all(not row.get("rectangle_excluded")
                                  or row.get("prefix_excluded") is True
                                  for row in span_rows)
@@ -77,6 +83,21 @@ def main() -> int:
                                      for item in span_rows
                                      if item.get("member") == row.get("member"))
                                  == row.get("prefix_excluded")
+                                 and sum(item.get("u_endpoint_above_one_ulp")
+                                         is True for item in span_rows
+                                         if item.get("member") == row.get("member"))
+                                 == row.get("u_endpoint_above_one_ulp")
+                                 and sum(item.get("padded_excluded") is True
+                                         for item in span_rows
+                                         if item.get("member") == row.get("member"))
+                                 == row.get("padded_excluded")
+                                 and all(sum(item.get(field) is True
+                                             for item in span_rows
+                                             if item.get("member") == row.get("member"))
+                                         == row.get(field)
+                                         for field in
+                                         ("padded_zero_gap_undecided",
+                                          "padded_negative_undecided"))
                                  and sum(item.get("zero_gap_undecided") is True
                                          for item in span_rows
                                          if item.get("member") == row.get("member"))
@@ -111,13 +132,16 @@ def main() -> int:
              and [row.get("member") for row in summaries] == [2, 3]
              and all(row.get("selected", 0) > 0
                      and row.get("prefix_excluded") == row.get("selected")
+                     and row.get("padded_excluded") == row.get("selected")
                      and row.get("zero_gap_undecided", 0) > 0
                      and row.get("negative_control_undecided", 0) > 0
+                     and row.get("padded_zero_gap_undecided", 0) > 0
+                     and row.get("padded_negative_undecided", 0) > 0
                      and row.get("terminal_unresolved") is True
                      for row in summaries))
     receipt = {
-        "schema": "stellarcsg.cpp-prefix-interval-probe/v4",
-        "state": "EXPERIMENTAL_GAP_SLACK_MATRIX_NOT_ROOT_CERTIFIED" if valid
+        "schema": "stellarcsg.cpp-prefix-interval-probe/v7",
+        "state": "EXPERIMENTAL_RESIDUAL_PADDED_PREFIX_NOT_ROOT_CERTIFIED" if valid
                  else "EXPERIMENT_INCOMPLETE",
         "command": command,
         "exit_code": result.returncode,
@@ -130,12 +154,15 @@ def main() -> int:
         "unit_circle_slack_sweep": [1e-10, 1e-8, 1e-6],
         "gap_slack_matrix": {"gaps_cm": [1e-11, 1e-8, 1e-5],
                              "slacks": [1e-12, 1e-8, 1e-6]},
+        "padded_case": {"gap_cm": 1e-5, "unit_circle_slack": 1e-6,
+                        "projection_slack_formula":
+                        "2*projected_tolerance+256*DBL_EPSILON*characteristic_length"},
         "underflow_control": underflow,
         "span_counts_match": span_counts_match,
         "summaries": summaries,
         "production_solver_modified": False,
         "native_transport_run": False,
-        "claim_boundary": "The gap-slack matrix is a sensitivity test, not a proved libm error bound. Stored compiled powers are tested, but no complete floating-path audit or finite root-tile uniqueness proof exists; no tracking admission.",
+        "claim_boundary": "The padded equations are an experimental stress test of accepted residual and arithmetic error, not a proof that all production floating operations are enclosed. Libm and finite root-tile uniqueness remain unaudited; no tracking admission.",
     }
     (args.output / "receipt.json").write_text(json.dumps(receipt, indent=2)
                                                 + "\n")

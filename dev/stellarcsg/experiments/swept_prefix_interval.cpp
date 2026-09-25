@@ -158,7 +158,8 @@ std::array<I, 2> complementary_branches(I known)
 Outcome exclude_tile(const stellarcsg::SweptSpan& span, I u,
                      const stellarcsg::Vec3& origin,
                      const stellarcsg::Vec3& direction,
-                     int dominant_axis, double cutoff, bool use_unit_circle)
+                     int dominant_axis, double cutoff, bool use_unit_circle,
+                     double projection_slack = 0.0)
 {
   const double scale = 1.0 / (span.angle_max - span.angle_min);
   V center, center_derivative, supplied;
@@ -193,7 +194,10 @@ Outcome exclude_tile(const stellarcsg::SweptSpan& span, I u,
       - (*normal)[dominant_axis] * dj);
     const I b = minor * ((*binormal)[axis] * dk
       - (*binormal)[dominant_axis] * dj);
-    return std::array<I, 3> {-offset, a, b};
+    // For the fixed axial fixture, this pads each transverse equation for
+    // accepted projected residual and a conservative arithmetic allowance.
+    return std::array<I, 3> {
+      -offset + I::bounds(-projection_slack, projection_slack), a, b};
   };
   const auto first = row(j);
   const auto second = row(l);
@@ -255,10 +259,16 @@ SpanResult analyze_span(const stellarcsg::SweptSpan& span,
                         const stellarcsg::Vec3& origin,
                         const stellarcsg::Vec3& direction,
                         int dominant_axis, double cutoff, bool use_unit_circle,
+                        double projection_slack = 0.0,
                         int max_depth = 36, std::size_t max_nodes = 10000)
 {
   struct Tile { double lo, hi; int depth; };
-  std::vector<Tile> stack {{0.0, 1.0, 0}};
+  // frame_in_span computes (angle - angle_min) * a rounded reciprocal.
+  // Its evaluated endpoint may lie outside [0, 1] by more than one ulp.
+  const double scale = 1.0 / (span.angle_max - span.angle_min);
+  const I angle = I::bounds(span.angle_min, span.angle_max);
+  const I local_u = (angle - I::point(span.angle_min)) * I::point(scale);
+  std::vector<Tile> stack {{local_u.lo, local_u.hi, 0}};
   SpanResult result;
   while (!stack.empty()) {
     const auto tile = stack.back();
@@ -268,7 +278,8 @@ SpanResult analyze_span(const stellarcsg::SweptSpan& span,
       break;
     }
     const Outcome state = exclude_tile(span, I::bounds(tile.lo, tile.hi),
-      origin, direction, dominant_axis, cutoff, use_unit_circle);
+      origin, direction, dominant_axis, cutoff, use_unit_circle,
+      projection_slack);
     if (excluded(state) || tile.depth == max_depth) {
       ++result.outcomes[static_cast<std::size_t>(state)];
       if (!excluded(state)) ++result.undecided;
@@ -322,7 +333,18 @@ int main(int argc, char** argv)
       const auto lead = surface.distance(origin, direction, false);
       if (!lead.found || !lead.terminal_unresolved)
         throw std::runtime_error("expected unresolved lead fixture changed");
+      const double projected_tolerance = std::max(
+        1.0e-10 * data.characteristic_length,
+        64.0 * std::numeric_limits<double>::epsilon()
+          * data.characteristic_length);
+      const double projection_slack = 2.0 * projected_tolerance
+        + 256.0 * std::numeric_limits<double>::epsilon()
+          * data.characteristic_length;
       std::size_t selected = 0, excluded_prefix = 0, rectangle_excluded = 0;
+      std::size_t u_endpoint_above_one_ulp = 0;
+      std::size_t padded_excluded = 0;
+      std::size_t padded_zero_gap_unknown = 0;
+      std::size_t padded_negative_unknown = 0;
       std::array<std::size_t, 3> slack_excluded {};
       std::array<std::array<std::size_t, 3>, 3> gap_slack_excluded {};
       std::size_t zero_gap_unknown = 0;
@@ -331,6 +353,10 @@ int main(int argc, char** argv)
       for (std::size_t index = 0; index < surface.spans().size(); ++index) {
         const auto& span = surface.spans()[index];
         ++selected;
+        const double scale = 1.0 / (span.angle_max - span.angle_min);
+        const double upper_u = (span.angle_max - span.angle_min) * scale;
+        const bool above_one_ulp = upper_u > up(1.0);
+        u_endpoint_above_one_ulp += above_one_ulp;
         const auto prefix = analyze_span(span, origin, direction,
           dominant_axis, lead.distance - gap, true);
         const auto rectangle = analyze_span(span, origin, direction,
@@ -362,6 +388,19 @@ int main(int argc, char** argv)
             gap_slack_excluded[g][s] += matrix_result[g][s];
           }
         }
+        unit_circle_slack = 1.0e-6;
+        const bool padded = analyze_span(span, origin, direction,
+          dominant_axis, lead.distance - 1.0e-5, true,
+          projection_slack).undecided == 0;
+        const bool padded_zero_gap = analyze_span(span, origin, direction,
+          dominant_axis, lead.distance, true,
+          projection_slack).undecided != 0;
+        const bool padded_negative = analyze_span(span, origin, direction,
+          dominant_axis, lead.distance + 4.0, true,
+          projection_slack).undecided != 0;
+        padded_excluded += padded;
+        padded_zero_gap_unknown += padded_zero_gap;
+        padded_negative_unknown += padded_negative;
         unit_circle_slack = 1.0e-12;
         nodes += prefix.nodes;
         excluded_prefix += prefix.undecided == 0;
@@ -372,6 +411,14 @@ int main(int argc, char** argv)
                   << ",\"span\":" << index << ",\"nodes\":"
                   << prefix.nodes << ",\"prefix_excluded\":"
                   << (prefix.undecided == 0 ? "true" : "false")
+                  << ",\"u_endpoint_above_one_ulp\":"
+                  << (above_one_ulp ? "true" : "false")
+                  << ",\"padded_excluded\":"
+                  << (padded ? "true" : "false")
+                  << ",\"padded_zero_gap_undecided\":"
+                  << (padded_zero_gap ? "true" : "false")
+                  << ",\"padded_negative_undecided\":"
+                  << (padded_negative ? "true" : "false")
                   << ",\"rectangle_excluded\":"
                   << (rectangle.undecided == 0 ? "true" : "false")
                   << ",\"rectangle_nodes\":" << rectangle.nodes
@@ -399,6 +446,14 @@ int main(int argc, char** argv)
       std::cout << "{\"kind\":\"member_summary\",\"member\":"
                 << member << ",\"lead_cm\":" << lead.distance
                 << ",\"selected\":" << selected
+                << ",\"u_endpoint_above_one_ulp\":"
+                << u_endpoint_above_one_ulp
+                << ",\"padded_excluded\":" << padded_excluded
+                << ",\"padded_zero_gap_undecided\":"
+                << padded_zero_gap_unknown
+                << ",\"padded_negative_undecided\":"
+                << padded_negative_unknown
+                << ",\"projection_slack_cm\":" << projection_slack
                 << ",\"prefix_excluded\":" << excluded_prefix
                 << ",\"rectangle_excluded\":" << rectangle_excluded
                 << ",\"slack_excluded\":[" << slack_excluded[0] << ','
@@ -418,7 +473,8 @@ int main(int argc, char** argv)
                 << ",\"negative_control_undecided\":"
                 << negative_unknown << ",\"nodes\":" << nodes
                 << ",\"terminal_unresolved\":true}\n";
-      if (selected == 0 || zero_gap_unknown == 0 || negative_unknown == 0)
+      if (selected == 0 || zero_gap_unknown == 0 || negative_unknown == 0
+          || padded_zero_gap_unknown == 0 || padded_negative_unknown == 0)
         throw std::runtime_error("missing candidate or known-root control");
     }
     return 0;
