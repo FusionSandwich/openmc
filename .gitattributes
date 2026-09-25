@@ -53,3 +53,16 @@ dev/stellarcsg/reports/local-cont-20260925/component-facet-ray-bank-05/*.json te
 dev/stellarcsg/reports/local-cont-20260925/component-facet-ray-bank-05/volume-*/*.xml text eol=lf
 dev/stellarcsg/reports/local-cont-20260925/component-facet-rejections-03/*.json text eol=lf
 dev/stellarcsg/reports/local-cont-20260925/component-facet-rejections-03/*/*.xml text eol=lf
+dev/stellarcsg/qualification/audit_p00_facet_component_overlap.py text eol=lf
+dev/stellarcsg/reports/local-cont-20260925/p00-facet-component-overlap-02.json text eol=lf
+dev/stellarcsg/reports/local-cont-20260925/component-facet-period-region-03/*.xml text eol=lf
+dev/stellarcsg/reports/local-cont-20260925/component-facet-period-region-03/*.json text eol=lf
+dev/stellarcsg/reports/local-cont-20260925/component-facet-ray-bank-06/*.json text eol=lf
+dev/stellarcsg/reports/local-cont-20260925/component-facet-ray-bank-06/volume-*/*.xml text eol=lf
+dev/stellarcsg/reports/local-cont-20260925/component-facet-rejections-04/*.json text eol=lf
+dev/stellarcsg/reports/local-cont-20260925/component-facet-rejections-04/*/*.xml text eol=lf
+dev/stellarcsg/qualification/audit_p00_magnet_material_smoke.py text eol=lf
+dev/stellarcsg/reports/local-cont-20260925/p00-magnet-material-smoke-16-01/*.xml text eol=lf
+dev/stellarcsg/reports/local-cont-20260925/p00-magnet-material-smoke-16-01/*.json text eol=lf
+dev/stellarcsg/reports/local-cont-20260925/p00-magnet-material-smoke-16-02/*.xml text eol=lf
+dev/stellarcsg/reports/local-cont-20260925/p00-magnet-material-smoke-16-02/*.json text eol=lf

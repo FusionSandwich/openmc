@@ -17,7 +17,8 @@ import numpy as np
 import openmc
 
 from audit_periodic_facet_ray_bank import on_vacuum_boundary, point, sha256
-from stage_facet_component_period_region import CONTENT_ID, PAYLOAD_SHA256
+from stage_facet_component_period_region import (
+    CONTENT_ID, OVERLAP_AUDIT_SHA256, PAYLOAD_SHA256)
 
 
 ACCEPTED_H5M_SHA256 = "549c42bf66b290f8f56b6f4d7523940c3b32b9d256d993ea42605f4dddb33e39"
@@ -44,9 +45,14 @@ def main() -> None:
     geometry = ET.parse(region_path).getroot()
     surfaces = {int(node.get("id")): node for node in geometry.findall(".//surface")}
     cells = {int(node.get("id")): node for node in geometry.findall(".//cell")}
-    if (region["state"] != "DERIVED_18_COIL_CELLS_XML_ROUNDTRIP_ONLY"
+    if (region["state"] != "DERIVED_18_PRIORITY_VOID_CELLS_XML_ROUNDTRIP_ONLY"
             or region["hashes"]["geometry_xml"] != sha256(region_path)
             or region["hashes"]["payload"] != PAYLOAD_SHA256
+            or region["hashes"]["overlap_audit"] != OVERLAP_AUDIT_SHA256
+            or region["hashes"]["stager"] != sha256(
+                Path(__file__).with_name("stage_facet_component_period_region.py"))
+            or region["overlap_priority"] != "ascending_dagmc_volume_id_void_only"
+            or region["known_overlap_pairs"] != [[15, 16], [17, 18]]
             or bank["classification"] != "P00_ACCEPTED_MESH_FACET_SIDE_CONTROLS"
             or sha256(args.side_bank) != SIDE_BANK_SHA256
             or bank["input_sha256"]["dagmc_h5m"] != ACCEPTED_H5M_SHA256
@@ -183,7 +189,7 @@ def main() -> None:
                    "side_bank": sha256(args.side_bank),
                    "binary": sha256(binary), "library": sha256(library),
                    "cross_sections_index": sha256(cross_sections)},
-        "claim_boundary": "One void-only ray per accepted P00 mesh group enters the matching distinct derived facet coil cell and terminates on the enclosure vacuum boundary. This does not establish continuous CAD fidelity, material transport, full phase-space/edge coverage, overlaps, plasma clearance, or performance."
+        "claim_boundary": "One void-only ray per accepted P00 mesh group enters the matching deterministic-priority derived facet cell and terminates on the enclosure vacuum boundary. Facet shells 15-16 and 17-18 overlap, and ascending volume ID assigns their shared regions only for this void-only control. This does not establish physical material ownership, continuous CAD fidelity, material transport, full phase-space/edge coverage, plasma clearance, or performance."
     }
     (args.output / "receipt.json").write_text(json.dumps(receipt, indent=2) + "\n")
     print(json.dumps({"state": receipt["state"],

@@ -14,6 +14,7 @@ import openmc
 
 PAYLOAD_SHA256 = "3db1723d250319d7e6e3d0a4cbbba7b88a68c830fba4214d001a8c2c2545c2d4"
 CONTENT_ID = "sha256:2167ba06b820b747143de1a22f4704e67a538cdec217bf7ffa0fd9b418536f4c"
+OVERLAP_AUDIT_SHA256 = "d61795613be034bd2fbef404dfe5c77492bef66aa519e219b5f20224d19dffc5"
 CAP_COUNTS = {
     8: (0, 6), 9: (0, 16), 10: (0, 18), 11: (0, 18),
     12: (0, 16), 13: (0, 6),
@@ -32,6 +33,7 @@ def main() -> None:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--payload", type=Path, required=True)
     parser.add_argument("--payload-receipt", type=Path, required=True)
+    parser.add_argument("--overlap-audit", type=Path, required=True)
     parser.add_argument("--output", type=Path, required=True)
     args = parser.parse_args()
     if args.output.exists():
@@ -46,6 +48,15 @@ def main() -> None:
             or source["classification"]
             != "DERIVED_PERIODIC_CAP_CANDIDATE_NOT_ACCEPTED_H5M"):
         raise ValueError("derived P00 facet payload identity differs")
+    overlap = json.loads(args.overlap_audit.read_text())
+    if (sha256(args.overlap_audit) != OVERLAP_AUDIT_SHA256
+            or overlap["state"] != "CONFIRMED_TRANSVERSE_OVERLAP_ACCEPTED_AND_DERIVED"
+            or overlap["hashes"]["derived_payload"] != PAYLOAD_SHA256
+            or not overlap["intersecting_triangle_pairs_bitwise_unchanged"]
+            or {tuple(row["component_ids"])
+                for row in overlap["derived"]["witnesses"]}
+            != {(15, 16), (17, 18)}):
+        raise ValueError("component overlap audit identity differs")
     with h5py.File(args.payload, "r") as handle:
         group = handle["facets/one_period"]
         vertices = np.asarray(group["triangle_vertices"], dtype="<f8")
@@ -71,7 +82,7 @@ def main() -> None:
     zmin = openmc.ZPlane(-700.0, boundary_type="vacuum", surface_id=905)
     zmax = openmc.ZPlane(700.0, boundary_type="vacuum", surface_id=906)
     sector = +x0 & +y0 & -radial & +zmin & -zmax
-    complement_region = sector
+    available_region = sector
     cells = []
     surfaces = {}
     for component, (x_caps, y_caps) in CAP_COUNTS.items():
@@ -90,10 +101,10 @@ def main() -> None:
         surfaces[component] = facet
         cells.append(openmc.Cell(cell_id=2000 + component,
                                  name=f"P00-derived-volume-{component}",
-                                 region=sector & -facet))
-        complement_region &= +facet
+                                 region=available_region & -facet))
+        available_region = available_region & +facet
     cells.append(openmc.Cell(cell_id=2000, name="P00-derived-complement",
-                             region=complement_region))
+                             region=available_region))
     args.output.mkdir(parents=True)
     xml = args.output / "geometry.xml"
     openmc.Geometry(cells).export_to_xml(path=xml)
@@ -114,18 +125,21 @@ def main() -> None:
         raise ValueError("per-component sector XML roundtrip differs")
     receipt = {
         "schema": "stellarcsg.facet-component-period-region/v1",
-        "state": "DERIVED_18_COIL_CELLS_XML_ROUNDTRIP_ONLY",
+        "state": "DERIVED_18_PRIORITY_VOID_CELLS_XML_ROUNDTRIP_ONLY",
         "field_period_degrees": 90,
         "coil_cell_ids": list(range(2008, 2026)),
         "dagmc_reference_volume_ids": list(range(8, 26)),
         "complement_cell_id": 2000,
         "facet_surface_ids": list(range(1108, 1126)),
         "component_cap_counts": {str(k): list(v) for k, v in CAP_COUNTS.items()},
+        "overlap_priority": "ascending_dagmc_volume_id_void_only",
+        "known_overlap_pairs": [[15, 16], [17, 18]],
         "hashes": {"stager": sha256(Path(__file__)),
                    "payload": sha256(args.payload),
                    "payload_receipt": sha256(args.payload_receipt),
+                   "overlap_audit": sha256(args.overlap_audit),
                    "geometry_xml": sha256(xml)},
-        "claim_boundary": "Python stages 18 distinct unfilled coil cells and one complement within a 90-degree sector, all from component selectors on one verified derived P00 facet payload. Numeric labels follow accepted DAGMC reference volume IDs, not raw source-filament indices. Each selected shell is validated by Python bounds and XML roundtrip. Native initialization, overlaps, particle histories, material ownership and continuous CAD remain unqualified."
+        "claim_boundary": "Python stages 18 distinct unfilled cells and one complement within a 90-degree sector. The accepted and derived facet shells intersect for volume pairs 15-16 and 17-18. Ascending volume ID masks later overlapping shells solely to give deterministic void-only test regions; no physical material priority is approved. Numeric labels follow DAGMC reference volume IDs, not raw filament indices. Native initialization, particle histories, material ownership and continuous CAD remain unqualified here."
     }
     (args.output / "receipt.json").write_text(json.dumps(receipt, indent=2) + "\n")
     print(receipt["state"])
