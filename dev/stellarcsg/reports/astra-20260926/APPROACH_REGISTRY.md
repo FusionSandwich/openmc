@@ -45,3 +45,25 @@ conservative query failure, not a wrong returned normal. The next constructive
 repair narrows the joined local arc and certifies its entire complement.
 All failed logs remain alongside later receipts; no frozen ray or tolerance was
 changed. Comparator false-PASS paths were repaired before accepting new evidence.
+
+## Successful mechanisms added after the first seam milestone
+
+- Partial joined projection arcs with complete omitted-tail exclusion replaced
+  the overly broad three-chart test. This closed a conservative false rejection
+  on the rounded-square control fixture.
+- Exact stationary correlation R.D=0 tightened the ray derivative. Monotonic
+  same-sign slabs then resolved a15 without a tolerance or budget increase.
+- Exact global support plus strict interior Bernstein separation reduced even
+  contact queries to a complete finite seam list. A bounded dyadic accumulator
+  preserved a06's tiny positive root and a08's tangency. Independent Fraction
+  proofs verified both; all 160 frozen scalar queries then qualified at 1e-11.
+- Tensor Bernstein whole-prefix certification around an untrusted numerical
+  proposal reduces repeated global minimum searches. Exact-zero interval
+  identities separately remove artificial subnormal uncertainty. Both paths
+  remain available for identical-geometry A/B measurement.
+
+Build13 completed while the reviewer-requested residual reporting correction
+changed its source. Its receipt explicitly detects that changed input and is not
+used for new executable acceptance. Build14 rebuilt the final input set with no
+input changes and includes the option for disabling Bernstein acceleration.
+The old source/binary receipts are retained rather than relabeled as current.

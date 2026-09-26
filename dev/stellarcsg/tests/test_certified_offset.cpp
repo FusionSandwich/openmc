@@ -145,6 +145,9 @@ int main()
     require(q.lower <= 16 && q.upper >= 16,
       "exact rational minimum escaped enclosure");
     require(
+      std::isfinite(s.evaluate({1e6, 0, 0})) && s.evaluate({1e6, 0, 0}) > 0,
+      "strict outside sign rejected because minimum precision is incomplete");
+    require(
       s.evaluate({1.25, 0, 0}) == 0, "exact origin contact lost boundary band");
     const auto hit = s.distance({2, 0, 0}, {-1, 0, 0}, false);
     require(hit.disposition() == stellarcsg::DistanceDisposition::hit &&

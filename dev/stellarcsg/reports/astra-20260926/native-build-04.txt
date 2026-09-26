@@ -1,0 +1,64 @@
+[1/14] Building CXX object CMakeFiles/libopenmc.dir/src/surface.cpp.o
+In file included from /mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/openmc-stellarcsg/vendor/fmt/include/fmt/format.h:41,
+                 from /mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-astra-kernel-20260926/include/openmc/error.h:8,
+                 from /mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-astra-kernel-20260926/include/openmc/hdf5_interface.h:17,
+                 from /mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-astra-kernel-20260926/include/openmc/boundary_condition.h:4,
+                 from /mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-astra-kernel-20260926/include/openmc/surface.h:12,
+                 from /mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-astra-kernel-20260926/src/surface.cpp:1:
+In function ‘constexpr OutputIt fmt::v11::detail::copy(InputIt, InputIt, OutputIt) [with T = char; InputIt = const char*; OutputIt = char*; typename std::enable_if<(! is_back_insert_iterator<OutputIt>::value), int>::type <anonymous> = 0]’,
+    inlined from ‘constexpr void fmt::v11::detail::for_each_codepoint(fmt::v11::string_view, F) [with F = find_escape(const char*, const char*)::<lambda(uint32_t, fmt::v11::string_view)>]’ at /mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/openmc-stellarcsg/vendor/fmt/include/fmt/format.h:677:15,
+    inlined from ‘fmt::v11::detail::find_escape_result<char> fmt::v11::detail::find_escape(const char*, const char*)’ at /mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/openmc-stellarcsg/vendor/fmt/include/fmt/format.h:1794:21,
+    inlined from ‘OutputIt fmt::v11::detail::write_escaped_string(OutputIt, fmt::v11::basic_string_view<Char>) [with Char = char; OutputIt = counting_iterator]’ at /mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/openmc-stellarcsg/vendor/fmt/include/fmt/format.h:1886:30:
+/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/openmc-stellarcsg/vendor/fmt/include/fmt/base.h:1213:31: warning: writing 8 bytes into a region of size 7 [-Wstringop-overflow=]
+ 1213 |   while (begin != end) *out++ = static_cast<T>(*begin++);
+      |                        ~~~~~~~^~~~~~~~~~~~~~~~~~~~~~~~~~
+/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/openmc-stellarcsg/vendor/fmt/include/fmt/format.h: In function ‘OutputIt fmt::v11::detail::write_escaped_string(OutputIt, fmt::v11::basic_string_view<Char>) [with Char = char; OutputIt = counting_iterator]’:
+/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/openmc-stellarcsg/vendor/fmt/include/fmt/format.h:676:10: note: destination object ‘buf’ of size 7
+  676 |     char buf[2 * block_size - 1] = {};
+      |          ^~~
+In function ‘constexpr OutputIt fmt::v11::detail::copy(InputIt, InputIt, OutputIt) [with T = char; InputIt = const char*; OutputIt = char*; typename std::enable_if<(! is_back_insert_iterator<OutputIt>::value), int>::type <anonymous> = 0]’,
+    inlined from ‘constexpr void fmt::v11::detail::for_each_codepoint(fmt::v11::string_view, F) [with F = find_escape(const char*, const char*)::<lambda(uint32_t, fmt::v11::string_view)>]’ at /mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/openmc-stellarcsg/vendor/fmt/include/fmt/format.h:677:15,
+    inlined from ‘fmt::v11::detail::find_escape_result<char> fmt::v11::detail::find_escape(const char*, const char*)’ at /mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/openmc-stellarcsg/vendor/fmt/include/fmt/format.h:1794:21,
+    inlined from ‘OutputIt fmt::v11::detail::write_escaped_string(OutputIt, fmt::v11::basic_string_view<Char>) [with Char = char; OutputIt = fmt::v11::basic_appender<char>]’ at /mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/openmc-stellarcsg/vendor/fmt/include/fmt/format.h:1886:30:
+/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/openmc-stellarcsg/vendor/fmt/include/fmt/base.h:1213:31: warning: writing 8 bytes into a region of size 7 [-Wstringop-overflow=]
+ 1213 |   while (begin != end) *out++ = static_cast<T>(*begin++);
+      |                        ~~~~~~~^~~~~~~~~~~~~~~~~~~~~~~~~~
+/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/openmc-stellarcsg/vendor/fmt/include/fmt/format.h: In function ‘OutputIt fmt::v11::detail::write_escaped_string(OutputIt, fmt::v11::basic_string_view<Char>) [with Char = char; OutputIt = fmt::v11::basic_appender<char>]’:
+/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/openmc-stellarcsg/vendor/fmt/include/fmt/format.h:676:10: note: destination object ‘buf’ of size 7
+  676 |     char buf[2 * block_size - 1] = {};
+      |          ^~~
+In function ‘constexpr OutputIt fmt::v11::detail::copy(InputIt, InputIt, OutputIt) [with T = char; InputIt = const char*; OutputIt = char*; typename std::enable_if<(! is_back_insert_iterator<OutputIt>::value), int>::type <anonymous> = 0]’,
+    inlined from ‘constexpr void fmt::v11::detail::for_each_codepoint(fmt::v11::string_view, F) [with F = code_point_index(fmt::v11::string_view, size_t)::<lambda(uint32_t, fmt::v11::string_view)>]’ at /mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/openmc-stellarcsg/vendor/fmt/include/fmt/format.h:677:15,
+    inlined from ‘size_t fmt::v11::detail::code_point_index(fmt::v11::string_view, size_t)’ at /mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/openmc-stellarcsg/vendor/fmt/include/fmt/format.h:738:21,
+    inlined from ‘constexpr OutputIt fmt::v11::detail::write(OutputIt, fmt::v11::basic_string_view<Char>, const fmt::v11::format_specs&) [with Char = char; OutputIt = fmt::v11::basic_appender<char>]’ at /mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/openmc-stellarcsg/vendor/fmt/include/fmt/format.h:2284:28:
+/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/openmc-stellarcsg/vendor/fmt/include/fmt/base.h:1213:31: warning: writing 8 bytes into a region of size 7 [-Wstringop-overflow=]
+ 1213 |   while (begin != end) *out++ = static_cast<T>(*begin++);
+      |                        ~~~~~~~^~~~~~~~~~~~~~~~~~~~~~~~~~
+/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/openmc-stellarcsg/vendor/fmt/include/fmt/format.h: In function ‘constexpr OutputIt fmt::v11::detail::write(OutputIt, fmt::v11::basic_string_view<Char>, const fmt::v11::format_specs&) [with Char = char; OutputIt = fmt::v11::basic_appender<char>]’:
+/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/openmc-stellarcsg/vendor/fmt/include/fmt/format.h:676:10: note: destination object ‘buf’ of size 7
+  676 |     char buf[2 * block_size - 1] = {};
+      |          ^~~
+In function ‘constexpr OutputIt fmt::v11::detail::copy(InputIt, InputIt, OutputIt) [with T = char; InputIt = const char*; OutputIt = char*; typename std::enable_if<(! is_back_insert_iterator<OutputIt>::value), int>::type <anonymous> = 0]’,
+    inlined from ‘constexpr void fmt::v11::detail::for_each_codepoint(fmt::v11::string_view, F) [with F = compute_width(fmt::v11::string_view)::count_code_points]’ at /mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/openmc-stellarcsg/vendor/fmt/include/fmt/format.h:677:15,
+    inlined from ‘constexpr size_t fmt::v11::detail::compute_width(fmt::v11::string_view)’ at /mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/openmc-stellarcsg/vendor/fmt/include/fmt/format.h:724:21,
+    inlined from ‘constexpr OutputIt fmt::v11::detail::write(OutputIt, fmt::v11::basic_string_view<Char>, const fmt::v11::format_specs&) [with Char = char; OutputIt = fmt::v11::basic_appender<char>]’ at /mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/openmc-stellarcsg/vendor/fmt/include/fmt/format.h:2294:28:
+/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/openmc-stellarcsg/vendor/fmt/include/fmt/base.h:1213:31: warning: writing 8 bytes into a region of size 7 [-Wstringop-overflow=]
+ 1213 |   while (begin != end) *out++ = static_cast<T>(*begin++);
+      |                        ~~~~~~~^~~~~~~~~~~~~~~~~~~~~~~~~~
+/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/openmc-stellarcsg/vendor/fmt/include/fmt/format.h: In function ‘constexpr OutputIt fmt::v11::detail::write(OutputIt, fmt::v11::basic_string_view<Char>, const fmt::v11::format_specs&) [with Char = char; OutputIt = fmt::v11::basic_appender<char>]’:
+/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/openmc-stellarcsg/vendor/fmt/include/fmt/format.h:676:10: note: destination object ‘buf’ of size 7
+  676 |     char buf[2 * block_size - 1] = {};
+      |          ^~~
+[2/14] Building CXX object CMakeFiles/libopenmc.dir/src/surface_periodic_spline.cpp.o
+[3/14] Building CXX object CMakeFiles/libopenmc.dir/src/surface_swept_spline.cpp.o
+[4/14] Building CXX object CMakeFiles/libopenmc.dir/dev/stellarcsg/src/coefficient_file.cpp.o
+[5/14] Building CXX object CMakeFiles/libopenmc.dir/dev/stellarcsg/src/swept_coefficient_file.cpp.o
+[6/14] Building CXX object CMakeFiles/libopenmc.dir/dev/stellarcsg/src/compiled_periodic_surface.cpp.o
+[7/14] Building CXX object CMakeFiles/libopenmc.dir/dev/stellarcsg/src/compiled_swept_surface.cpp.o
+[8/14] Building CXX object CMakeFiles/libopenmc.dir/dev/stellarcsg/src/certified_spline_offset.cpp.o
+[9/14] Building CXX object CMakeFiles/libopenmc.dir/dev/stellarcsg/src/compiled_swept_surface_set.cpp.o
+[10/14] Building CXX object CMakeFiles/libopenmc.dir/dev/stellarcsg/src/periodic_radial_surface.cpp.o
+[11/14] Building CXX object CMakeFiles/libopenmc.dir/dev/stellarcsg/src/root_solver.cpp.o
+[12/14] Linking CXX shared library lib/libopenmc.so
+[13/14] Building CXX object CMakeFiles/stellarcsg_native_offset_probe.dir/dev/stellarcsg/qualification/certified_offset_probe.cpp.o
+[14/14] Linking CXX executable bin/stellarcsg_native_offset_probe

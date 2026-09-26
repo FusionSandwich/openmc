@@ -1,0 +1,57 @@
+{
+  "schema": "stellarcsg.reusable-offset-aggregation-check/v1",
+  "all_pass": true,
+  "reusable_source_sha256": "4d01bad663af8a2d7ad2b3b62420da3bd2c62698b68134ee863a2f2841996f45",
+  "baseline_receipt_sha256": "9b2ceefb337a0d0172d608808fcdcc8ecff6cc8af54bb67cd6b50ab44fbf8e7a",
+  "baseline_query_count": 160,
+  "baseline_dispositions": {
+    "no_hit": 91,
+    "hit": 69
+  },
+  "historical_evidence_unchanged": true,
+  "historical_hashes": {
+    "/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-astra-kernel-20260926/dev/stellarcsg/reports/astra-20260926/independent-bank-aggregate.py": "6df2631b6743b19e4505f4e98a173effb64ea516eb30b000fa8c31ae2792a8dd",
+    "/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-astra-kernel-20260926/dev/stellarcsg/reports/astra-20260926/independent-bank-qualified-01.json": "e1f224db61c55dcd8a8e8372494904dc78dd2dbc96b11574cd50f6f3660a31ba",
+    "/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-astra-kernel-20260926/dev/stellarcsg/reports/astra-20260926/independent-bank-support-final-01.json": "cccd0a4af8808192158fbc4d7a98f0d3c1b3ee8ca211c020cfdc1c8e0518f2aa",
+    "/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-astra-kernel-20260926/dev/stellarcsg/reports/astra-20260926/independent-bank-tight-01/receipt.json": "303d7f2b0f884b89c9aaf5c336ba7f4eecbca88016828801c6747e4b92447cc2",
+    "/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-astra-kernel-20260926/dev/stellarcsg/reports/astra-20260926/frozen-offset-03/candidate.jsonl": "42e015482fbf12e30f322a92b07b55be8a78cbd824ef09b13453bab43d900e17"
+  },
+  "negative_cases": [
+    {
+      "case": "swapped_candidate",
+      "passed": true,
+      "exit_code": 1,
+      "expected_error": "prefix candidate SHA mismatch",
+      "output_created": false,
+      "support_output_created": false,
+      "observed_error": "ValueError: prefix candidate SHA mismatch"
+    },
+    {
+      "case": "swapped_source",
+      "passed": true,
+      "exit_code": 1,
+      "expected_error": "prefix wistell SHA mismatch",
+      "output_created": false,
+      "support_output_created": false,
+      "observed_error": "ValueError: prefix wistell SHA mismatch"
+    },
+    {
+      "case": "optimized_swapped_candidate",
+      "passed": true,
+      "exit_code": 1,
+      "expected_error": "prefix candidate SHA mismatch",
+      "output_created": false,
+      "support_output_created": false,
+      "observed_error": "ValueError: prefix candidate SHA mismatch"
+    },
+    {
+      "case": "duplicate_JSON_key",
+      "passed": true,
+      "exit_code": 1,
+      "expected_error": "duplicate JSON key: kind",
+      "output_created": false,
+      "support_output_created": false,
+      "observed_error": "ValueError: duplicate JSON key: kind"
+    }
+  ]
+}

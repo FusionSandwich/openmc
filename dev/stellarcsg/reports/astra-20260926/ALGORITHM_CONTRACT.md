@@ -140,3 +140,37 @@ may prevent its milestone, which must be reported rather than relabeled.
 No route treats a sampled residual, all-no-hit corpus, or static BVH audit as
 root completeness. Exact-control interpretation is explicit in the API and
 receipts. This document states acceptance obligations, not results.
+
+## Certified prefix acceleration
+
+An optional accelerator uses floating-point nearest-center proposals to locate
+a possible sign bracket. The proposal samples at most 128 ray locations and
+uses at most 64 numerical bisections. These values never admit a result.
+Original-control interval arithmetic must certify opposite endpoint signs,
+unique projection and a strict common derivative on the bracket. The existing
+root enclosure, rounding-error and residual gates then apply.
+
+For an outside start, each complete curve span supplies the tensor polynomial
+Q(u,t), degree 6 in local u and degree 2 in an affine ray coordinate. Its powers
+are formed from the translated offset before squaring. Outward binomial-ratio
+degree conversion and de Casteljau subdivision preserve containment. Every
+remaining tensor coefficient must have lower bound strictly greater than one;
+original-control hull separation can exclude a whole span. For an inside start,
+fixed exact curve-center witnesses cover ray slabs using the convex quadratic
+endpoint bound. The full prefix ends at the certified bracket's left endpoint.
+Thus a later numerical proposal cannot skip an earlier boundary.
+
+Each prefix attempt has the same options-derived node cap as the ordered search
+and depth at most 48. Failed acceleration falls through to the original ordered
+certificate; its work is retained in diagnostics. Total query work includes both
+bounded stages and the floating proposals. `enable_bernstein_prefix=false` turns
+off only this attempt, allowing comparisons on identical represented geometry.
+
+Exactly zero singleton intervals use the exact identities 0+x=x, 0*x=0 and
+0/x=0 (after excluding zero denominators), and exact zero square/root results.
+Equal singleton subtraction is exactly zero. These preserve inclusion without
+manufacturing long-double subnormal uncertainty. They benefit both query paths.
+Classification may return a strict proved sign from an incomplete-precision
+minimum enclosure; a straddle still rejects. Finite magnitude clamping preserves
+that sign when the mathematical value exceeds binary64 range. The boundary band
+still requires the existing completion and unique-normal certificates.

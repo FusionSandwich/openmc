@@ -1,0 +1,101 @@
+{
+  "schema": "stellarcsg.independent-performance-review/v1",
+  "state": "ACCEPTED_NARROW_OBSERVATIONAL_AB",
+  "retained_runs": [
+    "04",
+    "05",
+    "10",
+    "11",
+    "12",
+    "13"
+  ],
+  "excluded_runs": [
+    "06",
+    "07",
+    "08",
+    "09"
+  ],
+  "run_metrics": {
+    "04": {
+      "wall_seconds": 1.3859875202178955,
+      "summed_distance_ns": 843030202,
+      "missing_normal_timings": 9,
+      "certified_prefixes": 66
+    },
+    "05": {
+      "wall_seconds": 3.9888627529144287,
+      "summed_distance_ns": 3452209311,
+      "missing_normal_timings": 9,
+      "certified_prefixes": 0
+    },
+    "10": {
+      "wall_seconds": 1.7976419925689697,
+      "summed_distance_ns": 866762204,
+      "missing_normal_timings": 9,
+      "certified_prefixes": 66
+    },
+    "11": {
+      "wall_seconds": 4.004265069961548,
+      "summed_distance_ns": 3489909531,
+      "missing_normal_timings": 9,
+      "certified_prefixes": 0
+    },
+    "12": {
+      "wall_seconds": 1.4600608348846436,
+      "summed_distance_ns": 887151978,
+      "missing_normal_timings": 9,
+      "certified_prefixes": 66
+    },
+    "13": {
+      "wall_seconds": 4.105158090591431,
+      "summed_distance_ns": 3580167041,
+      "missing_normal_timings": 9,
+      "certified_prefixes": 0
+    }
+  },
+  "mean_summed_distance_seconds": {
+    "on": 0.865648128,
+    "off": 3.5074286276666666
+  },
+  "mean_child_wall_seconds": {
+    "on": 1.5478967825571697,
+    "off": 4.032761971155803
+  },
+  "distance_ratio_off_over_on": 4.0517948508365125,
+  "child_wall_ratio_off_over_on": 2.6053171093834595,
+  "identical_non_timing_fields_within_variant": true,
+  "same_binary_and_recorded_inputs": true,
+  "option_only_command_difference": true,
+  "independent04_05_certificates_reusable_for_identical_replicate_outputs": true,
+  "exclusion_assessment": "06-09 verifier overlap is supplied operational context; exclusion is conservative and does not prove absence of other background load in retained runs.",
+  "limits": [
+    "three sequential on/off pairs; fixed ordering, no randomized scheduling or confidence interval",
+    "nine normal timing/projection failures in every run; no complete normal cost claim",
+    "sum of 160 solver-call timings differs from child walltime",
+    "same implementation with optional prefix disabled, not native throughput, transport or 80% qualification"
+  ],
+  "observed_artifact_sha256": {
+    "performance-ab.json": "50086e8d2e9b065ffd80ab1d6f9c20ef45cc59e9dec559ac7498311c8d754d57",
+    "PERFORMANCE_AB.md": "7bdfce98acfaf0d962d0adc1b6f39c8ca19c522cb94191571635f60e98b351af",
+    "frozen-offset-04/receipt.json": "2d64998c27da5fe77e70d1b2898c5845e5dcb7325f77c837cccf33aa403ce8cc",
+    "frozen-offset-04/launch.json": "e84d28ac64aef041994d356150b28f5531a567dfeb4304b13db30cc9ba1c23ca",
+    "frozen-offset-04/candidate.jsonl": "1ca73e1668d9425b23be213b80a780efcd7de0362ac9f6973be5cb1f5fef1746",
+    "frozen-offset-05/receipt.json": "10a90d398c2c8c7be85b751f54c710d96be966307b22d37caa9ac7a1c977041f",
+    "frozen-offset-05/launch.json": "7f617608060b156d3211e19bb4089e54f556fa00a15fef504ac3bae3ad3a1c32",
+    "frozen-offset-05/candidate.jsonl": "158db5412f917f0dee7af4335d7d49f69b3981c28cbbd3abb50adf87abb69962",
+    "frozen-offset-10/receipt.json": "73f590bd561328cd7ec9bf809c40766ed3a2095c2f2e92668e7b2a6e1916b7d7",
+    "frozen-offset-10/launch.json": "7c3c0644a07702d15a010c702d956cad27d6c0ca367d7732c8334ca159ecbb37",
+    "frozen-offset-10/candidate.jsonl": "8f03d6e106f5486d98998bb7c5ac3bdef06a9fa1e2e9941474cea759351509e3",
+    "frozen-offset-11/receipt.json": "c5c079ff28e30babdbcb64b52317626c4e7a7a0d3711bc9c9adb8e12f62cb07f",
+    "frozen-offset-11/launch.json": "bb97e03c1a6bdce78349428a03d30bb22c1726419836847472596b9c03a6abb3",
+    "frozen-offset-11/candidate.jsonl": "d3b3007386548f2c308f931cc805edccdfc45f773b4c85d0d33fa0a0c9bba647",
+    "frozen-offset-12/receipt.json": "f4a2f23029d86b20a476f6434db6e4a9e4b0e37044f3fa8893cbe4d5c4dc2e9b",
+    "frozen-offset-12/launch.json": "3c4fa5c748ba807910bbb7ce0fef409eee9c69ddd5d4823653a6cb588c9843e7",
+    "frozen-offset-12/candidate.jsonl": "fcf6328c8ff1c1826c1c62f3f145d09ebdfb484eefba2cfee4aa928e5b5ea8b3",
+    "frozen-offset-13/receipt.json": "24390230bff77d7d03d30073b8ebbd3b40b2b27aed58b15d41c3cb543902f259",
+    "frozen-offset-13/launch.json": "8ad337cfe9ffb5f2bab2501a20de4094164f0006440d34f11e2749ca9c4a0c95",
+    "frozen-offset-13/candidate.jsonl": "d60dad1904c029db27a87ca3e2a6f2a6cfd49c088ae071d01f502760ee015775",
+    "independent-bank-qualified-04.json": "c8bf04dd4f58db61616d073dbab8884decc8e99e0e7d3eb4239a3b2e6f6987cd",
+    "independent-bank-qualified-05.json": "4f6e999aa81b0dd98744380aa6428b4da28f279a8ed7e54e4186a0c6b55ee78b"
+  }
+}

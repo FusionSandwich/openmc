@@ -1,0 +1,35 @@
+Observed 2026-09-26T16:47:03.7733147-04:00
+RAM total/free KB 33457440 10399076
+
+Name          Used         Free
+----          ----         ----
+C     894042947584 104922820608
+D    1503880630272 496517160960
+
+
+
+ProcessName           Id WorkingSet64
+-----------           -- ------------
+ChatGPT            14584   1569423360
+codex              18736   1118253056
+vmmemWSL           18788   1010282496
+Memory Compression  3460    739020800
+chrome             20716    696172544
+chrome             24572    636903424
+chrome             35164    629702656
+MsMpEng             5288    620535808
+
+
+Filesystem         1B-blocks          Used     Available Use% Mounted on
+/dev/sde       1081101176832    4723421184 1021385400320   1% /
+C:\             998965768192  894064484352  104901283840  90% /mnt/c
+D:\            2000397791232 1503881183232  496516608000  76% /mnt/d
+/usr/bin/g++
+/usr/bin/cmake
+/usr/bin/ninja
+g++ (Debian 14.2.0-19) 14.2.0
+Python 3.13.5
+606M	/opt/openmc-venv
+152M	/root/.cache/pip
+116M	/var/cache/apt
+Previously inventoried local environments, source checkouts and dependency packages remain sufficient. Incremental rebuild needed for Bernstein prefix experiment and native CSG region probe. Acquisition 0 bytes; output own ignored build/astra + build/astra-native <=250MB incremental; sequential 1 job /1.5GB virtual cap. Rollback only experimental changes or ownbuildoutputs afterpreserve evidence. No acquisition/environment change.

@@ -1,0 +1,4 @@
+[1/4] Building CXX object CMakeFiles/libopenmc.dir/dev/stellarcsg/src/certified_spline_offset.cpp.o
+[2/4] Linking CXX shared library lib/libopenmc.so
+[3/4] Building CXX object CMakeFiles/stellarcsg_native_offset_probe.dir/dev/stellarcsg/qualification/certified_offset_probe.cpp.o
+[4/4] Linking CXX executable bin/stellarcsg_native_offset_probe

@@ -2,6 +2,7 @@
 #include "stellarcsg/compiled_swept_surface.hpp"
 #include "stellarcsg/swept_coefficient_file.hpp"
 #ifdef STELLARCSG_OFFSET_NATIVE
+#include "openmc/cell.h"
 #include "openmc/settings.h"
 #include "openmc/surface.h"
 #include "openmc/surface_swept_spline.h"
@@ -47,15 +48,17 @@ int main(int argc, char** argv)
       std::cout << hit.distance;
     else
       std::cout << "null";
-    std::cout << ",\"elapsed_ns\":" << elapsed << ",\"excluded_slabs\":"
-              << hit.root_diagnostics.certified_excluded_intervals
-              << ",\"minimum_calls\":"
-              << hit.root_diagnostics.function_evaluations
-              << ",\"minimum_nodes\":"
-              << hit.root_diagnostics.subdivided_intervals
-              << ",\"projection_visits\":"
-              << hit.root_diagnostics.derivative_evaluations << "}\n"
-              << std::flush;
+    std::cout
+      << ",\"elapsed_ns\":" << elapsed << ",\"excluded_slabs\":"
+      << hit.root_diagnostics.certified_excluded_intervals
+      << ",\"minimum_calls\":" << hit.root_diagnostics.function_evaluations
+      << ",\"minimum_nodes\":" << hit.root_diagnostics.subdivided_intervals
+      << ",\"projection_visits\":"
+      << hit.root_diagnostics.derivative_evaluations
+      << ",\"bernstein_prefix_certified\":"
+      << (hit.root_diagnostics.refinement_levels == 1 ? "true" : "false")
+      << "}\n"
+      << std::flush;
     if (hit.disposition() != stellarcsg::DistanceDisposition::hit)
       return 2;
     if (std::abs(hit.distance - 16.0) > 2e-8)
@@ -126,6 +129,25 @@ int main(int argc, char** argv)
     std::cout
       << "{\"kind\":\"native_surface\",\"surface_id\":1902,\"distance_cm\":"
       << distance << ",\"state\":\"PASS\",\"particle_transport\":false}\n";
+    const openmc::Region outside("1902", 1903), inside("-1902", 1904);
+    const openmc::Position before_point {550 - distance + 1e-7, 0, 0};
+    const openmc::Position after_point {550 - distance - 1e-7, 0, 0};
+    const openmc::Direction direction {-1, 0, 0};
+    if (!outside.contains(before_point, direction, 0) ||
+        inside.contains(before_point, direction, 0) ||
+        outside.contains(after_point, direction, 0) ||
+        !inside.contains(after_point, direction, 0))
+      throw std::runtime_error("native CSG region classification disagrees");
+    const auto entry = outside.distance({550, 0, 0}, direction, 0);
+    const auto leave = inside.distance({550 - distance, 0, 0}, direction, -1);
+    if (entry.second != -1 || std::abs(entry.first - distance) > 1e-10 ||
+        leave.second != 1 || std::abs(leave.first - 28) > 2e-8)
+      throw std::runtime_error("native CSG region crossing sequence disagrees");
+    std::cout << "{\"kind\":\"native_csg_region\",\"entry_cm\":" << entry.first
+              << ",\"exit_after_coincident_entry_cm\":" << leave.first
+              << ",\"entry_signed_surface\":" << entry.second
+              << ",\"exit_signed_surface\":" << leave.second
+              << ",\"state\":\"PASS\",\"particle_transport\":false}\n";
     openmc::free_memory_surfaces();
 #endif
     return 0;

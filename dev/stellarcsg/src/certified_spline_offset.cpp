@@ -39,10 +39,20 @@ struct I {
 };
 I operator+(I a, I b)
 {
+  if (a.lo == 0 && a.hi == 0)
+    return b;
+  if (b.lo == 0 && b.hi == 0)
+    return a;
   return {down(a.lo + b.lo), up(a.hi + b.hi)};
 }
 I operator-(I a, I b)
 {
+  if (b.lo == 0 && b.hi == 0)
+    return a;
+  if (a.lo == 0 && a.hi == 0)
+    return {-b.hi, -b.lo};
+  if (a.lo == a.hi && b.lo == b.hi && a.lo == b.lo)
+    return I(0);
   return {down(a.lo - b.hi), up(a.hi - b.lo)};
 }
 I operator-(I a)
@@ -51,6 +61,8 @@ I operator-(I a)
 }
 I operator*(I a, I b)
 {
+  if ((a.lo == 0 && a.hi == 0) || (b.lo == 0 && b.hi == 0))
+    return I(0);
   const std::array<Real, 4> p {
     a.lo * b.lo, a.lo * b.hi, a.hi * b.lo, a.hi * b.hi};
   return {down(*std::min_element(p.begin(), p.end())),
@@ -60,16 +72,22 @@ I operator/(I a, I b)
 {
   if (b.lo <= 0 && b.hi >= 0)
     throw std::runtime_error("Offset interval division by zero");
+  if (a.lo == 0 && a.hi == 0)
+    return I(0);
   return a * I {down(1 / b.hi), up(1 / b.lo)};
 }
 I square(I x)
 {
+  if (x.lo == 0 && x.hi == 0)
+    return I(0);
   const Real lo =
     x.lo <= 0 && x.hi >= 0 ? 0 : std::min(x.lo * x.lo, x.hi * x.hi);
   return {std::max(Real(0), down(lo)), up(std::max(x.lo * x.lo, x.hi * x.hi))};
 }
 I root(I x)
 {
+  if (x.lo == 0 && x.hi == 0)
+    return I(0);
   if (x.hi < 0)
     throw std::runtime_error("Negative squared offset distance");
   return {std::max(Real(0), down(std::sqrt(std::max(Real(0), x.lo)))),
@@ -100,6 +118,7 @@ void finite_point(const Vec3& p)
 }
 struct Span {
   std::array<std::array<I, 4>, 3> c;
+  std::array<std::array<double, 4>, 3> nominal;
   // Original four-control convex hull, transformed by the positive metric.
   // This bounds the exact cardinal spline independently of power arithmetic.
   V scaled_hull;
@@ -630,6 +649,285 @@ struct CertifiedSplineOffset::Implementation {
         return true;
     return false;
   }
+  // Floating values only propose a bracket or a curve witness. Neither a
+  // sampled sign nor convergence of this Newton iteration admits a result.
+  double proposal_value(const Vec3& o, const Vec3& d, Real t,
+    std::size_t* witness_span = nullptr, double* witness_u = nullptr) const
+  {
+    std::array<double, 3> p;
+    const std::array<double, 3> origin {o.x, o.y, o.z},
+      direction {d.x, d.y, d.z};
+    for (int a = 0; a < 3; ++a)
+      p[a] = (origin[a] + double(t) * direction[a]) *
+             double((scale[a].lo + scale[a].hi) / 2);
+    double best = std::numeric_limits<double>::infinity();
+    for (std::size_t s = 0; s < spans.size(); ++s) {
+      const auto& c = spans[s].nominal;
+      auto consider = [&](double u) {
+        double q = 0;
+        for (int a = 0; a < 3; ++a) {
+          const double r =
+            ((c[a][3] * u + c[a][2]) * u + c[a][1]) * u + c[a][0] - p[a];
+          q += r * r;
+        }
+        if (q < best) {
+          best = q;
+          if (witness_span)
+            *witness_span = s;
+          if (witness_u)
+            *witness_u = u;
+        }
+      };
+      consider(0);
+      consider(1);
+      double u = .5;
+      for (int step = 0; step < 6; ++step) {
+        double h = 0, slope = 0;
+        for (int a = 0; a < 3; ++a) {
+          const double r =
+            ((c[a][3] * u + c[a][2]) * u + c[a][1]) * u + c[a][0] - p[a];
+          const double first = (3 * c[a][3] * u + 2 * c[a][2]) * u + c[a][1];
+          const double second = 6 * c[a][3] * u + 2 * c[a][2];
+          h += r * first;
+          slope += first * first + r * second;
+        }
+        if (!(slope > 0))
+          break;
+        const double next = std::clamp(u - h / slope, 0., 1.);
+        if (!std::isfinite(next) || next == u)
+          break;
+        u = next;
+      }
+      consider(u);
+    }
+    return best - 1;
+  }
+
+  using Tensor = std::array<I, 21>;
+  Tensor squared_bernstein(
+    std::size_t s, const Vec3& o, const Vec3& d, Real left, Real right) const
+  {
+    Tensor power {}, bernstein {};
+    const std::array<double, 3> origin {o.x, o.y, o.z},
+      direction {d.x, d.y, d.z};
+    for (int a = 0; a < 3; ++a) {
+      std::array<I, 4> r;
+      r[0] = (I(origin[a]) + I(direction[a]) * I(left) - spans[s].c[a][0]) *
+             scale[a];
+      for (int k = 1; k < 4; ++k)
+        r[k] = -spans[s].c[a][k] * scale[a];
+      const I velocity = I(direction[a]) * scale[a] * (I(right) - I(left));
+      for (int k = 0; k < 4; ++k) {
+        for (int l = 0; l < 4; ++l)
+          power[3 * (k + l)] = power[3 * (k + l)] + r[k] * r[l];
+        power[3 * k + 1] = power[3 * k + 1] + I(2) * r[k] * velocity;
+      }
+      power[2] = power[2] + square(velocity);
+    }
+    constexpr int choose[7][7] {{1}, {1, 1}, {1, 2, 1}, {1, 3, 3, 1},
+      {1, 4, 6, 4, 1}, {1, 5, 10, 10, 5, 1}, {1, 6, 15, 20, 15, 6, 1}};
+    for (int i = 0; i < 7; ++i)
+      for (int j = 0; j < 3; ++j)
+        for (int k = 0; k <= i; ++k)
+          for (int l = 0; l <= j; ++l)
+            bernstein[3 * i + j] =
+              bernstein[3 * i + j] + power[3 * k + l] *
+                                       (I(choose[i][k]) / I(choose[6][k])) *
+                                       (I(choose[j][l]) / I(choose[2][l]));
+    return bernstein;
+  }
+  std::pair<Tensor, Tensor> split_tensor(
+    const Tensor& coefficients, bool split_u) const
+  {
+    Tensor left {}, right {};
+    const int degree = split_u ? 6 : 2, rows = split_u ? 3 : 7;
+    for (int row = 0; row < rows; ++row) {
+      std::array<I, 7> work;
+      auto index = [&](int k) { return split_u ? 3 * k + row : 3 * row + k; };
+      for (int k = 0; k <= degree; ++k)
+        work[k] = coefficients[index(k)];
+      left[index(0)] = work[0];
+      right[index(degree)] = work[degree];
+      for (int level = 1; level <= degree; ++level) {
+        for (int k = 0; k <= degree - level; ++k)
+          work[k] = (work[k] + work[k + 1]) * I(.5);
+        left[index(level)] = work[0];
+        right[index(degree - level)] = work[degree - level];
+      }
+    }
+    return {left, right};
+  }
+  bool outside_prefix(const Vec3& o, const Vec3& d, Real left, Real right,
+    std::size_t budget, RootSearchDiagnostics& diagnostics) const
+  {
+    if (right == left)
+      return true;
+    if (!(right > left))
+      return false;
+    const V p = ray_point(o, d, I(left, right));
+    struct Box {
+      Tensor q;
+      unsigned depth;
+    };
+    std::size_t visits = 0;
+    for (std::size_t s = 0; s < spans.size(); ++s) {
+      if (length2(p - spans[s].scaled_hull).lo > 1)
+        continue;
+      std::vector<Box> todo {{squared_bernstein(s, o, d, left, right), 0}};
+      while (!todo.empty()) {
+        if (++visits > budget)
+          return false;
+        ++diagnostics.subdivided_intervals;
+        const auto box = todo.back();
+        todo.pop_back();
+        bool excluded = true;
+        for (const auto q : box.q)
+          excluded = excluded && q.lo > 1;
+        if (excluded)
+          continue;
+        // Corners are actual values; a proved nonoutside prefix sample blocks
+        // this proposal. Other uncertain controls only trigger subdivision.
+        for (const int corner : {0, 2, 18, 20})
+          if (box.q[corner].hi <= 1)
+            return false;
+        if (box.depth >= 48)
+          return false;
+        const auto children = split_tensor(box.q, box.depth % 2 == 0);
+        todo.push_back({children.second, box.depth + 1});
+        todo.push_back({children.first, box.depth + 1});
+      }
+    }
+    ++diagnostics.certified_excluded_intervals;
+    return true;
+  }
+  bool inside_prefix(const Vec3& o, const Vec3& d, Real left, Real right,
+    std::size_t budget, RootSearchDiagnostics& diagnostics) const
+  {
+    if (right == left)
+      return true;
+    if (!(right > left))
+      return false;
+    struct Slab {
+      Real l, r;
+      unsigned depth;
+    };
+    std::vector<Slab> todo {{left, right, 0}};
+    std::size_t visits = 0;
+    while (!todo.empty()) {
+      if (++visits > budget)
+        return false;
+      const auto slab = todo.back();
+      todo.pop_back();
+      const Real mid = (slab.l + slab.r) / 2;
+      std::size_t s = 0;
+      double u = 0;
+      if (!std::isfinite(proposal_value(o, d, mid, &s, &u)))
+        return false;
+      const V c = center(s, I(u));
+      // For this fixed exact curve point, squared metric distance along the
+      // ray is convex quadratic. Its endpoint upper bounds cover the slab.
+      if (length2(ray_point(o, d, I(slab.l)) - c).hi < 1 &&
+          length2(ray_point(o, d, I(slab.r)) - c).hi < 1) {
+        ++diagnostics.certified_excluded_intervals;
+        continue;
+      }
+      if (slab.depth >= 48 || mid == slab.l || mid == slab.r)
+        return false;
+      todo.push_back({mid, slab.r, slab.depth + 1});
+      todo.push_back({slab.l, mid, slab.depth + 1});
+    }
+    return true;
+  }
+  std::optional<DistanceResult> accelerated_distance(const Vec3& o,
+    const Vec3& d, Real enter, Real exit, int initial, std::size_t budget,
+    const RootSearchOptions& options, RootSearchDiagnostics& diagnostics) const
+  {
+    Real left = enter, right = enter;
+    bool proposed = false;
+    for (int i = 1; i <= 128; ++i) {
+      const Real sample_t = enter + (exit - enter) * Real(i) / 128;
+      const double value = proposal_value(o, d, sample_t);
+      if (!std::isfinite(value))
+        return std::nullopt;
+      if (initial > 0 ? value < 0 : value > 0) {
+        right = sample_t;
+        proposed = true;
+        break;
+      }
+      left = sample_t;
+    }
+    if (!proposed)
+      return std::nullopt;
+    for (int i = 0; i < 64 && right - left > 1e-8L; ++i) {
+      const Real mid = (left + right) / 2;
+      const double value = proposal_value(o, d, mid);
+      if (!std::isfinite(value))
+        return std::nullopt;
+      if (initial > 0 ? value > 0 : value < 0)
+        left = mid;
+      else
+        right = mid;
+    }
+    auto signed_bounds = [&](Real t) {
+      return root(minimum(ray_point(o, d, I(t)), 1e-16L, false, &diagnostics)
+                    .squared) -
+             I(1);
+    };
+    const I gl = signed_bounds(left), gr = signed_bounds(right);
+    if (!(initial > 0 ? (gl.lo > 0 && gr.hi < 0) : (gl.hi < 0 && gr.lo > 0)))
+      return std::nullopt;
+    const V p = ray_point(o, d, I(left, right)),
+            w = scaled({I(d.x), I(d.y), I(d.z)});
+    auto nearest = minimum(
+      ray_point(o, d, I((left + right) / 2)), 1e-12L, false, &diagnostics);
+    nearest.squared = {0, length2(p - center(nearest.span, I(nearest.u))).hi};
+    I derivative;
+    if (!projection(p, nearest, nullptr, &diagnostics, &w, &derivative) ||
+        !(initial > 0 ? derivative.hi < 0 : derivative.lo > 0))
+      return std::nullopt;
+    if (!(initial > 0 ? outside_prefix(o, d, enter, left, budget, diagnostics)
+                      : inside_prefix(o, d, enter, left, budget, diagnostics)))
+      return std::nullopt;
+    for (int i = 0; i < std::min(options.max_bisection_iterations, 1024) &&
+                    right - left > options.absolute_t_tolerance / 2;
+         ++i) {
+      const Real mid = (left + right) / 2;
+      const I g = signed_bounds(mid);
+      const int sign = g.lo > 0 ? 1 : (g.hi < 0 ? -1 : 0);
+      if (sign == initial)
+        left = mid;
+      else if (sign == -initial)
+        right = mid;
+      else {
+        const Real slope = down((initial > 0 ? -derivative.hi : derivative.lo) /
+                                root(nearest.squared).hi);
+        if (!(slope > 0))
+          return std::nullopt;
+        const Real radius =
+          up(std::max(std::abs(g.lo), std::abs(g.hi)) / slope);
+        left = std::max(left, down(mid - radius));
+        right = std::min(right, up(mid + radius));
+      }
+    }
+    const double t = static_cast<double>((left + right) / 2);
+    const Real error =
+      std::max(up(std::abs(Real(t) - left)), up(std::abs(right - Real(t))));
+    const I residual =
+      minimum(ray_point(o, d, I(t)), 1e-14L, false, &diagnostics).squared -
+      I(1);
+    const Real bound = std::max(std::abs(residual.lo), std::abs(residual.hi));
+    if (!(error <= options.absolute_t_tolerance &&
+          bound <= options.absolute_f_tolerance))
+      return std::nullopt;
+    ++diagnostics.sign_change_brackets;
+    diagnostics.refinement_levels =
+      1; // Certified Bernstein prefix acceleration.
+    double residual_bound = static_cast<double>(bound);
+    if (Real(residual_bound) < bound)
+      residual_bound = std::nextafter(residual_bound, INFINITY);
+    return DistanceResult {
+      true, t, RootKind::sign_change, residual_bound, diagnostics, false};
+  }
 };
 
 CertifiedSplineOffset::CertifiedSplineOffset(const SweptSplineSurfaceData& data)
@@ -702,6 +1000,11 @@ CertifiedSplineOffset::CertifiedSplineOffset(const SweptSplineSurfaceData& data)
                                  std::max({p0.hi, p1.hi, p2.hi, p3.hi})) *
                                impl.scale[axis];
     }
+    for (int axis = 0; axis < 3; ++axis)
+      for (int k = 0; k < 4; ++k)
+        span.nominal[axis][k] = static_cast<double>(
+          (span.c[axis][k].lo + span.c[axis][k].hi) / 2 *
+          ((impl.scale[axis].lo + impl.scale[axis].hi) / 2));
     impl.spans.push_back(span);
     std::vector<std::pair<I, unsigned>> todo {{I(0, 1), 0}};
     while (!todo.empty()) {
@@ -765,10 +1068,12 @@ double CertifiedSplineOffset::evaluate(const Vec3& point) const
     (void)normal(point);
     return 0.0;
   }
-  if (!result.complete || (result.squared.lo <= 1 && result.squared.hi >= 1))
+  if (result.squared.lo <= 1 && result.squared.hi >= 1)
     throw std::runtime_error(
       "Exact-control offset classification is boundary/ambiguous");
-  return static_cast<double>((result.squared.lo + result.squared.hi) / 2 - 1);
+  const Real value = (result.squared.lo + result.squared.hi) / 2 - 1;
+  const Real finite_limit = std::numeric_limits<double>::max();
+  return static_cast<double>(std::clamp(value, -finite_limit, finite_limit));
 }
 Vec3 CertifiedSplineOffset::normal(const Vec3& point) const
 {
@@ -881,6 +1186,11 @@ DistanceResult CertifiedSplineOffset::distance(const Vec3& origin,
   const int initial = start.lo > 0 ? 1 : (start.hi < 0 ? -1 : 0);
   if (!initial)
     return unresolved();
+  if (options.enable_bernstein_prefix) {
+    if (const auto accelerated = impl.accelerated_distance(
+          origin, d, enter, exit, initial, budget, options, diagnostics))
+      return *accelerated;
+  }
   struct Slab {
     Real l, r;
     unsigned depth;
@@ -969,8 +1279,11 @@ DistanceResult CertifiedSplineOffset::distance(const Vec3& origin,
                 bound <= options.absolute_f_tolerance))
             return unresolved();
           ++diagnostics.sign_change_brackets;
-          return {true, t, RootKind::sign_change, static_cast<double>(bound),
-            diagnostics, false};
+          double residual_bound = static_cast<double>(bound);
+          if (Real(residual_bound) < bound)
+            residual_bound = std::nextafter(residual_bound, INFINITY);
+          return {
+            true, t, RootKind::sign_change, residual_bound, diagnostics, false};
         }
       }
     }

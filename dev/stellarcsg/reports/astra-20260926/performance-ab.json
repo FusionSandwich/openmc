@@ -1,0 +1,651 @@
+{
+  "schema": "stellarcsg.bernstein-offset-ab-observation/v1",
+  "clean_aggregate_run_ids": [
+    "04",
+    "05",
+    "10",
+    "11",
+    "12",
+    "13"
+  ],
+  "excluded_background_confounded_run_ids": [
+    "06",
+    "07",
+    "08",
+    "09"
+  ],
+  "exclusion_reason": "Runs 06-09 overlapped the independent Fraction verifier; retained as potentially background-load-confounded observations and excluded from clean means, medians, and paired ratios.",
+  "frozen_csv_sha256": "fc9da0be5eb66e3d56649a8d709db16f9b096c7767a565c57d5488bd19430723",
+  "frozen_csv_ordered_ids_match_all_ten_runs": true,
+  "shared_hashes_clean_six": {
+    "binary": "765894acc822bfe4b215b6e5faf321ba48d986c74cc434f48189c773f3e03e4b",
+    "frozen_csv": "fc9da0be5eb66e3d56649a8d709db16f9b096c7767a565c57d5488bd19430723",
+    "wistell_h5": "9bb178c308e7f3ec659e1651a7d57e0ecbff734d3320000df1c2bf79fcf3262b",
+    "offset_engine_cpp": "ef70e1574dea97cdfdef7465dff62215116079bd8c1424ca195c77ff2b5eca0c",
+    "offset_engine_hpp": "0f93bb162f78069dbb1a86797149cf2c144173d98a6680e96672b9dd86730f2c",
+    "frozen_bank_cpp": "b678af3b085c37e2d98aeea4543794d405996b5ed6ad0bea0725cddb519b8726"
+  },
+  "hashes_equal_across_all_ten": {
+    "binary": true,
+    "frozen_csv": true,
+    "wistell_h5": true,
+    "offset_engine_cpp": true,
+    "offset_engine_hpp": true,
+    "frozen_bank_cpp": true
+  },
+  "within_variant_row_identity": {
+    "bernstein_on": {
+      "replicate_ids": [
+        "04",
+        "10",
+        "12"
+      ],
+      "all_non_timing_row_fields_identical": true,
+      "compared_fields": [
+        "geometry_representation",
+        "kind",
+        "id",
+        "category",
+        "heldout",
+        "coefficient_hash",
+        "source_sha256",
+        "expected",
+        "candidate_disposition",
+        "candidate_found",
+        "candidate_distance",
+        "reference_available",
+        "reference_found",
+        "reference_distance",
+        "ray_origin",
+        "normalized_direction",
+        "minimum_calls",
+        "minimum_nodes",
+        "projection_visits",
+        "bernstein_prefix_certified",
+        "excluded_slabs",
+        "candidate_ok",
+        "reference_agrees",
+        "counter_distance_calls",
+        "counter_cache_hits",
+        "counter_cache_misses",
+        "candidate_spans",
+        "candidate_newton",
+        "candidate_subdivision",
+        "candidate_state",
+        "reference_state",
+        "telemetry_state",
+        "normal_error",
+        "state"
+      ],
+      "excluded_timing_fields": [
+        "candidate_distance_ns",
+        "reference_distance_ns",
+        "evaluate_ns",
+        "normal_ns"
+      ]
+    },
+    "bernstein_off": {
+      "replicate_ids": [
+        "05",
+        "11",
+        "13"
+      ],
+      "all_non_timing_row_fields_identical": true,
+      "compared_fields": [
+        "geometry_representation",
+        "kind",
+        "id",
+        "category",
+        "heldout",
+        "coefficient_hash",
+        "source_sha256",
+        "expected",
+        "candidate_disposition",
+        "candidate_found",
+        "candidate_distance",
+        "reference_available",
+        "reference_found",
+        "reference_distance",
+        "ray_origin",
+        "normalized_direction",
+        "minimum_calls",
+        "minimum_nodes",
+        "projection_visits",
+        "bernstein_prefix_certified",
+        "excluded_slabs",
+        "candidate_ok",
+        "reference_agrees",
+        "counter_distance_calls",
+        "counter_cache_hits",
+        "counter_cache_misses",
+        "candidate_spans",
+        "candidate_newton",
+        "candidate_subdivision",
+        "candidate_state",
+        "reference_state",
+        "telemetry_state",
+        "normal_error",
+        "state"
+      ],
+      "excluded_timing_fields": [
+        "candidate_distance_ns",
+        "reference_distance_ns",
+        "evaluate_ns",
+        "normal_ns"
+      ]
+    }
+  },
+  "clean_run_metrics": {
+    "04": {
+      "output_dir": "dev/stellarcsg/reports/astra-20260926/frozen-offset-04",
+      "candidate_jsonl_sha256": "1ca73e1668d9425b23be213b80a780efcd7de0362ac9f6973be5cb1f5fef1746",
+      "bernstein_prefix_enabled": true,
+      "walltime_seconds": 1.3859875202178955,
+      "sum_candidate_distance_ns": 843030202,
+      "median_candidate_distance_ns": 822450.0,
+      "median_candidate_distance_ns_by_disposition": {
+        "hit": 8434400,
+        "no_hit": 2500
+      },
+      "candidate_dispositions": {
+        "no_hit": 91,
+        "hit": 69
+      },
+      "candidate_states": {
+        "PASS": 160
+      },
+      "telemetry_failures": 9,
+      "telemetry_blocked_ids": [
+        "a00",
+        "w0",
+        "w1",
+        "w2",
+        "w3",
+        "w4",
+        "w5",
+        "w6",
+        "w7"
+      ],
+      "missing_timing_values": {
+        "candidate_distance_ns": 0,
+        "evaluate_ns": 0,
+        "normal_ns": 9
+      },
+      "bernstein_prefix_certified_true": 66,
+      "bernstein_prefix_certified_false": 94,
+      "bernstein_prefix_certified_missing": 0
+    },
+    "05": {
+      "output_dir": "dev/stellarcsg/reports/astra-20260926/frozen-offset-05",
+      "candidate_jsonl_sha256": "158db5412f917f0dee7af4335d7d49f69b3981c28cbbd3abb50adf87abb69962",
+      "bernstein_prefix_enabled": false,
+      "walltime_seconds": 3.9888627529144287,
+      "sum_candidate_distance_ns": 3452209311,
+      "median_candidate_distance_ns": 509950.0,
+      "median_candidate_distance_ns_by_disposition": {
+        "hit": 35858401,
+        "no_hit": 2000
+      },
+      "candidate_dispositions": {
+        "no_hit": 91,
+        "hit": 69
+      },
+      "candidate_states": {
+        "PASS": 160
+      },
+      "telemetry_failures": 9,
+      "telemetry_blocked_ids": [
+        "a00",
+        "w0",
+        "w1",
+        "w2",
+        "w3",
+        "w4",
+        "w5",
+        "w6",
+        "w7"
+      ],
+      "missing_timing_values": {
+        "candidate_distance_ns": 0,
+        "evaluate_ns": 0,
+        "normal_ns": 9
+      },
+      "bernstein_prefix_certified_true": 0,
+      "bernstein_prefix_certified_false": 160,
+      "bernstein_prefix_certified_missing": 0
+    },
+    "10": {
+      "output_dir": "dev/stellarcsg/reports/astra-20260926/frozen-offset-10",
+      "candidate_jsonl_sha256": "8f03d6e106f5486d98998bb7c5ac3bdef06a9fa1e2e9941474cea759351509e3",
+      "bernstein_prefix_enabled": true,
+      "walltime_seconds": 1.7976419925689697,
+      "sum_candidate_distance_ns": 866762204,
+      "median_candidate_distance_ns": 747650.0,
+      "median_candidate_distance_ns_by_disposition": {
+        "hit": 8381900,
+        "no_hit": 2200
+      },
+      "candidate_dispositions": {
+        "no_hit": 91,
+        "hit": 69
+      },
+      "candidate_states": {
+        "PASS": 160
+      },
+      "telemetry_failures": 9,
+      "telemetry_blocked_ids": [
+        "a00",
+        "w0",
+        "w1",
+        "w2",
+        "w3",
+        "w4",
+        "w5",
+        "w6",
+        "w7"
+      ],
+      "missing_timing_values": {
+        "candidate_distance_ns": 0,
+        "evaluate_ns": 0,
+        "normal_ns": 9
+      },
+      "bernstein_prefix_certified_true": 66,
+      "bernstein_prefix_certified_false": 94,
+      "bernstein_prefix_certified_missing": 0
+    },
+    "11": {
+      "output_dir": "dev/stellarcsg/reports/astra-20260926/frozen-offset-11",
+      "candidate_jsonl_sha256": "d3b3007386548f2c308f931cc805edccdfc45f773b4c85d0d33fa0a0c9bba647",
+      "bernstein_prefix_enabled": false,
+      "walltime_seconds": 4.004265069961548,
+      "sum_candidate_distance_ns": 3489909531,
+      "median_candidate_distance_ns": 518550.0,
+      "median_candidate_distance_ns_by_disposition": {
+        "hit": 36276699,
+        "no_hit": 1900
+      },
+      "candidate_dispositions": {
+        "no_hit": 91,
+        "hit": 69
+      },
+      "candidate_states": {
+        "PASS": 160
+      },
+      "telemetry_failures": 9,
+      "telemetry_blocked_ids": [
+        "a00",
+        "w0",
+        "w1",
+        "w2",
+        "w3",
+        "w4",
+        "w5",
+        "w6",
+        "w7"
+      ],
+      "missing_timing_values": {
+        "candidate_distance_ns": 0,
+        "evaluate_ns": 0,
+        "normal_ns": 9
+      },
+      "bernstein_prefix_certified_true": 0,
+      "bernstein_prefix_certified_false": 160,
+      "bernstein_prefix_certified_missing": 0
+    },
+    "12": {
+      "output_dir": "dev/stellarcsg/reports/astra-20260926/frozen-offset-12",
+      "candidate_jsonl_sha256": "fcf6328c8ff1c1826c1c62f3f145d09ebdfb484eefba2cfee4aa928e5b5ea8b3",
+      "bernstein_prefix_enabled": true,
+      "walltime_seconds": 1.4600608348846436,
+      "sum_candidate_distance_ns": 887151978,
+      "median_candidate_distance_ns": 825500.0,
+      "median_candidate_distance_ns_by_disposition": {
+        "hit": 8746600,
+        "no_hit": 2500
+      },
+      "candidate_dispositions": {
+        "no_hit": 91,
+        "hit": 69
+      },
+      "candidate_states": {
+        "PASS": 160
+      },
+      "telemetry_failures": 9,
+      "telemetry_blocked_ids": [
+        "a00",
+        "w0",
+        "w1",
+        "w2",
+        "w3",
+        "w4",
+        "w5",
+        "w6",
+        "w7"
+      ],
+      "missing_timing_values": {
+        "candidate_distance_ns": 0,
+        "evaluate_ns": 0,
+        "normal_ns": 9
+      },
+      "bernstein_prefix_certified_true": 66,
+      "bernstein_prefix_certified_false": 94,
+      "bernstein_prefix_certified_missing": 0
+    },
+    "13": {
+      "output_dir": "dev/stellarcsg/reports/astra-20260926/frozen-offset-13",
+      "candidate_jsonl_sha256": "d60dad1904c029db27a87ca3e2a6f2a6cfd49c088ae071d01f502760ee015775",
+      "bernstein_prefix_enabled": false,
+      "walltime_seconds": 4.105158090591431,
+      "sum_candidate_distance_ns": 3580167041,
+      "median_candidate_distance_ns": 547800.0,
+      "median_candidate_distance_ns_by_disposition": {
+        "hit": 36055399,
+        "no_hit": 2500
+      },
+      "candidate_dispositions": {
+        "no_hit": 91,
+        "hit": 69
+      },
+      "candidate_states": {
+        "PASS": 160
+      },
+      "telemetry_failures": 9,
+      "telemetry_blocked_ids": [
+        "a00",
+        "w0",
+        "w1",
+        "w2",
+        "w3",
+        "w4",
+        "w5",
+        "w6",
+        "w7"
+      ],
+      "missing_timing_values": {
+        "candidate_distance_ns": 0,
+        "evaluate_ns": 0,
+        "normal_ns": 9
+      },
+      "bernstein_prefix_certified_true": 0,
+      "bernstein_prefix_certified_false": 160,
+      "bernstein_prefix_certified_missing": 0
+    }
+  },
+  "clean_variant_summary": {
+    "bernstein_on": {
+      "replicates": [
+        "04",
+        "10",
+        "12"
+      ],
+      "sum_candidate_distance_ns": {
+        "mean": 865648128,
+        "median": 866762204,
+        "per_run": {
+          "04": 843030202,
+          "10": 866762204,
+          "12": 887151978
+        }
+      },
+      "walltime_seconds": {
+        "mean": 1.5478967825571697,
+        "median": 1.4600608348846436,
+        "per_run": {
+          "04": 1.3859875202178955,
+          "10": 1.7976419925689697,
+          "12": 1.4600608348846436
+        }
+      },
+      "per_run_median_hit_distance_ns": {
+        "04": 8434400,
+        "10": 8381900,
+        "12": 8746600
+      },
+      "per_run_median_no_hit_distance_ns": {
+        "04": 2500,
+        "10": 2200,
+        "12": 2500
+      },
+      "bernstein_prefix_certified_true_total": 198
+    },
+    "bernstein_off": {
+      "replicates": [
+        "05",
+        "11",
+        "13"
+      ],
+      "sum_candidate_distance_ns": {
+        "mean": 3507428627.6666665,
+        "median": 3489909531,
+        "per_run": {
+          "05": 3452209311,
+          "11": 3489909531,
+          "13": 3580167041
+        }
+      },
+      "walltime_seconds": {
+        "mean": 4.032761971155803,
+        "median": 4.004265069961548,
+        "per_run": {
+          "05": 3.9888627529144287,
+          "11": 4.004265069961548,
+          "13": 4.105158090591431
+        }
+      },
+      "per_run_median_hit_distance_ns": {
+        "05": 35858401,
+        "11": 36276699,
+        "13": 36055399
+      },
+      "per_run_median_no_hit_distance_ns": {
+        "05": 2000,
+        "11": 1900,
+        "13": 2500
+      },
+      "bernstein_prefix_certified_true_total": 0
+    }
+  },
+  "clean_paired_ratios": {
+    "direction": "Bernstein-on divided by Bernstein-off; ratios greater than one mean a larger observed value in on runs.",
+    "pairs": [
+      {
+        "pair": [
+          "04",
+          "05"
+        ],
+        "summed_distance_on_over_off": 0.24420019936618495,
+        "child_walltime_on_over_off": 0.34746432907605945
+      },
+      {
+        "pair": [
+          "10",
+          "11"
+        ],
+        "summed_distance_on_over_off": 0.24836237051441207,
+        "child_walltime_on_over_off": 0.4489318167406515
+      },
+      {
+        "pair": [
+          "12",
+          "13"
+        ],
+        "summed_distance_on_over_off": 0.24779625303522254,
+        "child_walltime_on_over_off": 0.3556649470408806
+      }
+    ],
+    "summary": {
+      "summed_distance_on_over_off": {
+        "mean": 0.2467862743052732,
+        "median": 0.24779625303522254
+      },
+      "child_walltime_on_over_off": {
+        "mean": 0.38402036428586384,
+        "median": 0.3556649470408806
+      }
+    }
+  },
+  "excluded_run_observations": {
+    "06": {
+      "output_dir": "dev/stellarcsg/reports/astra-20260926/frozen-offset-06",
+      "candidate_jsonl_sha256": "5300ce98f70aed546d13055568566d34b33875b4a47a62ce1bd6e22b0ce553ae",
+      "bernstein_prefix_enabled": true,
+      "walltime_seconds": 1.8037540912628174,
+      "sum_candidate_distance_ns": 841958228,
+      "median_candidate_distance_ns": 714400.0,
+      "median_candidate_distance_ns_by_disposition": {
+        "hit": 8210501,
+        "no_hit": 2400
+      },
+      "candidate_dispositions": {
+        "no_hit": 91,
+        "hit": 69
+      },
+      "candidate_states": {
+        "PASS": 160
+      },
+      "telemetry_failures": 9,
+      "telemetry_blocked_ids": [
+        "a00",
+        "w0",
+        "w1",
+        "w2",
+        "w3",
+        "w4",
+        "w5",
+        "w6",
+        "w7"
+      ],
+      "missing_timing_values": {
+        "candidate_distance_ns": 0,
+        "evaluate_ns": 0,
+        "normal_ns": 9
+      },
+      "bernstein_prefix_certified_true": 66,
+      "bernstein_prefix_certified_false": 94,
+      "bernstein_prefix_certified_missing": 0
+    },
+    "07": {
+      "output_dir": "dev/stellarcsg/reports/astra-20260926/frozen-offset-07",
+      "candidate_jsonl_sha256": "d519c23759542752cbd189c8ef31aa54a160b16b364ef61065aca97fc2f5d053",
+      "bernstein_prefix_enabled": false,
+      "walltime_seconds": 4.151656627655029,
+      "sum_candidate_distance_ns": 3613611428,
+      "median_candidate_distance_ns": 684700.0,
+      "median_candidate_distance_ns_by_disposition": {
+        "hit": 38324809,
+        "no_hit": 2900
+      },
+      "candidate_dispositions": {
+        "no_hit": 91,
+        "hit": 69
+      },
+      "candidate_states": {
+        "PASS": 160
+      },
+      "telemetry_failures": 9,
+      "telemetry_blocked_ids": [
+        "a00",
+        "w0",
+        "w1",
+        "w2",
+        "w3",
+        "w4",
+        "w5",
+        "w6",
+        "w7"
+      ],
+      "missing_timing_values": {
+        "candidate_distance_ns": 0,
+        "evaluate_ns": 0,
+        "normal_ns": 9
+      },
+      "bernstein_prefix_certified_true": 0,
+      "bernstein_prefix_certified_false": 160,
+      "bernstein_prefix_certified_missing": 0
+    },
+    "08": {
+      "output_dir": "dev/stellarcsg/reports/astra-20260926/frozen-offset-08",
+      "candidate_jsonl_sha256": "5223b1918fee2560b13a4bf88127482d68f857796f7137e8bd8388c763d691c1",
+      "bernstein_prefix_enabled": true,
+      "walltime_seconds": 1.395308494567871,
+      "sum_candidate_distance_ns": 870451185,
+      "median_candidate_distance_ns": 720950.0,
+      "median_candidate_distance_ns_by_disposition": {
+        "hit": 8549800,
+        "no_hit": 3000
+      },
+      "candidate_dispositions": {
+        "no_hit": 91,
+        "hit": 69
+      },
+      "candidate_states": {
+        "PASS": 160
+      },
+      "telemetry_failures": 9,
+      "telemetry_blocked_ids": [
+        "a00",
+        "w0",
+        "w1",
+        "w2",
+        "w3",
+        "w4",
+        "w5",
+        "w6",
+        "w7"
+      ],
+      "missing_timing_values": {
+        "candidate_distance_ns": 0,
+        "evaluate_ns": 0,
+        "normal_ns": 9
+      },
+      "bernstein_prefix_certified_true": 66,
+      "bernstein_prefix_certified_false": 94,
+      "bernstein_prefix_certified_missing": 0
+    },
+    "09": {
+      "output_dir": "dev/stellarcsg/reports/astra-20260926/frozen-offset-09",
+      "candidate_jsonl_sha256": "397bf9303110c2e13ba11a707e937f0e23b2c85e1fa2874799c9a02bfb368342",
+      "bernstein_prefix_enabled": false,
+      "walltime_seconds": 4.199793577194214,
+      "sum_candidate_distance_ns": 3663889446,
+      "median_candidate_distance_ns": 586800.0,
+      "median_candidate_distance_ns_by_disposition": {
+        "hit": 36947503,
+        "no_hit": 2800
+      },
+      "candidate_dispositions": {
+        "no_hit": 91,
+        "hit": 69
+      },
+      "candidate_states": {
+        "PASS": 160
+      },
+      "telemetry_failures": 9,
+      "telemetry_blocked_ids": [
+        "a00",
+        "w0",
+        "w1",
+        "w2",
+        "w3",
+        "w4",
+        "w5",
+        "w6",
+        "w7"
+      ],
+      "missing_timing_values": {
+        "candidate_distance_ns": 0,
+        "evaluate_ns": 0,
+        "normal_ns": 9
+      },
+      "bernstein_prefix_certified_true": 0,
+      "bernstein_prefix_certified_false": 160,
+      "bernstein_prefix_certified_missing": 0
+    }
+  },
+  "baseline_03_descriptive_only": {
+    "sum_candidate_distance_ns": 24945547355,
+    "note": "Historical one-run descriptive reference only; excluded from A/B estimates."
+  },
+  "method": "Three sequential clean pairs: 04/05, 10/11, 12/13. Each run replayed 160 frozen rows in a fresh process with one thread and the inherited 1 GiB virtual-memory limit. Per-run distance timing is sum and median of candidate_distance_ns; hit/no-hit medians are per run. Missing evaluate/normal timing values counted explicitly. All statistics are observational.",
+  "scope": "Not a native-throughput or transport benchmark and not an 80% claim. Root retains scientific interpretation and independent-oracle acceptance."
+}

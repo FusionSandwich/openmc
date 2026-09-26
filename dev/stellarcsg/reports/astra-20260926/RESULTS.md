@@ -1,84 +1,129 @@
-# Exact-control offset baseline: verified results and limits
+# Exact-control offset: verified results and limits
 
-Baseline implementation: `3f8703db2`, based on pinned
-`63359cb83d36b419a7e9ba60c45f867073703c21`. The original checkpoint checkout and
-branch were preserved. The new `exact_control_offset` representation is explicit
-in C++, Python, XML, HDF5 and query receipts. Legacy geometry remains the default.
+Draft PR: https://github.com/FusionSandwich/openmc/pull/5.
+The isolated branch is based on pinned
+`63359cb83d36b419a7e9ba60c45f867073703c21`; the original checkpoint checkout
+and branch were preserved. Baseline source commit `3f8703db2` is retained.
+The final accelerated source and executable identities are recorded in
+`build-receipt-14.json` and independently checked in `final-acceptance.json`.
+
+The new `exact_control_offset` representation is explicit in C++, Python, XML,
+HDF5 and query receipts. Legacy geometry remains the default.
 
 ## Achieved
 
 - Native OpenMC member-2 shaped seam: distance **16.000000000001382 cm**,
   outward normal and both directional sense checks pass. An independent exact
-  rational support/witness proof bounds its distance error by
-  **1.4577968462011388e-12 cm**. This is an actual `SurfaceSweptSpline` call,
-  not only a standalone kernel result.
-- Unchanged frozen bank: **69 hits, 91 no-hits, zero unresolved and zero wrong
-  scalar results** for this explicit representation. All 160 queries are
-  independently certified at **1e-11 cm**: 158 exact rational Bernstein/ball
-  proofs and two exact support contact proofs. Every earlier eligible ray
-  interval is excluded, including the interior-origin cases; no-hit results
-  exclude the whole ray. The frozen CSV SHA-256 remains
+  rational proof bounds its distance error by **1.4577968462011388e-12 cm**.
+  This is an actual `SurfaceSweptSpline` call.
+- Native CSG `Region` classification changes correctly across that boundary.
+  The outside region returns the entry above; the inside region, starting at
+  that coincident entry, returns exit distance **27.999999999997744 cm**.
+  Signed surface indices are -1 and +1. The separate exact exit proof bounds
+  the error by **1.89e-12 cm**. This is a geometry crossing smoke test.
+- Unchanged frozen bank, with Bernstein acceleration both enabled and disabled:
+  **69 hits, 91 no-hits, zero unresolved and zero wrong scalar results** for
+  this explicit representation. All 160 queries in each mode are independently
+  certified at **1e-11 cm**: 158 exact rational Bernstein/ball proofs plus two
+  exact support contact proofs. Earlier eligible intervals are excluded,
+  including interior-origin cases; no-hits exclude the whole ray.
+  CSV SHA-256:
   `fc9da0be5eb66e3d56649a8d709db16f9b096c7767a565c57d5488bd19430723`.
-- The two contact roots are treated as even contacts, not misses or residual
-  guesses. a06 is exactly `3/2^55` cm from its origin; a08 is exactly
-  `2+3/2^55` cm. The former stays positive despite being smaller than the query
-  tolerance. A generic exact support predicate admits them; it contains no
-  bank-ID dispatch.
-- Adversarial controls pass: exact minimum enclosure, curved seam crossing,
-  zero-contact policy, coincident inward/outward handling, tangent fallback,
-  direction scaling, exhaustion, invalid options, zero/competing normal rejection,
-  unsupported arithmetic and degenerate geometry rejection, support axis/sign
-  permutations and tiny positive contacts, and exact dyadic carry/cancellation.
-  Legacy C++ tests pass. Eight comparator controls and three representation
-  round-trip/rejection tests pass.
+- The two even contacts are proved roots: a06 is exactly `3/2^55` cm from
+  its origin and a08 is `2+3/2^55` cm. The tiny positive a06 root is retained
+  below the query tolerance. The generic exact support predicate has no bank-ID
+  dispatch.
+- Adversarial C++ controls and legacy compiled-surface tests pass. Controls
+  cover minimum enclosure, curved seams, zero/coincident contact policy,
+  tangent fallback, direction scaling, exhaustion, invalid options/arithmetic,
+  competing normals, degenerate geometry, support axis/sign permutations,
+  tiny contacts, exact dyadic carry/cancellation and far-point strict signs.
+  Eight comparator controls and three Python representation tests also pass.
+
+Tolerances refer to the ray parameter using the recorded binary64 normalized
+direction components. Units are nominal cm; this does not assert exact real
+normalization for arbitrary vectors. The decisive native seam uses (-1,0,0).
+
+## Measured acceleration
+
+An untrusted numerical proposal is accepted only after complete prefix exclusion,
+strict interval endpoint signs, unique projection, strict derivative and the
+distance/residual gates. Bernstein tensor bounds exclude outside prefixes;
+fixed exact curve-point witnesses cover inside prefixes. Failure falls back to
+the bounded ordered solver. Exact-zero interval identities separately improve
+both modes.
+
+Three clean fresh-process pairs (04/05, 10/11, 12/13) use the same binary,
+geometry, rays and source identities, changing only the acceleration option:
+
+| Mean per run | Enabled | Disabled |
+|---|---:|---:|
+| Sum of 160 distance-query times | 0.865648 s | 3.507429 s |
+| Child process wall time | 1.547897 s | 4.032762 s |
+
+This is **4.05x lower summed distance time** and **2.61x lower process wall
+time** in this local observation. Paired distance-time ratios range from
+0.2442 to 0.2484. Each enabled run certifies 66 queries through the accelerator.
+All non-timing query fields match across replicates within each mode, allowing
+reuse of the corresponding independently certified 04/05 scalar results.
+
+Runs 06-09 are preserved and excluded because they overlapped the independent
+Fraction verifier. These observations isolate the option in the final binary;
+the earlier 24.946 s baseline sum includes other implementation differences.
+This is not a comparison with native geometry throughput. See
+`PERFORMANCE_AB.md` and `PERFORMANCE_PLAN.md`.
 
 ## Decisive evidence
 
 | Evidence | What it establishes |
 |---|---|
-| `build-receipt-11.json`, build11/native-build02 logs | Successful bounded local Release builds, unchanged compiled input hashes and produced executable/library hashes |
-| `native-probe-02.jsonl` | Native surface registration, seam distance, normal and directional sense |
-| `frozen-offset-03/receipt.json` and `candidate.jsonl` | All 160 actual results, unchanged execution inputs, exported normalized directions and cost counters |
-| `independent-bank-qualified-01.json` | Bound aggregate of 158 exact prefix/ball certificates and two independently regenerated support proofs at 1e-11 cm |
-| `independent-bank-tight-01/` | Per-query exact prefix and bracket evidence for 158 queries |
-| `exact-ring-contact-reference.json`, `independent-bank-support-final-01.json` | Exact geometric contact proofs and rounding bounds |
-| `INDEPENDENT_REVIEW.md` | Separate Sol challenge/review of the implementation, proof obligations and receipts |
-| `offset-tests-06.txt`, `offset-tests-07.txt`, Python test logs | Actual positive and failure-path controls; test07 adds DBL_MAX and invalid-weight cases after build11 |
-| `BANK_COST_OBSERVATION.md`, `PERFORMANCE_PLAN.md` | Measured costs and the unmet performance acceptance condition |
+| `build-receipt-14.json`, build14/native-build04 logs | Successful bounded Release builds; unchanged 17 compiled input records and five executable/library outputs |
+| `native-probe-03.jsonl`, `independent-native-region-exit.json` | Actual native surface/Region entry, exit, normal, sense and containment; independently bounded scalar errors |
+| `frozen-offset-04/`, `frozen-offset-05/` | Both 160-query modes, execution provenance, normalized directions and costs |
+| `independent-bank-qualified-04.json`, `independent-bank-qualified-05.json` | Complete independent scalar qualification at 1e-11 cm |
+| `independent-bank-accelerated-04/`, `independent-bank-slab-05/`, support04/05 receipts | Per-query exact prefix/bracket/contact evidence |
+| `final-acceptance.json`, `INDEPENDENT_REVIEW.md` | Separate Sol source challenge and verification of build, oracle, native and regression receipts |
+| `offset-tests-08.txt`, `legacy-cpp-tests-03.txt`, Python test logs | Actual positive and failure-path controls |
+| `PERFORMANCE_AB.md`, `performance-ab.json` | Three clean paired observations, identities, telemetry gaps and excluded observations |
+| `PERFORMANCE_REVIEW.md`, `performance-review.json` | Separate Sol recalculation and identity checks; limited acceptance of the local A/B observation |
 
-The build11 receipt predates the extra test-only arithmetic controls; those were
-rebuilt in `build-tests-12.txt`. Any later performance experiment or expanded
-native probe must have separate build/run receipts; these results cannot be
-silently transferred to changed binaries. The independent oracle verifies the
-new mathematical surface, so agreement with the legacy oracle is descriptive
-compatibility evidence only.
+Build13 compiled while a residual-reporting correction changed an input. Its
+receipt detects the change and is explicitly rejected for acceptance. Build14
+replaced it with stable inputs. Historical receipts remain unchanged. Hashes
+observe file identity; they are not cryptographic compilation attestation.
+
+The report directory has a scoped Git `-text` attribute to preserve original
+evidence bytes and their linked hashes. `publication-source-binding.json`
+maps the 13 raw compiled source hashes to committed Git blobs and content
+hashes. Two source files undergo only CRLF-to-LF normalization in Git; the
+other 11 have identical bytes. Local CMake caches/build files remain identified
+by the build receipt. This publication bookkeeping does not constitute a rebuild.
 
 ## Remaining limits
 
 This is a constant-metric offset solid: constant circular tubes around regular
-curves, or constant ellipses on admitted xy-planar curves. It is not a rectangular
-WISTELL-D winding-pack model. The eight real coil031 bank rays are no-hits for
-the diagnostic circular-offset payload. Their presence is not positive-hit
-qualification of the physical pack. Collections are not admitted in the new
-native mode. Variable radius/frame solids, arbitrary degenerate contacts,
-ambiguous normals, and unsupported arithmetic fail closed.
+curves, or constant ellipses on admitted xy-planar curves. It is not the physical
+rectangular WISTELL-D winding pack. The eight real coil031 rays are no-hits for
+a diagnostic circular-offset payload and do not qualify physical pack hits.
+Collections, variable radii/frames and unrestricted degenerate contacts are
+outside this mode; unsupported queries fail closed.
 
-The baseline bank has nine blocked auxiliary point/normal telemetry rows
-(`a00`, `w0` through `w7`); these do not invalidate their independently proved
-scalar no-hits, but they prevent an unrestricted point/normal usability claim.
-Native parameter-seam success is not a physical periodic-boundary validation.
-No neutron/photon particle histories, periodic transport, or material physics
-qualification have run. The 80% native-throughput target is unmeasured and unmet
-as an acceptance claim. The baseline is slow and allocates during queries.
+Nine auxiliary normal queries remain blocked (`a00`, `w0` through `w7`).
+All 160 have evaluate timing in the final runs, but those nine lack normal
+timing and prevent a full point/normal usability claim. Their independently
+proved scalar no-hits remain valid. Queries still allocate memory.
+
+Native parameter-seam and Region success do not validate physical periodic
+boundaries. No neutron/photon particle histories, periodic transport or material
+physics qualification have run. The **80% native-throughput target remains
+unmeasured and unqualified**.
 
 The pre-existing swapped source-hash false-PASS path remains reproduced by the
-checkpoint recheck and is not repaired here. The comparator now rejects NaN,
-infinity, duplicate keys, contradictory status/count fields, invalid or changed
-frozen metadata and cross-representation comparisons. Retained original artifact
-hashes match except the intentionally changed production source.
+checkpoint recheck and is outside this change. The strict comparator now rejects
+NaN, infinity, duplicate keys, contradictory status/count fields, invalid or
+changed frozen metadata and cross-representation comparisons.
 
-No dependency was acquired, no environment was modified, no SSH or remote job
-was used, and no schedule was changed. Local resource observations and failed
-attempts are preserved alongside successful runs. Reproduction requires the
-hash-matched local analytic and coil031 HDF5 inputs named in the receipts; the
-large source geometry is not duplicated in this patch.
+No dependency was acquired, environment modified, SSH/remote job used or schedule
+changed. Reproduction requires the hash-matched local analytic and coil031 HDF5
+inputs named in the receipts; large source geometry is not duplicated in the PR.
+The next steps and resource gates are in `CONTINUATION_HANDOFF.md`.

@@ -41,6 +41,9 @@ struct RootSearchOptions {
   double tangent_residual_multiplier {16.0};
   double duplicate_t_multiplier {8.0};
   bool require_refinement_stability {true};
+  // Exact-control offset only: disable to compare the ordered slab certificate
+  // against the optional Bernstein-prefix accelerator on identical geometry.
+  bool enable_bernstein_prefix {true};
 };
 
 struct RootCandidate {

@@ -197,7 +197,8 @@ const char* disposition_name(stellarcsg::DistanceDisposition disposition)
 }
 
 int replay_bank(const std::string& filename, const std::string& wistell_file,
-  const std::string& wistell_dataset, bool with_reference, bool exact_offset)
+  const std::string& wistell_dataset, bool with_reference, bool exact_offset,
+  bool bernstein_prefix)
 {
   const auto representation = exact_offset ? stellarcsg::SweptRepresentation::exact_control_offset : stellarcsg::SweptRepresentation::legacy_rounded_frame;
   const auto bank = read_bank(filename); const auto plain = torus_data(false), rigid = torus_data(true);
@@ -224,6 +225,8 @@ int replay_bank(const std::string& filename, const std::string& wistell_file,
   const std::string wistell_source_sha = wistell_file.empty() ? "" : file_sha256(wistell_file);
   int candidate_failures=0, reference_disagreements=0, blocked=0;
   const bool counters_available = stellarcsg::performance_counters_enabled();
+  stellarcsg::RootSearchOptions query_options;
+  query_options.enable_bernstein_prefix = bernstein_prefix;
   std::cout << std::setprecision(17);
   for (std::size_t query_index = 0; query_index < bank.size(); ++query_index) {
     const auto& q = bank[query_index];
@@ -234,7 +237,7 @@ int replay_bank(const std::string& filename, const std::string& wistell_file,
     std::string candidate_error, reference_error, evaluate_error, normal_error;
     stellarcsg::DistanceResult candidate {}, reference {};
     double distance_ns=NAN, reference_ns=NAN, evaluate_ns=NAN, normal_ns=NAN;
-    try { auto t=Clock::now(); candidate=surface.distance(q.origin,q.direction,q.category.find("coincident_") == 0); distance_ns=std::chrono::duration<double,std::nano>(Clock::now()-t).count(); }
+    try { auto t=Clock::now(); candidate=surface.distance(q.origin,q.direction,q.category.find("coincident_") == 0,query_options); distance_ns=std::chrono::duration<double,std::nano>(Clock::now()-t).count(); }
     catch (const std::exception& e) { candidate_blocked=true; candidate_error=e.what(); ++blocked; }
     if (!candidate_blocked && candidate.disposition()
           == stellarcsg::DistanceDisposition::unresolved) {
@@ -278,6 +281,7 @@ int replay_bank(const std::string& filename, const std::string& wistell_file,
         << "],\"minimum_calls\":" << candidate.root_diagnostics.function_evaluations
         << ",\"minimum_nodes\":" << candidate.root_diagnostics.subdivided_intervals
         << ",\"projection_visits\":" << candidate.root_diagnostics.derivative_evaluations
+        << ",\"bernstein_prefix_certified\":" << (candidate.root_diagnostics.refinement_levels == 1 ? "true" : "false")
         << ",\"excluded_slabs\":" << candidate.root_diagnostics.certified_excluded_intervals;
     }
     std::cout << ",\"candidate_distance_ns\":"; number_or_null(distance_ns); std::cout << ",\"reference_distance_ns\":"; number_or_null(reference_ns); std::cout << ",\"evaluate_ns\":"; number_or_null(evaluate_ns); std::cout << ",\"normal_ns\":"; number_or_null(normal_ns);
@@ -293,9 +297,9 @@ int replay_bank(const std::string& filename, const std::string& wistell_file,
 
 int main(int argc, char** argv)
 {
-  try { std::string mode, bank, h5, dataset="/coils/coil_031"; bool with_reference=true, exact_offset=false;
-    for (int i=1;i<argc;++i) { const std::string a=argv[i]; if (a=="--freeze"||a=="--replay") { if (++i == argc) throw std::runtime_error("missing bank path"); mode=a; bank=argv[i]; } else if (a=="--wistell-h5") { if (++i == argc) throw std::runtime_error("missing HDF5 path"); h5=argv[i]; } else if (a=="--wistell-dataset") { if (++i == argc) throw std::runtime_error("missing dataset"); dataset=argv[i]; } else if (a=="--exact-control-offset") exact_offset=true; else if (a=="--skip-reference") with_reference=false; else if (a=="--with-reference") with_reference=true; else throw std::runtime_error("unknown argument: "+a); }
-    if (mode=="--freeze") return freeze_bank(bank,h5,dataset); if (mode=="--replay") return replay_bank(bank,h5,dataset,with_reference,exact_offset);
+  try { std::string mode, bank, h5, dataset="/coils/coil_031"; bool with_reference=true, exact_offset=false, bernstein_prefix=true;
+    for (int i=1;i<argc;++i) { const std::string a=argv[i]; if (a=="--freeze"||a=="--replay") { if (++i == argc) throw std::runtime_error("missing bank path"); mode=a; bank=argv[i]; } else if (a=="--wistell-h5") { if (++i == argc) throw std::runtime_error("missing HDF5 path"); h5=argv[i]; } else if (a=="--wistell-dataset") { if (++i == argc) throw std::runtime_error("missing dataset"); dataset=argv[i]; } else if (a=="--exact-control-offset") exact_offset=true; else if (a=="--no-bernstein-prefix") bernstein_prefix=false; else if (a=="--skip-reference") with_reference=false; else if (a=="--with-reference") with_reference=true; else throw std::runtime_error("unknown argument: "+a); }
+    if (mode=="--freeze") return freeze_bank(bank,h5,dataset); if (mode=="--replay") return replay_bank(bank,h5,dataset,with_reference,exact_offset,bernstein_prefix);
     throw std::runtime_error("usage: recovery04_frozen_bank --freeze BANK --wistell-h5 FILE | --replay BANK [--wistell-h5 FILE]");
   } catch (const std::exception& e) { std::cerr << "recovery04: " << e.what() << '\n'; return 2; }
 }

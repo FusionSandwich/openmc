@@ -13,7 +13,7 @@ import time
 BANK = Path('dev/stellarcsg/qualification/recovery04_frozen_bank.csv')
 PROVENANCE_PATHS = (
     'binary', 'frozen_csv', 'wistell_h5', 'offset_engine_cpp',
-    'offset_engine_hpp', 'exact_dyadic_hpp', 'frozen_bank_cpp', 'runner_script',
+    'offset_engine_hpp', 'root_options_hpp', 'exact_dyadic_hpp', 'frozen_bank_cpp', 'runner_script',
 )
 
 
@@ -80,6 +80,7 @@ def _provenance_paths(args):
         'wistell_h5': args.wistell,
         'offset_engine_cpp': Path('dev/stellarcsg/src/certified_spline_offset.cpp'),
         'offset_engine_hpp': Path('dev/stellarcsg/include/stellarcsg/certified_spline_offset.hpp'),
+        'root_options_hpp': Path('dev/stellarcsg/include/stellarcsg/root_solver.hpp'),
         'exact_dyadic_hpp': Path('dev/stellarcsg/src/exact_dyadic.hpp'),
         'frozen_bank_cpp': Path('dev/stellarcsg/qualification/recovery04_frozen_bank.cpp'),
         'runner_script': Path(__file__),
@@ -95,12 +96,15 @@ def main():
     parser.add_argument('--binary', type=Path, required=True)
     parser.add_argument('--wistell', type=Path, required=True)
     parser.add_argument('--output', type=Path, required=True)
+    parser.add_argument('--no-bernstein-prefix', action='store_true')
     args = parser.parse_args()
     args.output.mkdir(exist_ok=False)
     paths = _provenance_paths(args)
     hashes_before = _capture_hashes(paths)
     command = [str(args.binary), '--replay', str(BANK), '--wistell-h5',
                str(args.wistell), '--skip-reference', '--exact-control-offset']
+    if args.no_bernstein_prefix:
+        command.append('--no-bernstein-prefix')
     env = dict(os.environ, OMP_NUM_THREADS='1', OPENBLAS_NUM_THREADS='1')
     before = time.time()
     launch = {
@@ -146,6 +150,7 @@ def main():
     report = {
         'schema': 'stellarcsg.offset-bank-observation/v1',
         'geometry_representation': 'exact_control_offset',
+        'bernstein_prefix_enabled': not args.no_bernstein_prefix,
         'state': 'OBSERVATION_ONLY_DIFFERENT_REPRESENTATION',
         'exit_code': code, 'timed_out': timed_out, 'seconds': time.time()-before,
         'query_count': len(queries), 'malformed_lines': malformed,
@@ -167,7 +172,7 @@ def main():
     print(json.dumps({k: report[k] for k in ('exit_code','timed_out','seconds','query_count',
         'output_valid','provenance_unchanged','changed_paths','dispositions','candidate_states',
         'resolved_differences_from_legacy_reference')}))
-    return 0 if output_valid and not timed_out and code == 0 else 1
+    return 0 if output_valid and not timed_out and code == 0 and not changed_paths else 1
 
 
 if __name__ == '__main__':

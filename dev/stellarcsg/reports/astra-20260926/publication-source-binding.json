@@ -1,0 +1,141 @@
+{
+  "schema": "stellarcsg.publication-source-binding/v1",
+  "build_receipt": "build-receipt-14.json",
+  "build_receipt_sha256": "376e0f5d4420db086b07b719155b52148af05a5b39892f04735ccfc13e8d83d8",
+  "evidence_policy": "Reports preserved byte-for-byte using scoped -text Git attribute.",
+  "source_policy": "Raw hashes identify local compiler inputs. Filtered Git blob identities identify the committed sources; line-ending normalization is explicitly recorded and is not a rebuild.",
+  "source_inputs": [
+    {
+      "path": "dev/stellarcsg/CMakeLists.txt",
+      "build14_raw_sha256": "19c32c7eb245b4a4cec13c9ceb6ad5ab02818d8b5e876c0bdf62d7bcf0054a4f",
+      "raw_git_blob_sha1": "0bf6d58d8d73cb7a054573fda1c6c2cd7c725149",
+      "committed_git_blob_sha1": "7fe3ca228c768dce51cc2ae3b2c9f2ac77b84810",
+      "filtered_worktree_matches_index": true,
+      "git_line_ending_normalization": true,
+      "committed_content_sha256": "71db1c21a99ff6f471c17086392fe93e18d83c02e7cf711caec1d7054b3365b7",
+      "raw_to_committed_relation": "CRLF_TO_LF_ONLY"
+    },
+    {
+      "path": "dev/stellarcsg/include/stellarcsg/compiled_swept_surface.hpp",
+      "build14_raw_sha256": "5d927f7d5036dfa77979065102823c1188238c6a80bbc47a8bc44cc8b1257cae",
+      "raw_git_blob_sha1": "461a00374f9f06963e1d45939d71bbe62fc5f9e5",
+      "committed_git_blob_sha1": "03574b6b345b3436a28832c9b058d460053bf9d3",
+      "filtered_worktree_matches_index": true,
+      "git_line_ending_normalization": true,
+      "committed_content_sha256": "f326edb3f2d175e92e06b57b5f8ab2ebc27513378ef312b1613b184d0c226b59",
+      "raw_to_committed_relation": "CRLF_TO_LF_ONLY"
+    },
+    {
+      "path": "dev/stellarcsg/qualification/certified_offset_probe.cpp",
+      "build14_raw_sha256": "9a4fba0fb521cb1d7ccb2c254fde73945c386d414af3c677533cd7379124b968",
+      "raw_git_blob_sha1": "2ddc048b097678e7f64a7bd900596fd381d984a4",
+      "committed_git_blob_sha1": "2ddc048b097678e7f64a7bd900596fd381d984a4",
+      "filtered_worktree_matches_index": true,
+      "git_line_ending_normalization": false,
+      "committed_content_sha256": "9a4fba0fb521cb1d7ccb2c254fde73945c386d414af3c677533cd7379124b968",
+      "raw_to_committed_relation": "IDENTICAL_BYTES"
+    },
+    {
+      "path": "dev/stellarcsg/qualification/recovery04_frozen_bank.cpp",
+      "build14_raw_sha256": "b678af3b085c37e2d98aeea4543794d405996b5ed6ad0bea0725cddb519b8726",
+      "raw_git_blob_sha1": "54a173dbcedfa794168d93a60319bfe369b784e2",
+      "committed_git_blob_sha1": "f233aecfe12f14c1cb6963a09fdc2118895c13bf",
+      "filtered_worktree_matches_index": true,
+      "git_line_ending_normalization": true,
+      "committed_content_sha256": "53308adf16ccb5a54be334c875e6336f78d4a90e9266f3d74ada0538098c0324",
+      "raw_to_committed_relation": "CRLF_TO_LF_ONLY"
+    },
+    {
+      "path": "dev/stellarcsg/src/compiled_swept_surface.cpp",
+      "build14_raw_sha256": "fc304a6c48dbfd45ffd4d860b81217bf888e41557b140589be0c655cbb800176",
+      "raw_git_blob_sha1": "d5bd51064bdbd6c5afaf47a79dce0a13c53c6cee",
+      "committed_git_blob_sha1": "3ebcac2bbe4013f949044345411c291a6af269a7",
+      "filtered_worktree_matches_index": true,
+      "git_line_ending_normalization": true,
+      "committed_content_sha256": "788ae12689cc3641a2d0faac56e0e5aa1c898c0c3323543ad1f429357672966d",
+      "raw_to_committed_relation": "CRLF_TO_LF_ONLY"
+    },
+    {
+      "path": "dev/stellarcsg/include/stellarcsg/root_solver.hpp",
+      "build14_raw_sha256": "5eacbd469d12dd0f1d47e201359abcf8892269dc13f00e6d2e5377f07e4c6f6b",
+      "raw_git_blob_sha1": "65a307c8f104f7e14331b552f945f5ba78836f35",
+      "committed_git_blob_sha1": "186ab7fcae5298314b42c1bf33739a84f88107e2",
+      "filtered_worktree_matches_index": true,
+      "git_line_ending_normalization": true,
+      "committed_content_sha256": "b87325a57bc2a5c935e8a1d11568bd26bc9461e6eb15cf40bad7f8bf91d3314b",
+      "raw_to_committed_relation": "CRLF_TO_LF_ONLY"
+    },
+    {
+      "path": "src/surface_swept_spline.cpp",
+      "build14_raw_sha256": "7db35b5914907fb9b332b1c5a7bb32fb93c3bccbacc6f0be2e131c60c7dd41d8",
+      "raw_git_blob_sha1": "95d42d11642bf397c30498a0bb536ffb210cf5c0",
+      "committed_git_blob_sha1": "34d340ce3d24b3ce797830a0941ab5e826dc22b3",
+      "filtered_worktree_matches_index": true,
+      "git_line_ending_normalization": true,
+      "committed_content_sha256": "27eb814c178707a2c77ebe4a5ee2a59b2d3952c903ad5a7bfc3ca81ce43ef758",
+      "raw_to_committed_relation": "CRLF_TO_LF_ONLY"
+    },
+    {
+      "path": "dev/stellarcsg/src/certified_spline_offset.cpp",
+      "build14_raw_sha256": "ef70e1574dea97cdfdef7465dff62215116079bd8c1424ca195c77ff2b5eca0c",
+      "raw_git_blob_sha1": "fc92b4e48af1b73a809b520851c61e1fb05fa58f",
+      "committed_git_blob_sha1": "fc92b4e48af1b73a809b520851c61e1fb05fa58f",
+      "filtered_worktree_matches_index": true,
+      "git_line_ending_normalization": false,
+      "committed_content_sha256": "ef70e1574dea97cdfdef7465dff62215116079bd8c1424ca195c77ff2b5eca0c",
+      "raw_to_committed_relation": "IDENTICAL_BYTES"
+    },
+    {
+      "path": "dev/stellarcsg/include/stellarcsg/certified_spline_offset.hpp",
+      "build14_raw_sha256": "0f93bb162f78069dbb1a86797149cf2c144173d98a6680e96672b9dd86730f2c",
+      "raw_git_blob_sha1": "8fea1199e51b432500d8ec82b90fff4263965d27",
+      "committed_git_blob_sha1": "8fea1199e51b432500d8ec82b90fff4263965d27",
+      "filtered_worktree_matches_index": true,
+      "git_line_ending_normalization": false,
+      "committed_content_sha256": "0f93bb162f78069dbb1a86797149cf2c144173d98a6680e96672b9dd86730f2c",
+      "raw_to_committed_relation": "IDENTICAL_BYTES"
+    },
+    {
+      "path": "CMakeLists.txt",
+      "build14_raw_sha256": "bdd8a72af632c10433e6353bc9a480202d1324b00e6784901b0b562d76959887",
+      "raw_git_blob_sha1": "4c1653745bb0e8ea581079452d81c5cfff3922fc",
+      "committed_git_blob_sha1": "a0c3fab2231fc3cf0d2c1123a2e8d01252178538",
+      "filtered_worktree_matches_index": true,
+      "git_line_ending_normalization": true,
+      "committed_content_sha256": "151fc6866c55855f43f8578951862e17e683a3e1a6b81520f763b0d1e9f8d73d",
+      "raw_to_committed_relation": "CRLF_TO_LF_ONLY"
+    },
+    {
+      "path": "include/openmc/surface_swept_spline.h",
+      "build14_raw_sha256": "24e43e7e181dbdb8e65eeea5c74ea59395717ea47a9678a85ab9a6803d48eeee",
+      "raw_git_blob_sha1": "7c0ea8fb384745eac9987c6aced366477cd3bd42",
+      "committed_git_blob_sha1": "35c4f28a877947c6505e9595536c8abeeb97c280",
+      "filtered_worktree_matches_index": true,
+      "git_line_ending_normalization": true,
+      "committed_content_sha256": "9feee58ac11244633a68fe38ce53eeeb224a14038ad2d052c7a87a9e5855e9fc",
+      "raw_to_committed_relation": "CRLF_TO_LF_ONLY"
+    },
+    {
+      "path": "dev/stellarcsg/src/exact_dyadic.hpp",
+      "build14_raw_sha256": "0b166aecb07b166c05a877fe7a5ec1d96e738397947c7f1edd7f0a1f2794ddbe",
+      "raw_git_blob_sha1": "6f6dae7b94df10a41bf1f4080be396faa4faa688",
+      "committed_git_blob_sha1": "6f6dae7b94df10a41bf1f4080be396faa4faa688",
+      "filtered_worktree_matches_index": true,
+      "git_line_ending_normalization": false,
+      "committed_content_sha256": "0b166aecb07b166c05a877fe7a5ec1d96e738397947c7f1edd7f0a1f2794ddbe",
+      "raw_to_committed_relation": "IDENTICAL_BYTES"
+    },
+    {
+      "path": "dev/stellarcsg/tests/test_certified_offset.cpp",
+      "build14_raw_sha256": "5feb41901c1e63ce68a13c5b43009ea68cbeeedd0f11a4aab825b21b245abd05",
+      "raw_git_blob_sha1": "5e1c151389969a98e8b0c3725b0ced57aa5b6e08",
+      "committed_git_blob_sha1": "5e1c151389969a98e8b0c3725b0ced57aa5b6e08",
+      "filtered_worktree_matches_index": true,
+      "git_line_ending_normalization": false,
+      "committed_content_sha256": "5feb41901c1e63ce68a13c5b43009ea68cbeeedd0f11a4aab825b21b245abd05",
+      "raw_to_committed_relation": "IDENTICAL_BYTES"
+    }
+  ],
+  "excluded_local_build_metadata": "The four CMake cache/build.ninja inputs remain local and are identified only by the build receipt.",
+  "claim_boundary": "File identity observation, not compilation attestation or new execution."
+}

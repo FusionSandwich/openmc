@@ -1,0 +1,114 @@
+{
+  "schema": "stellarcsg.independent-native-region-exit/v1",
+  "state": "FIRST_EXIT_AFTER_NATIVE_ENTRY_CERTIFIED_EXACT_RATIONAL",
+  "h5_sha256": "39f77da5ab1fe427cce58b153e9b52cf8915e9973a9b8f3dfad5ab3b00a9e46d",
+  "entry_probe_sha256": "0904fc15e88e05b4db75056cc6bc47f06ac49a6cc034ebfb90ceb1295408b0ad",
+  "script_sha256": "4dbcb56b1d6c3d8cace7937ca9bb39fe3da228cb6915ffed1b4dd6dffe8aeec3",
+  "seam_helper_sha256": "5f7b511436e3805e546a1b6c95895bad4c36321e52c397cb8a91542e5a84e311",
+  "geometry_representation": "exact_control_offset",
+  "origin_exact": [
+    {
+      "rational": "1174278418464765/2199023255552",
+      "approximate": 533.9999999999986
+    },
+    {
+      "rational": "0",
+      "approximate": 0.0
+    },
+    {
+      "rational": "0",
+      "approximate": 0.0
+    }
+  ],
+  "direction_exact": [
+    -1,
+    0,
+    0
+  ],
+  "origin_construction": "binary64 550.0 minus observed native entry distance",
+  "radii_exact": {
+    "a": 24,
+    "b": 14
+  },
+  "center_witness_exact": [
+    {
+      "rational": "520",
+      "approximate": 520.0
+    },
+    {
+      "rational": "61586673559/59421121885698253195157962752",
+      "approximate": 1.036444139803812e-18
+    },
+    {
+      "rational": "0",
+      "approximate": 0.0
+    }
+  ],
+  "inside_prefix_exact": [
+    {
+      "rational": "0",
+      "approximate": 0.0
+    },
+    {
+      "rational": "15032385535998730707213/536870912000000000000",
+      "approximate": 27.999999999997637
+    }
+  ],
+  "inside_prefix_endpoint_witness_q": [
+    {
+      "rational": "692050466326246679305935077271385925938105846180743881886481/692050466326381554212895783908645222375284687752159805046784",
+      "approximate": 0.9999999999998052
+    },
+    {
+      "rational": "41249422212021511188779082728474410465399623812663589312394085557102967829169/41249422212027403963380800718584371946769040092954624000000000000000000000000",
+      "approximate": 0.9999999999998571
+    }
+  ],
+  "inside_prefix_margin": {
+    "rational": "5892774601717990109961481369416280291034687605914442897032170831/41249422212027403963380800718584371946769040092954624000000000000000000000000",
+    "approximate": 1.4285714285713774e-13
+  },
+  "strict_outside_point_exact": [
+    {
+      "rational": "505999999999999/1000000000000",
+      "approximate": 505.999999999999
+    },
+    {
+      "rational": "0",
+      "approximate": 0.0
+    },
+    {
+      "rational": "0",
+      "approximate": 0.0
+    }
+  ],
+  "outside_bernstein_minimum_margin": {
+    "rational": "5669465147995992846484228795392361241178029056509109102967829169/41249422212027403963380800718584371946769040092954624000000000000000000000000",
+    "approximate": 1.3744350451393485e-13
+  },
+  "outside_proof_nodes": 256,
+  "outside_proof_leaves": 256,
+  "outside_proof_max_depth": 0,
+  "first_exit_enclosure_exact": [
+    {
+      "rational": "15032385535998730707213/536870912000000000000",
+      "approximate": 27.999999999997637
+    },
+    {
+      "rational": "15032385535999804449037/536870912000000000000",
+      "approximate": 27.999999999999634
+    }
+  ],
+  "enclosure_width_exact": {
+    "rational": "1/500000000000",
+    "approximate": 2e-12
+  },
+  "proof": [
+    "Exact seam-center squared metric distance is below one at both inside-prefix endpoints. Convexity in ray t puts the whole prefix strictly inside.",
+    "Degree-six exact Bernstein coefficients are the square of each degree-three scaled offset, using exact binomial product factors. Exact de Casteljau restrictions cover every span and have strictly positive Q-1 coefficients at the outside endpoint.",
+    "The compact-curve distance is continuous. The strict inside prefix excludes every earlier exit and the strictly outside right endpoint proves a first exit in the enclosure."
+  ],
+  "claim_boundary": "Mathematical next-exit proof for the observed entry-derived origin. Does not attest a new native Region launch, signed surface output, normals, or particle histories.",
+  "elapsed_seconds": 0.19872359300097742,
+  "memory_cap_bytes": 1073741824
+}

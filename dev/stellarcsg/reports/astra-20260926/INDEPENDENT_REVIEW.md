@@ -466,3 +466,97 @@ a global lower bound. Thus evaluate may return a strict proved sign when
 interval still fails closed, and the special zero boundary band must retain
 its existing completion/projection guards. This is a source argument for the
 proposed change, not acceptance of an unobserved new binary.
+
+## Native Region exit reference and fast-path source audit
+
+Executed `exact_native_region_exit_reference.py` under a 1 GiB memory limit
+and internal 30-second/100000-node/depth-100 gates. Its
+`independent-native-region-exit.json` uses the original checked analytic H5
+and native02 observed entry distance. The new origin is the exact rational
+value of the binary64 subtraction `550-distance`, matching the Region probe.
+One exact seam-center witness is strictly inside at both t=0 and x=506+1e-12;
+convexity proves the complete intervening prefix inside. At x=506-1e-12 all
+256 exact degree-six Bernstein squared-distance polynomials have strictly
+positive Q-1 controls. The 256-node proof took 0.199 seconds and requires no
+stationarity solver. Continuity proves the first exit in
+[27.999999999997637,27.999999999999634], relative to that rounded origin,
+an exact width 2e-12. This is an independent reference for the proposed Region
+entry/exit smoke; no new Region execution or particle history is attested here.
+
+Read the landed `proposal_value`, `squared_bernstein`, `split_tensor`,
+`outside_prefix`, `inside_prefix` and `accelerated_distance` methods. The
+tensor is degree six in owned curve parameter and two in affine ray-box
+parameter. Its power coefficients correctly square
+A[o+left*d-C(u)]+v*A[d]*(right-left); both cross terms and velocity square are
+present. The power-to-Bernstein factors C(i,k)/C(n,k) are outward divisions.
+Child tensor indices correctly implement both de Casteljau directions. The
+original-control hull skip and complete span loop preserve outside coverage;
+the fixed exact curve witness and endpoint upper bounds preserve inside
+coverage. Floating proposal Newton, sample signs and bisection only choose
+candidates, never prove acceptance. The preserved endpoint sign, global unique
+projection and common strict derivative gates establish one crossing in the
+candidate bracket; the derivative divided by a uniform upper bound on sqrt(Q)
+justifies the interval contraction for sqrt(Q)-1.
+
+The exact-zero interval arithmetic shortcuts are valid for finite intervals,
+including subtraction of equal singleton values and division only after the
+existing denominator-zero rejection. The new evaluate strict-sign path is
+valid even with incomplete precision; finite saturation preserves that sign.
+The boundary band still requires completion and a unique normal. One reporting
+fix was requested before acceptance: `double(bound)` in the accelerated result
+can round down. Return the least binary64 upper bound using the same cast-plus-
+conditional-nextafter rule as support results. No other mathematical source
+blocker was found. This is source audit only; the altered production binary
+and performance remain unaccepted until fresh hash-bound execution and the
+unchanged exact rational corpus qualification.
+
+Follow-up source check: the requested residual conversion repair landed in
+both accelerated and slow sign-change returns. Each now uses conditional
+nextafter only if its binary64 cast is below the accepted Real bound. This
+closes the reporting issue without relaxing the residual acceptance gate.
+
+## Final changed-mode acceptance against build 14
+
+Ran only `verify_final_offset_acceptance.py`, a read-only hash/receipt and
+Fraction comparison check. Its final `final-acceptance.json` verifies all 17
+recorded build inputs and all five outputs against current files, with no
+historical-source or test exceptions. Build receipt 14 records successful
+compilation, unchanged input hashes and zero acquisition bytes. The added
+`enable_bernstein_prefix` option defaults true and gates only the optional
+certificate stage; false retains the ordered slab route with the same support,
+geometry, budgets and acceptance tolerances. The flag introduces no unchecked
+alternative acceptance path.
+
+Read and bound actual frozen04/05 launch, observation and independent aggregate
+receipts, their candidate and per-query proof files, canonical CSV, H5,
+verifier, support/aggregation sources and fresh support proofs. Both modes
+contain exactly 160 unchanged ordered rays and independently certify 69
+first eligible hits and 91 complete eligible-ray no-hits at exact 1e-11 cm.
+Every ordinary hit's interval/error and first-prefix/after-endpoint flags were
+checked directly; the two positive support contacts were independently
+compared as exact fractions. The production bank binary matches build 14 for
+both runs. Actual offset-tests08 and legacy-cpp-tests03 PASS receipts were
+read and hashed. The nine frozen telemetry blocks still preclude a claim of
+complete normal/projection telemetry coverage.
+
+Native03 entry distance is bit-identical to native02, so both exact entry and
+entry-derived-origin exit references remain applicable. The analytic H5 and
+reference scripts/probe identities were checked. Actual Region entry/exit
+signed surface IDs are -1/+1; source and PASS output cover before/after
+contains, normal, opposite directional senses and the entry/exit sequence.
+Observed exit `27.999999999997744` differs from any first exit in the exact
+reference enclosure by at most
+`129998773611/68719476736000000000000` cm, below 1e-11. The native executable
+and libopenmc.so match build 14 hashes. This accepts one native CSG Region
+entry/exit smoke, not particle histories or general tangent tracking.
+
+Accepted final milestones are the reviewed constructive subset mechanism,
+the optional Bernstein prefix path and preserved fallback against two
+independent frozen qualifications, unchanged legacy regression tests, and
+the native member-2 Region crossing smoke. Performance remains outside this
+review's acceptance; no paired summary was available during the final check.
+Physical varying-radius/frame coils, universal bounded resolution, general
+even contacts, complete normal/classifier coverage, tangent transport policy,
+particle tracking and legacy geometry equivalence remain explicit gaps.
+Acceptance applies only to the hash-recorded build 14 artifacts. A later
+source/binary change requires renewed binding and relevant qualification.

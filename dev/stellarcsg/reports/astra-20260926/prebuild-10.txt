@@ -1,0 +1,20 @@
+Observed 2026-09-26T16:50:44.3904136-04:00; free RAM KB 10596292
+
+Name         Free
+----         ----
+C    104795430912
+D    496498065408
+
+
+
+ProcessName           Id WorkingSet64
+-----------           -- ------------
+ChatGPT            14584   1601572864
+codex              18736   1158737920
+vmmemWSL           18788    948051968
+Memory Compression  3460    760033280
+chrome             20716    666259456
+chrome             24572    635674624
+
+
+Reviewed full inventory prebuild-09 just prior. Executables/environments/caches/local source dependencies unchanged and sufficient. Acquisition0bytes. Same incrementalbuildtargets,1job/1.5GBcap. Root-options header benchmark switch requires recompile; no software acquisition. Rollback experimental source to baselinecommit afterpreserve receipts if validation fails.
