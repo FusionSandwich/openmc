@@ -1,0 +1,265 @@
+{
+  "schema": "stellarcsg.seam-global-nearest-model/v1",
+  "state": "REAL_MODEL_GLOBAL_NEAREST_LAST_SPAN",
+  "source_sha256": "0a81d27eece73aa61b75389563d041fb92d172033b550e3bc8a1641567bcb1e9",
+  "h5_sha256": "39f77da5ab1fe427cce58b153e9b52cf8915e9973a9b8f3dfad5ab3b00a9e46d",
+  "stationary_sha256": "72b1d18fd9d301180f4cd588d3b835027eaaabb10bb51899fc2d6f3173b50374",
+  "compiled_spans_sha256": "90ad1bf611e86d1d63b8bc355c6bfddd55e420152916e78b7eefc64dc5647884",
+  "cap_per_span": 256,
+  "cap_sign": 10000,
+  "results": [
+    {
+      "member": 2,
+      "sample_count": 256,
+      "distance_strip_cm": [
+        15.99998999999757,
+        16.000000999999962
+      ],
+      "last_endpoint_candidate_d2_cm2": [
+        195.99997199999453,
+        196.00028000017585
+      ],
+      "total_distance_nodes": 766,
+      "excluded_span_count": 254,
+      "survivor_spans": [
+        0,
+        255
+      ],
+      "survivor_details": {
+        "0": {
+          "nodes": 256,
+          "max_depth": 62,
+          "excluded_tiles": 41,
+          "minimum_exclusion_margin_cm2": 2.842170943040401e-14,
+          "unresolved_tiles": 97,
+          "unresolved_preview": [
+            [
+              0.0014732482999323317,
+              0.001473248299932332
+            ],
+            [
+              0.0014732482999323315,
+              0.0014732482999323317
+            ],
+            [
+              0.0014732482999323313,
+              0.0014732482999323315
+            ],
+            [
+              0.001473248299932331,
+              0.0014732482999323313
+            ],
+            [
+              0.0014732482999323308,
+              0.001473248299932331
+            ],
+            [
+              0.0014732482999323306,
+              0.0014732482999323308
+            ],
+            [
+              0.0014732482999323304,
+              0.0014732482999323306
+            ],
+            [
+              0.0014732482999323302,
+              0.0014732482999323304
+            ]
+          ]
+        },
+        "255": {
+          "nodes": 256,
+          "max_depth": 53,
+          "excluded_tiles": 0,
+          "minimum_exclusion_margin_cm2": null,
+          "unresolved_tiles": 153,
+          "unresolved_preview": [
+            [
+              0.9999999999999999,
+              1.0
+            ],
+            [
+              0.9999999999999998,
+              0.9999999999999999
+            ],
+            [
+              0.9999999999999997,
+              0.9999999999999998
+            ],
+            [
+              0.9999999999999996,
+              0.9999999999999997
+            ],
+            [
+              0.9999999999999994,
+              0.9999999999999996
+            ],
+            [
+              0.9999999999999993,
+              0.9999999999999994
+            ],
+            [
+              0.9999999999999992,
+              0.9999999999999993
+            ],
+            [
+              0.9999999999999991,
+              0.9999999999999992
+            ]
+          ]
+        }
+      },
+      "minimum_other_span_margin_cm2": 136.44576098255607,
+      "first_span_stationarity_negative": {
+        "nodes": 1,
+        "max_depth": 0,
+        "minimum_sign_margin_cm2_per_u": 3.18323122883152e-12,
+        "unresolved_tiles": 0,
+        "unresolved_preview": []
+      },
+      "last_span_stationarity_positive_before_tile": {
+        "nodes": 31,
+        "max_depth": 15,
+        "minimum_sign_margin_cm2_per_u": 6.694734966633996e-07,
+        "unresolved_tiles": 0,
+        "unresolved_preview": []
+      },
+      "last_minus_first_endpoint_d2_cm2": {
+        "range_cm2": [
+          -3.9790421624281926e-13,
+          -3.9790390360394755e-13
+        ],
+        "exact_upper_cm2": "-528905008302469569840127/1329227995784915872903807060280344576",
+        "strictly_negative": true
+      },
+      "real_model_global_nearest_last_span": true
+    },
+    {
+      "member": 3,
+      "sample_count": 384,
+      "distance_strip_cm": [
+        16.99998999999946,
+        17.000001000000257
+      ],
+      "last_endpoint_candidate_d2_cm2": [
+        143.9997600000759,
+        144.00002400000656
+      ],
+      "total_distance_nodes": 894,
+      "excluded_span_count": 382,
+      "survivor_spans": [
+        0,
+        383
+      ],
+      "survivor_details": {
+        "0": {
+          "nodes": 256,
+          "max_depth": 61,
+          "excluded_tiles": 41,
+          "minimum_exclusion_margin_cm2": 2.842170943040401e-14,
+          "unresolved_tiles": 98,
+          "unresolved_preview": [
+            [
+              0.0019555892518426845,
+              0.001955589251842685
+            ],
+            [
+              0.001955589251842684,
+              0.0019555892518426845
+            ],
+            [
+              0.0019555892518426836,
+              0.001955589251842684
+            ],
+            [
+              0.001955589251842683,
+              0.0019555892518426836
+            ],
+            [
+              0.0019555892518426828,
+              0.001955589251842683
+            ],
+            [
+              0.0019555892518426823,
+              0.0019555892518426828
+            ],
+            [
+              0.001955589251842682,
+              0.0019555892518426823
+            ],
+            [
+              0.0019555892518426815,
+              0.001955589251842682
+            ]
+          ]
+        },
+        "383": {
+          "nodes": 256,
+          "max_depth": 53,
+          "excluded_tiles": 0,
+          "minimum_exclusion_margin_cm2": null,
+          "unresolved_tiles": 153,
+          "unresolved_preview": [
+            [
+              0.9999999999999999,
+              1.0
+            ],
+            [
+              0.9999999999999998,
+              0.9999999999999999
+            ],
+            [
+              0.9999999999999997,
+              0.9999999999999998
+            ],
+            [
+              0.9999999999999996,
+              0.9999999999999997
+            ],
+            [
+              0.9999999999999994,
+              0.9999999999999996
+            ],
+            [
+              0.9999999999999993,
+              0.9999999999999994
+            ],
+            [
+              0.9999999999999992,
+              0.9999999999999993
+            ],
+            [
+              0.9999999999999991,
+              0.9999999999999992
+            ]
+          ]
+        }
+      },
+      "minimum_other_span_margin_cm2": 61.38871206385545,
+      "first_span_stationarity_negative": {
+        "nodes": 83,
+        "max_depth": 41,
+        "minimum_sign_margin_cm2_per_u": 2.145100455340301e-13,
+        "unresolved_tiles": 0,
+        "unresolved_preview": []
+      },
+      "last_span_stationarity_positive_before_tile": {
+        "nodes": 45,
+        "max_depth": 22,
+        "minimum_sign_margin_cm2_per_u": 6.812063967671739e-08,
+        "unresolved_tiles": 0,
+        "unresolved_preview": []
+      },
+      "last_minus_first_endpoint_d2_cm2": {
+        "range_cm2": [
+          -6.821210831731159e-13,
+          -6.821204578954632e-13
+        ],
+        "exact_upper_cm2": "-14507097746116409661829759/21267647932558653966460912964485513216",
+        "strictly_negative": true
+      },
+      "real_model_global_nearest_last_span": true
+    }
+  ],
+  "claim_boundary": "Outward polynomial intervals eliminate all other represented real centerline spans; interval stationarity signs and exact rational seam endpoint comparisons select the last-span local minimum for every ray distance in each strip. Only first/last compiled powers were checked bitwise; all other powers use the HDF5 reconstruction. This does not certify the compiled nearest-root algorithm, its BVH pruning, rounded frame/evaluate path, root completeness for arbitrary rays, or a native hit."
+}

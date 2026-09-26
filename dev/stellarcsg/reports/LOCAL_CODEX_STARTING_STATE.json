@@ -1,0 +1,121 @@
+{
+  "schema": "stellarcsg.local_codex_starting_state/v1",
+  "recorded_at": "2026-08-30T13:28:21.7929259-04:00",
+  "repository": "FusionSandwich/openmc",
+  "checkout": "C:/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/openmc-stellarcsg",
+  "branch": "codex/stellarcsg-native-csg-foundation-20260828",
+  "starting_sha": "9adb7c4bd8a97c88f4a4e614b80637d6043c202b",
+  "remote_starting_sha": "9adb7c4bd8a97c88f4a4e614b80637d6043c202b",
+  "initial_status": "clean",
+  "host": {
+    "name": "VENGEANCE",
+    "os": "Microsoft Windows 11 Home 10.0.26200",
+    "cpu": "Intel(R) Core(TM) i9-10850K CPU @ 3.60GHz",
+    "physical_cores": 10,
+    "logical_processors": 20,
+    "ram_total_gib": 31.91,
+    "ram_free_gib": 5.58,
+    "drives": [
+      {"name": "C:", "size_gib": 930.42, "free_gib": 172.69},
+      {"name": "D:", "size_gib": 1863.02, "free_gib": 406.34},
+      {"name": "OpenMC-Dev-D root", "size_gib": 1007, "free_gib": 952}
+    ]
+  },
+  "existing_toolchains": {
+    "windows": {
+      "git": "2.55.0.windows.3",
+      "gh": "2.95.0",
+      "cmake": "4.4.0",
+      "python": "3.12.10",
+      "pytest": "8.4.2",
+      "git_lfs": "3.7.1",
+      "docker": "28.4.0"
+    },
+    "wsl_debian": {
+      "distribution": "Debian 13 (trixie)",
+      "cmake": "3.31.6",
+      "gcc": "14.2.0",
+      "python": "3.13.5",
+      "hdf5": "present"
+    },
+    "wsl_openmc_dev_d": {
+      "distribution": "Debian 13 (trixie)",
+      "cmake": "3.31.6",
+      "gcc": "14.2.0",
+      "clang": "19.1.7",
+      "python": "3.13.5"
+    }
+  },
+  "existing_environments_and_caches": {
+    "windows_python_environments": [
+      "C:/Users/joshu/OneDrive/Documents/ChatGPT/Comsol/.venv"
+    ],
+    "pip_cache_gib": 1.513,
+    "relevant_existing_checkouts": [
+      {
+        "path": "C:/Users/joshu/OneDrive/Documents/ChatGPT/Parastell",
+        "repository": "FusionSandwich/parastell",
+        "sha": "de7d2978ff314b060ca2e6b10745a034e8b2a3c4",
+        "status": "dirty; preserved and not reused"
+      },
+      {
+        "path": "/root/fes2-cpre-20260811/openmc",
+        "repository": "openmc-dev/openmc",
+        "sha": "d020f8fcf83376c020743076b0a18f9cf597540a",
+        "branch": "fes2-cpre-mf3-semantics",
+        "status": "clean; unrelated and not reused"
+      }
+    ],
+    "significant_processes": [
+      "vmmemWSL (3850.6 MiB RSS)",
+      "Memory Compression (1344.2 MiB RSS)",
+      "ChatGPT (713.5 MiB RSS)",
+      "codex (704.3 MiB RSS)",
+      "Chrome processes",
+      "OneDrive"
+    ]
+  },
+  "planned_acquisition": {
+    "target": "C:/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS",
+    "github_reported_total_kib": 214673,
+    "repositories": {
+      "FusionSandwich/openmc": 79659,
+      "FusionSandwich/wistell-d-openmc": 5036,
+      "FusionSandwich/parastell": 32335,
+      "FusionSandwich/blanket": 97643
+    },
+    "reason_existing_sources_insufficient": "The workspace had no OpenMC checkout; the only other OpenMC checkout is an unrelated upstream branch and the existing ParaStell checkout contains user changes.",
+    "rollback": "Remove only the newly created openmc-stellarcsg, wistell-d-openmc, parastell, and blanket checkout directories."
+  },
+  "unmodified_baseline": {
+    "gcc_release_ctest": {"passed": 1, "failed": 0},
+    "python_pytest": {
+      "status": "environment_blocked_before_collection",
+      "error": "ModuleNotFoundError: No module named 'endf'",
+      "additional_classification": "The expected dev/stellarcsg/tests/python subtree is absent from starting SHA."
+    }
+  },
+  "handoff_integrity": {
+    "status": "CORRUPT_SAVEPOINT",
+    "source_zip": {
+      "path": "dev/stellarcsg/snapshots/periodic_axis_openmc_adapter_source.zip",
+      "declared_bytes": 100273,
+      "observed_bytes": 15008,
+      "declared_sha256": "5043bcd871b07067468ca9ba094e6da4b9fb2cc03f21f714248c71f1a9ecc44a",
+      "observed_sha256": "4800cfc48bb575835489c05b42e29c10ccac4a182987156f8b6e6fb30e2f5241"
+    },
+    "milestone_patch": {
+      "path": "dev/stellarcsg/snapshots/periodic_axis_openmc_adapter_milestone.patch",
+      "declared_bytes": 221090,
+      "observed_bytes": 7892,
+      "declared_sha256": "7f89f70568283868eeb91954c2aeae2fa207b4ccddffc7aa03daa284704fc922",
+      "observed_sha256": "5b41cb1bf0d0ff81da39d76552418a4fdf4d93f55bebeff71abdd3ca86989782"
+    },
+    "recovery_source": {
+      "commit": "913860056e3653b24b72b9fca4fe4245b7538c08",
+      "bundle_sha256": "35e89d84cf821d842a0cc42537c4b3fe1ae11a099a97f92c1043c79ac8e1e6ae",
+      "bundle_bytes": 73624,
+      "github_actions_evidence": "Run 33297036204 extracted and validated the bundle; the run failed later only on Markdown trailing whitespace."
+    }
+  }
+}

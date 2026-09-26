@@ -1,0 +1,8 @@
+2026-09-25 compiled selected-coil-set bounding-box helper preflight, before compilation
+Current worktree HEAD cdfd607e1. Target is one existing C: checkout and its standalone static library; no remote execution.
+Windows RAM 33,457,440 KiB total, 3,678,836 KiB free. Free disk: C: 82,331,942,912 B of 998,965,768,192 B; D: 502,351,233,024 B of 2,000,397,791,232 B. Source, HDF5, executable and report on C:; D: is not written.
+Largest resident processes: ChatGPT 1,564,803,072 B; vmmemWSL 1,091,764,224 B; Chrome 951,910,400 B; codex 928,645,120 B; ChatGPT 902,750,208 B; Chrome 826,077,184 B, 624,787,456 B and 621,756,416 B.
+Existing tools: Windows Git 2.55.0.windows.3 and Python 3.12.10. WSL OpenMC-Dev-D GCC 14.2.0, h5c++/HDF5 1.14.5, CMake 3.31.6, Ninja 1.12.1, /opt/openmc-venv Python 3.13.5. No WSL Conda or ccache executable, no Windows Miniconda3 or anaconda3.
+Existing local environments/caches/builds: /opt/openmc-venv 606 MiB, WSL pip cache 152 MiB, Windows pip cache present, standalone build 7.9 MiB with libstellarcsg_reference.a, native build 16 MiB. Existing local checkouts include this worktree, root-repair-07 and Parastell; no new checkout is needed.
+Existing local capabilities suffice. Planned software download/install/upgrade/dependency acquisition: 0 B. Compile/link only dev/stellarcsg/experiments/dump_compiled_set_box.cpp against the existing standalone static library with one GCC/HDF5 job; expected executable under 10 MiB on C:. Read the already-local provisional one-period HDF5. No dependency environment change, transport, SSH or remote job.
+Rollback: preserve source and reports; delete only dev/stellarcsg/build/dump_compiled_set_box by exact path if needed. No acquired software to remove.

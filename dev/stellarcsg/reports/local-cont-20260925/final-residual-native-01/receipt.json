@@ -1,0 +1,666 @@
+{
+  "schema": "stellarcsg.recovery04.measure/v1",
+  "hashes": {
+    "dev/stellarcsg/qualification/recovery04_frozen_bank.csv": "7348483e39128259a844d22a7618869a3f111604ea48d01e196a87fe0d396af7",
+    "/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-root-repair-07/dev/stellarcsg/reports/recovery04/wistell-coils-1cm.h5": "9bb178c308e7f3ec659e1651a7d57e0ecbff734d3320000df1c2bf79fcf3262b",
+    "/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-local-continuation-20260925/build/local-cont-20260925/controls/old-replay": "62c8d64b19de2ff20dd390417f4b88037ef526e6e3e6ead65c3d8541af69c28b",
+    "/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-local-continuation-20260925/build/local-cont-20260925/stellarcsg_recovery04_bank": "b13f34f629838b9c3309a0d8a368c160f7697c91613ffb4a44029e3d58542249",
+    "/mnt/d/codex-verification/stellarcsg-20260913-03/native-torus-query-control-02": "9ec5ecf208507fd0a39e87e79a3cc36cbed236ed9c2ea63361e1b5554d34486d",
+    "/mnt/d/codex-verification/stellarcsg-20260913-03/native/lib/libopenmc.so": "451b21536d4178a81c4ec5c9a44f6e04eac194c58c87a639d643441ff2717d48"
+  },
+  "source_commit": "49e16439069a2fa713fff611d5baac2bfc741f15",
+  "affinity": [
+    0
+  ],
+  "attempts": [
+    {
+      "lane": "old",
+      "repeat": 0,
+      "command": [
+        "/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-local-continuation-20260925/build/local-cont-20260925/controls/old-replay",
+        "--replay",
+        "dev/stellarcsg/qualification/recovery04_frozen_bank.csv",
+        "--wistell-h5",
+        "/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-root-repair-07/dev/stellarcsg/reports/recovery04/wistell-coils-1cm.h5",
+        "--skip-reference"
+      ],
+      "started": 1790316723.2065363,
+      "exit_code": 1,
+      "finished": 1790316723.2843978,
+      "stdout": "old-0.jsonl",
+      "stderr": "old-0.stderr"
+    },
+    {
+      "lane": "experimental",
+      "repeat": 0,
+      "command": [
+        "/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-local-continuation-20260925/build/local-cont-20260925/stellarcsg_recovery04_bank",
+        "--replay",
+        "dev/stellarcsg/qualification/recovery04_frozen_bank.csv",
+        "--wistell-h5",
+        "/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-root-repair-07/dev/stellarcsg/reports/recovery04/wistell-coils-1cm.h5",
+        "--skip-reference"
+      ],
+      "started": 1790316723.2878392,
+      "exit_code": 1,
+      "finished": 1790316723.363338,
+      "stdout": "experimental-0.jsonl",
+      "stderr": "experimental-0.stderr"
+    },
+    {
+      "lane": "experimental",
+      "repeat": 1,
+      "command": [
+        "/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-local-continuation-20260925/build/local-cont-20260925/stellarcsg_recovery04_bank",
+        "--replay",
+        "dev/stellarcsg/qualification/recovery04_frozen_bank.csv",
+        "--wistell-h5",
+        "/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-root-repair-07/dev/stellarcsg/reports/recovery04/wistell-coils-1cm.h5",
+        "--skip-reference"
+      ],
+      "started": 1790316723.7344568,
+      "exit_code": 1,
+      "finished": 1790316723.8091142,
+      "stdout": "experimental-1.jsonl",
+      "stderr": "experimental-1.stderr"
+    },
+    {
+      "lane": "old",
+      "repeat": 1,
+      "command": [
+        "/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-local-continuation-20260925/build/local-cont-20260925/controls/old-replay",
+        "--replay",
+        "dev/stellarcsg/qualification/recovery04_frozen_bank.csv",
+        "--wistell-h5",
+        "/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-root-repair-07/dev/stellarcsg/reports/recovery04/wistell-coils-1cm.h5",
+        "--skip-reference"
+      ],
+      "started": 1790316723.8125606,
+      "exit_code": 1,
+      "finished": 1790316723.8886914,
+      "stdout": "old-1.jsonl",
+      "stderr": "old-1.stderr"
+    },
+    {
+      "lane": "old",
+      "repeat": 2,
+      "command": [
+        "/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-local-continuation-20260925/build/local-cont-20260925/controls/old-replay",
+        "--replay",
+        "dev/stellarcsg/qualification/recovery04_frozen_bank.csv",
+        "--wistell-h5",
+        "/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-root-repair-07/dev/stellarcsg/reports/recovery04/wistell-coils-1cm.h5",
+        "--skip-reference"
+      ],
+      "started": 1790316724.257419,
+      "exit_code": 1,
+      "finished": 1790316724.3329527,
+      "stdout": "old-2.jsonl",
+      "stderr": "old-2.stderr"
+    },
+    {
+      "lane": "experimental",
+      "repeat": 2,
+      "command": [
+        "/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-local-continuation-20260925/build/local-cont-20260925/stellarcsg_recovery04_bank",
+        "--replay",
+        "dev/stellarcsg/qualification/recovery04_frozen_bank.csv",
+        "--wistell-h5",
+        "/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-root-repair-07/dev/stellarcsg/reports/recovery04/wistell-coils-1cm.h5",
+        "--skip-reference"
+      ],
+      "started": 1790316724.3368084,
+      "exit_code": 1,
+      "finished": 1790316724.41148,
+      "stdout": "experimental-2.jsonl",
+      "stderr": "experimental-2.stderr"
+    },
+    {
+      "lane": "experimental",
+      "repeat": 3,
+      "command": [
+        "/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-local-continuation-20260925/build/local-cont-20260925/stellarcsg_recovery04_bank",
+        "--replay",
+        "dev/stellarcsg/qualification/recovery04_frozen_bank.csv",
+        "--wistell-h5",
+        "/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-root-repair-07/dev/stellarcsg/reports/recovery04/wistell-coils-1cm.h5",
+        "--skip-reference"
+      ],
+      "started": 1790316724.7810686,
+      "exit_code": 1,
+      "finished": 1790316724.8567412,
+      "stdout": "experimental-3.jsonl",
+      "stderr": "experimental-3.stderr"
+    },
+    {
+      "lane": "old",
+      "repeat": 3,
+      "command": [
+        "/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-local-continuation-20260925/build/local-cont-20260925/controls/old-replay",
+        "--replay",
+        "dev/stellarcsg/qualification/recovery04_frozen_bank.csv",
+        "--wistell-h5",
+        "/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-root-repair-07/dev/stellarcsg/reports/recovery04/wistell-coils-1cm.h5",
+        "--skip-reference"
+      ],
+      "started": 1790316724.861042,
+      "exit_code": 1,
+      "finished": 1790316724.9366577,
+      "stdout": "old-3.jsonl",
+      "stderr": "old-3.stderr"
+    },
+    {
+      "lane": "old",
+      "repeat": 4,
+      "command": [
+        "/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-local-continuation-20260925/build/local-cont-20260925/controls/old-replay",
+        "--replay",
+        "dev/stellarcsg/qualification/recovery04_frozen_bank.csv",
+        "--wistell-h5",
+        "/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-root-repair-07/dev/stellarcsg/reports/recovery04/wistell-coils-1cm.h5",
+        "--skip-reference"
+      ],
+      "started": 1790316725.3098102,
+      "exit_code": 1,
+      "finished": 1790316725.38514,
+      "stdout": "old-4.jsonl",
+      "stderr": "old-4.stderr"
+    },
+    {
+      "lane": "experimental",
+      "repeat": 4,
+      "command": [
+        "/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-local-continuation-20260925/build/local-cont-20260925/stellarcsg_recovery04_bank",
+        "--replay",
+        "dev/stellarcsg/qualification/recovery04_frozen_bank.csv",
+        "--wistell-h5",
+        "/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-root-repair-07/dev/stellarcsg/reports/recovery04/wistell-coils-1cm.h5",
+        "--skip-reference"
+      ],
+      "started": 1790316725.3896253,
+      "exit_code": 1,
+      "finished": 1790316725.4650857,
+      "stdout": "experimental-4.jsonl",
+      "stderr": "experimental-4.stderr"
+    },
+    {
+      "lane": "experimental",
+      "repeat": 5,
+      "command": [
+        "/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-local-continuation-20260925/build/local-cont-20260925/stellarcsg_recovery04_bank",
+        "--replay",
+        "dev/stellarcsg/qualification/recovery04_frozen_bank.csv",
+        "--wistell-h5",
+        "/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-root-repair-07/dev/stellarcsg/reports/recovery04/wistell-coils-1cm.h5",
+        "--skip-reference"
+      ],
+      "started": 1790316725.8368528,
+      "exit_code": 1,
+      "finished": 1790316725.9127326,
+      "stdout": "experimental-5.jsonl",
+      "stderr": "experimental-5.stderr"
+    },
+    {
+      "lane": "old",
+      "repeat": 5,
+      "command": [
+        "/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-local-continuation-20260925/build/local-cont-20260925/controls/old-replay",
+        "--replay",
+        "dev/stellarcsg/qualification/recovery04_frozen_bank.csv",
+        "--wistell-h5",
+        "/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-root-repair-07/dev/stellarcsg/reports/recovery04/wistell-coils-1cm.h5",
+        "--skip-reference"
+      ],
+      "started": 1790316725.9170406,
+      "exit_code": 1,
+      "finished": 1790316725.9932332,
+      "stdout": "old-5.jsonl",
+      "stderr": "old-5.stderr"
+    },
+    {
+      "lane": "old",
+      "repeat": 6,
+      "command": [
+        "/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-local-continuation-20260925/build/local-cont-20260925/controls/old-replay",
+        "--replay",
+        "dev/stellarcsg/qualification/recovery04_frozen_bank.csv",
+        "--wistell-h5",
+        "/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-root-repair-07/dev/stellarcsg/reports/recovery04/wistell-coils-1cm.h5",
+        "--skip-reference"
+      ],
+      "started": 1790316726.3707926,
+      "exit_code": 1,
+      "finished": 1790316726.4449863,
+      "stdout": "old-6.jsonl",
+      "stderr": "old-6.stderr"
+    },
+    {
+      "lane": "experimental",
+      "repeat": 6,
+      "command": [
+        "/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-local-continuation-20260925/build/local-cont-20260925/stellarcsg_recovery04_bank",
+        "--replay",
+        "dev/stellarcsg/qualification/recovery04_frozen_bank.csv",
+        "--wistell-h5",
+        "/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-root-repair-07/dev/stellarcsg/reports/recovery04/wistell-coils-1cm.h5",
+        "--skip-reference"
+      ],
+      "started": 1790316726.4488196,
+      "exit_code": 1,
+      "finished": 1790316726.523397,
+      "stdout": "experimental-6.jsonl",
+      "stderr": "experimental-6.stderr"
+    }
+  ],
+  "native_attempts": [
+    {
+      "repeat": 0,
+      "position": "before",
+      "command": [
+        "/mnt/d/codex-verification/stellarcsg-20260913-03/native-torus-query-control-02",
+        "--banks",
+        "10000"
+      ],
+      "exit_code": 0,
+      "result": {
+        "kind": "native_ztorus_absolute_control",
+        "banks": 10000,
+        "count": 64,
+        "queries": 640000,
+        "ns_per_query": 170.5621890625,
+        "checksum": 438967.4254054692,
+        "geometry": {
+          "x0": 0,
+          "y0": 0,
+          "z0": 0,
+          "A": 5,
+          "B": 0.25,
+          "C": 0.25
+        }
+      },
+      "valid": true,
+      "stdout": "native-before-0.json",
+      "stderr": "native-before-0.stderr"
+    },
+    {
+      "repeat": 0,
+      "position": "after",
+      "command": [
+        "/mnt/d/codex-verification/stellarcsg-20260913-03/native-torus-query-control-02",
+        "--banks",
+        "10000"
+      ],
+      "exit_code": 0,
+      "result": {
+        "kind": "native_ztorus_absolute_control",
+        "banks": 10000,
+        "count": 64,
+        "queries": 640000,
+        "ns_per_query": 186.3198453125,
+        "checksum": 438967.4254054692,
+        "geometry": {
+          "x0": 0,
+          "y0": 0,
+          "z0": 0,
+          "A": 5,
+          "B": 0.25,
+          "C": 0.25
+        }
+      },
+      "valid": true,
+      "stdout": "native-after-0.json",
+      "stderr": "native-after-0.stderr"
+    },
+    {
+      "repeat": 1,
+      "position": "before",
+      "command": [
+        "/mnt/d/codex-verification/stellarcsg-20260913-03/native-torus-query-control-02",
+        "--banks",
+        "10000"
+      ],
+      "exit_code": 0,
+      "result": {
+        "kind": "native_ztorus_absolute_control",
+        "banks": 10000,
+        "count": 64,
+        "queries": 640000,
+        "ns_per_query": 170.6442203125,
+        "checksum": 438967.4254054692,
+        "geometry": {
+          "x0": 0,
+          "y0": 0,
+          "z0": 0,
+          "A": 5,
+          "B": 0.25,
+          "C": 0.25
+        }
+      },
+      "valid": true,
+      "stdout": "native-before-1.json",
+      "stderr": "native-before-1.stderr"
+    },
+    {
+      "repeat": 1,
+      "position": "after",
+      "command": [
+        "/mnt/d/codex-verification/stellarcsg-20260913-03/native-torus-query-control-02",
+        "--banks",
+        "10000"
+      ],
+      "exit_code": 0,
+      "result": {
+        "kind": "native_ztorus_absolute_control",
+        "banks": 10000,
+        "count": 64,
+        "queries": 640000,
+        "ns_per_query": 192.4992203125,
+        "checksum": 438967.4254054692,
+        "geometry": {
+          "x0": 0,
+          "y0": 0,
+          "z0": 0,
+          "A": 5,
+          "B": 0.25,
+          "C": 0.25
+        }
+      },
+      "valid": true,
+      "stdout": "native-after-1.json",
+      "stderr": "native-after-1.stderr"
+    },
+    {
+      "repeat": 2,
+      "position": "before",
+      "command": [
+        "/mnt/d/codex-verification/stellarcsg-20260913-03/native-torus-query-control-02",
+        "--banks",
+        "10000"
+      ],
+      "exit_code": 0,
+      "result": {
+        "kind": "native_ztorus_absolute_control",
+        "banks": 10000,
+        "count": 64,
+        "queries": 640000,
+        "ns_per_query": 177.0678140625,
+        "checksum": 438967.4254054692,
+        "geometry": {
+          "x0": 0,
+          "y0": 0,
+          "z0": 0,
+          "A": 5,
+          "B": 0.25,
+          "C": 0.25
+        }
+      },
+      "valid": true,
+      "stdout": "native-before-2.json",
+      "stderr": "native-before-2.stderr"
+    },
+    {
+      "repeat": 2,
+      "position": "after",
+      "command": [
+        "/mnt/d/codex-verification/stellarcsg-20260913-03/native-torus-query-control-02",
+        "--banks",
+        "10000"
+      ],
+      "exit_code": 0,
+      "result": {
+        "kind": "native_ztorus_absolute_control",
+        "banks": 10000,
+        "count": 64,
+        "queries": 640000,
+        "ns_per_query": 173.3650015625,
+        "checksum": 438967.4254054692,
+        "geometry": {
+          "x0": 0,
+          "y0": 0,
+          "z0": 0,
+          "A": 5,
+          "B": 0.25,
+          "C": 0.25
+        }
+      },
+      "valid": true,
+      "stdout": "native-after-2.json",
+      "stderr": "native-after-2.stderr"
+    },
+    {
+      "repeat": 3,
+      "position": "before",
+      "command": [
+        "/mnt/d/codex-verification/stellarcsg-20260913-03/native-torus-query-control-02",
+        "--banks",
+        "10000"
+      ],
+      "exit_code": 0,
+      "result": {
+        "kind": "native_ztorus_absolute_control",
+        "banks": 10000,
+        "count": 64,
+        "queries": 640000,
+        "ns_per_query": 175.8996890625,
+        "checksum": 438967.4254054692,
+        "geometry": {
+          "x0": 0,
+          "y0": 0,
+          "z0": 0,
+          "A": 5,
+          "B": 0.25,
+          "C": 0.25
+        }
+      },
+      "valid": true,
+      "stdout": "native-before-3.json",
+      "stderr": "native-before-3.stderr"
+    },
+    {
+      "repeat": 3,
+      "position": "after",
+      "command": [
+        "/mnt/d/codex-verification/stellarcsg-20260913-03/native-torus-query-control-02",
+        "--banks",
+        "10000"
+      ],
+      "exit_code": 0,
+      "result": {
+        "kind": "native_ztorus_absolute_control",
+        "banks": 10000,
+        "count": 64,
+        "queries": 640000,
+        "ns_per_query": 174.3451578125,
+        "checksum": 438967.4254054692,
+        "geometry": {
+          "x0": 0,
+          "y0": 0,
+          "z0": 0,
+          "A": 5,
+          "B": 0.25,
+          "C": 0.25
+        }
+      },
+      "valid": true,
+      "stdout": "native-after-3.json",
+      "stderr": "native-after-3.stderr"
+    },
+    {
+      "repeat": 4,
+      "position": "before",
+      "command": [
+        "/mnt/d/codex-verification/stellarcsg-20260913-03/native-torus-query-control-02",
+        "--banks",
+        "10000"
+      ],
+      "exit_code": 0,
+      "result": {
+        "kind": "native_ztorus_absolute_control",
+        "banks": 10000,
+        "count": 64,
+        "queries": 640000,
+        "ns_per_query": 179.5854703125,
+        "checksum": 438967.4254054692,
+        "geometry": {
+          "x0": 0,
+          "y0": 0,
+          "z0": 0,
+          "A": 5,
+          "B": 0.25,
+          "C": 0.25
+        }
+      },
+      "valid": true,
+      "stdout": "native-before-4.json",
+      "stderr": "native-before-4.stderr"
+    },
+    {
+      "repeat": 4,
+      "position": "after",
+      "command": [
+        "/mnt/d/codex-verification/stellarcsg-20260913-03/native-torus-query-control-02",
+        "--banks",
+        "10000"
+      ],
+      "exit_code": 0,
+      "result": {
+        "kind": "native_ztorus_absolute_control",
+        "banks": 10000,
+        "count": 64,
+        "queries": 640000,
+        "ns_per_query": 173.0807828125,
+        "checksum": 438967.4254054692,
+        "geometry": {
+          "x0": 0,
+          "y0": 0,
+          "z0": 0,
+          "A": 5,
+          "B": 0.25,
+          "C": 0.25
+        }
+      },
+      "valid": true,
+      "stdout": "native-after-4.json",
+      "stderr": "native-after-4.stderr"
+    },
+    {
+      "repeat": 5,
+      "position": "before",
+      "command": [
+        "/mnt/d/codex-verification/stellarcsg-20260913-03/native-torus-query-control-02",
+        "--banks",
+        "10000"
+      ],
+      "exit_code": 0,
+      "result": {
+        "kind": "native_ztorus_absolute_control",
+        "banks": 10000,
+        "count": 64,
+        "queries": 640000,
+        "ns_per_query": 179.335159375,
+        "checksum": 438967.4254054692,
+        "geometry": {
+          "x0": 0,
+          "y0": 0,
+          "z0": 0,
+          "A": 5,
+          "B": 0.25,
+          "C": 0.25
+        }
+      },
+      "valid": true,
+      "stdout": "native-before-5.json",
+      "stderr": "native-before-5.stderr"
+    },
+    {
+      "repeat": 5,
+      "position": "after",
+      "command": [
+        "/mnt/d/codex-verification/stellarcsg-20260913-03/native-torus-query-control-02",
+        "--banks",
+        "10000"
+      ],
+      "exit_code": 0,
+      "result": {
+        "kind": "native_ztorus_absolute_control",
+        "banks": 10000,
+        "count": 64,
+        "queries": 640000,
+        "ns_per_query": 189.4848453125,
+        "checksum": 438967.4254054692,
+        "geometry": {
+          "x0": 0,
+          "y0": 0,
+          "z0": 0,
+          "A": 5,
+          "B": 0.25,
+          "C": 0.25
+        }
+      },
+      "valid": true,
+      "stdout": "native-after-5.json",
+      "stderr": "native-after-5.stderr"
+    },
+    {
+      "repeat": 6,
+      "position": "before",
+      "command": [
+        "/mnt/d/codex-verification/stellarcsg-20260913-03/native-torus-query-control-02",
+        "--banks",
+        "10000"
+      ],
+      "exit_code": 0,
+      "result": {
+        "kind": "native_ztorus_absolute_control",
+        "banks": 10000,
+        "count": 64,
+        "queries": 640000,
+        "ns_per_query": 189.3226578125,
+        "checksum": 438967.4254054692,
+        "geometry": {
+          "x0": 0,
+          "y0": 0,
+          "z0": 0,
+          "A": 5,
+          "B": 0.25,
+          "C": 0.25
+        }
+      },
+      "valid": true,
+      "stdout": "native-before-6.json",
+      "stderr": "native-before-6.stderr"
+    },
+    {
+      "repeat": 6,
+      "position": "after",
+      "command": [
+        "/mnt/d/codex-verification/stellarcsg-20260913-03/native-torus-query-control-02",
+        "--banks",
+        "10000"
+      ],
+      "exit_code": 0,
+      "result": {
+        "kind": "native_ztorus_absolute_control",
+        "banks": 10000,
+        "count": 64,
+        "queries": 640000,
+        "ns_per_query": 176.2120328125,
+        "checksum": 438967.4254054692,
+        "geometry": {
+          "x0": 0,
+          "y0": 0,
+          "z0": 0,
+          "A": 5,
+          "B": 0.25,
+          "C": 0.25
+        }
+      },
+      "valid": true,
+      "stdout": "native-after-6.json",
+      "stderr": "native-after-6.stderr"
+    }
+  ],
+  "native_openmc_loader_binding": "libopenmc.so => /mnt/d/codex-verification/stellarcsg-20260913-03/native/lib/libopenmc.so (0x000072cf2ca53000)",
+  "state": "FAIL",
+  "note": "One unique bank per fresh process; reference calls disabled. Per-call timer overhead is included; setup, classification and normal calls are outside distance timers."
+}

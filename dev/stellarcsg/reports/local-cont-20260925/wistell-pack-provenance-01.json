@@ -1,0 +1,46 @@
+{
+  "claim_boundary": "Identifies nominal local P00 parameters and a local ParaStell construction recipe. Does not establish the exact ParaStell revision used for accepted P00 CAD, compare STEP surfaces, certify continuous support, or qualify StellarCSG transport geometry.",
+  "classification": "NOMINAL_P00_SECTION_SOURCE_IDENTIFIED_CAD_UNVERIFIED",
+  "diagnostic_ellipse": {
+    "area_cm2": 251.32741228718345,
+    "major_radius_cm": 10.0,
+    "minor_radius_cm": 8.0
+  },
+  "field_periods": 4,
+  "input_sha256": {
+    "local_parastell_magnet_coils": "8fa7d1f75c6bcf9bbe906ccabe1808441ce506df865a4effef03c45bbfa3718a",
+    "optimization_coils": "7748369407d28a70f35b5c4a7c0ab860495a08fd0030002112ea933fe570159b",
+    "optimization_constants": "61cfb85028d6e4c7eeb4b152df10588182311f9bfdcddf9ff245a5b309f764b5",
+    "p00_case_receipt": "e16eebb2b138a11c7d3b18490318e38983155dff8caf6d785ea9eba1262f7372",
+    "p00_config": "d0896492d28c01f522b96be63a616a645d6d4051dd7947de76078e9906db1752",
+    "stellarcsg_coils": "7748369407d28a70f35b5c4a7c0ab860495a08fd0030002112ea933fe570159b",
+    "stellarcsg_ellipse_compiler": "19f1d8c9cb808ac8c3f12e51afd9618d121bb39c19899965ca455951b0753efb"
+  },
+  "local_parastell_commit": "d480424e53747691075d6b0b074face03efd311f",
+  "nominal_section_comparison": {
+    "ellipse_max_in_plane_support_cm": 10.0,
+    "minimum_support_gap_cm_if_same_center_and_tangent_plane": 5.0,
+    "rectangle_area_cm2": 900.0,
+    "rectangle_min_in_plane_support_cm": 15.0,
+    "rectangle_to_ellipse_area_ratio": 3.580986219567645
+  },
+  "optimization_magnet_layer_thickness_cm": 30.0,
+  "p00_case_sha256": "742ef72f1e1c07f958ecc3e47796709d1b51a53407cb89b0448f7a595d722c59",
+  "p00_case_status": "PASS_CONTROLLED_90_DEGREE_CASE",
+  "p00_magnet_coils": {
+    "edge_construction": "CadQuery spline through sampled offset corners, then ruled faces",
+    "frame": "project(centerline - filament center of mass, tangent normal plane); binormal = tangent cross normal",
+    "sample_mod": 6,
+    "section": "nominal rectangle",
+    "thickness_cm": 30.0,
+    "toroidal_extent_deg": 90.0,
+    "width_cm": 30.0
+  },
+  "p00_step_files_in_local_case_dir": [],
+  "schema": "stellarcsg.wistell-pack-provenance/v1",
+  "source_paths": {
+    "local_parastell_root": "D:\\Scratch\\parastell",
+    "optimization_root": "D:\\Scratch\\stellarator_optimization",
+    "p00_case_dir": "D:\\2026_DPA\\asc_poster_parametric_cases_20260901_orderfix_2feabb0f\\P00"
+  }
+}

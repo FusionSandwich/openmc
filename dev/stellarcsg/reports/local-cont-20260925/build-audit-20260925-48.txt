@@ -1,0 +1,8 @@
+2026-09-25 compiled all-span identity helper preflight
+Windows RAM: 33,457,440 KiB total; 4,998,656 KiB free.
+Free disk: C: 83,794,673,664 B; D: 502,961,893,376 B. Target executable is on C: in dev/stellarcsg/build; the data HDF5 and source checkout are also on C:.
+Largest resident processes: ChatGPT 1,486,151,680 B; vmmemWSL 1,150,590,976 B; codex 939,556,864 B; chrome 825,733,120 B; chrome 796,811,264 B; ChatGPT 736,575,488 B; chrome 735,539,200 B; chrome 621,998,080 B.
+Existing executables: WSL OpenMC-Dev-D GCC 14.2.0, installed h5c++/HDF5, Python 3.13.5, CMake 3.31.6, Ninja 1.12.1. Prior current-worktree audit 45 records Windows Python 3.12.10 and Git 2.55.0. No WSL Conda or ccache executable found.
+Existing environments/caches/builds: /opt/openmc-venv 606 MiB, /root/.cache/pip 152 MiB, local standalone build 7.9 MiB with libstellarcsg_reference.a, native OpenMC build 16 MiB with libopenmc.so. Current StellarCSG worktree HEAD 6991f7e4c and other local OpenMC/StellarCSG, WISTELL-D, Parastell, recovery and acceptance checkouts are already present. No new checkout is needed.
+Existing capabilities suffice. Planned software download/install/upgrade/acquisition: 0 B. One local GCC/HDF5 job will compile and link a read-only 640-span dump helper against the existing standalone static library, expected binary under 10 MiB on C:. It will read the analytic HDF5 and emit span powers; no native transport, dependency environment or remote system change.
+Rollback: preserve source and hash-bound identity report; remove only dev/stellarcsg/build/dump_compiled_all_spans by exact path if needed. No acquired software to roll back.

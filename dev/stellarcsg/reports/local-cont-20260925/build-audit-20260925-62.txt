@@ -1,0 +1,7 @@
+Native library incremental build preflight, 2026-09-25.
+
+Current Windows RAM: 33,457,440 KiB total, 11,445,492 KiB free. Current C: free 82,498,002,944 B and D: free 501,672,845,312 B. The immediately preceding local preflight in build-audit-20260925-61.txt measured WSL root free 1,021,376,999,424 B and guest available RAM 24,201,633,792 B. Significant current processes: ChatGPT 1.61/0.93 GB, codex 1.24 GB, vmmemWSL 1.20 GB, Python 1.03 GB, Memory Compression 0.87 GB and OneDrive 0.61 GB.
+
+Existing tools, environments, caches and checkouts were confirmed in the preceding preflight: Windows Git/Python/CMake; OpenMC-Dev-D GCC 14.2, CMake 3.31.6, Ninja 1.12.1, HDF5 1.14.5 and /opt/openmc-venv Python 3.13.5; /opt/openmc-venv, WSL and Windows pip caches, this StellarCSG checkout, D:/Scratch/stellarator_optimization, D:/Scratch/parastell, and C:/HTS_transport/wistell-d-openmc. No existing capability is insufficient. The existing native libopenmc.so is 3,893,408 B in both build/native-local-20260925/lib and openmc/lib.
+
+Planned acquisition: 0 B. Planned command: incrementally build only the existing native libopenmc target, one job, using the existing C: build tree and compiler. Expected generated output below 30 MiB on C:. This will replace the two existing copies of libopenmc.so in this isolated worktree; rollback is rebuild from the prior commit or restoration of a hash-verified prior library artifact. No dependency environment, remote host or user data is modified.

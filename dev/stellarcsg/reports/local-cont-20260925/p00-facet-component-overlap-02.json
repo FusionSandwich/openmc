@@ -1,0 +1,875 @@
+{
+  "schema": "stellarcsg.p00-facet-component-overlap/v1",
+  "state": "CONFIRMED_TRANSVERSE_OVERLAP_ACCEPTED_AND_DERIVED",
+  "accepted": {
+    "triangle_aabb_candidate_pairs": 691,
+    "component_pairs_with_triangle_aabb_overlap": 13,
+    "component_pair_candidate_counts": {
+      "10-11": 66,
+      "10-12": 2,
+      "11-12": 64,
+      "13-14": 4,
+      "14-15": 51,
+      "15-16": 148,
+      "16-17": 1,
+      "17-18": 148,
+      "18-19": 51,
+      "19-20": 4,
+      "21-22": 64,
+      "21-23": 2,
+      "22-23": 86
+    },
+    "exact_separated_pairs": 683,
+    "exact_strict_intersection_pairs": 8,
+    "witnesses": [
+      {
+        "component_ids": [
+          15,
+          16
+        ],
+        "triangle_indices": [
+          1115,
+          1425
+        ],
+        "intersection_endpoints": [
+          {
+            "direction": "first_edge_second_face",
+            "edge": 0,
+            "t": 0.46949440784074703,
+            "alpha": 0.32859497803953336,
+            "beta": 0.6160333007002277,
+            "barycentric_slack": 0.055371721260238975,
+            "point_cm": [
+              480.90571136365764,
+              337.45783426870065,
+              161.0019438045234
+            ],
+            "exact_strict_interior": true
+          },
+          {
+            "direction": "second_edge_first_face",
+            "edge": 1,
+            "t": 0.552965775048707,
+            "alpha": 0.1756809770403799,
+            "beta": 0.21180639696580367,
+            "barycentric_slack": 0.6125126259938164,
+            "point_cm": [
+              486.34972062450095,
+              332.6833639198218,
+              168.9530094490224
+            ],
+            "exact_strict_interior": true
+          }
+        ],
+        "open_face_midpoint_cm": [
+          483.62771599407927,
+          335.07059909426124,
+          164.9774766267729
+        ],
+        "midpoint_barycentric_slack": [
+          0.5715091090765347,
+          0.027685860630119487
+        ],
+        "exact_open_face_midpoint": true,
+        "exact_nonparallel_normals": true
+      },
+      {
+        "component_ids": [
+          15,
+          16
+        ],
+        "triangle_indices": [
+          1115,
+          1462
+        ],
+        "intersection_endpoints": [
+          {
+            "direction": "first_edge_second_face",
+            "edge": 0,
+            "t": 0.5310337121925708,
+            "alpha": 0.3176499506322446,
+            "beta": 0.03692821637380633,
+            "barycentric_slack": 0.6454218329939491,
+            "point_cm": [
+              479.82994101827387,
+              337.0296142053488,
+              157.53823913886123
+            ],
+            "exact_strict_interior": true
+          },
+          {
+            "direction": "second_edge_first_face",
+            "edge": 0,
+            "t": 0.44703422495129297,
+            "alpha": 0.1756809770403799,
+            "beta": 0.21180639696580367,
+            "barycentric_slack": 0.6125126259938164,
+            "point_cm": [
+              486.34972062450095,
+              332.6833639198218,
+              168.9530094490224
+            ],
+            "exact_strict_interior": true
+          }
+        ],
+        "open_face_midpoint_cm": [
+          483.0898308213874,
+          334.8564890625853,
+          163.2456242939418
+        ],
+        "midpoint_barycentric_slack": [
+          0.5407394569006229,
+          0.599193804021328
+        ],
+        "exact_open_face_midpoint": true,
+        "exact_nonparallel_normals": true
+      },
+      {
+        "component_ids": [
+          15,
+          16
+        ],
+        "triangle_indices": [
+          1257,
+          1425
+        ],
+        "intersection_endpoints": [
+          {
+            "direction": "first_edge_second_face",
+            "edge": 2,
+            "t": 0.530505592159253,
+            "alpha": 0.32859497803953336,
+            "beta": 0.6160333007002277,
+            "barycentric_slack": 0.055371721260238975,
+            "point_cm": [
+              480.90571136365764,
+              337.45783426870065,
+              161.0019438045234
+            ],
+            "exact_strict_interior": true
+          },
+          {
+            "direction": "second_edge_first_face",
+            "edge": 1,
+            "t": 0.6705479535130494,
+            "alpha": 0.04841988867126733,
+            "beta": 0.4974863492448391,
+            "barycentric_slack": 0.45409376208389357,
+            "point_cm": [
+              481.1811847548947,
+              337.6895281636525,
+              157.57645846869514
+            ],
+            "exact_strict_interior": true
+          }
+        ],
+        "open_face_midpoint_cm": [
+          481.04344805927616,
+          337.57368121617657,
+          159.28920113660928
+        ],
+        "midpoint_barycentric_slack": [
+          0.4922996771215733,
+          0.027685860630119487
+        ],
+        "exact_open_face_midpoint": true,
+        "exact_nonparallel_normals": true
+      },
+      {
+        "component_ids": [
+          15,
+          16
+        ],
+        "triangle_indices": [
+          1257,
+          1462
+        ],
+        "intersection_endpoints": [
+          {
+            "direction": "first_edge_second_face",
+            "edge": 2,
+            "t": 0.4689662878074292,
+            "alpha": 0.3176499506322446,
+            "beta": 0.03692821637380633,
+            "barycentric_slack": 0.6454218329939491,
+            "point_cm": [
+              479.82994101827387,
+              337.0296142053488,
+              157.53823913886123
+            ],
+            "exact_strict_interior": true
+          },
+          {
+            "direction": "second_edge_first_face",
+            "edge": 0,
+            "t": 0.32945204648695053,
+            "alpha": 0.04841988867126733,
+            "beta": 0.4974863492448391,
+            "barycentric_slack": 0.45409376208389357,
+            "point_cm": [
+              481.1811847548947,
+              337.6895281636525,
+              157.57645846869514
+            ],
+            "exact_strict_interior": true
+          }
+        ],
+        "open_face_midpoint_cm": [
+          480.50556288658424,
+          337.3595711845006,
+          157.55734880377818
+        ],
+        "midpoint_barycentric_slack": [
+          0.4615300249456614,
+          0.6579848932534993
+        ],
+        "exact_open_face_midpoint": true,
+        "exact_nonparallel_normals": true
+      },
+      {
+        "component_ids": [
+          17,
+          18
+        ],
+        "triangle_indices": [
+          1839,
+          2097
+        ],
+        "intersection_endpoints": [
+          {
+            "direction": "first_edge_second_face",
+            "edge": 0,
+            "t": 0.3294520468327616,
+            "alpha": 0.048419888826071206,
+            "beta": 0.4974863521093511,
+            "barycentric_slack": 0.45409375906457766,
+            "point_cm": [
+              337.6895912622762,
+              481.18114048334286,
+              -157.57645844733548
+            ],
+            "exact_strict_interior": true
+          },
+          {
+            "direction": "second_edge_first_face",
+            "edge": 2,
+            "t": 0.46896628490547143,
+            "alpha": 0.3176499509462136,
+            "beta": 0.036928216456231414,
+            "barycentric_slack": 0.6454218325975549,
+            "point_cm": [
+              337.029677124934,
+              479.82989683119104,
+              -157.5382391185612
+            ],
+            "exact_strict_interior": true
+          }
+        ],
+        "open_face_midpoint_cm": [
+          337.3596341936051,
+          480.5055186572669,
+          -157.55734878294834
+        ],
+        "midpoint_barycentric_slack": [
+          0.6579848928823967,
+          0.4615300219850246
+        ],
+        "exact_open_face_midpoint": true,
+        "exact_nonparallel_normals": true
+      },
+      {
+        "component_ids": [
+          17,
+          18
+        ],
+        "triangle_indices": [
+          1839,
+          2151
+        ],
+        "intersection_endpoints": [
+          {
+            "direction": "first_edge_second_face",
+            "edge": 0,
+            "t": 0.4470342248945561,
+            "alpha": 0.17568098100866666,
+            "beta": 0.2118063962668571,
+            "barycentric_slack": 0.6125126227244763,
+            "point_cm": [
+              332.6834277104715,
+              486.34967698774915,
+              -168.95300939393476
+            ],
+            "exact_strict_interior": true
+          },
+          {
+            "direction": "second_edge_first_face",
+            "edge": 0,
+            "t": 0.5310337150945286,
+            "alpha": 0.3176499509462136,
+            "beta": 0.036928216456231414,
+            "barycentric_slack": 0.6454218325975549,
+            "point_cm": [
+              337.029677124934,
+              479.82989683119104,
+              -157.5382391185612
+            ],
+            "exact_strict_interior": true
+          }
+        ],
+        "open_face_midpoint_cm": [
+          334.85655241770274,
+          483.0897869094701,
+          -163.24562425624796
+        ],
+        "midpoint_barycentric_slack": [
+          0.5991938038514995,
+          0.5407394538149738
+        ],
+        "exact_open_face_midpoint": true,
+        "exact_nonparallel_normals": true
+      },
+      {
+        "component_ids": [
+          17,
+          18
+        ],
+        "triangle_indices": [
+          1984,
+          2097
+        ],
+        "intersection_endpoints": [
+          {
+            "direction": "first_edge_second_face",
+            "edge": 1,
+            "t": 0.6705479531672384,
+            "alpha": 0.048419888826071206,
+            "beta": 0.4974863521093511,
+            "barycentric_slack": 0.45409375906457766,
+            "point_cm": [
+              337.6895912622762,
+              481.18114048334286,
+              -157.57645844733548
+            ],
+            "exact_strict_interior": true
+          },
+          {
+            "direction": "second_edge_first_face",
+            "edge": 2,
+            "t": 0.5305055892081835,
+            "alpha": 0.32859497830990014,
+            "beta": 0.6160333004627536,
+            "barycentric_slack": 0.05537172122734625,
+            "point_cm": [
+              337.45789733010486,
+              480.90566712082443,
+              -161.00194378334368
+            ],
+            "exact_strict_interior": true
+          }
+        ],
+        "open_face_midpoint_cm": [
+          337.57374429619057,
+          481.0434038020836,
+          -159.28920111533958
+        ],
+        "midpoint_barycentric_slack": [
+          0.027685860613673126,
+          0.49229967413638054
+        ],
+        "exact_open_face_midpoint": true,
+        "exact_nonparallel_normals": true
+      },
+      {
+        "component_ids": [
+          17,
+          18
+        ],
+        "triangle_indices": [
+          1984,
+          2151
+        ],
+        "intersection_endpoints": [
+          {
+            "direction": "first_edge_second_face",
+            "edge": 1,
+            "t": 0.552965775105444,
+            "alpha": 0.17568098100866666,
+            "beta": 0.2118063962668571,
+            "barycentric_slack": 0.6125126227244763,
+            "point_cm": [
+              332.6834277104715,
+              486.34967698774915,
+              -168.95300939393476
+            ],
+            "exact_strict_interior": true
+          },
+          {
+            "direction": "second_edge_first_face",
+            "edge": 0,
+            "t": 0.4694944107918166,
+            "alpha": 0.32859497830990014,
+            "beta": 0.6160333004627536,
+            "barycentric_slack": 0.05537172122734625,
+            "point_cm": [
+              337.45789733010486,
+              480.90566712082443,
+              -161.00194378334368
+            ],
+            "exact_strict_interior": true
+          }
+        ],
+        "open_face_midpoint_cm": [
+          335.0706625202882,
+          483.6276720542868,
+          -164.9774765886392
+        ],
+        "midpoint_barycentric_slack": [
+          0.027685860613673126,
+          0.5715091059663299
+        ],
+        "exact_open_face_midpoint": true,
+        "exact_nonparallel_normals": true
+      }
+    ]
+  },
+  "derived": {
+    "triangle_aabb_candidate_pairs": 711,
+    "component_pairs_with_triangle_aabb_overlap": 13,
+    "component_pair_candidate_counts": {
+      "10-11": 86,
+      "10-12": 2,
+      "11-12": 64,
+      "13-14": 4,
+      "14-15": 51,
+      "15-16": 148,
+      "16-17": 1,
+      "17-18": 148,
+      "18-19": 51,
+      "19-20": 4,
+      "21-22": 64,
+      "21-23": 2,
+      "22-23": 86
+    },
+    "exact_separated_pairs": 703,
+    "exact_strict_intersection_pairs": 8,
+    "witnesses": [
+      {
+        "component_ids": [
+          15,
+          16
+        ],
+        "triangle_indices": [
+          1115,
+          1425
+        ],
+        "intersection_endpoints": [
+          {
+            "direction": "first_edge_second_face",
+            "edge": 0,
+            "t": 0.46949440784074703,
+            "alpha": 0.32859497803953336,
+            "beta": 0.6160333007002277,
+            "barycentric_slack": 0.055371721260238975,
+            "point_cm": [
+              480.90571136365764,
+              337.45783426870065,
+              161.0019438045234
+            ],
+            "exact_strict_interior": true
+          },
+          {
+            "direction": "second_edge_first_face",
+            "edge": 1,
+            "t": 0.552965775048707,
+            "alpha": 0.1756809770403799,
+            "beta": 0.21180639696580367,
+            "barycentric_slack": 0.6125126259938164,
+            "point_cm": [
+              486.34972062450095,
+              332.6833639198218,
+              168.9530094490224
+            ],
+            "exact_strict_interior": true
+          }
+        ],
+        "open_face_midpoint_cm": [
+          483.62771599407927,
+          335.07059909426124,
+          164.9774766267729
+        ],
+        "midpoint_barycentric_slack": [
+          0.5715091090765347,
+          0.027685860630119487
+        ],
+        "exact_open_face_midpoint": true,
+        "exact_nonparallel_normals": true
+      },
+      {
+        "component_ids": [
+          15,
+          16
+        ],
+        "triangle_indices": [
+          1115,
+          1462
+        ],
+        "intersection_endpoints": [
+          {
+            "direction": "first_edge_second_face",
+            "edge": 0,
+            "t": 0.5310337121925708,
+            "alpha": 0.3176499506322446,
+            "beta": 0.03692821637380633,
+            "barycentric_slack": 0.6454218329939491,
+            "point_cm": [
+              479.82994101827387,
+              337.0296142053488,
+              157.53823913886123
+            ],
+            "exact_strict_interior": true
+          },
+          {
+            "direction": "second_edge_first_face",
+            "edge": 0,
+            "t": 0.44703422495129297,
+            "alpha": 0.1756809770403799,
+            "beta": 0.21180639696580367,
+            "barycentric_slack": 0.6125126259938164,
+            "point_cm": [
+              486.34972062450095,
+              332.6833639198218,
+              168.9530094490224
+            ],
+            "exact_strict_interior": true
+          }
+        ],
+        "open_face_midpoint_cm": [
+          483.0898308213874,
+          334.8564890625853,
+          163.2456242939418
+        ],
+        "midpoint_barycentric_slack": [
+          0.5407394569006229,
+          0.599193804021328
+        ],
+        "exact_open_face_midpoint": true,
+        "exact_nonparallel_normals": true
+      },
+      {
+        "component_ids": [
+          15,
+          16
+        ],
+        "triangle_indices": [
+          1257,
+          1425
+        ],
+        "intersection_endpoints": [
+          {
+            "direction": "first_edge_second_face",
+            "edge": 2,
+            "t": 0.530505592159253,
+            "alpha": 0.32859497803953336,
+            "beta": 0.6160333007002277,
+            "barycentric_slack": 0.055371721260238975,
+            "point_cm": [
+              480.90571136365764,
+              337.45783426870065,
+              161.0019438045234
+            ],
+            "exact_strict_interior": true
+          },
+          {
+            "direction": "second_edge_first_face",
+            "edge": 1,
+            "t": 0.6705479535130494,
+            "alpha": 0.04841988867126733,
+            "beta": 0.4974863492448391,
+            "barycentric_slack": 0.45409376208389357,
+            "point_cm": [
+              481.1811847548947,
+              337.6895281636525,
+              157.57645846869514
+            ],
+            "exact_strict_interior": true
+          }
+        ],
+        "open_face_midpoint_cm": [
+          481.04344805927616,
+          337.57368121617657,
+          159.28920113660928
+        ],
+        "midpoint_barycentric_slack": [
+          0.4922996771215733,
+          0.027685860630119487
+        ],
+        "exact_open_face_midpoint": true,
+        "exact_nonparallel_normals": true
+      },
+      {
+        "component_ids": [
+          15,
+          16
+        ],
+        "triangle_indices": [
+          1257,
+          1462
+        ],
+        "intersection_endpoints": [
+          {
+            "direction": "first_edge_second_face",
+            "edge": 2,
+            "t": 0.4689662878074292,
+            "alpha": 0.3176499506322446,
+            "beta": 0.03692821637380633,
+            "barycentric_slack": 0.6454218329939491,
+            "point_cm": [
+              479.82994101827387,
+              337.0296142053488,
+              157.53823913886123
+            ],
+            "exact_strict_interior": true
+          },
+          {
+            "direction": "second_edge_first_face",
+            "edge": 0,
+            "t": 0.32945204648695053,
+            "alpha": 0.04841988867126733,
+            "beta": 0.4974863492448391,
+            "barycentric_slack": 0.45409376208389357,
+            "point_cm": [
+              481.1811847548947,
+              337.6895281636525,
+              157.57645846869514
+            ],
+            "exact_strict_interior": true
+          }
+        ],
+        "open_face_midpoint_cm": [
+          480.50556288658424,
+          337.3595711845006,
+          157.55734880377818
+        ],
+        "midpoint_barycentric_slack": [
+          0.4615300249456614,
+          0.6579848932534993
+        ],
+        "exact_open_face_midpoint": true,
+        "exact_nonparallel_normals": true
+      },
+      {
+        "component_ids": [
+          17,
+          18
+        ],
+        "triangle_indices": [
+          1839,
+          2097
+        ],
+        "intersection_endpoints": [
+          {
+            "direction": "first_edge_second_face",
+            "edge": 0,
+            "t": 0.3294520468327616,
+            "alpha": 0.048419888826071206,
+            "beta": 0.4974863521093511,
+            "barycentric_slack": 0.45409375906457766,
+            "point_cm": [
+              337.6895912622762,
+              481.18114048334286,
+              -157.57645844733548
+            ],
+            "exact_strict_interior": true
+          },
+          {
+            "direction": "second_edge_first_face",
+            "edge": 2,
+            "t": 0.46896628490547143,
+            "alpha": 0.3176499509462136,
+            "beta": 0.036928216456231414,
+            "barycentric_slack": 0.6454218325975549,
+            "point_cm": [
+              337.029677124934,
+              479.82989683119104,
+              -157.5382391185612
+            ],
+            "exact_strict_interior": true
+          }
+        ],
+        "open_face_midpoint_cm": [
+          337.3596341936051,
+          480.5055186572669,
+          -157.55734878294834
+        ],
+        "midpoint_barycentric_slack": [
+          0.6579848928823967,
+          0.4615300219850246
+        ],
+        "exact_open_face_midpoint": true,
+        "exact_nonparallel_normals": true
+      },
+      {
+        "component_ids": [
+          17,
+          18
+        ],
+        "triangle_indices": [
+          1839,
+          2151
+        ],
+        "intersection_endpoints": [
+          {
+            "direction": "first_edge_second_face",
+            "edge": 0,
+            "t": 0.4470342248945561,
+            "alpha": 0.17568098100866666,
+            "beta": 0.2118063962668571,
+            "barycentric_slack": 0.6125126227244763,
+            "point_cm": [
+              332.6834277104715,
+              486.34967698774915,
+              -168.95300939393476
+            ],
+            "exact_strict_interior": true
+          },
+          {
+            "direction": "second_edge_first_face",
+            "edge": 0,
+            "t": 0.5310337150945286,
+            "alpha": 0.3176499509462136,
+            "beta": 0.036928216456231414,
+            "barycentric_slack": 0.6454218325975549,
+            "point_cm": [
+              337.029677124934,
+              479.82989683119104,
+              -157.5382391185612
+            ],
+            "exact_strict_interior": true
+          }
+        ],
+        "open_face_midpoint_cm": [
+          334.85655241770274,
+          483.0897869094701,
+          -163.24562425624796
+        ],
+        "midpoint_barycentric_slack": [
+          0.5991938038514995,
+          0.5407394538149738
+        ],
+        "exact_open_face_midpoint": true,
+        "exact_nonparallel_normals": true
+      },
+      {
+        "component_ids": [
+          17,
+          18
+        ],
+        "triangle_indices": [
+          1984,
+          2097
+        ],
+        "intersection_endpoints": [
+          {
+            "direction": "first_edge_second_face",
+            "edge": 1,
+            "t": 0.6705479531672384,
+            "alpha": 0.048419888826071206,
+            "beta": 0.4974863521093511,
+            "barycentric_slack": 0.45409375906457766,
+            "point_cm": [
+              337.6895912622762,
+              481.18114048334286,
+              -157.57645844733548
+            ],
+            "exact_strict_interior": true
+          },
+          {
+            "direction": "second_edge_first_face",
+            "edge": 2,
+            "t": 0.5305055892081835,
+            "alpha": 0.32859497830990014,
+            "beta": 0.6160333004627536,
+            "barycentric_slack": 0.05537172122734625,
+            "point_cm": [
+              337.45789733010486,
+              480.90566712082443,
+              -161.00194378334368
+            ],
+            "exact_strict_interior": true
+          }
+        ],
+        "open_face_midpoint_cm": [
+          337.57374429619057,
+          481.0434038020836,
+          -159.28920111533958
+        ],
+        "midpoint_barycentric_slack": [
+          0.027685860613673126,
+          0.49229967413638054
+        ],
+        "exact_open_face_midpoint": true,
+        "exact_nonparallel_normals": true
+      },
+      {
+        "component_ids": [
+          17,
+          18
+        ],
+        "triangle_indices": [
+          1984,
+          2151
+        ],
+        "intersection_endpoints": [
+          {
+            "direction": "first_edge_second_face",
+            "edge": 1,
+            "t": 0.552965775105444,
+            "alpha": 0.17568098100866666,
+            "beta": 0.2118063962668571,
+            "barycentric_slack": 0.6125126227244763,
+            "point_cm": [
+              332.6834277104715,
+              486.34967698774915,
+              -168.95300939393476
+            ],
+            "exact_strict_interior": true
+          },
+          {
+            "direction": "second_edge_first_face",
+            "edge": 0,
+            "t": 0.4694944107918166,
+            "alpha": 0.32859497830990014,
+            "beta": 0.6160333004627536,
+            "barycentric_slack": 0.05537172122734625,
+            "point_cm": [
+              337.45789733010486,
+              480.90566712082443,
+              -161.00194378334368
+            ],
+            "exact_strict_interior": true
+          }
+        ],
+        "open_face_midpoint_cm": [
+          335.0706625202882,
+          483.6276720542868,
+          -164.9774765886392
+        ],
+        "midpoint_barycentric_slack": [
+          0.027685860613673126,
+          0.5715091059663299
+        ],
+        "exact_open_face_midpoint": true,
+        "exact_nonparallel_normals": true
+      }
+    ]
+  },
+  "intersecting_triangle_pairs_bitwise_unchanged": true,
+  "hashes": {
+    "auditor": "b586bf4b5e22267ce4e2192cb24bde0ca8026a0d173f0dd7a7940358f449453c",
+    "accepted_payload": "126fdbec0a5795036ad75c7409f760652e47722d02f28fada89ddaf2fa71d9df",
+    "accepted_receipt": "acb484e5942dcd380c6fbbd741ab68df3f282c41cc6d7bf1170941abbb24b8ba",
+    "derived_payload": "3db1723d250319d7e6e3d0a4cbbba7b88a68c830fba4214d001a8c2c2545c2d4",
+    "derived_receipt": "ccd8a119a10a18be0eeddfd5bb051b44fd883c6555e0dc3b6f40af3874a38c4e"
+  },
+  "claim_boundary": "Exact rational arithmetic on stored binary64 triangle vertices proves strict transverse surface intersections between component pairs 15-16 and 17-18 in both accepted and derived P00 faceted meshes. Each interior edge-face intersection of oriented closed shells implies local solid overlap. The audit does not quantify whole overlap volume, choose material priority, prove continuous-CAD overlap, or alter the accepted H5M."
+}

@@ -1,0 +1,7 @@
+2026-09-25 native smoke probe continuation rebuild preflight
+Windows RAM: 33,457,440 KiB total; 3,279,288 KiB free at observation.
+Free disk: C: 85,342,797,824 B; D: 503,621,537,792 B. Probe target is C:.
+Largest resident processes: vmmemWSL 1,890,557,952 B; ChatGPT 1,615,085,568 B; chrome 938,926,080 B; codex 886,075,392 B; ChatGPT 762,011,648 B; ChatGPT 735,621,120 B; chrome 690,765,824 B; chrome 671,813,632 B.
+Existing WSL OpenMC-Dev-D: GCC 14.2.0, CMake 3.31.6, Ninja 1.12.1, Python 3.13.5, /opt/openmc-venv 606 MiB and pip cache 152 MiB. Existing native smoke probe, libopenmc.so and probe source are present. Windows tools, inactive Conda/venv, and local OpenMC/StellarCSG checkouts were inspected earlier this turn.
+Existing capabilities suffice. Planned software download/install/upgrade/acquisition: 0 B. The probe is an existing manually compiled helper, not a Ninja target; a read-only `ninja -t targets` check found no target. One GCC 14.2 job will compile the revised probe to a new `native_adapter_prefix_probe` executable against the existing native libopenmc and its configured include paths, expected under 10 MiB output, in build/native-local-20260925 on C:. A new one-CPU smoke receipt will follow. No dependency environment or remote system changes.
+Rollback: preserve Git history and receipts; the new named executable can be removed after evidence is retained. The old probe remains intact. No package/cache rollback is needed.

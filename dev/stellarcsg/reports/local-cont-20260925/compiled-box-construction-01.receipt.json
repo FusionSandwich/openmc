@@ -1,0 +1,17 @@
+{
+  "schema": "stellarcsg.compiled-box-construction-replay/v1",
+  "state": "ALL_ANALYTIC_CENTERLINE_BOX_ENDPOINTS_MATCH",
+  "member_spans": {
+    "2": 256,
+    "3": 384
+  },
+  "compared_binary64_endpoints": 3840,
+  "sha256": {
+    "auditor": "b1e128dfc2265ec0ba354160c05d35badf742c6eeefc9b85cabf3a1784efad06",
+    "exact_auditor": "932604601619f8bea445c7062ac0044a48f67cd16285556dae77adbbfade4016",
+    "boxes": "c14b80516f33ab741f2bc2a72d981c97f10955312c91af27489e1f066d4430f1",
+    "exact_receipt": "73b9599ff1ae4376afe91709751482d9327ee0864defa3d027b5509a06707523",
+    "production_source": "dd4db0fb66dda806f0061f67e4d3ad0b673c5a46d1598f667191016a2157c163"
+  },
+  "claim_boundary": "An independent Python binary64 replay of the source's sixteen-tile outward interval Horner construction exactly matches all 3,840 lower and upper endpoints of the compiled analytic centerline boxes. Together with the separate rational real-curve audit, this supports the box arithmetic for these members under IEEE binary64 round-to-nearest source order. It does not prove the optimized instructions, rounded angle-to-u mapping for every query, BVH traversal, nearest-center selection, earlier surface roots, or arbitrary imported coils."
+}

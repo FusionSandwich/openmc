@@ -1,0 +1,793 @@
+{
+  "schema": "stellarcsg.periodic-facet-ray-bank/v1",
+  "state": "PASS_18_COIL_GROUP_VOID_TRACKS",
+  "field_period_degrees": 90,
+  "coil_group_count": 18,
+  "rows": [
+    {
+      "dagmc_volume_id": 8,
+      "facet_id": "facet-bb4b1a33cac92fedf825452305ad379bafefd0ce2b7e0182ba7ec8b4976e3fb7",
+      "exit_code": 0,
+      "stderr": " WARNING: Could not compute uncertainties -- only one active batch simulated!\n",
+      "source_outside_cm": [
+        896.7235845282671,
+        4.3297341331944255,
+        -329.3153048661797
+      ],
+      "source_direction": [
+        0.26317011234765625,
+        -0.9537528794351806,
+        0.14524784657964493
+      ],
+      "hashes": {
+        "geometry_xml": "113b938390a0a75fa30555402f54b9bf88d6199071432cbf9f7d8b55f9814fc7",
+        "settings_xml": "c8d6f7f345eb382028694e945d816e7b51892ccad85ff66a7cd989d5f56e6add",
+        "materials_xml": "387f4241a1cea79740ac3564b5480fab039201fbf2445c0c7c693de852500f4d",
+        "tracks": "148fee7435ce4491998d0089f9f322125ec536b53460a89dc18fde71943b296b",
+        "statepoint": "554ca9b8650df9c1cd459b02af69699d19915eef562fcbd8926bfd2296f4964c"
+      },
+      "cell_sequence": [
+        1002,
+        1001,
+        1001,
+        1002,
+        1001,
+        1002,
+        1002
+      ],
+      "first_crossing_cm": [
+        896.7762272052374,
+        4.138952192594355,
+        -329.28625052030463
+      ],
+      "first_crossing_centroid_error_cm": 3.288557623567146e-05,
+      "terminal_position_cm": [
+        2030.6506077419779,
+        1458.2380153037896,
+        -19.406397787103884
+      ],
+      "entry_and_leakage_pass": true
+    },
+    {
+      "dagmc_volume_id": 9,
+      "facet_id": "facet-2254876d2fac567ba7602663c2af684ffa5147a555e7ac4084d83aad911bee2d",
+      "exit_code": 0,
+      "stderr": " WARNING: Could not compute uncertainties -- only one active batch simulated!\n",
+      "source_outside_cm": [
+        988.6048337703086,
+        25.101168934577046,
+        -367.22939617284726
+      ],
+      "source_direction": [
+        0.8649672055939951,
+        0.5018007899959122,
+        -0.005263117554647406
+      ],
+      "hashes": {
+        "geometry_xml": "113b938390a0a75fa30555402f54b9bf88d6199071432cbf9f7d8b55f9814fc7",
+        "settings_xml": "b323a2d185edefb7ace8e80b8299d058a1fd752ddad2cb97a28ca9df03986e18",
+        "materials_xml": "387f4241a1cea79740ac3564b5480fab039201fbf2445c0c7c693de852500f4d",
+        "tracks": "c2612844a620a12462cf2712c9b95efb7e0816b06210546432ebb4d027954cbd",
+        "statepoint": "e7835b7bc45c6802edf42c42aac89b53781bab92859b92099a7a5e10ce96f516"
+      },
+      "cell_sequence": [
+        1002,
+        1001,
+        1002,
+        1001,
+        1002,
+        1001,
+        1002,
+        1002
+      ],
+      "first_crossing_cm": [
+        988.7778193776619,
+        25.201524547907137,
+        -367.23044874869163
+      ],
+      "first_crossing_centroid_error_cm": 9.056719669685215e-06,
+      "terminal_position_cm": [
+        2361.2074647875997,
+        821.4008206906756,
+        -375.5813532830608
+      ],
+      "entry_and_leakage_pass": true
+    },
+    {
+      "dagmc_volume_id": 10,
+      "facet_id": "facet-487571ecae298648adcc96b78f8ef61d9504fa7e242111bc06adbc4055164cf6",
+      "exit_code": 0,
+      "stderr": " WARNING: Could not compute uncertainties -- only one active batch simulated!\n",
+      "source_outside_cm": [
+        1069.6964056787983,
+        93.63891751003223,
+        -346.5365803514107
+      ],
+      "source_direction": [
+        0.6127135644010832,
+        0.772830965264584,
+        0.16527064811130582
+      ],
+      "hashes": {
+        "geometry_xml": "113b938390a0a75fa30555402f54b9bf88d6199071432cbf9f7d8b55f9814fc7",
+        "settings_xml": "b5e03d6e43546d1ed05224f8832b92c524256ecb6ec37ecab267a18582998200",
+        "materials_xml": "387f4241a1cea79740ac3564b5480fab039201fbf2445c0c7c693de852500f4d",
+        "tracks": "82a755df10038f3f8be128dd8cd0ef58c2a6ed27ce01979d1ff4edf110ad08ea",
+        "statepoint": "0e4e15589180e9f3f0368549842b3a00a0513815fc22472ac8fd4fa5bfd6ec17"
+      },
+      "cell_sequence": [
+        1002,
+        1001,
+        1002,
+        1001,
+        1002,
+        1002
+      ],
+      "first_crossing_cm": [
+        1069.8189483916785,
+        93.79348370308509,
+        -346.50352622178843
+      ],
+      "first_crossing_centroid_error_cm": 4.263256414560601e-14,
+      "terminal_position_cm": [
+        2086.8537802315177,
+        1376.6049905232162,
+        -72.17304689864119
+      ],
+      "entry_and_leakage_pass": true
+    },
+    {
+      "dagmc_volume_id": 11,
+      "facet_id": "facet-71e1d3cfcc4183883b46ca74a9bd92485ee0559725efff8e77572dbf8e8fc48d",
+      "exit_code": 0,
+      "stderr": " WARNING: Could not compute uncertainties -- only one active batch simulated!\n",
+      "source_outside_cm": [
+        1150.4632020627942,
+        208.03191258830367,
+        -342.683317571569
+      ],
+      "source_direction": [
+        -0.1857684043693724,
+        -0.9629860881744357,
+        -0.19531485842238208
+      ],
+      "hashes": {
+        "geometry_xml": "113b938390a0a75fa30555402f54b9bf88d6199071432cbf9f7d8b55f9814fc7",
+        "settings_xml": "57d6bf25cba711aa6b15f3b03f16aea92d913ca62beecd1e39401d471bfe1eb4",
+        "materials_xml": "387f4241a1cea79740ac3564b5480fab039201fbf2445c0c7c693de852500f4d",
+        "tracks": "5ecfaed035a04dd119bffb3902b8564bbafafa9368968331148960ead68c5b96",
+        "statepoint": "1851b5442e9faa5aa3f5be50b1b5a032d1882e23a726f5d458d08bf85ab6dd55"
+      },
+      "cell_sequence": [
+        1002,
+        1001,
+        1002,
+        1002,
+        1002
+      ],
+      "first_crossing_cm": [
+        1150.4260483819203,
+        207.83931537066877,
+        -342.72238054325345
+      ],
+      "first_crossing_centroid_error_cm": 2.842170943040401e-14,
+      "terminal_position_cm": [
+        1553.692704937215,
+        810.6111780772969,
+        -700.0
+      ],
+      "entry_and_leakage_pass": true
+    },
+    {
+      "dagmc_volume_id": 12,
+      "facet_id": "facet-a21b33d68c15afa1eb3564fd1ee68893675df5d74ae05fb51abbc889609a8d68",
+      "exit_code": 0,
+      "stderr": " WARNING: Could not compute uncertainties -- only one active batch simulated!\n",
+      "source_outside_cm": [
+        1131.279740349871,
+        130.24572583352665,
+        544.7644359730731
+      ],
+      "source_direction": [
+        -0.1456706843964794,
+        0.1910331089040288,
+        -0.9707143776672533
+      ],
+      "hashes": {
+        "geometry_xml": "113b938390a0a75fa30555402f54b9bf88d6199071432cbf9f7d8b55f9814fc7",
+        "settings_xml": "a5543bd7e8b9ebc2a38a3d10e1a35d5267c51146fb435f712687e52d0aa726c9",
+        "materials_xml": "387f4241a1cea79740ac3564b5480fab039201fbf2445c0c7c693de852500f4d",
+        "tracks": "ee8844c925364d16d3e6740d9f60361953c939828c6ddecb87ccdb42b66876a4",
+        "statepoint": "ec59707112b6e0b90785432814c203146c1dd7ce92899ebed6138c3c216554ed"
+      },
+      "cell_sequence": [
+        1002,
+        1001,
+        1002,
+        1001,
+        1002,
+        1002
+      ],
+      "first_crossing_cm": [
+        1131.2506062129917,
+        130.28393245530745,
+        544.5702930975397
+      ],
+      "first_crossing_centroid_error_cm": 0.0,
+      "terminal_position_cm": [
+        944.483612186669,
+        375.21090357051224,
+        -700.0
+      ],
+      "entry_and_leakage_pass": true
+    },
+    {
+      "dagmc_volume_id": 13,
+      "facet_id": "facet-7e655da43bb98ec73bddadfc9ec02e7c2e4232b38da758b0df930e9de2db8ebc",
+      "exit_code": 0,
+      "stderr": " WARNING: Could not compute uncertainties -- only one active batch simulated!\n",
+      "source_outside_cm": [
+        872.8320657499287,
+        204.29814380167286,
+        520.5845103992793
+      ],
+      "source_direction": [
+        0.19959499852407372,
+        0.08089439466062794,
+        -0.9765336315133574
+      ],
+      "hashes": {
+        "geometry_xml": "113b938390a0a75fa30555402f54b9bf88d6199071432cbf9f7d8b55f9814fc7",
+        "settings_xml": "b2d35d6fb23cfe1f27541a0752afc4b617f29cb00cde3e7877a5d9535076f9b2",
+        "materials_xml": "387f4241a1cea79740ac3564b5480fab039201fbf2445c0c7c693de852500f4d",
+        "tracks": "6fffbe1ad803aa73b41298f8b3fb86a63dd616fafd5838862f7da2b1423a8010",
+        "statepoint": "be0dbf8314edd2f2ec45b90eef00c672b0aeb6ab5b983a066e6bfb90055cd907"
+      },
+      "cell_sequence": [
+        1002,
+        1001,
+        1002,
+        1001,
+        1002,
+        1002
+      ],
+      "first_crossing_cm": [
+        872.8719847496335,
+        204.314322680605,
+        520.3892036729768
+      ],
+      "first_crossing_centroid_error_cm": 1.1368683772161603e-13,
+      "terminal_position_cm": [
+        1122.3089456952755,
+        305.4093005652872,
+        -700.0
+      ],
+      "entry_and_leakage_pass": true
+    },
+    {
+      "dagmc_volume_id": 14,
+      "facet_id": "facet-6f434982878fadd5de0c3404ca8236df031d0d866cc96b61d305e7458f9e52b3",
+      "exit_code": 0,
+      "stderr": " WARNING: Could not compute uncertainties -- only one active batch simulated!\n",
+      "source_outside_cm": [
+        984.9410159314219,
+        594.1559310563775,
+        -235.77154336457613
+      ],
+      "source_direction": [
+        -0.12218898552531512,
+        0.7407340887771608,
+        0.6605928106933677
+      ],
+      "hashes": {
+        "geometry_xml": "113b938390a0a75fa30555402f54b9bf88d6199071432cbf9f7d8b55f9814fc7",
+        "settings_xml": "458fab3c4e5c953bb84620cd2b5c584816c78e7b2a464882f4e462e3df82d115",
+        "materials_xml": "387f4241a1cea79740ac3564b5480fab039201fbf2445c0c7c693de852500f4d",
+        "tracks": "0e9396341ee3bf48506e03de38246f067d28946d5bd2c22e7b59746307707018",
+        "statepoint": "6b9a70cdc15f760f5042c9268b82fbd720a9113416f6c98b0feaba0b53764cc5"
+      },
+      "cell_sequence": [
+        1002,
+        1001,
+        1002,
+        1001,
+        1002,
+        1002
+      ],
+      "first_crossing_cm": [
+        984.9165781343169,
+        594.304077874133,
+        -235.63942480243747
+      ],
+      "first_crossing_centroid_error_cm": 2.842170943040401e-14,
+      "terminal_position_cm": [
+        811.852581246276,
+        1643.452669163788,
+        700.0
+      ],
+      "entry_and_leakage_pass": true
+    },
+    {
+      "dagmc_volume_id": 15,
+      "facet_id": "facet-54d04d8c0969b56a53ba23ae587ccb763ae3539c6448fcb4713e0a8ec3c55e29",
+      "exit_code": 0,
+      "stderr": " WARNING: Could not compute uncertainties -- only one active batch simulated!\n",
+      "source_outside_cm": [
+        521.1925344051424,
+        666.1151506171631,
+        300.12160678127634
+      ],
+      "source_direction": [
+        0.26231241962251484,
+        -0.6540505957025572,
+        -0.7095139271169466
+      ],
+      "hashes": {
+        "geometry_xml": "113b938390a0a75fa30555402f54b9bf88d6199071432cbf9f7d8b55f9814fc7",
+        "settings_xml": "421f6c31699de264b1aa1a37cb305e8190c68f85e8e52a2d0e5825eb91cfcbbd",
+        "materials_xml": "387f4241a1cea79740ac3564b5480fab039201fbf2445c0c7c693de852500f4d",
+        "tracks": "4ddaa0fdedc758f5429b7a32262339d329278fe7f6c0b1c06e1a61a250cee347",
+        "statepoint": "9c0c281de61a7eabb1da1b2f5565db589033cd52f3ff9886b213b2a6dc538c8b"
+      },
+      "cell_sequence": [
+        1002,
+        1001,
+        1002,
+        1002,
+        1002
+      ],
+      "first_crossing_cm": [
+        521.2449968890669,
+        665.9843404980226,
+        299.97970399585296
+      ],
+      "first_crossing_centroid_error_cm": 0.0,
+      "terminal_position_cm": [
+        255.8260653196379,
+        890.9447105993,
+        -700.0
+      ],
+      "entry_and_leakage_pass": true
+    },
+    {
+      "dagmc_volume_id": 16,
+      "facet_id": "facet-6df83a296a3773b0e08b4ecb00e1ca7d1823c8860738a24003eba59e21c3177e",
+      "exit_code": 0,
+      "stderr": " WARNING: Could not compute uncertainties -- only one active batch simulated!\n",
+      "source_outside_cm": [
+        841.9555757355049,
+        861.8029694823365,
+        -127.44973704078163
+      ],
+      "source_direction": [
+        -0.6081775523528958,
+        0.35756742365378047,
+        0.7087069933023369
+      ],
+      "hashes": {
+        "geometry_xml": "113b938390a0a75fa30555402f54b9bf88d6199071432cbf9f7d8b55f9814fc7",
+        "settings_xml": "cf420a0f7e11c018139a1e9e736d3cf5451783af2168aa846d3c67cdb3014174",
+        "materials_xml": "387f4241a1cea79740ac3564b5480fab039201fbf2445c0c7c693de852500f4d",
+        "tracks": "ce9ef4f16abdf5da9fce314ae5040c682c2657776296309aab4bbabeac2a2634",
+        "statepoint": "37bf14b5591ad746dcd75c344bb4baa37678ba005e82a0ce6d225b2ee0dc6840"
+      },
+      "cell_sequence": [
+        1002,
+        1001,
+        1002,
+        1001,
+        1002,
+        1002
+      ],
+      "first_crossing_cm": [
+        841.8339402250343,
+        861.8744829670673,
+        -127.3079956421211
+      ],
+      "first_crossing_centroid_error_cm": 5.684341886080802e-14,
+      "terminal_position_cm": [
+        131.87882959871683,
+        1279.2802534273133,
+        700.0
+      ],
+      "entry_and_leakage_pass": true
+    },
+    {
+      "dagmc_volume_id": 17,
+      "facet_id": "facet-76b929e71b457c5248e728ad8006c04faebdf4ca4dce59d5ed12eeef4e3b821e",
+      "exit_code": 0,
+      "stderr": " WARNING: Could not compute uncertainties -- only one active batch simulated!\n",
+      "source_outside_cm": [
+        861.8030801898003,
+        841.9554627453812,
+        127.44973702678193
+      ],
+      "source_direction": [
+        0.35756734136334595,
+        -0.6081775992823861,
+        -0.7087069945481432
+      ],
+      "hashes": {
+        "geometry_xml": "113b938390a0a75fa30555402f54b9bf88d6199071432cbf9f7d8b55f9814fc7",
+        "settings_xml": "16af9c5010069254a974a5af87912d82914e25669d14ab3fac23fccd9954f134",
+        "materials_xml": "387f4241a1cea79740ac3564b5480fab039201fbf2445c0c7c693de852500f4d",
+        "tracks": "1bb394c0927838c430a30eee09d6c2ee1158d9cce49eef6ac09b68d07fa85158",
+        "statepoint": "4e0919806f2e0e7a221f8359986824973ca7626f03299222dec22e7a84ec3639"
+      },
+      "cell_sequence": [
+        1002,
+        1001,
+        1002,
+        1001,
+        1002,
+        1002
+      ],
+      "first_crossing_cm": [
+        861.874593658073,
+        841.8338272255247,
+        127.30799562787234
+      ],
+      "first_crossing_centroid_error_cm": 1.4210854715202004e-14,
+      "terminal_position_cm": [
+        1279.2802673157803,
+        131.87866307636853,
+        -700.0
+      ],
+      "entry_and_leakage_pass": true
+    },
+    {
+      "dagmc_volume_id": 18,
+      "facet_id": "facet-47053a44dfe4fab12b6d589eb326a8d9c99d2f13d129c2b411f33fa30ee861ba",
+      "exit_code": 0,
+      "stderr": " WARNING: Could not compute uncertainties -- only one active batch simulated!\n",
+      "source_outside_cm": [
+        666.1152192518199,
+        521.1924474195735,
+        -300.1216066792137
+      ],
+      "source_direction": [
+        -0.6540505604313129,
+        0.26231250398444017,
+        0.7095139284417878
+      ],
+      "hashes": {
+        "geometry_xml": "113b938390a0a75fa30555402f54b9bf88d6199071432cbf9f7d8b55f9814fc7",
+        "settings_xml": "2265ce02ba37441a5272d225fd6fd37f94b0823d49710041229d28208e0a424a",
+        "materials_xml": "387f4241a1cea79740ac3564b5480fab039201fbf2445c0c7c693de852500f4d",
+        "tracks": "cbaa1fdad8e7c8b28b6153652aea826931b9c4a12242fdb89051b307bd3438f0",
+        "statepoint": "ca9efb3eb13ce3998592e4f6524181e18aea00e95cb21c4d59069f45e4835102"
+      },
+      "cell_sequence": [
+        1002,
+        1001,
+        1002,
+        1002,
+        1002
+      ],
+      "first_crossing_cm": [
+        665.9844091397337,
+        521.2449099203703,
+        -299.97970389352537
+      ],
+      "first_crossing_centroid_error_cm": 0.0,
+      "terminal_position_cm": [
+        890.9447418010501,
+        255.82594515151294,
+        700.0
+      ],
+      "entry_and_leakage_pass": true
+    },
+    {
+      "dagmc_volume_id": 19,
+      "facet_id": "facet-1feddd4e0607df9ba0d856cbde83fd5b2c7e7c0ed7afa9fe145f345c84701e8f",
+      "exit_code": 0,
+      "stderr": " WARNING: Could not compute uncertainties -- only one active batch simulated!\n",
+      "source_outside_cm": [
+        594.1560602066857,
+        984.9409380040619,
+        235.77154335911678
+      ],
+      "source_direction": [
+        0.7407340729310136,
+        -0.12218908266448046,
+        -0.6605928104942141
+      ],
+      "hashes": {
+        "geometry_xml": "113b938390a0a75fa30555402f54b9bf88d6199071432cbf9f7d8b55f9814fc7",
+        "settings_xml": "4e6eda95bfaec6401f08f3d0b1133e17b184eb79fcf4f34387adf4f4a5c75339",
+        "materials_xml": "387f4241a1cea79740ac3564b5480fab039201fbf2445c0c7c693de852500f4d",
+        "tracks": "3f616f0caf4da27ba92cbc265af4a28882c81cecb38387cf806dd296e70e1a1f",
+        "statepoint": "443df838c490a4c4a12f82f0e3526687e1ed06c788cddeb04be0dd40d94b2984"
+      },
+      "cell_sequence": [
+        1002,
+        1001,
+        1002,
+        1001,
+        1002,
+        1002
+      ],
+      "first_crossing_cm": [
+        594.3042070212718,
+        984.916500187529,
+        235.6394247970179
+      ],
+      "first_crossing_centroid_error_cm": 2.842170943040401e-14,
+      "terminal_position_cm": [
+        1643.4527761772422,
+        811.8523656639652,
+        -699.9999999999999
+      ],
+      "entry_and_leakage_pass": true
+    },
+    {
+      "dagmc_volume_id": 20,
+      "facet_id": "facet-17af7c1aa9dcc70715eefa7be3b52fb48eb147ce030bb95d71e3c980854edd02",
+      "exit_code": 0,
+      "stderr": " WARNING: Could not compute uncertainties -- only one active batch simulated!\n",
+      "source_outside_cm": [
+        204.29766707560847,
+        872.8316306388134,
+        -520.5843337400388
+      ],
+      "source_direction": [
+        0.08089367668617149,
+        0.19959673395703229,
+        0.9765333362798624
+      ],
+      "hashes": {
+        "geometry_xml": "113b938390a0a75fa30555402f54b9bf88d6199071432cbf9f7d8b55f9814fc7",
+        "settings_xml": "97fa3d7af00f9af8426a11c246c301ac3bc2f006f010ade35fb1c9f907405b4f",
+        "materials_xml": "387f4241a1cea79740ac3564b5480fab039201fbf2445c0c7c693de852500f4d",
+        "tracks": "c5fef67d2419686ed4b05acbda8b66de96c65adaf182cde7dc5397a8b495e9ec",
+        "statepoint": "9a90b5bfd7de29a6b5aeaf89d8de980faf78b5e0339ef2e6af16e6deac54a2cc"
+      },
+      "cell_sequence": [
+        1002,
+        1001,
+        1002,
+        1001,
+        1002,
+        1002
+      ],
+      "first_crossing_cm": [
+        204.3138458109457,
+        872.8715499856048,
+        -520.3890270727827
+      ],
+      "first_crossing_centroid_error_cm": 1.1368683772161603e-13,
+      "terminal_position_cm": [
+        305.4079423662779,
+        1122.3107190452868,
+        700.0
+      ],
+      "entry_and_leakage_pass": true
+    },
+    {
+      "dagmc_volume_id": 21,
+      "facet_id": "facet-24263a0f34c030f0efda519269dc03b0cc847ae042899967df5882eb2151790a",
+      "exit_code": 0,
+      "stderr": " WARNING: Could not compute uncertainties -- only one active batch simulated!\n",
+      "source_outside_cm": [
+        130.2457904866726,
+        1131.2795876378777,
+        -544.7644365015856
+      ],
+      "source_direction": [
+        0.19103331366680326,
+        -0.1456703208157329,
+        0.9707143919314898
+      ],
+      "hashes": {
+        "geometry_xml": "113b938390a0a75fa30555402f54b9bf88d6199071432cbf9f7d8b55f9814fc7",
+        "settings_xml": "adcdf0758586411470eedcca24ebb36b0af4ef15811c8dcb9dfb2144aa22b9b0",
+        "materials_xml": "387f4241a1cea79740ac3564b5480fab039201fbf2445c0c7c693de852500f4d",
+        "tracks": "c5faa6b82c6a0a9e633492aa54f7f5700eac8a90d3474f387bd053ad4bea8441",
+        "statepoint": "f75c3cea3507fccabe89ccd5c79e7ebd3c34e2da24d98c0304e7697e1d4619a9"
+      },
+      "cell_sequence": [
+        1002,
+        1001,
+        1002,
+        1001,
+        1002,
+        1002
+      ],
+      "first_crossing_cm": [
+        130.28399714940593,
+        1131.2504535737146,
+        -544.5702936231994
+      ],
+      "first_crossing_centroid_error_cm": 1.1718571004216928e-13,
+      "terminal_position_cm": [
+        375.2112272989782,
+        944.483928366352,
+        700.0
+      ],
+      "entry_and_leakage_pass": true
+    },
+    {
+      "dagmc_volume_id": 22,
+      "facet_id": "facet-cd75e77af6a6a03043143dd3be9c559bf8cbc07bfe5d63bd653c7c421afb2fc9",
+      "exit_code": 0,
+      "stderr": " WARNING: Could not compute uncertainties -- only one active batch simulated!\n",
+      "source_outside_cm": [
+        208.0320656534806,
+        1150.463054776352,
+        342.6832470608369
+      ],
+      "source_direction": [
+        -0.9629859901943502,
+        -0.1857686418725298,
+        0.19531511561126733
+      ],
+      "hashes": {
+        "geometry_xml": "113b938390a0a75fa30555402f54b9bf88d6199071432cbf9f7d8b55f9814fc7",
+        "settings_xml": "ada4bf9203e267678d4966b2c4b0afe9e8f5ea9f35eceede7f1cfa191e121067",
+        "materials_xml": "387f4241a1cea79740ac3564b5480fab039201fbf2445c0c7c693de852500f4d",
+        "tracks": "3a4d2145a269d8e43f7fe3173ae7406f1dca29ea0b12cb4515d0a7694fd886e0",
+        "statepoint": "47beec0570a7aa725c0b118e2f47d61ba61413e14d29e3f8db74c52b3396ea68"
+      },
+      "cell_sequence": [
+        1002,
+        1001,
+        1002,
+        1002,
+        1002
+      ],
+      "first_crossing_cm": [
+        207.83946845544173,
+        1150.4259010479775,
+        342.72231008395914
+      ],
+      "first_crossing_centroid_error_cm": 0.0,
+      "terminal_position_cm": [
+        810.6109767430153,
+        1553.6904004509302,
+        700.0
+      ],
+      "entry_and_leakage_pass": true
+    },
+    {
+      "dagmc_volume_id": 23,
+      "facet_id": "facet-6a95c63b1cdc1e9683a5e99b266de17541d32baae76cb82a8c366ac80a0b903f",
+      "exit_code": 0,
+      "stderr": " WARNING: Could not compute uncertainties -- only one active batch simulated!\n",
+      "source_outside_cm": [
+        93.638897022017,
+        1069.696336507311,
+        346.53644595412976
+      ],
+      "source_direction": [
+        0.7728309060045551,
+        0.6127136333213554,
+        -0.16527066970978868
+      ],
+      "hashes": {
+        "geometry_xml": "113b938390a0a75fa30555402f54b9bf88d6199071432cbf9f7d8b55f9814fc7",
+        "settings_xml": "bdb6098c6d1ef7632ad685960c5f24639bf19117a9de5a055e47a61533b1e479",
+        "materials_xml": "387f4241a1cea79740ac3564b5480fab039201fbf2445c0c7c693de852500f4d",
+        "tracks": "2971592b752fe8355bc5e52bf6596f07209d4c382f28b0a4c7d7c2eaae563331",
+        "statepoint": "42e84f5b33c126a4173a83559796df758af6916b2c4cb8f5b5565c2c82d1beff"
+      },
+      "cell_sequence": [
+        1002,
+        1001,
+        1002,
+        1001,
+        1002,
+        1002
+      ],
+      "first_crossing_cm": [
+        93.79346320321793,
+        1069.8188792339752,
+        346.5033918201878
+      ],
+      "first_crossing_centroid_error_cm": 0.0,
+      "terminal_position_cm": [
+        1376.604894493781,
+        2086.8538435778787,
+        72.17287176265484
+      ],
+      "entry_and_leakage_pass": true
+    },
+    {
+      "dagmc_volume_id": 24,
+      "facet_id": "facet-43e3626b5445d919e3fc46952c679956c5400f2e32353002520accf4919829f9",
+      "exit_code": 0,
+      "stderr": " WARNING: Could not compute uncertainties -- only one active batch simulated!\n",
+      "source_outside_cm": [
+        25.10114208516208,
+        988.6048268425043,
+        367.22936045363656
+      ],
+      "source_direction": [
+        0.5018008066608586,
+        0.8649671960363146,
+        0.005263099427849394
+      ],
+      "hashes": {
+        "geometry_xml": "113b938390a0a75fa30555402f54b9bf88d6199071432cbf9f7d8b55f9814fc7",
+        "settings_xml": "0c2a3c6757ce954998277b162d5721f950bdf8aa0f49da78beb74464f771b842",
+        "materials_xml": "387f4241a1cea79740ac3564b5480fab039201fbf2445c0c7c693de852500f4d",
+        "tracks": "d1edbce562e3a5496e5f0946dce525e2c998b2988288f813a7add07db2cb7c4a",
+        "statepoint": "bb7bb187c248be44483067eff19ae13b98d6bca90388c91a263e735d03cc1544"
+      },
+      "cell_sequence": [
+        1002,
+        1001,
+        1002,
+        1001,
+        1002,
+        1001,
+        1002,
+        1002
+      ],
+      "first_crossing_cm": [
+        25.201503761382163,
+        988.7778228929635,
+        367.2304130894109
+      ],
+      "first_crossing_centroid_error_cm": 3.0189028636602845e-06,
+      "terminal_position_cm": [
+        821.4008310199966,
+        2361.2074611943053,
+        375.58128891130053
+      ],
+      "entry_and_leakage_pass": true
+    },
+    {
+      "dagmc_volume_id": 25,
+      "facet_id": "facet-869de9b588b80d0c81e7684e087d7ac3eae96b7ea6307df05842bd52a5f84212",
+      "exit_code": 0,
+      "stderr": " WARNING: Could not compute uncertainties -- only one active batch simulated!\n",
+      "source_outside_cm": [
+        4.329720972982128,
+        896.7235631932399,
+        329.31511126729623
+      ],
+      "source_direction": [
+        -0.9537527206221594,
+        0.26317084782020117,
+        -0.14524755682429133
+      ],
+      "hashes": {
+        "geometry_xml": "113b938390a0a75fa30555402f54b9bf88d6199071432cbf9f7d8b55f9814fc7",
+        "settings_xml": "dc50b50d5ae4c6d5607181d5717baa14bed4f4bc11ed6829f240bd75fb874994",
+        "materials_xml": "387f4241a1cea79740ac3564b5480fab039201fbf2445c0c7c693de852500f4d",
+        "tracks": "e736653c8da40c9446c921e0ae44e3e3b46439ed040755e4c5d43e5fef59e059",
+        "statepoint": "d3bf94106aa34a79d9c94e187cf632b5a1850c4df7c30a5eecc1cc7cb993da35"
+      },
+      "cell_sequence": [
+        1002,
+        1001,
+        1001,
+        1002,
+        1001,
+        1002,
+        1002
+      ],
+      "first_crossing_cm": [
+        4.138980883529284,
+        896.776194478026,
+        329.2860633480794
+      ],
+      "first_crossing_centroid_error_cm": 1.0961616544502483e-05,
+      "terminal_position_cm": [
+        1458.2393822262807,
+        2030.6496261355169,
+        19.40692231598331
+      ],
+      "entry_and_leakage_pass": true
+    }
+  ],
+  "hashes": {
+    "auditor": "ce8ba5f1a9a1eaefb4cf76e9ee7673380e94e533dda31d3e615f357b0ee262f8",
+    "region_receipt": "b9936c2741547e0fad1e7431eeeed655f974cbe0cf263559080e8b503997642e",
+    "side_bank": "37918fd9c88c3b28a60366ab67a4e3599fbefacb446e1afaee4d515105a679e4",
+    "binary": "dd0f316e5bd0965092f2a080167da9bbde83416392b6473763063fd95ec63dde",
+    "library": "f5a2d438974499e36fae7668d466f0ffec64b9998dc769d99c37186d0765fd94",
+    "cross_sections_index": "19c7b90ca97fe2b11748c69359bf04112ab2ad537e23a9165b615b3de73fb10a"
+  },
+  "claim_boundary": "One separate void-only OpenMC history per accepted P00 coil group enters the derived facet union near a hashed accepted side-bank facet and ends on a vacuum enclosure boundary. This is an 18-ray geometry-tracking control, not material transport, CAD fidelity, all facet/edge coverage, plasma-source clearance or throughput qualification."
+}

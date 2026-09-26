@@ -1,0 +1,740 @@
+{
+  "schema": "stellarcsg.exact-period-frame-candidate/v1",
+  "state": "SEPARATE_EXACT_COEFFICIENT_ROTATION_CANDIDATE_NOT_QUALIFIED",
+  "hashes": {
+    "input_h5_sha256": "9571b71cff1f2f1e4bbeb079d779bfcc9b614da87e16cf2cfd49dae931918018",
+    "manifest_sha256": "208b3bce3feed8cd72360b6db29229b717a9cbce5860ed96cc4c39c3c1a9080b",
+    "output_h5_sha256": "5239876917349e057ad261cfeb6dcec4f25f8c10376ee173c2960aed161967ab",
+    "builder_sha256": "04e8e2670ecfa510a2806b74b06ebcf38b9d230c8c83a88ad0636c5ece266586"
+  },
+  "field_period_degrees": 90,
+  "family_count": 12,
+  "member_count": 48,
+  "max_centerline_control_deviation_cm": 0.00020307042562629055,
+  "max_normal_control_deviation": 1.3189041204576623e-07,
+  "max_binormal_control_deviation": 1.3179208980519833e-07,
+  "max_absolute_length_delta_cm": 3.637978807091713e-12,
+  "rows": [
+    {
+      "member": "coil_1000",
+      "canonical_member": "coil_1000",
+      "quarter_turns": 0,
+      "old_content_id": "sha256:9812517bc3a30e7ca439c083d88ecec8a4d5f1c50d9b291a881e71a5c103bf47",
+      "new_content_id": "sha256:966931928f0e4739f3e679fc02b613572e58532e674b0724ff3368073f9bd751",
+      "length_delta_cm": 0.0,
+      "control_deviation": {
+        "centerline_coefficients": 0.0,
+        "normal_coefficients": 0.0,
+        "binormal_coefficients": 0.0,
+        "major_radius_coefficients": 0.0,
+        "minor_radius_coefficients": 0.0
+      }
+    },
+    {
+      "member": "coil_1002",
+      "canonical_member": "coil_1000",
+      "quarter_turns": 1,
+      "old_content_id": "sha256:1c1c02ffee11b7c103e2b27da76fd5d4847f18cf582f6294e4ed76f879ceb059",
+      "new_content_id": "sha256:db575e0233455ec86943c2a4bb57512c96e42363f921711c24e03ae656af569f",
+      "length_delta_cm": 2.2737367544323206e-12,
+      "control_deviation": {
+        "centerline_coefficients": 6.769014192788538e-05,
+        "normal_coefficients": 4.372071574697887e-08,
+        "binormal_coefficients": 4.377093853702634e-08,
+        "major_radius_coefficients": 0.0,
+        "minor_radius_coefficients": 0.0
+      }
+    },
+    {
+      "member": "coil_1004",
+      "canonical_member": "coil_1000",
+      "quarter_turns": 2,
+      "old_content_id": "sha256:ec9823cac55cca669eca0e5d77d7fd038244be14cacd9125fb3902bfa49009b8",
+      "new_content_id": "sha256:6e04f958927749ebab7178225da34763e2f11190e3e592a4520c0482139804f5",
+      "length_delta_cm": 1.3642420526593924e-12,
+      "control_deviation": {
+        "centerline_coefficients": 0.00013538028378026165,
+        "normal_coefficients": 8.744142587825975e-08,
+        "binormal_coefficients": 8.753976604837806e-08,
+        "major_radius_coefficients": 0.0,
+        "minor_radius_coefficients": 0.0
+      }
+    },
+    {
+      "member": "coil_1006",
+      "canonical_member": "coil_1000",
+      "quarter_turns": 3,
+      "old_content_id": "sha256:2b6975a7107004de43c082073037682e4e9ccd334008c31b67e4f78e606cda34",
+      "new_content_id": "sha256:49245a5579bd3e9a541486e5916e4568dc77f6a55a689ecaa011667bc2a9dc28",
+      "length_delta_cm": 4.547473508864641e-13,
+      "control_deviation": {
+        "centerline_coefficients": 0.00020307042562629055,
+        "normal_coefficients": 1.3116210475378044e-07,
+        "binormal_coefficients": 1.3131073760870726e-07,
+        "major_radius_coefficients": 0.0,
+        "minor_radius_coefficients": 0.0
+      }
+    },
+    {
+      "member": "coil_1001",
+      "canonical_member": "coil_1001",
+      "quarter_turns": 0,
+      "old_content_id": "sha256:77e7e4aa9bc7704362336fd43baea057d6b3dd5865a6fc9ad878785324dfab1a",
+      "new_content_id": "sha256:c4d294839b83ab3e19ad47adb02993a5d297bb616cb1615791f46459e2db7f9a",
+      "length_delta_cm": 0.0,
+      "control_deviation": {
+        "centerline_coefficients": 0.0,
+        "normal_coefficients": 0.0,
+        "binormal_coefficients": 0.0,
+        "major_radius_coefficients": 0.0,
+        "minor_radius_coefficients": 0.0
+      }
+    },
+    {
+      "member": "coil_1007",
+      "canonical_member": "coil_1001",
+      "quarter_turns": 1,
+      "old_content_id": "sha256:363213c78dedf840dde9d93d8dd21e520c205c426c5abe16ccacb94d61f9e9ff",
+      "new_content_id": "sha256:ceb4a6d6450337a915c91eeede1c64ec9ed13be1e37ebd841a9dc32e343251dd",
+      "length_delta_cm": 4.547473508864641e-13,
+      "control_deviation": {
+        "centerline_coefficients": 0.00020307042562629055,
+        "normal_coefficients": 1.3116210475378044e-07,
+        "binormal_coefficients": 1.3131073760870726e-07,
+        "major_radius_coefficients": 0.0,
+        "minor_radius_coefficients": 0.0
+      }
+    },
+    {
+      "member": "coil_1005",
+      "canonical_member": "coil_1001",
+      "quarter_turns": 2,
+      "old_content_id": "sha256:79da111b7b432b4208fc6ba8ef191d8791c641254b90fed58095517922e7fb38",
+      "new_content_id": "sha256:7df479b043035b6bb5ad1977e9ab97c6e1253f85aa7e57f07fbbb43c0978f4b9",
+      "length_delta_cm": 1.3642420526593924e-12,
+      "control_deviation": {
+        "centerline_coefficients": 0.00013538028378026165,
+        "normal_coefficients": 8.744142587825975e-08,
+        "binormal_coefficients": 8.753976604837806e-08,
+        "major_radius_coefficients": 0.0,
+        "minor_radius_coefficients": 0.0
+      }
+    },
+    {
+      "member": "coil_1003",
+      "canonical_member": "coil_1001",
+      "quarter_turns": 3,
+      "old_content_id": "sha256:de5243f9bfd28381de6cf692e7b5749f6473e476383c70efa877381e2391de7c",
+      "new_content_id": "sha256:78fd5f06a57ad89d35291783b0afd9c6be89d0d727319a065bc9d3faacfc1a25",
+      "length_delta_cm": 2.2737367544323206e-12,
+      "control_deviation": {
+        "centerline_coefficients": 6.769014192788538e-05,
+        "normal_coefficients": 4.372071574697887e-08,
+        "binormal_coefficients": 4.377093853702634e-08,
+        "major_radius_coefficients": 0.0,
+        "minor_radius_coefficients": 0.0
+      }
+    },
+    {
+      "member": "coil_1008",
+      "canonical_member": "coil_1008",
+      "quarter_turns": 0,
+      "old_content_id": "sha256:bc2f4df4d7e6bc18d78a0e3e1d1ddacac89a180a4bcb52fb1e698d975e998651",
+      "new_content_id": "sha256:26d93f419a54d2643da77e23690ab0bb3de187b404c9912c2e8b1869608c3fa2",
+      "length_delta_cm": 0.0,
+      "control_deviation": {
+        "centerline_coefficients": 0.0,
+        "normal_coefficients": 0.0,
+        "binormal_coefficients": 0.0,
+        "major_radius_coefficients": 0.0,
+        "minor_radius_coefficients": 0.0
+      }
+    },
+    {
+      "member": "coil_1010",
+      "canonical_member": "coil_1008",
+      "quarter_turns": 1,
+      "old_content_id": "sha256:62a10c027c3231429a3bdc3bfd52a66d10e4e8cded7374f10bf874fdf255d106",
+      "new_content_id": "sha256:81742019306deb09e35b692b8f68b11133baed661f2c83c964dc5a065e6357f1",
+      "length_delta_cm": -9.094947017729282e-13,
+      "control_deviation": {
+        "centerline_coefficients": 5.983602142675337e-05,
+        "normal_coefficients": 4.3721416097585056e-08,
+        "binormal_coefficients": 4.379827527557738e-08,
+        "major_radius_coefficients": 0.0,
+        "minor_radius_coefficients": 0.0
+      }
+    },
+    {
+      "member": "coil_1012",
+      "canonical_member": "coil_1008",
+      "quarter_turns": 2,
+      "old_content_id": "sha256:00d717a37238313e852ff153b01f96e9dc4462300a072b4ba7b506aa43221dfa",
+      "new_content_id": "sha256:6106623ba53c8c2d113beb59d3c17caef194f6cb7f4086ad7a447c229c276505",
+      "length_delta_cm": 3.637978807091713e-12,
+      "control_deviation": {
+        "centerline_coefficients": 0.00011967204332621519,
+        "normal_coefficients": 8.744270130613658e-08,
+        "binormal_coefficients": 8.759643887843548e-08,
+        "major_radius_coefficients": 0.0,
+        "minor_radius_coefficients": 0.0
+      }
+    },
+    {
+      "member": "coil_1014",
+      "canonical_member": "coil_1008",
+      "quarter_turns": 3,
+      "old_content_id": "sha256:b90d3de97cd05c84af53fadc983766f5fdc68b2f2c08fdc0f94ad90d48ca05d4",
+      "new_content_id": "sha256:c6cbdf38ef5c5a9e1bada9a63c2123e0698702a79358a016db3734eec83893a8",
+      "length_delta_cm": 4.547473508864641e-13,
+      "control_deviation": {
+        "centerline_coefficients": 0.00017950806593861472,
+        "normal_coefficients": 1.3116410089527702e-07,
+        "binormal_coefficients": 1.3139472782777288e-07,
+        "major_radius_coefficients": 0.0,
+        "minor_radius_coefficients": 0.0
+      }
+    },
+    {
+      "member": "coil_1009",
+      "canonical_member": "coil_1009",
+      "quarter_turns": 0,
+      "old_content_id": "sha256:927711aa77144b79872e863e1f2b185d14b29b0c810c6afa48429b7eea577bce",
+      "new_content_id": "sha256:32c256099e80bf66b831af715560560bd68fbd4b81ce6fe4f224cc4f9362f105",
+      "length_delta_cm": 0.0,
+      "control_deviation": {
+        "centerline_coefficients": 0.0,
+        "normal_coefficients": 0.0,
+        "binormal_coefficients": 0.0,
+        "major_radius_coefficients": 0.0,
+        "minor_radius_coefficients": 0.0
+      }
+    },
+    {
+      "member": "coil_1015",
+      "canonical_member": "coil_1009",
+      "quarter_turns": 1,
+      "old_content_id": "sha256:9a4fe0dbb4ec673a25e12f39ae680bc01a7cb7389d457b2d74aa9ccb81ee639e",
+      "new_content_id": "sha256:614220857c901936ce19819a3e07cdb39012ac3b83267ac3469205ecd6b350b1",
+      "length_delta_cm": 4.547473508864641e-13,
+      "control_deviation": {
+        "centerline_coefficients": 0.00017950806593861472,
+        "normal_coefficients": 1.3116410089527702e-07,
+        "binormal_coefficients": 1.3139472782777288e-07,
+        "major_radius_coefficients": 0.0,
+        "minor_radius_coefficients": 0.0
+      }
+    },
+    {
+      "member": "coil_1013",
+      "canonical_member": "coil_1009",
+      "quarter_turns": 2,
+      "old_content_id": "sha256:2cad5129fd2576883a9ecfac3f3e08b46bdf7cd71b03d1e1f5396a5ff0e0c872",
+      "new_content_id": "sha256:538e04e549ba9c08bd93a0cf0d2ad32923fba3a447292d156b69128ee8f0dca4",
+      "length_delta_cm": 3.637978807091713e-12,
+      "control_deviation": {
+        "centerline_coefficients": 0.00011967204332621519,
+        "normal_coefficients": 8.744270130613658e-08,
+        "binormal_coefficients": 8.759643887843548e-08,
+        "major_radius_coefficients": 0.0,
+        "minor_radius_coefficients": 0.0
+      }
+    },
+    {
+      "member": "coil_1011",
+      "canonical_member": "coil_1009",
+      "quarter_turns": 3,
+      "old_content_id": "sha256:d3f2bb81d5a2c6159c877cd584468abae8950a168e897dacf8c2a6fe536d2855",
+      "new_content_id": "sha256:5e8b7ed06a5a94dd568549d77ceecf7fd28dd817f90874deabc991d1bb351c5f",
+      "length_delta_cm": -9.094947017729282e-13,
+      "control_deviation": {
+        "centerline_coefficients": 5.983602142675337e-05,
+        "normal_coefficients": 4.3721416097585056e-08,
+        "binormal_coefficients": 4.379827527557738e-08,
+        "major_radius_coefficients": 0.0,
+        "minor_radius_coefficients": 0.0
+      }
+    },
+    {
+      "member": "coil_1016",
+      "canonical_member": "coil_1016",
+      "quarter_turns": 0,
+      "old_content_id": "sha256:57e099a0a611de97f68ec64d67cdfeb205aa4e5da552ee388f58b16a84e16e2e",
+      "new_content_id": "sha256:5cb6c410c235a66f4951722fe8608bb95fe5bda1912178294ffe26eb3fd47b11",
+      "length_delta_cm": 0.0,
+      "control_deviation": {
+        "centerline_coefficients": 0.0,
+        "normal_coefficients": 0.0,
+        "binormal_coefficients": 0.0,
+        "major_radius_coefficients": 0.0,
+        "minor_radius_coefficients": 0.0
+      }
+    },
+    {
+      "member": "coil_1018",
+      "canonical_member": "coil_1016",
+      "quarter_turns": 1,
+      "old_content_id": "sha256:fb51cebe7fd6cd984be2865e86ee4304e80b8da15a79504a583e9ae5f2eb5de4",
+      "new_content_id": "sha256:3802d1e2bad93144ac6481d24e1e2e9ebb2b8bda34beeace42381dd61c6b8e8b",
+      "length_delta_cm": -1.8189894035458565e-12,
+      "control_deviation": {
+        "centerline_coefficients": 5.618705905493045e-05,
+        "normal_coefficients": 4.3880052954535844e-08,
+        "binormal_coefficients": 4.384389596835758e-08,
+        "major_radius_coefficients": 0.0,
+        "minor_radius_coefficients": 0.0
+      }
+    },
+    {
+      "member": "coil_1020",
+      "canonical_member": "coil_1016",
+      "quarter_turns": 2,
+      "old_content_id": "sha256:26504ac801e25765c351d127e345c1eacb5c229690acf214ecac12b958cf72fe",
+      "new_content_id": "sha256:c56cec7e26db463ab482559377025fce67540614f554a49485dc35c46e43ae9a",
+      "length_delta_cm": -1.8189894035458565e-12,
+      "control_deviation": {
+        "centerline_coefficients": 0.0001123741170832663,
+        "normal_coefficients": 8.775977106886488e-08,
+        "binormal_coefficients": 8.768782098702505e-08,
+        "major_radius_coefficients": 0.0,
+        "minor_radius_coefficients": 0.0
+      }
+    },
+    {
+      "member": "coil_1022",
+      "canonical_member": "coil_1016",
+      "quarter_turns": 3,
+      "old_content_id": "sha256:63f422bad0deffdc3a7a6eeee7e6f37f42d82ef5f24a81474966aa7587951c2d",
+      "new_content_id": "sha256:361f718fbfefe48bcb0a319a1c65801473920487cdbf8da402e05a9d3c9e74a8",
+      "length_delta_cm": -1.3642420526593924e-12,
+      "control_deviation": {
+        "centerline_coefficients": 0.00016856117570997753,
+        "normal_coefficients": 1.3163970396287438e-07,
+        "binormal_coefficients": 1.3153169870598648e-07,
+        "major_radius_coefficients": 0.0,
+        "minor_radius_coefficients": 0.0
+      }
+    },
+    {
+      "member": "coil_1017",
+      "canonical_member": "coil_1017",
+      "quarter_turns": 0,
+      "old_content_id": "sha256:460c53e147d2de6bf6d3e62bdb332b744c1e269bad97279b6ca275ee4d62cfb7",
+      "new_content_id": "sha256:93987fb8b75872b9377db6834cd7822aae95e8079416b2701847a6847be357bd",
+      "length_delta_cm": 0.0,
+      "control_deviation": {
+        "centerline_coefficients": 0.0,
+        "normal_coefficients": 0.0,
+        "binormal_coefficients": 0.0,
+        "major_radius_coefficients": 0.0,
+        "minor_radius_coefficients": 0.0
+      }
+    },
+    {
+      "member": "coil_1023",
+      "canonical_member": "coil_1017",
+      "quarter_turns": 1,
+      "old_content_id": "sha256:6160818752c45d7cc4274c10cf46f25c8dff78595ded9c24e4dcb5fa348a2abf",
+      "new_content_id": "sha256:0dead06bba88fa53de2870479d0bc61b9282a83447db482d04709ffef5483caa",
+      "length_delta_cm": -1.3642420526593924e-12,
+      "control_deviation": {
+        "centerline_coefficients": 0.00016856117570997753,
+        "normal_coefficients": 1.3163970396287438e-07,
+        "binormal_coefficients": 1.3153169870598648e-07,
+        "major_radius_coefficients": 0.0,
+        "minor_radius_coefficients": 0.0
+      }
+    },
+    {
+      "member": "coil_1021",
+      "canonical_member": "coil_1017",
+      "quarter_turns": 2,
+      "old_content_id": "sha256:5caaf63f6b5cca1279a83ef50ed7f9e73632a4b9f68f367933cffe747dda6ec3",
+      "new_content_id": "sha256:b1564b5d94f7f8b951b85e8f13aadaabdca80a313f892f9597fea474ae8f00cc",
+      "length_delta_cm": -1.8189894035458565e-12,
+      "control_deviation": {
+        "centerline_coefficients": 0.0001123741170832663,
+        "normal_coefficients": 8.775977106886488e-08,
+        "binormal_coefficients": 8.768782098702505e-08,
+        "major_radius_coefficients": 0.0,
+        "minor_radius_coefficients": 0.0
+      }
+    },
+    {
+      "member": "coil_1019",
+      "canonical_member": "coil_1017",
+      "quarter_turns": 3,
+      "old_content_id": "sha256:7021126c48eac4fd23f11374ecd6182d8e62db4df6b200975bdd4974ea25dc95",
+      "new_content_id": "sha256:ddf6a4f8474a08b1c7ca5adea4169afb9f9510a6b27ca81c4ad6fed2bce015d2",
+      "length_delta_cm": -1.8189894035458565e-12,
+      "control_deviation": {
+        "centerline_coefficients": 5.618705905493045e-05,
+        "normal_coefficients": 4.3880052954535844e-08,
+        "binormal_coefficients": 4.384389596835758e-08,
+        "major_radius_coefficients": 0.0,
+        "minor_radius_coefficients": 0.0
+      }
+    },
+    {
+      "member": "coil_1024",
+      "canonical_member": "coil_1024",
+      "quarter_turns": 0,
+      "old_content_id": "sha256:e719a80e68485a27fad49105e2c20dbf5fa108a4a04dc8fd4aaff5d16becdf76",
+      "new_content_id": "sha256:6daa020432ff6ffcd2b6938e5d3e83ea284b5fca8c3a3e1ca04d7f9b31026f79",
+      "length_delta_cm": 0.0,
+      "control_deviation": {
+        "centerline_coefficients": 0.0,
+        "normal_coefficients": 0.0,
+        "binormal_coefficients": 0.0,
+        "major_radius_coefficients": 0.0,
+        "minor_radius_coefficients": 0.0
+      }
+    },
+    {
+      "member": "coil_1026",
+      "canonical_member": "coil_1024",
+      "quarter_turns": 1,
+      "old_content_id": "sha256:6919d2382e4485da05963069ac9e13cb7af240c48a6cd0af8b140c51bff4292b",
+      "new_content_id": "sha256:ea866f23d9b28e0015647db43af2b793f489c8ed94e589e72c35e5f16abbdf6c",
+      "length_delta_cm": 0.0,
+      "control_deviation": {
+        "centerline_coefficients": 5.534421596239788e-05,
+        "normal_coefficients": 4.3963495750226885e-08,
+        "binormal_coefficients": 4.388055364284437e-08,
+        "major_radius_coefficients": 0.0,
+        "minor_radius_coefficients": 0.0
+      }
+    },
+    {
+      "member": "coil_1028",
+      "canonical_member": "coil_1024",
+      "quarter_turns": 2,
+      "old_content_id": "sha256:344fb763032434ed27fa528811eb227c9a966da86bee78f2ef26679757dbe7f2",
+      "new_content_id": "sha256:e1cdd142890f08d4dc9e7257b9520029abec5ea8a5d330a6732d4373554164f5",
+      "length_delta_cm": -4.547473508864641e-13,
+      "control_deviation": {
+        "centerline_coefficients": 0.00011068843204721073,
+        "normal_coefficients": 8.792687243035779e-08,
+        "binormal_coefficients": 8.77609022175431e-08,
+        "major_radius_coefficients": 0.0,
+        "minor_radius_coefficients": 0.0
+      }
+    },
+    {
+      "member": "coil_1030",
+      "canonical_member": "coil_1024",
+      "quarter_turns": 3,
+      "old_content_id": "sha256:0e9720447c1de63ffb54032c9cf2cb798cb16a3d1d29399f5405203675e770a7",
+      "new_content_id": "sha256:071e9e2f4c6e5ce0d42c43678df43ef19af92ced32926594d51c72392d0430f9",
+      "length_delta_cm": -9.094947017729282e-13,
+      "control_deviation": {
+        "centerline_coefficients": 0.00016603264781834932,
+        "normal_coefficients": 1.3189041204576623e-07,
+        "binormal_coefficients": 1.3164141968416645e-07,
+        "major_radius_coefficients": 0.0,
+        "minor_radius_coefficients": 0.0
+      }
+    },
+    {
+      "member": "coil_1025",
+      "canonical_member": "coil_1025",
+      "quarter_turns": 0,
+      "old_content_id": "sha256:6675b4f3915e373d5159484aead01d71cb3c779098684722e54663ba88c9d6d3",
+      "new_content_id": "sha256:f5d1e187729b4dae581fafcce5a55f6ae4f304727feede69c9d8af5849595288",
+      "length_delta_cm": 0.0,
+      "control_deviation": {
+        "centerline_coefficients": 0.0,
+        "normal_coefficients": 0.0,
+        "binormal_coefficients": 0.0,
+        "major_radius_coefficients": 0.0,
+        "minor_radius_coefficients": 0.0
+      }
+    },
+    {
+      "member": "coil_1031",
+      "canonical_member": "coil_1025",
+      "quarter_turns": 1,
+      "old_content_id": "sha256:67a19f8dccdce712c698a4606b06b137a3dc50f2d4437232879c580938eca0fe",
+      "new_content_id": "sha256:3309399e5eb82915051a139f677cbd779ec574cfa4f0aa907971519dddda6373",
+      "length_delta_cm": -9.094947017729282e-13,
+      "control_deviation": {
+        "centerline_coefficients": 0.00016603264781834932,
+        "normal_coefficients": 1.3189041204576623e-07,
+        "binormal_coefficients": 1.3164141968416645e-07,
+        "major_radius_coefficients": 0.0,
+        "minor_radius_coefficients": 0.0
+      }
+    },
+    {
+      "member": "coil_1029",
+      "canonical_member": "coil_1025",
+      "quarter_turns": 2,
+      "old_content_id": "sha256:39b07a092a89b24ff600f95de834a81cc7cd9573f020b9f68e6ea41e70b481f5",
+      "new_content_id": "sha256:c541f71e56b64b60327aaba1749de26cbfa3ad9740eba2ed1bb379e422be9d63",
+      "length_delta_cm": -4.547473508864641e-13,
+      "control_deviation": {
+        "centerline_coefficients": 0.00011068843204721073,
+        "normal_coefficients": 8.792687243035779e-08,
+        "binormal_coefficients": 8.77609022175431e-08,
+        "major_radius_coefficients": 0.0,
+        "minor_radius_coefficients": 0.0
+      }
+    },
+    {
+      "member": "coil_1027",
+      "canonical_member": "coil_1025",
+      "quarter_turns": 3,
+      "old_content_id": "sha256:7b9bc051341bb452fde1b4ff1d6a7bb93a1c2aa14cc1d5fb739eec2f6f6f39fe",
+      "new_content_id": "sha256:da34112df410eb7301f9530494275a143228c7739dbb58266be70db27e7c97aa",
+      "length_delta_cm": 0.0,
+      "control_deviation": {
+        "centerline_coefficients": 5.534421596239788e-05,
+        "normal_coefficients": 4.3963495750226885e-08,
+        "binormal_coefficients": 4.388055364284437e-08,
+        "major_radius_coefficients": 0.0,
+        "minor_radius_coefficients": 0.0
+      }
+    },
+    {
+      "member": "coil_1032",
+      "canonical_member": "coil_1032",
+      "quarter_turns": 0,
+      "old_content_id": "sha256:7e3c5eb5c2ac50eee5dad6e044b35d2931616e75a0291d25606c6432a173b88f",
+      "new_content_id": "sha256:27c9113011178912f6f7bf4c39d605216548d42af14f5c20dce5e88f9b602bd8",
+      "length_delta_cm": 0.0,
+      "control_deviation": {
+        "centerline_coefficients": 0.0,
+        "normal_coefficients": 0.0,
+        "binormal_coefficients": 0.0,
+        "major_radius_coefficients": 0.0,
+        "minor_radius_coefficients": 0.0
+      }
+    },
+    {
+      "member": "coil_1034",
+      "canonical_member": "coil_1032",
+      "quarter_turns": 1,
+      "old_content_id": "sha256:782bee3be9912b23c760edec0a84d3b8c46f656ccfdba67592ee4c62a2b7540b",
+      "new_content_id": "sha256:687944017762d6b26998b1e580b044f6341bf7e67b6041a4761adfdbc9275c1b",
+      "length_delta_cm": -3.183231456205249e-12,
+      "control_deviation": {
+        "centerline_coefficients": 5.6773256473009395e-05,
+        "normal_coefficients": 4.372675657588749e-08,
+        "binormal_coefficients": 4.39049516158493e-08,
+        "major_radius_coefficients": 0.0,
+        "minor_radius_coefficients": 0.0
+      }
+    },
+    {
+      "member": "coil_1036",
+      "canonical_member": "coil_1032",
+      "quarter_turns": 2,
+      "old_content_id": "sha256:ae4b7c90fa4c3970c329fc7a78479123303d9a32dc5108a1f082218c38bd2c90",
+      "new_content_id": "sha256:b337f0421f276c3ee684e13149818d3f397ab965606a2f3d9f8988f25efe5e77",
+      "length_delta_cm": -9.094947017729282e-13,
+      "control_deviation": {
+        "centerline_coefficients": 0.00011354651327849254,
+        "normal_coefficients": 8.745351840155365e-08,
+        "binormal_coefficients": 8.780985221569209e-08,
+        "major_radius_coefficients": 0.0,
+        "minor_radius_coefficients": 0.0
+      }
+    },
+    {
+      "member": "coil_1038",
+      "canonical_member": "coil_1032",
+      "quarter_turns": 3,
+      "old_content_id": "sha256:0baef42242765508533d3ae0a1f31bfec7cd6abed1e4f1bf485941e68f7207af",
+      "new_content_id": "sha256:26976f276b6a853f77560b95442174305a4da21f102f4174f385d6a01a3918fe",
+      "length_delta_cm": -1.8189894035458565e-12,
+      "control_deviation": {
+        "centerline_coefficients": 0.00017031976939259528,
+        "normal_coefficients": 1.3118030755482086e-07,
+        "binormal_coefficients": 1.317148166315323e-07,
+        "major_radius_coefficients": 0.0,
+        "minor_radius_coefficients": 0.0
+      }
+    },
+    {
+      "member": "coil_1033",
+      "canonical_member": "coil_1033",
+      "quarter_turns": 0,
+      "old_content_id": "sha256:ba27193a2da76e519fd4fb483a528988697b754e4e3a29afebc1cb0f40ba4d38",
+      "new_content_id": "sha256:46013a6d97a6c6a427b56850828c76853af922ead12c3fcc35914a4781939926",
+      "length_delta_cm": 0.0,
+      "control_deviation": {
+        "centerline_coefficients": 0.0,
+        "normal_coefficients": 0.0,
+        "binormal_coefficients": 0.0,
+        "major_radius_coefficients": 0.0,
+        "minor_radius_coefficients": 0.0
+      }
+    },
+    {
+      "member": "coil_1039",
+      "canonical_member": "coil_1033",
+      "quarter_turns": 1,
+      "old_content_id": "sha256:fb41dfce4714ec6f566902e97242591706d48bbf9049a7f8bfa9bfa14fb9b2ee",
+      "new_content_id": "sha256:b2c137eb920d7a5878b55b26c40a60cece2c182c2bd86bc0fd2d18b138660ec5",
+      "length_delta_cm": -1.8189894035458565e-12,
+      "control_deviation": {
+        "centerline_coefficients": 0.00017031976939259528,
+        "normal_coefficients": 1.3118030755482086e-07,
+        "binormal_coefficients": 1.317148166315323e-07,
+        "major_radius_coefficients": 0.0,
+        "minor_radius_coefficients": 0.0
+      }
+    },
+    {
+      "member": "coil_1037",
+      "canonical_member": "coil_1033",
+      "quarter_turns": 2,
+      "old_content_id": "sha256:0f890b9c66845582be8db31499a55f48162ef26d1f2b642d72ee9c7fdfa7fdfd",
+      "new_content_id": "sha256:099e25f33eb52334bda870cbbded536455132e43d14b99a1542c5179c81c9c57",
+      "length_delta_cm": -9.094947017729282e-13,
+      "control_deviation": {
+        "centerline_coefficients": 0.00011354651327849254,
+        "normal_coefficients": 8.745351840155365e-08,
+        "binormal_coefficients": 8.780985221569209e-08,
+        "major_radius_coefficients": 0.0,
+        "minor_radius_coefficients": 0.0
+      }
+    },
+    {
+      "member": "coil_1035",
+      "canonical_member": "coil_1033",
+      "quarter_turns": 3,
+      "old_content_id": "sha256:ac1d8dceb9e3362bf9aacf83243bf9b3e14584663bb9af786e5907a3273355f2",
+      "new_content_id": "sha256:47d5c8148629a157321d8b40b3f8ec8cadad86010cb96d04e11d9de4bb2a7686",
+      "length_delta_cm": -3.183231456205249e-12,
+      "control_deviation": {
+        "centerline_coefficients": 5.6773256473009395e-05,
+        "normal_coefficients": 4.372675657588749e-08,
+        "binormal_coefficients": 4.39049516158493e-08,
+        "major_radius_coefficients": 0.0,
+        "minor_radius_coefficients": 0.0
+      }
+    },
+    {
+      "member": "coil_1040",
+      "canonical_member": "coil_1040",
+      "quarter_turns": 0,
+      "old_content_id": "sha256:7e36f331570b87c24b2f5c652e7583f7beb7e96b03dedab1ca78af606d55d1d6",
+      "new_content_id": "sha256:9a9b083ad7e6433d7ee24464cdbd7a173af68d79bf7201a8f03d54ed54ab5f72",
+      "length_delta_cm": 0.0,
+      "control_deviation": {
+        "centerline_coefficients": 0.0,
+        "normal_coefficients": 0.0,
+        "binormal_coefficients": 0.0,
+        "major_radius_coefficients": 0.0,
+        "minor_radius_coefficients": 0.0
+      }
+    },
+    {
+      "member": "coil_1042",
+      "canonical_member": "coil_1040",
+      "quarter_turns": 1,
+      "old_content_id": "sha256:a4e3f52af0964ad98a51346344407834f6b9fde204634849ebbcfce3b1320926",
+      "new_content_id": "sha256:4076105fc800278c2ed441f4717a76bb40e09f2bfd65e6938027a3fe4a074b5c",
+      "length_delta_cm": -4.547473508864641e-13,
+      "control_deviation": {
+        "centerline_coefficients": 6.470017026564746e-05,
+        "normal_coefficients": 4.3738478180979585e-08,
+        "binormal_coefficients": 4.393072033646711e-08,
+        "major_radius_coefficients": 0.0,
+        "minor_radius_coefficients": 0.0
+      }
+    },
+    {
+      "member": "coil_1044",
+      "canonical_member": "coil_1040",
+      "quarter_turns": 2,
+      "old_content_id": "sha256:294cc6538c8714cc2098f37e09c2a8627b710e4e96f6151faaf7d176a8055717",
+      "new_content_id": "sha256:ad69a0ead0940f1e08f8717d5d92703c6882583de78a93c7e3a14af37428e104",
+      "length_delta_cm": 9.094947017729282e-13,
+      "control_deviation": {
+        "centerline_coefficients": 0.00012940033997766692,
+        "normal_coefficients": 8.747685057873808e-08,
+        "binormal_coefficients": 8.786159828647112e-08,
+        "major_radius_coefficients": 0.0,
+        "minor_radius_coefficients": 0.0
+      }
+    },
+    {
+      "member": "coil_1046",
+      "canonical_member": "coil_1040",
+      "quarter_turns": 3,
+      "old_content_id": "sha256:f1cb8470a5c148e1b2314901493b249edd095f83dc93a13b38dae9bcf06a93e4",
+      "new_content_id": "sha256:2b4c417c41d247a59c82bb4b08325ef58036c4fa39f939451376ea8d428566f8",
+      "length_delta_cm": -1.3642420526593924e-12,
+      "control_deviation": {
+        "centerline_coefficients": 0.00019410051007354363,
+        "normal_coefficients": 1.3121524024461536e-07,
+        "binormal_coefficients": 1.3179208980519833e-07,
+        "major_radius_coefficients": 0.0,
+        "minor_radius_coefficients": 0.0
+      }
+    },
+    {
+      "member": "coil_1041",
+      "canonical_member": "coil_1041",
+      "quarter_turns": 0,
+      "old_content_id": "sha256:9c3ae6aa179c74f75d8ea7ccbb52f3d1fadf40854814c49cc0d14ff499734bb9",
+      "new_content_id": "sha256:5348d6bf2420dfe93e3209e13e6561b4c0735ecdbde9eed0e639c074d2537986",
+      "length_delta_cm": 0.0,
+      "control_deviation": {
+        "centerline_coefficients": 0.0,
+        "normal_coefficients": 0.0,
+        "binormal_coefficients": 0.0,
+        "major_radius_coefficients": 0.0,
+        "minor_radius_coefficients": 0.0
+      }
+    },
+    {
+      "member": "coil_1047",
+      "canonical_member": "coil_1041",
+      "quarter_turns": 1,
+      "old_content_id": "sha256:38a566cc1151a9ee2af686948b4f7a2daf3291f890c4bfdb169df5acd7d57660",
+      "new_content_id": "sha256:d224e91c122f6d64df5121768e937144e68acb7041d4025f1598edf7738c2c99",
+      "length_delta_cm": -1.3642420526593924e-12,
+      "control_deviation": {
+        "centerline_coefficients": 0.00019410051007354363,
+        "normal_coefficients": 1.3121524024461536e-07,
+        "binormal_coefficients": 1.3179208980519833e-07,
+        "major_radius_coefficients": 0.0,
+        "minor_radius_coefficients": 0.0
+      }
+    },
+    {
+      "member": "coil_1045",
+      "canonical_member": "coil_1041",
+      "quarter_turns": 2,
+      "old_content_id": "sha256:fc6d111ec57f2417d439a886f615919299e0487dfa7c7591802193665b4ecfab",
+      "new_content_id": "sha256:f0bebca15429ce0c66d757fcb5eb1099bf31cead3536dcd1fe0b1d42ed4a4dba",
+      "length_delta_cm": 9.094947017729282e-13,
+      "control_deviation": {
+        "centerline_coefficients": 0.00012940033997766692,
+        "normal_coefficients": 8.747685057873808e-08,
+        "binormal_coefficients": 8.786159828647112e-08,
+        "major_radius_coefficients": 0.0,
+        "minor_radius_coefficients": 0.0
+      }
+    },
+    {
+      "member": "coil_1043",
+      "canonical_member": "coil_1041",
+      "quarter_turns": 3,
+      "old_content_id": "sha256:fb051b1cbdad188a33ad9816fa0eaada6128921a761b36b6d28dd8661f5fddb0",
+      "new_content_id": "sha256:41071d86cb8695db0f81ef6a27dd6afd40715b9b29dbe5669ae45b25995f337c",
+      "length_delta_cm": -4.547473508864641e-13,
+      "control_deviation": {
+        "centerline_coefficients": 6.470017026564746e-05,
+        "normal_coefficients": 4.3738478180979585e-08,
+        "binormal_coefficients": 4.393072033646711e-08,
+        "major_radius_coefficients": 0.0,
+        "minor_radius_coefficients": 0.0
+      }
+    }
+  ],
+  "claim_boundary": "All 48 written coefficient members are exact sign/swap 90-degree images of 12 canonical members, with radii copied and canonical content IDs recomputed. This is a changed diagnostic payload. Control deviations do not bound the full evaluated surface, establish physical winding-pack fidelity, wall clearance, seam ownership or particle transport."
+}

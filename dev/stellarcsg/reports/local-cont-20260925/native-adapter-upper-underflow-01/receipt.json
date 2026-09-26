@@ -1,0 +1,69 @@
+{
+  "schema": "stellarcsg.native-adapter-smoke/v4",
+  "state": "BLOCKED_SINGLE_AND_COLLECTION_UNRESOLVED",
+  "command": [
+    "/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-local-continuation-20260925/build/native-local-20260925/native_adapter_prefix_probe",
+    "/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-local-continuation-20260925/dev/stellarcsg/qualified/analytic_swept_coils.h5"
+  ],
+  "exit_code": 1,
+  "loader_binding": "libopenmc.so => /mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-local-continuation-20260925/build/native-local-20260925/lib/libopenmc.so (0x0000763dd9398000)",
+  "affinity": [
+    0
+  ],
+  "hashes": {
+    "/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-local-continuation-20260925/build/native-local-20260925/native_adapter_prefix_probe": "ea3a31b69e3cd0613b35a9438dad74ca58c92757eb65e4adc31a267ec246ca80",
+    "/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-local-continuation-20260925/build/native-local-20260925/lib/libopenmc.so": "51acdf0e99ae549dfe6f8017f370c7bbbd83316b473049addf6874a4ff8f400b",
+    "/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-local-continuation-20260925/dev/stellarcsg/qualified/analytic_swept_coils.h5": "39f77da5ab1fe427cce58b153e9b52cf8915e9973a9b8f3dfad5ab3b00a9e46d",
+    "/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-local-continuation-20260925/dev/stellarcsg/qualification/native_adapter_smoke.cpp": "c0caa1a0fd877935f91f3b5d698c6d48abafe02e7c1f0ae496070eeaf003db7b",
+    "/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-local-continuation-20260925/dev/stellarcsg/qualification/run_native_adapter_smoke.py": "0869a6ee45819a6292eac0eb700416e175d127df0fb568a5b8017610b558d3be"
+  },
+  "single_expected_cm": 25.0,
+  "single_tolerance_cm": 1e-06,
+  "single_distance_cm": null,
+  "single_pass": false,
+  "single_unresolved": true,
+  "solver_probes": [
+    {
+      "kind": "native_stellarcsg_solver_probe",
+      "member": 2,
+      "found": true,
+      "terminal_unresolved": true,
+      "unresolved_intervals": 6,
+      "lead_distance_cm": 15.99999999999757,
+      "reference_found": true,
+      "reference_distance_cm": 16.000000000618876,
+      "lead_implicit_residual": 3.4150460237469815e-13,
+      "reference_implicit_residual": 8.841527510128344e-11
+    },
+    {
+      "kind": "native_stellarcsg_solver_probe",
+      "member": 3,
+      "found": true,
+      "terminal_unresolved": true,
+      "unresolved_intervals": 6,
+      "lead_distance_cm": 16.99999999999946,
+      "reference_found": true,
+      "reference_distance_cm": 17.00000000003113,
+      "lead_implicit_residual": 1.325606291402437e-13,
+      "reference_implicit_residual": 5.153655280309977e-12
+    }
+  ],
+  "solver_probe_complete": true,
+  "default_implicit_residual_acceptance_limit": 1e-08,
+  "member_probes": [
+    {
+      "kind": "native_stellarcsg_member_probe",
+      "member": 2,
+      "state": "ERROR"
+    },
+    {
+      "kind": "native_stellarcsg_member_probe",
+      "member": 3,
+      "state": "ERROR"
+    }
+  ],
+  "probe_complete": true,
+  "collection_blocked": true,
+  "native_transport_run": false,
+  "claim_boundary": "The circular and shaped members registered through native OpenMC, but their member queries and the collection reject uncertified nearest-boundary results. Shaped diagnostic leads are reported separately; no distance is admitted and no transport ran."
+}

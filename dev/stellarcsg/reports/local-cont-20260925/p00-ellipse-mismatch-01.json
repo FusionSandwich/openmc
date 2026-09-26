@@ -1,0 +1,485 @@
+{
+  "claim_boundary": "Exact rational comparison proves the named stored-binary64 P00 mesh probe coordinates are farther than 10 cm from every padded real B-spline centerline span for the named diagnostic ellipse. The inside labels come from finite parity checks of the local facet catalog tied by hash to accepted P00 H5M. This is a decisive sampled geometry mismatch, not a continuous CAD tolerance bound, a machine enclosure of the compiled floating evaluator, or a transport result. A negative/inconclusive box result does not establish agreement.",
+  "classification": "FINITE_P00_MESH_INSIDE_PROBES_OUTSIDE_REAL_ELLIPSE",
+  "coil_count_with_three_proved_mismatches": 14,
+  "coil_members_with_three_proved_mismatches": [
+    "coil_1009",
+    "coil_1046",
+    "coil_1001",
+    "coil_1000",
+    "coil_1008",
+    "coil_1039",
+    "coil_1031",
+    "coil_1024",
+    "coil_1032",
+    "coil_1015",
+    "coil_1007",
+    "coil_1002",
+    "coil_1045",
+    "coil_1010"
+  ],
+  "exact_rational_box_pad_cm": "1/1000000",
+  "input_sha256": {
+    "cardinal_cubic_basis_source": "499bccef7bb3fc4168a034e4e0ed8597633cb640390e1bc7598b031f5dfcab08",
+    "ellipse_candidate_h5": "5239876917349e057ad261cfeb6dcec4f25f8c10376ee173c2960aed161967ab",
+    "ellipse_manifest": "9b60ff7f924ee2e766a0e832857754c55bed313f72685942d520cc4cd2729686",
+    "facet_side_bank": "37918fd9c88c3b28a60366ab67a4e3599fbefacb446e1afaee4d515105a679e4"
+  },
+  "maximum_ellipse_radius_cm": 10.0,
+  "mesh_inside_probe_count": 54,
+  "probes_proved_beyond_ellipse": 42,
+  "real_spline_property": "Each periodic cubic span lies in the convex hull of its four stored binary64 controls, interpreted as exact real values.",
+  "rows": [
+    {
+      "all_three_probes_beyond_ellipse": true,
+      "dagmc_volume_id": 8,
+      "inside_probes": [
+        {
+          "box_gap_squared_excess_cm2_approx": 42.01154079821926,
+          "exact_minimum_box_gap_squared_gt_radius_squared": true,
+          "minimum_box_gap_cm_approx": 11.916859519110698,
+          "offset_cm": 0.05
+        },
+        {
+          "box_gap_squared_excess_cm2_approx": 40.878371491111984,
+          "exact_minimum_box_gap_squared_gt_radius_squared": true,
+          "minimum_box_gap_cm_approx": 11.869219497975086,
+          "offset_cm": 0.1
+        },
+        {
+          "box_gap_squared_excess_cm2_approx": 38.6267164228434,
+          "exact_minimum_box_gap_squared_gt_radius_squared": true,
+          "minimum_box_gap_cm_approx": 11.773984730024216,
+          "offset_cm": 0.2
+        }
+      ],
+      "source_member": "coil_1009"
+    },
+    {
+      "all_three_probes_beyond_ellipse": true,
+      "dagmc_volume_id": 9,
+      "inside_probes": [
+        {
+          "box_gap_squared_excess_cm2_approx": 48.981344629839334,
+          "exact_minimum_box_gap_squared_gt_radius_squared": true,
+          "minimum_box_gap_cm_approx": 12.205791438077226,
+          "offset_cm": 0.05
+        },
+        {
+          "box_gap_squared_excess_cm2_approx": 47.83959337110282,
+          "exact_minimum_box_gap_squared_gt_radius_squared": true,
+          "minimum_box_gap_cm_approx": 12.158930601459277,
+          "offset_cm": 0.1
+        },
+        {
+          "box_gap_squared_excess_cm2_approx": 45.571090853628384,
+          "exact_minimum_box_gap_squared_gt_radius_squared": true,
+          "minimum_box_gap_cm_approx": 12.06528453264275,
+          "offset_cm": 0.2
+        }
+      ],
+      "source_member": "coil_1046"
+    },
+    {
+      "all_three_probes_beyond_ellipse": true,
+      "dagmc_volume_id": 10,
+      "inside_probes": [
+        {
+          "box_gap_squared_excess_cm2_approx": 91.7936800062645,
+          "exact_minimum_box_gap_squared_gt_radius_squared": true,
+          "minimum_box_gap_cm_approx": 13.848959527930772,
+          "offset_cm": 0.05
+        },
+        {
+          "box_gap_squared_excess_cm2_approx": 90.67005766038201,
+          "exact_minimum_box_gap_squared_gt_radius_squared": true,
+          "minimum_box_gap_cm_approx": 13.808332906632213,
+          "offset_cm": 0.1
+        },
+        {
+          "box_gap_squared_excess_cm2_approx": 88.43781296861793,
+          "exact_minimum_box_gap_squared_gt_radius_squared": true,
+          "minimum_box_gap_cm_approx": 13.727265312822432,
+          "offset_cm": 0.2
+        }
+      ],
+      "source_member": "coil_1001"
+    },
+    {
+      "all_three_probes_beyond_ellipse": true,
+      "dagmc_volume_id": 11,
+      "inside_probes": [
+        {
+          "box_gap_squared_excess_cm2_approx": 38.366390140914255,
+          "exact_minimum_box_gap_squared_gt_radius_squared": true,
+          "minimum_box_gap_cm_approx": 11.762924387282027,
+          "offset_cm": 0.05
+        },
+        {
+          "box_gap_squared_excess_cm2_approx": 37.28468098417766,
+          "exact_minimum_box_gap_squared_gt_radius_squared": true,
+          "minimum_box_gap_cm_approx": 11.716854568704763,
+          "offset_cm": 0.1
+        },
+        {
+          "box_gap_squared_excess_cm2_approx": 35.135745022203395,
+          "exact_minimum_box_gap_squared_gt_radius_squared": true,
+          "minimum_box_gap_cm_approx": 11.624790106587017,
+          "offset_cm": 0.2
+        }
+      ],
+      "source_member": "coil_1000"
+    },
+    {
+      "all_three_probes_beyond_ellipse": false,
+      "dagmc_volume_id": 12,
+      "inside_probes": [
+        {
+          "box_gap_squared_excess_cm2_approx": -7.608196945962289,
+          "exact_minimum_box_gap_squared_gt_radius_squared": false,
+          "minimum_box_gap_cm_approx": 9.612065493640673,
+          "offset_cm": 0.05
+        },
+        {
+          "box_gap_squared_excess_cm2_approx": -8.549478667523626,
+          "exact_minimum_box_gap_squared_gt_radius_squared": false,
+          "minimum_box_gap_cm_approx": 9.562976593742995,
+          "offset_cm": 0.1
+        },
+        {
+          "box_gap_squared_excess_cm2_approx": -10.417360409868568,
+          "exact_minimum_box_gap_squared_gt_radius_squared": false,
+          "minimum_box_gap_cm_approx": 9.464810594519651,
+          "offset_cm": 0.2
+        }
+      ],
+      "source_member": "coil_1047"
+    },
+    {
+      "all_three_probes_beyond_ellipse": true,
+      "dagmc_volume_id": 13,
+      "inside_probes": [
+        {
+          "box_gap_squared_excess_cm2_approx": 21.262299089822125,
+          "exact_minimum_box_gap_squared_gt_radius_squared": true,
+          "minimum_box_gap_cm_approx": 11.011916231511304,
+          "offset_cm": 0.05
+        },
+        {
+          "box_gap_squared_excess_cm2_approx": 20.33604619599659,
+          "exact_minimum_box_gap_squared_gt_radius_squared": true,
+          "minimum_box_gap_cm_approx": 10.969778766957727,
+          "offset_cm": 0.1
+        },
+        {
+          "box_gap_squared_excess_cm2_approx": 18.497942835898055,
+          "exact_minimum_box_gap_squared_gt_radius_squared": true,
+          "minimum_box_gap_cm_approx": 10.885676039451939,
+          "offset_cm": 0.2
+        }
+      ],
+      "source_member": "coil_1008"
+    },
+    {
+      "all_three_probes_beyond_ellipse": true,
+      "dagmc_volume_id": 14,
+      "inside_probes": [
+        {
+          "box_gap_squared_excess_cm2_approx": 190.9673005136571,
+          "exact_minimum_box_gap_squared_gt_radius_squared": true,
+          "minimum_box_gap_cm_approx": 17.05776364338705,
+          "offset_cm": 0.05
+        },
+        {
+          "box_gap_squared_excess_cm2_approx": 189.92676858975224,
+          "exact_minimum_box_gap_squared_gt_radius_squared": true,
+          "minimum_box_gap_cm_approx": 17.027236081929217,
+          "offset_cm": 0.1
+        },
+        {
+          "box_gap_squared_excess_cm2_approx": 187.86070474193738,
+          "exact_minimum_box_gap_squared_gt_radius_squared": true,
+          "minimum_box_gap_cm_approx": 16.966458226216144,
+          "offset_cm": 0.2
+        }
+      ],
+      "source_member": "coil_1039"
+    },
+    {
+      "all_three_probes_beyond_ellipse": false,
+      "dagmc_volume_id": 15,
+      "inside_probes": [
+        {
+          "box_gap_squared_excess_cm2_approx": -29.193065068110823,
+          "exact_minimum_box_gap_squared_gt_radius_squared": false,
+          "minimum_box_gap_cm_approx": 8.414685670415098,
+          "offset_cm": 0.05
+        },
+        {
+          "box_gap_squared_excess_cm2_approx": -29.57173882054526,
+          "exact_minimum_box_gap_squared_gt_radius_squared": false,
+          "minimum_box_gap_cm_approx": 8.39215473996129,
+          "offset_cm": 0.1
+        },
+        {
+          "box_gap_squared_excess_cm2_approx": -30.320503058141018,
+          "exact_minimum_box_gap_squared_gt_radius_squared": false,
+          "minimum_box_gap_cm_approx": 8.347424569402168,
+          "offset_cm": 0.2
+        }
+      ],
+      "source_member": "coil_1016"
+    },
+    {
+      "all_three_probes_beyond_ellipse": true,
+      "dagmc_volume_id": 16,
+      "inside_probes": [
+        {
+          "box_gap_squared_excess_cm2_approx": 229.07233832167205,
+          "exact_minimum_box_gap_squared_gt_radius_squared": true,
+          "minimum_box_gap_cm_approx": 18.14035110800428,
+          "offset_cm": 0.05
+        },
+        {
+          "box_gap_squared_excess_cm2_approx": 228.0209298690108,
+          "exact_minimum_box_gap_squared_gt_radius_squared": true,
+          "minimum_box_gap_cm_approx": 18.111348096401073,
+          "offset_cm": 0.1
+        },
+        {
+          "box_gap_squared_excess_cm2_approx": 225.92557897964585,
+          "exact_minimum_box_gap_squared_gt_radius_squared": true,
+          "minimum_box_gap_cm_approx": 18.05340906808589,
+          "offset_cm": 0.2
+        }
+      ],
+      "source_member": "coil_1031"
+    },
+    {
+      "all_three_probes_beyond_ellipse": true,
+      "dagmc_volume_id": 17,
+      "inside_probes": [
+        {
+          "box_gap_squared_excess_cm2_approx": 229.0669702475485,
+          "exact_minimum_box_gap_squared_gt_radius_squared": true,
+          "minimum_box_gap_cm_approx": 18.140203147912885,
+          "offset_cm": 0.05
+        },
+        {
+          "box_gap_squared_excess_cm2_approx": 228.01557272479823,
+          "exact_minimum_box_gap_squared_gt_radius_squared": true,
+          "minimum_box_gap_cm_approx": 18.111200201113075,
+          "offset_cm": 0.1
+        },
+        {
+          "box_gap_squared_excess_cm2_approx": 225.92024369523784,
+          "exact_minimum_box_gap_squared_gt_radius_squared": true,
+          "minimum_box_gap_cm_approx": 18.053261303577198,
+          "offset_cm": 0.2
+        }
+      ],
+      "source_member": "coil_1024"
+    },
+    {
+      "all_three_probes_beyond_ellipse": false,
+      "dagmc_volume_id": 18,
+      "inside_probes": [
+        {
+          "box_gap_squared_excess_cm2_approx": -29.193864561293292,
+          "exact_minimum_box_gap_squared_gt_radius_squared": false,
+          "minimum_box_gap_cm_approx": 8.414638164455242,
+          "offset_cm": 0.05
+        },
+        {
+          "box_gap_squared_excess_cm2_approx": -29.572540549759726,
+          "exact_minimum_box_gap_squared_gt_radius_squared": false,
+          "minimum_box_gap_cm_approx": 8.392106973236237,
+          "offset_cm": 0.1
+        },
+        {
+          "box_gap_squared_excess_cm2_approx": -30.321309258728455,
+          "exact_minimum_box_gap_squared_gt_radius_squared": false,
+          "minimum_box_gap_cm_approx": 8.347376278883775,
+          "offset_cm": 0.2
+        }
+      ],
+      "source_member": "coil_1023"
+    },
+    {
+      "all_three_probes_beyond_ellipse": true,
+      "dagmc_volume_id": 19,
+      "inside_probes": [
+        {
+          "box_gap_squared_excess_cm2_approx": 190.9621959820661,
+          "exact_minimum_box_gap_squared_gt_radius_squared": true,
+          "minimum_box_gap_cm_approx": 17.05761401785332,
+          "offset_cm": 0.05
+        },
+        {
+          "box_gap_squared_excess_cm2_approx": 189.9216745171695,
+          "exact_minimum_box_gap_squared_gt_radius_squared": true,
+          "minimum_box_gap_cm_approx": 17.027086495263056,
+          "offset_cm": 0.1
+        },
+        {
+          "box_gap_squared_excess_cm2_approx": 187.85563158737259,
+          "exact_minimum_box_gap_squared_gt_radius_squared": true,
+          "minimum_box_gap_cm_approx": 16.966308720148074,
+          "offset_cm": 0.2
+        }
+      ],
+      "source_member": "coil_1032"
+    },
+    {
+      "all_three_probes_beyond_ellipse": true,
+      "dagmc_volume_id": 20,
+      "inside_probes": [
+        {
+          "box_gap_squared_excess_cm2_approx": 21.2652037164822,
+          "exact_minimum_box_gap_squared_gt_radius_squared": true,
+          "minimum_box_gap_cm_approx": 11.012048116335226,
+          "offset_cm": 0.05
+        },
+        {
+          "box_gap_squared_excess_cm2_approx": 20.33896492980186,
+          "exact_minimum_box_gap_squared_gt_radius_squared": true,
+          "minimum_box_gap_cm_approx": 10.969911801368408,
+          "offset_cm": 0.1
+        },
+        {
+          "box_gap_squared_excess_cm2_approx": 18.50088977359606,
+          "exact_minimum_box_gap_squared_gt_radius_squared": true,
+          "minimum_box_gap_cm_approx": 10.88581139711671,
+          "offset_cm": 0.2
+        }
+      ],
+      "source_member": "coil_1015"
+    },
+    {
+      "all_three_probes_beyond_ellipse": false,
+      "dagmc_volume_id": 21,
+      "inside_probes": [
+        {
+          "box_gap_squared_excess_cm2_approx": -7.608275076924465,
+          "exact_minimum_box_gap_squared_gt_radius_squared": false,
+          "minimum_box_gap_cm_approx": 9.61206142942686,
+          "offset_cm": 0.05
+        },
+        {
+          "box_gap_squared_excess_cm2_approx": -8.549555640743497,
+          "exact_minimum_box_gap_squared_gt_radius_squared": false,
+          "minimum_box_gap_cm_approx": 9.562972569199209,
+          "offset_cm": 0.1
+        },
+        {
+          "box_gap_squared_excess_cm2_approx": -10.417435066012683,
+          "exact_minimum_box_gap_squared_gt_radius_squared": false,
+          "minimum_box_gap_cm_approx": 9.464806650639373,
+          "offset_cm": 0.2
+        }
+      ],
+      "source_member": "coil_1040"
+    },
+    {
+      "all_three_probes_beyond_ellipse": true,
+      "dagmc_volume_id": 22,
+      "inside_probes": [
+        {
+          "box_gap_squared_excess_cm2_approx": 38.37032485308212,
+          "exact_minimum_box_gap_squared_gt_radius_squared": true,
+          "minimum_box_gap_cm_approx": 11.763091636686426,
+          "offset_cm": 0.05
+        },
+        {
+          "box_gap_squared_excess_cm2_approx": 37.288599516679454,
+          "exact_minimum_box_gap_squared_gt_radius_squared": true,
+          "minimum_box_gap_cm_approx": 11.717021785278009,
+          "offset_cm": 0.1
+        },
+        {
+          "box_gap_squared_excess_cm2_approx": 35.139631194049,
+          "exact_minimum_box_gap_squared_gt_radius_squared": true,
+          "minimum_box_gap_cm_approx": 11.624957255579437,
+          "offset_cm": 0.2
+        }
+      ],
+      "source_member": "coil_1007"
+    },
+    {
+      "all_three_probes_beyond_ellipse": true,
+      "dagmc_volume_id": 23,
+      "inside_probes": [
+        {
+          "box_gap_squared_excess_cm2_approx": 91.7951286256339,
+          "exact_minimum_box_gap_squared_gt_radius_squared": true,
+          "minimum_box_gap_cm_approx": 13.849011828489203,
+          "offset_cm": 0.05
+        },
+        {
+          "box_gap_squared_excess_cm2_approx": 90.67150275089472,
+          "exact_minimum_box_gap_squared_gt_radius_squared": true,
+          "minimum_box_gap_cm_approx": 13.808385233288313,
+          "offset_cm": 0.1
+        },
+        {
+          "box_gap_squared_excess_cm2_approx": 88.43925100141423,
+          "exact_minimum_box_gap_squared_gt_radius_squared": true,
+          "minimum_box_gap_cm_approx": 13.727317691428805,
+          "offset_cm": 0.2
+        }
+      ],
+      "source_member": "coil_1002"
+    },
+    {
+      "all_three_probes_beyond_ellipse": true,
+      "dagmc_volume_id": 24,
+      "inside_probes": [
+        {
+          "box_gap_squared_excess_cm2_approx": 48.982134120863385,
+          "exact_minimum_box_gap_squared_gt_radius_squared": true,
+          "minimum_box_gap_cm_approx": 12.205823778871435,
+          "offset_cm": 0.05
+        },
+        {
+          "box_gap_squared_excess_cm2_approx": 47.84038089744782,
+          "exact_minimum_box_gap_squared_gt_radius_squared": true,
+          "minimum_box_gap_cm_approx": 12.15896298610403,
+          "offset_cm": 0.1
+        },
+        {
+          "box_gap_squared_excess_cm2_approx": 45.57187445061366,
+          "exact_minimum_box_gap_squared_gt_radius_squared": true,
+          "minimum_box_gap_cm_approx": 12.065317005806921,
+          "offset_cm": 0.2
+        }
+      ],
+      "source_member": "coil_1045"
+    },
+    {
+      "all_three_probes_beyond_ellipse": true,
+      "dagmc_volume_id": 25,
+      "inside_probes": [
+        {
+          "box_gap_squared_excess_cm2_approx": 42.01122655932626,
+          "exact_minimum_box_gap_squared_gt_radius_squared": true,
+          "minimum_box_gap_cm_approx": 11.916846334468119,
+          "offset_cm": 0.05
+        },
+        {
+          "box_gap_squared_excess_cm2_approx": 40.87805813907985,
+          "exact_minimum_box_gap_squared_gt_radius_squared": true,
+          "minimum_box_gap_cm_approx": 11.869206297772394,
+          "offset_cm": 0.1
+        },
+        {
+          "box_gap_squared_excess_cm2_approx": 38.626404845795555,
+          "exact_minimum_box_gap_squared_gt_radius_squared": true,
+          "minimum_box_gap_cm_approx": 11.773971498428029,
+          "offset_cm": 0.2
+        }
+      ],
+      "source_member": "coil_1010"
+    }
+  ],
+  "schema": "stellarcsg.p00-ellipse-mismatch/v1"
+}

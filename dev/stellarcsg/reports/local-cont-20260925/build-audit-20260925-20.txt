@@ -1,0 +1,7 @@
+2026-09-25 local build preflight (exact circular-coefficient fast-path gate)
+Windows RAM: 33,457,440 KiB total; 3,348,268 KiB free.
+Free disk: C: 84,510,560,256 B; D: 504,479,338,496 B. Build target is C:.
+Largest resident processes: vmmemWSL 1,923,825,664 B; ChatGPT 1,272,627,200 B; chrome 934,916,096 B; codex 868,868,096 B; another ChatGPT 696,819,712 B; another chrome 666,288,128 B.
+Existing WSL OpenMC-Dev-D: GCC 14.2.0, CMake 3.31.6, Ninja 1.12.1, HDF5 1.14.5, Python 3.13.5 in /opt/openmc-venv (606 MiB); pip cache 152 MiB. Existing local source checkout, configured standalone build (7.2 MiB), native build (16 MiB), and native libopenmc.so are present. Other local StellarCSG/OpenMC source checkouts and benchmark arena were observed in the same parent directory.
+Existing capabilities suffice. Planned download/install/acquisition: 0 B. One-job incremental standalone compiled-surface test and, if it passes, native libopenmc.so builds target only the two existing directories on C:, allowing under 200 MiB of regenerated objects/libraries after the swept compiler edit. No dependency environment changes or remote execution.
+Rollback: revert the swept compiler/test edit and rebuild the same existing targets from the prior commit; retain audit and regression evidence. No package/cache removal is needed.

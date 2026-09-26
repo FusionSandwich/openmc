@@ -1,0 +1,8 @@
+2026-09-25 compiled analytic seam-span inspection preflight
+Windows RAM: 33,457,440 KiB total; 2,876,780 KiB free at refreshed observation. The first free-memory property query was blank; FreePhysicalMemory was queried before build.
+Free disk: C: 84,264,235,008 B; D: 503,387,713,536 B. Target executable is on C: in dev/stellarcsg/build.
+Largest resident processes: vmmemWSL 1,699,393,536 B; ChatGPT 1,454,551,040 B; chrome 986,824,704 B; chrome 887,652,352 B; codex 872,337,408 B; ChatGPT 801,275,904 B; chrome 661,536,768 B; chrome 629,706,752 B.
+Existing executables: WSL OpenMC-Dev-D GCC 14.2.0, h5c++ using installed HDF5, Python 3.13.5, CMake 3.31.6, Ninja 1.12.1. Prior current-worktree audit 45 recorded Windows Python 3.12.10 and Git 2.55.0. No WSL Conda or ccache executable found.
+Existing environments/caches/builds: /opt/openmc-venv 606 MiB, /root/.cache/pip 152 MiB, local standalone build 7.9 MiB with libstellarcsg_reference.a, native OpenMC build 16 MiB with libopenmc.so. Local StellarCSG source exists at HEAD a30098eae; the workspace also contains local OpenMC/StellarCSG, WISTELL-D, Parastell and earlier recovery/acceptance checkouts. No new checkout is needed.
+Existing capabilities suffice. Planned software download/install/upgrade/acquisition: 0 B. One local GCC/HDF5 compiler job will link a read-only span-dump helper against the existing static library, with expected binary under 10 MiB on C:. It reads only the analytic HDF5 and prints four seam spans; no native transport, dependency environment or remote system changes.
+Rollback: preserve source and hash-bound report; remove only dev/stellarcsg/build/dump_compiled_seam_spans by exact path if needed. No acquired software to roll back.

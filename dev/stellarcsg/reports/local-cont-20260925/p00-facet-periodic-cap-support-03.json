@@ -1,0 +1,71 @@
+{
+  "schema": "stellarcsg.facet-periodic-cap-support/v1",
+  "state": "PERIODIC_CAP_OUTLINES_DIFFER",
+  "payload_classification": "ACCEPTED_P00_TRIANGLES_PRESERVED_IN_HDF5",
+  "bitwise_rotated_cap_triangle_match": false,
+  "rotation_map": "x=0 cap (y,z) maps to y=0 cap (x,z)",
+  "boundary_edge_count": {
+    "x_zero": 80,
+    "y_zero": 80
+  },
+  "directed_sampled_gap": {
+    "x_to_y": {
+      "sample_count": 5200,
+      "maximum_cm": 0.001473309267878806,
+      "p99_cm": 0.000907005842361553,
+      "mean_cm": 0.00011310014305324045,
+      "above_1e-8_cm": 5200
+    },
+    "y_to_x": {
+      "sample_count": 5200,
+      "maximum_cm": 0.0010060072929096251,
+      "p99_cm": 0.0008973919379460919,
+      "mean_cm": 0.00011361110933774561,
+      "above_1e-8_cm": 5200
+    }
+  },
+  "near_outline_coverage": {
+    "x_to_y": {
+      "1e-05": {
+        "source_inside": 80,
+        "target_outside": 33
+      },
+      "0.0001": {
+        "source_inside": 80,
+        "target_outside": 10
+      },
+      "0.0005": {
+        "source_inside": 80,
+        "target_outside": 2
+      },
+      "0.001": {
+        "source_inside": 80,
+        "target_outside": 0
+      }
+    },
+    "y_to_x": {
+      "1e-05": {
+        "source_inside": 80,
+        "target_outside": 42
+      },
+      "0.0001": {
+        "source_inside": 80,
+        "target_outside": 15
+      },
+      "0.0005": {
+        "source_inside": 80,
+        "target_outside": 2
+      },
+      "0.001": {
+        "source_inside": 80,
+        "target_outside": 0
+      }
+    }
+  },
+  "hashes": {
+    "payload": "126fdbec0a5795036ad75c7409f760652e47722d02f28fada89ddaf2fa71d9df",
+    "payload_receipt": "acb484e5942dcd380c6fbbd741ab68df3f282c41cc6d7bf1170941abbb24b8ba",
+    "auditor": "55b75575433a2341d1480241cc82d22058502663f358acacec0bead79fcc6c0f"
+  },
+  "claim_boundary": "Triangle equality compares unordered projected cap vertex triples bitwise after rotation. Distances sample 65 points per boundary edge; inward offsets test coverage near each edge midpoint. An exact triangle match applies only to this faceted representation and does not establish continuous-CAD equivalence or transport correctness."
+}

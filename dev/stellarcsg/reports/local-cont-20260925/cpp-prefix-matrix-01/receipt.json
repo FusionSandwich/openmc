@@ -1,0 +1,117 @@
+{
+  "schema": "stellarcsg.cpp-prefix-interval-probe/v4",
+  "state": "EXPERIMENTAL_GAP_SLACK_MATRIX_NOT_ROOT_CERTIFIED",
+  "command": [
+    "/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-local-continuation-20260925/build/native-local-20260925/swept_prefix_matrix",
+    "/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-local-continuation-20260925/dev/stellarcsg/qualified/analytic_swept_coils.h5"
+  ],
+  "exit_code": 0,
+  "loader_binding": "libopenmc.so => /mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-local-continuation-20260925/build/native-local-20260925/lib/libopenmc.so (0x00007dfdc6eae000)",
+  "affinity": [
+    0
+  ],
+  "hashes": {
+    "/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-local-continuation-20260925/build/native-local-20260925/swept_prefix_matrix": "040839888fb705735854346d0bb14c5accf5ea7103d7d300b9813fe4ac630505",
+    "/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-local-continuation-20260925/build/native-local-20260925/lib/libopenmc.so": "31578a499d905e0c1c12fd71270e39a7cf905cc3d5d12cb73c412cdf5707f65a",
+    "/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-local-continuation-20260925/dev/stellarcsg/qualified/analytic_swept_coils.h5": "39f77da5ab1fe427cce58b153e9b52cf8915e9973a9b8f3dfad5ab3b00a9e46d",
+    "/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-local-continuation-20260925/dev/stellarcsg/experiments/swept_prefix_interval.cpp": "3192879769add861d032d6a37136553311701b911951593ef841d115d5da7652"
+  },
+  "compile_contract": "GCC 14.2 -O2 -fno-fast-math -ffp-contract=off",
+  "unit_circle_slack_sweep": [
+    1e-10,
+    1e-08,
+    1e-06
+  ],
+  "gap_slack_matrix": {
+    "gaps_cm": [
+      1e-11,
+      1e-08,
+      1e-05
+    ],
+    "slacks": [
+      1e-12,
+      1e-08,
+      1e-06
+    ]
+  },
+  "underflow_control": [
+    {
+      "kind": "underflow_control",
+      "state": "undecided_frame"
+    }
+  ],
+  "span_counts_match": true,
+  "summaries": [
+    {
+      "kind": "member_summary",
+      "member": 2,
+      "lead_cm": 16,
+      "selected": 256,
+      "prefix_excluded": 256,
+      "rectangle_excluded": 256,
+      "slack_excluded": [
+        256,
+        256,
+        256
+      ],
+      "gap_slack_excluded": [
+        [
+          256,
+          256,
+          256
+        ],
+        [
+          256,
+          256,
+          256
+        ],
+        [
+          256,
+          256,
+          256
+        ]
+      ],
+      "zero_gap_undecided": 1,
+      "negative_control_undecided": 1,
+      "nodes": 326,
+      "terminal_unresolved": true
+    },
+    {
+      "kind": "member_summary",
+      "member": 3,
+      "lead_cm": 17.000000000000227,
+      "selected": 384,
+      "prefix_excluded": 384,
+      "rectangle_excluded": 382,
+      "slack_excluded": [
+        382,
+        382,
+        382
+      ],
+      "gap_slack_excluded": [
+        [
+          384,
+          382,
+          382
+        ],
+        [
+          384,
+          382,
+          382
+        ],
+        [
+          384,
+          384,
+          384
+        ]
+      ],
+      "zero_gap_undecided": 2,
+      "negative_control_undecided": 2,
+      "nodes": 492,
+      "terminal_unresolved": true
+    }
+  ],
+  "production_solver_modified": false,
+  "native_transport_run": false,
+  "claim_boundary": "The gap-slack matrix is a sensitivity test, not a proved libm error bound. Stored compiled powers are tested, but no complete floating-path audit or finite root-tile uniqueness proof exists; no tracking admission."
+}

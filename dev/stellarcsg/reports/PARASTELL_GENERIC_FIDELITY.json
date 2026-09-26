@@ -1,0 +1,13 @@
+{
+  "schema_version": 1,
+  "case": "parastell_generic_lcfs",
+  "classification": "REJECT_THETA_FOLD",
+  "source": {
+    "path": "dev/stellarcsg/test_data/parastell_generic/wout_vmec.nc",
+    "sha256": "1cebb8d46e60d77df4a6904662a9c9f943137a9fb59f7290e5309af15fa04797",
+    "n_field_periods": 4
+  },
+  "compiler_error": "surface slice 0 has a geometric-theta fold",
+  "coefficient_payload": null,
+  "plots": []
+}

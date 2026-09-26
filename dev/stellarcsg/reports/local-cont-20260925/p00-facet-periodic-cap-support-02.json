@@ -1,0 +1,69 @@
+{
+  "schema": "stellarcsg.facet-periodic-cap-support/v1",
+  "state": "PERIODIC_CAP_OUTLINES_DIFFER",
+  "rotation_map": "x=0 cap (y,z) maps to y=0 cap (x,z)",
+  "boundary_edge_count": {
+    "x_zero": 80,
+    "y_zero": 80
+  },
+  "directed_sampled_gap": {
+    "x_to_y": {
+      "sample_count": 5200,
+      "maximum_cm": 0.001473309267878806,
+      "p99_cm": 0.000907005842361553,
+      "mean_cm": 0.00011310014305324045,
+      "above_1e-8_cm": 5200
+    },
+    "y_to_x": {
+      "sample_count": 5200,
+      "maximum_cm": 0.0010060072929096251,
+      "p99_cm": 0.0008973919379460919,
+      "mean_cm": 0.00011361110933774561,
+      "above_1e-8_cm": 5200
+    }
+  },
+  "near_outline_coverage": {
+    "x_to_y": {
+      "1e-05": {
+        "source_inside": 80,
+        "target_outside": 33
+      },
+      "0.0001": {
+        "source_inside": 80,
+        "target_outside": 10
+      },
+      "0.0005": {
+        "source_inside": 80,
+        "target_outside": 2
+      },
+      "0.001": {
+        "source_inside": 80,
+        "target_outside": 0
+      }
+    },
+    "y_to_x": {
+      "1e-05": {
+        "source_inside": 80,
+        "target_outside": 42
+      },
+      "0.0001": {
+        "source_inside": 80,
+        "target_outside": 15
+      },
+      "0.0005": {
+        "source_inside": 80,
+        "target_outside": 2
+      },
+      "0.001": {
+        "source_inside": 80,
+        "target_outside": 0
+      }
+    }
+  },
+  "hashes": {
+    "payload": "126fdbec0a5795036ad75c7409f760652e47722d02f28fada89ddaf2fa71d9df",
+    "payload_receipt": "acb484e5942dcd380c6fbbd741ab68df3f282c41cc6d7bf1170941abbb24b8ba",
+    "auditor": "fa2715fb3b515f420ac2915af5a8245cc5f86aafee964932d856ee5d318adf16"
+  },
+  "claim_boundary": "Distances are from 65 evenly spaced points per planar cap boundary edge to the opposite cap polyline after rotation. Inward offsets from each boundary-edge midpoint test whether points inside one cap are outside the paired cap. This demonstrates unequal accepted-mesh support at sampled points, but does not provide an exact continuous-CAD error bound or the area of the symmetric difference."
+}

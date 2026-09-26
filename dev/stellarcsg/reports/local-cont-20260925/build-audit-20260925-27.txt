@@ -1,0 +1,7 @@
+2026-09-25 local build preflight (earlier unresolved root-candidate scan)
+Windows RAM: 33,457,440 KiB total; 3,488,384 KiB free.
+Free disk: C: 82,418,675,712 B; D: 504,249,987,072 B. Build target is C:.
+Largest resident processes: vmmemWSL 1,902,854,144 B; ChatGPT 1,294,168,064 B; chrome 945,197,056 B; codex 862,941,184 B; another ChatGPT 705,941,504 B; another chrome 694,435,840 B; another chrome 670,748,672 B; OneDrive 632,967,168 B.
+Existing WSL OpenMC-Dev-D: GCC 14.2.0, CMake 3.31.6, Ninja 1.12.1, HDF5 1.14.5, Python 3.13.5 in /opt/openmc-venv (606 MiB); pip cache 152 MiB. Existing local source checkout, standalone build (7.3 MiB), native build (16 MiB), libopenmc.so (3,880,488 B), compiled-surface test binary (366,664 B), and 31 local StellarCSG workspace directories are present.
+Existing capabilities suffice. Planned download/install/acquisition: 0 B. One-job rebuild of the existing standalone test and library targets needs less than 30 MiB incremental output on C:. If the focused regression passes, one-job native library and bank-harness rebuilds may use another 30 MiB on C: and a bounded one-CPU replay may write under 2 MiB. No new dependency environment, external software, or remote system is required.
+Rollback: revert the two source/test edits from this continuation and rebuild the same local targets; retain the prior hash-bound receipts. No cache or package removal is needed.

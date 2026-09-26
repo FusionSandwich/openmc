@@ -1,0 +1,10 @@
+{
+  "bank_sha256": "37918fd9c88c3b28a60366ab67a4e3599fbefacb446e1afaee4d515105a679e4",
+  "catalog_sha256": "e1bb8ca2bbda5d7a41e02303f5507aa964e822469eb503e4c8ad84ccc6a1bfb9",
+  "claim_boundary": "Hash-bound accepted mesh catalog and inside/outside probe input for the standalone triangle kernel; not a CAD or continuous swept-surface certification.",
+  "facet_count": 3348,
+  "fixture_sha256": "e3bb70b70012f7899fadb3d8b736123b96e5e472afa3bc645d303013ef715b05",
+  "h5m_sha256": "549c42bf66b290f8f56b6f4d7523940c3b32b9d256d993ea42605f4dddb33e39",
+  "probe_count": 108,
+  "schema": "stellarcsg.p00-facet-fixture/v1"
+}

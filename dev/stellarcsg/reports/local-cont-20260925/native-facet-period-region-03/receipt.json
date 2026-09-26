@@ -1,0 +1,41 @@
+{
+  "schema": "stellarcsg.native-facet-period-region/v1",
+  "state": "NATIVE_FACET_PERIOD_CONTROLS_PASS",
+  "native_region": {
+    "exit_code": 0,
+    "stdout": "{\"state\":\"NATIVE_FACET_PERIOD_REGION_INITIALIZED\",\"surfaces\":6,\"cells\":2,\"rotational_periodic_pair\":[901,902],\"facet_surface_id\":903,\"transport_run\":false}\n",
+    "stderr": "",
+    "loader_binding": "libopenmc.so => /mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-local-continuation-20260925/build/native-local-20260925/lib/libopenmc.so (0x00007d41e1fee000)"
+  },
+  "periodic_plane_controls": {
+    "exit_code": 0,
+    "stdout": "{\"state\":\"NATIVE_PERIOD_PARTICLE_CROSSINGS_PASS\",\"crossings\":2,\"cell_id\":1002,\"transport_histories\":0}\n",
+    "stderr": "",
+    "loader_binding": "libopenmc.so => /mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-local-continuation-20260925/build/native-local-20260925/lib/libopenmc.so (0x0000764b43d41000)"
+  },
+  "coil_cap_handoffs": {
+    "exit_code": 0,
+    "stdout": "{\"cap_count\":[80,80],\"facet_first\":[0,0],\"periodic_plane_first\":[80,80],\"coil_handoff\":[80,80],\"further_facet_hit\":[0,0],\"histories\":0}\n",
+    "stderr": "",
+    "loader_binding": "libopenmc.so => /mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-local-continuation-20260925/build/native-local-20260925/lib/libopenmc.so (0x0000775ffa7a3000)"
+  },
+  "plane_cap_triangles": {
+    "x_zero": 80,
+    "y_zero": 80
+  },
+  "affinity": [
+    0
+  ],
+  "hashes": {
+    "auditor": "f4ddab62d962c7b839c2acd5e7819d3fdce3b81578de22afc1581716fa2d3c10",
+    "region_helper": "56cf5069673a0c82bd87d9e4ae4d9af00053b5c44372c30a981921855e2b1d0e",
+    "particle_helper": "30406380d18800030d22c6b19fd85239ebe365a51a6254a0868c4de71ca2e7cb",
+    "seam_helper": "72ec95f25c3381ce9279fe3bdb9715b19e51e7f6c7a821ff942a864cd139bf54",
+    "libopenmc": "e409db464b3460be8adb98756a182a72beb56eafee6551940250d2a264ad3c88",
+    "geometry_xml": "18069a80f547ec44ca0105a59ae487dedfcdd27abc3775f8223d0265c525991f",
+    "python_region_receipt": "30a3986167cc8c49632c7d5e991bbfdaff254dd7bc7acc852d0645f44e8ed00a",
+    "selector_receipt": "0fd14adc4855146d5291269b951bd2623387dfe68b045221148d4cdba8154b54",
+    "payload": "126fdbec0a5795036ad75c7409f760652e47722d02f28fada89ddaf2fa71d9df"
+  },
+  "claim_boundary": "The accepted facet union initializes natively in a 90-degree sector. Two complement particles cross the periodic planes at radius 2300 cm; 160 cap-interior coil particles select a periodic plane first and map back into the coil cell. This qualifies those deterministic cap points, not all seam edges, non-cap coil crossings, histories, materials, source clearance, continuous CAD fidelity or transport performance."
+}

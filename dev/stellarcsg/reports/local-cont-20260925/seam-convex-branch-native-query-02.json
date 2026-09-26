@@ -1,0 +1,100 @@
+{
+  "schema": "stellarcsg.seam-convex-branch-model/v2",
+  "state": "BINARY80_CONVEX_BRANCH_AND_BRACKET_STABLE",
+  "source_sha256": "1d8f6f8fd1f52b1529cda8035c49331b7e8ef3fa36de8ed3ed6de078272cb0a0",
+  "stationary_sha256": "72b1d18fd9d301180f4cd588d3b835027eaaabb10bb51899fc2d6f3173b50374",
+  "compiled_all_spans_sha256": "64b038d56be85866e3dd364134061059885e04e64c01b042cc782d1f773edf3a",
+  "compiled_all_spans_receipt_sha256": "bdb38215d597ecfdc583fda7a3af887b210f20e4c25a6f10cfbee866e286677f",
+  "compiler_macros_sha256": "ecee3fe9eb458e65453f1baedca5034487238419a03f7020bd238fb14d8febde",
+  "cmake_cache_sha256": "5032033ca110fa295b2135ca7946882ad02ea77241fde56b8a01f1dd5a8464b8",
+  "production_source_sha256": "7621703c5ec038acca75747fb03f9c0d973cc74eea356723e8c9ddb5c41f9149",
+  "current_standalone_library_sha256": "2df52fefeedb3841734fb264b6a8b8bea5e32402b2a14b45473f93cf855b5a26",
+  "cxx_release_flags": "-O3 -DNDEBUG",
+  "results": [
+    {
+      "member": 2,
+      "span": 255,
+      "distance_strip_cm": [
+        15.99998999999757,
+        16.000000999999962
+      ],
+      "rounded_query_x_cm": [
+        533.999999,
+        534.0000100000025
+      ],
+      "bernstein_lower": [
+        141.82607635971522,
+        141.86438132885675,
+        141.8903692044372,
+        141.90403833019167,
+        141.90545340055002
+      ],
+      "bernstein_upper": [
+        141.8260805796276,
+        141.86438554988095,
+        141.89037342657326,
+        141.90404255343955,
+        141.90545762490976
+      ],
+      "minimum_bernstein_lower": 141.82607635971522,
+      "source_margin_upper_assuming_binary80": 9.856926108509223e-16,
+      "sum_absolute_terms_upper": 284.6893041745001,
+      "conservative_64eps_term_budget": 1.9754288772440293e-15,
+      "binary80_branch_budget": 6.321372407180894e-14,
+      "stationary_at_zero": [
+        -141.87806794688285,
+        -141.8780637247468
+      ],
+      "stationary_at_one": [
+        3.37700432731759e-12,
+        3.3770069847480192e-12
+      ],
+      "real_convex_margin_exceeds_source_margin": true,
+      "real_bracketed_root": true,
+      "binary80_convex_branch_and_bracket_stable": true
+    },
+    {
+      "member": 3,
+      "span": 383,
+      "distance_strip_cm": [
+        16.99998999999946,
+        17.000001000000257
+      ],
+      "rounded_query_x_cm": [
+        532.9999989999998,
+        533.0000100000005
+      ],
+      "bernstein_lower": [
+        69.01020002819337,
+        69.02146106749625,
+        69.02879273001626,
+        69.03219738181997,
+        69.03169029333178
+      ],
+      "bernstein_upper": [
+        69.01020241135723,
+        69.02146345112494,
+        69.02879511410978,
+        69.03219976637833,
+        69.03169267835496
+      ],
+      "minimum_bernstein_lower": 69.01020002819337,
+      "source_margin_upper_assuming_binary80": 4.793307778454918e-16,
+      "sum_absolute_terms_upper": 148.65664984480614,
+      "conservative_64eps_term_budget": 1.0315127213833967e-15,
+      "binary80_branch_budget": 3.3008407084268696e-14,
+      "stationary_at_zero": [
+        -69.024870684264,
+        -69.02486830017048
+      ],
+      "stationary_at_one": [
+        1.0485710887754574e-12,
+        1.0485720266919341e-12
+      ],
+      "real_convex_margin_exceeds_source_margin": true,
+      "real_bracketed_root": true,
+      "binary80_convex_branch_and_bracket_stable": true
+    }
+  ],
+  "claim_boundary": "For every binary64 ray x formed by rounding 550-t over either seam strip, the exact stored-power stationary polynomial has convex Bernstein controls and opposing endpoint signs. Under GCC/x86-64 binary80 round-to-nearest ordinary operations and the recorded source expression order, conservative 2048-epsilon and 64-epsilon term-sum budgets keep the compiled convexity decision and endpoint bracket unchanged. This does not certify Newton iteration, BVH selection, rounded frame/implicit continuity, or a native hit."
+}

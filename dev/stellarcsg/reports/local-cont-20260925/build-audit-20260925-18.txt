@@ -1,0 +1,8 @@
+2026-09-25 local build preflight (native 18-member selector probe)
+Windows RAM: 33,457,440 KiB total; 3,391,380 KiB free.
+Free disk: C: 85,930,078,208 B; D: 504,635,559,936 B. Build target is C:.
+Largest resident processes: vmmemWSL 1,859,964,928 B; ChatGPT 1,279,385,600 B; chrome 927,227,904 B; codex 868,921,344 B; another ChatGPT 688,238,592 B; another chrome 682,311,680 B.
+Existing WSL OpenMC-Dev-D: GCC 14.2.0, CMake 3.31.6, Ninja 1.12.1, HDF5 1.14.5, Python 3.13.5 in /opt/openmc-venv (606 MiB); pip cache 152 MiB. The existing native build directory is 16 MiB and contains libopenmc.so; the local source checkout and qualified WISTELL-D coefficient HDF5 are present.
+Existing toolchain, headers, Python modules, caches, source and linked native OpenMC library suffice. Planned download/install/acquisition: 0 B. Compile one new native_period_selector executable with one GCC job under 20 MiB in build/native-local-20260925 on C:, then run it on one CPU into a new no-overwrite receipt directory under 5 MiB.
+Rollback: remove only the new executable and receipt directory after retaining the test evidence; no package/cache or dependency environment changes. No remote execution.
+Before recompiling the same helper to include native statepoint base fields: free RAM 3,502,636 KiB; C: 85,368,233,984 B; D: 504,616,685,568 B. Largest processes: vmmemWSL 2,011,549,696 B; ChatGPT 1,224,622,080 B; chrome 926,470,144 B; codex 869,392,384 B. The existing toolchain, environment, cache and source remain as above; added acquisition 0 B, same target and rollback.

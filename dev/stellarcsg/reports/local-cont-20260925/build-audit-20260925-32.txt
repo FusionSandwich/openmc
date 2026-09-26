@@ -1,0 +1,7 @@
+2026-09-25 local nearest-centerline counterexample preflight
+Windows RAM: 33,457,440 KiB total; 4,105,432 KiB free at observation.
+Free disk: C: 82,686,726,144 B; D: 503,957,082,112 B. Target is C:.
+Largest resident processes: vmmemWSL 1,980,710,912 B; ChatGPT 1,282,887,680 B; chrome 941,170,688 B; codex 876,908,544 B; ChatGPT 718,274,560 B; chrome 686,632,960 B; chrome 657,674,240 B; OneDrive 636,026,880 B.
+Existing WSL OpenMC-Dev-D: GCC 14.2.0, CMake 3.31.6, Ninja 1.12.1, Python 3.13.5, NumPy 2.5.1 and h5py 3.16.0 in /opt/openmc-venv (606 MiB). Existing pip cache is 152 MiB. The current local source worktree and 7.5 MiB standalone build with libstellarcsg_reference.a are present. The worktree uses a .git file, not a .git directory.
+Existing local tools and library suffice. Planned software download/install/upgrade/acquisition: 0 B. Planned one-job C++ diagnostic compile against the existing static library writes under 2 MiB to build/local-cont-20260925 on C:. No dependency environment or remote system changes.
+Rollback: preserve the source and prior build. The named new helper executable may be removed after target-path review; no package or cache rollback is needed.

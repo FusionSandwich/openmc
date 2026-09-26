@@ -1,0 +1,34 @@
+{
+  "schema": "stellarcsg.local-old-native-sentinel/v1",
+  "started_utc": "2026-09-25T05:52:20.206893+00:00",
+  "affinity": [
+    0
+  ],
+  "source_commit": "c67b68fdaf7be2049308db7da449f14a25123847",
+  "inputs": {
+    "/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-local-continuation-20260925/build/local-cont-20260925/stellarcsg_file_swept_benchmark": "7d62710c4777e2ba2b6de1cedbdb7c0d7af734250e5ba0fded9ba10c988d731b",
+    "/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-local-continuation-20260925/dev/stellarcsg/qualified/wistell_d_swept_coils.h5": "caeed2e41da2082b93d32758e40932d9ac268966998dc2664e8164cb8cb7a89b",
+    "/mnt/d/codex-verification/stellarcsg-20260913-03/native-torus-query-control-02": "9ec5ecf208507fd0a39e87e79a3cc36cbed236ed9c2ea63361e1b5554d34486d",
+    "/mnt/d/codex-verification/stellarcsg-20260913-03/native/lib/libopenmc.so": "451b21536d4178a81c4ec5c9a44f6e04eac194c58c87a639d643441ff2717d48"
+  },
+  "geometry_comparable": false,
+  "bank_comparable": false,
+  "interpretation": "Same-session absolute-cost sentinel ratio only. The old coil uses 1000 unique distance directions and one untimed oracle ray; native ZTorus repeats 64 rays 10000 times without an application result cache. Neither classification nor normal has a native matching control here. No candidate or transport is measured.",
+  "attempts": [
+    {
+      "command": [
+        "/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-local-continuation-20260925/build/local-cont-20260925/stellarcsg_file_swept_benchmark",
+        "/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-local-continuation-20260925/dev/stellarcsg/qualified/wistell_d_swept_coils.h5",
+        "/coils/coil_nonexistent",
+        "1"
+      ],
+      "exit_code": 1,
+      "stdout": "",
+      "stderr": "HDF5-DIAG: Error detected in HDF5 (1.14.5) thread 1:\n  #000: ../../../src/H5G.c line 437 in H5Gopen2(): unable to synchronously open group\n    major: Symbol table\n    minor: Unable to create file\n  #001: ../../../src/H5G.c line 399 in H5G__open_api_common(): unable to open group\n    major: Symbol table\n    minor: Can't open object\n  #002: ../../../src/H5VLcallback.c line 4354 in H5VL_group_open(): group open failed\n    major: Virtual Object Layer\n    minor: Can't open object\n  #003: ../../../src/H5VLcallback.c line 4321 in H5VL__group_open(): group open failed\n    major: Virtual Object Layer\n    minor: Can't open object\n  #004: ../../../src/H5VLnative_group.c line 153 in H5VL__native_group_open(): unable to open group\n    major: Symbol table\n    minor: Can't open object\n  #005: ../../../src/H5Gint.c line 380 in H5G__open_name(): group not found\n    major: Symbol table\n    minor: Object not found\n  #006: ../../../src/H5Gloc.c line 424 in H5G_loc_find(): can't find object\n    major: Symbol table\n    minor: Object not found\n  #007: ../../../src/H5Gtraverse.c line 824 in H5G_traverse(): internal path traversal failed\n    major: Symbol table\n    minor: Object not found\n  #008: ../../../src/H5Gtraverse.c line 596 in H5G__traverse_real(): traversal operator failed\n    major: Symbol table\n    minor: Callback failed\n  #009: ../../../src/H5Gloc.c line 381 in H5G__loc_find_cb(): object 'coil_nonexistent' doesn't exist\n    major: Symbol table\n    minor: Object not found\nUnable to open swept-spline group /coils/coil_nonexistent\n",
+      "result": null,
+      "lane": "old_coil",
+      "repetition": 0
+    }
+  ],
+  "state": "FAIL"
+}

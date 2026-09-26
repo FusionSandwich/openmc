@@ -1,0 +1,92 @@
+{
+  "schema": "stellarcsg.chat-synthesis/v1",
+  "review_date": "2026-09-26",
+  "evidence_cutoff_utc": "2026-09-26T21:44:03Z",
+  "repository": "FusionSandwich/openmc",
+  "checkpoint": "63359cb83d36b419a7e9ba60c45f867073703c21",
+  "offset_published_head": "0098a5e9577a23c48bb2b00d7f4f2f5ea6437817",
+  "bvh_proposal": "11f8941057ab1500c6e1fd69f59dce39fde8b510",
+  "scope": {
+    "repository_conversations_dispatched": 13,
+    "older_work": 6,
+    "older_ordinary_pro": 4,
+    "newer_ordinary_pro": 3,
+    "prepared_unsent_briefs": 2,
+    "local_codex_sessions_reviewed": 1,
+    "fresh_result_records": 9,
+    "fresh_conversation_records": 10,
+    "saved_followup_reviews": 3,
+    "unavailable_new_computer_science_final": 1
+  },
+  "artifact_rehash": {
+    "checked": 22,
+    "matched": 22,
+    "failures": [],
+    "scope": "Published final-acceptance observed_artifact_sha256 entries under reports/astra-20260926 plus frozen CSV; no verifier rerun"
+  },
+  "frozen_bank": {
+    "rows": 160,
+    "all_ordered_field_strings_equal": true,
+    "committed_git_blob": "362e02f6c4fe2e8b03638ad916e4d91c898b55ad",
+    "checkpoint_raw_sha256": "7348483e39128259a844d22a7618869a3f111604ea48d01e196a87fe0d396af7",
+    "astra_raw_sha256": "fc9da0be5eb66e3d56649a8d709db16f9b096c7767a565c57d5488bd19430723",
+    "both_crlf_to_lf_sha256": "db42cf99fe566cb81b033c98465139194f3c3cfc5ec94b45a985b8da0a93c0ba",
+    "normalization": "Decode UTF-8, replace CRLF with LF, encode UTF-8 without BOM; preserve all other bytes"
+  },
+  "local": {
+    "initial_milestone": "completed_restricted_representation",
+    "followup": "in_progress",
+    "published_scalar_bank": {
+      "hit": 69,
+      "no_hit": 91,
+      "unresolved": 0,
+      "wrong": 0,
+      "independent_tolerance_cm": 1e-11,
+      "modes": 2
+    },
+    "blocked_normal_queries": 9,
+    "distance_and_evaluate_timings_complete": true,
+    "summed_distance_internal_speedup": 4.05,
+    "process_wall_internal_speedup": 2.61,
+    "matched_native_target_qualified": false,
+    "pilots_read": {
+      "native_plasma_histories": 20,
+      "spline_coil_histories": 4
+    },
+    "new_comparison_tests_passed": 7
+  },
+  "math": {
+    "final_response_available": true,
+    "response_tail_truncated": true,
+    "full_report_bundle_retrieved": false,
+    "reported_prototype_checks": 52,
+    "prototype_rerun": false,
+    "reach_primary_theorem_checked": true,
+    "real_root_primary_assumptions_checked": true
+  },
+  "later_local_status": {
+    "observed_utc": "2026-09-26T21:51:03Z",
+    "expanded_turn": "in_progress",
+    "reported_campaign": "18 paired runs sequentially running",
+    "reported_radial_deviation_um": 0.24,
+    "radial_certificate_independently_audited_here": false,
+    "matched_results_available": false
+  },
+  "independent_review": {
+    "model": "gpt-6-sol",
+    "effort": "high",
+    "scope": "Report and published decisive receipts; four read-only calls, no scientific proof rerun",
+    "artifact_hashes_checked": 22,
+    "artifact_hashes_matched": 22,
+    "material_overstatement_found": false,
+    "precision_fixes_applied": ["Nine blocked normal queries, complete distance/evaluate timings", "Entry and subsequent exit distances stated separately"],
+    "limits": "Conversation accounting and active pilot/status claims not independently verified by this reviewer"
+  },
+  "adjacent_codex_dependencies_reviewed": 2,
+  "limits": [
+    "No rebuild, scalar verifier rerun, new transport or remote job in this review.",
+    "Active local edits are not certified by the published prior binary receipts.",
+    "No private chat URLs in this receipt.",
+    "No general physical winding-pack, shaped-plasma, full-normal, near-native throughput or upstream merge readiness claim."
+  ]
+}

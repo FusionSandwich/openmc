@@ -1,0 +1,179 @@
+{
+  "schema": "stellarcsg.swept-seam-cover-feasibility/v1",
+  "state": "EXPERIMENTAL_RECONSTRUCTED_MODEL_ONLY",
+  "source_sha256": "69b861ba89313fdaed95ddafbbf55477ee679accd3b7d779ff90eda0cee1ae3c",
+  "h5_sha256": "39f77da5ab1fe427cce58b153e9b52cf8915e9973a9b8f3dfad5ab3b00a9e46d",
+  "conditioning_sha256": "5d611d2a5033bc8cbd9c38ca34a0ff3e49b4e041932ff6cff2f3352da7e19262",
+  "krawczyk_sha256": "99e88793fbb5053f8d4154a99d509f7440f178ce4d37961a415e6f00d0b63b54",
+  "node_cap_per_chart": 10000,
+  "ellipse_slack": 1e-12,
+  "stationarity_slack_cm2_per_u": 1e-10,
+  "earlier_gap_cm": 1e-11,
+  "results": [
+    {
+      "state": "MODEL_STRIP_EXCLUDED",
+      "evaluated_nodes": 57,
+      "max_depth": 28,
+      "excluded_by_ellipse": 10,
+      "excluded_by_stationarity": 19,
+      "smallest_ellipse_margin": 1.5090151350705126e-12,
+      "smallest_stationarity_margin_cm2_per_u": 0.00027066317642730623,
+      "tightest_ellipse_box": [
+        15.99999998045634,
+        15.99999999998757,
+        0.0,
+        1.9073486328125e-06
+      ],
+      "tightest_stationarity_box": [
+        15.99999998045634,
+        15.99999999998757,
+        1.9073486328125e-06,
+        3.814697265625e-06
+      ],
+      "nonfinite_nodes": 0,
+      "unresolved_count": 0,
+      "unresolved_preview": [],
+      "initial_boxes": [
+        [
+          15.99998999999757,
+          15.99999999998757,
+          0.0,
+          1.0
+        ]
+      ],
+      "member": 2,
+      "span": 0,
+      "native_lead_cm": 15.99999999999757,
+      "model_root_cm": 15.999999999999961,
+      "strip_cm": [
+        15.99998999999757,
+        15.99999999998757
+      ],
+      "known_root_box": null
+    },
+    {
+      "state": "MODEL_STRIP_EXCLUDED",
+      "evaluated_nodes": 2775,
+      "max_depth": 62,
+      "excluded_by_ellipse": 919,
+      "excluded_by_stationarity": 469,
+      "smallest_ellipse_margin": 1.000977079002041e-12,
+      "smallest_stationarity_margin_cm2_per_u": 4.1258435087916285e-09,
+      "tightest_ellipse_box": [
+        15.999999999979226,
+        15.99999999997982,
+        0.9999999999417923,
+        1.0
+      ],
+      "tightest_stationarity_box": [
+        15.999999999987274,
+        15.99999999998757,
+        0.9999999999417923,
+        0.9999999999708962
+      ],
+      "nonfinite_nodes": 0,
+      "unresolved_count": 0,
+      "unresolved_preview": [],
+      "initial_boxes": [
+        [
+          15.99998999999757,
+          15.99999999998757,
+          0.0,
+          1.0
+        ]
+      ],
+      "member": 2,
+      "span": 255,
+      "native_lead_cm": 15.99999999999757,
+      "model_root_cm": 15.999999999999961,
+      "strip_cm": [
+        15.99998999999757,
+        15.99999999998757
+      ],
+      "known_root_box": null
+    },
+    {
+      "state": "MODEL_STRIP_EXCLUDED",
+      "evaluated_nodes": 53,
+      "max_depth": 26,
+      "excluded_by_ellipse": 9,
+      "excluded_by_stationarity": 18,
+      "smallest_ellipse_margin": 1.0017542351192785e-12,
+      "smallest_stationarity_margin_cm2_per_u": 0.0002534097579471404,
+      "tightest_ellipse_box": [
+        16.999999960927,
+        16.99999999998946,
+        0.0,
+        3.814697265625e-06
+      ],
+      "tightest_stationarity_box": [
+        16.999999960927,
+        16.99999999998946,
+        3.814697265625e-06,
+        7.62939453125e-06
+      ],
+      "nonfinite_nodes": 0,
+      "unresolved_count": 0,
+      "unresolved_preview": [],
+      "initial_boxes": [
+        [
+          16.99998999999946,
+          16.99999999998946,
+          0.0,
+          1.0
+        ]
+      ],
+      "member": 3,
+      "span": 0,
+      "native_lead_cm": 16.99999999999946,
+      "model_root_cm": 17.000000000000256,
+      "strip_cm": [
+        16.99998999999946,
+        16.99999999998946
+      ],
+      "known_root_box": null
+    },
+    {
+      "state": "MODEL_STRIP_EXCLUDED",
+      "evaluated_nodes": 1669,
+      "max_depth": 60,
+      "excluded_by_ellipse": 550,
+      "excluded_by_stationarity": 285,
+      "smallest_ellipse_margin": 1.0262901639634945e-12,
+      "smallest_stationarity_margin_cm2_per_u": 3.865191087428639e-09,
+      "tightest_ellipse_box": [
+        16.99999999998588,
+        16.99999999998618,
+        0.9999999999417923,
+        1.0
+      ],
+      "tightest_stationarity_box": [
+        16.999999999988866,
+        16.99999999998946,
+        0.9999999998835847,
+        0.9999999999417923
+      ],
+      "nonfinite_nodes": 0,
+      "unresolved_count": 0,
+      "unresolved_preview": [],
+      "initial_boxes": [
+        [
+          16.99998999999946,
+          16.99999999998946,
+          0.0,
+          1.0
+        ]
+      ],
+      "member": 3,
+      "span": 383,
+      "native_lead_cm": 16.99999999999946,
+      "model_root_cm": 17.000000000000256,
+      "strip_cm": [
+        16.99998999999946,
+        16.99999999998946
+      ],
+      "known_root_box": null
+    }
+  ],
+  "claim_boundary": "Interval subdivision checks only two necessary equations of reconstructed powers. Slacks are hypothetical additive residual bands, not derived C++ floating error bounds. Root island reuses an experimental Krawczyk result. No floating C++ or nearest-centerline enclosure, full-spans proof, or production hit admission."
+}

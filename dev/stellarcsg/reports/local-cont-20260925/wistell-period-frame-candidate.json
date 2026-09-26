@@ -1,0 +1,13 @@
+{
+  "schema": "stellarcsg.period-frame-candidate/v1",
+  "source_sha256": "7748369407d28a70f35b5c4a7c0ab860495a08fd0030002112ea933fe570159b",
+  "output_h5_sha256": "9571b71cff1f2f1e4bbeb079d779bfcc9b614da87e16cf2cfd49dae931918018",
+  "field_periods": 4,
+  "full_device_coils": 48,
+  "id_offset": 1000,
+  "sample_count": 256,
+  "major_radius_cm": 10.0,
+  "minor_radius_cm": 8.0,
+  "frame_seed": "cylindrical_radial_fallback_v1",
+  "claim_boundary": "Separate coefficient candidate; no continuous-surface, physical winding-pack, one-period closure or transport qualification."
+}

@@ -1,0 +1,218 @@
+{
+  "schema": "stellarcsg.checkpoint-review/v1",
+  "observed_at_utc": "2026-09-26T19:24:11.625120+00:00",
+  "source_commit": "52dbc175891838dfbf3e0b97808f354144a51e6e",
+  "reviewer_script_sha256": "682d04b32f357472f58afafc2a860681a36cc8634f676f0dc3e32631fd48e231",
+  "artifact_hash_checks": [
+    {
+      "label": "horner/auditor",
+      "path": "dev\\stellarcsg\\qualification\\audit_compiled_horner_enclosure.py",
+      "expected_sha256": "d6275acbaa27165af10c540a5c35e1210ca113bae71daa13cb1a34e8e27843e7",
+      "actual_sha256": "d6275acbaa27165af10c540a5c35e1210ca113bae71daa13cb1a34e8e27843e7",
+      "match": true
+    },
+    {
+      "label": "horner/boxes",
+      "path": "dev\\stellarcsg\\reports\\local-cont-20260925\\compiled-span-boxes-01.jsonl",
+      "expected_sha256": "c14b80516f33ab741f2bc2a72d981c97f10955312c91af27489e1f066d4430f1",
+      "actual_sha256": "c14b80516f33ab741f2bc2a72d981c97f10955312c91af27489e1f066d4430f1",
+      "match": true
+    },
+    {
+      "label": "horner/construction_receipt",
+      "path": "dev\\stellarcsg\\reports\\local-cont-20260925\\compiled-box-construction-01.receipt.json",
+      "expected_sha256": "ee4224416b14f8c26377a03e049d0242f3e4f6f9f09941b57ca4c399ad2a2813",
+      "actual_sha256": "ee4224416b14f8c26377a03e049d0242f3e4f6f9f09941b57ca4c399ad2a2813",
+      "match": true
+    },
+    {
+      "label": "horner/production_source",
+      "path": "dev\\stellarcsg\\src\\compiled_swept_surface.cpp",
+      "expected_sha256": "dd4db0fb66dda806f0061f67e4d3ad0b673c5a46d1598f667191016a2157c163",
+      "actual_sha256": "dd4db0fb66dda806f0061f67e4d3ad0b673c5a46d1598f667191016a2157c163",
+      "match": true
+    },
+    {
+      "label": "p00-magnet-material-bank-02/geometry.xml",
+      "path": "dev\\stellarcsg\\reports\\local-cont-20260925\\p00-magnet-material-bank-02\\geometry.xml",
+      "expected_sha256": "7a7205105faf26522170153620c3f3e73e69d026f43b1bc1600c836677f067e8",
+      "actual_sha256": "7a7205105faf26522170153620c3f3e73e69d026f43b1bc1600c836677f067e8",
+      "match": true
+    },
+    {
+      "label": "p00-magnet-material-bank-02/materials.xml",
+      "path": "dev\\stellarcsg\\reports\\local-cont-20260925\\p00-magnet-material-bank-02\\materials.xml",
+      "expected_sha256": "13a9562640cb8add8fe8a74ff32acc8f0cfde1236642f42a821484399475016d",
+      "actual_sha256": "13a9562640cb8add8fe8a74ff32acc8f0cfde1236642f42a821484399475016d",
+      "match": true
+    },
+    {
+      "label": "p00-magnet-material-bank-02/settings.xml",
+      "path": "dev\\stellarcsg\\reports\\local-cont-20260925\\p00-magnet-material-bank-02\\settings.xml",
+      "expected_sha256": "4dd237041e010889dfb02c223bd82cabadd2ad95b7cf443e51222e0e55defd47",
+      "actual_sha256": "4dd237041e010889dfb02c223bd82cabadd2ad95b7cf443e51222e0e55defd47",
+      "match": true
+    },
+    {
+      "label": "p00-magnet-material-bank-02/source.h5",
+      "path": "dev\\stellarcsg\\reports\\local-cont-20260925\\p00-magnet-material-bank-02\\source.h5",
+      "expected_sha256": "d13553a31262d45067a8e096e73857d459054b482cf7bf0ccb52b927c611b442",
+      "actual_sha256": "d13553a31262d45067a8e096e73857d459054b482cf7bf0ccb52b927c611b442",
+      "match": true
+    },
+    {
+      "label": "p00-magnet-material-bank-02/tracks.h5",
+      "path": "dev\\stellarcsg\\reports\\local-cont-20260925\\p00-magnet-material-bank-02\\tracks.h5",
+      "expected_sha256": "09d8ed47dcc506153414ea3bfa58817f290e22910eb18fb723516e26af396101",
+      "actual_sha256": "09d8ed47dcc506153414ea3bfa58817f290e22910eb18fb723516e26af396101",
+      "match": true
+    },
+    {
+      "label": "p00-magnet-material-bank-02/statepoint.1.h5",
+      "path": "dev\\stellarcsg\\reports\\local-cont-20260925\\p00-magnet-material-bank-02\\statepoint.1.h5",
+      "expected_sha256": "57ad462750510b80af564d15da56fe2d26a11ee979ffe623dc5e036c91b2ad0d",
+      "actual_sha256": "57ad462750510b80af564d15da56fe2d26a11ee979ffe623dc5e036c91b2ad0d",
+      "match": true
+    },
+    {
+      "label": "p00-magnet-material-bank-02/summary.h5",
+      "path": "dev\\stellarcsg\\reports\\local-cont-20260925\\p00-magnet-material-bank-02\\summary.h5",
+      "expected_sha256": "a6ab5f348cbe5fb100dc5a5743092fd6cb15020b7d9cda1132f04767a8809280",
+      "actual_sha256": "a6ab5f348cbe5fb100dc5a5743092fd6cb15020b7d9cda1132f04767a8809280",
+      "match": true
+    },
+    {
+      "label": "p00-magnet-material-bank-02/facet_payload",
+      "path": "dev\\stellarcsg\\reports\\local-cont-20260925\\p00-periodic-facet-candidate-02.h5",
+      "expected_sha256": "3db1723d250319d7e6e3d0a4cbbba7b88a68c830fba4214d001a8c2c2545c2d4",
+      "actual_sha256": "3db1723d250319d7e6e3d0a4cbbba7b88a68c830fba4214d001a8c2c2545c2d4",
+      "match": true
+    },
+    {
+      "label": "p00-magnet-union-bank-01/geometry.xml",
+      "path": "dev\\stellarcsg\\reports\\local-cont-20260925\\p00-magnet-union-bank-01\\geometry.xml",
+      "expected_sha256": "7d14a4a0abccab3dbdf2a4cd8609d83b1e65e7dd262bcb6f7f9eee94415b72ec",
+      "actual_sha256": "7d14a4a0abccab3dbdf2a4cd8609d83b1e65e7dd262bcb6f7f9eee94415b72ec",
+      "match": true
+    },
+    {
+      "label": "p00-magnet-union-bank-01/materials.xml",
+      "path": "dev\\stellarcsg\\reports\\local-cont-20260925\\p00-magnet-union-bank-01\\materials.xml",
+      "expected_sha256": "13a9562640cb8add8fe8a74ff32acc8f0cfde1236642f42a821484399475016d",
+      "actual_sha256": "13a9562640cb8add8fe8a74ff32acc8f0cfde1236642f42a821484399475016d",
+      "match": true
+    },
+    {
+      "label": "p00-magnet-union-bank-01/settings.xml",
+      "path": "dev\\stellarcsg\\reports\\local-cont-20260925\\p00-magnet-union-bank-01\\settings.xml",
+      "expected_sha256": "06e78cf3f0caef50c613fc562aebfedbd5188e7bb2754a24da108014758c5020",
+      "actual_sha256": "06e78cf3f0caef50c613fc562aebfedbd5188e7bb2754a24da108014758c5020",
+      "match": true
+    },
+    {
+      "label": "p00-magnet-union-bank-01/source.h5",
+      "path": "dev\\stellarcsg\\reports\\local-cont-20260925\\p00-magnet-union-bank-01\\source.h5",
+      "expected_sha256": "d13553a31262d45067a8e096e73857d459054b482cf7bf0ccb52b927c611b442",
+      "actual_sha256": "d13553a31262d45067a8e096e73857d459054b482cf7bf0ccb52b927c611b442",
+      "match": true
+    },
+    {
+      "label": "p00-magnet-union-bank-01/tracks.h5",
+      "path": "dev\\stellarcsg\\reports\\local-cont-20260925\\p00-magnet-union-bank-01\\tracks.h5",
+      "expected_sha256": "9a8820db0b6b0f52736928b5a2abc66cc90716e2621db8f9722f8bcb024f4aef",
+      "actual_sha256": "9a8820db0b6b0f52736928b5a2abc66cc90716e2621db8f9722f8bcb024f4aef",
+      "match": true
+    },
+    {
+      "label": "p00-magnet-union-bank-01/statepoint.1.h5",
+      "path": "dev\\stellarcsg\\reports\\local-cont-20260925\\p00-magnet-union-bank-01\\statepoint.1.h5",
+      "expected_sha256": "2f31e19fe620a5a5a40936140368826df8919f004e2058d412f38018e9d42b01",
+      "actual_sha256": "2f31e19fe620a5a5a40936140368826df8919f004e2058d412f38018e9d42b01",
+      "match": true
+    },
+    {
+      "label": "p00-magnet-union-bank-01/summary.h5",
+      "path": "dev\\stellarcsg\\reports\\local-cont-20260925\\p00-magnet-union-bank-01\\summary.h5",
+      "expected_sha256": "cd9ade7a237891f31cac84a48e12a654421270f883d0da9a41ec4e00088acad7",
+      "actual_sha256": "cd9ade7a237891f31cac84a48e12a654421270f883d0da9a41ec4e00088acad7",
+      "match": true
+    },
+    {
+      "label": "p00-magnet-union-bank-01/facet_payload",
+      "path": "dev\\stellarcsg\\reports\\local-cont-20260925\\p00-periodic-facet-candidate-02.h5",
+      "expected_sha256": "3db1723d250319d7e6e3d0a4cbbba7b88a68c830fba4214d001a8c2c2545c2d4",
+      "actual_sha256": "3db1723d250319d7e6e3d0a4cbbba7b88a68c830fba4214d001a8c2c2545c2d4",
+      "match": true
+    },
+    {
+      "label": "union_equivalence/auditor",
+      "path": "dev\\stellarcsg\\qualification\\audit_p00_magnet_union_equivalence.py",
+      "expected_sha256": "f386a5959ad30641c480830b6e65a90b4484e71a7a3fc30f89378533e84c5ffd",
+      "actual_sha256": "f386a5959ad30641c480830b6e65a90b4484e71a7a3fc30f89378533e84c5ffd",
+      "match": true
+    },
+    {
+      "label": "union_equivalence/priority_receipt",
+      "path": "dev\\stellarcsg\\reports\\local-cont-20260925\\p00-magnet-material-bank-02\\receipt.json",
+      "expected_sha256": "d70216c45c454feef68e20d76318ee77b79772764760ce3a4a8bb3644842a5da",
+      "actual_sha256": "d70216c45c454feef68e20d76318ee77b79772764760ce3a4a8bb3644842a5da",
+      "match": true
+    },
+    {
+      "label": "union_equivalence/union_receipt",
+      "path": "dev\\stellarcsg\\reports\\local-cont-20260925\\p00-magnet-union-bank-01\\receipt.json",
+      "expected_sha256": "e5f210464a2bc23f8ff63ea7a34ac341a154d0683a56bb32946d14dd69607d0e",
+      "actual_sha256": "e5f210464a2bc23f8ff63ea7a34ac341a154d0683a56bb32946d14dd69607d0e",
+      "match": true
+    },
+    {
+      "label": "union_equivalence/priority_tracks",
+      "path": "dev\\stellarcsg\\reports\\local-cont-20260925\\p00-magnet-material-bank-02\\tracks.h5",
+      "expected_sha256": "09d8ed47dcc506153414ea3bfa58817f290e22910eb18fb723516e26af396101",
+      "actual_sha256": "09d8ed47dcc506153414ea3bfa58817f290e22910eb18fb723516e26af396101",
+      "match": true
+    },
+    {
+      "label": "union_equivalence/union_tracks",
+      "path": "dev\\stellarcsg\\reports\\local-cont-20260925\\p00-magnet-union-bank-01\\tracks.h5",
+      "expected_sha256": "9a8820db0b6b0f52736928b5a2abc66cc90716e2621db8f9722f8bcb024f4aef",
+      "actual_sha256": "9a8820db0b6b0f52736928b5a2abc66cc90716e2621db8f9722f8bcb024f4aef",
+      "match": true
+    }
+  ],
+  "artifact_hashes_match": true,
+  "saved_latest_strict_bank": {
+    "candidate_sha256": "c6d84229f39e60ed32830a630526b1f6d4fbe7cca01f3b25d8f2e7e74be51e64",
+    "exact_sha256": "678539b89e3dad8edf891744be674d3d6631b4d53331a6e620146d277df00f3a",
+    "dispositions": {
+      "no_hit": 87,
+      "unresolved": 73
+    },
+    "known_wrong_root_ids_now_unresolved": true,
+    "provenance_mismatches": [],
+    "resolved_mismatches": [],
+    "nonfinite_found_distances": [],
+    "qualification": "HISTORICAL_REPLAY_NOT_FRESH_HEAD_EXECUTION"
+  },
+  "synthetic_source_suite": {
+    "exit_code": 0,
+    "tests_run": 8,
+    "output": "........\n----------------------------------------------------------------------\nRan 8 tests in 0.142s\n\nOK\n",
+    "constructor_test": "NOT_RUN_BY_STDLIB_REVIEW_REQUIRES_OPENMC"
+  },
+  "synthetic_negative_controls": {
+    "nan_distance": {
+      "query_id": "a01",
+      "comparison_exit_code": 0,
+      "stdout": "{\"status\": \"PASS\", \"matched_queries\": 160, \"failure_ids\": []}\n",
+      "stderr": "",
+      "false_pass_reproduced": true
+    },
+    "swapped_sampling_input_hashes": {
+      "accepted": true,
+      "error": null,
+      "false_pass_reproduced": true
+    }
+  },
+  "claim_boundary": "Stored artifact identities and bounded synthetic parser controls only. No rebuild, fresh native replay, mathematical proof rerun, physical source admission or new transport."
+}

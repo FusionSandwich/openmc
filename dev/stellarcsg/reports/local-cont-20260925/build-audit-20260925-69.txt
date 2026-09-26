@@ -1,0 +1,33 @@
+Native periodic-cap adapter rebuild preflight, 2026-09-25.
+Windows RAM total/free B: 34260418560 / 8995532800
+Drive free bytes:
+C: 79979667456
+D: 501248770048
+Largest process working sets:
+
+ProcessName           Id      RAM_B
+-----------           --      -----
+ChatGPT            29076 1850281984
+codex              26516 1441402880
+vmmemWSL           51388 1407930368
+Memory Compression  3228 1229983744
+ChatGPT            46276 1030488064
+chrome             59888  752328704
+OneDrive           47340  636801024
+chrome             59272  594833408
+
+
+WSL disks/RAM/executables/caches:
+Filesystem         1B-blocks          Used    Available Use% Mounted on
+/dev/sde       1081101176832   63105708032 963003113472   7% /
+C:\             998965768192  918986100736  79979667456  92% /mnt/c
+D:\            2000397791232 1499148103680 501249687552  75% /mnt/d
+               total        used        free      shared  buff/cache   available
+Mem:     25200033792   907206656 24053444608     3641344   564932608 24292827136
+Swap:    34359738368           0 34359738368
+g++ (Debian 14.2.0-19) 14.2.0
+cmake version 3.31.6
+/opt/openmc-fes-venv/bin/python
+/home/sman/.cache/pip
+/home/sman/.local/share/mamba/pkgs
+Existing local capabilities: this checkout and existing CMake/Ninja build tree, D:/Scratch/stellarator_optimization and D:/Scratch/parastell, /opt/openmc-fes-venv, Windows Python 3.12.10 / Git 2.55 / CMake 4.4, WSL G++ 14.2 / CMake 3.31.6 / HDF5 1.14.5 / cached Ninja 1.13.2, WSL/Windows pip and mamba caches. Prior audits 66-68 include full inventory. No software acquisition or dependency environment changes. Planned acquisition 0 B. Incrementally build libopenmc with one job and standalone facet test under existing C: build trees, expected net bytes below 20 MiB. Existing local capabilities suffice. Rollback: rebuild previous committed source and remove new standalone executable. No remote access.

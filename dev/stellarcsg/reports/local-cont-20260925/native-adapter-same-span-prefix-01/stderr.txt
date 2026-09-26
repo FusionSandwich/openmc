@@ -1,0 +1,1 @@
+native adapter smoke: single: StellarCSG surface 902 has an unresolved nearest-boundary query

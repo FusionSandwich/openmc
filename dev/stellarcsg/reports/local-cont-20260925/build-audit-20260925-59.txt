@@ -1,0 +1,7 @@
+2026-09-25 native periodic-particle helper second correction preflight, before compilation.
+Current worktree HEAD 490b524ae. Local WSL OpenMC-Dev-D only; C: output, D: read-only.
+Windows RAM 33,457,440 KiB total, 1,983,352 KiB free. C: free 82,177,593,344 B; D: free 502,202,531,840 B.
+Largest resident processes: ChatGPT 1,788,395,520 B; vmmemWSL 1,158,004,736 B; Chrome 887,640,064 B; codex 867,373,056 B; ChatGPT 843,636,736 B; Chrome 830,967,808 and 618,164,224 B.
+Existing tools: Windows Git 2.55.0.windows.3, Python 3.12.10; WSL GCC 14.2.0, h5c++/HDF5 1.14.5, /opt/openmc-venv Python 3.13.5. WSL conda/ccache not found. Existing /opt/openmc-venv (606 MiB at the earlier measured check), /root/.cache/pip (152 MiB), native and standalone build directories, libopenmc.so 3.8 MiB, Windows pip cache and already-local StellarCSG/root-repair-07/Parastell/stellarator_optimization checkouts suffice.
+Planned software download/install/upgrade/dependency acquisition 0 B. Recompile only the helper at build/native-local-20260925/probe_native_period_particle with one job, under 10 MiB on C:. The native initialization sequence now calls finalize_cell_densities(), as the actual OpenMC initializer does, before entering a void cell. No dependency environment change, physical histories, SSH or remote work.
+Rollback: remove only that exact helper executable after path review if discarded. No acquired software to remove.

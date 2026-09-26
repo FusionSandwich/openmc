@@ -1,0 +1,16 @@
+{
+  "schema": "stellarcsg.native-python-swept-box-parity/v1",
+  "state": "PYTHON_CENTERLINE_BOXES_MATCH_COMPILED_ANALYTIC",
+  "member_spans": {
+    "2": 256,
+    "3": 384
+  },
+  "matched_binary64_endpoints": 3840,
+  "sha256": {
+    "auditor": "7d8394b9f963ae3ac9277f5876b06c3ed2db1da17b287a643412ee2e85d357fa",
+    "native_python_surface": "f51c5f6c853495ba3ccd7c12af445fb78b440437326f0d85575eecc27f8abace",
+    "compiled_boxes": "c14b80516f33ab741f2bc2a72d981c97f10955312c91af27489e1f066d4430f1",
+    "analytic_h5": "39f77da5ab1fe427cce58b153e9b52cf8915e9973a9b8f3dfad5ab3b00a9e46d"
+  },
+  "claim_boundary": "The native OpenMC Python bounding-box helper reproduces all 3,840 compiled centerline box endpoints for two analytic shaped members, while the separate regression checks a control-hull escape. It does not prove C++ surface-box inflation or BVH traversal for arbitrary physical coils, root completeness, one-period ownership, transport or performance."
+}

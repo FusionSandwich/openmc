@@ -1,0 +1,17 @@
+name: stellarcsg-dev
+channels:
+  - conda-forge
+channel_priority: strict
+dependencies:
+  - python=3.12
+  - pip
+  - cmake>=3.22
+  - ninja
+  - cxx-compiler
+  - hdf5
+  - numpy
+  - h5py
+  - pyyaml
+  - pytest
+  - zlib
+  - libpng

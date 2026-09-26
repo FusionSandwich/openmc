@@ -1,0 +1,8 @@
+2026-09-25 local build preflight (swept numeric validation)
+Windows RAM: 33,457,440 KiB total; 3,423,080 KiB free.
+Free disk: C: 86,689,402,880 B; D: 504,691,658,752 B. Build target is C:.
+Largest resident processes: vmmemWSL 2,044,452,864 B; ChatGPT 1,305,878,528 B; chrome 925,691,904 B; codex 867,577,856 B; another ChatGPT 696,332,288 B; another chrome 666,009,600 B.
+Existing WSL OpenMC-Dev-D: GCC 14.2.0, CMake 3.31.6, Ninja 1.12.1, HDF5 1.14.5, Python 3.13.5 in /opt/openmc-venv (606 MiB); pip cache 152 MiB.
+Existing local source checkout and configured build directories: build/local-cont-20260925 7.0 MiB, build/native-local-20260925 16 MiB. Existing executables: /usr/bin/g++, /usr/bin/cmake, /usr/bin/ninja.
+Current local tools and source are sufficient. Planned download/install/acquisition: 0 B. Planned incremental one-job build output: under 20 MiB, inside the two existing build directories on C:. No dependency environment changes or remote execution.
+Rollback: revert the exact source edit and rebuild these existing targets from the prior commit; retain this audit and test evidence. No package/cache removal is needed.

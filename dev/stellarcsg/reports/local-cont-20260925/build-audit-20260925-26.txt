@@ -1,0 +1,7 @@
+2026-09-25 local build preflight (frozen torus coefficient identity check)
+Windows RAM: 33,457,440 KiB total; 3,525,696 KiB free.
+Free disk: C: 82,664,374,272 B; D: 504,268,861,440 B. Build target is C:.
+Largest resident processes: vmmemWSL 1,900,036,096 B; ChatGPT 1,321,512,960 B; chrome 936,644,608 B; codex 861,110,272 B; another ChatGPT 713,736,192 B; another chrome 688,246,784 B; another chrome 662,433,792 B; OneDrive 638,533,632 B.
+Existing WSL OpenMC-Dev-D: GCC 14.2.0, CMake 3.31.6, Ninja 1.12.1, HDF5 1.14.5, Python 3.13.5 in /opt/openmc-venv (606 MiB); pip cache 152 MiB. The local source checkout, native build (16 MiB), native libopenmc.so (3,880,488 B), and 31 local StellarCSG workspace directories are present. Existing experimental executable is 75,192 B.
+Existing capabilities suffice. Planned download/install/acquisition: 0 B. One GCC job will rebuild only build/native-local-20260925/swept_prefix_quadratic_seams, with less than 20 MiB incremental output on C:. A bounded one-CPU diagnostic will read the unchanged frozen bank and write a no-overwrite receipt under 1 MiB. No production solver/library, dependency environment, or remote system changes.
+Rollback: restore the experimental source from commit 2b92e1723 and rebuild the same binary if needed; retain the prior hash-bound seam receipt. No package/cache removal is needed.

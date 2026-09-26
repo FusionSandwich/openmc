@@ -1,0 +1,48 @@
+name: StellarCSG branch source export
+
+on:
+  push:
+    branches:
+      - codex/stellarcsg-native-csg-foundation-20260828
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  export:
+    if: github.ref == 'refs/heads/codex/stellarcsg-native-csg-foundation-20260828'
+    runs-on: ubuntu-24.04
+    steps:
+      - name: Check out isolated feature branch
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          submodules: recursive
+
+      - name: Record provenance
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p _stellarcsg_export
+          git rev-parse HEAD > _stellarcsg_export/HEAD.txt
+          git status --short --branch > _stellarcsg_export/status.txt
+          git submodule status --recursive > _stellarcsg_export/submodules.txt
+          git log -1 --format=fuller > _stellarcsg_export/commit.txt
+
+      - name: Create source archive
+        shell: bash
+        run: |
+          set -euo pipefail
+          tar --exclude=.git --exclude=_stellarcsg_export/openmc-stellarcsg-source.tar.zst \
+              --zstd -cf _stellarcsg_export/openmc-stellarcsg-source.tar.zst .
+          sha256sum _stellarcsg_export/openmc-stellarcsg-source.tar.zst \
+            > _stellarcsg_export/SHA256SUMS.txt
+
+      - name: Upload source archive
+        uses: actions/upload-artifact@v4
+        with:
+          name: openmc-stellarcsg-source-${{ github.sha }}
+          path: _stellarcsg_export/
+          if-no-files-found: error
+          retention-days: 7

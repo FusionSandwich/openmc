@@ -1,0 +1,38 @@
+{
+  "schema": "stellarcsg.facet-payload-native-reader/v1",
+  "state": "PASS_STANDALONE_READER_ONLY",
+  "positive": {
+    "exit_code": 0,
+    "stdout": "facet surface tests passed\n",
+    "stderr": ""
+  },
+  "wrong_expected_id": {
+    "exit_code": 1,
+    "stdout": "",
+    "stderr": "Facet content_id mismatch\n"
+  },
+  "mutated_vertex": {
+    "exit_code": 1,
+    "stdout": "",
+    "stderr": "Facet canonical payload SHA-256 does not verify\n"
+  },
+  "mutation": {
+    "dataset": "/facets/one_period/triangle_vertices",
+    "index": [
+      0,
+      0,
+      0
+    ],
+    "before_hex": "0x1.c72094fc2aef3p+9",
+    "after_hex": "0x1.c72094fc2aef4p+9"
+  },
+  "hashes": {
+    "payload": "126fdbec0a5795036ad75c7409f760652e47722d02f28fada89ddaf2fa71d9df",
+    "mutated_payload": "85c6527d7a19edb6fe18623854cf7d337ba84ed82bf91a9f88c86e385c1e3af6",
+    "test_binary": "2503686ae272cc28e100ab46a2be9325d117a445d662ba7cb4f68cad2f16bee2",
+    "reader_source": "48449f3de3c9df2bcf1dcd13a57e3c30302aa042029c22e295fa5411ea2ae388",
+    "kernel_source": "be95b4ed600f2311821afab78992af79e058b25ae5d68951ac9bb6294a0e01d0",
+    "test_source": "00c94d3123dde995f814f36efb286c0acdcbbb811d9051e5120b2338feae704a"
+  },
+  "claim_boundary": "Direct G++/HDF5 standalone loader compiled the accepted 3348-triangle payload as a closed oriented set and passed the 108 P00 fixture probes. Wrong expected ID and one-ULP vertex tampering were rejected. No native OpenMC adapter, particle transport, CAD bound or performance qualification."
+}

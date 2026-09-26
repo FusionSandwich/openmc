@@ -1,0 +1,56 @@
+{
+  "schema": "stellarcsg.facet-period-region/v1",
+  "state": "ACCEPTED_MESH_SECTOR_XML_ROUNDTRIP_ONLY",
+  "field_period_degrees": 90,
+  "facet_triangle_count": 3348,
+  "facet_component_ids": [
+    8,
+    9,
+    10,
+    11,
+    12,
+    13,
+    14,
+    15,
+    16,
+    17,
+    18,
+    19,
+    20,
+    21,
+    22,
+    23,
+    24,
+    25
+  ],
+  "facet_content_id": "sha256:c580f1c228ee9633df197aed32e5f41bc6bcb7b382d8a68f677e69787e8c57a6",
+  "periodic_caps": "x0 y0",
+  "facet_box_lower_cm": [
+    3.785860513971783e-14,
+    -5.928590951498337e-14,
+    -550.8944504120186
+  ],
+  "facet_box_upper_cm": [
+    1561.0251880821286,
+    1561.0251377250363,
+    550.8944471960939
+  ],
+  "sector_halfspaces": [
+    "x>=0",
+    "y>=0"
+  ],
+  "periodic_plane_ids": [
+    901,
+    902
+  ],
+  "facet_surface_id": 903,
+  "coil_cell_id": 1001,
+  "complement_cell_id": 1002,
+  "hashes": {
+    "builder": "fed16921b21b590d47354e95c9f9241921fd426a07360aff270d55464a3bc5e7",
+    "payload": "126fdbec0a5795036ad75c7409f760652e47722d02f28fada89ddaf2fa71d9df",
+    "payload_receipt": "acb484e5942dcd380c6fbbd741ab68df3f282c41cc6d7bf1170941abbb24b8ba",
+    "geometry_xml": "18069a80f547ec44ca0105a59ae487dedfcdd27abc3775f8223d0265c525991f"
+  },
+  "claim_boundary": "Python XML contains two complementary unfilled cells in a 90-degree x/y sector, with a hash-bound accepted P00 facet union, paired periodic planes and explicit facet cap delegation. Native seam ownership, mesh-to-continuous-CAD fidelity, histories, materials, source clearance and transport remain unqualified."
+}

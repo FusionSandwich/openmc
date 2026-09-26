@@ -1,0 +1,216 @@
+{
+  "pinned_commit": "c08eea92ca3fb63eb8adbf44cfb4ea8612639e30",
+  "purpose": "audit witnesses; success does NOT mean solver qualification",
+  "cases": [
+    {
+      "case": "even_root_between_scan_points",
+      "outcome": "COUNTEREXAMPLE_CONFIRMED",
+      "root": "3/16",
+      "exact_sample_signs": [
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1
+      ],
+      "execution": "exact analytic example of the eight-segment fallback limitation"
+    },
+    {
+      "case": "two_simple_roots_between_scan_points",
+      "outcome": "COUNTEREXAMPLE_CONFIRMED",
+      "roots": [
+        "201326591/1073741824",
+        "201326593/1073741824"
+      ],
+      "exact_sample_signs": [
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1
+      ]
+    },
+    {
+      "case": "earlier_even_root_before_later_crossing",
+      "outcome": "COUNTEREXAMPLE_CONFIRMED",
+      "nearest": "3/16",
+      "later": "3/4",
+      "exact_sample_signs": [
+        -1,
+        -1,
+        -1,
+        -1,
+        -1,
+        -1,
+        0,
+        1,
+        1
+      ]
+    },
+    {
+      "case": "earlier_simple_pair_before_later_crossing",
+      "outcome": "COUNTEREXAMPLE_CONFIRMED",
+      "roots": [
+        "1/16",
+        "3/32",
+        "3/4"
+      ]
+    },
+    {
+      "case": "zero_proxy_and_solved_prefix_queue_predicates",
+      "outcome": "COUNTEREXAMPLE_CONFIRMED",
+      "execution": "source predicate model",
+      "zero_proxy_retained": false,
+      "successful_seed_prefix_retained": false
+    },
+    {
+      "case": "small_residual_with_no_root",
+      "outcome": "COUNTEREXAMPLE_CONFIRMED",
+      "polynomial": "(t-3/16)^2 + 2^-80",
+      "min_residual": "1/1208925819614629174706176",
+      "real_roots": 0
+    },
+    {
+      "case": "whole_span_center_regularity",
+      "outcome": "COUNTEREXAMPLE_CONFIRMED",
+      "center": "((u-5/128)^2,0,0)",
+      "singular_parameter": "5/128",
+      "sampled_derivatives_nonzero": 65
+    },
+    {
+      "case": "whole_span_normal_independence",
+      "outcome": "COUNTEREXAMPLE_CONFIRMED",
+      "center": "(u,0,0)",
+      "supplied_normal": "(1,u-5/128,0)",
+      "singular_parameter": "5/128"
+    },
+    {
+      "case": "origin_association_not_distance_push",
+      "outcome": "COUNTEREXAMPLE_CONFIRMED",
+      "polynomial": "t*(t-2^-21)",
+      "closed_domain_roots": [
+        "0",
+        "1/2097152"
+      ],
+      "strict_positive_root": "1/2097152",
+      "minimum_t_push": "1/1048576",
+      "pushed_result": "NO_HIT",
+      "execution": "analytic contact-contract model"
+    },
+    {
+      "case": "a06_is_positive_not_exact_zero",
+      "outcome": "HISTORICAL_RECORD_INTERPRETATION",
+      "recorded_distance": 8.326672684688674e-17,
+      "exact_value_of_recorded_double": "3/36028797018963968",
+      "new_ray_solver_execution": false
+    },
+    {
+      "case": "projected_patch_residual_not_t_certificate",
+      "outcome": "COUNTEREXAMPLE_CONFIRMED",
+      "surface": "(2^-40*(u-1/4),v,u)",
+      "ray": "(0,0,t)",
+      "exact_t": "1/4",
+      "candidate_t": "3/4",
+      "t_error": "1/2",
+      "projected_residual_exact": "1/2199023255552",
+      "projected_residual_float": 4.547473508864641e-13,
+      "execution": "analytic affine patch, not an unpublished Bezier implementation"
+    },
+    {
+      "case": "exact_rigid_and_direction_scaling",
+      "outcome": "ANALYTIC_CONTROL_CONFIRMED",
+      "physical_distance": 1,
+      "ray_parameters": [
+        4,
+        1,
+        0.25
+      ],
+      "direction_scales": [
+        0.25,
+        1,
+        4
+      ]
+    },
+    {
+      "case": "rounded_rigid_transform_is_new_input",
+      "outcome": "COUNTEREXAMPLE_CONFIRMED",
+      "translation": 18014398509481984,
+      "original_separation": 1,
+      "stored_separation": 0
+    },
+    {
+      "case": "sampled_torus_specialization_not_identity",
+      "outcome": "COUNTEREXAMPLE_CONFIRMED",
+      "knot_radius_mean": 4.991974544453662,
+      "max_knot_radius_deviation": 1.7763568394002505e-15,
+      "inter_knot_radius_mismatch": 1.2105612139379218e-06,
+      "execution": "constructor-predicate numerical illustration plus polynomial-identity argument"
+    },
+    {
+      "case": "one_sided_near_entry_test_accepts_wrong_hit",
+      "outcome": "COUNTEREXAMPLE_CONFIRMED",
+      "reported_distance": "1/1000000000000",
+      "expected_distance": "1/500",
+      "existing_upper_bound_test_passes": true,
+      "two_sided_accuracy_test_passes": false,
+      "execution": "test-predicate model; no manufactured solver output"
+    },
+    {
+      "case": "retained_shape2_separation_predicate",
+      "outcome": "BLOCKED_REASON_REPRODUCED",
+      "pair": [
+        0,
+        15
+      ],
+      "pairs_visited": 16,
+      "box_distance_squared_exact": "0",
+      "box_distance_squared_float": 0.0,
+      "four_radius_squared_exact": "1/4",
+      "independent_cone_dot_lower_exact": "-24233699620915614707944923662466375/1298074214633706907132624082305024",
+      "independent_cone_dot_lower_float": -18.668963105282796,
+      "cone_bounds_exact": [
+        [
+          "-10000834090796501/2251799813685248",
+          "312526065337391/70368744177664"
+        ],
+        [
+          "4583614870129343/4503599627370496",
+          "829831766292499/562949953421312"
+        ],
+        [
+          "5095241338020619/36028797018963968",
+          "6657253629364905/18014398509481984"
+        ]
+      ],
+      "block_reason": "STELLARCSG_UNRESOLVED_CIRCULAR_TUBE: embedded circular-tube separation certificate failed",
+      "meaning": "sufficient separation certificate fails; physical validity unresolved",
+      "reference_commit": "5ed327ade33b31ecdb5e3b4b4111c55f321991fd"
+    }
+  ],
+  "case_count": 16,
+  "python": "3.13.5 (main, Jun 13 2026, 14:18:01) [GCC 14.2.0]",
+  "script_sha256": "426ec655c5a5d992cbd2ac8930eb1f65d024c3a24de0faa611353df89f684cb8",
+  "retained_fixture_sha256": "f0f1841ede9afa9a0f23f13b80a00fc3e6e6302144b448bd4b9f076e03a19b51",
+  "full_kernel_executed": false,
+  "geometry_performance": {
+    "distance_ns_per_query": null,
+    "classification_ns_per_query": null,
+    "normal_ns_per_query": null,
+    "distance_candidate_over_ztorus": null,
+    "classification_candidate_over_ztorus": null,
+    "normal_candidate_over_ztorus": null,
+    "transport_histories_per_second": null,
+    "throughput_candidate_over_ztorus": null,
+    "candidate_over_old_fast": null,
+    "repeated_run_variability": null,
+    "status": "INCOMPLETE_NOT_MEASURED; native OpenMC ZTorus unavailable; no performance claims"
+  }
+}

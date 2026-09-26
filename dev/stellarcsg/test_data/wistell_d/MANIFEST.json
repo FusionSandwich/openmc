@@ -1,0 +1,75 @@
+{
+  "schema": "stellarcsg.test-input-manifest/v1",
+  "case": "authoritative-wistell-d",
+  "qualification_status": "HASH_AND_STRUCTURE_VERIFIED_SOURCE_INPUTS",
+  "source_repository": "https://github.com/FusionSandwich/wistell-d-openmc.git",
+  "source_commit": "be89f6ccc9d105f04e8e254f7992639aa0fc4f7e",
+  "source_contract": {
+    "reference_mapping": "src/wistell_openmc/reference.py:REFERENCE_FILES",
+    "input_readme": "inputs/wistell_d/README.md",
+    "project_control": "docs/PROJECT_CONTROL_ALIGNMENT.md",
+    "upstream_copy_origin": "D:/Scratch/stellarator_optimization/wistell-d_data",
+    "upstream_copy_revision": "398032b8c0b4e7c0459c602f2af1e73b3fca0b9a"
+  },
+  "device": {
+    "name": "WISTELL-D",
+    "field_periods": 4,
+    "modeled_extent_degrees": [0.0, 90.0],
+    "construction_contract": "one direct field-period model; no 45-degree duplication, reflection, stitching, or half-module transform"
+  },
+  "structural_audit": {
+    "schema": "wistell-openmc/reference-audit-v1",
+    "status": "PASS",
+    "control_point_count": 452,
+    "blanket_boundary_minimum_cm": 97.53677866228301,
+    "blanket_boundary_maximum_cm": 206.36934788769082,
+    "magnet_boundary_minimum_cm": 103.74998209787944,
+    "magnet_boundary_maximum_cm": 273.08037935435135,
+    "nwl_source_minimum": 0.6737415389330274,
+    "nwl_source_maximum": 3.4346350393063543,
+    "magnet_boundary_outside_blanket_boundary": true,
+    "coil_header": "periods 4"
+  },
+  "files": [
+    {
+      "role": "VMEC equilibrium",
+      "original_path": "inputs/wistell_d/wout_wistell-d.nc",
+      "copied_path": "dev/stellarcsg/test_data/wistell_d/wout_wistell-d.nc",
+      "bytes": 4626928,
+      "sha256": "9231969001203a8133255ee0a275bf552b114cc12524dda0608ab2f12047f7ac",
+      "units": "VMEC native SI geometry (metres)"
+    },
+    {
+      "role": "WISTELL-D coil filaments",
+      "original_path": "inputs/wistell_d/coils.wistell-d",
+      "copied_path": "dev/stellarcsg/test_data/wistell_d/coils.wistell-d",
+      "bytes": 1737790,
+      "sha256": "7748369407d28a70f35b5c4a7c0ab860495a08fd0030002112ea933fe570159b",
+      "units": "MAKEGRID filament coordinates in metres"
+    },
+    {
+      "role": "452-point blanket-boundary distance field",
+      "original_path": "inputs/wistell_d/blanket_boundary.npy",
+      "copied_path": "dev/stellarcsg/test_data/wistell_d/blanket_boundary.npy",
+      "bytes": 3744,
+      "sha256": "fdb85b2c0c8cd72f5d000302e0b67349ebf72679f98f9c4d7739e5d8484cdde3",
+      "units": "centimetres"
+    },
+    {
+      "role": "452-point magnet-boundary distance field",
+      "original_path": "inputs/wistell_d/magnet_boundary.npy",
+      "copied_path": "dev/stellarcsg/test_data/wistell_d/magnet_boundary.npy",
+      "bytes": 3744,
+      "sha256": "3579e5d8fe97dd74c8700e5676964159f00f07989ca6436528f60462889f05bd",
+      "units": "centimetres"
+    },
+    {
+      "role": "452-point neutron-wall-loading field",
+      "original_path": "inputs/wistell_d/nwl.npy",
+      "copied_path": "dev/stellarcsg/test_data/wistell_d/nwl.npy",
+      "bytes": 3744,
+      "sha256": "56baa090d61b67273efba61213849b7516beabb2a57fc2ad4751a6f3a32b2db4",
+      "units": "source-defined NWL values; used only after dimensionless min-max normalization in the source contract"
+    }
+  ]
+}

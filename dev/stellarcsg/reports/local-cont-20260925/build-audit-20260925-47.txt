@@ -1,0 +1,8 @@
+2026-09-25 compiled implicit seam point-probe preflight
+Windows RAM: 33,457,440 KiB total; 3,467,420 KiB free.
+Free disk: C: 83,955,363,840 B; D: 503,280,918,528 B. Target executable is on C: in dev/stellarcsg/build.
+Largest resident processes: vmmemWSL 1,644,486,656 B; ChatGPT 1,498,734,592 B; codex 896,876,544 B; chrome 864,542,720 B; chrome 807,727,104 B; ChatGPT 794,804,224 B; chrome 788,922,368 B; chrome 626,298,880 B.
+Existing executables: WSL OpenMC-Dev-D GCC 14.2.0, installed h5c++/HDF5, Python 3.13.5, CMake 3.31.6, Ninja 1.12.1. Prior current-worktree audit 45 records Windows Python 3.12.10 and Git 2.55.0. No WSL Conda or ccache executable found.
+Existing environments/caches/builds: /opt/openmc-venv 606 MiB, /root/.cache/pip 152 MiB, local standalone build 7.9 MiB with libstellarcsg_reference.a, native OpenMC build 16 MiB with libopenmc.so. Current StellarCSG worktree HEAD f625790af and other local OpenMC/StellarCSG, WISTELL-D, Parastell, recovery and acceptance checkouts are already present. No new checkout needed.
+Existing capabilities suffice. Planned software download/install/upgrade/acquisition: 0 B. One local GCC/HDF5 job will compile and link a read-only implicit point-probe against the existing static library. Expected binary under 10 MiB on C:. It will read the analytic HDF5 and evaluate selected ray points; no native transport, dependency environment or remote system change.
+Rollback: preserve source and hash-bound diagnostic report; remove only dev/stellarcsg/build/probe_compiled_seam_implicit by exact path if needed. No acquired software to roll back.

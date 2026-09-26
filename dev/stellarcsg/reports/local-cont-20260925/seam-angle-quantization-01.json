@@ -1,0 +1,117 @@
+{
+  "schema": "stellarcsg.seam-angle-quantization/v1",
+  "state": "NATIVE_ARITHMETIC_DIAGNOSTIC_ONLY",
+  "source_sha256": "04811af159808fe268c27e8e5bf801ce366be7978192825d6248591e206b1c6f",
+  "helper_source_sha256": "2ee73a5ef5335b7f1e392ce4810a4de33b57a4511470ab17bc2b5f2d7dcbe2e7",
+  "helper_executable_sha256": "4512e56d4fb8ccb4f6f945faae9854dae9e15672e213db1cdbc91340b7db731f",
+  "production_source_sha256": "d2823d12de04bd062987fc91e82ee69a6af36c3adc285ed6929399577f3d8a73",
+  "krawczyk_sha256": "99e88793fbb5053f8d4154a99d509f7440f178ce4d37961a415e6f00d0b63b54",
+  "h5_sha256": "39f77da5ab1fe427cce58b153e9b52cf8915e9973a9b8f3dfad5ab3b00a9e46d",
+  "helper_stdout": [
+    {
+      "member": 2,
+      "count": 256,
+      "span": 255,
+      "two_pi_hex": "0x1.921fb54442d18p+2",
+      "angle_min_hex": "0x1.908d958efe8ebp+2",
+      "angle_max_hex": "0x1.921fb54442d18p+2",
+      "scale_hex": "0x1.45f306dc9c896p+5",
+      "samples": [
+        {
+          "label": "two_below",
+          "angle_hex": "0x1.921fb54442d16p+2",
+          "u_hex": "0x1.ffffffffffd74p-1",
+          "u": 0.9999999999999276
+        },
+        {
+          "label": "predecessor",
+          "angle_hex": "0x1.921fb54442d17p+2",
+          "u_hex": "0x1.ffffffffffebap-1",
+          "u": 0.9999999999999638
+        },
+        {
+          "label": "endpoint",
+          "angle_hex": "0x1.921fb54442d18p+2",
+          "u_hex": "0x1.fffffffffffffp-1",
+          "u": 0.9999999999999999
+        },
+        {
+          "label": "successor",
+          "angle_hex": "0x1.921fb54442d19p+2",
+          "u_hex": "0x1.00000000000a3p+0",
+          "u": 1.0000000000000362
+        }
+      ]
+    },
+    {
+      "member": 3,
+      "count": 384,
+      "span": 383,
+      "two_pi_hex": "0x1.921fb54442d18p+2",
+      "angle_min_hex": "0x1.9113a020bffa4p+2",
+      "angle_max_hex": "0x1.921fb54442d17p+2",
+      "scale_hex": "0x1.e8ec8a4aead7dp+5",
+      "samples": [
+        {
+          "label": "two_below",
+          "angle_hex": "0x1.921fb54442d15p+2",
+          "u_hex": "0x1.ffffffffffc2ep-1",
+          "u": 0.9999999999998914
+        },
+        {
+          "label": "predecessor",
+          "angle_hex": "0x1.921fb54442d16p+2",
+          "u_hex": "0x1.ffffffffffe17p-1",
+          "u": 0.9999999999999457
+        },
+        {
+          "label": "endpoint",
+          "angle_hex": "0x1.921fb54442d17p+2",
+          "u_hex": "0x1p+0",
+          "u": 1
+        },
+        {
+          "label": "successor",
+          "angle_hex": "0x1.921fb54442d18p+2",
+          "u_hex": "0x1.00000000000f4p+0",
+          "u": 1.0000000000000542
+        }
+      ]
+    }
+  ],
+  "results": [
+    {
+      "member": 2,
+      "span": 255,
+      "sample_count": 256,
+      "modeled_root_u": [
+        0.999999999999975,
+        0.9999999999999774
+      ],
+      "predecessor_u": 0.9999999999999638,
+      "endpoint_u": 0.9999999999999999,
+      "gap_u": 3.608224830031759e-14,
+      "predecessor_angle_hex": "0x1.921fb54442d17p+2",
+      "endpoint_angle_hex": "0x1.921fb54442d18p+2",
+      "endpoint_equals_two_pi": true,
+      "state": "NO_REPRESENTABLE_ANGLE_IN_MODELED_ROOT_BOX"
+    },
+    {
+      "member": 3,
+      "span": 383,
+      "sample_count": 384,
+      "modeled_root_u": [
+        0.9999999999999833,
+        0.999999999999986
+      ],
+      "predecessor_u": 0.9999999999999457,
+      "endpoint_u": 1,
+      "gap_u": 5.4289905904170155e-14,
+      "predecessor_angle_hex": "0x1.921fb54442d16p+2",
+      "endpoint_angle_hex": "0x1.921fb54442d17p+2",
+      "endpoint_equals_two_pi": false,
+      "state": "NO_REPRESENTABLE_ANGLE_IN_MODELED_ROOT_BOX"
+    }
+  ],
+  "claim_boundary": "The helper reproduces native angle arithmetic but does not inspect a CompiledSweptSplineSurface instance, enclose frame evaluation, or certify a native root. Modeled root boxes lie between representable angle inputs; a production continuous-root method must handle that gap."
+}

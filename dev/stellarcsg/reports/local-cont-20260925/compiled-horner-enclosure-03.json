@@ -1,0 +1,19 @@
+{
+  "schema": "stellarcsg.compiled-horner-enclosure/v1",
+  "state": "ALL_ANALYTIC_ROUNDED_HORNER_BOXES_ENCLOSE",
+  "member_spans": {
+    "2": 256,
+    "3": 384
+  },
+  "covered_local_u_tiles": 10240,
+  "selected_angle_endpoint_checks": 640,
+  "axis_tile_checks": 30720,
+  "exact_rational_product_and_sum_bound_checks": 552960,
+  "hashes": {
+    "auditor": "d6275acbaa27165af10c540a5c35e1210ca113bae71daa13cb1a34e8e27843e7",
+    "boxes": "c14b80516f33ab741f2bc2a72d981c97f10955312c91af27489e1f066d4430f1",
+    "construction_receipt": "ee4224416b14f8c26377a03e049d0242f3e4f6f9f09941b57ca4c399ad2a2813",
+    "production_source": "dd4db0fb66dda806f0061f67e4d3ad0b673c5a46d1598f667191016a2157c163"
+  },
+  "claim_boundary": "Every outward binary64 interval product and sum in the 16-tile centerline Horner replay encloses the corresponding exact operation on its binary64 operands, with no local-u tile gaps. Each source-order selected-angle endpoint maps inside the local-u cover; monotonic correctly rounded arithmetic covers intermediate selected parameters in [0,1]. The resulting 3,840 box endpoints match the compiled dump for two analytic members. Under correctly rounded binary64 operations and the source's evaluation order, these boxes enclose the rounded Horner center. This does not independently prove optimized instruction order, arbitrary imported payloads, BVH traversal, nearest-root selection, frame normalization, or transport performance."
+}

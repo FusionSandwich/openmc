@@ -1,0 +1,7 @@
+2026-09-25 local native nearest-centerline rebuild preflight
+Windows RAM: 33,457,440 KiB total; 3,921,808 KiB free at observation.
+Free disk: C: 82,441,031,680 B; D: 503,872,147,456 B. Build target is C:.
+Largest resident processes: vmmemWSL 1,914,650,624 B; ChatGPT 1,330,364,416 B; chrome 945,946,624 B; codex 877,170,688 B; ChatGPT 718,753,792 B; chrome 691,478,528 B; chrome 675,557,376 B; OneDrive 647,282,688 B.
+Existing WSL OpenMC-Dev-D: GCC 14.2.0, CMake 3.31.6, Ninja 1.12.1, Python 3.13.5, /opt/openmc-venv 606 MiB and pip cache 152 MiB. The current local source worktree and configured 16 MiB build/native-local-20260925 directory are present.
+Existing capabilities suffice. Planned software download/install/upgrade/acquisition: 0 B. One-job CMake rebuild of existing native libopenmc.so and native smoke helper, estimated output under 20 MiB, targets build/native-local-20260925 on C:. No dependency environment or remote system changes.
+Rollback: retain source-control history and prior receipts. Revert only the named solver/test edits and rebuild existing targets if needed; no package/cache removal is needed.

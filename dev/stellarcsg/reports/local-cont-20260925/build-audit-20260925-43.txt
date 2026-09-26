@@ -1,0 +1,7 @@
+2026-09-25 same-span root-prefix native OpenMC rebuild preflight
+Windows RAM: 33,457,440 KiB total; 3,757,060 KiB free at observation.
+Free disk: C: 85,470,355,456 B; D: 503,640,412,160 B. Native target is C:.
+Largest resident processes: vmmemWSL 1,913,364,480 B; ChatGPT 1,363,738,624 B; chrome 937,345,024 B; codex 880,533,504 B; ChatGPT 728,760,320 B; chrome 722,837,504 B; chrome 667,480,064 B; OneDrive 653,152,256 B.
+Existing WSL OpenMC-Dev-D: GCC 14.2.0, CMake 3.31.6, Ninja 1.12.1, Python 3.13.5, /opt/openmc-venv 606 MiB and pip cache 152 MiB. Existing native CMake build, libopenmc.so and native adapter source are present. Windows tools, inactive Conda/venv, and local OpenMC/StellarCSG checkouts were inspected earlier this turn.
+Existing capabilities suffice. Planned software download/install/upgrade/acquisition: 0 B. One-job Ninja rebuild of existing libopenmc.so and bin/openmc, expected under 20 MiB new output, targets build/native-local-20260925 on C:. The existing native smoke binary and analytic HDF5 will be reused. No dependency environment or remote system changes.
+Rollback: preserve Git source-control history and receipts; revert the named solver/test edit and rebuild existing native targets if needed. No package/cache rollback is needed.

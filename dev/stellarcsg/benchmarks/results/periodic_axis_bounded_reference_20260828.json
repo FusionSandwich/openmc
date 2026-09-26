@@ -1,0 +1,16 @@
+{
+  "rays": 10000,
+  "reference_nanoseconds_per_ray": 173839.3088,
+  "bounded_nanoseconds_per_ray": 16962.667799999999,
+  "speedup": 10.248347185104928,
+  "mismatches_over_1e-7": 0,
+  "maximum_distance_error": 1.9596746447803071e-10,
+  "average_bvh_nodes_per_ray": 52.1188,
+  "average_patch_boxes_per_ray": 42.423900000000003,
+  "average_candidate_patches_per_ray": 9.8817000000000004,
+  "fallback_fraction": 0,
+  "reference_function_evaluations_per_ray": 406.27620000000002,
+  "bounded_function_evaluations_per_ray": 44.923499999999997,
+  "checksum": 10502.683079658236,
+  "comparison_scope": "bounded spline-patch path versus the same kernel's broad reference search; not an OpenMC torus or DAGMC transport benchmark"
+}

@@ -44,6 +44,12 @@ option(OPENMC_USE_MPI         "Enable MPI"                                      
 option(OPENMC_USE_UWUW        "Enable UWUW"                                          OFF)
 option(OPENMC_FORCE_VENDORED_LIBS "Explicitly use submodules defined in 'vendor'"    OFF)
 option(OPENMC_ENABLE_STRICT_FP "Enable strict FP flags to improve test portability"  OFF)
+option(OPENMC_ENABLE_EXPERIMENTAL_STELLARCSG
+  "Enable experimental native periodic/swept spline CSG surfaces" OFF)
+option(STELLARCSG_ENABLE_PERFORMANCE_COUNTERS
+  "Enable thread-local experimental StellarCSG performance counters" OFF)
+option(STELLARCSG_VERIFY_FAST_WITH_ORACLE
+  "Sample experimental StellarCSG fast results against the oracle" OFF)
 
 message(STATUS "OPENMC_USE_OPENMP ${OPENMC_USE_OPENMP}")
 message(STATUS "OPENMC_BUILD_TESTS ${OPENMC_BUILD_TESTS}")
@@ -55,6 +61,9 @@ message(STATUS "OPENMC_USE_MPI ${OPENMC_USE_MPI}")
 message(STATUS "OPENMC_USE_UWUW ${OPENMC_USE_UWUW}")
 message(STATUS "OPENMC_FORCE_VENDORED_LIBS ${OPENMC_FORCE_VENDORED_LIBS}")
 message(STATUS "OPENMC_ENABLE_STRICT_FP ${OPENMC_ENABLE_STRICT_FP}")
+message(STATUS "OPENMC_ENABLE_EXPERIMENTAL_STELLARCSG ${OPENMC_ENABLE_EXPERIMENTAL_STELLARCSG}")
+message(STATUS "STELLARCSG_ENABLE_PERFORMANCE_COUNTERS ${STELLARCSG_ENABLE_PERFORMANCE_COUNTERS}")
+message(STATUS "STELLARCSG_VERIFY_FAST_WITH_ORACLE ${STELLARCSG_VERIFY_FAST_WITH_ORACLE}")
 
 # Warnings for deprecated options
 foreach(OLD_OPT IN ITEMS "openmp" "profile" "coverage" "dagmc" "libmesh")
@@ -287,12 +296,6 @@ if(GIT_FOUND AND EXISTS "${CMAKE_CURRENT_SOURCE_DIR}/.git")
   endif()
 endif()
 
-# Check to see if submodules exist (by checking one)
-if(NOT EXISTS "${CMAKE_CURRENT_SOURCE_DIR}/vendor/pugixml/CMakeLists.txt")
-  message(FATAL_ERROR "The git submodules were not downloaded! GIT_SUBMODULE was \
-    turned off or failed. Please update submodules and try again.")
-endif()
-
 #===============================================================================
 # pugixml library
 #===============================================================================
@@ -303,6 +306,9 @@ if(OPENMC_FORCE_VENDORED_LIBS)
 else()
   find_package_write_status(pugixml)
   if (NOT pugixml_FOUND)
+    if(NOT EXISTS "${CMAKE_CURRENT_SOURCE_DIR}/vendor/pugixml/CMakeLists.txt")
+      message(FATAL_ERROR "pugixml was not found and its vendored source is missing")
+    endif()
     add_subdirectory(vendor/pugixml)
     set_target_properties(pugixml PROPERTIES CXX_STANDARD 14 CXX_EXTENSIONS OFF)
   endif()
@@ -318,6 +324,9 @@ if(OPENMC_FORCE_VENDORED_LIBS)
 else()
   find_package_write_status(fmt)
   if (NOT fmt_FOUND)
+    if(NOT EXISTS "${CMAKE_CURRENT_SOURCE_DIR}/vendor/fmt/CMakeLists.txt")
+      message(FATAL_ERROR "fmt was not found and its vendored source is missing")
+    endif()
     set(FMT_INSTALL ON CACHE BOOL "Generate the install target.")
     add_subdirectory(vendor/fmt)
   endif()
@@ -497,6 +506,26 @@ list(APPEND libopenmc_SOURCES
   src/external/quartic_solver.cpp
   src/external/Faddeeva.cc)
 
+if(OPENMC_ENABLE_EXPERIMENTAL_STELLARCSG)
+  list(APPEND libopenmc_SOURCES
+    src/surface_periodic_spline.cpp
+    src/surface_swept_spline.cpp
+    src/surface_facet_set.cpp
+    dev/stellarcsg/src/coefficient_file.cpp
+    dev/stellarcsg/src/swept_coefficient_file.cpp
+    dev/stellarcsg/src/compiled_periodic_surface.cpp
+    dev/stellarcsg/src/compiled_swept_surface.cpp
+    dev/stellarcsg/src/compiled_swept_surface_set.cpp
+    dev/stellarcsg/src/compiled_facet_surface_set.cpp
+    dev/stellarcsg/src/facet_payload_file.cpp
+    dev/stellarcsg/src/performance_counters.cpp
+    dev/stellarcsg/src/periodic_radial_surface.cpp
+    dev/stellarcsg/src/root_solver.cpp
+    dev/stellarcsg/src/sha256.cpp
+    dev/stellarcsg/src/uniform_periodic_bicubic_spline.cpp
+    dev/stellarcsg/src/uniform_periodic_cubic_spline.cpp)
+endif()
+
 # For Visual Studio compilers
 if(MSVC)
   # Use static library (otherwise explicit symbol portings are needed)
@@ -522,6 +551,22 @@ target_include_directories(libopenmc
     $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>
     ${HDF5_INCLUDE_DIRS}
 )
+
+if(OPENMC_ENABLE_EXPERIMENTAL_STELLARCSG)
+  target_include_directories(libopenmc PUBLIC
+    $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/dev/stellarcsg/include>)
+  target_compile_definitions(libopenmc
+    PRIVATE OPENMC_EXPERIMENTAL_STELLARCSG
+    PUBLIC STELLARCSG_HAS_HDF5)
+  if(STELLARCSG_ENABLE_PERFORMANCE_COUNTERS)
+    target_compile_definitions(libopenmc
+      PUBLIC STELLARCSG_ENABLE_PERFORMANCE_COUNTERS)
+  endif()
+  if(STELLARCSG_VERIFY_FAST_WITH_ORACLE)
+    target_compile_definitions(libopenmc
+      PUBLIC STELLARCSG_VERIFY_FAST_WITH_ORACLE)
+  endif()
+endif()
 
 # Set compile flags
 target_compile_options(libopenmc PRIVATE ${cxxflags})

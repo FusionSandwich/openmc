@@ -1,0 +1,7 @@
+2026-09-25 local data-build preflight (separate exact-period coefficient candidate)
+Windows RAM: 33,457,440 KiB total; 3,897,040 KiB free.
+Free disk: C: 82,056,687,616 B; D: 504,101,810,176 B. Data output target is C:.
+Largest resident processes: vmmemWSL 1,855,012,864 B; ChatGPT 1,294,024,704 B; chrome 944,635,904 B; codex 874,594,304 B; another ChatGPT 719,130,624 B; another chrome 675,438,592 B; another chrome 658,063,360 B; OneDrive 634,687,488 B.
+Existing WSL OpenMC-Dev-D: GCC 14.2.0, CMake 3.31.6, Ninja 1.12.1, Python 3.13.5, h5py 3.16.0 and NumPy 2.5.1 in /opt/openmc-venv (606 MiB); pip cache 152 MiB. The local source checkout, existing 1,288,192 B frame-candidate HDF5, existing native/standalone builds and 31 local StellarCSG workspace directories are present. Output HDF5 is absent.
+Existing capabilities suffice. Planned download/install/acquisition: 0 B. One single-process Python run reads the immutable frame candidate and manifest, writes a new HDF5 under 2 MiB and receipt under 100 KiB in dev/stellarcsg/reports/local-cont-20260925 on C:. No dependency environment, external software or remote system change.
+Rollback: retain the source HDF5 and manifest; if the new diagnostic candidate is discarded, remove only the exact new output HDF5/receipt after reviewing paths, or leave them as comparison evidence. No package/cache removal is needed.

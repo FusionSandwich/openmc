@@ -1,0 +1,17 @@
+{
+  "schema": "stellarcsg.p00-facet-query/v1",
+  "classification": "ACCEPTED_P00_MESH_COMPONENT_SIDE_BANK_PASS",
+  "claim_boundary": "The standalone oriented triangle query classified the 108 accepted P00 facet-side points per DAGMC coil volume. This is finite mesh parity evidence, not a continuous CAD/root or OpenMC transport qualification.",
+  "accepted_h5m_sha256": "549c42bf66b290f8f56b6f4d7523940c3b32b9d256d993ea42605f4dddb33e39",
+  "catalog_sha256": "e1bb8ca2bbda5d7a41e02303f5507aa964e822469eb503e4c8ad84ccc6a1bfb9",
+  "probe_bank_sha256": "37918fd9c88c3b28a60366ab67a4e3599fbefacb446e1afaee4d515105a679e4",
+  "fixture_sha256": "e3bb70b70012f7899fadb3d8b736123b96e5e472afa3bc645d303013ef715b05",
+  "coil_components": 18,
+  "triangles": 3348,
+  "inside_probes_passed": 54,
+  "outside_probes_passed": 54,
+  "ctest": {
+    "stellarcsg_facet_surface_tests": "PASS",
+    "stellarcsg_facet_p00_tests": "PASS"
+  }
+}

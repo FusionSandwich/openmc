@@ -1,0 +1,8 @@
+{
+  "schema": "stellarcsg.blanket-family-report/v1",
+  "recorded_date": "2026-08-31",
+  "status": "NOT_RUN",
+  "implementation_status": "NOT_IMPLEMENTED_IN_THIS_MILESTONE",
+  "reason": "The periodic local patch kernel and WISTELL-D plasma speed gate were completed first. Shared immutable topology for nested normal-offset blanket layers was not implemented or qualified.",
+  "guardrail": "No radial-thickness substitution or silent repair was made. Physical-normal layer construction, nesting, and layer-intersection classification remain required before qualification."
+}

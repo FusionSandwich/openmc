@@ -1,0 +1,48 @@
+{
+  "schema": "stellarcsg.provisional-period-region/v1",
+  "state": "PROVISIONAL_SECTOR_XML_ROUNDTRIP_ONLY",
+  "field_period_degrees": 90,
+  "selected_member_ids": [
+    1000,
+    1002,
+    1001,
+    1007,
+    1008,
+    1010,
+    1009,
+    1015,
+    1016,
+    1023,
+    1024,
+    1031,
+    1032,
+    1039,
+    1040,
+    1046,
+    1047,
+    1045
+  ],
+  "sector_halfspaces": [
+    "x>=0",
+    "y>=0"
+  ],
+  "periodic_plane_ids": [
+    901,
+    902
+  ],
+  "coil_surface_id": 903,
+  "coil_cell_id": 1001,
+  "complement_cell_id": 1002,
+  "registered_whole_coil_span_count": 4608,
+  "manifest_admitted_span_count": 3156,
+  "radial_outer_vacuum_cm": 2500.0,
+  "axial_outer_vacuum_cm": 700.0,
+  "hashes": {
+    "builder": "2d17b20ceee4139dbb59d0935ddc45dc827114b668fe2c45821ae2d4cbdf1553",
+    "h5": "5239876917349e057ad261cfeb6dcec4f25f8c10376ee173c2960aed161967ab",
+    "manifest": "9b60ff7f924ee2e766a0e832857754c55bed313f72685942d520cc4cd2729686",
+    "period_box_receipt": "ec9c3d6fa9be14998e7dda5f6d75c31060b8464604d0c0cae65b5c3062cf6b94",
+    "geometry_xml": "b7361f3b71ebe8066696cfeaabb16a10f50d4412b4264cde2df10ebfcee2869c"
+  },
+  "claim_boundary": "Python XML records two complementary unfilled cells inside paired x=0/y=0 periodic planes. Full coil surfaces are clipped by region intersection for material ownership, without removing their unadmitted spans from native evaluation. The physical winding pack, native periodic-plane handling, root completeness, source clearance, material assignment and transport remain unqualified."
+}

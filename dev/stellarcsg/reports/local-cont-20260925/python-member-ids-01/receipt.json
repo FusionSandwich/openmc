@@ -1,0 +1,12 @@
+{
+  "evidence": "actual-methods-with-controlled-base",
+  "checks": 28,
+  "passed": 28,
+  "failed": 0,
+  "source": "openmc/surface.py",
+  "source_sha256": "d5a799b2793c9e9a308865e048e6ea69caf3f210c0bdf86518a8d4a68d07dab0",
+  "adapter_hdf5_sha256": "8a59b2909015ec2b8868e49be2fd652e8db8bf047b6ae3446b3a7e34185439f4",
+  "runner_sha256": "9d850f52bb62a6dfb7a7bf6ebf2c03ee0303917a9d6393b0089da28f9086a299",
+  "native_openmc_imported": false,
+  "transport_run": false
+}

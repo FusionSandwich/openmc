@@ -1,0 +1,116 @@
+{
+  "schema": "stellarcsg.final-reproducibility-manifest/v1",
+  "recorded_date": "2026-08-30",
+  "repository": "FusionSandwich/openmc",
+  "branch": "codex/stellarcsg-native-csg-foundation-20260828",
+  "starting_sha": "9adb7c4bd8a97c88f4a4e614b80637d6043c202b",
+  "implementation_evidence_sha": "594670eee8a0c1e26a5b44d713468f74f4204ce3",
+  "final_pushed_sha_resolution": "Run git rev-parse HEAD after checkout; the manifest cannot embed the hash of the commit that contains itself.",
+  "build_contract": {
+    "option": "OPENMC_ENABLE_EXPERIMENTAL_STELLARCSG",
+    "default": "OFF",
+    "units": "cm",
+    "tracking_runtime_dependencies": ["OpenMC C++ runtime", "HDF5"],
+    "python_callbacks_in_tracking": false
+  },
+  "toolchains": {
+    "windows_python": "3.12.10",
+    "windows_pytest": "8.4.2",
+    "debian": "13 (trixie)",
+    "debian_cmake": "3.31.6",
+    "debian_gcc": "14.2.0",
+    "openmc_dev_clang": "19.1.7",
+    "clang_sanitizer_status": "BLOCKED_MISSING_COMPILER_RT_ASAN_ARCHIVES",
+    "dagmc_container_image": "parastell-openmc:0.16.0",
+    "dagmc_container_image_id": "sha256:ca0c3b1fba39ce27af6ebdb79df14795041922e72521f232cdd770ff1c416191",
+    "dagmc": "3.2.4",
+    "cad_to_dagmc": "0.11.5",
+    "cadquery": "2.7.0"
+  },
+  "source_inputs": [
+    {"path": "dev/stellarcsg/test_data/wistell_d/wout_wistell-d.nc", "bytes": 4626928, "sha256": "9231969001203a8133255ee0a275bf552b114cc12524dda0608ab2f12047f7ac"},
+    {"path": "dev/stellarcsg/test_data/wistell_d/coils.wistell-d", "bytes": 1737790, "sha256": "7748369407d28a70f35b5c4a7c0ab860495a08fd0030002112ea933fe570159b"},
+    {"path": "dev/stellarcsg/test_data/wistell_d/blanket_boundary.npy", "bytes": 3744, "sha256": "fdb85b2c0c8cd72f5d000302e0b67349ebf72679f98f9c4d7739e5d8484cdde3"},
+    {"path": "dev/stellarcsg/test_data/wistell_d/magnet_boundary.npy", "bytes": 3744, "sha256": "3579e5d8fe97dd74c8700e5676964159f00f07989ca6436528f60462889f05bd"},
+    {"path": "dev/stellarcsg/test_data/wistell_d/nwl.npy", "bytes": 3744, "sha256": "56baa090d61b67273efba61213849b7516beabb2a57fc2ad4751a6f3a32b2db4"},
+    {"path": "dev/stellarcsg/test_data/parastell_generic/wout_vmec.nc", "bytes": 8730304, "sha256": "1cebb8d46e60d77df4a6904662a9c9f943137a9fb59f7290e5309af15fa04797"},
+    {"path": "dev/stellarcsg/test_data/parastell_generic/coils.example", "bytes": 501321, "sha256": "69f508b216f0b674368ca8731d390c9d514736ff092f0ebecd854e8772ae04ab"}
+  ],
+  "qualified_artifacts": [
+    {"path": "dev/stellarcsg/qualified/analytic_periodic_surfaces.h5", "bytes": 426240, "sha256": "4c3fde17b07c0b363f716911ac954d5984ed7751b9afa90d7dba4fd54932ded8"},
+    {"path": "dev/stellarcsg/qualified/analytic_swept_coils.h5", "bytes": 95232, "sha256": "39f77da5ab1fe427cce58b153e9b52cf8915e9973a9b8f3dfad5ab3b00a9e46d"},
+    {"path": "dev/stellarcsg/qualified/parastell_generic_swept_coils.h5", "bytes": 1069056, "sha256": "3c3f05a3e816426af8d44d053f620b30bef4181e2465b4264defd05bf91fe68f"},
+    {"path": "dev/stellarcsg/qualified/wistell_d_periodic_surfaces.h5", "bytes": 4791296, "sha256": "52695c3c6a7329faccdd009f1179c50c91e24c8902447356d3b2cd77c7f9ca36"},
+    {"path": "dev/stellarcsg/qualified/wistell_d_swept_coils.h5", "bytes": 1280000, "sha256": "caeed2e41da2082b93d32758e40932d9ac268966998dc2664e8164cb8cb7a89b"},
+    {"path": "dev/stellarcsg/qualified/dagmc_exact_torus_coarse.h5m", "bytes": 395172, "sha256": "393ec6ef79718aa0c90996e74cc68303fc000ea0c9b258dcdf19fc7d57215a0b"},
+    {"path": "dev/stellarcsg/qualified/dagmc_exact_torus_fine.h5m", "bytes": 2215788, "sha256": "2377cfa960399ce18ece599a736d8e9adb602a632339f541f4fb73530afdcb56"}
+  ],
+  "deterministic_regeneration": {
+    "analytic_surfaces": "PASS_BYTE_IDENTICAL_HDF5",
+    "wistell_d_surfaces_and_layers": "PASS_BYTE_IDENTICAL_HDF5",
+    "analytic_and_source_coils": "PASS_BYTE_IDENTICAL_HDF5",
+    "parastell_vmec": "EXPECTED_REJECT_THETA_FOLD_EXIT_2"
+  },
+  "validation": {
+    "test_data_verifier": {"passed": 7, "failed": 0},
+    "standalone_gcc_release_ctest": {"passed": 2, "failed": 0},
+    "standalone_python": {"passed": 13, "failed": 0, "skipped": 1, "skip_reason": "optional full OpenMC import lacks local endf package"},
+    "native_openmc_python": {"passed": 6, "failed": 0},
+    "openmc_feature_disabled_build": "PASS",
+    "openmc_feature_enabled_build": "PASS",
+    "native_openmc_stellarcsg_cpp_test": {"passed": 1, "failed": 0},
+    "all_native_openmc_cpp_tests": {
+      "full_ctest_invoked": 13,
+      "passed": 12,
+      "optional_skipped": 1,
+      "ctest_wrapper_failures": 1,
+      "detail": "test_mcpl_stat_sum explicitly skipped because libmcpl is absent; the CTest wrapper classified the skipped-only executable as failed. All 12 runnable executables passed."
+    },
+    "periodic_root_campaign": {
+      "status": "PASS_EXACT_CIRCULAR_TORUS",
+      "randomized_rays": 10000000,
+      "adversarial_rays": 4099,
+      "missed_roots": 0,
+      "false_roots": 0,
+      "wrong_nearest_roots": 0,
+      "maximum_distance_error_cm": 5.975539285607567e-9,
+      "target_cm": 6e-9
+    },
+    "openmc_speed": {
+      "status": "PASS_EXECUTION_PERFORMANCE_TARGETS_NOT_MET",
+      "repetitions_per_case": 5,
+      "warmups_per_case": 1,
+      "lost_particles": 0,
+      "geometry_debug_errors": 0,
+      "periodic_to_builtin_rate_ratio": 0.4158115617483619,
+      "swept_to_builtin_rate_ratio": 0.41323106114388236
+    },
+    "dagmc": {
+      "joint_build": "PASS",
+      "scope": "same-source exact circular torus only",
+      "coarse_triangles": 8682,
+      "fine_triangles": 52030,
+      "coarse_max_sample_error_cm": 1.4733454075289671,
+      "fine_max_sample_error_cm": 0.23657640692130144,
+      "check_watertight": "PASS",
+      "overlap_check": "PASS",
+      "measured_transport_lost_particles": 0,
+      "openmc_geometry_debug": "FAIL_EXPLICIT_VOLUME_VS_IMPLICIT_COMPLEMENT"
+    },
+    "clean_clone_final_head": "NOT_RUN"
+  },
+  "retained_report_paths": [
+    "dev/stellarcsg/reports/ROOT_CORRECTNESS.json",
+    "dev/stellarcsg/reports/GEOMETRY_FIDELITY.csv",
+    "dev/stellarcsg/reports/OPENMC_SPEED_RESULTS.csv",
+    "dev/stellarcsg/reports/OPENMC_SPEED_RESULTS.json",
+    "dev/stellarcsg/reports/DAGMC_EXACT_TORUS_FIDELITY.csv",
+    "dev/stellarcsg/reports/DAGMC_EXACT_TORUS_FIDELITY.json",
+    "dev/stellarcsg/reports/DAGMC_EXACT_TORUS_SPEED.csv",
+    "dev/stellarcsg/reports/DAGMC_EXACT_TORUS_SPEED.json",
+    "dev/stellarcsg/reports/DAGMC_COMPARISON.md",
+    "dev/stellarcsg/reports/COIL_QUALIFICATION.md",
+    "dev/stellarcsg/reports/WISTELL_D_QUALIFICATION.md",
+    "dev/stellarcsg/reports/FINAL_TECHNICAL_BOUNDARIES.md"
+  ]
+}

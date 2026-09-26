@@ -1,0 +1,42 @@
+{
+  "schema": "stellarcsg.period-swept-bound-parity/v1",
+  "state": "PROVISIONAL_PERIOD_CPP_PYTHON_BOX_MATCH",
+  "command": [
+    "/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-local-continuation-20260925/dev/stellarcsg/build/dump_compiled_set_box",
+    "/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-local-continuation-20260925/dev/stellarcsg/reports/local-cont-20260925/wistell-exact-period-candidate.h5",
+    "1000",
+    "1002",
+    "1001",
+    "1007",
+    "1008",
+    "1010",
+    "1009",
+    "1015",
+    "1016",
+    "1023",
+    "1024",
+    "1031",
+    "1032",
+    "1039",
+    "1040",
+    "1046",
+    "1047",
+    "1045"
+  ],
+  "exit_code": 0,
+  "selected_member_count": 18,
+  "registered_whole_coil_span_count": 4608,
+  "manifest_admitted_span_count": 3156,
+  "registered_unadmitted_span_count": 1452,
+  "matched_binary64_endpoints": 6,
+  "sha256": {
+    "auditor": "401426bd9be0da07e38d24bd65e76e1e0cb78dc32099b8bdbb0873a367680f7c",
+    "python_receipt": "ec9c3d6fa9be14998e7dda5f6d75c31060b8464604d0c0cae65b5c3062cf6b94",
+    "compiled_output": "ba9f3be4ce2b1ebc3584e1679cabd0fe53cb1baea2ab94742c641fac1984562c",
+    "helper": "0c4b28cec25b484832f390bf6cc53657b7e234fbf72c9a1bbcfd3144b323a0e2",
+    "helper_source": "3b29f6bfbc0b0ab3430a3b4995fd7615ef64eff8a084c36af1f686d49691c322",
+    "standalone_library": "f932ab34f0c369f014e9a5cae2e96b7d9e5c9220ae25adb07f84cd85960f6946",
+    "candidate_h5": "5239876917349e057ad261cfeb6dcec4f25f8c10376ee173c2960aed161967ab"
+  },
+  "claim_boundary": "The current static C++ selected-set build and native OpenMC Python bounding-box path return identical binary64 bounds for 18 provisional whole coils. This is representation parity, not an approved physical one-period geometry: 1,452 registered whole-coil spans are outside the manifest's admitted span subset. No periodic-plane clipping/ownership, root completeness, source clearance, transport or latency is certified."
+}

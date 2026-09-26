@@ -1,0 +1,7 @@
+2026-09-25 local build preflight (arbitrary-ray quadratic interval experiment)
+Windows RAM: 33,457,440 KiB total; 3,719,896 KiB free.
+Free disk: C: 82,759,008,256 B; D: 504,297,172,992 B. Build target is C:.
+Largest resident processes: vmmemWSL 1,856,454,656 B; ChatGPT 1,284,833,280 B; chrome 937,385,984 B; codex 858,640,384 B; another ChatGPT 707,121,152 B; another chrome 687,558,656 B; another chrome 660,561,920 B; OneDrive 632,700,928 B.
+Existing WSL OpenMC-Dev-D: GCC 14.2.0, CMake 3.31.6, Ninja 1.12.1, HDF5 1.14.5, Python 3.13.5 in /opt/openmc-venv (606 MiB); pip cache 152 MiB. The local source checkout, native build (16 MiB), native libopenmc.so, and 31 local StellarCSG workspace directories are present. Existing experimental executable and native library are present.
+Existing capabilities suffice. Planned download/install/acquisition: 0 B. One GCC job will rebuild only build/native-local-20260925/swept_prefix_quadratic_seams, with less than 20 MiB incremental output on C:. A bounded one-CPU diagnostic will read the frozen bank and write a no-overwrite receipt under 1 MiB. No production solver/library, dependency environment, or remote system changes.
+Rollback: restore the experimental source from commit 2b92e1723 and rebuild the same binary if needed; retain the prior hash-bound seam receipt. No package/cache removal is needed.

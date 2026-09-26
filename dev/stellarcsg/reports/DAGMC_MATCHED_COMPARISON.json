@@ -1,0 +1,35 @@
+{
+  "schema": "stellarcsg.dagmc-matched-comparison/v1",
+  "recorded_date": "2026-08-31",
+  "hardware": "Intel Core i9-10850K; one thread pinned to CPU 2",
+  "complete_wistell_d_coil_set": {
+    "evidence": "../benchmarks/raw/wistell_coil_set_openmc_20260831.json",
+    "histories_per_repetition": 100000,
+    "repetitions": 7,
+    "native_csg_median": 289656,
+    "dagmc_coarse_median": 69868.9,
+    "dagmc_fine_median": 49189.5,
+    "native_over_fine": 5.888573780989845,
+    "same_source_lineage": true,
+    "native_geometry_debug": "PASS",
+    "dagmc_geometry_debug": "FAIL_EXPLICIT_VOLUME_VS_IMPLICIT_COMPLEMENT",
+    "ordinary_transport_lost_particles": 0
+  },
+  "representative_wistell_d_coil": {
+    "native_csg_median": 432436,
+    "dagmc_fine_median": 910634,
+    "native_over_fine": 0.4748735496368464,
+    "status": "FAIL"
+  },
+  "wistell_d_periodic_plasma": {
+    "native_csg_median": 26643.8,
+    "dagmc_fine_median": 21511.8,
+    "native_over_fine": 1.2385667401147278,
+    "status": "PASS_MINIMUM_FAIL_PREFERRED_1_3X"
+  },
+  "embree_double_down": {
+    "status": "BLOCKED_BY_ENVIRONMENT",
+    "pinned_dagmc_build": "3.2.4 nompi_nodoubledown",
+    "guardrail": "No direct DAGMC result is relabeled as Embree or Double Down."
+  }
+}

@@ -1,0 +1,28 @@
+{
+  "schema": "stellarcsg.wistell-d-coil-section-provenance/v1",
+  "optimization_repo": "D:\\Scratch\\stellarator_optimization",
+  "optimization_commit": "398032b8c0b4e7c0459c602f2af1e73b3fca0b9a",
+  "parastell_repo": "C:\\Users\\joshu\\OneDrive\\Documents\\ChatGPT\\StellarCGS\\parastell",
+  "parastell_commit": "de7d2978ff314b060ca2e6b10745a034e8b2a3c4",
+  "sha256": {
+    "filaments": "7748369407d28a70f35b5c4a7c0ab860495a08fd0030002112ea933fe570159b",
+    "generator": "a00518130c20c3adfd08f757b4e2066c2a54528154a8cd468333f91a112446b4",
+    "geometry_constants": "61cfb85028d6e4c7eeb4b152df10588182311f9bfdcddf9ff245a5b309f764b5",
+    "parastell_magnet_coils": "8fa7d1f75c6bcf9bbe906ccabe1808441ce506df865a4effef03c45bbfa3718a",
+    "parastell_radial_distance": "7db08ab07e1b0cdfe92138371590090dc8e11022fe7215ae2a68213466853c70"
+  },
+  "section_cm": {
+    "width": 30.0,
+    "thickness": 30.0,
+    "half_width": 15.0,
+    "half_thickness": 15.0,
+    "shape": "rectangle"
+  },
+  "definition": {
+    "generator_call": "wistell-d_data/generate_data.py:477-485",
+    "constant": "stellarator_optimization/geometry/constants.py:43",
+    "frame": "parastell/magnet_coils.py:924-953",
+    "frame_rule": "normal = normalized outward-from-filament-centre-of-mass projected orthogonal to tangent; binormal = tangent cross normal; corners = filament +/- 15 cm binormal +/- 15 cm normal"
+  },
+  "claim_boundary": "These files define the ParaStell WISTELL-D discrete magnet geometry used by the optimization source. Existing 10x8 cm elliptical selector candidate is a representation test only and cannot qualify this 30x30 cm rectangular winding pack."
+}

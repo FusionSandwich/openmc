@@ -2,8 +2,10 @@ from __future__ import annotations
 from abc import ABC, abstractmethod
 from collections.abc import Iterable
 from copy import deepcopy
+import hashlib
 import math
 from numbers import Real
+from pathlib import Path
 from warnings import warn, catch_warnings, simplefilter
 
 import lxml.etree as ET
@@ -460,6 +462,9 @@ class Surface(IDManagerMixin, ABC):
         surf_type = get_text(elem, "type")
         cls = _SURFACE_CLASSES[surf_type]
 
+        if surf_type in ('periodic-spline', 'swept-spline', 'facet-set'):
+            return cls._from_xml_element(elem)
+
         # Determine ID, boundary type, boundary albedo, coefficients
         kwargs = {}
         kwargs['surface_id'] = int(get_text(elem, "id"))
@@ -501,13 +506,16 @@ class Surface(IDManagerMixin, ABC):
             bc_alb = float(group['albedo'][()].decode())
         else:
             bc_alb = 1.0
-        coeffs = group['coefficients'][...]
         kwargs = {'boundary_type': bc, 'albedo': bc_alb, 'name': name,
                   'surface_id': surface_id}
 
         surf_type = group['type'][()].decode()
         cls = _SURFACE_CLASSES[surf_type]
 
+        if surf_type in ('periodic-spline', 'swept-spline', 'facet-set'):
+            return cls._from_hdf5(group, **kwargs)
+
+        coeffs = group['coefficients'][...]
         return cls(*coeffs, **kwargs)
 
 
@@ -2581,6 +2589,707 @@ class ZTorus(TorusMixin, Surface):
             )
         elif side == '+':
             return BoundingBox.infinite()
+
+
+class PeriodicSplineSurface(Surface):
+    """Experimental native periodic-spline surface.
+
+    The coefficient payload is stored in an external HDF5 file and is loaded by
+    OpenMC during geometry initialization. Lengths in that payload must be in
+    centimetres. The OpenMC executable must be configured with
+    ``OPENMC_ENABLE_EXPERIMENTAL_STELLARCSG=ON``.
+
+    Parameters
+    ----------
+    data_file : path-like
+        HDF5 coefficient file. Relative paths are resolved from the OpenMC input
+        directory by the C++ reader.
+    dataset : str
+        Absolute HDF5 group containing the coefficient payload.
+    content_id : str
+        Canonical payload identity, normally ``sha256:<64 lowercase hex>``.
+    solver : {'layered', 'reference'}
+        Root-solver policy. ``'layered'`` selects qualified specializations and
+        falls back to the independent global reference search.
+    kwargs : dict
+        Keyword arguments passed to :class:`Surface`.
+    """
+
+    _type = 'periodic-spline'
+    _coeff_keys = ()
+
+    def __init__(self, data_file, dataset, content_id, solver='layered', **kwargs):
+        super().__init__(**kwargs)
+        check_type('data_file', data_file, (str, Path))
+        check_type('dataset', dataset, str)
+        check_type('content_id', content_id, str)
+        check_type('solver', solver, str)
+        if not dataset.startswith('/'):
+            raise ValueError('dataset must be an absolute HDF5 group path')
+        if not content_id:
+            raise ValueError('content_id cannot be empty')
+        if solver not in ('layered', 'reference'):
+            raise ValueError("solver must be 'layered' or 'reference'")
+        self.data_file = str(data_file)
+        self.dataset = dataset
+        self.content_id = content_id
+        self.solver = solver
+
+    def is_equal(self, other):
+        if type(other) is not type(self):
+            return False
+        return (self.data_file, self.dataset, self.content_id, self.solver) == (
+            other.data_file, other.dataset, other.content_id, other.solver)
+
+    def _get_base_coeffs(self):
+        return ()
+
+    def evaluate(self, point):
+        raise NotImplementedError(
+            'PeriodicSplineSurface evaluation is provided by an experimental '
+            'OpenMC build, not the dependency-free Python geometry API'
+        )
+
+    def bounding_box(self, side):
+        if side == '+':
+            return BoundingBox.infinite()
+        if side != '-':
+            raise ValueError("side must be '+' or '-'")
+
+        import h5py
+
+        with h5py.File(self.data_file, 'r') as h5:
+            group = h5[self.dataset]
+            units = group.attrs['units']
+            if isinstance(units, bytes):
+                units = units.decode()
+            if units != 'cm':
+                raise ValueError("periodic-spline payload units must be 'cm'")
+            axis_r = group['axis_r_coefficients'][...]
+            axis_z = group['axis_z_coefficients'][...]
+            radius = group['radius_coefficients'][...]
+            characteristic = float(group.attrs['characteristic_length'])
+        radius_max = float(np.max(radius))
+        radial_extent = float(np.max(np.abs(axis_r))) + radius_max
+        epsilon = max(1.0e-10 * characteristic, 1.0e-9)
+        return BoundingBox(
+            np.array([-radial_extent - epsilon, -radial_extent - epsilon,
+                      float(np.min(axis_z)) - radius_max - epsilon]),
+            np.array([radial_extent + epsilon, radial_extent + epsilon,
+                      float(np.max(axis_z)) + radius_max + epsilon]),
+        )
+
+    def translate(self, vector, inplace=False):
+        raise NotImplementedError(
+            'translate the coefficient payload before constructing this surface'
+        )
+
+    def rotate(self, rotation, pivot=(0., 0., 0.), order='xyz', inplace=False):
+        raise NotImplementedError(
+            'rotate the coefficient payload before constructing this surface'
+        )
+
+    def to_xml_element(self):
+        element = super().to_xml_element()
+        element.attrib.pop('coeffs', None)
+        element.set('data_file', self.data_file)
+        element.set('dataset', self.dataset)
+        element.set('content_id', self.content_id)
+        element.set('solver', self.solver)
+        element.set('units', 'cm')
+        return element
+
+    @classmethod
+    def _from_xml_element(cls, elem):
+        kwargs = {
+            'surface_id': int(get_text(elem, 'id')),
+            'boundary_type': get_text(elem, 'boundary', 'transmission'),
+            'name': get_text(elem, 'name'),
+        }
+        if kwargs['boundary_type'] in _ALBEDO_BOUNDARIES:
+            kwargs['albedo'] = float(get_text(elem, 'albedo', 1.0))
+        units = get_text(elem, 'units', 'cm')
+        if units != 'cm':
+            raise ValueError("periodic-spline XML units must be 'cm'")
+        return cls(
+            data_file=get_text(elem, 'data_file'),
+            dataset=get_text(elem, 'dataset'),
+            content_id=get_text(elem, 'content_id'),
+            solver=get_text(elem, 'solver', 'layered'),
+            **kwargs,
+        )
+
+    @classmethod
+    def _from_hdf5(cls, group, **kwargs):
+        def text(name, default=None):
+            if name not in group:
+                return default
+            value = group[name][()]
+            return value.decode() if isinstance(value, bytes) else str(value)
+
+        return cls(
+            data_file=text('data_file'),
+            dataset=text('dataset'),
+            content_id=text('content_id'),
+            solver=text('solver', 'layered'),
+            **kwargs,
+        )
+
+
+def _swept_compiled_member_boxes(group):
+    """Mirror the compiled swept span bounds for Python geometry operations.
+
+    The compiled kernel evaluates stored cubic powers, which can leave the
+    rounded control hull. Keep the Python bounding box on that same arithmetic
+    path instead of assuming the HDF5 control extrema enclose it.
+    """
+    center = np.asarray(group['centerline_coefficients'][...], dtype=float)
+    major = np.asarray(group['major_radius_coefficients'][...], dtype=float)
+    minor = np.asarray(group['minor_radius_coefficients'][...], dtype=float)
+    if (center.ndim != 2 or center.shape[1] != 3 or len(center) < 4
+            or major.shape != (len(center),) or minor.shape != (len(center),)
+            or not np.all(np.isfinite(center)) or not np.all(np.isfinite(major))
+            or not np.all(np.isfinite(minor)) or np.any(major <= 0)
+            or np.any(minor <= 0)):
+        raise ValueError('invalid swept-spline coefficients for bounds')
+    length = float(group.attrs['length_cm'])
+    if not math.isfinite(length) or length <= 0:
+        raise ValueError('invalid swept-spline length for bounds')
+
+    def outward(value, direction):
+        if not math.isfinite(value):
+            raise ValueError('swept-spline bounds overflow')
+        result = math.nextafter(value, direction)
+        if not math.isfinite(result):
+            raise ValueError('swept-spline bounds overflow')
+        return result
+
+    def product(coefficient, interval):
+        low = coefficient * (interval[0] if coefficient >= 0 else interval[1])
+        high = coefficient * (interval[1] if coefficient >= 0 else interval[0])
+        return outward(low, -math.inf), outward(high, math.inf)
+
+    def power_range(power, u):
+        value = power[3], power[3]
+        for degree in (2, 1, 0):
+            left, right = product(value[0], u), product(value[1], u)
+            value = (outward(min(*left, *right) + power[degree], -math.inf),
+                     outward(max(*left, *right) + power[degree], math.inf))
+        return value
+
+    to_power = ((1.0 / 6.0, 4.0 / 6.0, 1.0 / 6.0, 0.0),
+                (-0.5, 0.0, 0.5, 0.0),
+                (0.5, -1.0, 0.5, 0.0),
+                (-1.0 / 6.0, 0.5, -0.5, 1.0 / 6.0))
+    count = len(center)
+    step = (2.0 * math.pi) / float(count)
+    rounding = max(64.0 * np.finfo(float).eps * length, 1.0e-12 * length)
+    boxes = []
+    for index in range(count):
+        controls = [((float(center[(index + offset - 1) % count, 0]),
+                      float(center[(index + offset - 1) % count, 1]),
+                      float(center[(index + offset - 1) % count, 2]),
+                      float(major[(index + offset - 1) % count]),
+                      float(minor[(index + offset - 1) % count])))
+                    for offset in range(4)]
+        powers = []
+        for field in range(5):
+            field_power = []
+            for row in to_power:
+                coefficient = 0.0
+                for offset in range(4):
+                    coefficient += row[offset] * controls[offset][field]
+                field_power.append(coefficient)
+            powers.append(field_power)
+        angle_min = step * float(index)
+        angle_max = angle_min + step
+        width = angle_max - angle_min
+        upper_u = outward(width * (1.0 / width), math.inf)
+        center_lower, center_upper = [math.inf] * 3, [-math.inf] * 3
+        radius = 0.0
+        for tile in range(16):
+            left = upper_u * float(tile) / 16.0
+            right = upper_u * float(tile + 1) / 16.0
+            u = (0.0 if tile == 0 else outward(left, -math.inf),
+                 upper_u if tile == 15 else outward(right, math.inf))
+            fields = [power_range(power, u) for power in powers]
+            for axis in range(3):
+                center_lower[axis] = min(center_lower[axis], fields[axis][0])
+                center_upper[axis] = max(center_upper[axis], fields[axis][1])
+            radius = max(radius, fields[3][1], fields[4][1])
+        inflation = outward(radius + rounding, math.inf)
+        lower = [outward(value - inflation, -math.inf)
+                 for value in center_lower]
+        upper = [outward(value + inflation, math.inf)
+                 for value in center_upper]
+        boxes.append((center_lower, center_upper, lower, upper))
+    return boxes
+
+
+class SweptSplineSurface(Surface):
+    """Experimental native swept cubic-spline coil surface.
+
+    The external HDF5 group contains an equal-arc-length centerline,
+    rotation-minimizing frame, and circular or elliptical cross-section data.
+    A collection selector makes one surface for the union of numbered coil
+    groups. Use separate surfaces when cells or tallies need distinct coil
+    ownership.
+
+    Parameters
+    ----------
+    data_file : path-like
+        HDF5 coefficient file.
+    dataset, content_id : str, optional
+        Absolute group path and canonical payload ID for one coil.
+    dataset_prefix : str, optional
+        Absolute prefix for numbered collection groups, for example
+        ``'/coils/coil_'``.
+    dataset_start : int, optional
+        First numbered group, default 0 for a collection.
+    dataset_count : int, optional
+        Positive number of consecutive collection groups.
+    dataset_indices : sequence of int, optional
+        Explicit numbered groups for a noncontiguous collection.
+    member_content_ids : sequence of str, optional
+        Canonical payload IDs in the same order as the selected groups.
+    """
+
+    _type = 'swept-spline'
+    _coeff_keys = ()
+
+    def __init__(self, data_file, dataset=None, content_id=None, *,
+                 dataset_prefix=None, dataset_start=None, dataset_count=None,
+                 dataset_indices=None, member_content_ids=None,
+                 **kwargs):
+        super().__init__(**kwargs)
+        check_type('data_file', data_file, (str, Path))
+        collection = (dataset_prefix is not None or dataset_count is not None
+                      or dataset_indices is not None
+                      or member_content_ids is not None)
+        if collection:
+            if dataset is not None or content_id is not None:
+                raise ValueError('collection and single-member selectors cannot be mixed')
+            check_type('dataset_prefix', dataset_prefix, str)
+            if not dataset_prefix.startswith('/'):
+                raise ValueError('dataset_prefix must be an absolute HDF5 group prefix')
+            if dataset_indices is not None:
+                if dataset_count is not None or dataset_start is not None:
+                    raise ValueError('dataset_indices cannot be mixed with a dataset window')
+                if not isinstance(dataset_indices, (list, tuple)) or not dataset_indices:
+                    raise ValueError('dataset_indices must be a nonempty sequence')
+                if any(type(index) is not int or index < 0 or index > 2**31 - 1
+                       for index in dataset_indices):
+                    raise ValueError('dataset_indices must be nonnegative signed 32-bit integers')
+                if len(set(dataset_indices)) != len(dataset_indices):
+                    raise ValueError('dataset_indices must be unique')
+                dataset_indices = tuple(dataset_indices)
+                selected_count = len(dataset_indices)
+            else:
+                if type(dataset_count) is not int or dataset_count <= 0:
+                    raise ValueError('dataset_count must be a positive integer')
+                if dataset_start is None:
+                    dataset_start = 0
+                if type(dataset_start) is not int or dataset_start < 0:
+                    raise ValueError('dataset_start must be a nonnegative integer')
+                if dataset_start > 2**31 - dataset_count:
+                    raise ValueError('dataset selector range exceeds signed 32-bit indices')
+                selected_count = dataset_count
+            if member_content_ids is not None:
+                if (not isinstance(member_content_ids, (list, tuple))
+                        or len(member_content_ids) != selected_count
+                        or any(not isinstance(value, str) or not value
+                               or any(character.isspace() for character in value)
+                               for value in member_content_ids)):
+                    raise ValueError('member_content_ids must match the selected datasets')
+                member_content_ids = tuple(member_content_ids)
+        else:
+            if dataset_start is not None:
+                raise ValueError('dataset_start requires a collection selector')
+            check_type('dataset', dataset, str)
+            check_type('content_id', content_id, str)
+            if not dataset.startswith('/'):
+                raise ValueError('dataset must be an absolute HDF5 group path')
+            if not content_id:
+                raise ValueError('content_id cannot be empty')
+        self.data_file = str(data_file)
+        self.dataset = dataset
+        self.content_id = content_id
+        self.dataset_prefix = dataset_prefix
+        self.dataset_start = dataset_start
+        self.dataset_count = dataset_count
+        self.dataset_indices = dataset_indices
+        self.member_content_ids = member_content_ids
+
+    def is_equal(self, other):
+        if type(other) is not type(self):
+            return False
+        return (self.data_file, self.dataset, self.content_id,
+                self.dataset_prefix, self.dataset_start, self.dataset_count,
+                self.dataset_indices, self.member_content_ids) == (
+                    other.data_file, other.dataset, other.content_id,
+                    other.dataset_prefix, other.dataset_start, other.dataset_count,
+                    other.dataset_indices, other.member_content_ids)
+
+    def _get_base_coeffs(self):
+        return ()
+
+    def evaluate(self, point):
+        raise NotImplementedError(
+            'SweptSplineSurface evaluation is provided by an experimental OpenMC build'
+        )
+
+    def bounding_box(self, side):
+        if side == '+':
+            return BoundingBox.infinite()
+        if side != '-':
+            raise ValueError("side must be '+' or '-'")
+        import h5py
+        with h5py.File(self.data_file, 'r') as h5:
+            if self.dataset is not None:
+                datasets = [self.dataset]
+            else:
+                indices = (self.dataset_indices if self.dataset_indices is not None
+                           else range(self.dataset_start,
+                                      self.dataset_start + self.dataset_count))
+                datasets = [f'{self.dataset_prefix}{index:03d}' for index in indices]
+            lower, upper = None, None
+            for position, dataset in enumerate(datasets):
+                group = h5[dataset]
+                if self.member_content_ids is not None:
+                    stored = group.attrs['content_id']
+                    if isinstance(stored, bytes):
+                        stored = stored.decode()
+                    if stored != self.member_content_ids[position]:
+                        raise ValueError('swept-spline member content ID mismatch')
+                if group.attrs['units'] not in ('cm', b'cm'):
+                    raise ValueError("swept-spline payload units must be 'cm'")
+                for _, _, span_lower, span_upper in _swept_compiled_member_boxes(group):
+                    lower = span_lower if lower is None else np.minimum(lower, span_lower)
+                    upper = span_upper if upper is None else np.maximum(upper, span_upper)
+        return BoundingBox(
+            lower, upper,
+        )
+
+    def translate(self, vector, inplace=False):
+        raise NotImplementedError(
+            'translate the swept coefficient payload before constructing this surface'
+        )
+
+    def rotate(self, rotation, pivot=(0., 0., 0.), order='xyz', inplace=False):
+        raise NotImplementedError(
+            'rotate the swept coefficient payload before constructing this surface'
+        )
+
+    def to_xml_element(self):
+        element = super().to_xml_element()
+        element.attrib.pop('coeffs', None)
+        element.set('data_file', self.data_file)
+        if self.dataset is not None:
+            element.set('dataset', self.dataset)
+            element.set('content_id', self.content_id)
+        else:
+            element.set('dataset_prefix', self.dataset_prefix)
+            if self.member_content_ids is not None:
+                element.set('member_content_ids', ' '.join(self.member_content_ids))
+            if self.dataset_indices is not None:
+                element.set('dataset_indices', ' '.join(map(str, self.dataset_indices)))
+            else:
+                element.set('dataset_start', str(self.dataset_start))
+                element.set('dataset_count', str(self.dataset_count))
+        element.set('units', 'cm')
+        return element
+
+    @classmethod
+    def _from_xml_element(cls, elem):
+        if get_text(elem, 'units', 'cm') != 'cm':
+            raise ValueError("swept-spline XML units must be 'cm'")
+        kwargs = {
+            'surface_id': int(get_text(elem, 'id')),
+            'boundary_type': get_text(elem, 'boundary', 'transmission'),
+            'name': get_text(elem, 'name'),
+        }
+        if kwargs['boundary_type'] in _ALBEDO_BOUNDARIES:
+            kwargs['albedo'] = float(get_text(elem, 'albedo', 1.0))
+        dataset = get_text(elem, 'dataset')
+        content_id = get_text(elem, 'content_id')
+        prefix = get_text(elem, 'dataset_prefix')
+        start = get_text(elem, 'dataset_start')
+        count = get_text(elem, 'dataset_count')
+        indices = get_text(elem, 'dataset_indices')
+        member_ids = get_text(elem, 'member_content_ids')
+        if any(value is not None for value in (prefix, start, count, indices)):
+            if dataset is not None or content_id is not None:
+                raise ValueError('collection and single-member selectors cannot be mixed')
+            if indices is not None:
+                if start is not None or count is not None:
+                    raise ValueError('dataset_indices cannot be mixed with a dataset window')
+                tokens = indices.split()
+                if not tokens or any(not token.isascii() or not token.isdecimal()
+                                     for token in tokens):
+                    raise ValueError('dataset_indices must be unsigned decimal integers')
+                selectors = {'dataset_prefix': prefix,
+                             'dataset_indices': [int(token) for token in tokens]}
+            else:
+                selectors = {'dataset_prefix': prefix,
+                             'dataset_start': '0' if start is None else start,
+                             'dataset_count': count}
+                for key in ('dataset_start', 'dataset_count'):
+                    value = selectors[key]
+                    if value is None or not value.isascii() or not value.isdecimal():
+                        raise ValueError(f'{key} must be an unsigned decimal integer')
+                    selectors[key] = int(value)
+            if member_ids is not None:
+                selectors['member_content_ids'] = member_ids.split()
+        else:
+            selectors = {'dataset': dataset, 'content_id': content_id,
+                         'member_content_ids': member_ids}
+        return cls(data_file=get_text(elem, 'data_file'), **selectors, **kwargs)
+
+    @classmethod
+    def _from_hdf5(cls, group, **kwargs):
+        def text(name):
+            value = group[name][()]
+            return value.decode() if isinstance(value, bytes) else str(value)
+        if any(name in group for name in
+               ('dataset_prefix', 'dataset_start', 'dataset_count', 'dataset_indices')):
+            if 'dataset' in group or 'content_id' in group:
+                raise ValueError('collection and single-member selectors cannot be mixed')
+            if 'dataset_indices' in group:
+                if 'dataset_start' in group or 'dataset_count' in group:
+                    raise ValueError('dataset_indices cannot be mixed with a dataset window')
+                tokens = text('dataset_indices').split()
+                if not tokens or any(not token.isascii() or not token.isdecimal()
+                                     for token in tokens):
+                    raise ValueError('dataset_indices must be unsigned decimal integers')
+                selectors = {'dataset_prefix': text('dataset_prefix'),
+                             'dataset_indices': [int(token) for token in tokens]}
+            else:
+                selectors = {'dataset_prefix': text('dataset_prefix'),
+                             'dataset_start': int(group['dataset_start'][()])
+                             if 'dataset_start' in group else 0,
+                             'dataset_count': int(group['dataset_count'][()])}
+            if 'member_content_ids' in group:
+                selectors['member_content_ids'] = text('member_content_ids').split()
+        else:
+            selectors = {'dataset': text('dataset'),
+                         'content_id': text('content_id'),
+                         'member_content_ids': text('member_content_ids').split()
+                         if 'member_content_ids' in group else None}
+        return cls(data_file=text('data_file'), **selectors, **kwargs)
+
+
+class FacetSetSurface(Surface):
+    """Experimental closed, oriented triangle surface set from HDF5.
+
+    Parameters
+    ----------
+    data_file : str or pathlib.Path
+        HDF5 file containing the triangle payload.
+    dataset : str
+        Absolute HDF5 group path.
+    content_id : str
+        SHA-256 ID binding metadata, vertices and component IDs.
+    component_id : int, optional
+        Select one positive component ID after verifying the complete payload.
+    periodic_caps : {'', 'x0', 'y0', 'x0 y0'}
+        Explicitly delegate outward cap triangles on the selected zero planes
+        to the corresponding periodic plane surfaces during distance queries.
+    """
+
+    _type = 'facet-set'
+    _coeff_keys = ()
+
+    def __init__(self, data_file, dataset, content_id, periodic_caps='',
+                 component_id=None, **kwargs):
+        super().__init__(**kwargs)
+        check_type('data_file', data_file, (str, Path))
+        check_type('dataset', dataset, str)
+        check_type('content_id', content_id, str)
+        check_type('periodic_caps', periodic_caps, str)
+        if periodic_caps not in ('', 'x0', 'y0', 'x0 y0'):
+            raise ValueError("periodic_caps must be '', 'x0', 'y0' or 'x0 y0'")
+        if (component_id is not None
+                and (type(component_id) is not int
+                     or not 0 < component_id <= 2**31 - 1)):
+            raise ValueError('component_id must be a positive signed-32-bit integer')
+        if not dataset.startswith('/'):
+            raise ValueError('dataset must be an absolute HDF5 group path')
+        if len(content_id) != 71 or not content_id.startswith('sha256:') \
+                or any(character not in '0123456789abcdef'
+                       for character in content_id[7:]):
+            raise ValueError('content_id must be a canonical SHA-256 ID')
+        if self.boundary_type == 'periodic':
+            raise ValueError('facet-set surfaces cannot be periodic')
+        self.data_file = str(data_file)
+        self.dataset = dataset
+        self.content_id = content_id
+        self.periodic_caps = periodic_caps
+        self.component_id = component_id
+
+    def is_equal(self, other):
+        return (type(other) is type(self)
+                and (self.data_file, self.dataset, self.content_id,
+                     self.periodic_caps, self.component_id)
+                == (other.data_file, other.dataset, other.content_id,
+                    other.periodic_caps, other.component_id))
+
+    def _get_base_coeffs(self):
+        return ()
+
+    def evaluate(self, point):
+        raise NotImplementedError(
+            'FacetSetSurface evaluation is provided by an experimental OpenMC build'
+        )
+
+    def bounding_box(self, side):
+        if side == '+':
+            return BoundingBox.infinite()
+        if side != '-':
+            raise ValueError("side must be '+' or '-'")
+        import h5py
+        with h5py.File(self.data_file, 'r') as h5:
+            group = h5[self.dataset]
+            def text(name):
+                value = group.attrs[name]
+                return value.decode() if isinstance(value, bytes) else str(value)
+            if text('units') != 'cm':
+                raise ValueError("facet payload units must be 'cm'")
+            if text('content_id') != self.content_id:
+                raise ValueError('facet payload content ID mismatch')
+            vertices_ds = group['triangle_vertices']
+            components_ds = group['component_ids']
+            if (len(vertices_ds.shape) != 3 or vertices_ds.shape[0] == 0
+                    or vertices_ds.shape[1:] != (3, 3)
+                    or components_ds.shape != (vertices_ds.shape[0],)
+                    or vertices_ds.dtype.kind != 'f'
+                    or vertices_ds.dtype.itemsize != 8
+                    or components_ds.dtype.kind != 'i'
+                    or components_ds.dtype.itemsize != 4):
+                raise ValueError('invalid facet payload dataset shape or type')
+            vertices = np.asarray(vertices_ds, dtype='<f8', order='C')
+            components = np.asarray(components_ds, dtype='<i4', order='C')
+            if not np.isfinite(vertices).all() or np.any(components <= 0):
+                raise ValueError('invalid facet vertex or component ID')
+            digest = hashlib.sha256(text('canonical_metadata_json').encode())
+            digest.update(vertices.tobytes())
+            digest.update(components.tobytes())
+            if 'sha256:' + digest.hexdigest() != self.content_id:
+                raise ValueError('facet canonical payload SHA-256 does not verify')
+            if self.component_id is not None:
+                selected = components == self.component_id
+                if not np.any(selected):
+                    raise ValueError('selected facet component_id is absent')
+                vertices = vertices[selected]
+                components = components[selected]
+            normal = np.cross(vertices[:, 1] - vertices[:, 0],
+                              vertices[:, 2] - vertices[:, 0])
+            lengths = np.linalg.norm(normal, axis=1)
+            if not np.isfinite(lengths).all() or np.any(lengths <= 0):
+                raise ValueError('facet payload has degenerate triangles')
+            # Mirror the native closed, oriented edge and shell checks. A
+            # globally inverted shell otherwise disagrees with OpenMC sense().
+            parent = list(range(len(vertices)))
+            def root(index):
+                while parent[index] != index:
+                    parent[index] = parent[parent[index]]
+                    index = parent[index]
+                return index
+            edge_audit = {}
+            for index, (triangle, component) in enumerate(zip(vertices, components)):
+                points = [tuple(0.0 if x == 0 else float(x) for x in point)
+                          for point in triangle]
+                for left, right in ((0, 1), (1, 2), (2, 0)):
+                    a, b = points[left], points[right]
+                    if a == b:
+                        raise ValueError('facet payload has repeated vertices')
+                    key = (int(component), min(a, b), max(a, b))
+                    entry = edge_audit.setdefault(key, [0, 0, index])
+                    if entry[0]:
+                        parent[root(index)] = root(entry[2])
+                    entry[0] += 1
+                    entry[1] += 1 if a < b else -1
+            if any(count != 2 or orientation != 0
+                   for count, orientation, _ in edge_audit.values()):
+                raise ValueError('facet payload is not closed and consistently oriented')
+            shells = {}
+            for index in range(len(vertices)):
+                shells.setdefault(root(index), []).append(index)
+            for indices in shells.values():
+                shell = vertices[indices].astype(np.longdouble)
+                relative = shell - shell[0, 0]
+                signed_volume6 = np.sum(np.einsum(
+                    'ij,ij->i', relative[:, 0],
+                    np.cross(relative[:, 1], relative[:, 2])))
+                if not np.isfinite(signed_volume6) or signed_volume6 <= 0:
+                    raise ValueError('facet payload shell does not wind outward')
+            if self.periodic_caps:
+                for axis, label in ((0, 'x0'), (1, 'y0')):
+                    if label in self.periodic_caps:
+                        caps = (np.max(np.abs(vertices[:, :, axis]), axis=1)
+                                <= 2.5e-13) & (-normal[:, axis] / lengths
+                                             >= 1.0 - 1e-12)
+                        if not np.any(caps):
+                            raise ValueError(f'periodic cap {label} has no oriented triangles')
+            lower = np.nextafter(np.min(vertices, axis=(0, 1)), -np.inf)
+            upper = np.nextafter(np.max(vertices, axis=(0, 1)), np.inf)
+            if not np.isfinite(lower).all() or not np.isfinite(upper).all():
+                raise ValueError('facet payload bounds overflow')
+        return BoundingBox(lower, upper)
+
+    def translate(self, vector, inplace=False):
+        raise NotImplementedError(
+            'translate the facet payload before constructing this surface'
+        )
+
+    def rotate(self, rotation, pivot=(0., 0., 0.), order='xyz', inplace=False):
+        raise NotImplementedError(
+            'rotate the facet payload before constructing this surface'
+        )
+
+    def to_xml_element(self):
+        element = super().to_xml_element()
+        element.attrib.pop('coeffs', None)
+        element.set('data_file', self.data_file)
+        element.set('dataset', self.dataset)
+        element.set('content_id', self.content_id)
+        element.set('units', 'cm')
+        if self.periodic_caps:
+            element.set('periodic_caps', self.periodic_caps)
+        if self.component_id is not None:
+            element.set('component_id', str(self.component_id))
+        return element
+
+    @classmethod
+    def _from_xml_element(cls, elem):
+        if get_text(elem, 'units', 'cm') != 'cm':
+            raise ValueError("facet-set XML units must be 'cm'")
+        selector = get_text(elem, 'component_id')
+        if selector is not None and not (selector.isascii() and selector.isdecimal()):
+            raise ValueError('component_id must contain only ASCII decimal digits')
+        kwargs = {
+            'surface_id': int(get_text(elem, 'id')),
+            'boundary_type': get_text(elem, 'boundary', 'transmission'),
+            'name': get_text(elem, 'name'),
+        }
+        if kwargs['boundary_type'] in _ALBEDO_BOUNDARIES:
+            kwargs['albedo'] = float(get_text(elem, 'albedo', 1.0))
+        return cls(get_text(elem, 'data_file'), get_text(elem, 'dataset'),
+                   get_text(elem, 'content_id'),
+                   periodic_caps=get_text(elem, 'periodic_caps', ''),
+                   component_id=int(selector) if selector is not None else None,
+                   **kwargs)
+
+    @classmethod
+    def _from_hdf5(cls, group, **kwargs):
+        def text(name):
+            value = group[name][()]
+            return value.decode() if isinstance(value, bytes) else str(value)
+        return cls(text('data_file'), text('dataset'), text('content_id'),
+                   periodic_caps=text('periodic_caps')
+                   if 'periodic_caps' in group else '',
+                   component_id=int(group['component_id'][()])
+                   if 'component_id' in group else None,
+                   **kwargs)
 
 
 class Halfspace(Region):

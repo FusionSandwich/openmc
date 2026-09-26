@@ -1,0 +1,44 @@
+{
+  "schema": "stellarcsg.component-facet-rejections/v1",
+  "state": "PASS_NATIVE_COMPONENT_REJECTIONS",
+  "rows": [
+    {
+      "case": "wrong_cap",
+      "exit_code": 255,
+      "expected_diagnostic": "Requested periodic cap has no oriented triangles",
+      "observed_expected_diagnostic": true,
+      "unexpected_track": false,
+      "geometry_xml_sha256": "4f25d880b672667b858a141eb56a286fbb8e052e697456cb9d93e0f5af655dcc",
+      "diagnostic_tail": "########     %%%%%%%%%%%%%%%%%%%%%%\n                #####################     %%%%%%%%%%%%%%%%%%%%%\n                ######################     %%%%%%%%%%%%%%%%%%%%\n                #######################     %%%%%%%%%%%%%%%%%%\n                 #######################     %%%%%%%%%%%%%%%%%\n                 ######################     %%%%%%%%%%%%%%%%%\n                  ####################     %%%%%%%%%%%%%%%%%\n                    #################     %%%%%%%%%%%%%%%%%\n                     ###############     %%%%%%%%%%%%%%%%\n                       ############     %%%%%%%%%%%%%%%\n                          ########     %%%%%%%%%%%%%%\n                                      %%%%%%%%%%%\n\n                 | The OpenMC Monte Carlo Code\n       Copyright | 2011-2026 MIT, UChicago Argonne LLC, and contributors\n         License | https://docs.openmc.org/en/latest/license.html\n         Version | 0.0.0\n     Commit Hash | \n       Date/Time | 2026-09-25 16:11:38\n\n Reading settings XML file...\n Reading cross sections XML file...\n Reading materials XML file...\n Reading geometry XML file...\n ERROR: Unable to initialize facet-set surface 1108: Requested periodic cap has\n        no oriented triangles\n",
+      "pass": true
+    },
+    {
+      "case": "missing_component",
+      "exit_code": 255,
+      "expected_diagnostic": "Selected facet component_id is absent",
+      "observed_expected_diagnostic": true,
+      "unexpected_track": false,
+      "geometry_xml_sha256": "8c9f9cf20ceefbcdaf0f321834e4bd908d70145d7846bbe48286090fb6348f03",
+      "diagnostic_tail": "###################     %%%%%%%%%%%%%%%%%%%%%%\n                #####################     %%%%%%%%%%%%%%%%%%%%%\n                ######################     %%%%%%%%%%%%%%%%%%%%\n                #######################     %%%%%%%%%%%%%%%%%%\n                 #######################     %%%%%%%%%%%%%%%%%\n                 ######################     %%%%%%%%%%%%%%%%%\n                  ####################     %%%%%%%%%%%%%%%%%\n                    #################     %%%%%%%%%%%%%%%%%\n                     ###############     %%%%%%%%%%%%%%%%\n                       ############     %%%%%%%%%%%%%%%\n                          ########     %%%%%%%%%%%%%%\n                                      %%%%%%%%%%%\n\n                 | The OpenMC Monte Carlo Code\n       Copyright | 2011-2026 MIT, UChicago Argonne LLC, and contributors\n         License | https://docs.openmc.org/en/latest/license.html\n         Version | 0.0.0\n     Commit Hash | \n       Date/Time | 2026-09-25 16:11:38\n\n Reading settings XML file...\n Reading cross sections XML file...\n Reading materials XML file...\n Reading geometry XML file...\n ERROR: Unable to initialize facet-set surface 1108: Selected facet component_id\n        is absent\n",
+      "pass": true
+    },
+    {
+      "case": "malformed_component",
+      "exit_code": 255,
+      "expected_diagnostic": "requires a positive int32 component_id",
+      "observed_expected_diagnostic": true,
+      "unexpected_track": false,
+      "geometry_xml_sha256": "a32e575e5865cc898f88c623097916dda464a1a68b20f453f648915b9a1ae44f",
+      "diagnostic_tail": "%%%%%%%%%%%\n                ####################     %%%%%%%%%%%%%%%%%%%%%%\n                #####################     %%%%%%%%%%%%%%%%%%%%%\n                ######################     %%%%%%%%%%%%%%%%%%%%\n                #######################     %%%%%%%%%%%%%%%%%%\n                 #######################     %%%%%%%%%%%%%%%%%\n                 ######################     %%%%%%%%%%%%%%%%%\n                  ####################     %%%%%%%%%%%%%%%%%\n                    #################     %%%%%%%%%%%%%%%%%\n                     ###############     %%%%%%%%%%%%%%%%\n                       ############     %%%%%%%%%%%%%%%\n                          ########     %%%%%%%%%%%%%%\n                                      %%%%%%%%%%%\n\n                 | The OpenMC Monte Carlo Code\n       Copyright | 2011-2026 MIT, UChicago Argonne LLC, and contributors\n         License | https://docs.openmc.org/en/latest/license.html\n         Version | 0.0.0\n     Commit Hash | \n       Date/Time | 2026-09-25 16:11:38\n\n Reading settings XML file...\n Reading cross sections XML file...\n Reading materials XML file...\n Reading geometry XML file...\n ERROR: Facet-set surface 1108 requires a positive int32 component_id\n",
+      "pass": true
+    }
+  ],
+  "hashes": {
+    "auditor": "0d9fb84277f20ac6e4ae430a35ac71b0e000cefb6a49b69ab0b369ad24eef68f",
+    "positive_geometry": "d8190f303fe37d256f94e54ebc70b69265468db6fcebc9a62ecd98c735f29b3b",
+    "positive_track": "007635f8c546ee239976872d1710d132623ffadb29363c8289e6a36c79609f38",
+    "binary": "dd0f316e5bd0965092f2a080167da9bbde83416392b6473763063fd95ec63dde",
+    "library": "fbc38dedc17e20342a56dd50e2d56f86330238dae00b95ab3e4602864967cba4"
+  },
+  "claim_boundary": "Three edited copies of one previously passing void-only geometry were rejected natively before a track could be produced. These are selected malformed-input controls, not exhaustive parser or geometry coverage."
+}

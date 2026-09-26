@@ -1,0 +1,141 @@
+{
+  "purpose": "proof-boundary witnesses, NOT solver qualification",
+  "pinned_commit": "c08eea92ca3fb63eb8adbf44cfb4ea8612639e30",
+  "execution_cpu_affinity": [
+    0
+  ],
+  "thread_settings": {
+    "OMP_NUM_THREADS": "1",
+    "OPENBLAS_NUM_THREADS": "1",
+    "MKL_NUM_THREADS": "1",
+    "NUMEXPR_NUM_THREADS": "1"
+  },
+  "headers": [
+    {
+      "path": "dev/stellarcsg/include/stellarcsg/vector.hpp",
+      "bytes": 3488,
+      "git_blob_sha1": "af3fc2b8a86f6945adeb27b4f46157e172137349",
+      "expected_git_blob_sha1": "af3fc2b8a86f6945adeb27b4f46157e172137349",
+      "sha256": "66ec50198271695ffa42309f7d2ebff5718c9e37e0887b1fbc61713249297c4f"
+    },
+    {
+      "path": "dev/stellarcsg/src/swept_span_bounds.hpp",
+      "bytes": 9654,
+      "git_blob_sha1": "2c576398257a7e1f118fa99b99e55d92c4003bc9",
+      "expected_git_blob_sha1": "2c576398257a7e1f118fa99b99e55d92c4003bc9",
+      "sha256": "088caad224717ee419b77df5bc10432424f67435f766d844b2e511b1dbce8403"
+    }
+  ],
+  "commands": [
+    {
+      "command": [
+        "/opt/openmc-venv/bin/python",
+        "/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-local-continuation-20260925/dev/stellarcsg/experiments/certification_audit/audit.py",
+        "--output",
+        "/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-local-continuation-20260925/dev/stellarcsg/reports/local-cont-20260925/audit-witness-02/analytic-results.json"
+      ],
+      "returncode": 0,
+      "stdout": "16 audit witnesses/controls evaluated; full solver not executed.\n{\n  \"case\": \"retained_shape2_separation_predicate\",\n  \"outcome\": \"BLOCKED_REASON_REPRODUCED\",\n  \"pair\": [\n    0,\n    15\n  ],\n  \"pairs_visited\": 16,\n  \"box_distance_squared_exact\": \"0\",\n  \"box_distance_squared_float\": 0.0,\n  \"four_radius_squared_exact\": \"1/4\",\n  \"independent_cone_dot_lower_exact\": \"-24233699620915614707944923662466375/1298074214633706907132624082305024\",\n  \"independent_cone_dot_lower_float\": -18.668963105282796,\n  \"cone_bounds_exact\": [\n    [\n      \"-10000834090796501/2251799813685248\",\n      \"312526065337391/70368744177664\"\n    ],\n    [\n      \"4583614870129343/4503599627370496\",\n      \"829831766292499/562949953421312\"\n    ],\n    [\n      \"5095241338020619/36028797018963968\",\n      \"6657253629364905/18014398509481984\"\n    ]\n  ],\n  \"block_reason\": \"STELLARCSG_UNRESOLVED_CIRCULAR_TUBE: embedded circular-tube separation certificate failed\",\n  \"meaning\": \"sufficient separation certificate fails; physical validity unresolved\",\n  \"reference_commit\": \"5ed327ade33b31ecdb5e3b4b4111c55f321991fd\"\n}\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "/usr/bin/g++",
+        "-std=c++17",
+        "-O2",
+        "-fno-fast-math",
+        "-ffp-contract=off",
+        "-Wall",
+        "-Wextra",
+        "-pedantic",
+        "-I/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-local-continuation-20260925/build/local-cont-20260925/audit-source/dev/stellarcsg/include",
+        "-I/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-local-continuation-20260925/build/local-cont-20260925/audit-source/dev/stellarcsg/src",
+        "/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-local-continuation-20260925/dev/stellarcsg/experiments/certification_audit/probe_bounds.cpp",
+        "-o",
+        "/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-local-continuation-20260925/dev/stellarcsg/reports/local-cont-20260925/audit-witness-02/probe-gcc"
+      ],
+      "returncode": 0,
+      "stdout": "",
+      "stderr": "",
+      "compiler_version": {
+        "command": [
+          "/usr/bin/g++",
+          "--version"
+        ],
+        "returncode": 0,
+        "stdout": "g++ (Debian 14.2.0-19) 14.2.0\nCopyright (C) 2024 Free Software Foundation, Inc.\nThis is free software; see the source for copying conditions.  There is NO\nwarranty; not even for MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.\n\n",
+        "stderr": ""
+      }
+    },
+    {
+      "command": [
+        "/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-local-continuation-20260925/dev/stellarcsg/reports/local-cont-20260925/audit-witness-02/probe-gcc"
+      ],
+      "returncode": 0,
+      "stdout": "{\"case\":\"frame_underflow_enclosure\",\"outcome\":\"COUNTEREXAMPLE_CONFIRMED\",\"supported_binary64\":true,\"bounds_certain\":true,\"derivative_x\":2.2227587494850775e-162,\"rounded_speed_squared\":4.9406564584124654e-324,\"tangent_squared_norm\":1.25,\"evaluated_surface_z\":1.1180339887498949,\"box_upper_z\":1.0000000000000009}\n{\"case\":\"finite_direction_scale\",\"exponent\":-600,\"outcome\":\"REJECTED_AS_OBSERVED\"}\n{\"case\":\"finite_direction_scale\",\"exponent\":600,\"outcome\":\"REJECTED_AS_OBSERVED\"}\n{\"case\":\"ideal_bounds_examples\",\"checks\":6,\"outcome\":\"EXAMPLES_CONFIRMED\"}\n{\"case\":\"endpoint_sphere_proxy\",\"outcome\":\"COUNTEREXAMPLE_CONFIRMED\",\"computed_discriminant\":-2048,\"direction_component\":-0.70710678118654746,\"geometry\":\"exact stored direction passes through sphere center\"}\n",
+      "stderr": "",
+      "binary_sha256": "e7234a38420e348303e3f04be4e4b80c4865860c2f112d7fd17a3a2381137737"
+    },
+    {
+      "command": [
+        "/usr/bin/clang++",
+        "-std=c++17",
+        "-O2",
+        "-fno-fast-math",
+        "-ffp-contract=off",
+        "-Wall",
+        "-Wextra",
+        "-pedantic",
+        "-I/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-local-continuation-20260925/build/local-cont-20260925/audit-source/dev/stellarcsg/include",
+        "-I/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-local-continuation-20260925/build/local-cont-20260925/audit-source/dev/stellarcsg/src",
+        "/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-local-continuation-20260925/dev/stellarcsg/experiments/certification_audit/probe_bounds.cpp",
+        "-o",
+        "/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-local-continuation-20260925/dev/stellarcsg/reports/local-cont-20260925/audit-witness-02/probe-clang"
+      ],
+      "returncode": 0,
+      "stdout": "",
+      "stderr": "",
+      "compiler_version": {
+        "command": [
+          "/usr/bin/clang++",
+          "--version"
+        ],
+        "returncode": 0,
+        "stdout": "Debian clang version 19.1.7 (3+b1)\nTarget: x86_64-pc-linux-gnu\nThread model: posix\nInstalledDir: /usr/lib/llvm-19/bin\n",
+        "stderr": ""
+      }
+    },
+    {
+      "command": [
+        "/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-local-continuation-20260925/dev/stellarcsg/reports/local-cont-20260925/audit-witness-02/probe-clang"
+      ],
+      "returncode": 0,
+      "stdout": "{\"case\":\"frame_underflow_enclosure\",\"outcome\":\"COUNTEREXAMPLE_CONFIRMED\",\"supported_binary64\":true,\"bounds_certain\":true,\"derivative_x\":2.2227587494850775e-162,\"rounded_speed_squared\":4.9406564584124654e-324,\"tangent_squared_norm\":1.25,\"evaluated_surface_z\":1.1180339887498949,\"box_upper_z\":1.0000000000000009}\n{\"case\":\"finite_direction_scale\",\"exponent\":-600,\"outcome\":\"REJECTED_AS_OBSERVED\"}\n{\"case\":\"finite_direction_scale\",\"exponent\":600,\"outcome\":\"REJECTED_AS_OBSERVED\"}\n{\"case\":\"ideal_bounds_examples\",\"checks\":6,\"outcome\":\"EXAMPLES_CONFIRMED\"}\n{\"case\":\"endpoint_sphere_proxy\",\"outcome\":\"COUNTEREXAMPLE_CONFIRMED\",\"computed_discriminant\":-2048,\"direction_component\":-0.70710678118654746,\"geometry\":\"exact stored direction passes through sphere center\"}\n",
+      "stderr": "",
+      "binary_sha256": "331301ed47f6ab5cca94d6ae988354778a5f928cda21bc8100b6239b370c6c1d"
+    }
+  ],
+  "performance": {
+    "native_openmc_ztorus": "UNAVAILABLE; no runtime acquired or built",
+    "distance_ns_per_query": null,
+    "classification_ns_per_query": null,
+    "normal_ns_per_query": null,
+    "transport_histories_per_second": null,
+    "candidate_distance_over_ztorus": null,
+    "candidate_classification_over_ztorus": null,
+    "candidate_normal_over_ztorus": null,
+    "candidate_throughput_over_ztorus": null,
+    "candidate_over_old_fast": null,
+    "repeated_run_variability": null,
+    "status": "INCOMPLETE_NOT_MEASURED"
+  },
+  "analytic_case_count": 16,
+  "status": "AUDIT_WITNESSES_REPRODUCED_NOT_SOLVER_PASS",
+  "full_kernel_executed": false,
+  "input_sha256": {
+    "audit.py": "426ec655c5a5d992cbd2ac8930eb1f65d024c3a24de0faa611353df89f684cb8",
+    "probe_bounds.cpp": "b4b2fb969633cabb03fe3a97fe118a368f97503be915801b810cac192234948b",
+    "retained_shape2_controls.json": "f0f1841ede9afa9a0f23f13b80a00fc3e6e6302144b448bd4b9f076e03a19b51",
+    "run_audit.py": "54e376fee1fc101d4169e3b28d9e59787c33de189371bff09000e271465fc2b2"
+  }
+}

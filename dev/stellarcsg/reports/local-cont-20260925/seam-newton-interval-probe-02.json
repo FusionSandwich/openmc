@@ -1,0 +1,804 @@
+{
+  "schema": "stellarcsg.seam-exact-newton-interval-probe/v1",
+  "state": "EXPLORATORY_REAL_ARITHMETIC_ONLY",
+  "source_sha256": "96a22316ee5117dff5fc532c8db3a99065c1562b2d2ff45b6bf9f3f0ccdc823c",
+  "stationary_sha256": "72b1d18fd9d301180f4cd588d3b835027eaaabb10bb51899fc2d6f3173b50374",
+  "compiled_all_spans_sha256": "64b038d56be85866e3dd364134061059885e04e64c01b042cc782d1f773edf3a",
+  "compiled_all_spans_receipt_sha256": "bdb38215d597ecfdc583fda7a3af887b210f20e4c25a6f10cfbee866e286677f",
+  "interval_iteration_cap": 12,
+  "point_iteration_cap": 6,
+  "partitions_per_member": 4096,
+  "results": [
+    {
+      "member": 2,
+      "span": 255,
+      "rounded_query_x": [
+        533.999999,
+        534.0000100000025
+      ],
+      "iterates": [
+        {
+          "iteration": 0,
+          "state": "STEP",
+          "side": "left",
+          "method": "midpoint",
+          "u": [
+            0.5,
+            0.5
+          ],
+          "value": [
+            -70.94895624466946,
+            -70.94894991202129
+          ],
+          "derivative": [
+            141.88421397644262,
+            141.88421819857868
+          ],
+          "next": [
+            0.75,
+            0.75
+          ]
+        },
+        {
+          "iteration": 1,
+          "state": "STEP",
+          "side": "left",
+          "method": "midpoint",
+          "u": [
+            0.75,
+            0.75
+          ],
+          "value": [
+            -35.475807509490764,
+            -35.475800121169605
+          ],
+          "derivative": [
+            141.89943927519866,
+            141.89944349844654
+          ],
+          "next": [
+            0.875,
+            0.875
+          ]
+        },
+        {
+          "iteration": 2,
+          "state": "STEP",
+          "side": "left",
+          "method": "midpoint",
+          "u": [
+            0.875,
+            0.875
+          ],
+          "value": [
+            -17.738093793459278,
+            -17.738085877197385
+          ],
+          "derivative": [
+            141.9035965584511,
+            141.90360078225493
+          ],
+          "next": [
+            0.9375,
+            0.9375
+          ]
+        },
+        {
+          "iteration": 3,
+          "state": "STEP",
+          "side": "left",
+          "method": "midpoint",
+          "u": [
+            0.9375,
+            0.9375
+          ],
+          "value": [
+            -8.869078020029892,
+            -8.869069839771575
+          ],
+          "derivative": [
+            141.90481236637135,
+            141.90481659045312
+          ],
+          "next": [
+            0.96875,
+            0.96875
+          ]
+        },
+        {
+          "iteration": 4,
+          "state": "STEP",
+          "side": "left",
+          "method": "midpoint",
+          "u": [
+            0.96875,
+            0.96875
+          ],
+          "value": [
+            -4.434546129101086,
+            -4.434537816838042
+          ],
+          "derivative": [
+            141.9052047078154,
+            141.90520893203615
+          ],
+          "next": [
+            0.984375,
+            0.984375
+          ]
+        },
+        {
+          "iteration": 5,
+          "state": "UNDECIDED_GUARD",
+          "u": [
+            0.984375,
+            0.984375
+          ],
+          "newton": [
+            0.9999999764336371,
+            1.0000000359400028
+          ],
+          "left": [
+            0.984375,
+            0.984375
+          ],
+          "right": [
+            1.0,
+            1.0
+          ]
+        }
+      ],
+      "partition_summary": {
+        "count": 4096,
+        "terminal_states": {
+          "STEP": 4096
+        },
+        "methods": {
+          "midpoint": 24576
+        },
+        "undecided_preview": []
+      },
+      "point_traces": [
+        {
+          "label": "lower_x",
+          "query_x_cm": 533.999999,
+          "step_count": 6,
+          "midpoint_steps": 6,
+          "newton_steps": 0,
+          "terminal_state": "STEP",
+          "last_three": [
+            {
+              "iteration": 3,
+              "state": "STEP",
+              "side": "left",
+              "method": "midpoint",
+              "u": [
+                0.9375,
+                0.9375
+              ],
+              "value": [
+                -8.869073797893835,
+                -8.869073797893835
+              ],
+              "derivative": [
+                141.90481236637135,
+                141.90481236637135
+              ],
+              "next": [
+                0.96875,
+                0.96875
+              ]
+            },
+            {
+              "iteration": 4,
+              "state": "STEP",
+              "side": "left",
+              "method": "midpoint",
+              "u": [
+                0.96875,
+                0.96875
+              ],
+              "value": [
+                -4.43454190696503,
+                -4.43454190696503
+              ],
+              "derivative": [
+                141.9052047078154,
+                141.9052047078154
+              ],
+              "next": [
+                0.984375,
+                0.984375
+              ]
+            },
+            {
+              "iteration": 5,
+              "state": "STEP",
+              "side": "left",
+              "method": "midpoint",
+              "u": [
+                0.984375,
+                0.984375
+              ],
+              "value": [
+                -2.2172719249330264,
+                -2.2172719249330264
+              ],
+              "derivative": [
+                141.90534700739295,
+                141.90534700739295
+              ],
+              "next": [
+                0.9921875,
+                0.9921875
+              ]
+            }
+          ]
+        },
+        {
+          "label": "mid_x",
+          "query_x_cm": 534.0000045000013,
+          "step_count": 6,
+          "midpoint_steps": 6,
+          "newton_steps": 0,
+          "terminal_state": "STEP",
+          "last_three": [
+            {
+              "iteration": 3,
+              "state": "STEP",
+              "side": "left",
+              "method": "midpoint",
+              "u": [
+                0.9375,
+                0.9375
+              ],
+              "value": [
+                -8.869073929900733,
+                -8.869073929900733
+              ],
+              "derivative": [
+                141.90481447841225,
+                141.90481447841225
+              ],
+              "next": [
+                0.96875,
+                0.96875
+              ]
+            },
+            {
+              "iteration": 4,
+              "state": "STEP",
+              "side": "left",
+              "method": "midpoint",
+              "u": [
+                0.96875,
+                0.96875
+              ],
+              "value": [
+                -4.434541972969565,
+                -4.434541972969565
+              ],
+              "derivative": [
+                141.90520681992578,
+                141.90520681992578
+              ],
+              "next": [
+                0.984375,
+                0.984375
+              ]
+            },
+            {
+              "iteration": 5,
+              "state": "STEP",
+              "side": "left",
+              "method": "midpoint",
+              "u": [
+                0.984375,
+                0.984375
+              ],
+              "value": [
+                -2.2172719579355658,
+                -2.2172719579355658
+              ],
+              "derivative": [
+                141.90534911953807,
+                141.90534911953807
+              ],
+              "next": [
+                0.9921875,
+                0.9921875
+              ]
+            }
+          ]
+        },
+        {
+          "label": "upper_x",
+          "query_x_cm": 534.0000100000025,
+          "step_count": 6,
+          "midpoint_steps": 6,
+          "newton_steps": 0,
+          "terminal_state": "STEP",
+          "last_three": [
+            {
+              "iteration": 3,
+              "state": "STEP",
+              "side": "left",
+              "method": "midpoint",
+              "u": [
+                0.9375,
+                0.9375
+              ],
+              "value": [
+                -8.869074061907632,
+                -8.869074061907632
+              ],
+              "derivative": [
+                141.90481659045312,
+                141.90481659045312
+              ],
+              "next": [
+                0.96875,
+                0.96875
+              ]
+            },
+            {
+              "iteration": 4,
+              "state": "STEP",
+              "side": "left",
+              "method": "midpoint",
+              "u": [
+                0.96875,
+                0.96875
+              ],
+              "value": [
+                -4.4345420389741,
+                -4.4345420389741
+              ],
+              "derivative": [
+                141.90520893203615,
+                141.90520893203615
+              ],
+              "next": [
+                0.984375,
+                0.984375
+              ]
+            },
+            {
+              "iteration": 5,
+              "state": "STEP",
+              "side": "left",
+              "method": "midpoint",
+              "u": [
+                0.984375,
+                0.984375
+              ],
+              "value": [
+                -2.2172719909381047,
+                -2.2172719909381047
+              ],
+              "derivative": [
+                141.9053512316832,
+                141.9053512316832
+              ],
+              "next": [
+                0.9921875,
+                0.9921875
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "member": 3,
+      "span": 383,
+      "rounded_query_x": [
+        532.9999989999998,
+        533.0000100000005
+      ],
+      "iterates": [
+        {
+          "iteration": 0,
+          "state": "STEP",
+          "side": "left",
+          "method": "midpoint",
+          "u": [
+            0.5,
+            0.5
+          ],
+          "value": [
+            -34.5151222661802,
+            -34.515118690272324
+          ],
+          "derivative": [
+            69.02683003118048,
+            69.026832415274
+          ],
+          "next": [
+            0.75,
+            0.75
+          ]
+        },
+        {
+          "iteration": 1,
+          "state": "STEP",
+          "side": "left",
+          "method": "midpoint",
+          "u": [
+            0.75,
+            0.75
+          ],
+          "value": [
+            -17.25786604447261,
+            -17.25786187248325
+          ],
+          "derivative": [
+            69.03072957521663,
+            69.03073195977498
+          ],
+          "next": [
+            0.875,
+            0.875
+          ]
+        },
+        {
+          "iteration": 2,
+          "state": "STEP",
+          "side": "left",
+          "method": "midpoint",
+          "u": [
+            0.875,
+            0.875
+          ],
+          "value": [
+            -8.628964233389322,
+            -8.628959763315642
+          ],
+          "derivative": [
+            69.03157699577379,
+            69.03157938056457
+          ],
+          "next": [
+            0.9375,
+            0.9375
+          ]
+        },
+        {
+          "iteration": 3,
+          "state": "UNDECIDED_GUARD",
+          "u": [
+            0.9375,
+            0.9375
+          ],
+          "newton": [
+            0.9999999634230262,
+            1.0000000324953737
+          ],
+          "left": [
+            0.9375,
+            0.9375
+          ],
+          "right": [
+            1.0,
+            1.0
+          ]
+        }
+      ],
+      "partition_summary": {
+        "count": 4096,
+        "terminal_states": {
+          "UNDECIDED_GUARD": 4096
+        },
+        "methods": {
+          "midpoint": 12288,
+          "newton": 4096
+        },
+        "undecided_preview": [
+          {
+            "index": 0,
+            "query_x": [
+              532.9999989999998,
+              532.9999990026853
+            ],
+            "iteration": 4,
+            "state": "UNDECIDED_GUARD"
+          },
+          {
+            "index": 1,
+            "query_x": [
+              532.9999990026853,
+              532.9999990053709
+            ],
+            "iteration": 4,
+            "state": "UNDECIDED_GUARD"
+          },
+          {
+            "index": 2,
+            "query_x": [
+              532.9999990053709,
+              532.9999990080564
+            ],
+            "iteration": 4,
+            "state": "UNDECIDED_GUARD"
+          },
+          {
+            "index": 3,
+            "query_x": [
+              532.9999990080564,
+              532.9999990107419
+            ],
+            "iteration": 4,
+            "state": "UNDECIDED_GUARD"
+          },
+          {
+            "index": 4,
+            "query_x": [
+              532.9999990107419,
+              532.9999990134276
+            ],
+            "iteration": 4,
+            "state": "UNDECIDED_GUARD"
+          },
+          {
+            "index": 5,
+            "query_x": [
+              532.9999990134276,
+              532.9999990161131
+            ],
+            "iteration": 4,
+            "state": "UNDECIDED_GUARD"
+          },
+          {
+            "index": 6,
+            "query_x": [
+              532.9999990161131,
+              532.9999990187986
+            ],
+            "iteration": 4,
+            "state": "UNDECIDED_GUARD"
+          },
+          {
+            "index": 7,
+            "query_x": [
+              532.9999990187986,
+              532.9999990214842
+            ],
+            "iteration": 4,
+            "state": "UNDECIDED_GUARD"
+          }
+        ]
+      },
+      "point_traces": [
+        {
+          "label": "lower_x",
+          "query_x_cm": 532.9999989999998,
+          "step_count": 6,
+          "midpoint_steps": 3,
+          "newton_steps": 3,
+          "terminal_state": "STEP",
+          "last_three": [
+            {
+              "iteration": 3,
+              "state": "STEP",
+              "side": "left",
+              "method": "newton",
+              "u": [
+                0.9375,
+                0.9375
+              ],
+              "value": [
+                -4.314482694701015,
+                -4.314482694701015
+              ],
+              "derivative": [
+                69.03172536932512,
+                69.03172536932512
+              ],
+              "next": [
+                0.999999997959173,
+                0.999999997959173
+              ]
+            },
+            {
+              "iteration": 4,
+              "state": "STEP",
+              "side": "left",
+              "method": "newton",
+              "u": [
+                0.999999997959173,
+                0.999999997959173
+              ],
+              "value": [
+                -1.4088068431944963e-07,
+                -1.4088068431944963e-07
+              ],
+              "derivative": [
+                69.03169029333591,
+                69.03169029333591
+              ],
+              "next": [
+                0.9999999999999848,
+                0.9999999999999848
+              ]
+            },
+            {
+              "iteration": 5,
+              "state": "STEP",
+              "side": "left",
+              "method": "newton",
+              "u": [
+                0.9999999999999848,
+                0.9999999999999848
+              ],
+              "value": [
+                -4.2239583123206686e-21,
+                -4.2239583123206686e-21
+              ],
+              "derivative": [
+                69.03169029333178,
+                69.03169029333178
+              ],
+              "next": [
+                0.9999999999999848,
+                0.9999999999999848
+              ]
+            }
+          ]
+        },
+        {
+          "label": "mid_x",
+          "query_x_cm": 533.0000045000002,
+          "step_count": 6,
+          "midpoint_steps": 3,
+          "newton_steps": 3,
+          "terminal_state": "STEP",
+          "last_three": [
+            {
+              "iteration": 3,
+              "state": "STEP",
+              "side": "left",
+              "method": "newton",
+              "u": [
+                0.9375,
+                0.9375
+              ],
+              "value": [
+                -4.314482769231174,
+                -4.314482769231174
+              ],
+              "derivative": [
+                69.0317265617786,
+                69.0317265617786
+              ],
+              "next": [
+                0.9999999979591994,
+                0.9999999979591994
+              ]
+            },
+            {
+              "iteration": 4,
+              "state": "STEP",
+              "side": "left",
+              "method": "newton",
+              "u": [
+                0.9999999979591994,
+                0.9999999979591994
+              ],
+              "value": [
+                -1.408788685739835e-07,
+                -1.408788685739835e-07
+              ],
+              "derivative": [
+                69.0316914858475,
+                69.0316914858475
+              ],
+              "next": [
+                0.9999999999999848,
+                0.9999999999999848
+              ]
+            },
+            {
+              "iteration": 5,
+              "state": "STEP",
+              "side": "left",
+              "method": "newton",
+              "u": [
+                0.9999999999999848,
+                0.9999999999999848
+              ],
+              "value": [
+                -4.2238473499012035e-21,
+                -4.2238473499012035e-21
+              ],
+              "derivative": [
+                69.03169148584337,
+                69.03169148584337
+              ],
+              "next": [
+                0.9999999999999848,
+                0.9999999999999848
+              ]
+            }
+          ]
+        },
+        {
+          "label": "upper_x",
+          "query_x_cm": 533.0000100000005,
+          "step_count": 6,
+          "midpoint_steps": 3,
+          "newton_steps": 3,
+          "terminal_state": "STEP",
+          "last_three": [
+            {
+              "iteration": 3,
+              "state": "STEP",
+              "side": "left",
+              "method": "newton",
+              "u": [
+                0.9375,
+                0.9375
+              ],
+              "value": [
+                -4.314482843761333,
+                -4.314482843761333
+              ],
+              "derivative": [
+                69.0317277542321,
+                69.0317277542321
+              ],
+              "next": [
+                0.9999999979592258,
+                0.9999999979592258
+              ]
+            },
+            {
+              "iteration": 4,
+              "state": "STEP",
+              "side": "left",
+              "method": "newton",
+              "u": [
+                0.9999999979592258,
+                0.9999999979592258
+              ],
+              "value": [
+                -1.4087705282851742e-07,
+                -1.4087705282851742e-07
+              ],
+              "derivative": [
+                69.03169267835911,
+                69.03169267835911
+              ],
+              "next": [
+                0.9999999999999848,
+                0.9999999999999848
+              ]
+            },
+            {
+              "iteration": 5,
+              "state": "STEP",
+              "side": "left",
+              "method": "newton",
+              "u": [
+                0.9999999999999848,
+                0.9999999999999848
+              ],
+              "value": [
+                -4.223736388992529e-21,
+                -4.223736388992529e-21
+              ],
+              "derivative": [
+                69.03169267835496,
+                69.03169267835496
+              ],
+              "next": [
+                0.9999999999999848,
+                0.9999999999999848
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "claim_boundary": "Exact rational interval trace of the source safeguarded Newton branch over the full rounded-query strip. A trace step is emitted only when sign and guard have uniform outcomes. No long-double error or actual compiled iteration is enclosed, and no native hit is admitted."
+}

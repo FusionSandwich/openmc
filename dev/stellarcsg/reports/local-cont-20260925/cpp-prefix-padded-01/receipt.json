@@ -1,0 +1,129 @@
+{
+  "schema": "stellarcsg.cpp-prefix-interval-probe/v6",
+  "state": "EXPERIMENTAL_RESIDUAL_PADDED_PREFIX_NOT_ROOT_CERTIFIED",
+  "command": [
+    "/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-local-continuation-20260925/build/native-local-20260925/swept_prefix_padded",
+    "/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-local-continuation-20260925/dev/stellarcsg/qualified/analytic_swept_coils.h5"
+  ],
+  "exit_code": 0,
+  "loader_binding": "libopenmc.so => /mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-local-continuation-20260925/build/native-local-20260925/lib/libopenmc.so (0x00007ac63faa9000)",
+  "affinity": [
+    0
+  ],
+  "hashes": {
+    "/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-local-continuation-20260925/build/native-local-20260925/swept_prefix_padded": "c93a52a1854f79ab4b55d652020a45d36eb5aa5488ebdba5ef3eee55b7ab56f3",
+    "/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-local-continuation-20260925/build/native-local-20260925/lib/libopenmc.so": "31578a499d905e0c1c12fd71270e39a7cf905cc3d5d12cb73c412cdf5707f65a",
+    "/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-local-continuation-20260925/dev/stellarcsg/qualified/analytic_swept_coils.h5": "39f77da5ab1fe427cce58b153e9b52cf8915e9973a9b8f3dfad5ab3b00a9e46d",
+    "/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-local-continuation-20260925/dev/stellarcsg/experiments/swept_prefix_interval.cpp": "5ad5f8bbafaa8aa700af1e8934a80fd1368eebbb8084475923dc542d8055bc7e",
+    "/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-local-continuation-20260925/dev/stellarcsg/qualification/run_cpp_prefix_probe.py": "e45beb722cf2e6050a312bcf973c18ffe265ffcefbe1807a52e336076d5e6ef6"
+  },
+  "compile_contract": "GCC 14.2 -O2 -fno-fast-math -ffp-contract=off",
+  "unit_circle_slack_sweep": [
+    1e-10,
+    1e-08,
+    1e-06
+  ],
+  "gap_slack_matrix": {
+    "gaps_cm": [
+      1e-11,
+      1e-08,
+      1e-05
+    ],
+    "slacks": [
+      1e-12,
+      1e-08,
+      1e-06
+    ]
+  },
+  "padded_case": {
+    "gap_cm": 1e-05,
+    "unit_circle_slack": 1e-06,
+    "projection_slack_formula": "2*projected_tolerance+256*DBL_EPSILON*characteristic_length"
+  },
+  "underflow_control": [
+    {
+      "kind": "underflow_control",
+      "state": "undecided_frame"
+    }
+  ],
+  "span_counts_match": true,
+  "summaries": [
+    {
+      "kind": "member_summary",
+      "member": 2,
+      "lead_cm": 16,
+      "selected": 256,
+      "u_endpoint_above_one_ulp": 0,
+      "padded_excluded": 256,
+      "projection_slack_cm": 5.983976786267405e-07,
+      "prefix_excluded": 256,
+      "rectangle_excluded": 256,
+      "slack_excluded": [
+        256,
+        256,
+        256
+      ],
+      "gap_slack_excluded": [
+        [
+          256,
+          256,
+          256
+        ],
+        [
+          256,
+          256,
+          256
+        ],
+        [
+          256,
+          256,
+          256
+        ]
+      ],
+      "zero_gap_undecided": 1,
+      "negative_control_undecided": 1,
+      "nodes": 326,
+      "terminal_unresolved": true
+    },
+    {
+      "kind": "member_summary",
+      "member": 3,
+      "lead_cm": 17.000000000000227,
+      "selected": 384,
+      "u_endpoint_above_one_ulp": 0,
+      "padded_excluded": 384,
+      "projection_slack_cm": 6.501468937106146e-07,
+      "prefix_excluded": 384,
+      "rectangle_excluded": 382,
+      "slack_excluded": [
+        382,
+        382,
+        382
+      ],
+      "gap_slack_excluded": [
+        [
+          384,
+          382,
+          382
+        ],
+        [
+          384,
+          382,
+          382
+        ],
+        [
+          384,
+          384,
+          384
+        ]
+      ],
+      "zero_gap_undecided": 2,
+      "negative_control_undecided": 2,
+      "nodes": 492,
+      "terminal_unresolved": true
+    }
+  ],
+  "production_solver_modified": false,
+  "native_transport_run": false,
+  "claim_boundary": "The padded equations are an experimental stress test of accepted residual and arithmetic error, not a proof that all production floating operations are enclosed. Libm and finite root-tile uniqueness remain unaudited; no tracking admission."
+}

@@ -1,0 +1,131 @@
+{
+  "utc": "2026-09-25T05:58:35.706729+00:00",
+  "pinned_commit": "c08eea92ca3fb63eb8adbf44cfb4ea8612639e30",
+  "source_root": "/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-local-continuation-20260925/build/local-cont-20260925/audit-source",
+  "output": "/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-local-continuation-20260925/dev/stellarcsg/reports/local-cont-20260925/audit-witness-02",
+  "source_scope": "two expected pinned headers, not a full upstream checkout verification",
+  "python": "3.13.5 (main, Jun 13 2026, 14:18:01) [GCC 14.2.0]",
+  "python_executable": "/opt/openmc-venv/bin/python",
+  "python_prefix": "/opt/openmc-venv",
+  "planned_new_acquisition_bytes": 0,
+  "planned_build_cap_bytes": 16777216,
+  "planned_artifacts_cap_bytes": 8388608,
+  "rollback": "Remove only this newly created output directory.",
+  "selected_environment": {
+    "VIRTUAL_ENV": null,
+    "CONDA_PREFIX": null,
+    "CONDA_DEFAULT_ENV": null,
+    "OPENMC_CROSS_SECTIONS": null
+  },
+  "ram_limits": {
+    "command": [
+      "bash",
+      "-c",
+      "free -b; cat /sys/fs/cgroup/init.scope/memory.max /sys/fs/cgroup/init.scope/memory.current /sys/fs/cgroup/init.scope/cpu.max"
+    ],
+    "returncode": 0,
+    "stdout": "               total        used        free      shared  buff/cache   available\nMem:     25200033792   836096000 24194101248     3604480   432680960 24363937792\nSwap:    34359738368           0 34359738368\nmax\n24576000\nmax 100000\n",
+    "stderr": ""
+  },
+  "disk": {
+    "command": [
+      "df",
+      "-B1",
+      "/",
+      "/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-local-continuation-20260925/build/local-cont-20260925/audit-source",
+      "/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-local-continuation-20260925/dev/stellarcsg/reports/local-cont-20260925/audit-witness-02",
+      "/tmp"
+    ],
+    "returncode": 0,
+    "stdout": "Filesystem         1B-blocks         Used     Available Use% Mounted on\n/dev/sdd       1081101176832   4722954240 1021385867264   1% /\nC:\\             998965768192 910793789440   88171978752  92% /mnt/c\nC:\\             998965768192 910793789440   88171978752  92% /mnt/c\ntmpfs            12600016896            0   12600016896   0% /tmp\n",
+    "stderr": ""
+  },
+  "processes": {
+    "command": [
+      "bash",
+      "-c",
+      "ps -eo pid,ppid,pcpu,pmem,rss,comm --sort=-rss | head -18"
+    ],
+    "returncode": 0,
+    "stdout": "    PID    PPID %CPU %MEM   RSS COMMAND\n    249     248  2.8  0.0 18824 python\n      1       0  3.1  0.0 14264 systemd\n    260       1  6.6  0.0 12684 systemd\n     37       1  0.9  0.0 12580 systemd-journal\n     80       1  1.6  0.0  9888 systemd-udevd\n    224       1  0.9  0.0  9136 systemd-logind\n    137      80  0.0  0.0  7444 (udev-worker)\n    107      80  0.0  0.0  7412 (udev-worker)\n    135      80  0.2  0.0  7412 (udev-worker)\n    110      80  0.1  0.0  7340 (udev-worker)\n    145      80  0.0  0.0  7152 (udev-worker)\n    139      80  0.0  0.0  7136 (udev-worker)\n    129      80  0.2  0.0  7084 (udev-worker)\n    140      80  0.0  0.0  6904 (udev-worker)\n    109      80  0.1  0.0  6744 (udev-worker)\n    142      80  0.0  0.0  6676 (udev-worker)\n    126      80  0.0  0.0  6504 (udev-worker)\n",
+    "stderr": ""
+  },
+  "cpu": {
+    "command": [
+      "bash",
+      "-c",
+      "lscpu | head -30"
+    ],
+    "returncode": 0,
+    "stdout": "Architecture:                            x86_64\nCPU op-mode(s):                          32-bit, 64-bit\nAddress sizes:                           39 bits physical, 48 bits virtual\nByte Order:                              Little Endian\nCPU(s):                                  12\nOn-line CPU(s) list:                     0-11\nVendor ID:                               GenuineIntel\nModel name:                              Intel(R) Core(TM) i9-10850K CPU @ 3.60GHz\nCPU family:                              6\nModel:                                   165\nThread(s) per core:                      2\nCore(s) per socket:                      6\nSocket(s):                               1\nStepping:                                5\nBogoMIPS:                                7200.02\nFlags:                                   fpu vme de pse tsc msr pae mce cx8 apic sep mtrr pge mca cmov pat pse36 clflush mmx fxsr sse sse2 ss ht syscall nx pdpe1gb rdtscp lm arch_perfmon rep_good nopl xtopology cpuid tsc_known_freq pni pclmulqdq vmx ssse3 fma cx16 pdcm pcid sse4_1 sse4_2 x2apic movbe popcnt aes xsave avx f16c rdrand hypervisor lahf_lm abm 3dnowprefetch ssbd ibrs ibpb stibp ibrs_enhanced tpr_shadow ept vpid ept_ad fsgsbase bmi1 avx2 smep bmi2 erms invpcid rdseed adx smap clflushopt xsaveopt xsavec xgetbv1 xsaves vnmi md_clear flush_l1d arch_capabilities\nVirtualization:                          VT-x\nHypervisor vendor:                       Microsoft\nVirtualization type:                     full\nL1d cache:                               192 KiB (6 instances)\nL1i cache:                               192 KiB (6 instances)\nL2 cache:                                1.5 MiB (6 instances)\nL3 cache:                                20 MiB (1 instance)\nNUMA node(s):                            1\nNUMA node0 CPU(s):                       0-11\nVulnerability Gather data sampling:      Unknown: Dependent on hypervisor status\nVulnerability Ghostwrite:                Not affected\nVulnerability Indirect target selection: Mitigation; Aligned branch/return thunks\nVulnerability Itlb multihit:             KVM: Mitigation: Split huge pages\nVulnerability L1tf:                      Not affected\n",
+    "stderr": ""
+  },
+  "versions": {
+    "command": [
+      "bash",
+      "-c",
+      "for t in bash git python gcc g++ clang clang++ cmake make ninja pkg-config taskset conda mamba micromamba openmc; do if command -v \"$t\"; then \"$t\" --version 2>&1 | head -2; else echo \"$t MISSING\"; fi; done"
+    ],
+    "returncode": 0,
+    "stdout": "/usr/bin/bash\nGNU bash, version 5.2.37(1)-release (x86_64-pc-linux-gnu)\nCopyright (C) 2022 Free Software Foundation, Inc.\n/usr/bin/git\ngit version 2.47.3\npython MISSING\n/usr/bin/gcc\ngcc (Debian 14.2.0-19) 14.2.0\nCopyright (C) 2024 Free Software Foundation, Inc.\n/usr/bin/g++\ng++ (Debian 14.2.0-19) 14.2.0\nCopyright (C) 2024 Free Software Foundation, Inc.\n/usr/bin/clang\nDebian clang version 19.1.7 (3+b1)\nTarget: x86_64-pc-linux-gnu\n/usr/bin/clang++\nDebian clang version 19.1.7 (3+b1)\nTarget: x86_64-pc-linux-gnu\n/usr/bin/cmake\ncmake version 3.31.6\n\n/usr/bin/make\nGNU Make 4.4.1\nBuilt for x86_64-pc-linux-gnu\n/usr/bin/ninja\n1.12.1\n/usr/bin/pkg-config\n1.8.1\n/usr/bin/taskset\ntaskset from util-linux 2.41\nconda MISSING\nmamba MISSING\nmicromamba MISSING\nopenmc MISSING\n",
+    "stderr": ""
+  },
+  "environments_checkouts": {
+    "command": [
+      "bash",
+      "-c",
+      "for p in /mnt/data /home/oai /opt /tmp /workspace /workspaces; do if [ -d \"$p\" ]; then find \"$p\" -maxdepth 3 \\( -name .git -o -name conda-meta -o -name pyvenv.cfg -o -name envs -o -name openmc -o -name stellarcsg \\) -print 2>/dev/null; fi; done"
+    ],
+    "returncode": 0,
+    "stdout": "/opt/openmc-venv/pyvenv.cfg\n",
+    "stderr": ""
+  },
+  "caches": {
+    "command": [
+      "bash",
+      "-c",
+      "for p in /home/oai/.cache /root/.cache /opt/conda/pkgs /opt/conda/envs /tmp; do if [ -e \"$p\" ]; then du -sh \"$p\"; else echo \"$p absent\"; fi; done"
+    ],
+    "returncode": 0,
+    "stdout": "/home/oai/.cache absent\n152M\t/root/.cache\n/opt/conda/pkgs absent\n/opt/conda/envs absent\n0\t/tmp\n",
+    "stderr": ""
+  },
+  "available_cpu_affinity": [
+    0,
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    11
+  ],
+  "execution_cpu_affinity": [
+    0
+  ],
+  "cgroup_path": "/sys/fs/cgroup/init.scope",
+  "cgroup_memory.max": "max",
+  "cgroup_memory.current": "257159168",
+  "cgroup_cpu.max": "max 100000",
+  "verified_header_hashes": [
+    {
+      "path": "dev/stellarcsg/include/stellarcsg/vector.hpp",
+      "bytes": 3488,
+      "git_blob_sha1": "af3fc2b8a86f6945adeb27b4f46157e172137349",
+      "expected_git_blob_sha1": "af3fc2b8a86f6945adeb27b4f46157e172137349",
+      "sha256": "66ec50198271695ffa42309f7d2ebff5718c9e37e0887b1fbc61713249297c4f"
+    },
+    {
+      "path": "dev/stellarcsg/src/swept_span_bounds.hpp",
+      "bytes": 9654,
+      "git_blob_sha1": "2c576398257a7e1f118fa99b99e55d92c4003bc9",
+      "expected_git_blob_sha1": "2c576398257a7e1f118fa99b99e55d92c4003bc9",
+      "sha256": "088caad224717ee419b77df5bc10432424f67435f766d844b2e511b1dbce8403"
+    }
+  ],
+  "blockers": []
+}

@@ -1,0 +1,2 @@
+ ERROR: Unable to initialize swept-spline surface 903: Swept-spline content_id
+        mismatch

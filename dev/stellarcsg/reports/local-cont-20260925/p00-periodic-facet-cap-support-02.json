@@ -1,0 +1,71 @@
+{
+  "schema": "stellarcsg.facet-periodic-cap-support/v1",
+  "state": "PERIODIC_CAP_TRIANGLES_BITWISE_MATCH",
+  "payload_classification": "DERIVED_PERIODIC_CAP_CANDIDATE_NOT_ACCEPTED_H5M",
+  "bitwise_rotated_cap_triangle_match": true,
+  "rotation_map": "x=0 cap (y,z) maps to y=0 cap (x,z)",
+  "boundary_edge_count": {
+    "x_zero": 80,
+    "y_zero": 80
+  },
+  "directed_sampled_gap": {
+    "x_to_y": {
+      "sample_count": 5200,
+      "maximum_cm": 2.5421149729252077e-13,
+      "p99_cm": 2.3437142008433856e-13,
+      "mean_cm": 2.898768779025997e-14,
+      "above_1e-8_cm": 0
+    },
+    "y_to_x": {
+      "sample_count": 5200,
+      "maximum_cm": 2.5421149729252077e-13,
+      "p99_cm": 2.3437142008433856e-13,
+      "mean_cm": 2.907949603662986e-14,
+      "above_1e-8_cm": 0
+    }
+  },
+  "near_outline_coverage": {
+    "x_to_y": {
+      "1e-05": {
+        "source_inside": 80,
+        "target_outside": 0
+      },
+      "0.0001": {
+        "source_inside": 80,
+        "target_outside": 0
+      },
+      "0.0005": {
+        "source_inside": 80,
+        "target_outside": 0
+      },
+      "0.001": {
+        "source_inside": 80,
+        "target_outside": 0
+      }
+    },
+    "y_to_x": {
+      "1e-05": {
+        "source_inside": 80,
+        "target_outside": 0
+      },
+      "0.0001": {
+        "source_inside": 80,
+        "target_outside": 0
+      },
+      "0.0005": {
+        "source_inside": 80,
+        "target_outside": 0
+      },
+      "0.001": {
+        "source_inside": 80,
+        "target_outside": 0
+      }
+    }
+  },
+  "hashes": {
+    "payload": "3db1723d250319d7e6e3d0a4cbbba7b88a68c830fba4214d001a8c2c2545c2d4",
+    "payload_receipt": "ccd8a119a10a18be0eeddfd5bb051b44fd883c6555e0dc3b6f40af3874a38c4e",
+    "auditor": "55b75575433a2341d1480241cc82d22058502663f358acacec0bead79fcc6c0f"
+  },
+  "claim_boundary": "Triangle equality compares unordered projected cap vertex triples bitwise after rotation. Distances sample 65 points per boundary edge; inward offsets test coverage near each edge midpoint. An exact triangle match applies only to this faceted representation and does not establish continuous-CAD equivalence or transport correctness."
+}

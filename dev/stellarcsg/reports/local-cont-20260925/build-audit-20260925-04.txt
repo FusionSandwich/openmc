@@ -1,0 +1,39 @@
+Local controlled-adapter and standalone incremental build audit, 2026-09-25.
+
+Observed before build:
+- Windows RAM: 33,457,440 KiB total, 3,217,436 KiB free.
+- C: 86,894,907,392 bytes free; D: 505,667,219,456 bytes free.
+- Largest resident processes: vmmemWSL 1.41 GiB, ChatGPT 1.33 GiB,
+  Chrome 1.04 and 0.90 GiB, Codex 0.72 GiB.
+- Windows Python 3.12.10 and Git 2.55.0. WSL OpenMC-Dev-D has existing
+  GCC 14.2, CMake 3.31.6, Ninja 1.12.1, HDF5 1.14.5, /opt/openmc-venv
+  and a pip cache. No conda executable or ccache cache was found.
+- Existing worktree build/local-cont-20260925 has build.ninja; native build
+  build/native-local-20260925, main openmc-stellarcsg source checkout and
+  D:/codex-verification are present. WSL version probe emitted a systemd
+  root-user-session warning and then returned the versions above; no build
+  environment was modified.
+- New output directory transport-contracts-04 was absent. The new audit
+  receipt was also absent before writing this file.
+
+The existing local compiler and dependencies suffice. Planned external
+acquisition: 0 bytes. Planned local output: controlled test directory
+dev/stellarcsg/reports/local-cont-20260925/transport-contracts-04, under
+50 MiB, and a one-job incremental rebuild only in the existing
+build/local-cont-20260925 directory, under 50 MiB incremental. Both are on
+C:. Rollback is removal of only transport-contracts-04 after preserving its
+result receipt and rebuilding the standalone targets from the prior commit;
+the separate source checkout, caches and dependency environments are not
+modified. Build/test results must be reported with their actual exit codes.
+
+Native incremental addendum, before native build:
+- RAM free refreshed to 4,546,632 KiB; C: 86,865,649,664 B and D:
+  505,621,082,112 B free. Top residents: ChatGPT 1.32 GiB, Chrome
+  1.00/0.90 GiB, Codex 0.72 GiB. The existing native build.ninja and
+  3,821,328-byte libopenmc.so are present; native-adapter-02 is absent.
+- Existing WSL GCC/CMake/Ninja/HDF5, local fmt/pugixml packages, Python
+  environment/cache and source checkouts from the preceding audit suffice.
+  Planned external acquisition: 0 bytes. One-job native incremental output
+  is confined to build/native-local-20260925, expected under 50 MiB on C:.
+  Rollback is a rebuild from the previous commit after retaining the build
+  receipt; no dependency environment or other checkout is modified.

@@ -1,0 +1,20 @@
+{
+  "schema": "stellarcsg.periodic-root-campaign/v1",
+  "case": "exact_torus_forced_general_patch",
+  "seed": 6491872782377787956,
+  "randomized_rays": 100000,
+  "adversarial_rays": 4099,
+  "oracle_found": 23882,
+  "fast_found": 23882,
+  "exact_path_count": 0,
+  "high_resolution_oracle_adjudications": 0,
+  "missed_roots": 0,
+  "false_roots": 0,
+  "wrong_nearest_roots": 0,
+  "adversarial_failures": 0,
+  "maximum_distance_error_cm": 5.553125514978774e-9,
+  "maximum_fast_residual_cm": 9.990860164587628e-11,
+  "elapsed_seconds": 13.061682496,
+  "production_global_reference_calls": 0,
+  "failure_fixtures": []
+}

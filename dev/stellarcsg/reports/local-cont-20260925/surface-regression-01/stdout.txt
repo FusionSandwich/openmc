@@ -1,0 +1,10 @@
+========================= OpenMC Environment Warnings ==========================
+WARNING: OpenMC was NOT built with -DOPENMC_ENABLE_STRICT_FP=on. Regression test results may not match reference values due to compiler floating-point optimizations. Rebuild with -DOPENMC_ENABLE_STRICT_FP=on for reproducible results.
+WARNING: OPENMC_CROSS_SECTIONS environment variable is not set. Regression tests require the NNDC HDF5 cross section data.
+
+.............................                                            [100%]
+========================= OpenMC Environment Warnings ==========================
+WARNING: OpenMC was NOT built with -DOPENMC_ENABLE_STRICT_FP=on. Regression test results may not match reference values due to compiler floating-point optimizations. Rebuild with -DOPENMC_ENABLE_STRICT_FP=on for reproducible results.
+WARNING: OPENMC_CROSS_SECTIONS environment variable is not set. Regression tests require the NNDC HDF5 cross section data.
+
+29 passed in 1.86s

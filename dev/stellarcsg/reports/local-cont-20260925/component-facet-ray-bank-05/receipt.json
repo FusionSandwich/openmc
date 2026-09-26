@@ -1,0 +1,647 @@
+{
+  "schema": "stellarcsg.component-facet-ray-bank/v1",
+  "state": "PASS_18_DISTINCT_VOID_COIL_CELLS",
+  "rows": [
+    {
+      "dagmc_volume_id": 8,
+      "expected_coil_cell_id": 2008,
+      "facet_id": "facet-bb4b1a33cac92fedf825452305ad379bafefd0ce2b7e0182ba7ec8b4976e3fb7",
+      "exit_code": 0,
+      "stderr": " WARNING: Could not compute uncertainties -- only one active batch simulated!\n",
+      "hashes": {
+        "geometry.xml": "d8190f303fe37d256f94e54ebc70b69265468db6fcebc9a62ecd98c735f29b3b",
+        "settings.xml": "0fa98876412db1446e5b8400f44dfc444891aed237912259575c2183aa858ffc",
+        "materials.xml": "387f4241a1cea79740ac3564b5480fab039201fbf2445c0c7c693de852500f4d",
+        "tracks.h5": "007635f8c546ee239976872d1710d132623ffadb29363c8289e6a36c79609f38",
+        "statepoint.1.h5": "028982d3e679cfc82bb212ba85826e44478caa7c28a34c7c414b12be6bd2bcb2",
+        "summary.h5": "fe2229920b66e6a3bbc9560be5c8e128a8502b2f7e36155c6144cb1c1a88f660"
+      },
+      "cell_sequence": [
+        2000,
+        2008,
+        2020,
+        2000,
+        2019,
+        2000,
+        2000
+      ],
+      "first_crossing_cm": [
+        896.7762272052374,
+        4.138952192594355,
+        -329.28625052030463
+      ],
+      "first_crossing_centroid_error_cm": 3.288557623567146e-05,
+      "terminal_position_cm": [
+        2030.6506077419779,
+        1458.2380153037896,
+        -19.406397787103884
+      ],
+      "entry_and_leakage_pass": true
+    },
+    {
+      "dagmc_volume_id": 9,
+      "expected_coil_cell_id": 2009,
+      "facet_id": "facet-2254876d2fac567ba7602663c2af684ffa5147a555e7ac4084d83aad911bee2d",
+      "exit_code": 0,
+      "stderr": " WARNING: Could not compute uncertainties -- only one active batch simulated!\n",
+      "hashes": {
+        "geometry.xml": "d8190f303fe37d256f94e54ebc70b69265468db6fcebc9a62ecd98c735f29b3b",
+        "settings.xml": "bd08e7764df0e5c21e68d298986be79aabad344fa487f23a60e46d4b3765adee",
+        "materials.xml": "387f4241a1cea79740ac3564b5480fab039201fbf2445c0c7c693de852500f4d",
+        "tracks.h5": "333f8651dbcfd6a31856caf67f028be8f820ba863ad323bc157bd8a2c8e2c360",
+        "statepoint.1.h5": "6b30a674318f6c60f0b1e79334c4d03ec778beda9e34baa13fc6e60bcc2b4ec2",
+        "summary.h5": "07350fb01a9683d8bd3baab17620b4797b4523349974e843316972ebcf6c8397"
+      },
+      "cell_sequence": [
+        2000,
+        2009,
+        2000,
+        2010,
+        2000,
+        2011,
+        2000,
+        2000
+      ],
+      "first_crossing_cm": [
+        988.7778193776619,
+        25.201524547907137,
+        -367.23044874869163
+      ],
+      "first_crossing_centroid_error_cm": 9.056719669685215e-06,
+      "terminal_position_cm": [
+        2361.2074647875997,
+        821.4008206906756,
+        -375.5813532830608
+      ],
+      "entry_and_leakage_pass": true
+    },
+    {
+      "dagmc_volume_id": 10,
+      "expected_coil_cell_id": 2010,
+      "facet_id": "facet-487571ecae298648adcc96b78f8ef61d9504fa7e242111bc06adbc4055164cf6",
+      "exit_code": 0,
+      "stderr": " WARNING: Could not compute uncertainties -- only one active batch simulated!\n",
+      "hashes": {
+        "geometry.xml": "d8190f303fe37d256f94e54ebc70b69265468db6fcebc9a62ecd98c735f29b3b",
+        "settings.xml": "f79328fa048b7eed2f28f618a1104b3166bede1b703be2737197fe172dc06b34",
+        "materials.xml": "387f4241a1cea79740ac3564b5480fab039201fbf2445c0c7c693de852500f4d",
+        "tracks.h5": "9d8a38348b7a02d5d9e34407226ccdc66276f630d828530c5ecda6e60ab0e2c8",
+        "statepoint.1.h5": "7dc64ac221d56c1494059ce6d5312010e8e6675fc9b823c83fbeca9b09669594",
+        "summary.h5": "d127fd9d875f43f6658a242f92e799c84d91a0e66ea864f10b79d5394afec747"
+      },
+      "cell_sequence": [
+        2000,
+        2010,
+        2000,
+        2012,
+        2000,
+        2000
+      ],
+      "first_crossing_cm": [
+        1069.8189483916785,
+        93.79348370308509,
+        -346.50352622178843
+      ],
+      "first_crossing_centroid_error_cm": 4.263256414560601e-14,
+      "terminal_position_cm": [
+        2086.8537802315177,
+        1376.6049905232162,
+        -72.17304689864119
+      ],
+      "entry_and_leakage_pass": true
+    },
+    {
+      "dagmc_volume_id": 11,
+      "expected_coil_cell_id": 2011,
+      "facet_id": "facet-71e1d3cfcc4183883b46ca74a9bd92485ee0559725efff8e77572dbf8e8fc48d",
+      "exit_code": 0,
+      "stderr": " WARNING: Could not compute uncertainties -- only one active batch simulated!\n",
+      "hashes": {
+        "geometry.xml": "d8190f303fe37d256f94e54ebc70b69265468db6fcebc9a62ecd98c735f29b3b",
+        "settings.xml": "f87d8d7605c224056d651513f6681d0356b7a2906ab84999952e52f33a9804bf",
+        "materials.xml": "387f4241a1cea79740ac3564b5480fab039201fbf2445c0c7c693de852500f4d",
+        "tracks.h5": "744e3d2e0ffcfa6f72d06ea41ae1f15039acc4987a2f1cf5ffc45174f020e576",
+        "statepoint.1.h5": "3a298e000df3740fc1460f401445dd54a4e46fe3dbb4a8a702b30ed6e8487834",
+        "summary.h5": "05a2e032769c7773d39f80e998c5537a3f6ca71afd7e9730af20754a88614c0e"
+      },
+      "cell_sequence": [
+        2000,
+        2011,
+        2000,
+        2000,
+        2000
+      ],
+      "first_crossing_cm": [
+        1150.4260483819203,
+        207.83931537066877,
+        -342.72238054325345
+      ],
+      "first_crossing_centroid_error_cm": 2.842170943040401e-14,
+      "terminal_position_cm": [
+        1553.692704937215,
+        810.6111780772969,
+        -700.0
+      ],
+      "entry_and_leakage_pass": true
+    },
+    {
+      "dagmc_volume_id": 12,
+      "expected_coil_cell_id": 2012,
+      "facet_id": "facet-a21b33d68c15afa1eb3564fd1ee68893675df5d74ae05fb51abbc889609a8d68",
+      "exit_code": 0,
+      "stderr": " WARNING: Could not compute uncertainties -- only one active batch simulated!\n",
+      "hashes": {
+        "geometry.xml": "d8190f303fe37d256f94e54ebc70b69265468db6fcebc9a62ecd98c735f29b3b",
+        "settings.xml": "9ce92f34182768a6c37add45b52643214688a93551e44edd1dcd0e727256bb9a",
+        "materials.xml": "387f4241a1cea79740ac3564b5480fab039201fbf2445c0c7c693de852500f4d",
+        "tracks.h5": "c3da70c03b3765cc5c88b824633f2e2fd2bc04d37ab41efbcd620f4817daea0d",
+        "statepoint.1.h5": "5d127201222ba402823d8ac4839566e252de0cc4712167af0bc16f94112c2488",
+        "summary.h5": "54685ea240f3aa50300c54bfe79d407b640c572058b998a24fb87df9e2967890"
+      },
+      "cell_sequence": [
+        2000,
+        2012,
+        2000,
+        2012,
+        2000,
+        2000
+      ],
+      "first_crossing_cm": [
+        1131.2506062129917,
+        130.28393245530745,
+        544.5702930975397
+      ],
+      "first_crossing_centroid_error_cm": 0.0,
+      "terminal_position_cm": [
+        944.483612186669,
+        375.21090357051224,
+        -700.0
+      ],
+      "entry_and_leakage_pass": true
+    },
+    {
+      "dagmc_volume_id": 13,
+      "expected_coil_cell_id": 2013,
+      "facet_id": "facet-7e655da43bb98ec73bddadfc9ec02e7c2e4232b38da758b0df930e9de2db8ebc",
+      "exit_code": 0,
+      "stderr": " WARNING: Could not compute uncertainties -- only one active batch simulated!\n",
+      "hashes": {
+        "geometry.xml": "d8190f303fe37d256f94e54ebc70b69265468db6fcebc9a62ecd98c735f29b3b",
+        "settings.xml": "e2a6021dce6b1c0fd0542e8dc292b0ebf806e3a999b27b07e8ae429d48ec144d",
+        "materials.xml": "387f4241a1cea79740ac3564b5480fab039201fbf2445c0c7c693de852500f4d",
+        "tracks.h5": "ee7f779528be309216bf039cc8941b9cd3b1f7bbc267487723fb88b16a547049",
+        "statepoint.1.h5": "6ae30385abf43a12553caab350c6bd15f4bdc54e612b1eb26fa4e93e0bf1fe44",
+        "summary.h5": "686672c2c2e6f84d54dea3f0263710b0f487cc9ebf0878bbd9786341305f9d9c"
+      },
+      "cell_sequence": [
+        2000,
+        2013,
+        2000,
+        2012,
+        2000,
+        2000
+      ],
+      "first_crossing_cm": [
+        872.8719847496335,
+        204.314322680605,
+        520.3892036729768
+      ],
+      "first_crossing_centroid_error_cm": 1.1368683772161603e-13,
+      "terminal_position_cm": [
+        1122.3089456952755,
+        305.4093005652872,
+        -700.0
+      ],
+      "entry_and_leakage_pass": true
+    },
+    {
+      "dagmc_volume_id": 14,
+      "expected_coil_cell_id": 2014,
+      "facet_id": "facet-6f434982878fadd5de0c3404ca8236df031d0d866cc96b61d305e7458f9e52b3",
+      "exit_code": 0,
+      "stderr": " WARNING: Could not compute uncertainties -- only one active batch simulated!\n",
+      "hashes": {
+        "geometry.xml": "d8190f303fe37d256f94e54ebc70b69265468db6fcebc9a62ecd98c735f29b3b",
+        "settings.xml": "500616e2a155a2cfcd9701c32dec1f27703c355c1037d7bb0bc9a9e4f0e9a775",
+        "materials.xml": "387f4241a1cea79740ac3564b5480fab039201fbf2445c0c7c693de852500f4d",
+        "tracks.h5": "0faa4ab04024a887a68017ea3cdd6aea22fa6575bb530d1ba22f99b7dfb8be82",
+        "statepoint.1.h5": "775ca85ca4dff6be0f6f818dfc9248f635ac9704c67a5f2c88f6919a01b4255c",
+        "summary.h5": "38383a2be39f916e72cf08cf58c89a9b3540fe9e070c9cf60ab8c8ea206f22d1"
+      },
+      "cell_sequence": [
+        2000,
+        2014,
+        2000,
+        2016,
+        2000,
+        2000
+      ],
+      "first_crossing_cm": [
+        984.9165781343169,
+        594.304077874133,
+        -235.63942480243747
+      ],
+      "first_crossing_centroid_error_cm": 2.842170943040401e-14,
+      "terminal_position_cm": [
+        811.852581246276,
+        1643.452669163788,
+        700.0
+      ],
+      "entry_and_leakage_pass": true
+    },
+    {
+      "dagmc_volume_id": 15,
+      "expected_coil_cell_id": 2015,
+      "facet_id": "facet-54d04d8c0969b56a53ba23ae587ccb763ae3539c6448fcb4713e0a8ec3c55e29",
+      "exit_code": 0,
+      "stderr": " WARNING: Could not compute uncertainties -- only one active batch simulated!\n",
+      "hashes": {
+        "geometry.xml": "d8190f303fe37d256f94e54ebc70b69265468db6fcebc9a62ecd98c735f29b3b",
+        "settings.xml": "73409e76a17d218ca183e982d7fe8c8711b341949861e460ad56d05e681cf5b5",
+        "materials.xml": "387f4241a1cea79740ac3564b5480fab039201fbf2445c0c7c693de852500f4d",
+        "tracks.h5": "ef3e0ae7690f21576af7affac4358127a5367247139e659f1824e6ca0ee3aa85",
+        "statepoint.1.h5": "fbcea9b67adcd6270d42b2277e4f2b3c449a5de87fde53149bf9529cf5f07c0f",
+        "summary.h5": "fd12ff54036a5b961b9c02ed97ef70de223e6465ce3c0fa3142192e3b0a21037"
+      },
+      "cell_sequence": [
+        2000,
+        2015,
+        2000,
+        2000,
+        2000
+      ],
+      "first_crossing_cm": [
+        521.2449968890669,
+        665.9843404980226,
+        299.97970399585296
+      ],
+      "first_crossing_centroid_error_cm": 0.0,
+      "terminal_position_cm": [
+        255.8260653196379,
+        890.9447105993,
+        -700.0
+      ],
+      "entry_and_leakage_pass": true
+    },
+    {
+      "dagmc_volume_id": 16,
+      "expected_coil_cell_id": 2016,
+      "facet_id": "facet-6df83a296a3773b0e08b4ecb00e1ca7d1823c8860738a24003eba59e21c3177e",
+      "exit_code": 0,
+      "stderr": " WARNING: Could not compute uncertainties -- only one active batch simulated!\n",
+      "hashes": {
+        "geometry.xml": "d8190f303fe37d256f94e54ebc70b69265468db6fcebc9a62ecd98c735f29b3b",
+        "settings.xml": "6b6bd601882c0710cdd14998590d85bf6b6733a60f2491ccf94af182fd98897e",
+        "materials.xml": "387f4241a1cea79740ac3564b5480fab039201fbf2445c0c7c693de852500f4d",
+        "tracks.h5": "af0b827b528ea80d03a8f942ead97ed5e5d5543f09125ced09382baf0cc4c663",
+        "statepoint.1.h5": "d430448ed481459061fb6da26b670453d123941bbbd3640a20f817f6dbae38d7",
+        "summary.h5": "1842379208704eebd6358a243c1e378ef5bbcd8db77003c250ddc2910eaed2d1"
+      },
+      "cell_sequence": [
+        2000,
+        2016,
+        2000,
+        2020,
+        2000,
+        2000
+      ],
+      "first_crossing_cm": [
+        841.8339402250343,
+        861.8744829670673,
+        -127.3079956421211
+      ],
+      "first_crossing_centroid_error_cm": 5.684341886080802e-14,
+      "terminal_position_cm": [
+        131.87882959871683,
+        1279.2802534273133,
+        700.0
+      ],
+      "entry_and_leakage_pass": true
+    },
+    {
+      "dagmc_volume_id": 17,
+      "expected_coil_cell_id": 2017,
+      "facet_id": "facet-76b929e71b457c5248e728ad8006c04faebdf4ca4dce59d5ed12eeef4e3b821e",
+      "exit_code": 0,
+      "stderr": " WARNING: Could not compute uncertainties -- only one active batch simulated!\n",
+      "hashes": {
+        "geometry.xml": "d8190f303fe37d256f94e54ebc70b69265468db6fcebc9a62ecd98c735f29b3b",
+        "settings.xml": "9b8e8e01f973b2619775c1092e1be1abd092ed0e53bd7ffa0b3c42c8718e8282",
+        "materials.xml": "387f4241a1cea79740ac3564b5480fab039201fbf2445c0c7c693de852500f4d",
+        "tracks.h5": "914b96d250e0b90d769965c3d0b50f857c91c34ca68f4183607b1874bf92e967",
+        "statepoint.1.h5": "9a48b5748cfa67eeee2feb02834a7137e23c29355890fc723a733510bd608fe3",
+        "summary.h5": "ae3b3d8ccfe28e2e7ee5f7e83cfcb1e810040b6cdfbdb336e6cf6999a317868f"
+      },
+      "cell_sequence": [
+        2000,
+        2017,
+        2000,
+        2013,
+        2000,
+        2000
+      ],
+      "first_crossing_cm": [
+        861.874593658073,
+        841.8338272255247,
+        127.30799562787234
+      ],
+      "first_crossing_centroid_error_cm": 1.4210854715202004e-14,
+      "terminal_position_cm": [
+        1279.2802673157803,
+        131.87866307636853,
+        -700.0
+      ],
+      "entry_and_leakage_pass": true
+    },
+    {
+      "dagmc_volume_id": 18,
+      "expected_coil_cell_id": 2018,
+      "facet_id": "facet-47053a44dfe4fab12b6d589eb326a8d9c99d2f13d129c2b411f33fa30ee861ba",
+      "exit_code": 0,
+      "stderr": " WARNING: Could not compute uncertainties -- only one active batch simulated!\n",
+      "hashes": {
+        "geometry.xml": "d8190f303fe37d256f94e54ebc70b69265468db6fcebc9a62ecd98c735f29b3b",
+        "settings.xml": "fe3360874e9e68e85f8d33736f05a7bf58b112f87b63db6ab9069f6dcb6e99e1",
+        "materials.xml": "387f4241a1cea79740ac3564b5480fab039201fbf2445c0c7c693de852500f4d",
+        "tracks.h5": "51f3068a7944fdef6219779781a76510935628ed417fefbdd8ebfa04b213e6a8",
+        "statepoint.1.h5": "5212cc6e8bd35bc3923ba8503b74a8acaa84ea45b97d4e92d980c991ae98aa2e",
+        "summary.h5": "b09f7ddb783f37adad30d41e50cac923ee40b7c6e6dd019c45dbba83e5f8a126"
+      },
+      "cell_sequence": [
+        2000,
+        2018,
+        2000,
+        2000,
+        2000
+      ],
+      "first_crossing_cm": [
+        665.9844091397337,
+        521.2449099203703,
+        -299.97970389352537
+      ],
+      "first_crossing_centroid_error_cm": 0.0,
+      "terminal_position_cm": [
+        890.9447418010501,
+        255.82594515151294,
+        700.0
+      ],
+      "entry_and_leakage_pass": true
+    },
+    {
+      "dagmc_volume_id": 19,
+      "expected_coil_cell_id": 2019,
+      "facet_id": "facet-1feddd4e0607df9ba0d856cbde83fd5b2c7e7c0ed7afa9fe145f345c84701e8f",
+      "exit_code": 0,
+      "stderr": " WARNING: Could not compute uncertainties -- only one active batch simulated!\n",
+      "hashes": {
+        "geometry.xml": "d8190f303fe37d256f94e54ebc70b69265468db6fcebc9a62ecd98c735f29b3b",
+        "settings.xml": "af2f4f5df3ebfd52942e618ddf288f40c468170315be5990f41103753bb1bb22",
+        "materials.xml": "387f4241a1cea79740ac3564b5480fab039201fbf2445c0c7c693de852500f4d",
+        "tracks.h5": "1328149f9fff95d84ed4cb5c48ead2e97b00928a3affe5a16c7185f7e45e62e9",
+        "statepoint.1.h5": "a7d0171b2a9a77943c51c64b20d50691c7500d11eb14ab97f7eadee4e810f5e3",
+        "summary.h5": "0e4712eac7a67f8ebf60e18c23d5b1d338e51c929f1de64b337a7f0087ad8673"
+      },
+      "cell_sequence": [
+        2000,
+        2019,
+        2000,
+        2017,
+        2000,
+        2000
+      ],
+      "first_crossing_cm": [
+        594.3042070212718,
+        984.916500187529,
+        235.6394247970179
+      ],
+      "first_crossing_centroid_error_cm": 2.842170943040401e-14,
+      "terminal_position_cm": [
+        1643.4527761772422,
+        811.8523656639652,
+        -699.9999999999999
+      ],
+      "entry_and_leakage_pass": true
+    },
+    {
+      "dagmc_volume_id": 20,
+      "expected_coil_cell_id": 2020,
+      "facet_id": "facet-17af7c1aa9dcc70715eefa7be3b52fb48eb147ce030bb95d71e3c980854edd02",
+      "exit_code": 0,
+      "stderr": " WARNING: Could not compute uncertainties -- only one active batch simulated!\n",
+      "hashes": {
+        "geometry.xml": "d8190f303fe37d256f94e54ebc70b69265468db6fcebc9a62ecd98c735f29b3b",
+        "settings.xml": "a807de0a21a88630cd0ea4031f1c66e4a94575a0bf5f627e665702dcd847b3ed",
+        "materials.xml": "387f4241a1cea79740ac3564b5480fab039201fbf2445c0c7c693de852500f4d",
+        "tracks.h5": "e1e7fd27c3b1e95b19cb4c4b9bfc963a98e87c3ebca255379f3e1212bcb801ca",
+        "statepoint.1.h5": "e9b55462cb4c787e42e4a9e7abf1e440096f493f6a09e3441d013dcd42319263",
+        "summary.h5": "0d8f695bb675236ad7e09db7c025db10be9c9a3b9146a514d228c93008c040fc"
+      },
+      "cell_sequence": [
+        2000,
+        2020,
+        2000,
+        2021,
+        2000,
+        2000
+      ],
+      "first_crossing_cm": [
+        204.3138458109457,
+        872.8715499856048,
+        -520.3890270727827
+      ],
+      "first_crossing_centroid_error_cm": 1.1368683772161603e-13,
+      "terminal_position_cm": [
+        305.4079423662779,
+        1122.3107190452868,
+        700.0
+      ],
+      "entry_and_leakage_pass": true
+    },
+    {
+      "dagmc_volume_id": 21,
+      "expected_coil_cell_id": 2021,
+      "facet_id": "facet-24263a0f34c030f0efda519269dc03b0cc847ae042899967df5882eb2151790a",
+      "exit_code": 0,
+      "stderr": " WARNING: Could not compute uncertainties -- only one active batch simulated!\n",
+      "hashes": {
+        "geometry.xml": "d8190f303fe37d256f94e54ebc70b69265468db6fcebc9a62ecd98c735f29b3b",
+        "settings.xml": "6cd8a8b0288ea27d93a03a21ffd232fc9fc76b7e96eff4559d4776cd48b4b4f0",
+        "materials.xml": "387f4241a1cea79740ac3564b5480fab039201fbf2445c0c7c693de852500f4d",
+        "tracks.h5": "9fe40d15836630dbd60c9a42c41b5b91f82aa6010e863eeb9ffd5b23020397d6",
+        "statepoint.1.h5": "ee8571032510fa22ffcf3413f9d98750f8c4ae4ef9de6a037f21d2542ee7f860",
+        "summary.h5": "ce66a02009ee61446e42ea9da3e1dc057621c96895105f369e25940036c5f436"
+      },
+      "cell_sequence": [
+        2000,
+        2021,
+        2000,
+        2021,
+        2000,
+        2000
+      ],
+      "first_crossing_cm": [
+        130.28399714940593,
+        1131.2504535737146,
+        -544.5702936231994
+      ],
+      "first_crossing_centroid_error_cm": 1.1718571004216928e-13,
+      "terminal_position_cm": [
+        375.2112272989782,
+        944.483928366352,
+        700.0
+      ],
+      "entry_and_leakage_pass": true
+    },
+    {
+      "dagmc_volume_id": 22,
+      "expected_coil_cell_id": 2022,
+      "facet_id": "facet-cd75e77af6a6a03043143dd3be9c559bf8cbc07bfe5d63bd653c7c421afb2fc9",
+      "exit_code": 0,
+      "stderr": " WARNING: Could not compute uncertainties -- only one active batch simulated!\n",
+      "hashes": {
+        "geometry.xml": "d8190f303fe37d256f94e54ebc70b69265468db6fcebc9a62ecd98c735f29b3b",
+        "settings.xml": "6f89647dfd0d8e276837eecb06ba78d6c8ab0554f5eb803ece7304e745522785",
+        "materials.xml": "387f4241a1cea79740ac3564b5480fab039201fbf2445c0c7c693de852500f4d",
+        "tracks.h5": "a1cbb48bad8d3f230aa8a7804879341ecd31d38262a7a04890d23bc46226b559",
+        "statepoint.1.h5": "724c9e0904db3f0807cb6bd0b5251f873f7c51cc9923e960cecb0575029c2382",
+        "summary.h5": "ce66a02009ee61446e42ea9da3e1dc057621c96895105f369e25940036c5f436"
+      },
+      "cell_sequence": [
+        2000,
+        2022,
+        2000,
+        2000,
+        2000
+      ],
+      "first_crossing_cm": [
+        207.83946845544173,
+        1150.4259010479775,
+        342.72231008395914
+      ],
+      "first_crossing_centroid_error_cm": 0.0,
+      "terminal_position_cm": [
+        810.6109767430153,
+        1553.6904004509302,
+        700.0
+      ],
+      "entry_and_leakage_pass": true
+    },
+    {
+      "dagmc_volume_id": 23,
+      "expected_coil_cell_id": 2023,
+      "facet_id": "facet-6a95c63b1cdc1e9683a5e99b266de17541d32baae76cb82a8c366ac80a0b903f",
+      "exit_code": 0,
+      "stderr": " WARNING: Could not compute uncertainties -- only one active batch simulated!\n",
+      "hashes": {
+        "geometry.xml": "d8190f303fe37d256f94e54ebc70b69265468db6fcebc9a62ecd98c735f29b3b",
+        "settings.xml": "f8d4b8a0d4e809a3898d40241e822835ce9f747df9a999c7975598d132a67f1f",
+        "materials.xml": "387f4241a1cea79740ac3564b5480fab039201fbf2445c0c7c693de852500f4d",
+        "tracks.h5": "ee76a44b7dfd91388d0c15f9cff458f5e1972d31389228b7e51fe77cb2d93ec7",
+        "statepoint.1.h5": "ead9654b61869c02d9f2c9a2465727bc7228e10d8badb17c88882bcafa141327",
+        "summary.h5": "cdb69caba0d31035bc3f72a2e33eb2142e86d8aca7b188ec6a6f393e4e6d0214"
+      },
+      "cell_sequence": [
+        2000,
+        2023,
+        2000,
+        2021,
+        2000,
+        2000
+      ],
+      "first_crossing_cm": [
+        93.79346320321793,
+        1069.8188792339752,
+        346.5033918201878
+      ],
+      "first_crossing_centroid_error_cm": 0.0,
+      "terminal_position_cm": [
+        1376.604894493781,
+        2086.8538435778787,
+        72.17287176265484
+      ],
+      "entry_and_leakage_pass": true
+    },
+    {
+      "dagmc_volume_id": 24,
+      "expected_coil_cell_id": 2024,
+      "facet_id": "facet-43e3626b5445d919e3fc46952c679956c5400f2e32353002520accf4919829f9",
+      "exit_code": 0,
+      "stderr": " WARNING: Could not compute uncertainties -- only one active batch simulated!\n",
+      "hashes": {
+        "geometry.xml": "d8190f303fe37d256f94e54ebc70b69265468db6fcebc9a62ecd98c735f29b3b",
+        "settings.xml": "47edd4a44ed9bed6415acc3f19fc260aebdebeef24271e10e41232f90763df2d",
+        "materials.xml": "387f4241a1cea79740ac3564b5480fab039201fbf2445c0c7c693de852500f4d",
+        "tracks.h5": "1b5905b9a99878dc25e4f1df551253913e74ff7678b60abd7305d585f446b486",
+        "statepoint.1.h5": "d607665f27ae077a612033cffefa436e0832bbc87163db196bbf5876f6b0eb36",
+        "summary.h5": "d82d38c94a34e69a8a0196d90a212967b647dece5f1552a77988f4329b3c30d8"
+      },
+      "cell_sequence": [
+        2000,
+        2024,
+        2000,
+        2023,
+        2000,
+        2022,
+        2000,
+        2000
+      ],
+      "first_crossing_cm": [
+        25.201503761382163,
+        988.7778228929635,
+        367.2304130894109
+      ],
+      "first_crossing_centroid_error_cm": 3.0189028636602845e-06,
+      "terminal_position_cm": [
+        821.4008310199966,
+        2361.2074611943053,
+        375.58128891130053
+      ],
+      "entry_and_leakage_pass": true
+    },
+    {
+      "dagmc_volume_id": 25,
+      "expected_coil_cell_id": 2025,
+      "facet_id": "facet-869de9b588b80d0c81e7684e087d7ac3eae96b7ea6307df05842bd52a5f84212",
+      "exit_code": 0,
+      "stderr": " WARNING: Could not compute uncertainties -- only one active batch simulated!\n",
+      "hashes": {
+        "geometry.xml": "d8190f303fe37d256f94e54ebc70b69265468db6fcebc9a62ecd98c735f29b3b",
+        "settings.xml": "c44840c97ec45ba3caf4dc6845d1537b03e7799176f990c028cc601796cb94bf",
+        "materials.xml": "387f4241a1cea79740ac3564b5480fab039201fbf2445c0c7c693de852500f4d",
+        "tracks.h5": "386d9fe5b72caea17417d374fd6a7605e423f17b0fbca5aaa732ee3ce7a093c4",
+        "statepoint.1.h5": "1a57af5cefb7f1c57451e96607cc44df0ff26174b64d5536f1020fa4de81fdca",
+        "summary.h5": "cab3cce59ecf91d6c3aa2c27bd9a277af944f3ab49a55aebaa485787230fab62"
+      },
+      "cell_sequence": [
+        2000,
+        2025,
+        2013,
+        2000,
+        2014,
+        2000,
+        2000
+      ],
+      "first_crossing_cm": [
+        4.138980883529284,
+        896.776194478026,
+        329.2860633480794
+      ],
+      "first_crossing_centroid_error_cm": 1.0961616544502483e-05,
+      "terminal_position_cm": [
+        1458.2393822262807,
+        2030.6496261355169,
+        19.40692231598331
+      ],
+      "entry_and_leakage_pass": true
+    }
+  ],
+  "hashes": {
+    "auditor": "3bd65e156dc9ef8d9230ffa9882e748eccf56b69ab22e29f9787970c5a427702",
+    "region_receipt": "133180c1070eae14c0fa90d9dd44765c462c0e7885fb193787be586c8fa7c2b5",
+    "side_bank": "37918fd9c88c3b28a60366ab67a4e3599fbefacb446e1afaee4d515105a679e4",
+    "binary": "dd0f316e5bd0965092f2a080167da9bbde83416392b6473763063fd95ec63dde",
+    "library": "fbc38dedc17e20342a56dd50e2d56f86330238dae00b95ab3e4602864967cba4",
+    "cross_sections_index": "19c7b90ca97fe2b11748c69359bf04112ab2ad537e23a9165b615b3de73fb10a"
+  },
+  "claim_boundary": "One void-only ray per accepted P00 mesh group enters the matching distinct derived facet coil cell and terminates on the enclosure vacuum boundary. This does not establish continuous CAD fidelity, material transport, full phase-space/edge coverage, overlaps, plasma clearance, or performance."
+}

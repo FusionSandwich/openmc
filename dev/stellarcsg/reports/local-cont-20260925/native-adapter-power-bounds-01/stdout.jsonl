@@ -1,0 +1,5 @@
+{"kind":"native_stellarcsg_adapter_single","distance_cm":25.000000000000075,"native_transport":false}
+{"kind":"native_stellarcsg_solver_probe","member":2,"found":true,"terminal_unresolved":true,"unresolved_intervals":4,"lead_distance_cm":16,"reference_found":true,"reference_distance_cm":16.000000000618876,"lead_implicit_residual":4.4408920985006262e-16,"reference_implicit_residual":8.8415275101283441e-11}
+{"kind":"native_stellarcsg_solver_probe","member":3,"found":true,"terminal_unresolved":true,"unresolved_intervals":5,"lead_distance_cm":17.000000000000227,"reference_found":true,"reference_distance_cm":17.000000000031129,"lead_implicit_residual":0,"reference_implicit_residual":5.1536552803099767e-12}
+{"kind":"native_stellarcsg_member_probe","member":2,"state":"ERROR"}
+{"kind":"native_stellarcsg_member_probe","member":3,"state":"ERROR"}

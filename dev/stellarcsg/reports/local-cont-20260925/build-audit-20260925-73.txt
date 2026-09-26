@@ -1,0 +1,9 @@
+Per-component faceted-surface native rebuild preflight, 2026-09-25.
+Fresh Windows RAM total/free B: 34260418560 / 8409989120.
+Free disk B: C: 81350369280; D: 501287157760; WSL root: 963003113472.
+WSL MemAvailable: 24284921856 B; swap 32 GiB, none used.
+Significant Windows process working sets: Memory Compression 1861066752 B; ChatGPT PID 29076 1855033344 B; codex PID 26516 1623826432 B; vmmemWSL PID 51388 1369280512 B; ChatGPT PID 46276 1074831360 B; OneDrive 635527168 B; MsMpEng 579072000 B; chrome 527450112 B and 444157952 B.
+Existing executables: WSL g++ 14.2.0, CMake 3.31.6, HDF5 1.14.5, cached Ninja 1.13.2 at /home/sman/.local/share/mamba/pkgs/https/conda.anaconda.org/conda-forge/linux-64/ninja-1.13.2-h171cf75_0/bin/ninja; WSL Python 3.13.5 at /usr/bin/python3 and /opt/openmc-fes-venv/bin/python. Windows Python 3.12.10, CMake 4.4.0, Git 2.55.0.windows.3; no Conda/Mamba on Windows PATH.
+Existing environments/caches: /opt/openmc-fes-venv; /home/sman/.cache/pip; /home/sman/.local/share/mamba/pkgs; existing build/native-local-20260925 CMake cache, lib/libopenmc.so and bin/openmc.
+Local source checkouts: current StellarCSG worktree HEAD 028897235; D:/Scratch/parastell HEAD d480424; D:/Scratch/stellarator_optimization HEAD 398032b.
+Existing local capabilities suffice. Planned software acquisition: 0 B. Planned action: incremental one-job build of the existing native adapter in the existing C: build tree, expected net build output under 20 MiB. No download, install, upgrade, environment change, or remote access. Rollback: rebuild the prior committed source in the same tree.

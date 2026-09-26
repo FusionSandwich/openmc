@@ -1,0 +1,17 @@
+{
+  "schema": "stellarcsg.nearest-centerline-witness/v1",
+  "state": "REPRODUCED_OLD_LOCAL_MINIMUM_ERROR",
+  "source_baseline_commit": "c50d56bf2",
+  "exit_code": 0,
+  "result": {
+    "chosen_arc_coordinate": 0,
+    "chosen_distance_squared": 0.23890634088800547,
+    "witness_span": 0,
+    "witness_u": 0.08048901989047327,
+    "witness_distance_squared": 0.17279940860022003,
+    "missed_nearer_point": true
+  },
+  "binary_sha256": "04c16bb448d6ff58e48c2b27d77e190685c6d52fd1237ab2acf32056ca934038",
+  "probe_source_sha256": "714d9f09f62e1e5179884bc5f2d98c1f2e3703476273e03a7cde5c64edf091b1",
+  "claim_boundary": "The old compiled diagnostic binary, built before the stationary-point repair, returns a centerline point farther than an explicit point on span zero. This establishes a nearest-centerline selection defect on a finite accepted fixture, not the global exact minimum or all production inputs."
+}

@@ -1,0 +1,37 @@
+{
+  "schema": "stellarcsg.square-ellipse-section-gap/v1",
+  "classification": "ELLIPTICAL_SECTION_CANNOT_MATCH_SOURCE_SQUARE",
+  "source_section_cm": {
+    "shape": "square",
+    "width": 30,
+    "thickness": 30,
+    "half_side": 15
+  },
+  "infimum_hausdorff_gap_over_all_ellipses_cm": "3.10660171779821286601266543157273558927253906532711054882510",
+  "attaining_circle_radius_cm": "18.1066017177982128660126654315727355892725390653271105488251",
+  "provisional_candidate_semiaxes_cm": [
+    10,
+    8
+  ],
+  "candidate_section_gap_lower_bound_cm": "11.2132034355964257320253308631454711785450781306542210976502",
+  "proof": [
+    "For a centered square S=[-a,a]^2, h_S(u)=a(|u_x|+|u_y|).",
+    "An ellipse with center c and shape matrix Q has h_E(u)=c dot u+sqrt(u^T Q u). Pairing u and -u cancels c, so translation cannot improve the maximum support error.",
+    "If every support error is at most delta, the two cardinal directions imply sqrt(Q_11),sqrt(Q_22)<=a+delta.",
+    "For d_+=(1,1)/sqrt(2) and d_-=(1,-1)/sqrt(2), d_+^T Q d_+ + d_-^T Q d_- = Q_11+Q_22. Hence at least one diagonal ellipse support radius is <=a+delta.",
+    "The square support is a*sqrt(2) on both diagonals, so a*sqrt(2)-delta<=a+delta and delta>=a*(sqrt(2)-1)/2.",
+    "A circle of radius a*(1+sqrt(2))/2 attains this bound because square support ranges from a to a*sqrt(2).",
+    "For the provisional candidate, every ellipse section support radius is <=10 cm; paired diagonal support therefore differs from the square by at least 15*sqrt(2)-10 cm."
+  ],
+  "input_sha256": {
+    "generator": "a00518130c20c3adfd08f757b4e2066c2a54528154a8cd468333f91a112446b4",
+    "constants": "61cfb85028d6e4c7eeb4b152df10588182311f9bfdcddf9ff245a5b309f764b5",
+    "filaments": "7748369407d28a70f35b5c4a7c0ab860495a08fd0030002112ea933fe570159b",
+    "parastell_magnet_coils": "8fa7d1f75c6bcf9bbe906ccabe1808441ce506df865a4effef03c45bbfa3718a",
+    "swept_implementation": "dd4db0fb66dda806f0061f67e4d3ad0b673c5a46d1598f667191016a2157c163",
+    "candidate_h5": "5239876917349e057ad261cfeb6dcec4f25f8c10376ee173c2960aed161967ab",
+    "selector_manifest": "9b60ff7f924ee2e766a0e832857754c55bed313f72685942d520cc4cd2729686",
+    "proof_script": "d11084b5c2a608b69211ac6880be3aaa87eadfca89a7b9e81ed8f7682335f431"
+  },
+  "claim_boundary": "Rigorous planar support-distance bound for the 30 x 30 cm square specified at ParaStell coil sections, and a larger bound for the selected 10 x 8 cm elliptical payload sections. It does not bound complete swept CAD or mesh Hausdorff distance, determine sector clipping, or qualify transport."
+}

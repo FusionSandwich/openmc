@@ -1,0 +1,127 @@
+{
+  "schema": "stellarcsg.seam-newton-contraction/v1",
+  "state": "REAL_SAFEGUARDED_NEWTON_REACHES_ANGLE_CELL",
+  "source_sha256": "854913286343c29336f7f9bcfc199ab87a2cc710e37ebba5fdf06336f838a7ab",
+  "stationary_helper_sha256": "96a22316ee5117dff5fc532c8db3a99065c1562b2d2ff45b6bf9f3f0ccdc823c",
+  "stationary_sha256": "72b1d18fd9d301180f4cd588d3b835027eaaabb10bb51899fc2d6f3173b50374",
+  "compiled_all_spans_sha256": "64b038d56be85866e3dd364134061059885e04e64c01b042cc782d1f773edf3a",
+  "compiled_all_spans_receipt_sha256": "bdb38215d597ecfdc583fda7a3af887b210f20e4c25a6f10cfbee866e286677f",
+  "convex_branch_sha256": "f39573915b0322291560bd1c684a97d06321f799b21a62670140f3b83e9e7338",
+  "results": [
+    {
+      "member": 2,
+      "span": 255,
+      "rounded_query_x_cm": [
+        533.999999,
+        534.0000100000025
+      ],
+      "stationary_slope_global": [
+        141.82607635971522,
+        141.90545762490976
+      ],
+      "stationary_curvature_global": [
+        0.005660281433397701,
+        0.15321988101342765
+      ],
+      "newton_error_factor_upper": 0.0005401682290949591,
+      "root_u_enclosure": [
+        0.9999999999999762,
+        0.9999999999999762
+      ],
+      "root_gap_to_one": [
+        2.3797564828294513e-14,
+        2.3810903265651055e-14
+      ],
+      "root_gap_to_one_exact": [
+        "2244404346878673988597249/94312353514850048260682061416115801091",
+        "2244406113044135702148609/94259595614831353231181155178034595840"
+      ],
+      "first_guaranteed_interior_dyadic_n": 18,
+      "first_accepted_error_upper": 0.00013504205727373977,
+      "second_accepted_error_upper": 9.850700791543582e-12,
+      "third_accepted_error_upper": 5.241592961559015e-26,
+      "near_root_curvature": [
+        0.005660281433397701,
+        0.005680143649130963
+      ],
+      "near_root_curvature_fixed_sign": true,
+      "final_u_enclosure": [
+        0.9999999999999762,
+        0.9999999999999762
+      ],
+      "final_gap_to_one": [
+        2.3797564828242098e-14,
+        2.381090326570347e-14
+      ],
+      "expected_angle_hex": "0x1.921fb54442d17p+2",
+      "separate_angle_hex": [
+        "0x1.921fb54442d17p+2",
+        "0x1.921fb54442d17p+2"
+      ],
+      "fused_angle_hex": [
+        "0x1.921fb54442d17p+2",
+        "0x1.921fb54442d17p+2"
+      ],
+      "three_accepted_steps_share_angle_cell": true,
+      "real_loop_angle_cell_bound": true
+    },
+    {
+      "member": 3,
+      "span": 383,
+      "rounded_query_x_cm": [
+        532.9999989999998,
+        533.0000100000005
+      ],
+      "stationary_slope_global": [
+        69.01020002819337,
+        69.03219976637833
+      ],
+      "stationary_curvature_global": [
+        -0.002028353952779678,
+        0.04504415907084715
+      ],
+      "newton_error_factor_upper": 0.00032635870532504507,
+      "root_u_enclosure": [
+        0.9999999999999848,
+        0.9999999999999848
+      ],
+      "root_gap_to_one": [
+        1.5189594020240928e-14,
+        1.5194449896733403e-14
+      ],
+      "root_gap_to_one_exact": [
+        "22300640748336133009351938/1468152520641391998147781453634370549379",
+        "11150330347806774698857089/733842318977532908384972510914443508736"
+      ],
+      "first_guaranteed_interior_dyadic_n": 18,
+      "first_accepted_error_upper": 8.158967633126127e-05,
+      "second_accepted_error_upper": 2.172529199144306e-12,
+      "third_accepted_error_upper": 1.5403749446990209e-27,
+      "near_root_curvature": [
+        -0.002028353952779678,
+        -0.0020245222007430324
+      ],
+      "near_root_curvature_fixed_sign": true,
+      "final_u_enclosure": [
+        0.9999999999999848,
+        0.9999999999999848
+      ],
+      "final_gap_to_one": [
+        1.5189594020239388e-14,
+        1.5194449896734942e-14
+      ],
+      "expected_angle_hex": "0x1.921fb54442d17p+2",
+      "separate_angle_hex": [
+        "0x1.921fb54442d17p+2",
+        "0x1.921fb54442d17p+2"
+      ],
+      "fused_angle_hex": [
+        "0x1.921fb54442d17p+2",
+        "0x1.921fb54442d17p+2"
+      ],
+      "three_accepted_steps_share_angle_cell": true,
+      "real_loop_angle_cell_bound": true
+    }
+  ],
+  "claim_boundary": "Exact rational Bernstein bounds make stationary slope positive on [0,1], bound absolute curvature, and enclose each root from the endpoint residual. The first accepted Newton step is guaranteed by the listed dyadic midpoint; any earlier accepted step contracts. Fixed curvature sign around the root keeps subsequent real Newton steps inside the bracket. After three accepted steps the real parameter maps to the reported binary64 angle cell under separate or fused angle arithmetic. This does not enclose binary80 iteration rounding, floating distance comparison, BVH selection, rounded frame/implicit evaluation, earlier surface roots, or a native hit."
+}

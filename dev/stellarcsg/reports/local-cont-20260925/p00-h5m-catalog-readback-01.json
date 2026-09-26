@@ -1,0 +1,119 @@
+{
+  "catalog_sha256": "e1bb8ca2bbda5d7a41e02303f5507aa964e822469eb503e4c8ad84ccc6a1bfb9",
+  "claim_boundary": "Independent h5py readback of the 18 accepted P00 magnet volumes and their oriented triangle multisets against the catalog. This does not certify continuous CAD, sector ownership, or StellarCSG transport.",
+  "classification": "DIRECT_H5M_ORIENTED_TRIANGLE_MATCH",
+  "facet_count": 3348,
+  "h5m_sha256": "549c42bf66b290f8f56b6f4d7523940c3b32b9d256d993ea42605f4dddb33e39",
+  "magnet_count": 18,
+  "rows": [
+    {
+      "bitwise_oriented_triangle_multiset_match": true,
+      "surface_count": 4,
+      "triangle_count": 16,
+      "volume_id": 8
+    },
+    {
+      "bitwise_oriented_triangle_multiset_match": true,
+      "surface_count": 6,
+      "triangle_count": 58,
+      "volume_id": 9
+    },
+    {
+      "bitwise_oriented_triangle_multiset_match": true,
+      "surface_count": 6,
+      "triangle_count": 96,
+      "volume_id": 10
+    },
+    {
+      "bitwise_oriented_triangle_multiset_match": true,
+      "surface_count": 10,
+      "triangle_count": 168,
+      "volume_id": 11
+    },
+    {
+      "bitwise_oriented_triangle_multiset_match": true,
+      "surface_count": 10,
+      "triangle_count": 210,
+      "volume_id": 12
+    },
+    {
+      "bitwise_oriented_triangle_multiset_match": true,
+      "surface_count": 6,
+      "triangle_count": 208,
+      "volume_id": 13
+    },
+    {
+      "bitwise_oriented_triangle_multiset_match": true,
+      "surface_count": 4,
+      "triangle_count": 216,
+      "volume_id": 14
+    },
+    {
+      "bitwise_oriented_triangle_multiset_match": true,
+      "surface_count": 4,
+      "triangle_count": 352,
+      "volume_id": 15
+    },
+    {
+      "bitwise_oriented_triangle_multiset_match": true,
+      "surface_count": 4,
+      "triangle_count": 350,
+      "volume_id": 16
+    },
+    {
+      "bitwise_oriented_triangle_multiset_match": true,
+      "surface_count": 4,
+      "triangle_count": 350,
+      "volume_id": 17
+    },
+    {
+      "bitwise_oriented_triangle_multiset_match": true,
+      "surface_count": 4,
+      "triangle_count": 352,
+      "volume_id": 18
+    },
+    {
+      "bitwise_oriented_triangle_multiset_match": true,
+      "surface_count": 4,
+      "triangle_count": 216,
+      "volume_id": 19
+    },
+    {
+      "bitwise_oriented_triangle_multiset_match": true,
+      "surface_count": 6,
+      "triangle_count": 208,
+      "volume_id": 20
+    },
+    {
+      "bitwise_oriented_triangle_multiset_match": true,
+      "surface_count": 10,
+      "triangle_count": 210,
+      "volume_id": 21
+    },
+    {
+      "bitwise_oriented_triangle_multiset_match": true,
+      "surface_count": 10,
+      "triangle_count": 168,
+      "volume_id": 22
+    },
+    {
+      "bitwise_oriented_triangle_multiset_match": true,
+      "surface_count": 6,
+      "triangle_count": 96,
+      "volume_id": 23
+    },
+    {
+      "bitwise_oriented_triangle_multiset_match": true,
+      "surface_count": 6,
+      "triangle_count": 58,
+      "volume_id": 24
+    },
+    {
+      "bitwise_oriented_triangle_multiset_match": true,
+      "surface_count": 4,
+      "triangle_count": 16,
+      "volume_id": 25
+    }
+  ],
+  "schema": "stellarcsg.p00-h5m-catalog-readback/v1"
+}

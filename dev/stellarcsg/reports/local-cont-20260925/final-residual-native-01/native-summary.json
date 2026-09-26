@@ -1,0 +1,38 @@
+{
+  "schema": "stellarcsg.frozen-native-sentinel/v1",
+  "receipt_sha256": "8091a64987d76522524799b837dadd6990cd8dcf809231934c0919a8199cbc5e",
+  "reduced_sha256": "d38a3604dd6178477f68d6287b2f445eeb8e837afd7d1ae698ac23390a768234",
+  "native_openmc_loader_binding": "libopenmc.so => /mnt/d/codex-verification/stellarcsg-20260913-03/native/lib/libopenmc.so (0x000072cf2ca53000)",
+  "bank_sha256": "7348483e39128259a844d22a7618869a3f111604ea48d01e196a87fe0d396af7",
+  "native_ns_per_query": {
+    "median": 176.6399234375,
+    "min": 170.5621890625,
+    "max": 192.4992203125,
+    "samples": [
+      170.5621890625,
+      186.3198453125,
+      170.6442203125,
+      192.4992203125,
+      177.0678140625,
+      173.3650015625,
+      175.8996890625,
+      174.3451578125,
+      179.5854703125,
+      173.0807828125,
+      179.335159375,
+      189.4848453125,
+      189.3226578125,
+      176.2120328125
+    ]
+  },
+  "old_ns_per_query": 1161.875,
+  "candidate_ns_per_query": 1385.0,
+  "old_over_native_sentinel_cost_ratio": 6.577646646292298,
+  "candidate_over_native_sentinel_cost_ratio": 7.840809557925622,
+  "candidate_over_old_cost_ratio": 1.1920387305002689,
+  "classification_over_native_ratio": null,
+  "normal_over_native_ratio": null,
+  "transport_throughput_over_native_ratio": null,
+  "comparability": "UNLIKE_GEOMETRY_AND_BANK_SENTINEL_ONLY",
+  "claim_boundary": "Native OpenMC ZTorus uses a repeated 64-ray torus bank; the old/candidate coil lanes use the 160-query frozen bank. Ratios are arithmetic absolute-cost sentinels, not matched geometry/transport or correctness evidence."
+}

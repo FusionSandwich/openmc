@@ -1,0 +1,26 @@
+{
+  "schema": "stellarcsg.p00-magnet-union-equivalence/v1",
+  "state": "PASS_BITWISE_TRACK_PHYSICS_360",
+  "histories": 360,
+  "boolean_surface_sign_cases": 262144,
+  "boolean_union_partition_pass": true,
+  "bitwise_identical_histories_by_field": {
+    "r": 360,
+    "u": 360,
+    "E": 360,
+    "time": 360,
+    "wgt": 360,
+    "cell_instance": 360,
+    "material_id": 360
+  },
+  "histories_with_distinct_cell_ids": 360,
+  "failures": [],
+  "hashes": {
+    "auditor": "f386a5959ad30641c480830b6e65a90b4484e71a7a3fc30f89378533e84c5ffd",
+    "priority_receipt": "d70216c45c454feef68e20d76318ee77b79772764760ce3a4a8bb3644842a5da",
+    "union_receipt": "e5f210464a2bc23f8ff63ea7a34ac341a154d0683a56bb32946d14dd69607d0e",
+    "priority_tracks": "09d8ed47dcc506153414ea3bfa58817f290e22910eb18fb723516e26af396101",
+    "union_tracks": "9a8820db0b6b0f52736928b5a2abc66cc90716e2621db8f9722f8bcb024f4aef"
+  },
+  "claim_boundary": "The actual XML priority partition and common-material union have the same magnet Boolean occupancy for every one of the 2^18 resolved surface-sign assignments inside the sector. For the same 360 sampled source histories, every stored position, direction, energy, time, weight, cell-instance and material-ID track field is byte-identical; cell IDs differ by construction. This is topological equivalence of the represented Boolean cells and sampled local transport equivalence, not a proof at unresolved surface coincidences, a winding-pack CAD/clearance certificate, a statistical tally comparison, or a matched speed benchmark."
+}

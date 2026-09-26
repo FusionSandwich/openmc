@@ -1,0 +1,9 @@
+Local build preflight, 2026-09-25, before the facet-reference compile.
+
+Current Windows RAM: 33,457,440 KiB total, 5,373,324 KiB free. The running OpenMC-Dev-D WSL guest reports 25,200,033,792 B total and 23,907,921,920 B free (24,235,220,992 B available). Windows drive free bytes: C: 81,431,506,944; D: 502,100,811,776. WSL root free: 1,021,376,999,424 B; C:/D: mounts agree within sampling time. Build target is the existing C: worktree.
+
+Significant Windows processes by working set: ChatGPT 1.56/0.80 GB, codex 1.03 GB, vmmemWSL 0.95 GB, multiple Chrome workers 0.47-0.82 GB, OneDrive 0.55 GB and Memory Compression 0.54 GB. No capacity claim is inferred for remote systems.
+
+Existing executables: Windows Git 2.55.0.windows.3, Python 3.12.10, CMake 4.4.0; OpenMC-Dev-D GCC 14.2.0, CMake 3.31.6, Ninja 1.12.1, HDF5 1.14.5/h5c++, /opt/openmc-venv Python 3.13.5. No WSL conda or ccache executable was found. Existing /opt/openmc-venv and /root/.cache/pip were confirmed; previous measured sizes were 606 MiB and 152 MiB respectively. A current recursive size probe stalled and was stopped. Windows pip cache exists. Existing standalone libstellarcsg_reference.a and native libopenmc.so remain in the local build trees. Local source checkouts include this StellarCSG worktree, D:/Scratch/stellarator_optimization, D:/Scratch/parastell, and C:/HTS_transport/wistell-d-openmc.
+
+The existing C++ compiler, CMake tree, HDF5 and Python environment are sufficient. Planned software acquisition: 0 B. Planned operation: reconfigure and compile the standalone facet-reference source and tests in build/local-cont-20260925, with a conservative single build job; estimated generated build bytes below 20 MiB on C:. Rollback is removal of only generated facet objects/test binary and CMake files in the verified existing build directory, or simply leaving ignored build outputs untouched. No dependency environment will be created or modified.

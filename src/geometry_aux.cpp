@@ -18,6 +18,9 @@
 #include "openmc/material.h"
 #include "openmc/settings.h"
 #include "openmc/surface.h"
+#ifdef OPENMC_EXPERIMENTAL_STELLARCSG
+#include "openmc/surface_facet_set.h"
+#endif
 #include "openmc/tallies/filter.h"
 #include "openmc/tallies/filter_cell_instance.h"
 #include "openmc/tallies/filter_distribcell.h"
@@ -62,6 +65,12 @@ void read_geometry_xml(pugi::xml_node root)
   read_surfaces(root, periodic_pairs, albedo_map, periodic_sense_map);
   read_cells(root);
   prepare_boundary_conditions(periodic_pairs, albedo_map, periodic_sense_map);
+#ifdef OPENMC_EXPERIMENTAL_STELLARCSG
+  for (const auto& surface : model::surfaces) {
+    if (const auto* facet = dynamic_cast<const SurfaceFacetSet*>(surface.get()))
+      facet->validate_periodic_caps();
+  }
+#endif
   read_lattices(root);
 
   // Check to make sure a boundary condition was applied to at least one

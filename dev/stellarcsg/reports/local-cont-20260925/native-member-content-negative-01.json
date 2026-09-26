@@ -1,0 +1,17 @@
+{
+  "schema": "stellarcsg.native-member-content-negative/v1",
+  "input_geometry_sha256": "c73c996cfdb94ea0e4efb9c2bddb42300423705adf2ae75639ee08526ae8d86b",
+  "mutated_geometry_sha256": "f747587abfff4f36ec4019c854593e241eaaadfc0599ab8e9312cd0f925b9d38",
+  "mutation": "swap first two selected member_content_ids, leave dataset_indices and data_file intact",
+  "native_library_sha256": "332118939749376a5eebef69e140e00313c8cc2e675e19079a2061ddf237873c",
+  "helper_sha256": "dbfd0209f5f88cc9377c73c953a2c03add6ac7144802604fd2a0e36b2d93cbda",
+  "exit_code": 255,
+  "stderr": "ERROR: Unable to initialize swept-spline surface 903: Swept-spline content_id mismatch",
+  "state": "PASS_EXPECTED_REJECTION",
+  "claim_boundary": "Real native read_geometry_xml rejects an ordered ID mismatch before transport; this does not prove winding-pack fidelity or root completeness.",
+  "evidence_sha256": {
+    "stdout.txt": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "stderr.txt": "8d80d48d3e8f17f78e4f651308a51686664cf010913704ce66beed3df4d562e2",
+    "exit-code.txt": "a730e9f4fecef62a7023b1b3b6b11312e9689ef5a5c2109737bc7e12db929948"
+  }
+}

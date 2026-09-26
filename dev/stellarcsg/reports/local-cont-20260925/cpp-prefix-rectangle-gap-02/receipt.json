@@ -1,0 +1,167 @@
+{
+  "schema": "stellarcsg.cpp-prefix-interval-probe/v8",
+  "state": "EXPERIMENTAL_RECTANGLE_GAP_SWEEP_NOT_ROOT_CERTIFIED",
+  "command": [
+    "/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-local-continuation-20260925/build/native-local-20260925/swept_prefix_rectangle_gap_states",
+    "/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-local-continuation-20260925/dev/stellarcsg/qualified/analytic_swept_coils.h5"
+  ],
+  "exit_code": 0,
+  "loader_binding": "libopenmc.so => /mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-local-continuation-20260925/build/native-local-20260925/lib/libopenmc.so (0x000079b5ecf3f000)",
+  "affinity": [
+    0
+  ],
+  "hashes": {
+    "/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-local-continuation-20260925/build/native-local-20260925/swept_prefix_rectangle_gap_states": "3c581afc74591bffe729ba4fc14f3e03f08d3f6c12f57433a92a1ceda9627ba2",
+    "/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-local-continuation-20260925/build/native-local-20260925/lib/libopenmc.so": "31578a499d905e0c1c12fd71270e39a7cf905cc3d5d12cb73c412cdf5707f65a",
+    "/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-local-continuation-20260925/dev/stellarcsg/qualified/analytic_swept_coils.h5": "39f77da5ab1fe427cce58b153e9b52cf8915e9973a9b8f3dfad5ab3b00a9e46d",
+    "/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-local-continuation-20260925/dev/stellarcsg/experiments/swept_prefix_interval.cpp": "08dcb8e24ccb8bd02e96611c49866dd5138e99da0d96d0980f6b495e02787138",
+    "/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-local-continuation-20260925/dev/stellarcsg/qualification/run_cpp_prefix_probe.py": "ef0d538623f481fbd0f5a072cd2329ebcebf86d477fe584f9c8d19546acd6801"
+  },
+  "compile_contract": "GCC 14.2 -O2 -fno-fast-math -ffp-contract=off",
+  "unit_circle_slack_sweep": [
+    1e-10,
+    1e-08,
+    1e-06
+  ],
+  "gap_slack_matrix": {
+    "gaps_cm": [
+      1e-11,
+      1e-08,
+      1e-05
+    ],
+    "slacks": [
+      1e-12,
+      1e-08,
+      1e-06
+    ]
+  },
+  "rectangle_gaps_cm": [
+    1e-05,
+    0.0001,
+    0.001,
+    0.01,
+    0.1,
+    1.0
+  ],
+  "rectangle_last_gap_outcome_order": [
+    "excluded_projection",
+    "excluded_single_prefix",
+    "excluded_unit_branches",
+    "excluded_unit_circle",
+    "excluded_ray_prefix",
+    "undecided_frame",
+    "undecided_projection",
+    "undecided_root"
+  ],
+  "padded_case": {
+    "gap_cm": 1e-05,
+    "unit_circle_slack": 1e-06,
+    "projection_slack_formula": "2*projected_tolerance+256*DBL_EPSILON*characteristic_length"
+  },
+  "underflow_control": [
+    {
+      "kind": "underflow_control",
+      "state": "undecided_frame"
+    }
+  ],
+  "span_counts_match": true,
+  "summaries": [
+    {
+      "kind": "member_summary",
+      "member": 2,
+      "lead_cm": 16,
+      "selected": 256,
+      "u_endpoint_above_one_ulp": 0,
+      "padded_excluded": 256,
+      "padded_zero_gap_undecided": 2,
+      "padded_negative_undecided": 2,
+      "projection_slack_cm": 5.983976786267405e-07,
+      "prefix_excluded": 256,
+      "rectangle_excluded": 256,
+      "rectangle_gap_excluded": [
+        256,
+        256,
+        256,
+        256,
+        256,
+        256
+      ],
+      "slack_excluded": [
+        256,
+        256,
+        256
+      ],
+      "gap_slack_excluded": [
+        [
+          256,
+          256,
+          256
+        ],
+        [
+          256,
+          256,
+          256
+        ],
+        [
+          256,
+          256,
+          256
+        ]
+      ],
+      "zero_gap_undecided": 1,
+      "negative_control_undecided": 1,
+      "nodes": 326,
+      "terminal_unresolved": true
+    },
+    {
+      "kind": "member_summary",
+      "member": 3,
+      "lead_cm": 17.000000000000227,
+      "selected": 384,
+      "u_endpoint_above_one_ulp": 0,
+      "padded_excluded": 384,
+      "padded_zero_gap_undecided": 2,
+      "padded_negative_undecided": 2,
+      "projection_slack_cm": 6.501468937106146e-07,
+      "prefix_excluded": 384,
+      "rectangle_excluded": 382,
+      "rectangle_gap_excluded": [
+        382,
+        382,
+        382,
+        382,
+        382,
+        382
+      ],
+      "slack_excluded": [
+        382,
+        382,
+        382
+      ],
+      "gap_slack_excluded": [
+        [
+          384,
+          382,
+          382
+        ],
+        [
+          384,
+          382,
+          382
+        ],
+        [
+          384,
+          384,
+          384
+        ]
+      ],
+      "zero_gap_undecided": 2,
+      "negative_control_undecided": 2,
+      "nodes": 492,
+      "terminal_unresolved": true
+    }
+  ],
+  "production_solver_modified": false,
+  "native_transport_run": false,
+  "claim_boundary": "The rectangle sweep measures whether the seam prefix can be excluded without a unit-circle identity. The arithmetic intervals and padded equations are not yet a proved enclosure of all production floating operations, and finite root-tile existence/uniqueness remain unaudited; no tracking admission."
+}

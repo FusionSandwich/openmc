@@ -1,0 +1,146 @@
+{
+  "schema": "stellarcsg.swept-seam-cover-feasibility/v1",
+  "state": "EXPERIMENTAL_RECONSTRUCTED_MODEL_ONLY",
+  "source_sha256": "29796889e7bac3b17b27f88bc30b83ee7c67da870dc7ded83a79d8e06e74328e",
+  "h5_sha256": "39f77da5ab1fe427cce58b153e9b52cf8915e9973a9b8f3dfad5ab3b00a9e46d",
+  "conditioning_sha256": "5d611d2a5033bc8cbd9c38ca34a0ff3e49b4e041932ff6cff2f3352da7e19262",
+  "krawczyk_sha256": "99e88793fbb5053f8d4154a99d509f7440f178ce4d37961a415e6f00d0b63b54",
+  "node_cap_per_chart": 2000,
+  "results": [
+    {
+      "state": "MODEL_STRIP_EXCLUDED",
+      "evaluated_nodes": 1,
+      "max_depth": 0,
+      "excluded_by_ellipse": 0,
+      "excluded_by_stationarity": 1,
+      "nonfinite_nodes": 0,
+      "unresolved_count": 0,
+      "unresolved_preview": [],
+      "initial_boxes": [
+        [
+          15.999989999999961,
+          16.000000999999962,
+          0.0,
+          1.0
+        ]
+      ],
+      "member": 2,
+      "span": 0,
+      "lead_cm": 15.999999999999961,
+      "strip_cm": [
+        15.999989999999961,
+        16.000000999999962
+      ],
+      "known_root_box": null
+    },
+    {
+      "state": "MODEL_COMPLEMENT_EXCLUDED",
+      "evaluated_nodes": 282,
+      "max_depth": 25,
+      "excluded_by_ellipse": 80,
+      "excluded_by_stationarity": 62,
+      "nonfinite_nodes": 0,
+      "unresolved_count": 0,
+      "unresolved_preview": [],
+      "initial_boxes": [
+        [
+          15.999989999999961,
+          15.999998999999962,
+          0.0,
+          1.0
+        ],
+        [
+          15.999998999999962,
+          16.000000999999962,
+          0.0,
+          0.9999998999999762
+        ]
+      ],
+      "member": 2,
+      "span": 255,
+      "lead_cm": 15.999999999999961,
+      "strip_cm": [
+        15.999989999999961,
+        16.000000999999962
+      ],
+      "known_root_box": [
+        [
+          15.999998999999962,
+          16.000000999999962
+        ],
+        [
+          0.9999998999999762,
+          1.0
+        ]
+      ]
+    },
+    {
+      "state": "MODEL_STRIP_EXCLUDED",
+      "evaluated_nodes": 759,
+      "max_depth": 72,
+      "excluded_by_ellipse": 27,
+      "excluded_by_stationarity": 353,
+      "nonfinite_nodes": 0,
+      "unresolved_count": 0,
+      "unresolved_preview": [],
+      "initial_boxes": [
+        [
+          16.999990000000256,
+          17.000001000000257,
+          0.0,
+          1.0
+        ]
+      ],
+      "member": 3,
+      "span": 0,
+      "lead_cm": 17.000000000000256,
+      "strip_cm": [
+        16.999990000000256,
+        17.000001000000257
+      ],
+      "known_root_box": null
+    },
+    {
+      "state": "MODEL_COMPLEMENT_EXCLUDED",
+      "evaluated_nodes": 484,
+      "max_depth": 25,
+      "excluded_by_ellipse": 111,
+      "excluded_by_stationarity": 132,
+      "nonfinite_nodes": 0,
+      "unresolved_count": 0,
+      "unresolved_preview": [],
+      "initial_boxes": [
+        [
+          16.999990000000256,
+          16.999999000000255,
+          0.0,
+          1.0
+        ],
+        [
+          16.999999000000255,
+          17.000001000000257,
+          0.0,
+          0.9999998999999848
+        ]
+      ],
+      "member": 3,
+      "span": 383,
+      "lead_cm": 17.000000000000256,
+      "strip_cm": [
+        16.999990000000256,
+        17.000001000000257
+      ],
+      "known_root_box": [
+        [
+          16.999999000000255,
+          17.000001000000257
+        ],
+        [
+          0.9999998999999848,
+          1.0
+        ]
+      ]
+    }
+  ],
+  "claim_boundary": "Interval subdivision checks only two necessary equations of reconstructed powers. Root island reuses an experimental Krawczyk result. No floating C++ or nearest-centerline enclosure, full-spans proof, or production hit admission."
+}

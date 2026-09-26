@@ -1,0 +1,31 @@
+{
+  "schema": "stellarcsg.periodic-facet-tracking-smoke/v1",
+  "state": "STAGED_VOID_ONLY_SOURCE_RAY",
+  "histories_requested": 10,
+  "source_dagmc_volume_id": 8,
+  "source_outside_cm": [
+    896.7235845282671,
+    4.3297341331944255,
+    -329.3153048661797
+  ],
+  "reference_inside_cm": [
+    896.8288525732062,
+    3.948232981420339,
+    -329.25720572754784
+  ],
+  "source_direction": [
+    0.26317011234765625,
+    -0.9537528794351806,
+    0.14524784657964493
+  ],
+  "hashes": {
+    "stager": "10368d3e0a7044ff07f6b3714acbbef37ed2d54eaa805a6228f7a1db9d2c61e4",
+    "region_receipt": "b9936c2741547e0fad1e7431eeeed655f974cbe0cf263559080e8b503997642e",
+    "selector_receipt": "520b6bbac978b7a7c2ee2b9a39b431ef05ccbea3532153c338cf790560a66226",
+    "side_bank": "37918fd9c88c3b28a60366ab67a4e3599fbefacb446e1afaee4d515105a679e4",
+    "geometry_xml": "113b938390a0a75fa30555402f54b9bf88d6199071432cbf9f7d8b55f9814fc7",
+    "settings_xml": "dd80d6fed189cfaeeaa1af5c0cdded466ff36c5ccdc27e40af9b46aec72c6a14",
+    "materials_xml": "387f4241a1cea79740ac3564b5480fab039201fbf2445c0c7c693de852500f4d"
+  },
+  "claim_boundary": "A fixed, monodirectional neutron source starts at an accepted P00 exterior side probe and points through its paired interior probe in a void-only 90-degree derived-facet sector. This stages a bounded geometry-tracking smoke; no physical material interactions, source distribution, dosimetry or performance are claimed."
+}

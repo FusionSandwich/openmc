@@ -1,0 +1,10 @@
+..............x                                                          [100%]
+=============================== warnings summary ===============================
+tests/transport_contracts/test_native_python_api.py::test_swept_collection_python_roundtrip_and_bounds
+  /mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-local-continuation-20260925/openmc/mixin.py:72: IDWarning: Another Surface instance already exists with id=302.
+    warn(msg, IDWarning)
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+=========================== short test summary info ============================
+XFAIL dev/stellarcsg/tests/transport_contracts/test_native_python_api.py::test_payload_equality_has_defined_semantics[PeriodicSplineSurface] - BLOCKED_SPLINE_EQUALITY_EMPTY_COEFFICIENTS
+14 passed, 1 xfailed, 1 warning in 9.26s

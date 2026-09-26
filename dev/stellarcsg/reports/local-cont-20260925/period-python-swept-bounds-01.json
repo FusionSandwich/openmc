@@ -1,0 +1,46 @@
+{
+  "schema": "stellarcsg.period-python-swept-bounds/v1",
+  "state": "PROVISIONAL_PERIOD_PYTHON_BOUNDS_FINITE",
+  "selected_member_ids": [
+    1000,
+    1002,
+    1001,
+    1007,
+    1008,
+    1010,
+    1009,
+    1015,
+    1016,
+    1023,
+    1024,
+    1031,
+    1032,
+    1039,
+    1040,
+    1046,
+    1047,
+    1045
+  ],
+  "selected_member_count": 18,
+  "registered_whole_coil_span_count": 4608,
+  "manifest_admitted_span_count": 3156,
+  "registered_unadmitted_span_count": 1452,
+  "box_lower_cm": [
+    -538.0171555697591,
+    -538.0171555697591,
+    -544.885813756223
+  ],
+  "box_upper_cm": [
+    1555.3246070409105,
+    1555.3246070409105,
+    544.885813756223
+  ],
+  "sha256": {
+    "auditor": "a68e728a0450a1ef7b53b75ef953952376961476b3b5fdbfe9b2e479a036751a",
+    "native_python_surface": "f51c5f6c853495ba3ccd7c12af445fb78b440437326f0d85575eecc27f8abace",
+    "candidate_h5": "5239876917349e057ad261cfeb6dcec4f25f8c10376ee173c2960aed161967ab",
+    "manifest": "9b60ff7f924ee2e766a0e832857754c55bed313f72685942d520cc4cd2729686",
+    "native_selector_receipt": "9b80899a26e370b70b05712cd6c096c82175196b7bfade2f28aeed183e607777"
+  },
+  "claim_boundary": "The corrected Python bounding-box path computes a finite noninverted box for 18 provisionally selected whole coils. Native registration includes all their spans, while the manifest admits only a subset as sector candidates; the unadmitted spans have not been clipped away. The exact-rotation coefficient image is not an accepted physical winding pack. This does not compare every physical compiled C++ box, prove periodic-plane ownership, root completeness, source clearance, transport or latency."
+}

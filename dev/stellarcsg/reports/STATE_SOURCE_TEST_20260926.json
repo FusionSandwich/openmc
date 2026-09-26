@@ -1,0 +1,16 @@
+{
+  "schema": "stellarcsg.source-contract-review/v1",
+  "observed_date_utc": "2026-09-26",
+  "command": "wsl -d OpenMC-Dev-D -- bash -lc \"cd <continuation-worktree> && PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 /opt/openmc-venv/bin/python -B -m unittest discover -s dev/stellarcsg/tests -p test_plasma_source_handoff.py\"",
+  "runtime": "existing /opt/openmc-venv/bin/python in WSL OpenMC-Dev-D",
+  "exit_code": 0,
+  "tests_run": 9,
+  "reported_test_seconds": 4.263,
+  "stdout": "",
+  "stderr": ".........\n----------------------------------------------------------------------\nRan 9 tests in 4.263s\n\nOK\n",
+  "hashes": {
+    "dev\\stellarcsg\\tests\\test_plasma_source_handoff.py": "7fbaa03b59c067dedf9988de0f55a878a2ca7231c18829c01c0fe58f65acf557",
+    "dev\\stellarcsg\\python\\stellarcsg\\plasma_source.py": "9083de0e8372d5643b781a2b14ad36bd1b2c5f403e5e8cf7a82d87745b0d2afb"
+  },
+  "claim_boundary": "Synthetic source-interface checks only. No native library, real MOAB mesh, clearance, source-rate or physical transport admission. Initial Windows attempts failed due absent import paths/endf; no package installed."
+}

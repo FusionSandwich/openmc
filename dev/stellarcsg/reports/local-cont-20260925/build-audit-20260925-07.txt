@@ -1,0 +1,55 @@
+C++ swept-prefix interval experiment build audit, 2026-09-25.
+
+Observed before compilation: Windows RAM 33,457,440 KiB total and
+4,870,456 KiB free; C: 86,633,058,304 B free; D: 505,464,274,944 B
+free. Largest residents were ChatGPT 1.34 GiB, Chrome 0.91/0.90 GiB,
+Codex 0.80 GiB and another ChatGPT process 0.66 GiB. Windows Python
+3.12.10 and Git 2.55.0 are present; no Conda executable was found.
+OpenMC-Dev-D has existing GCC 14.2, CMake 3.31.6, Ninja 1.12.1,
+HDF5 1.14.5, /opt/openmc-venv and pip cache. The full native OpenMC
+libopenmc.so and generated version header, main local OpenMC source
+checkout and D: verification checkout are present. The new experiment
+executable was absent.
+
+The existing local toolchain and library suffice. Planned external
+acquisition: 0 bytes. Compile one experimental C++ executable with one
+compiler job into build/native-local-20260925 on C:, under 20 MiB; run
+only two analytic HDF5 member queries on one CPU, recording a new
+no-overwrite receipt. Rollback is removal of that exact executable
+after preserving its source and receipt; no dependency environment or
+other checkout is modified.
+
+Before recompiling this same helper with explicit unit-circle slack, free
+RAM was 3,625,780 KiB, C: 86,437,650,432 B and D: 505,402,408,960 B.
+Largest residents were ChatGPT 1.42 GiB, vmmemWSL 1.25 GiB, Chrome
+0.91/0.82 GiB and Codex 0.79 GiB. The first 41,672-byte helper is
+present; new cpp-prefix-02 is absent. The same GCC/HDF5/native library,
+headers, caches, environments and local source checkouts remain sufficient.
+Planned external acquisition remains 0 B; output and rollback are the
+same exact helper target described above.
+
+Before the third compile of this same helper with an explicit underflow
+negative control, free RAM was 3,816,264 KiB, C: 86,329,278,464 B and
+D: 505,392,971,776 B. Top residents were vmmemWSL 1.28 GiB, ChatGPT
+1.20 GiB, Chrome 0.91/0.82 GiB and Codex 0.81 GiB. The 41,672-byte
+helper remains present and cpp-prefix-03 is absent. Existing GCC/HDF5,
+native library, source checkouts, caches and environments still suffice;
+external acquisition remains 0 B, with the same under-20-MiB target
+and rollback.
+
+Before the all-span diagnostic rebuild, free RAM was 3,326,728 KiB,
+C: 86,309,875,712 B and D: 505,364,340,736 B. Largest residents:
+vmmemWSL 1.30 GiB, ChatGPT 1.17 GiB, Chrome 0.89/0.75 GiB and Codex
+0.80 GiB. The 41,792-byte helper is present; cpp-prefix-05 absent.
+The same toolchain, library, caches and source checkouts suffice. Planned
+external acquisition remains 0 B with one compiler job and the same
+under-20-MiB target and rollback.
+
+Before adding the exact-lead negative control to this same one-job
+helper, free RAM was 2,394,856 KiB, C: 86,273,544,192 B and D:
+505,354,895,360 B. Top residents were vmmemWSL 1.32 GiB, ChatGPT
+1.27 GiB, Julia 1.10 GiB, Chrome 0.87 GiB and Codex 0.81 GiB. The
+41,792-byte prior helper is present; cpp-prefix-06 is absent. Existing
+tools, environments, caches and checkouts still suffice. Planned
+external acquisition remains 0 B, one compiler job, with the same
+under-20-MiB output and rollback.

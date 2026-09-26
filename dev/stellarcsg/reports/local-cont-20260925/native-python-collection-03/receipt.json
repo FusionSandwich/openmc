@@ -1,0 +1,13 @@
+{
+  "schema": "stellarcsg.native-python-collection/v1",
+  "state": "PYTHON_PAYLOAD_AND_COLLECTION_ROUNDTRIPS_PASSED_NO_TRANSPORT",
+  "command": "PYTHONPATH=. PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 MKL_NUM_THREADS=1 /opt/openmc-venv/bin/python -m pytest -q dev/stellarcsg/tests/transport_contracts/test_native_python_api.py",
+  "exit_code": 0,
+  "hashes": {
+    "openmc/surface.py": "cb671d3d7d39103472070900ce22796b4f1c34d672cfe3f1bbc88a9c2837fc2c",
+    "dev/stellarcsg/tests/transport_contracts/test_native_python_api.py": "478f0cac6f6918450ca395f45122cebd01d56bda17a62ea3e66ad201dfddcb35",
+    "stdout.txt": "a5116f8bc92f77cd4cba3a68ea437ad7f91da409eedca889cc6beba6f7860ff2"
+  },
+  "native_cpp_transport_run": false,
+  "claim_boundary": "16 native OpenMC Python package tests cover payload identity and collection XML/HDF5 selectors and bounding boxes. Native C++ transport/root correctness and one-period fidelity remain untested."
+}

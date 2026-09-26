@@ -1,0 +1,184 @@
+{
+  "schema": "stellarcsg.swept-prefix-interval-probe/v1",
+  "h5_sha256": "39f77da5ab1fe427cce58b153e9b52cf8915e9973a9b8f3dfad5ab3b00a9e46d",
+  "native_receipt_sha256": "e32fcd14311d1e8816d2e30e9ad7deb6853c58084ca4757b511681da01a0bc5a",
+  "max_depth": 36,
+  "max_nodes": 10000,
+  "prefix_gap_cm": 1e-11,
+  "rows": [
+    {
+      "member": 2,
+      "span": 0,
+      "nodes": 1,
+      "outcomes": {
+        "excluded_single_equation_prefix": 1
+      },
+      "undecided_leaves": [],
+      "fully_excluded": true
+    },
+    {
+      "member": 2,
+      "span": 1,
+      "nodes": 1,
+      "outcomes": {
+        "excluded_projection": 1
+      },
+      "undecided_leaves": [],
+      "fully_excluded": true
+    },
+    {
+      "member": 2,
+      "span": 2,
+      "nodes": 1,
+      "outcomes": {
+        "excluded_projection": 1
+      },
+      "undecided_leaves": [],
+      "fully_excluded": true
+    },
+    {
+      "member": 2,
+      "span": 3,
+      "nodes": 1,
+      "outcomes": {
+        "excluded_projection": 1
+      },
+      "undecided_leaves": [],
+      "fully_excluded": true
+    },
+    {
+      "member": 2,
+      "span": 252,
+      "nodes": 1,
+      "outcomes": {
+        "excluded_projection": 1
+      },
+      "undecided_leaves": [],
+      "fully_excluded": true
+    },
+    {
+      "member": 2,
+      "span": 253,
+      "nodes": 1,
+      "outcomes": {
+        "excluded_projection": 1
+      },
+      "undecided_leaves": [],
+      "fully_excluded": true
+    },
+    {
+      "member": 2,
+      "span": 254,
+      "nodes": 1,
+      "outcomes": {
+        "excluded_projection": 1
+      },
+      "undecided_leaves": [],
+      "fully_excluded": true
+    },
+    {
+      "member": 2,
+      "span": 255,
+      "nodes": 71,
+      "outcomes": {
+        "excluded_projection": 35,
+        "excluded_single_equation_prefix": 1
+      },
+      "undecided_leaves": [],
+      "fully_excluded": true
+    },
+    {
+      "member": 3,
+      "span": 0,
+      "nodes": 35,
+      "outcomes": {
+        "excluded_unit_branches": 1,
+        "excluded_projection": 17
+      },
+      "undecided_leaves": [],
+      "fully_excluded": true
+    },
+    {
+      "member": 3,
+      "span": 1,
+      "nodes": 1,
+      "outcomes": {
+        "excluded_projection": 1
+      },
+      "undecided_leaves": [],
+      "fully_excluded": true
+    },
+    {
+      "member": 3,
+      "span": 2,
+      "nodes": 1,
+      "outcomes": {
+        "excluded_projection": 1
+      },
+      "undecided_leaves": [],
+      "fully_excluded": true
+    },
+    {
+      "member": 3,
+      "span": 3,
+      "nodes": 1,
+      "outcomes": {
+        "excluded_projection": 1
+      },
+      "undecided_leaves": [],
+      "fully_excluded": true
+    },
+    {
+      "member": 3,
+      "span": 380,
+      "nodes": 1,
+      "outcomes": {
+        "excluded_projection": 1
+      },
+      "undecided_leaves": [],
+      "fully_excluded": true
+    },
+    {
+      "member": 3,
+      "span": 381,
+      "nodes": 1,
+      "outcomes": {
+        "excluded_projection": 1
+      },
+      "undecided_leaves": [],
+      "fully_excluded": true
+    },
+    {
+      "member": 3,
+      "span": 382,
+      "nodes": 1,
+      "outcomes": {
+        "excluded_projection": 1
+      },
+      "undecided_leaves": [],
+      "fully_excluded": true
+    },
+    {
+      "member": 3,
+      "span": 383,
+      "nodes": 69,
+      "outcomes": {
+        "excluded_projection": 33,
+        "excluded_unit_branches": 2
+      },
+      "undecided_leaves": [],
+      "fully_excluded": true
+    }
+  ],
+  "negative_control": {
+    "2": {
+      "lead_plus_cm": 4.0,
+      "undecided_spans": 1
+    },
+    "3": {
+      "lead_plus_cm": 4.0,
+      "undecided_spans": 2
+    }
+  },
+  "claim_boundary": "Feasibility probe only: reconstructed Python powers and interval arithmetic are not a C++ execution proof; candidate-root isolation and exact nearest-root ordering remain unproved; no terminal unresolved status is cleared."
+}

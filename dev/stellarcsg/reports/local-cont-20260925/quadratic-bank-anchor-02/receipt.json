@@ -1,0 +1,429 @@
+{
+  "schema": "stellarcsg.quadratic-bank-anchor-interval/v1",
+  "state": "EXPERIMENTAL_ARBITRARY_RAY_DIAGNOSTIC_ONLY",
+  "command": [
+    "/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-local-continuation-20260925/build/native-local-20260925/swept_prefix_quadratic_seams",
+    "/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-local-continuation-20260925/dev/stellarcsg/qualification/recovery04_frozen_bank.csv",
+    "--quadratic-bank-anchors"
+  ],
+  "exit_code": 0,
+  "loader_binding": "libopenmc.so => /mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-local-continuation-20260925/build/native-local-20260925/lib/libopenmc.so (0x0000709ce7440000)",
+  "affinity": [
+    0
+  ],
+  "hashes": {
+    "/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-local-continuation-20260925/build/native-local-20260925/swept_prefix_quadratic_seams": "665e0ae508456b36b42f6369a60360e26c9cb5533aa11ec2d82d4325c7a32826",
+    "/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-local-continuation-20260925/build/native-local-20260925/lib/libopenmc.so": "3a3dd136201abb937e8940165178b09d681de2acb624daecebb1c5f8eb2cd31b",
+    "/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-local-continuation-20260925/dev/stellarcsg/qualification/recovery04_frozen_bank.csv": "7348483e39128259a844d22a7618869a3f111604ea48d01e196a87fe0d396af7",
+    "/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-local-continuation-20260925/dev/stellarcsg/experiments/swept_prefix_interval.cpp": "b09b660d8e0c10c68772b31a626c50bc57ffe4c969bf627a0d1e120dd83b25b7",
+    "/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-local-continuation-20260925/dev/stellarcsg/qualification/run_quadratic_bank_anchor_probe.py": "1b339d1470419ba770bd11a9922808264482a82a47884f5b793de8ed35b7b998"
+  },
+  "compile_contract": "GCC 14.2 -O2 -fno-fast-math -ffp-contract=off",
+  "outcome_order": [
+    "excluded_value",
+    "excluded_no_real_root",
+    "excluded_root_interval",
+    "excluded_plane",
+    "undecided_frame",
+    "undecided_root"
+  ],
+  "rows": [
+    {
+      "kind": "quadratic_bank_anchor",
+      "id": "a03",
+      "span": 0,
+      "cutoff_cm": 0.00199,
+      "candidate_disposition": "unresolved",
+      "candidate_distance_cm": 0.502,
+      "nodes": 15,
+      "undecided": 0,
+      "outcomes": [
+        1,
+        0,
+        0,
+        7,
+        0,
+        0
+      ]
+    },
+    {
+      "kind": "quadratic_bank_anchor",
+      "id": "a03",
+      "span": 0,
+      "cutoff_cm": 0.002,
+      "candidate_disposition": "unresolved",
+      "candidate_distance_cm": 0.502,
+      "nodes": 2001,
+      "undecided": 987,
+      "outcomes": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        986
+      ]
+    },
+    {
+      "kind": "quadratic_bank_anchor",
+      "id": "a03",
+      "span": 0,
+      "cutoff_cm": 0.012,
+      "candidate_disposition": "unresolved",
+      "candidate_distance_cm": 0.502,
+      "nodes": 2001,
+      "undecided": 987,
+      "outcomes": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        986
+      ]
+    },
+    {
+      "kind": "quadratic_bank_anchor",
+      "id": "a03",
+      "span": 63,
+      "cutoff_cm": 0.00199,
+      "candidate_disposition": "unresolved",
+      "candidate_distance_cm": 0.502,
+      "nodes": 25,
+      "undecided": 0,
+      "outcomes": [
+        2,
+        0,
+        0,
+        11,
+        0,
+        0
+      ]
+    },
+    {
+      "kind": "quadratic_bank_anchor",
+      "id": "a03",
+      "span": 63,
+      "cutoff_cm": 0.002,
+      "candidate_disposition": "unresolved",
+      "candidate_distance_cm": 0.502,
+      "nodes": 2001,
+      "undecided": 975,
+      "outcomes": [
+        0,
+        0,
+        0,
+        19,
+        0,
+        974
+      ]
+    },
+    {
+      "kind": "quadratic_bank_anchor",
+      "id": "a03",
+      "span": 63,
+      "cutoff_cm": 0.012,
+      "candidate_disposition": "unresolved",
+      "candidate_distance_cm": 0.502,
+      "nodes": 2001,
+      "undecided": 975,
+      "outcomes": [
+        0,
+        0,
+        0,
+        19,
+        0,
+        974
+      ]
+    },
+    {
+      "kind": "quadratic_bank_anchor",
+      "id": "a06",
+      "span": 0,
+      "cutoff_cm": 0,
+      "candidate_disposition": "unresolved",
+      "candidate_distance_cm": null,
+      "nodes": 2001,
+      "undecided": 987,
+      "outcomes": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        986
+      ]
+    },
+    {
+      "kind": "quadratic_bank_anchor",
+      "id": "a06",
+      "span": 0,
+      "cutoff_cm": 0.01,
+      "candidate_disposition": "unresolved",
+      "candidate_distance_cm": null,
+      "nodes": 2001,
+      "undecided": 987,
+      "outcomes": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        986
+      ]
+    },
+    {
+      "kind": "quadratic_bank_anchor",
+      "id": "a06",
+      "span": 63,
+      "cutoff_cm": 0,
+      "candidate_disposition": "unresolved",
+      "candidate_distance_cm": null,
+      "nodes": 2001,
+      "undecided": 975,
+      "outcomes": [
+        0,
+        0,
+        0,
+        19,
+        0,
+        974
+      ]
+    },
+    {
+      "kind": "quadratic_bank_anchor",
+      "id": "a06",
+      "span": 63,
+      "cutoff_cm": 0.01,
+      "candidate_disposition": "unresolved",
+      "candidate_distance_cm": null,
+      "nodes": 2001,
+      "undecided": 975,
+      "outcomes": [
+        0,
+        0,
+        0,
+        19,
+        0,
+        974
+      ]
+    },
+    {
+      "kind": "quadratic_bank_anchor",
+      "id": "a08",
+      "span": 0,
+      "cutoff_cm": 1.99999,
+      "candidate_disposition": "unresolved",
+      "candidate_distance_cm": null,
+      "nodes": 2001,
+      "undecided": 987,
+      "outcomes": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        986
+      ]
+    },
+    {
+      "kind": "quadratic_bank_anchor",
+      "id": "a08",
+      "span": 0,
+      "cutoff_cm": 2,
+      "candidate_disposition": "unresolved",
+      "candidate_distance_cm": null,
+      "nodes": 2001,
+      "undecided": 987,
+      "outcomes": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        986
+      ]
+    },
+    {
+      "kind": "quadratic_bank_anchor",
+      "id": "a08",
+      "span": 0,
+      "cutoff_cm": 2.1,
+      "candidate_disposition": "unresolved",
+      "candidate_distance_cm": null,
+      "nodes": 2001,
+      "undecided": 987,
+      "outcomes": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        986
+      ]
+    },
+    {
+      "kind": "quadratic_bank_anchor",
+      "id": "a08",
+      "span": 63,
+      "cutoff_cm": 1.99999,
+      "candidate_disposition": "unresolved",
+      "candidate_distance_cm": null,
+      "nodes": 2001,
+      "undecided": 1,
+      "outcomes": [
+        0,
+        0,
+        0,
+        997,
+        0,
+        0
+      ]
+    },
+    {
+      "kind": "quadratic_bank_anchor",
+      "id": "a08",
+      "span": 63,
+      "cutoff_cm": 2,
+      "candidate_disposition": "unresolved",
+      "candidate_distance_cm": null,
+      "nodes": 2001,
+      "undecided": 1,
+      "outcomes": [
+        0,
+        0,
+        0,
+        997,
+        0,
+        0
+      ]
+    },
+    {
+      "kind": "quadratic_bank_anchor",
+      "id": "a08",
+      "span": 63,
+      "cutoff_cm": 2.1,
+      "candidate_disposition": "unresolved",
+      "candidate_distance_cm": null,
+      "nodes": 2001,
+      "undecided": 1,
+      "outcomes": [
+        0,
+        0,
+        0,
+        997,
+        0,
+        0
+      ]
+    },
+    {
+      "kind": "quadratic_bank_anchor",
+      "id": "a15",
+      "span": 0,
+      "cutoff_cm": 1.99999,
+      "candidate_disposition": "unresolved",
+      "candidate_distance_cm": 1.9527655626516804,
+      "nodes": 2001,
+      "undecided": 987,
+      "outcomes": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        986
+      ]
+    },
+    {
+      "kind": "quadratic_bank_anchor",
+      "id": "a15",
+      "span": 0,
+      "cutoff_cm": 2,
+      "candidate_disposition": "unresolved",
+      "candidate_distance_cm": 1.9527655626516804,
+      "nodes": 2001,
+      "undecided": 987,
+      "outcomes": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        986
+      ]
+    },
+    {
+      "kind": "quadratic_bank_anchor",
+      "id": "a15",
+      "span": 0,
+      "cutoff_cm": 2.1,
+      "candidate_disposition": "unresolved",
+      "candidate_distance_cm": 1.9527655626516804,
+      "nodes": 2001,
+      "undecided": 987,
+      "outcomes": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        986
+      ]
+    },
+    {
+      "kind": "quadratic_bank_anchor",
+      "id": "a15",
+      "span": 63,
+      "cutoff_cm": 1.99999,
+      "candidate_disposition": "unresolved",
+      "candidate_distance_cm": 1.9527655626516804,
+      "nodes": 2001,
+      "undecided": 1,
+      "outcomes": [
+        0,
+        0,
+        0,
+        997,
+        0,
+        0
+      ]
+    },
+    {
+      "kind": "quadratic_bank_anchor",
+      "id": "a15",
+      "span": 63,
+      "cutoff_cm": 2,
+      "candidate_disposition": "unresolved",
+      "candidate_distance_cm": 1.9527655626516804,
+      "nodes": 2001,
+      "undecided": 1,
+      "outcomes": [
+        0,
+        0,
+        0,
+        997,
+        0,
+        0
+      ]
+    },
+    {
+      "kind": "quadratic_bank_anchor",
+      "id": "a15",
+      "span": 63,
+      "cutoff_cm": 2.1,
+      "candidate_disposition": "unresolved",
+      "candidate_distance_cm": 1.9527655626516804,
+      "nodes": 2001,
+      "undecided": 1,
+      "outcomes": [
+        0,
+        0,
+        0,
+        997,
+        0,
+        0
+      ]
+    }
+  ],
+  "claim_boundary": "Diagnostic on four frozen torus anchors and two seam spans each. The ellipse equation, interval slacks, and compiled-power frame are not certified enclosures of the production acceptance path. No full-bank, transport, or performance qualification."
+}
