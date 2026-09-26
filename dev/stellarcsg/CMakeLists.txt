@@ -164,4 +164,12 @@ if(STELLARCSG_BUILD_TOOLS)
   add_executable(stellarcsg_inspect_surface tools/inspect_surface.cpp)
   target_link_libraries(stellarcsg_inspect_surface PRIVATE StellarCSG::reference)
   target_compile_features(stellarcsg_inspect_surface PRIVATE cxx_std_17)
+
+  if(STELLARCSG_ENABLE_HDF5)
+    add_executable(stellarcsg_dump_compiled_span_bvh
+      experiments/dump_compiled_span_bvh.cpp)
+    target_link_libraries(stellarcsg_dump_compiled_span_bvh
+      PRIVATE StellarCSG::reference)
+    target_compile_features(stellarcsg_dump_compiled_span_bvh PRIVATE cxx_std_17)
+  endif()
 endif()

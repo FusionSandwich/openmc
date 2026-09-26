@@ -95,6 +95,10 @@ public:
   {
     return spans_;
   }
+  [[nodiscard]] const std::vector<std::uint32_t>& span_indices() const noexcept
+  {
+    return span_indices_;
+  }
   [[nodiscard]] const std::vector<SweptSpanBVHNode>& span_bvh() const noexcept
   {
     return span_bvh_;
