@@ -1,0 +1,2 @@
+[1/2] Building CXX object CMakeFiles/stellarcsg_offset_tests.dir/tests/test_certified_offset.cpp.o
+[2/2] Linking CXX executable stellarcsg_offset_tests

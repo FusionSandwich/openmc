@@ -1,0 +1,35 @@
+Observed 2026-09-26T16:29:14.3898661-04:00
+RAM total/free KB 33457440 12455812
+
+Name          Used         Free
+----          ----         ----
+C     893248774144 105716994048
+D    1503769931776 496627859456
+
+
+
+ProcessName    Id WorkingSet64
+-----------    -- ------------
+ChatGPT     14584   1528365056
+codex       18736    981487616
+vmmemWSL    18788    926564352
+chrome      20716    673394688
+chrome      24572    636317696
+chrome      35164    594784256
+OneDrive    23212    559169536
+MsMpEng      5288    545775616
+
+
+Filesystem         1B-blocks          Used     Available Use% Mounted on
+/dev/sde       1081101176832    4723417088 1021385404416   1% /
+C:\             998965768192  893249703936  105716064256  90% /mnt/c
+D:\            2000397791232 1503771242496  496626548736  76% /mnt/d
+/usr/bin/g++
+/usr/bin/cmake
+/usr/bin/ninja
+g++ (Debian 14.2.0-19) 14.2.0
+Python 3.13.5
+606M	/opt/openmc-venv
+152M	/root/.cache/pip
+116M	/var/cache/apt
+Previously inventoried local environments, source checkouts and dependency packages remain sufficient. Incremental rebuild needed to include exact support contacts and diagnostics. Acquisition0bytes; output own ignored build/astra + build/astra-native <=250MB incremental; sequential1job/1.5GB virtual cap. Rollback ownbuildoutputs afterpreserve evidence only. No acquisition/environment change.

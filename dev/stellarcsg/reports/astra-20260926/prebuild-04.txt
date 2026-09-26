@@ -1,0 +1,16 @@
+Sat Sep 26 08:02:26 PM UTC 2026
+               total        used        free      shared  buff/cache   available
+Mem:     25200037888   907935744 24099549184     4370432   462225408 24292102144
+Swap:    34359738368           0 34359738368
+Filesystem         1B-blocks          Used     Available Use% Mounted on
+/dev/sde       1081101176832    4723408896 1021385412608   1% /
+C:\             998965768192  893819994112  105145774080  90% /mnt/c
+D:\            2000397791232 1503826210816  496571580416  76% /mnt/d
+    PID COMMAND           RSS
+      1 systemd         14268
+     40 systemd-journal 12800
+    269 systemd         12596
+     76 systemd-udevd    9948
+    228 systemd-logind   9152
+    307 bash             5832
+    253 (udev-worker)    5548

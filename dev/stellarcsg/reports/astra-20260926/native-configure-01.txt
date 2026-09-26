@@ -1,0 +1,46 @@
+-- The C compiler identification is GNU 14.2.0
+-- The CXX compiler identification is GNU 14.2.0
+-- Detecting C compiler ABI info
+-- Detecting C compiler ABI info - done
+-- Check for working C compiler: /usr/bin/cc - skipped
+-- Detecting C compile features
+-- Detecting C compile features - done
+-- Detecting CXX compiler ABI info
+-- Detecting CXX compiler ABI info - done
+-- Check for working CXX compiler: /usr/bin/c++ - skipped
+-- Detecting CXX compile features
+-- Detecting CXX compile features - done
+-- Found Git: /usr/bin/git (found version "2.47.3")
+-- Using git describe for versioning
+-- OpenMC version: 0.15.1
+-- OpenMC dev state: true
+-- OpenMC commit hash: 63359cb83d36b419a7e9ba60c45f867073703c21
+-- OpenMC commit count: 701
+-- OPENMC_USE_OPENMP OFF
+-- OPENMC_BUILD_TESTS OFF
+-- OPENMC_ENABLE_PROFILE OFF
+-- OPENMC_ENABLE_COVERAGE OFF
+-- OPENMC_USE_DAGMC OFF
+-- OPENMC_USE_LIBMESH OFF
+-- OPENMC_USE_MPI OFF
+-- OPENMC_USE_UWUW OFF
+-- OPENMC_FORCE_VENDORED_LIBS OFF
+-- OPENMC_ENABLE_STRICT_FP ON
+-- OPENMC_ENABLE_EXPERIMENTAL_STELLARCSG ON
+-- STELLARCSG_ENABLE_PERFORMANCE_COUNTERS OFF
+-- STELLARCSG_VERIFY_FAST_WITH_ORACLE OFF
+-- Found ZLIB: /usr/lib/x86_64-linux-gnu/libz.so (found version "1.3.1")
+-- Found PNG: /usr/lib/x86_64-linux-gnu/libpng.so (found version "1.6.48")
+-- Found HDF5: /usr/lib/x86_64-linux-gnu/hdf5/serial/libhdf5.so;/usr/lib/x86_64-linux-gnu/libcrypto.so;/usr/lib/x86_64-linux-gnu/libcurl.so;/usr/lib/x86_64-linux-gnu/libpthread.a;/usr/lib/x86_64-linux-gnu/libsz.so;/usr/lib/x86_64-linux-gnu/libz.so;/usr/lib/x86_64-linux-gnu/libdl.a;/usr/lib/x86_64-linux-gnu/libm.so (found version "1.14.5") found components: C HL
+-- HDF5 Libraries: /usr/lib/x86_64-linux-gnu/hdf5/serial/libhdf5.so;/usr/lib/x86_64-linux-gnu/libcrypto.so;/usr/lib/x86_64-linux-gnu/libcurl.so;/usr/lib/x86_64-linux-gnu/libsz.so;/usr/lib/x86_64-linux-gnu/libz.so
+-- Performing Test SUPPORTS_FP_CONTRACT_OFF
+-- Performing Test SUPPORTS_FP_CONTRACT_OFF - Success
+-- Performing Test SUPPORTS_NO_BUILTIN
+-- Performing Test SUPPORTS_NO_BUILTIN - Success
+-- OpenMC C++ flags: -DH5Oget_info_by_idx_vers=1;-DH5O_info_t_vers=1;-ffp-contract=off;-fno-builtin
+-- OpenMC Linker flags: 
+-- Found pugixml: /mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/openmc-stellarcsg/build/openmc-stellarcsg-enabled/vendor/pugixml (version 1.15)
+-- Found fmt: /mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/openmc-stellarcsg/build/openmc-stellarcsg-enabled/vendor/fmt (version 11.0.2)
+-- Configuring done (48.8s)
+-- Generating done (0.9s)
+-- Build files have been written to: /mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-astra-kernel-20260926/build/astra-native

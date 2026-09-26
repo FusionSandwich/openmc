@@ -1,0 +1,23 @@
+[0/1] Re-running CMake...
+-- Configuring done (5.6s)
+-- Generating done (0.2s)
+-- Build files have been written to: /mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-astra-kernel-20260926/build/astra
+[1/23] Building CXX object CMakeFiles/stellarcsg_reference.dir/src/performance_counters.cpp.o
+[2/23] Building CXX object CMakeFiles/stellarcsg_reference.dir/src/periodic_radial_surface.cpp.o
+[3/23] Building CXX object CMakeFiles/stellarcsg_reference.dir/src/root_solver.cpp.o
+[4/23] Building CXX object CMakeFiles/stellarcsg_reference.dir/src/sha256.cpp.o
+[5/23] Building CXX object CMakeFiles/stellarcsg_reference.dir/src/uniform_periodic_bicubic_spline.cpp.o
+[6/23] Building CXX object CMakeFiles/stellarcsg_reference.dir/src/uniform_periodic_cubic_spline.cpp.o
+[7/23] Building CXX object CMakeFiles/stellarcsg_reference.dir/src/compiled_periodic_surface.cpp.o
+[8/23] Building CXX object CMakeFiles/stellarcsg_reference.dir/src/compiled_swept_surface.cpp.o
+[9/23] Building CXX object CMakeFiles/stellarcsg_reference.dir/src/certified_spline_offset.cpp.o
+FAILED: CMakeFiles/stellarcsg_reference.dir/src/certified_spline_offset.cpp.o 
+/usr/bin/c++ -DSTELLARCSG_ENABLE_PERFORMANCE_COUNTERS -DSTELLARCSG_HAS_HDF5 -I/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-astra-kernel-20260926/dev/stellarcsg/include -I/usr/include/hdf5/serial -O3 -DNDEBUG -Wall -Wextra -Wpedantic -Wconversion -Wshadow -fno-fast-math -ffp-contract=off -MD -MT CMakeFiles/stellarcsg_reference.dir/src/certified_spline_offset.cpp.o -MF CMakeFiles/stellarcsg_reference.dir/src/certified_spline_offset.cpp.o.d -o CMakeFiles/stellarcsg_reference.dir/src/certified_spline_offset.cpp.o -c /mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-astra-kernel-20260926/dev/stellarcsg/src/certified_spline_offset.cpp
+/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-astra-kernel-20260926/dev/stellarcsg/src/certified_spline_offset.cpp: In constructor ‘stellarcsg::CertifiedSplineOffset::CertifiedSplineOffset(const stellarcsg::SweptSplineSurfaceData&)’:
+/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-astra-kernel-20260926/dev/stellarcsg/src/certified_spline_offset.cpp:285:45: error: narrowing conversion of ‘+Infl’ from ‘stellarcsg::{anonymous}::Real’ {aka ‘long double’} to ‘double’ [-Wnarrowing]
+  285 |   impl.box.lower={infinity,infinity,infinity};impl.box.upper={-infinity,-infinity,-infinity};
+      |                                             ^
+/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-astra-kernel-20260926/dev/stellarcsg/src/certified_spline_offset.cpp:285:92: error: narrowing conversion of ‘-Inf’ from ‘stellarcsg::{anonymous}::Real’ {aka ‘long double’} to ‘double’ [-Wnarrowing]
+  285 |   impl.box.lower={infinity,infinity,infinity};impl.box.upper={-infinity,-infinity,-infinity};
+      |                                                                                            ^
+ninja: build stopped: subcommand failed.
