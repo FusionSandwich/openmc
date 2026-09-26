@@ -37,6 +37,13 @@ SurfaceSweptSpline::SurfaceSweptSpline(pugi::xml_node node) : Surface(node)
   const bool contiguous = has_prefix && has_count && !has_indices;
   const bool indexed = has_prefix && has_indices && !has_count && !has_start;
   const bool collection = contiguous || indexed;
+  if (check_for_node(node, "representation"))
+    representation_ = get_node_value(node, "representation", false, true);
+  if (representation_ != "legacy_rounded_frame"
+      && representation_ != "exact_control_offset")
+    fatal_error("Unknown swept-spline representation");
+  if (representation_ == "exact_control_offset" && !single)
+    fatal_error("Exact-control offset currently requires a single member");
   if (!check_for_node(node, "data_file") ||
       (single && (has_prefix || has_count || has_start || has_indices
                   || has_member_ids)) ||
@@ -129,7 +136,10 @@ SurfaceSweptSpline::SurfaceSweptSpline(pugi::xml_node node) : Surface(node)
         filename, dataset_, content_id_);
       if (content_id_.empty()) content_id_ = data.content_id;
       surface_ = std::make_unique<stellarcsg::CompiledSweptSplineSurface>(
-        std::move(data));
+        std::move(data), false, stellarcsg::SweptTorusMode::faithful_spline,
+        representation_ == "exact_control_offset"
+          ? stellarcsg::SweptRepresentation::exact_control_offset
+          : stellarcsg::SweptRepresentation::legacy_rounded_frame);
     } else {
       if (!content_id_.empty()) fatal_error(fmt::format(
         "Swept-spline collection surface {} uses per-coil content IDs and "
@@ -217,6 +227,7 @@ void SurfaceSweptSpline::to_hdf5_inner(hid_t group) const
 {
   write_string(group, "type", "swept-spline", false);
   write_string(group, "data_file", data_file_, false);
+  write_string(group, "representation", representation_, false);
   if (surface_) {
     write_string(group, "dataset", dataset_, false);
     write_string(group, "content_id", content_id_, false);

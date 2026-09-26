@@ -46,7 +46,28 @@ Each ``<surface>`` element can have the following attributes or sub-elements:
 
   :periodic_surface_id:
      If a periodic boundary condition is applied, this attribute identifies the
-     ``id`` of the corresponding periodic surface.
+    ``id`` of the corresponding periodic surface.
+
+.. rubric:: Experimental swept spline representation
+
+Builds configured with ``OPENMC_ENABLE_EXPERIMENTAL_STELLARCSG`` also provide
+``type="swept-spline"``. A single member selects an HDF5 payload using
+``data_file`` and ``dataset``; ``content_id`` may supply its canonical payload
+identifier. The ``representation`` attribute defaults to
+``legacy_rounded_frame``. Explicitly selecting ``exact_control_offset`` defines
+the centerline as the exact mathematical periodic cardinal cubic B-spline of
+the stored binary64 controls, with a constant circular offset section. For an
+xy-planar centerline with an axial supplied normal, a constant ellipse is also
+supported: the major radius is axial and the minor radius is in-plane.
+
+The solid is the union of the corresponding ellipsoids centered along the
+spline. This representation currently requires a single member and rejects
+unsupported data or uncertified queries. It uses the same definition for
+classification, distance, and normal queries. It has a restricted arithmetic
+envelope and finite work budgets, and is an experimental correctness kernel;
+near-native throughput and particle transport qualification are not implied.
+See ``dev/stellarcsg/reports/astra-20260926/ALGORITHM_CONTRACT.md`` for the
+admission conditions and query tolerances.
 
 The following quadratic surfaces can be modeled:
 

@@ -26,6 +26,7 @@ private:
   std::string dataset_;
   std::string dataset_prefix_;
   std::string content_id_;
+  std::string representation_ {"legacy_rounded_frame"};
   std::vector<std::string> member_content_ids_;
   int dataset_start_ {0};
   int dataset_count_ {0};
