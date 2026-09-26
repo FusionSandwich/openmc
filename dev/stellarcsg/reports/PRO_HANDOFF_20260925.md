@@ -1,5 +1,7 @@
 # StellarCSG WISTELL-D handoff — 2026-09-25
 
+**September 26 update:** read [the current diagnosis and checked test results](STATE_DIAGNOSIS_20260926.md) first. The latest saved strict replay is **73 unresolved / 87 no-hit / zero admitted general-swept hits**, superseding the earlier 51-unresolved checkpoint. Main CI passed with the experimental C++ kernel disabled; formatting failed. Pro-generated [draft PR #4](https://github.com/FusionSandwich/openmc/pull/4) adds BVH diagnostics but is not integrated or tested on a real compiled dump.
+
 **Status: research and qualification in progress.** Use branch `JS/stellarcsg-local-continuation-20260925` of `FusionSandwich/openmc`, based on `develop`; [draft PR #3](https://github.com/FusionSandwich/openmc/pull/3) is the GitHub entry point. This branch is a reviewable checkpoint, not a merge-ready or production-qualified one-period simulation. Start with this page, then read [the detailed local continuation receipt](LOCAL_CONTINUATION_20260925.md) and [the matched benchmark protocol](../experiments/benchmark_portability/MATCHED_PROTOCOL.md). The receipts under `local-cont-20260925/` provide hashes, commands, raw outputs, and limits for individual claims. Some earlier status files are superseded; use the newest named receipt for each gate.
 
 ## What is established
