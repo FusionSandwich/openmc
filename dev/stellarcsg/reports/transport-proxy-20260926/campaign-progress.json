@@ -1,0 +1,167 @@
+{
+  "planned": 18,
+  "observations": [
+    {
+      "family": "plasma",
+      "variant": "native",
+      "seed": 1741,
+      "particles": 1000,
+      "batches": 20,
+      "exit_code": 0,
+      "wrapper_seconds": 16.000083684921265
+    },
+    {
+      "family": "plasma",
+      "variant": "spline",
+      "seed": 1741,
+      "particles": 1000,
+      "batches": 20,
+      "exit_code": 0,
+      "wrapper_seconds": 9.433341979980469
+    },
+    {
+      "family": "plasma",
+      "variant": "spline",
+      "seed": 2741,
+      "particles": 1000,
+      "batches": 20,
+      "exit_code": 0,
+      "wrapper_seconds": 9.635076999664307
+    },
+    {
+      "family": "plasma",
+      "variant": "native",
+      "seed": 2741,
+      "particles": 1000,
+      "batches": 20,
+      "exit_code": 0,
+      "wrapper_seconds": 9.383016347885132
+    },
+    {
+      "family": "plasma",
+      "variant": "native",
+      "seed": 3741,
+      "particles": 1000,
+      "batches": 20,
+      "exit_code": 0,
+      "wrapper_seconds": 9.735894680023193
+    },
+    {
+      "family": "plasma",
+      "variant": "spline",
+      "seed": 3741,
+      "particles": 1000,
+      "batches": 20,
+      "exit_code": 0,
+      "wrapper_seconds": 9.434379577636719
+    },
+    {
+      "family": "coil",
+      "variant": "native",
+      "seed": 1741,
+      "particles": 10,
+      "batches": 20,
+      "exit_code": 0,
+      "wrapper_seconds": 9.785746097564697
+    },
+    {
+      "family": "coil",
+      "variant": "spline",
+      "seed": 1741,
+      "particles": 10,
+      "batches": 20,
+      "exit_code": 0,
+      "wrapper_seconds": 12.041240453720093
+    },
+    {
+      "family": "coil",
+      "variant": "ordered",
+      "seed": 1741,
+      "particles": 10,
+      "batches": 20,
+      "exit_code": 0,
+      "wrapper_seconds": 15.44951605796814
+    },
+    {
+      "family": "coil",
+      "variant": "annulus",
+      "seed": 1741,
+      "particles": 10,
+      "batches": 20,
+      "exit_code": 0,
+      "wrapper_seconds": 9.33402395248413
+    },
+    {
+      "family": "coil",
+      "variant": "annulus",
+      "seed": 2741,
+      "particles": 10,
+      "batches": 20,
+      "exit_code": 0,
+      "wrapper_seconds": 9.133408546447754
+    },
+    {
+      "family": "coil",
+      "variant": "ordered",
+      "seed": 2741,
+      "particles": 10,
+      "batches": 20,
+      "exit_code": 0,
+      "wrapper_seconds": 16.04981231689453
+    },
+    {
+      "family": "coil",
+      "variant": "spline",
+      "seed": 2741,
+      "particles": 10,
+      "batches": 20,
+      "exit_code": 0,
+      "wrapper_seconds": 12.592942714691162
+    },
+    {
+      "family": "coil",
+      "variant": "native",
+      "seed": 2741,
+      "particles": 10,
+      "batches": 20,
+      "exit_code": 0,
+      "wrapper_seconds": 9.384926080703735
+    },
+    {
+      "family": "coil",
+      "variant": "spline",
+      "seed": 3741,
+      "particles": 10,
+      "batches": 20,
+      "exit_code": 0,
+      "wrapper_seconds": 11.790895223617554
+    },
+    {
+      "family": "coil",
+      "variant": "native",
+      "seed": 3741,
+      "particles": 10,
+      "batches": 20,
+      "exit_code": 0,
+      "wrapper_seconds": 10.237588882446289
+    },
+    {
+      "family": "coil",
+      "variant": "annulus",
+      "seed": 3741,
+      "particles": 10,
+      "batches": 20,
+      "exit_code": 0,
+      "wrapper_seconds": 9.384291172027588
+    },
+    {
+      "family": "coil",
+      "variant": "ordered",
+      "seed": 3741,
+      "particles": 10,
+      "batches": 20,
+      "exit_code": 0,
+      "wrapper_seconds": 15.39928412437439
+    }
+  ]
+}

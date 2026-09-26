@@ -1,0 +1,230 @@
+{
+  "comparisons": [
+    {
+      "comparison": "comparison-coil-native-annulus.json",
+      "states": {
+        "INSUFFICIENT_COVERAGE": 8,
+        "NOT_EQUIVALENT_OR_UNDERPOWERED": 20,
+        "EQUIVALENT_OBSERVED_BIN": 4
+      },
+      "throughput_range": [
+        1.180358972413008,
+        1.362589379269877
+      ],
+      "sum_time_relative_throughput": 1.2477905291606282,
+      "integrals": [
+        {
+          "score": "flux",
+          "left_mean": 10.54850852047557,
+          "right_mean": 10.32181903537392,
+          "relative_difference": -0.0214901931075494,
+          "relative_simultaneous_halfwidth": 0.03732398208092616,
+          "state": "NOT_EQUIVALENT_OR_UNDERPOWERED"
+        },
+        {
+          "score": "total",
+          "left_mean": 2.4021192297979863,
+          "right_mean": 2.3421817693039824,
+          "relative_difference": -0.024951909027031444,
+          "relative_simultaneous_halfwidth": 0.04260257657324697,
+          "state": "NOT_EQUIVALENT_OR_UNDERPOWERED"
+        },
+        {
+          "score": "absorption",
+          "left_mean": 0.06688021339873312,
+          "right_mean": 0.06642263900263017,
+          "relative_difference": -0.006841700599472803,
+          "relative_simultaneous_halfwidth": 0.020514494160903025,
+          "state": "NOT_EQUIVALENT_OR_UNDERPOWERED"
+        },
+        {
+          "score": "damage-energy",
+          "left_mean": 132780.26059272065,
+          "right_mean": 131095.25808110842,
+          "relative_difference": -0.012690158191364485,
+          "relative_simultaneous_halfwidth": 0.025296774972556987,
+          "state": "NOT_EQUIVALENT_OR_UNDERPOWERED"
+        }
+      ]
+    },
+    {
+      "comparison": "comparison-coil-native-spline.json",
+      "states": {
+        "INSUFFICIENT_COVERAGE": 8,
+        "EQUIVALENT_OBSERVED_BIN": 24
+      },
+      "throughput_range": [
+        0.0011408980330081656,
+        0.0013952295599416876
+      ],
+      "sum_time_relative_throughput": 0.0012906327546118475,
+      "integrals": [
+        {
+          "score": "flux",
+          "left_mean": 10.54850852047557,
+          "right_mean": 10.54850783884972,
+          "relative_difference": -6.461822068423472e-08,
+          "relative_simultaneous_halfwidth": 2.3900036144279203e-07,
+          "state": "EQUIVALENT_OBSERVED_BIN"
+        },
+        {
+          "score": "total",
+          "left_mean": 2.4021192297979863,
+          "right_mean": 2.4021190367903626,
+          "relative_difference": -8.034889347089711e-08,
+          "relative_simultaneous_halfwidth": 2.464667743953886e-07,
+          "state": "EQUIVALENT_OBSERVED_BIN"
+        },
+        {
+          "score": "absorption",
+          "left_mean": 0.06688021339873312,
+          "right_mean": 0.06688020536679318,
+          "relative_difference": -1.200944128780032e-07,
+          "relative_simultaneous_halfwidth": 2.7671973092937316e-07,
+          "state": "EQUIVALENT_OBSERVED_BIN"
+        },
+        {
+          "score": "damage-energy",
+          "left_mean": 132780.26059272065,
+          "right_mean": 132780.24621437775,
+          "relative_difference": -1.0828675013502132e-07,
+          "relative_simultaneous_halfwidth": 2.239057487374532e-07,
+          "state": "EQUIVALENT_OBSERVED_BIN"
+        }
+      ]
+    },
+    {
+      "comparison": "comparison-coil-spline-ordered.json",
+      "states": {
+        "INSUFFICIENT_COVERAGE": 8,
+        "EQUIVALENT_OBSERVED_BIN": 24
+      },
+      "throughput_range": [
+        0.4015829710632713,
+        0.4031732749232403
+      ],
+      "sum_time_relative_throughput": 0.4022530818843686,
+      "integrals": [
+        {
+          "score": "flux",
+          "left_mean": 10.54850783884972,
+          "right_mean": 10.54850783884972,
+          "relative_difference": 0.0,
+          "relative_simultaneous_halfwidth": 0.0,
+          "state": "EQUIVALENT_OBSERVED_BIN"
+        },
+        {
+          "score": "total",
+          "left_mean": 2.4021190367903626,
+          "right_mean": 2.4021190367903626,
+          "relative_difference": 0.0,
+          "relative_simultaneous_halfwidth": 0.0,
+          "state": "EQUIVALENT_OBSERVED_BIN"
+        },
+        {
+          "score": "absorption",
+          "left_mean": 0.06688020536679318,
+          "right_mean": 0.06688020536679318,
+          "relative_difference": 0.0,
+          "relative_simultaneous_halfwidth": 0.0,
+          "state": "EQUIVALENT_OBSERVED_BIN"
+        },
+        {
+          "score": "damage-energy",
+          "left_mean": 132780.24621437775,
+          "right_mean": 132780.24621437775,
+          "relative_difference": 0.0,
+          "relative_simultaneous_halfwidth": 0.0,
+          "state": "EQUIVALENT_OBSERVED_BIN"
+        }
+      ]
+    },
+    {
+      "comparison": "comparison-plasma-native-spline.json",
+      "states": {
+        "INSUFFICIENT_COVERAGE": 4,
+        "EQUIVALENT_OBSERVED_BIN": 28
+      },
+      "throughput_range": [
+        0.5850282110517411,
+        0.650385570001674
+      ],
+      "sum_time_relative_throughput": 0.6192892043283535,
+      "integrals": [
+        {
+          "score": "flux",
+          "left_mean": 1.9053189422740833,
+          "right_mean": 1.9053189422740886,
+          "relative_difference": 2.4861725072025145e-15,
+          "relative_simultaneous_halfwidth": 9.936898522318096e-16,
+          "state": "EQUIVALENT_OBSERVED_BIN"
+        },
+        {
+          "score": "total",
+          "left_mean": 0.43093837385584793,
+          "right_mean": 0.4309383738558491,
+          "relative_difference": 1.9923323715515448e-15,
+          "relative_simultaneous_halfwidth": 8.832485150035004e-16,
+          "state": "EQUIVALENT_OBSERVED_BIN"
+        },
+        {
+          "score": "absorption",
+          "left_mean": 0.01880685073038787,
+          "right_mean": 0.01880685073038794,
+          "relative_difference": 3.2960038390733523e-15,
+          "relative_simultaneous_halfwidth": 8.338799783767282e-16,
+          "state": "EQUIVALENT_OBSERVED_BIN"
+        },
+        {
+          "score": "damage-energy",
+          "left_mean": 32973.700136184176,
+          "right_mean": 32973.70013618427,
+          "relative_difference": 2.7619204323870044e-15,
+          "relative_simultaneous_halfwidth": 7.401494969876902e-16,
+          "state": "EQUIVALENT_OBSERVED_BIN"
+        }
+      ]
+    }
+  ],
+  "damage_indices": [
+    {
+      "family": "plasma",
+      "variant": "native",
+      "reference_NRT_index_per_source": 4.8516752478430646e-26
+    },
+    {
+      "family": "plasma",
+      "variant": "spline",
+      "reference_NRT_index_per_source": 4.8516752478430783e-26
+    },
+    {
+      "family": "coil",
+      "variant": "native",
+      "reference_NRT_index_per_source": 3.2040656333293847e-25
+    },
+    {
+      "family": "coil",
+      "variant": "spline",
+      "reference_NRT_index_per_source": 3.20406528637153e-25,
+      "actual_volume_NRT_index_interval_per_source": [
+        3.204065664307497e-25,
+        3.2040657370356978e-25
+      ]
+    },
+    {
+      "family": "coil",
+      "variant": "ordered",
+      "reference_NRT_index_per_source": 3.20406528637153e-25,
+      "actual_volume_NRT_index_interval_per_source": [
+        3.204065664307497e-25,
+        3.2040657370356978e-25
+      ]
+    },
+    {
+      "family": "coil",
+      "variant": "annulus",
+      "reference_NRT_index_per_source": 3.163405533586921e-25
+    }
+  ],
+  "convention": "NRT test only: Fe56, Ed40eV, per source, no source-rate conversion. Interval covers geometry normalization only, not Monte Carlo uncertainty."
+}

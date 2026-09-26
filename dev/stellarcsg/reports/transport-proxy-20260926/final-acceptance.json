@@ -1,0 +1,40 @@
+{
+  "schema": "stellarcsg.matched-proxy-acceptance/v1",
+  "state": "BOUNDED_PROXY_EVIDENCE_ACCEPTED_BROADER_GOALS_UNMET",
+  "build_inputs_and_outputs_still_match": true,
+  "evidence_sha256": {
+    "build-04/receipt.json": "632bc8a0ebd5a3fa04defc0f0b96bddf4c21b6e8654e0b1725db87a0948d7fc3",
+    "campaign-plan.json": "638ff8324633958e7c4af80bc5e638f28b13dc9ff5ee0d5c07b84bb00304e874",
+    "campaign-progress.json": "aeac99ef61bd240338c5ffb28e22fa8579e68961bc2b167e9f9852c8c4b37f25",
+    "coil-geometry-bounds-02.json": "a7bc1546f109d3ac243b1ae34cd0e465df7d0b5b3aa1415f31a1aa4c94b9aa2e",
+    "analysis-summary-02.json": "90a889d0b9bb25fab009fee4a641244f21f81722477bc15096df715b5daceee7",
+    "artifact-audit.json": "f694308cc804430a97461e41cc1a6b9f32e27ac8ea371792adc2931cc42ebbda",
+    "qualified-on.json": "5e85b509272dd79516ee5049767024bdb28b92189625209a3909d6e0a43b49dc",
+    "qualified-off.json": "938d2786295517cc13d6fe2ed711959ea233b615e14735776df919dfef11efee",
+    "python-final-tests.txt": "e007fada5e11ef6920a3dca6d31ad407354acbabd49798abeb76bdc7059cb00e",
+    "offset-tests-03.txt": "46c91bafd32e1e644fb6f7b9f2327308bfe7ad1d17e5cbada7946cc720645460",
+    "compiled-tests-02.txt": "0018b61de8a7b1d6822dd025599afbeb854aa79587c0081a3174730bfa11c4f0",
+    "native-probe-02.jsonl": "600ef4b0a2b81bb660847cb89955d1f088cbc02e97b7f2fcf44dc0cbae3bbdfe",
+    "RESULTS.md": "05e0757ce6e30e05a66f62c30dbf146d407b4697e59d239699befad369417e4e",
+    "CONTINUATION_HANDOFF.md": "83068e59850f36a4715232379a0084a55351cd23905b581c20ea947cfe243dfb",
+    "comparison-coil-native-annulus.json": "97111aa109919ca0ed946b31cfb4098687a593c486e8d5d0689412b31dffdb3d",
+    "comparison-coil-native-spline.json": "97d6d326c119c4e5b5940139d5bc46dcac97b04aa3b348761b8c2fb59ecf9be1",
+    "comparison-coil-spline-ordered.json": "34c3a2a96ec228672d6f730d4eabc441d79bdab054fc39d389370a1acb84a6cb",
+    "comparison-plasma-native-spline.json": "df49ac120254f22f5b12b85f0df0d26fd004585e6a6c9b29280155fcef8d7379"
+  },
+  "observed_campaign_runs": 18,
+  "full_spectrum_qualified": false,
+  "native_throughput_target_met": false,
+  "physical_device_DPA_qualified": false,
+  "upstream_ready": false,
+  "limitations": [
+    "plasma exact torus specialization only",
+    "coil native control approximates spline",
+    "sparse bins",
+    "small native timings",
+    "Fe56 and finite empirical source only",
+    "known normal and legacy loader limitations",
+    "raw HDF5/build/data remain local"
+  ],
+  "independent_review_sha256": "24183994c52a804e17efd6e3ec65a9f733b9fc7a75c92652bde5480601a5f22d"
+}

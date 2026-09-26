@@ -82,3 +82,5 @@ dev/stellarcsg/reports/local-cont-20260925/p00-magnet-union-equivalence-02.json 
 dev/stellarcsg/qualification/audit_compiled_horner_enclosure.py text eol=lf
 dev/stellarcsg/reports/local-cont-20260925/compiled-horner-enclosure-02.json text eol=lf
 dev/stellarcsg/reports/local-cont-20260925/compiled-horner-enclosure-03.json text eol=lf
+
+dev/stellarcsg/reports/transport-proxy-20260926/** -text

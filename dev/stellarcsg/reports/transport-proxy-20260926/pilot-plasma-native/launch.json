@@ -1,0 +1,46 @@
+{
+  "family": "plasma",
+  "variant": "native",
+  "seed": 1741,
+  "particles": 10,
+  "batches": 2,
+  "histories": 20,
+  "threads": 1,
+  "identities": {
+    "binary": "47a1d0f4a15aba391a3f3ae5cb1dd0776f5041afe073e2e2d3fb58b04885a398",
+    "library": "42cbda0e20ce2dbd12cc224414d9da44317d3a3cd206b2e90b0bf3db1383c094",
+    "harness": "45771ae4081264f0c18b49ad5833c8ff5e7dd946af6c19bc69af51a32ef6d877",
+    "fixture_manifest": "846af34d0a163ea50e44def0ea84c75295eedb49fa0437b2f4e4ab87fec7b7ec",
+    "source": "5ae218fa17c8d57afd55792e8dd68d4a458a46a212e471de1e1ec0db881d1c39",
+    "data": "18abc04dc9fd602948bafcf487323a1148681c75ee74e27863e843211fd6f1f8",
+    "data_index": "218236803b2c4a21b038992af93dacfdfe5c0c0401cbbc57f3ff3a947c63abc7"
+  },
+  "input_hashes": {
+    "geometry.xml": "0570d8387d6ab5ef32d8025213fab09b12f2d04cc1713afaa5ecaac7927b0d9b",
+    "materials.xml": "af2a5fa8526432a9a088f29d3c9d8dbc6c34835fc988cc7511e7e0ae8ffc5669",
+    "settings.xml": "b6bfb177e76ee0b20ad2ab9247eb90bff62ae2a125a026a28e5dfbc35fbc13da",
+    "tallies.xml": "2cac3f93d2c54d4a92c5530ecf71e2fbdc441981b027ccdc5913b9b7bb8d223a"
+  },
+  "energy_bins_eV": [
+    0.0,
+    1000.0,
+    100000.0,
+    1000000.0,
+    5000000.0,
+    10000000.0,
+    14200000.0
+  ],
+  "scores": [
+    "flux",
+    "total",
+    "absorption",
+    "damage-energy"
+  ],
+  "estimator": "tracklength",
+  "volume_cm3": 80930.75608893274,
+  "atoms": 6.796353517446057e+27,
+  "displacement_energy_eV": 40.0,
+  "timeout_s": 180.0,
+  "memory_cap_bytes": 2147483648,
+  "started": 1790458427.293574
+}

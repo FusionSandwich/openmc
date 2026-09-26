@@ -1,0 +1,55 @@
+/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-astra-kernel-20260926/openmc/mixin.py:72: IDWarning: Another Filter instance already exists with id=1.
+  warn(msg, IDWarning)
+{"family": "plasma", "variant": "native", "seed": 1741, "state": "OBSERVED_COMPLETE", "exit_code": 0, "wall_s": 5.93806817299992}
+/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-astra-kernel-20260926/openmc/mixin.py:72: IDWarning: Another Filter instance already exists with id=1.
+  warn(msg, IDWarning)
+{"family": "plasma", "variant": "spline", "seed": 1741, "state": "OBSERVED_COMPLETE", "exit_code": 0, "wall_s": 5.988028113999462}
+/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-astra-kernel-20260926/openmc/mixin.py:72: IDWarning: Another Filter instance already exists with id=1.
+  warn(msg, IDWarning)
+{"family": "plasma", "variant": "spline", "seed": 2741, "state": "OBSERVED_COMPLETE", "exit_code": 0, "wall_s": 5.988241889999699}
+/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-astra-kernel-20260926/openmc/mixin.py:72: IDWarning: Another Filter instance already exists with id=1.
+  warn(msg, IDWarning)
+{"family": "plasma", "variant": "native", "seed": 2741, "state": "OBSERVED_COMPLETE", "exit_code": 0, "wall_s": 5.938115255999946}
+/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-astra-kernel-20260926/openmc/mixin.py:72: IDWarning: Another Filter instance already exists with id=1.
+  warn(msg, IDWarning)
+{"family": "plasma", "variant": "native", "seed": 3741, "state": "OBSERVED_COMPLETE", "exit_code": 0, "wall_s": 6.139256672000556}
+/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-astra-kernel-20260926/openmc/mixin.py:72: IDWarning: Another Filter instance already exists with id=1.
+  warn(msg, IDWarning)
+{"family": "plasma", "variant": "spline", "seed": 3741, "state": "OBSERVED_COMPLETE", "exit_code": 0, "wall_s": 6.040289861000929}
+/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-astra-kernel-20260926/openmc/mixin.py:72: IDWarning: Another Filter instance already exists with id=1.
+  warn(msg, IDWarning)
+{"family": "coil", "variant": "native", "seed": 1741, "state": "OBSERVED_COMPLETE", "exit_code": 0, "wall_s": 6.090905229999407}
+/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-astra-kernel-20260926/openmc/mixin.py:72: IDWarning: Another Filter instance already exists with id=1.
+  warn(msg, IDWarning)
+{"family": "coil", "variant": "spline", "seed": 1741, "state": "OBSERVED_COMPLETE", "exit_code": 0, "wall_s": 8.352016012000604}
+/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-astra-kernel-20260926/openmc/mixin.py:72: IDWarning: Another Filter instance already exists with id=1.
+  warn(msg, IDWarning)
+{"family": "coil", "variant": "ordered", "seed": 1741, "state": "OBSERVED_COMPLETE", "exit_code": 0, "wall_s": 11.905559478998839}
+/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-astra-kernel-20260926/openmc/mixin.py:72: IDWarning: Another Filter instance already exists with id=1.
+  warn(msg, IDWarning)
+{"family": "coil", "variant": "annulus", "seed": 1741, "state": "OBSERVED_COMPLETE", "exit_code": 0, "wall_s": 5.839676182999028}
+/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-astra-kernel-20260926/openmc/mixin.py:72: IDWarning: Another Filter instance already exists with id=1.
+  warn(msg, IDWarning)
+{"family": "coil", "variant": "annulus", "seed": 2741, "state": "OBSERVED_COMPLETE", "exit_code": 0, "wall_s": 5.789298284998949}
+/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-astra-kernel-20260926/openmc/mixin.py:72: IDWarning: Another Filter instance already exists with id=1.
+  warn(msg, IDWarning)
+{"family": "coil", "variant": "ordered", "seed": 2741, "state": "OBSERVED_COMPLETE", "exit_code": 0, "wall_s": 12.605613300000186}
+/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-astra-kernel-20260926/openmc/mixin.py:72: IDWarning: Another Filter instance already exists with id=1.
+  warn(msg, IDWarning)
+{"family": "coil", "variant": "spline", "seed": 2741, "state": "OBSERVED_COMPLETE", "exit_code": 0, "wall_s": 8.896820538999236}
+/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-astra-kernel-20260926/openmc/mixin.py:72: IDWarning: Another Filter instance already exists with id=1.
+  warn(msg, IDWarning)
+{"family": "coil", "variant": "native", "seed": 2741, "state": "OBSERVED_COMPLETE", "exit_code": 0, "wall_s": 5.8377018889987085}
+/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-astra-kernel-20260926/openmc/mixin.py:72: IDWarning: Another Filter instance already exists with id=1.
+  warn(msg, IDWarning)
+{"family": "coil", "variant": "spline", "seed": 3741, "state": "OBSERVED_COMPLETE", "exit_code": 0, "wall_s": 8.295866557000409}
+/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-astra-kernel-20260926/openmc/mixin.py:72: IDWarning: Another Filter instance already exists with id=1.
+  warn(msg, IDWarning)
+{"family": "coil", "variant": "native", "seed": 3741, "state": "OBSERVED_COMPLETE", "exit_code": 0, "wall_s": 6.5922662949997175}
+/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-astra-kernel-20260926/openmc/mixin.py:72: IDWarning: Another Filter instance already exists with id=1.
+  warn(msg, IDWarning)
+{"family": "coil", "variant": "annulus", "seed": 3741, "state": "OBSERVED_COMPLETE", "exit_code": 0, "wall_s": 5.889906848000464}
+/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-astra-kernel-20260926/openmc/mixin.py:72: IDWarning: Another Filter instance already exists with id=1.
+  warn(msg, IDWarning)
+{"family": "coil", "variant": "ordered", "seed": 3741, "state": "OBSERVED_COMPLETE", "exit_code": 0, "wall_s": 11.706781733000753}
+{"state": "CAMPAIGN_EXECUTED", "runs": 18}

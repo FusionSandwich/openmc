@@ -1,0 +1,9 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<geometry>
+  <cell id="1" material="void" region="-10" universe="1"/>
+  <cell id="2" material="1" region="10 -11" universe="1"/>
+  <cell id="3" material="void" region="11 -99" universe="1"/>
+  <surface id="10" type="periodic-spline" data_file="/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-astra-kernel-20260926/dev/stellarcsg/reports/transport-proxy-20260926/fixtures/plasma.h5" dataset="/surfaces/plasma" content_id="sha256:2f42f0c674f6906ece8fc52ad198a882c72701a4f762c9dec56a3416dd83a048" solver="layered" units="cm"/>
+  <surface id="11" type="z-torus" coeffs="0.0 0.0 0.0 100.0 21.0 21.0"/>
+  <surface id="99" type="sphere" boundary="vacuum" coeffs="0.0 0.0 0.0 150.0"/>
+</geometry>

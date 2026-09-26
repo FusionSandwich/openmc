@@ -132,6 +132,73 @@ void exact_linear_arithmetic()
   invalid.add_double(1, 17);
   require(!invalid.valid(), "unsupported exact weight admitted");
 }
+
+void accelerator_independent_controls()
+{
+  std::size_t certified = 0;
+  for (double scale : {0.125, 1., 8.}) {
+    auto data = fixture();
+    const stellarcsg::Vec3 shift {8., -4., 2.};
+    for (std::size_t i = 0; i < data.sample_count; ++i) {
+      data.centerline_coefficients[3 * i] =
+        shift.x + scale * data.centerline_coefficients[3 * i];
+      data.centerline_coefficients[3 * i + 1] =
+        shift.y + scale * data.centerline_coefficients[3 * i + 1];
+      data.centerline_coefficients[3 * i + 2] = shift.z;
+    }
+    data.major_radius_coefficients.assign(16, scale * .25);
+    data.minor_radius_coefficients.assign(16, scale * .25);
+    data.characteristic_length *= scale;
+    data.length *= scale;
+    const stellarcsg::CertifiedSplineOffset surface(data);
+    for (const stellarcsg::Vec3 c :
+      {stellarcsg::Vec3 {1, 0, 0}, {0, 1, 0}, {-1, 0, 0}, {0, -1, 0}}) {
+      for (bool interior : {false, true}) {
+        const stellarcsg::Vec3 o {shift.x + scale * c.x, shift.y + scale * c.y,
+          shift.z + (interior ? 0 : scale)};
+        const stellarcsg::Vec3 direction {0, 0, interior ? 1. : -1.};
+        const double expected = scale * (interior ? .25 : .75);
+        for (bool enabled : {false, true}) {
+          stellarcsg::RootSearchOptions options;
+          options.enable_bernstein_prefix = enabled;
+          const auto result = surface.distance(o, direction, false, options);
+          if (!result.found || result.terminal_unresolved ||
+              std::abs(result.distance - expected) > 1e-11)
+            std::cerr << "vertical case scale=" << scale << " center=" << c.x
+                      << "," << c.y << " interior=" << interior
+                      << " prefix=" << enabled << " found=" << result.found
+                      << " unresolved=" << result.terminal_unresolved
+                      << " distance=" << result.distance
+                      << " expected=" << expected << "\n";
+          // These exact dyadic seams lie on the planar centerline. Vertical
+          // distance is a global lower bound attained at that center, so this
+          // expected root is independent of either ray solver.
+          require(result.found && !result.terminal_unresolved &&
+                    std::abs(result.distance - expected) <= 1e-11,
+            "translated/scaled exact vertical root disagrees");
+          if (enabled && result.root_diagnostics.refinement_levels == 1)
+            ++certified;
+        }
+      }
+    }
+  }
+  require(certified > 0, "controls did not exercise certified acceleration");
+  const stellarcsg::CertifiedSplineOffset surface(fixture());
+  const double z = .25 - std::ldexp(1., -16);
+  const double expected = 1 - std::sqrt(.25 * .25 - z * z);
+  // Two thin intersections: the 128 proposal samples miss both chords.
+  // The nearest left root has an independent hull/seam distance identity.
+  for (bool enabled : {false, true}) {
+    stellarcsg::RootSearchOptions options;
+    options.enable_bernstein_prefix = enabled;
+    const auto result = surface.distance({-2, 0, z}, {1, 0, 0}, false, options);
+    require(result.found && !result.terminal_unresolved &&
+              std::abs(result.distance - expected) <= 1e-11,
+      "missed thin proposal lost or skipped the first crossing");
+    require(result.root_diagnostics.refinement_levels == 0,
+      "thin-chord control no longer exercises proposal rejection/fallback");
+  }
+}
 } // namespace
 
 int main()
@@ -216,6 +283,7 @@ int main()
     require(rejected, "degenerate tangent admitted");
     support_contacts();
     exact_linear_arithmetic();
+    accelerator_independent_controls();
     std::cout << "certified_offset_adversarial_controls PASS\n";
     return 0;
   } catch (const std::exception& error) {

@@ -1,0 +1,40 @@
+{
+  "schema": "stellarcsg.independent-exact-offset-bank/v1",
+  "state": "PARTIAL_CERTIFICATION",
+  "states": {
+    "CERTIFIED": 158,
+    "UNKNOWN": 2
+  },
+  "hashes_before": {
+    "bank": "fc9da0be5eb66e3d56649a8d709db16f9b096c7767a565c57d5488bd19430723",
+    "candidate": "9c1e1046e05cea3cd1e12cc02ea69378738ec1dc6e0eb6283886065004c620ef",
+    "wistell": "9bb178c308e7f3ec659e1651a7d57e0ecbff734d3320000df1c2bf79fcf3262b",
+    "verifier": "0e391f3fc2037afc08765f9eefa4356c4feadb346e2512481be186505b69747f"
+  },
+  "hashes_after": {
+    "bank": "fc9da0be5eb66e3d56649a8d709db16f9b096c7767a565c57d5488bd19430723",
+    "candidate": "9c1e1046e05cea3cd1e12cc02ea69378738ec1dc6e0eb6283886065004c620ef",
+    "wistell": "9bb178c308e7f3ec659e1651a7d57e0ecbff734d3320000df1c2bf79fcf3262b",
+    "verifier": "0e391f3fc2037afc08765f9eefa4356c4feadb346e2512481be186505b69747f"
+  },
+  "geometry_identities": {
+    "torus": {
+      "fnv": "c5aec2165cdec18c",
+      "payload_sha256": "28129502fa67f3367360058bd479ae254f6e997c4f5ad71322135d15b6bf2dce"
+    },
+    "torus_rigid": {
+      "fnv": "65e0344a2cfa42af",
+      "payload_sha256": "f99cae228c055f9796f3dfe4838b5a28cf588a9db5a8a2386f01cb78bffd43b7"
+    },
+    "wistell_coil031": {
+      "fnv": "6d8dd682de8c0bfe",
+      "payload_sha256": "120c17633fb1dd2e7f9293eb1477b5259ce16f289b4166cfa6fbdb94d8dc419a"
+    }
+  },
+  "seconds": 8.596442624000701,
+  "memory_cap_bytes": 1073741824,
+  "geometry_construction_and_selfcheck_seconds": 0.6140855009998631,
+  "exact_polynomial_and_subdivision_selfchecks": 9,
+  "absolute_distance_error_bound_cm": 1e-11,
+  "claim_boundary": "Exact mathematical cardinal cubic of original binary64 controls, constant isotropic radii, binary64 normalized ray components as exported by candidate. Certificates prove existence of a boundary in the stated bracket and exclude every earlier eligible boundary. Candidate proposals guide brackets only. FNV is an identity check, not cryptographic runtime binding. UNKNOWN never becomes PASS."
+}

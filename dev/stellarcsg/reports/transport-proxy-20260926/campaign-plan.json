@@ -1,0 +1,133 @@
+{
+  "plan": [
+    {
+      "family": "plasma",
+      "variant": "native",
+      "seed": 1741,
+      "particles": 1000,
+      "batches": 20
+    },
+    {
+      "family": "plasma",
+      "variant": "spline",
+      "seed": 1741,
+      "particles": 1000,
+      "batches": 20
+    },
+    {
+      "family": "plasma",
+      "variant": "spline",
+      "seed": 2741,
+      "particles": 1000,
+      "batches": 20
+    },
+    {
+      "family": "plasma",
+      "variant": "native",
+      "seed": 2741,
+      "particles": 1000,
+      "batches": 20
+    },
+    {
+      "family": "plasma",
+      "variant": "native",
+      "seed": 3741,
+      "particles": 1000,
+      "batches": 20
+    },
+    {
+      "family": "plasma",
+      "variant": "spline",
+      "seed": 3741,
+      "particles": 1000,
+      "batches": 20
+    },
+    {
+      "family": "coil",
+      "variant": "native",
+      "seed": 1741,
+      "particles": 10,
+      "batches": 20
+    },
+    {
+      "family": "coil",
+      "variant": "spline",
+      "seed": 1741,
+      "particles": 10,
+      "batches": 20
+    },
+    {
+      "family": "coil",
+      "variant": "ordered",
+      "seed": 1741,
+      "particles": 10,
+      "batches": 20
+    },
+    {
+      "family": "coil",
+      "variant": "annulus",
+      "seed": 1741,
+      "particles": 10,
+      "batches": 20
+    },
+    {
+      "family": "coil",
+      "variant": "annulus",
+      "seed": 2741,
+      "particles": 10,
+      "batches": 20
+    },
+    {
+      "family": "coil",
+      "variant": "ordered",
+      "seed": 2741,
+      "particles": 10,
+      "batches": 20
+    },
+    {
+      "family": "coil",
+      "variant": "spline",
+      "seed": 2741,
+      "particles": 10,
+      "batches": 20
+    },
+    {
+      "family": "coil",
+      "variant": "native",
+      "seed": 2741,
+      "particles": 10,
+      "batches": 20
+    },
+    {
+      "family": "coil",
+      "variant": "spline",
+      "seed": 3741,
+      "particles": 10,
+      "batches": 20
+    },
+    {
+      "family": "coil",
+      "variant": "native",
+      "seed": 3741,
+      "particles": 10,
+      "batches": 20
+    },
+    {
+      "family": "coil",
+      "variant": "annulus",
+      "seed": 3741,
+      "particles": 10,
+      "batches": 20
+    },
+    {
+      "family": "coil",
+      "variant": "ordered",
+      "seed": 3741,
+      "particles": 10,
+      "batches": 20
+    }
+  ],
+  "per_child_timeout_s": 180,
+  "max_processes": 1,
+  "acquisition_bytes": 0
+}

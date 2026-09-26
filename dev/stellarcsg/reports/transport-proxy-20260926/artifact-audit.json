@@ -1,0 +1,84 @@
+{
+  "schema": "stellarcsg.proxy-artifact-negative-controls/v1",
+  "checker_sha256": "52f26cd9d115d66d6dd149ba935cc76eed33d7aa0994af5ae3f0c6940a698f89",
+  "audit_sha256": "3f50af91b693e8c698c698f37c133b437b00cbe4192e4166cb94dbc5f62d0ba3",
+  "baseline_receipt_sha256": "528910e46452aa3e6886e7f523af807f711e7e3cf48494e65b5c2658abf31524",
+  "controls": [
+    {
+      "control": "runtime",
+      "state": "REJECTED",
+      "reason": "raw transport timing mismatch"
+    },
+    {
+      "control": "redistributed_bins",
+      "state": "REJECTED",
+      "reason": "receipt bins differ from raw statepoints"
+    },
+    {
+      "control": "seed_and_launch",
+      "state": "REJECTED",
+      "reason": "raw statepoint identity mismatch"
+    },
+    {
+      "control": "missing_statepoint",
+      "state": "REJECTED",
+      "reason": "missing statepoints"
+    },
+    {
+      "control": "missing_MT444",
+      "state": "REJECTED",
+      "reason": "score, energy units, estimator or damage model mismatch"
+    },
+    {
+      "control": "wrong_displacement_energy",
+      "state": "REJECTED",
+      "reason": "changed test displacement energy"
+    },
+    {
+      "control": "wrong_NRT",
+      "state": "REJECTED",
+      "reason": "damage index inconsistent with tally/normalization"
+    },
+    {
+      "control": "wrong_uncertainty",
+      "state": "REJECTED",
+      "reason": "raw tally values/uncertainties differ"
+    },
+    {
+      "control": "nonzero_exit",
+      "state": "REJECTED",
+      "reason": "execution incomplete or failed"
+    },
+    {
+      "control": "timeout",
+      "state": "REJECTED",
+      "reason": "execution incomplete or failed"
+    },
+    {
+      "control": "unresolved_diagnostic",
+      "state": "REJECTED",
+      "reason": "raw execution diagnostics contain a failure"
+    }
+  ],
+  "tracks": [
+    {
+      "run": "pilot-plasma-spline",
+      "sha256": "e1669829a0f0d3e37815ac808d4af83f329b1305471b0ca3ff1f860fadf3c3e8",
+      "states": 41,
+      "state": "RECORDED_MATERIAL_OWNERSHIP_PASS"
+    },
+    {
+      "run": "pilot-coil-spline",
+      "sha256": "a5630af6b9930cb32257a2c61c1dfdc38cc3dd48cc32ff1873b0561e3dda417a",
+      "states": 10,
+      "state": "RECORDED_MATERIAL_OWNERSHIP_PASS"
+    },
+    {
+      "run": "pilot-coil-ordered",
+      "sha256": "a8a49cf768d526f6577e58e80e0d8d42dd84e836eb57e0d26c7ba9f7ceefda47",
+      "states": 10,
+      "state": "RECORDED_MATERIAL_OWNERSHIP_PASS"
+    }
+  ],
+  "claim_boundary": "Tampered receipts rejected against retained raw HDF5. Pilot recorded-state ownership only; not independent proof of every collision or arbitrary geometry."
+}

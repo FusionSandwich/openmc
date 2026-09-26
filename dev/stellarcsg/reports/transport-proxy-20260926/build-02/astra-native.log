@@ -1,0 +1,5 @@
+[1/5] Building CXX object CMakeFiles/libopenmc.dir/dev/stellarcsg/src/compiled_periodic_surface.cpp.o
+[2/5] Building CXX object CMakeFiles/libopenmc.dir/dev/stellarcsg/src/uniform_periodic_bicubic_spline.cpp.o
+[3/5] Linking CXX shared library lib/libopenmc.so
+[4/5] Linking CXX executable bin/stellarcsg_native_offset_probe
+[5/5] Linking CXX executable bin/openmc

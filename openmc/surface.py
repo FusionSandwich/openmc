@@ -2858,6 +2858,9 @@ class SweptSplineSurface(Surface):
         and planar xy coils with constant elliptical sections; unsupported
         geometry is rejected by the native compiler. It does not approximate
         the centerline by a torus or admit a rectangular winding pack.
+    bernstein_prefix : bool, optional
+        Enable certified prefix acceleration for exact-control offsets.
+        False selects the ordered certificate solver for validation.
     """
 
     _type = 'swept-spline'
@@ -2867,6 +2870,7 @@ class SweptSplineSurface(Surface):
                  dataset_prefix=None, dataset_start=None, dataset_count=None,
                  dataset_indices=None, member_content_ids=None,
                  representation='legacy_rounded_frame',
+                 bernstein_prefix=True,
                  **kwargs):
         super().__init__(**kwargs)
         check_type('data_file', data_file, (str, Path))
@@ -2878,6 +2882,10 @@ class SweptSplineSurface(Surface):
         if collection and representation == 'exact_control_offset':
             raise ValueError('exact_control_offset requires a single member')
         self.representation = representation
+        check_type('bernstein_prefix', bernstein_prefix, bool)
+        if not bernstein_prefix and representation != 'exact_control_offset':
+            raise ValueError('disabling bernstein_prefix requires exact_control_offset')
+        self.bernstein_prefix = bernstein_prefix
         if collection:
             if dataset is not None or content_id is not None:
                 raise ValueError('collection and single-member selectors cannot be mixed')
@@ -2938,11 +2946,11 @@ class SweptSplineSurface(Surface):
         return (self.data_file, self.dataset, self.content_id,
                 self.dataset_prefix, self.dataset_start, self.dataset_count,
                 self.dataset_indices, self.member_content_ids,
-                self.representation) == (
+                self.representation, self.bernstein_prefix) == (
                     other.data_file, other.dataset, other.content_id,
                     other.dataset_prefix, other.dataset_start, other.dataset_count,
                     other.dataset_indices, other.member_content_ids,
-                    other.representation)
+                    other.representation, other.bernstein_prefix)
 
     def _get_base_coeffs(self):
         return ()
@@ -3014,6 +3022,8 @@ class SweptSplineSurface(Surface):
         element.set('data_file', self.data_file)
         if self.dataset is not None:
             element.set('representation', self.representation)
+            if self.representation == 'exact_control_offset':
+                element.set('bernstein_prefix', str(self.bernstein_prefix).lower())
             element.set('dataset', self.dataset)
             element.set('content_id', self.content_id)
         else:
@@ -3032,7 +3042,15 @@ class SweptSplineSurface(Surface):
     def _from_xml_element(cls, elem):
         if get_text(elem, 'units', 'cm') != 'cm':
             raise ValueError("swept-spline XML units must be 'cm'")
+        prefix = get_text(elem, 'bernstein_prefix', 'true')
+        if prefix not in ('true', 'false'):
+            raise ValueError('bernstein_prefix must be true or false')
+        if (get_text(elem, 'bernstein_prefix') is not None
+                and get_text(elem, 'representation', 'legacy_rounded_frame')
+                != 'exact_control_offset'):
+            raise ValueError('bernstein_prefix requires exact_control_offset')
         kwargs = {
+            'bernstein_prefix': prefix == 'true',
             'representation': get_text(elem, 'representation', 'legacy_rounded_frame'),
             'surface_id': int(get_text(elem, 'id')),
             'boundary_type': get_text(elem, 'boundary', 'transmission'),
@@ -3105,7 +3123,14 @@ class SweptSplineSurface(Surface):
                          'content_id': text('content_id'),
                          'member_content_ids': text('member_content_ids').split()
                          if 'member_content_ids' in group else None}
-        return cls(data_file=text('data_file'),
+        prefix = text('bernstein_prefix') if 'bernstein_prefix' in group else 'true'
+        if prefix not in ('true', 'false'):
+            raise ValueError('bernstein_prefix must be true or false')
+        if ('bernstein_prefix' in group
+                and ('representation' not in group
+                     or text('representation') != 'exact_control_offset')):
+            raise ValueError('bernstein_prefix requires exact_control_offset')
+        return cls(data_file=text('data_file'), bernstein_prefix=prefix == 'true',
                    representation=text('representation') if 'representation' in group
                    else 'legacy_rounded_frame', **selectors, **kwargs)
 

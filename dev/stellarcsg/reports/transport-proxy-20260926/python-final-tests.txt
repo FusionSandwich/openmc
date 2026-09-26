@@ -1,0 +1,12 @@
+..............                                           [100%]
+=============================== warnings summary ===============================
+tests/test_offset_representation.py::TestOffsetRepresentation::test_prefix_option_roundtrip_and_rejection
+  /mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-astra-kernel-20260926/openmc/mixin.py:72: IDWarning: Another Surface instance already exists with id=5.
+    warn(msg, IDWarning)
+
+tests/test_offset_representation.py::TestOffsetRepresentation::test_xml_identity_and_legacy_default
+  /mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-astra-kernel-20260926/openmc/mixin.py:72: IDWarning: Another Surface instance already exists with id=11.
+    warn(msg, IDWarning)
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+14 passed, 2 warnings, 16 subtests passed in 3.11s

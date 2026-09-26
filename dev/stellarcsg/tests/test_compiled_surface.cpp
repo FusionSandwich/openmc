@@ -15,8 +15,8 @@
 #include <cstdio>
 #include <cstdlib>
 #include <filesystem>
-#include <iostream>
 #include <iomanip>
+#include <iostream>
 #include <limits>
 #include <stdexcept>
 #include <string>
@@ -34,15 +34,14 @@ void check(bool condition, const std::string& message)
   }
 }
 
-void check_near(double actual, double expected, double tolerance,
-  const std::string& message)
+void check_near(
+  double actual, double expected, double tolerance, const std::string& message)
 {
   if (!std::isfinite(actual) || std::abs(actual - expected) > tolerance) {
     ++failures;
-    std::cerr << std::setprecision(17)
-              << "FAIL: " << message << " actual=" << actual
-              << " expected=" << expected << " tolerance=" << tolerance
-              << '\n';
+    std::cerr << std::setprecision(17) << "FAIL: " << message
+              << " actual=" << actual << " expected=" << expected
+              << " tolerance=" << tolerance << '\n';
   }
 }
 
@@ -63,15 +62,15 @@ stellarcsg::PeriodicSplineSurfaceData make_torus_data()
 void test_compiled_torus()
 {
   const stellarcsg::CompiledPeriodicSplineSurface surface {make_torus_data()};
-  check(surface.specialization()
-      == stellarcsg::PeriodicSurfaceSpecialization::exact_circular_torus,
+  check(surface.specialization() ==
+          stellarcsg::PeriodicSurfaceSpecialization::exact_circular_torus,
     "constant coefficients select exact circular-torus specialization");
   check_near(surface.evaluate({6.0, 0.0, 0.0}), 0.0, 1.0e-12,
     "compiled torus surface value");
   check(surface.evaluate({5.0, 0.0, 0.0}) < 0.0,
     "reference axis is inside the radial half-space");
-  check(surface.evaluate({7.0, 0.0, 0.0}) > 0.0,
-    "point outside torus is positive");
+  check(
+    surface.evaluate({7.0, 0.0, 0.0}) > 0.0, "point outside torus is positive");
 
   const auto normal = surface.normal({6.0, 0.0, 0.0});
   check_near(normal.x, 1.0, 1.0e-12, "compiled torus outward normal x");
@@ -81,27 +80,26 @@ void test_compiled_torus()
   stellarcsg::RootSearchOptions options;
   options.initial_subdivisions = 96;
   options.max_refinement_levels = 6;
-  const auto crossing = surface.distance(
-    {7.0, 0.0, 0.0}, {-1.0, 0.0, 0.0}, false, options);
+  const auto crossing =
+    surface.distance({7.0, 0.0, 0.0}, {-1.0, 0.0, 0.0}, false, options);
   check(crossing.found, "compiled torus radial crossing is found");
   if (crossing.found) {
     check_near(crossing.distance, 1.0, 3.0e-8,
       "compiled torus radial crossing distance");
   }
-  check(crossing.root_diagnostics.solver_path
-      == stellarcsg::SolverPath::exact_circular_torus,
+  check(crossing.root_diagnostics.solver_path ==
+          stellarcsg::SolverPath::exact_circular_torus,
     "exact torus reports its analytic specialization");
 
-  const auto four_root = surface.distance(
-    {-7.0, 0.0, 0.0}, {1.0, 0.0, 0.0}, false, options);
+  const auto four_root =
+    surface.distance({-7.0, 0.0, 0.0}, {1.0, 0.0, 0.0}, false, options);
   check(four_root.found, "four-root torus ray is found");
   if (four_root.found) {
-    check_near(four_root.distance, 1.0, 2.0e-10,
-      "nearest of four torus roots");
+    check_near(four_root.distance, 1.0, 2.0e-10, "nearest of four torus roots");
   }
 
-  const auto tangent = surface.distance(
-    {6.0, -2.0, 0.0}, {0.0, 3.0, 0.0}, false, options);
+  const auto tangent =
+    surface.distance({6.0, -2.0, 0.0}, {0.0, 3.0, 0.0}, false, options);
   check(tangent.found, "exact torus tangent ray is found");
   if (tangent.found) {
     check_near(tangent.distance, 2.0, 2.0e-9,
@@ -121,26 +119,25 @@ void test_torus_forced_through_general_patch_solver()
   data.content_id = "compiled-torus-forced-general-v1";
   data.force_general_solver = true;
   const stellarcsg::CompiledPeriodicSplineSurface surface {std::move(data)};
-  check(surface.specialization()
-      == stellarcsg::PeriodicSurfaceSpecialization::general_periodic,
+  check(surface.specialization() ==
+          stellarcsg::PeriodicSurfaceSpecialization::general_periodic,
     "forced-general torus disables the exact specialization");
   check(!surface.patches().empty() && !surface.patch_bvh().empty(),
     "forced-general torus compiles parametric patches and a BVH");
 
-  const std::vector<stellarcsg::Vec3> origins {
-    {7.0, 0.0, 0.0}, {-7.0, 0.0, 0.0}, {0.0, 7.0, 0.25},
-    {4.5, -4.8, 0.4}, {-4.7, -4.4, -0.35}};
-  const std::vector<stellarcsg::Vec3> directions {
-    {-1.0, 0.0, 0.0}, {1.0, 0.0, 0.0}, {0.0, -1.0, -0.03},
-    {-0.8, 0.6, -0.1}, {0.7, 0.7, 0.08}};
+  const std::vector<stellarcsg::Vec3> origins {{7.0, 0.0, 0.0},
+    {-7.0, 0.0, 0.0}, {0.0, 7.0, 0.25}, {4.5, -4.8, 0.4}, {-4.7, -4.4, -0.35}};
+  const std::vector<stellarcsg::Vec3> directions {{-1.0, 0.0, 0.0},
+    {1.0, 0.0, 0.0}, {0.0, -1.0, -0.03}, {-0.8, 0.6, -0.1}, {0.7, 0.7, 0.08}};
   stellarcsg::RootSearchOptions options;
   options.initial_subdivisions = 128;
   options.max_refinement_levels = 8;
   stellarcsg::reset_performance_counters();
   for (std::size_t i = 0; i < origins.size(); ++i) {
-    const auto fast = surface.distance(origins[i], directions[i], false, options);
-    const auto oracle = surface.distance_reference(
-      origins[i], directions[i], false, options);
+    const auto fast =
+      surface.distance(origins[i], directions[i], false, options);
+    const auto oracle =
+      surface.distance_reference(origins[i], directions[i], false, options);
     check(fast.found == oracle.found,
       "forced-general torus patch path agrees with oracle existence");
     if (fast.found && oracle.found) {
@@ -151,20 +148,19 @@ void test_torus_forced_through_general_patch_solver()
       "forced-general torus never calls the global reference fallback");
   }
   stellarcsg::reset_performance_counters();
-  (void) surface.distance(
-    {7.0, 0.0, 0.0}, {-1.0, 0.0, 0.0}, false, options);
+  (void)surface.distance({7.0, 0.0, 0.0}, {-1.0, 0.0, 0.0}, false, options);
   const auto counters = stellarcsg::performance_counters_snapshot();
   check(counters.global_reference_calls == 0,
     "production forced-general torus records zero global reference calls");
-  const auto tangent = surface.distance(
-    {6.0, -1.23456789, 0.0}, {0.0, 3.0, 0.0}, false, options);
+  const auto tangent =
+    surface.distance({6.0, -1.23456789, 0.0}, {0.0, 3.0, 0.0}, false, options);
   check(tangent.found, "forced-general torus finds an exact tangent");
   if (tangent.found) {
     check_near(tangent.distance, 1.23456789, 2.0e-8,
       "forced-general torus exact tangent distance");
   }
-  const auto coincident_out = surface.distance(
-    {6.0, 0.0, 0.0}, {4.0, 0.0, 0.0}, true, options);
+  const auto coincident_out =
+    surface.distance({6.0, 0.0, 0.0}, {4.0, 0.0, 0.0}, true, options);
   check(!coincident_out.found,
     "forced-general torus coincident outward ray has no later crossing");
   if (coincident_out.found) {
@@ -172,8 +168,8 @@ void test_torus_forced_through_general_patch_solver()
               << "coincident outward distance=" << coincident_out.distance
               << " residual=" << coincident_out.residual << '\n';
   }
-  const auto coincident_in = surface.distance(
-    {6.0, 0.0, 0.0}, {-4.0, 0.0, 0.0}, true, options);
+  const auto coincident_in =
+    surface.distance({6.0, 0.0, 0.0}, {-4.0, 0.0, 0.0}, true, options);
   check(coincident_in.found,
     "forced-general torus coincident inward ray finds the next crossing");
   if (coincident_in.found) {
@@ -191,8 +187,8 @@ void test_moving_axis_and_helical_radius()
   data.axis_r_coefficients.resize(n_axis);
   data.axis_z_coefficients.resize(n_axis);
   for (std::size_t i = 0; i < n_axis; ++i) {
-    const double phase = 2.0 * 3.141592653589793238462643383279502884
-                         * static_cast<double>(i) / static_cast<double>(n_axis);
+    const double phase = 2.0 * 3.141592653589793238462643383279502884 *
+                         static_cast<double>(i) / static_cast<double>(n_axis);
     data.axis_r_coefficients[i] = 5.0 + 0.08 * std::cos(phase);
     data.axis_z_coefficients[i] = 0.05 * std::sin(phase);
   }
@@ -200,86 +196,126 @@ void test_moving_axis_and_helical_radius()
   data.n_phi = 20;
   data.radius_coefficients.resize(data.n_theta * data.n_phi);
   for (std::size_t i = 0; i < data.n_theta; ++i) {
-    const double theta = 2.0 * 3.141592653589793238462643383279502884
-                         * static_cast<double>(i) / static_cast<double>(data.n_theta);
+    const double theta = 2.0 * 3.141592653589793238462643383279502884 *
+                         static_cast<double>(i) /
+                         static_cast<double>(data.n_theta);
     for (std::size_t j = 0; j < data.n_phi; ++j) {
-      const double psi = 2.0 * 3.141592653589793238462643383279502884
-                         * static_cast<double>(j) / static_cast<double>(data.n_phi);
+      const double psi = 2.0 * 3.141592653589793238462643383279502884 *
+                         static_cast<double>(j) /
+                         static_cast<double>(data.n_phi);
       data.radius_coefficients[i * data.n_phi + j] =
         1.0 + 0.10 * std::cos(2.0 * theta - psi);
     }
   }
 
   const stellarcsg::CompiledPeriodicSplineSurface surface {std::move(data)};
-  check(surface.specialization()
-      == stellarcsg::PeriodicSurfaceSpecialization::general_periodic,
+  check(surface.specialization() ==
+          stellarcsg::PeriodicSurfaceSpecialization::general_periodic,
     "helical coefficients select the general periodic path");
   for (int k = 0; k < 20; ++k) {
-    const double phi = 2.0 * 3.141592653589793238462643383279502884
-                       * static_cast<double>(k) / 20.0;
-    const stellarcsg::Vec3 outside {6.5 * std::cos(phi),
-      6.5 * std::sin(phi), 0.0};
+    const double phi = 2.0 * 3.141592653589793238462643383279502884 *
+                       static_cast<double>(k) / 20.0;
+    const stellarcsg::Vec3 outside {
+      6.5 * std::cos(phi), 6.5 * std::sin(phi), 0.0};
     check(surface.evaluate(outside) > 0.0,
       "moving-axis test point remains outside");
   }
 
-  const std::vector<stellarcsg::Vec3> origins {
-    {7.0, 0.0, 0.0}, {-7.0, 0.0, 0.0}, {0.0, 7.0, 0.2},
-    {4.2, -4.8, 0.7}, {-4.5, -4.7, -0.6}, {0.2, 0.1, 0.0}};
-  const std::vector<stellarcsg::Vec3> directions {
-    {-1.0, 0.0, 0.0}, {1.0, 0.0, 0.0}, {0.0, -1.0, -0.03},
-    {-0.7, 0.6, -0.2}, {0.5, 0.8, 0.1}, {1.0, 0.2, 0.03}};
+  const std::vector<stellarcsg::Vec3> origins {{7.0, 0.0, 0.0},
+    {-7.0, 0.0, 0.0}, {0.0, 7.0, 0.2}, {4.2, -4.8, 0.7}, {-4.5, -4.7, -0.6},
+    {0.2, 0.1, 0.0}};
+  const std::vector<stellarcsg::Vec3> directions {{-1.0, 0.0, 0.0},
+    {1.0, 0.0, 0.0}, {0.0, -1.0, -0.03}, {-0.7, 0.6, -0.2}, {0.5, 0.8, 0.1},
+    {1.0, 0.2, 0.03}};
   auto options = stellarcsg::RootSearchOptions {};
   options.initial_subdivisions = 128;
   options.max_refinement_levels = 8;
   for (std::size_t i = 0; i < origins.size(); ++i) {
-    const auto fast = surface.distance(origins[i], directions[i], false, options);
-    const auto oracle = surface.distance_reference(
-      origins[i], directions[i], false, options);
+    const auto fast =
+      surface.distance(origins[i], directions[i], false, options);
+    const auto oracle =
+      surface.distance_reference(origins[i], directions[i], false, options);
     check(fast.found == oracle.found,
       "general-periodic certified path agrees with oracle existence");
     if (fast.found && oracle.found) {
       check_near(fast.distance, oracle.distance, 2.0e-8,
         "general-periodic certified path agrees with oracle distance");
     }
-    check(fast.root_diagnostics.solver_path
-        == stellarcsg::SolverPath::general_periodic_certified
-        || fast.root_diagnostics.solver_path
-          == stellarcsg::SolverPath::reference_fallback,
+    check(fast.root_diagnostics.solver_path ==
+              stellarcsg::SolverPath::general_periodic_certified ||
+            fast.root_diagnostics.solver_path ==
+              stellarcsg::SolverPath::reference_fallback,
       "general-periodic path records certified solve or explicit fallback");
   }
 }
 
-void test_scale_aware_axisymmetric_detection()
+void test_exact_axisymmetric_detection()
 {
   auto shaped = make_torus_data();
   for (std::size_t i = 0; i < shaped.n_theta; ++i) {
-    const double value = 1.0 + 0.15 * std::cos(
-      2.0 * 3.141592653589793238462643383279502884
-      * static_cast<double>(i) / static_cast<double>(shaped.n_theta));
+    const double value =
+      1.0 + 0.15 * std::cos(2.0 * 3.141592653589793238462643383279502884 *
+                            static_cast<double>(i) /
+                            static_cast<double>(shaped.n_theta));
     for (std::size_t j = 0; j < shaped.n_phi; ++j) {
       shaped.radius_coefficients[i * shaped.n_phi + j] = value;
     }
   }
-  shaped.axis_r_coefficients.back() += 1.0e-14;
   const stellarcsg::CompiledPeriodicSplineSurface surface {std::move(shaped)};
-  check(surface.specialization()
-      == stellarcsg::PeriodicSurfaceSpecialization::shaped_axisymmetric,
-    "scale-aware constancy detects shaped axisymmetry");
-  const auto crossing = surface.distance(
-    {7.0, 0.0, 0.0}, {-1.0, 0.0, 0.0}, false);
+  check(surface.specialization() ==
+          stellarcsg::PeriodicSurfaceSpecialization::shaped_axisymmetric,
+    "exact constancy detects shaped axisymmetry");
+  const auto crossing =
+    surface.distance({7.0, 0.0, 0.0}, {-1.0, 0.0, 0.0}, false);
   check(crossing.found, "shaped-axisymmetric path finds radial crossing");
-  check(crossing.root_diagnostics.solver_path
-      == stellarcsg::SolverPath::shaped_axisymmetric_certified,
+  check(crossing.root_diagnostics.solver_path ==
+          stellarcsg::SolverPath::shaped_axisymmetric_certified,
     "shaped-axisymmetric path is recorded in diagnostics");
   check(crossing.root_diagnostics.reference_fallback_calls == 0,
     "well-conditioned shaped crossing does not use the oracle fallback");
 }
 
+void test_near_constant_is_not_exact()
+{
+  auto invalid = make_torus_data();
+  invalid.n_theta = std::numeric_limits<std::size_t>::max() / 4 + 1;
+  invalid.n_phi = 4;
+  invalid.radius_coefficients.clear();
+  bool rejected = false;
+  try {
+    const stellarcsg::CompiledPeriodicSplineSurface bad {invalid};
+  } catch (const std::invalid_argument&) {
+    rejected = true;
+  }
+  check(rejected, "overflowed radius dimensions must be rejected");
+  rejected = false;
+  try {
+    const stellarcsg::UniformPeriodicBicubicSpline bad {
+      invalid.n_theta, invalid.n_phi, 1, {}};
+  } catch (const std::invalid_argument&) {
+    rejected = true;
+  }
+  check(rejected, "bicubic constructor must reject dimension overflow");
+  for (int field = 0; field < 3; ++field) {
+    auto data = make_torus_data();
+    auto& values = field == 0   ? data.axis_r_coefficients
+                   : field == 1 ? data.axis_z_coefficients
+                                : data.radius_coefficients;
+    values.back() = std::nextafter(values.back(), INFINITY);
+    const stellarcsg::CompiledPeriodicSplineSurface surface {std::move(data)};
+    check(surface.specialization() ==
+            stellarcsg::PeriodicSurfaceSpecialization::general_periodic,
+      "one-ULP nonconstant payload cannot select an exact specialization");
+  }
+}
+
 void test_close_root_pair_regressions()
 {
   const stellarcsg::CompiledPeriodicSplineSurface surface {make_torus_data()};
-  struct Fixture { stellarcsg::Vec3 origin; stellarcsg::Vec3 direction; };
+  struct Fixture {
+    stellarcsg::Vec3 origin;
+    stellarcsg::Vec3 direction;
+  };
   const std::vector<Fixture> fixtures {
     {{5.7388633334130201, 0.00056429199550223075, -1.0075336982387282},
       {-0.32707973244673211, 0.20756893579428687, 0.003228224149003481}},
@@ -296,8 +332,8 @@ void test_close_root_pair_regressions()
   options.absolute_f_tolerance = 2.0e-12;
   options.derivative_tolerance = 2.0e-12;
   for (const auto& fixture : fixtures) {
-    const auto exact = surface.distance(
-      fixture.origin, fixture.direction, false, options);
+    const auto exact =
+      surface.distance(fixture.origin, fixture.direction, false, options);
     const auto oracle = surface.distance_reference(
       fixture.origin, fixture.direction, false, options);
     check(exact.found && oracle.found,
@@ -327,10 +363,11 @@ void test_exact_circular_swept_coil()
   data.major_radius_coefficients.assign(count, minor);
   data.minor_radius_coefficients.assign(count, minor);
   for (std::size_t i = 0; i < count; ++i) {
-    const double angle = 2.0 * pi * static_cast<double>(i)
-                         / static_cast<double>(count);
+    const double angle =
+      2.0 * pi * static_cast<double>(i) / static_cast<double>(count);
     data.centerline_coefficients[3 * i] = major * std::cos(angle) / eigenvalue;
-    data.centerline_coefficients[3 * i + 1] = major * std::sin(angle) / eigenvalue;
+    data.centerline_coefficients[3 * i + 1] =
+      major * std::sin(angle) / eigenvalue;
     data.centerline_coefficients[3 * i + 2] = 0.0;
     data.normal_coefficients[3 * i] = 0.0;
     data.normal_coefficients[3 * i + 1] = 0.0;
@@ -346,22 +383,20 @@ void test_exact_circular_swept_coil()
   varying_radius_data.major_radius_coefficients[0] += 5.0e-5;
   const stellarcsg::CompiledSweptSplineSurface varying_radius {
     std::move(varying_radius_data)};
-  const auto varying_crossing = varying_radius.distance(
-    {major, 0.0, 1.0}, {0.0, 0.0, -1.0}, false);
+  const auto varying_crossing =
+    varying_radius.distance({major, 0.0, 1.0}, {0.0, 0.0, -1.0}, false);
   check(varying_crossing.found,
     "varying swept radius produces an axial crossing candidate");
   if (varying_crossing.found) {
-    check_near(varying_crossing.distance,
-      1.0 - (minor + (2.0 / 3.0) * 5.0e-5), 5.0e-6,
-      "varying swept radius uses the faithful spline crossing");
+    check_near(varying_crossing.distance, 1.0 - (minor + (2.0 / 3.0) * 5.0e-5),
+      5.0e-6, "varying swept radius uses the faithful spline crossing");
   }
   const stellarcsg::CompiledSweptSplineSurface coil {std::move(data), false,
     stellarcsg::SweptTorusMode::approximate_torus_surrogate};
   const stellarcsg::CompiledSweptSplineSurface forced_coil {
     std::move(forced_data), true};
   for (int exponent : {-600, 600}) {
-    const auto scaled = forced_coil.distance(
-      {major + 2.0 * minor, 0.0, 0.0},
+    const auto scaled = forced_coil.distance({major + 2.0 * minor, 0.0, 0.0},
       {-std::ldexp(1.0, exponent), 0.0, 0.0}, false);
     check(scaled.found,
       "faithful swept distance accepts finite extreme ray scaling");
@@ -387,8 +422,8 @@ void test_exact_circular_swept_coil()
   constexpr double golden_angle = 2.3999632297286533222;
   const stellarcsg::Vec3 origin {major + 2.0 * minor, 0.0, 0.0};
   for (std::size_t i = 0; i < ray_count; ++i) {
-    const double z = 1.0 - 2.0 * (static_cast<double>(i) + 0.5)
-                             / static_cast<double>(ray_count);
+    const double z = 1.0 - 2.0 * (static_cast<double>(i) + 0.5) /
+                             static_cast<double>(ray_count);
     const double radial = std::sqrt(std::max(0.0, 1.0 - z * z));
     const double azimuth = golden_angle * static_cast<double>(i);
     const stellarcsg::Vec3 direction {
@@ -408,7 +443,8 @@ void test_exact_circular_swept_coil()
     auto invalid = near_torus_data;
     mutate(invalid);
     try {
-      const stellarcsg::CompiledSweptSplineSurface rejected {std::move(invalid)};
+      const stellarcsg::CompiledSweptSplineSurface rejected {
+        std::move(invalid)};
       return false;
     } catch (const std::invalid_argument&) {
       return true;
@@ -417,18 +453,21 @@ void test_exact_circular_swept_coil()
   check(rejects_invalid([](auto& invalid) {
     invalid.centerline_coefficients[0] =
       std::numeric_limits<double>::quiet_NaN();
-  }), "nonfinite centerline coefficient is rejected before compilation");
+  }),
+    "nonfinite centerline coefficient is rejected before compilation");
   check(rejects_invalid([](auto& invalid) {
-    invalid.normal_coefficients[0] =
-      std::numeric_limits<double>::infinity();
-  }), "nonfinite frame coefficient is rejected before compilation");
+    invalid.normal_coefficients[0] = std::numeric_limits<double>::infinity();
+  }),
+    "nonfinite frame coefficient is rejected before compilation");
   check(rejects_invalid([](auto& invalid) {
     invalid.major_radius_coefficients[0] =
       std::numeric_limits<double>::infinity();
-  }), "nonfinite radius coefficient is rejected before compilation");
+  }),
+    "nonfinite radius coefficient is rejected before compilation");
   check(rejects_invalid([](auto& invalid) {
     invalid.length = std::numeric_limits<double>::infinity();
-  }), "nonfinite sweep length is rejected before compilation");
+  }),
+    "nonfinite sweep length is rejected before compilation");
   auto surrogate_data = near_torus_data;
   auto set_data = near_torus_data;
   const stellarcsg::CompiledSweptSplineSurface near_torus {
@@ -436,11 +475,11 @@ void test_exact_circular_swept_coil()
   const stellarcsg::CompiledSweptSplineSurface near_surrogate {
     std::move(surrogate_data), false,
     stellarcsg::SweptTorusMode::approximate_torus_surrogate};
-  check(!near_torus.approximate_torus_surrogate()
-      && near_surrogate.approximate_torus_surrogate(),
+  check(!near_torus.approximate_torus_surrogate() &&
+          near_surrogate.approximate_torus_surrogate(),
     "near-torus coefficient payload defaults to faithful spline");
-  check(std::abs(near_torus.evaluate({major + minor, 0.0, 0.0})
-        - near_surrogate.evaluate({major + minor, 0.0, 0.0})) > 5.0e-7,
+  check(std::abs(near_torus.evaluate({major + minor, 0.0, 0.0}) -
+                 near_surrogate.evaluate({major + minor, 0.0, 0.0})) > 5.0e-7,
     "sample-tolerance torus surrogate changes near-torus surface value");
   const stellarcsg::CompiledSweptSplineSurfaceSet faithful_set {
     {std::move(set_data)}};
@@ -468,8 +507,8 @@ void test_swept_coil_set_bvh()
     data.major_radius_coefficients.assign(count, minor);
     data.minor_radius_coefficients.assign(count, minor);
     for (std::size_t i = 0; i < count; ++i) {
-      const double angle = 2.0 * pi * static_cast<double>(i)
-                           / static_cast<double>(count);
+      const double angle =
+        2.0 * pi * static_cast<double>(i) / static_cast<double>(count);
       data.centerline_coefficients[3 * i] =
         major * std::cos(angle) / eigenvalue;
       data.centerline_coefficients[3 * i + 1] =
@@ -488,16 +527,16 @@ void test_swept_coil_set_bvh()
   data.push_back(make_coil(10, -2.0));
   data.push_back(make_coil(20, 0.0));
   data.push_back(make_coil(30, 2.0));
-  const stellarcsg::CompiledSweptSplineSurfaceSet set {std::move(data),
-    stellarcsg::SweptTorusMode::approximate_torus_surrogate};
+  const stellarcsg::CompiledSweptSplineSurfaceSet set {
+    std::move(data), stellarcsg::SweptTorusMode::approximate_torus_surrogate};
   check(set.size() == 3, "coil-set BVH retains every coil");
   check(set.coil_bvh().size() == 3, "three-coil set builds a top-level BVH");
   check(set.evaluate({major, 0.0, 0.0}) < 0.0,
     "coil-set union classifies a point inside one coil");
   check(set.evaluate({0.0, 0.0, 0.0}) > 0.0,
     "coil-set union classifies a point outside every coil");
-  const auto crossing = set.distance(
-    {major + 2.0 * minor, 0.0, 0.0}, {-1.0, 0.0, 0.0}, false);
+  const auto crossing =
+    set.distance({major + 2.0 * minor, 0.0, 0.0}, {-1.0, 0.0, 0.0}, false);
   check(crossing.root.found, "coil-set BVH finds the nearest crossing");
   check(crossing.coil_id == 20, "coil-set BVH returns the stable coil ID");
   if (crossing.root.found) {
@@ -514,8 +553,8 @@ void test_swept_coil_set_bvh()
   const stellarcsg::CompiledSweptSplineSurfaceSet overlapping_set {
     std::move(overlapping),
     stellarcsg::SweptTorusMode::approximate_torus_surrogate};
-  const auto union_exit = overlapping_set.distance(
-    {major, 0.0, 0.0}, {0.0, 0.0, 1.0}, false);
+  const auto union_exit =
+    overlapping_set.distance({major, 0.0, 0.0}, {0.0, 0.0, 1.0}, false);
   check(union_exit.root.found, "overlapping swept tori find union exit");
   if (union_exit.root.found) {
     check_near(union_exit.root.distance, 0.3 + minor, 2.0e-9,
@@ -532,9 +571,8 @@ void test_hdf5_round_trip()
   auto source = make_torus_data();
   source.canonical_metadata_json = "{\"case\":\"torus\"}";
   source.content_id = stellarcsg::periodic_spline_content_id(source);
-  stellarcsg::write_periodic_spline_surface_hdf5(filename,
-    "/surfaces/torus", source, true,
-    stellarcsg::CoefficientFileMode::truncate);
+  stellarcsg::write_periodic_spline_surface_hdf5(filename, "/surfaces/torus",
+    source, true, stellarcsg::CoefficientFileMode::truncate);
   const auto loaded = stellarcsg::read_periodic_spline_surface_hdf5(
     filename, "/surfaces/torus", source.content_id);
   check(loaded.content_id == source.content_id, "HDF5 content ID round trip");
@@ -547,7 +585,7 @@ void test_hdf5_round_trip()
 
   bool mismatch_rejected = false;
   try {
-    (void) stellarcsg::read_periodic_spline_surface_hdf5(
+    (void)stellarcsg::read_periodic_spline_surface_hdf5(
       filename, "/surfaces/torus", "wrong-content-id");
   } catch (const std::runtime_error&) {
     mismatch_rejected = true;
@@ -560,30 +598,34 @@ void test_swept_hdf5_identity()
 {
   const std::string source = STELLARCSG_QUALIFIED_SWEPT_FILE;
   const std::string dataset = "/coils/coil_001";
-  const auto original = stellarcsg::read_swept_spline_surface_hdf5(
-    source, dataset);
+  const auto original =
+    stellarcsg::read_swept_spline_surface_hdf5(source, dataset);
   check(original.content_id.rfind("sha256:", 0) == 0,
     "qualified swept payload uses a SHA-256 ID");
 
   const std::string changed = "stellarcsg_swept_identity_changed.h5";
-  std::filesystem::copy_file(source, changed,
-    std::filesystem::copy_options::overwrite_existing);
+  std::filesystem::copy_file(
+    source, changed, std::filesystem::copy_options::overwrite_existing);
   const hid_t file = H5Fopen(changed.c_str(), H5F_ACC_RDWR, H5P_DEFAULT);
   check(file >= 0, "swept identity fixture opened");
-  if (file < 0) return;
+  if (file < 0)
+    return;
   const hid_t group = H5Gopen2(file, dataset.c_str(), H5P_DEFAULT);
   check(group >= 0, "swept identity group opened");
-  if (group < 0) { H5Fclose(file); return; }
-  const bool altered = H5Adelete(group, "content_id") >= 0
-    && H5LTset_attribute_string(group, ".", "content_id",
-      "unbound-test-label") >= 0;
+  if (group < 0) {
+    H5Fclose(file);
+    return;
+  }
+  const bool altered = H5Adelete(group, "content_id") >= 0 &&
+                       H5LTset_attribute_string(
+                         group, ".", "content_id", "unbound-test-label") >= 0;
   H5Gclose(group);
   H5Fclose(file);
   check(altered, "swept identity fixture label altered");
   if (altered) {
     bool rejected = false;
     try {
-      (void) stellarcsg::read_swept_spline_surface_hdf5(changed, dataset);
+      (void)stellarcsg::read_swept_spline_surface_hdf5(changed, dataset);
     } catch (const std::runtime_error&) {
       rejected = true;
     }
@@ -597,45 +639,44 @@ void test_near_parallel_ray_box_interval()
 {
   const stellarcsg::BoundingBox box {
     {1.0e16, 1.0, -1.0}, {1.0e16 + 100.0, 2.0, 1.0}};
-  const auto nearly_parallel = box.ray_interval(
-    {0.0, 0.0, 0.0}, {1.0, 1.0e-16, 0.0});
-  check(nearly_parallel.has_value()
-      && nearly_parallel->enter <= 1.0e16
-      && nearly_parallel->exit >= 1.0e16,
+  const auto nearly_parallel =
+    box.ray_interval({0.0, 0.0, 0.0}, {1.0, 1.0e-16, 0.0});
+  check(nearly_parallel.has_value() && nearly_parallel->enter <= 1.0e16 &&
+          nearly_parallel->exit >= 1.0e16,
     "nonzero near-parallel ray component reaches a distant box");
   check(!box.ray_interval({0.0, 0.0, 0.0}, {1.0, 0.0, 0.0}),
     "exactly parallel ray outside the slab still misses");
   bool invalid_rejected = false;
   try {
-    (void) box.ray_interval(
-      {std::numeric_limits<double>::quiet_NaN(), 0.0, 0.0},
-      {1.0, 0.0, 0.0});
+    (void)box.ray_interval(
+      {std::numeric_limits<double>::quiet_NaN(), 0.0, 0.0}, {1.0, 0.0, 0.0});
   } catch (const std::invalid_argument&) {
     invalid_rejected = true;
   }
-  check(invalid_rejected, "nonfinite ray origin is rejected before slab pruning");
+  check(
+    invalid_rejected, "nonfinite ray origin is rejected before slab pruning");
 }
 
 void test_endpoint_sphere_proxy_seeds()
 {
-  const auto direction = stellarcsg::normalized(
-    stellarcsg::Vec3 {-1.0, -1.0, 0.0});
+  const auto direction =
+    stellarcsg::normalized(stellarcsg::Vec3 {-1.0, -1.0, 0.0});
   const double coordinate = std::ldexp(1.0, 30);
   const stellarcsg::Vec3 origin {coordinate, coordinate, 0.0};
-  const auto roots = stellarcsg::ray_sphere_seed_roots(
-    origin, direction, {0.0, 0.0, 0.0}, 1.0);
-  check(roots.has_value(),
-    "endpoint sphere proxy retains a central hit despite quadratic cancellation");
+  const auto roots =
+    stellarcsg::ray_sphere_seed_roots(origin, direction, {0.0, 0.0, 0.0}, 1.0);
+  check(roots.has_value(), "endpoint sphere proxy retains a central hit "
+                           "despite quadratic cancellation");
   if (roots) {
     check((*roots)[0] > 0.0 && (*roots)[0] < (*roots)[1],
       "endpoint sphere proxy orders both positive roots");
-    const double center_t = -stellarcsg::dot(origin, direction)
-      / stellarcsg::norm_squared(direction);
+    const double center_t =
+      -stellarcsg::dot(origin, direction) / stellarcsg::norm_squared(direction);
     check((*roots)[0] < center_t && center_t < (*roots)[1],
       "endpoint sphere proxy roots straddle the center crossing");
   }
   check(!stellarcsg::ray_sphere_seed_roots(
-      {coordinate, coordinate, 2.0}, direction, {0.0, 0.0, 0.0}, 1.0),
+          {coordinate, coordinate, 2.0}, direction, {0.0, 0.0, 0.0}, 1.0),
     "offset endpoint sphere proxy remains a miss");
 }
 
@@ -647,18 +688,18 @@ void test_extreme_scale_frame_normalization()
   check_near(stellarcsg::norm_squared(tangent), 1.0, 2.0e-15,
     "underflow-scale frame tangent has unit length");
   stellarcsg::Vec3 normal {0.0, 0.0, 1.0};
-  normal = stellarcsg::normalized(
-    normal - stellarcsg::dot(normal, tangent) * tangent);
-  const auto binormal = stellarcsg::normalized(
-    stellarcsg::cross(tangent, normal));
+  normal =
+    stellarcsg::normalized(normal - stellarcsg::dot(normal, tangent) * tangent);
+  const auto binormal =
+    stellarcsg::normalized(stellarcsg::cross(tangent, normal));
   normal = stellarcsg::cross(binormal, tangent);
   check(normal.z <= 1.0 + 2.0e-15,
     "underflow-scale frame does not expand a unit-radius surface");
   for (int exponent : {-600, 600}) {
-    const auto unit = stellarcsg::normalized(
-      {std::ldexp(1.0, exponent), 0.0, 0.0});
-    check_near(unit.x, 1.0, 2.0e-15,
-      "finite extreme-scale direction normalizes");
+    const auto unit =
+      stellarcsg::normalized({std::ldexp(1.0, exponent), 0.0, 0.0});
+    check_near(
+      unit.x, 1.0, 2.0e-15, "finite extreme-scale direction normalizes");
   }
   const auto smallest = stellarcsg::normalized(
     {std::numeric_limits<double>::denorm_min(), 0.0, 0.0});
@@ -678,8 +719,7 @@ void test_swept_span_horner_bounds()
   data.binormal_coefficients.assign(24, 0.0);
   data.major_radius_coefficients.assign(8, 0.25);
   data.minor_radius_coefficients.assign(8, 0.25);
-  const std::array<double, 4> controls {
-    2617843008604128.0, 9630992893998072.0,
+  const std::array<double, 4> controls {2617843008604128.0, 9630992893998072.0,
     -8370907897845388.0, 7252534354622564.0};
   for (std::size_t i = 0; i < 8; ++i) {
     data.centerline_coefficients[3 * i + 1] = static_cast<double>(i);
@@ -691,14 +731,14 @@ void test_swept_span_horner_bounds()
   const stellarcsg::CompiledSweptSplineSurface surface {std::move(data)};
   const auto& span = surface.spans().front();
   const double angle = std::nextafter(span.angle_max, span.angle_min);
-  const double u = (angle - span.angle_min)
-    * (1.0 / (span.angle_max - span.angle_min));
+  const double u =
+    (angle - span.angle_min) * (1.0 / (span.angle_max - span.angle_min));
   const double* power = span.power.data();
   const double x = ((power[3] * u + power[2]) * u + power[1]) * u + power[0];
   check(span.centerline_bbox.lower.x <= x && x <= span.centerline_bbox.upper.x,
     "swept span box encloses stored-power Horner center near its endpoint");
-  check(span.conservative_bbox.lower.x <= x
-      && x <= span.conservative_bbox.upper.x,
+  check(
+    span.conservative_bbox.lower.x <= x && x <= span.conservative_bbox.upper.x,
     "swept surface box encloses the same center despite small tube radius");
 }
 
@@ -727,21 +767,23 @@ void test_swept_earlier_unresolved_candidate()
       data.binormal_coefficients.push_back(x);
   }
   const stellarcsg::CompiledSweptSplineSurface surface {std::move(data), true};
-  const double knot_radius = 5.0 *
-    (2.0 / 3.0 + std::cos(2.0 * pi / count) / 3.0);
-  const auto result = surface.distance(
-    {knot_radius + 0.252, 0.0, 0.0}, {-1.0, 0.0, 0.0}, false);
+  const double knot_radius =
+    5.0 * (2.0 / 3.0 + std::cos(2.0 * pi / count) / 3.0);
+  const auto result =
+    surface.distance({knot_radius + 0.252, 0.0, 0.0}, {-1.0, 0.0, 0.0}, false);
   check(result.found, "earlier unresolved span yields a candidate");
-  if (result.found) check_near(result.distance, 0.002, 3.0e-7,
-    "unresolved-span sign scan finds entry before later Newton candidate");
+  if (result.found)
+    check_near(result.distance, 0.002, 3.0e-7,
+      "unresolved-span sign scan finds entry before later Newton candidate");
   check(result.terminal_unresolved,
     "earlier candidate remains terminal unresolved without root certificate");
-  const auto ordinary_entry = surface.distance(
-    {knot_radius + 0.752, 0.0, 0.0}, {-1.0, 0.0, 0.0}, false);
-  check(ordinary_entry.found,
-    "ordinary entry still yields a diagnostic candidate");
-  if (ordinary_entry.found) check_near(ordinary_entry.distance, 0.502, 3.0e-7,
-    "ordinary entry retains its candidate distance");
+  const auto ordinary_entry =
+    surface.distance({knot_radius + 0.752, 0.0, 0.0}, {-1.0, 0.0, 0.0}, false);
+  check(
+    ordinary_entry.found, "ordinary entry still yields a diagnostic candidate");
+  if (ordinary_entry.found)
+    check_near(ordinary_entry.distance, 0.502, 3.0e-7,
+      "ordinary entry retains its candidate distance");
   check(ordinary_entry.terminal_unresolved,
     "a solved seed does not certify its own span's earlier prefix");
 }
@@ -756,20 +798,17 @@ void test_swept_multimodal_centerline_span()
   data.sample_count = 8;
   data.length = 8.0;
   data.characteristic_length = 30.0;
-  data.centerline_coefficients = {
-     0.6829578857775811,   0.4558376479511903, -0.24574062740129754,
-     1.3166620668636353,  -0.6659930105554357, -0.3817898110933077,
-    -9.058890596848563,   10.948100204060806,   3.1376619635957796,
-   -20.0,                 20.0,                 0.0,
-   -20.0,                  0.0,                 0.0,
-   -20.0,                -20.0,                 0.0,
-   -10.0,                -15.0,                 0.0,
-    -3.6241791045456067,  -3.3552421145334383,  3.2594525742483245};
+  data.centerline_coefficients = {0.6829578857775811, 0.4558376479511903,
+    -0.24574062740129754, 1.3166620668636353, -0.6659930105554357,
+    -0.3817898110933077, -9.058890596848563, 10.948100204060806,
+    3.1376619635957796, -20.0, 20.0, 0.0, -20.0, 0.0, 0.0, -20.0, -20.0, 0.0,
+    -10.0, -15.0, 0.0, -3.6241791045456067, -3.3552421145334383,
+    3.2594525742483245};
   for (int i = 0; i < 8; ++i) {
-    data.normal_coefficients.insert(data.normal_coefficients.end(),
-      {0.0, 0.0, 1.0});
-    data.binormal_coefficients.insert(data.binormal_coefficients.end(),
-      {0.0, 1.0, 0.0});
+    data.normal_coefficients.insert(
+      data.normal_coefficients.end(), {0.0, 0.0, 1.0});
+    data.binormal_coefficients.insert(
+      data.binormal_coefficients.end(), {0.0, 1.0, 0.0});
   }
   data.major_radius_coefficients.assign(8, 1.0);
   data.minor_radius_coefficients.assign(8, 1.0);
@@ -777,12 +816,11 @@ void test_swept_multimodal_centerline_span()
   const auto nearest = surface.local_coordinates({0.0, 0.0, 0.0});
   check_near(nearest.arc_coordinate, 0.08048901989047327, 1.0e-10,
     "multimodal span selects the interior nearest centerline parameter");
-  check_near(stellarcsg::norm_squared(nearest.center),
-    0.17279940860022003, 1.0e-10,
-    "multimodal span selects the globally nearer centerline point");
+  check_near(stellarcsg::norm_squared(nearest.center), 0.17279940860022003,
+    1.0e-10, "multimodal span selects the globally nearer centerline point");
   bool rejected_nonfinite_point = false;
   try {
-    (void) surface.local_coordinates(
+    (void)surface.local_coordinates(
       {std::numeric_limits<double>::quiet_NaN(), 0.0, 0.0});
   } catch (const std::invalid_argument&) {
     rejected_nonfinite_point = true;
@@ -797,7 +835,7 @@ void test_sha256_known_vector()
   const std::string input = "abc";
   digest.update(input.data(), input.size());
   check(digest.hex_digest() ==
-      "ba7816bf8f01cfea414140de5dae2223b00361a396177a9cb410ff61f20015ad",
+          "ba7816bf8f01cfea414140de5dae2223b00361a396177a9cb410ff61f20015ad",
     "SHA-256 known vector");
 }
 
@@ -810,13 +848,14 @@ int main()
     stellarcsg::add_performance_counter(
       stellarcsg::PerformanceCounter::distance_calls, 3);
     const auto counters = stellarcsg::performance_counters_snapshot();
-    check(counters.distance_calls
-          == (stellarcsg::performance_counters_enabled() ? 3U : 0U),
+    check(counters.distance_calls ==
+            (stellarcsg::performance_counters_enabled() ? 3U : 0U),
       "thread-local performance counters honor their compile-time switch");
     test_compiled_torus();
     test_torus_forced_through_general_patch_solver();
     test_moving_axis_and_helical_radius();
-    test_scale_aware_axisymmetric_detection();
+    test_exact_axisymmetric_detection();
+    test_near_constant_is_not_exact();
     test_close_root_pair_regressions();
     test_exact_circular_swept_coil();
     test_swept_coil_set_bvh();

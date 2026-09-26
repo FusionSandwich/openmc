@@ -8,6 +8,24 @@ import openmc
 
 
 class TestOffsetRepresentation(unittest.TestCase):
+    def test_prefix_option_roundtrip_and_rejection(self):
+        args = dict(data_file='fixture.h5', dataset='/coils/coil_002',
+                    content_id='sha256:fixture', representation='exact_control_offset')
+        fast = openmc.SweptSplineSurface(**args)
+        slow = openmc.SweptSplineSurface(**args, bernstein_prefix=False)
+        self.assertFalse(fast.is_equal(slow))
+        restored = openmc.Surface.from_xml_element(slow.to_xml_element())
+        self.assertTrue(restored.is_equal(slow))
+        element = slow.to_xml_element()
+        element.set('bernstein_prefix', 'maybe')
+        with self.assertRaises(ValueError):
+            openmc.Surface.from_xml_element(element)
+        with self.assertRaises(TypeError):
+            openmc.SweptSplineSurface(**args, bernstein_prefix='false')
+        args['representation'] = 'legacy_rounded_frame'
+        with self.assertRaises(ValueError):
+            openmc.SweptSplineSurface(**args, bernstein_prefix=False)
+
     def test_xml_identity_and_legacy_default(self):
         args = dict(data_file='fixture.h5', dataset='/coils/coil_002',
                     content_id='sha256:fixture')
@@ -18,6 +36,7 @@ class TestOffsetRepresentation(unittest.TestCase):
         self.assertTrue(restored.is_equal(exact))
         elem = exact.to_xml_element()
         elem.attrib.pop('representation')
+        elem.attrib.pop('bernstein_prefix')
         self.assertEqual(openmc.Surface.from_xml_element(elem).representation,
                          'legacy_rounded_frame')
 
@@ -32,6 +51,24 @@ class TestOffsetRepresentation(unittest.TestCase):
                     group[key] = value
                 restored = openmc.SweptSplineSurface._from_hdf5(group)
                 self.assertEqual(restored.representation, 'exact_control_offset')
+                group['bernstein_prefix'] = 'false'
+                restored = openmc.SweptSplineSurface._from_hdf5(group)
+                self.assertFalse(restored.bernstein_prefix)
+                del group['representation']
+                for value in ('false', 'true'):
+                    del group['bernstein_prefix']
+                    group['bernstein_prefix'] = value
+                    with self.assertRaises(ValueError):
+                        openmc.SweptSplineSurface._from_hdf5(group)
+
+    def test_explicit_legacy_prefix_rejected(self):
+        legacy = openmc.SweptSplineSurface(
+            'fixture.h5', dataset='/coils/coil_002', content_id='sha256:fixture')
+        for value in ('true', 'false'):
+            element = legacy.to_xml_element()
+            element.set('bernstein_prefix', value)
+            with self.assertRaises(ValueError):
+                openmc.Surface.from_xml_element(element)
 
     def test_unsupported_selector_rejected(self):
         with self.assertRaises(ValueError):

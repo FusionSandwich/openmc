@@ -1,0 +1,90 @@
+{
+  "schema": "stellarcsg.independent-offset-frozen-bank-qualification/v1",
+  "state": "ALL_160_FROZEN_QUERIES_CERTIFIED",
+  "query_count": 160,
+  "exact_Bernstein_or_fixed_ball_certificates": 158,
+  "exact_global_support_contact_certificates": 2,
+  "absolute_distance_error_bound_cm_exact": "1/100000000000",
+  "absolute_distance_error_bound_cm": 1e-11,
+  "candidate_dispositions": {
+    "no_hit": 91,
+    "hit": 69
+  },
+  "input_sha256": {
+    "bank": "fc9da0be5eb66e3d56649a8d709db16f9b096c7767a565c57d5488bd19430723",
+    "candidate": "8707e86a4302aa5ca5d3c9483e9652ad760cff947e2ccb36fd9a1ac75246c377",
+    "wistell": "9bb178c308e7f3ec659e1651a7d57e0ecbff734d3320000df1c2bf79fcf3262b",
+    "verifier": "0e391f3fc2037afc08765f9eefa4356c4feadb346e2512481be186505b69747f"
+  },
+  "hashes_before": {
+    "bank": "fc9da0be5eb66e3d56649a8d709db16f9b096c7767a565c57d5488bd19430723",
+    "candidate": "8707e86a4302aa5ca5d3c9483e9652ad760cff947e2ccb36fd9a1ac75246c377",
+    "wistell": "9bb178c308e7f3ec659e1651a7d57e0ecbff734d3320000df1c2bf79fcf3262b",
+    "verifier": "0e391f3fc2037afc08765f9eefa4356c4feadb346e2512481be186505b69747f",
+    "prefix_receipt": "af7e4928de6bbf686d4f9b3407c9198ec10c9f0bf2cb5939cf58f4c91fe6198b",
+    "prefix_queries": "e9930c4345170ac33e5f71f1c2239d10ea4e9b8471751aca46e134993b17f56c",
+    "support_script": "9d2f04bede5721e6e34d42ba890ede6ed46cd853dfd91ed1620e9205a79b2c82",
+    "aggregation_script": "f7cbe31f5cb44c5062fec892dd007c7a979c466aea590d27c3eee8cdf1c9bac0"
+  },
+  "hashes_after": {
+    "bank": "fc9da0be5eb66e3d56649a8d709db16f9b096c7767a565c57d5488bd19430723",
+    "candidate": "8707e86a4302aa5ca5d3c9483e9652ad760cff947e2ccb36fd9a1ac75246c377",
+    "wistell": "9bb178c308e7f3ec659e1651a7d57e0ecbff734d3320000df1c2bf79fcf3262b",
+    "verifier": "0e391f3fc2037afc08765f9eefa4356c4feadb346e2512481be186505b69747f",
+    "prefix_receipt": "af7e4928de6bbf686d4f9b3407c9198ec10c9f0bf2cb5939cf58f4c91fe6198b",
+    "prefix_queries": "e9930c4345170ac33e5f71f1c2239d10ea4e9b8471751aca46e134993b17f56c",
+    "support_script": "9d2f04bede5721e6e34d42ba890ede6ed46cd853dfd91ed1620e9205a79b2c82",
+    "aggregation_script": "f7cbe31f5cb44c5062fec892dd007c7a979c466aea590d27c3eee8cdf1c9bac0"
+  },
+  "attachment_sha256": {
+    "prefix_receipt": "af7e4928de6bbf686d4f9b3407c9198ec10c9f0bf2cb5939cf58f4c91fe6198b",
+    "prefix_queries": "e9930c4345170ac33e5f71f1c2239d10ea4e9b8471751aca46e134993b17f56c",
+    "support_script": "9d2f04bede5721e6e34d42ba890ede6ed46cd853dfd91ed1620e9205a79b2c82",
+    "aggregation_script": "f7cbe31f5cb44c5062fec892dd007c7a979c466aea590d27c3eee8cdf1c9bac0",
+    "fresh_support_reference": "cccd0a4af8808192158fbc4d7a98f0d3c1b3ee8ca211c020cfdc1c8e0518f2aa"
+  },
+  "aggregation_script_sha256": "f7cbe31f5cb44c5062fec892dd007c7a979c466aea590d27c3eee8cdf1c9bac0",
+  "support_reexecution": {
+    "command": [
+      "/opt/openmc-venv/bin/python",
+      "/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-astra-kernel-20260926/dev/stellarcsg/qualification/exact_offset_ring_contact_reference.py",
+      "--bank",
+      "/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-astra-kernel-20260926/dev/stellarcsg/qualification/recovery04_frozen_bank.csv",
+      "--output",
+      "dev/stellarcsg/reports/transport-proxy-20260926/support-on.json"
+    ],
+    "exit_code": 0,
+    "stdout": "{\"state\": \"EXACT_SUPPORT_CONTACTS_CERTIFIED\", \"contacts\": {\"a06\": \"3/36028797018963968\", \"a08\": \"72057594037927939/36028797018963968\"}}"
+  },
+  "geometry_identities": {
+    "torus": {
+      "fnv": "c5aec2165cdec18c",
+      "payload_sha256": "28129502fa67f3367360058bd479ae254f6e997c4f5ad71322135d15b6bf2dce"
+    },
+    "torus_rigid": {
+      "fnv": "65e0344a2cfa42af",
+      "payload_sha256": "f99cae228c055f9796f3dfe4838b5a28cf588a9db5a8a2386f01cb78bffd43b7"
+    },
+    "wistell_coil031": {
+      "fnv": "6d8dd682de8c0bfe",
+      "payload_sha256": "120c17633fb1dd2e7f9293eb1477b5259ce16f289b4166cfa6fbdb94d8dc419a"
+    }
+  },
+  "support_contacts": [
+    {
+      "id": "a06",
+      "exact_first_contact_cm": "3/36028797018963968",
+      "candidate_distance_exact_cm": "3/36028797018963968",
+      "distance_error_exact_cm": "0",
+      "state": "CERTIFIED"
+    },
+    {
+      "id": "a08",
+      "exact_first_contact_cm": "72057594037927939/36028797018963968",
+      "candidate_distance_exact_cm": "2",
+      "distance_error_exact_cm": "3/36028797018963968",
+      "state": "CERTIFIED"
+    }
+  ],
+  "claim_boundary": "Only these 160 unchanged frozen queries for the exact mathematical cardinal cubic of FNV-checked original binary64 controls and original isotropic radii, using the exported binary64 normalized ray components. Every hit has an independently proved first eligible boundary within 1e-11 cm; every no-hit excludes the complete eligible ray. No universal solver, legacy representation, transport acceptance, or matched performance claim."
+}

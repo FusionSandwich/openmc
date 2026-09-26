@@ -1176,6 +1176,16 @@ DistanceResult CertifiedSplineOffset::distance(const Vec3& origin,
     return unresolved();
   if (!std::isfinite(exit))
     return unresolved();
+  // A tight box face can coincide with the surface. Give endpoint sign
+  // certification room outside the original conservative box. Retreating
+  // enter never skips geometry: the omitted earlier prefix was already
+  // outside that box. Never retreat through the coincident exclusion window.
+  const Real endpoint_guard = std::max(64 * Real(options.absolute_t_tolerance),
+    64 * Real(std::numeric_limits<double>::epsilon()) *
+      std::max({Real(impl.characteristic), std::abs(Real(origin.x)),
+        std::abs(Real(origin.y)), std::abs(Real(origin.z))}));
+  enter = std::max(minimum_t, down(enter - endpoint_guard));
+  exit = up(exit + endpoint_guard);
   const I lipschitz = root(length2(impl.scaled({I(d.x), I(d.y), I(d.z)})));
   auto signed_bounds = [&](Real t, Real tolerance) {
     const auto nearest = impl.minimum(

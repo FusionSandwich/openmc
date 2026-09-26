@@ -1,0 +1,5 @@
+{"kind":"arithmetic","double_bits":53,"long_double_bits":64,"long_double_max_exponent":16384}
+{"kind":"member2_seam","representation":"exact_control_offset","found":true,"unresolved":false,"distance_cm":15.999999999998977,"elapsed_ns":22253497,"excluded_slabs":1,"minimum_calls":16,"minimum_nodes":514,"projection_visits":258,"bernstein_prefix_certified":true}
+{"kind":"controls","state":"PASS","normal_x":1,"before":1.4285855580854594e-08,"after":-1.428556317440181e-08}
+{"kind":"native_surface","surface_id":1902,"distance_cm":15.999999999998977,"state":"PASS","particle_transport":false}
+{"kind":"native_csg_region","entry_cm":15.999999999998977,"exit_after_coincident_entry_cm":27.999999999999407,"entry_signed_surface":-1,"exit_signed_surface":1,"state":"PASS","particle_transport":false}
