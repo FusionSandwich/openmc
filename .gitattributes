@@ -84,3 +84,4 @@ dev/stellarcsg/reports/local-cont-20260925/compiled-horner-enclosure-02.json tex
 dev/stellarcsg/reports/local-cont-20260925/compiled-horner-enclosure-03.json text eol=lf
 
 dev/stellarcsg/reports/transport-proxy-20260926/** -text
+dev/stellarcsg/reports/openmc-integration-20260926/** -text

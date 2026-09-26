@@ -1,0 +1,3 @@
+# Raw sampled source arrays and rollback executables remain local.
+*.npy
+*.bin

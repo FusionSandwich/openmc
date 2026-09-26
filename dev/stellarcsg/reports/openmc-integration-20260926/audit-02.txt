@@ -1,0 +1,433 @@
+/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-astra-kernel-20260926/openmc/mixin.py:72: IDWarning: Another MeshBase instance already exists with id=101.
+  warn(msg, IDWarning)
+/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-astra-kernel-20260926/openmc/mixin.py:72: IDWarning: Another MeshBase instance already exists with id=102.
+  warn(msg, IDWarning)
+/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-astra-kernel-20260926/openmc/mixin.py:72: IDWarning: Another MeshBase instance already exists with id=103.
+  warn(msg, IDWarning)
+/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-astra-kernel-20260926/openmc/mixin.py:72: IDWarning: Another MeshBase instance already exists with id=104.
+  warn(msg, IDWarning)
+/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-astra-kernel-20260926/openmc/mixin.py:72: IDWarning: Another MeshBase instance already exists with id=105.
+  warn(msg, IDWarning)
+/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-astra-kernel-20260926/openmc/mixin.py:72: IDWarning: Another Filter instance already exists with id=5.
+  warn(msg, IDWarning)
+/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-astra-kernel-20260926/openmc/mixin.py:72: IDWarning: Another Filter instance already exists with id=7.
+  warn(msg, IDWarning)
+/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-astra-kernel-20260926/openmc/mixin.py:72: IDWarning: Another Filter instance already exists with id=6.
+  warn(msg, IDWarning)
+/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-astra-kernel-20260926/openmc/mixin.py:72: IDWarning: Another Filter instance already exists with id=8.
+  warn(msg, IDWarning)
+/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-astra-kernel-20260926/openmc/mixin.py:72: IDWarning: Another Filter instance already exists with id=11.
+  warn(msg, IDWarning)
+/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-astra-kernel-20260926/openmc/mixin.py:72: IDWarning: Another Filter instance already exists with id=13.
+  warn(msg, IDWarning)
+/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-astra-kernel-20260926/openmc/mixin.py:72: IDWarning: Another Filter instance already exists with id=14.
+  warn(msg, IDWarning)
+/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-astra-kernel-20260926/openmc/mixin.py:72: IDWarning: Another Filter instance already exists with id=15.
+  warn(msg, IDWarning)
+/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-astra-kernel-20260926/openmc/mixin.py:72: IDWarning: Another Filter instance already exists with id=16.
+  warn(msg, IDWarning)
+/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-astra-kernel-20260926/openmc/mixin.py:72: IDWarning: Another Filter instance already exists with id=17.
+  warn(msg, IDWarning)
+/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-astra-kernel-20260926/openmc/mixin.py:72: IDWarning: Another Filter instance already exists with id=18.
+  warn(msg, IDWarning)
+/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-astra-kernel-20260926/openmc/mixin.py:72: IDWarning: Another Filter instance already exists with id=19.
+  warn(msg, IDWarning)
+/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-astra-kernel-20260926/openmc/mixin.py:72: IDWarning: Another Filter instance already exists with id=20.
+  warn(msg, IDWarning)
+/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-astra-kernel-20260926/openmc/mixin.py:72: IDWarning: Another Filter instance already exists with id=21.
+  warn(msg, IDWarning)
+/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-astra-kernel-20260926/openmc/mixin.py:72: IDWarning: Another Filter instance already exists with id=22.
+  warn(msg, IDWarning)
+/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-astra-kernel-20260926/openmc/mixin.py:72: IDWarning: Another Filter instance already exists with id=23.
+  warn(msg, IDWarning)
+/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-astra-kernel-20260926/openmc/mixin.py:72: IDWarning: Another Filter instance already exists with id=24.
+  warn(msg, IDWarning)
+/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-astra-kernel-20260926/openmc/mixin.py:72: IDWarning: Another Filter instance already exists with id=25.
+  warn(msg, IDWarning)
+/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-astra-kernel-20260926/openmc/mixin.py:72: IDWarning: Another Filter instance already exists with id=27.
+  warn(msg, IDWarning)
+/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-astra-kernel-20260926/openmc/mixin.py:72: IDWarning: Another Filter instance already exists with id=29.
+  warn(msg, IDWarning)
+/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-astra-kernel-20260926/openmc/mixin.py:72: IDWarning: Another Tally instance already exists with id=1.
+  warn(msg, IDWarning)
+/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-astra-kernel-20260926/openmc/mixin.py:72: IDWarning: Another Tally instance already exists with id=2.
+  warn(msg, IDWarning)
+/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-astra-kernel-20260926/openmc/mixin.py:72: IDWarning: Another Tally instance already exists with id=3.
+  warn(msg, IDWarning)
+/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-astra-kernel-20260926/openmc/mixin.py:72: IDWarning: Another Tally instance already exists with id=4.
+  warn(msg, IDWarning)
+/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-astra-kernel-20260926/openmc/mixin.py:72: IDWarning: Another Tally instance already exists with id=5.
+  warn(msg, IDWarning)
+/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-astra-kernel-20260926/openmc/mixin.py:72: IDWarning: Another Tally instance already exists with id=6.
+  warn(msg, IDWarning)
+/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-astra-kernel-20260926/openmc/mixin.py:72: IDWarning: Another Tally instance already exists with id=7.
+  warn(msg, IDWarning)
+/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-astra-kernel-20260926/openmc/mixin.py:72: IDWarning: Another Tally instance already exists with id=8.
+  warn(msg, IDWarning)
+/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-astra-kernel-20260926/openmc/mixin.py:72: IDWarning: Another Tally instance already exists with id=9.
+  warn(msg, IDWarning)
+/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-astra-kernel-20260926/openmc/mixin.py:72: IDWarning: Another Tally instance already exists with id=10.
+  warn(msg, IDWarning)
+/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-astra-kernel-20260926/openmc/mixin.py:72: IDWarning: Another Tally instance already exists with id=11.
+  warn(msg, IDWarning)
+/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-astra-kernel-20260926/openmc/mixin.py:72: IDWarning: Another Tally instance already exists with id=12.
+  warn(msg, IDWarning)
+/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-astra-kernel-20260926/openmc/mixin.py:72: IDWarning: Another Tally instance already exists with id=13.
+  warn(msg, IDWarning)
+/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-astra-kernel-20260926/openmc/mixin.py:72: IDWarning: Another Tally instance already exists with id=14.
+  warn(msg, IDWarning)
+/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-astra-kernel-20260926/openmc/mixin.py:72: IDWarning: Another Tally instance already exists with id=15.
+  warn(msg, IDWarning)
+/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-astra-kernel-20260926/openmc/mixin.py:72: IDWarning: Another Tally instance already exists with id=16.
+  warn(msg, IDWarning)
+/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-astra-kernel-20260926/openmc/mixin.py:72: IDWarning: Another Tally instance already exists with id=17.
+  warn(msg, IDWarning)
+/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-astra-kernel-20260926/openmc/mixin.py:72: IDWarning: Another Tally instance already exists with id=18.
+  warn(msg, IDWarning)
+/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-astra-kernel-20260926/openmc/mixin.py:72: IDWarning: Another Tally instance already exists with id=19.
+  warn(msg, IDWarning)
+/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-astra-kernel-20260926/openmc/mixin.py:72: IDWarning: Another MeshBase instance already exists with id=101.
+  warn(msg, IDWarning)
+/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-astra-kernel-20260926/openmc/mixin.py:72: IDWarning: Another MeshBase instance already exists with id=102.
+  warn(msg, IDWarning)
+/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-astra-kernel-20260926/openmc/mixin.py:72: IDWarning: Another MeshBase instance already exists with id=103.
+  warn(msg, IDWarning)
+/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-astra-kernel-20260926/openmc/mixin.py:72: IDWarning: Another MeshBase instance already exists with id=104.
+  warn(msg, IDWarning)
+/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-astra-kernel-20260926/openmc/mixin.py:72: IDWarning: Another MeshBase instance already exists with id=105.
+  warn(msg, IDWarning)
+/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-astra-kernel-20260926/openmc/mixin.py:72: IDWarning: Another Filter instance already exists with id=5.
+  warn(msg, IDWarning)
+/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-astra-kernel-20260926/openmc/mixin.py:72: IDWarning: Another Filter instance already exists with id=7.
+  warn(msg, IDWarning)
+/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-astra-kernel-20260926/openmc/mixin.py:72: IDWarning: Another Filter instance already exists with id=6.
+  warn(msg, IDWarning)
+/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-astra-kernel-20260926/openmc/mixin.py:72: IDWarning: Another Filter instance already exists with id=8.
+  warn(msg, IDWarning)
+/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-astra-kernel-20260926/openmc/mixin.py:72: IDWarning: Another Filter instance already exists with id=11.
+  warn(msg, IDWarning)
+/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-astra-kernel-20260926/openmc/mixin.py:72: IDWarning: Another Filter instance already exists with id=13.
+  warn(msg, IDWarning)
+/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-astra-kernel-20260926/openmc/mixin.py:72: IDWarning: Another Filter instance already exists with id=14.
+  warn(msg, IDWarning)
+/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-astra-kernel-20260926/openmc/mixin.py:72: IDWarning: Another Filter instance already exists with id=15.
+  warn(msg, IDWarning)
+/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-astra-kernel-20260926/openmc/mixin.py:72: IDWarning: Another Filter instance already exists with id=16.
+  warn(msg, IDWarning)
+/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-astra-kernel-20260926/openmc/mixin.py:72: IDWarning: Another Filter instance already exists with id=17.
+  warn(msg, IDWarning)
+/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-astra-kernel-20260926/openmc/mixin.py:72: IDWarning: Another Filter instance already exists with id=18.
+  warn(msg, IDWarning)
+/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-astra-kernel-20260926/openmc/mixin.py:72: IDWarning: Another Filter instance already exists with id=19.
+  warn(msg, IDWarning)
+/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-astra-kernel-20260926/openmc/mixin.py:72: IDWarning: Another Filter instance already exists with id=20.
+  warn(msg, IDWarning)
+/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-astra-kernel-20260926/openmc/mixin.py:72: IDWarning: Another Filter instance already exists with id=21.
+  warn(msg, IDWarning)
+/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-astra-kernel-20260926/openmc/mixin.py:72: IDWarning: Another Filter instance already exists with id=22.
+  warn(msg, IDWarning)
+/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-astra-kernel-20260926/openmc/mixin.py:72: IDWarning: Another Filter instance already exists with id=23.
+  warn(msg, IDWarning)
+/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-astra-kernel-20260926/openmc/mixin.py:72: IDWarning: Another Filter instance already exists with id=24.
+  warn(msg, IDWarning)
+/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-astra-kernel-20260926/openmc/mixin.py:72: IDWarning: Another Filter instance already exists with id=25.
+  warn(msg, IDWarning)
+/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-astra-kernel-20260926/openmc/mixin.py:72: IDWarning: Another Filter instance already exists with id=27.
+  warn(msg, IDWarning)
+/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-astra-kernel-20260926/openmc/mixin.py:72: IDWarning: Another Tally instance already exists with id=1.
+  warn(msg, IDWarning)
+/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-astra-kernel-20260926/openmc/mixin.py:72: IDWarning: Another Tally instance already exists with id=2.
+  warn(msg, IDWarning)
+/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-astra-kernel-20260926/openmc/mixin.py:72: IDWarning: Another Tally instance already exists with id=3.
+  warn(msg, IDWarning)
+/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-astra-kernel-20260926/openmc/mixin.py:72: IDWarning: Another Tally instance already exists with id=4.
+  warn(msg, IDWarning)
+/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-astra-kernel-20260926/openmc/mixin.py:72: IDWarning: Another Tally instance already exists with id=5.
+  warn(msg, IDWarning)
+/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-astra-kernel-20260926/openmc/mixin.py:72: IDWarning: Another Tally instance already exists with id=6.
+  warn(msg, IDWarning)
+/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-astra-kernel-20260926/openmc/mixin.py:72: IDWarning: Another Tally instance already exists with id=7.
+  warn(msg, IDWarning)
+/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-astra-kernel-20260926/openmc/mixin.py:72: IDWarning: Another Tally instance already exists with id=8.
+  warn(msg, IDWarning)
+/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-astra-kernel-20260926/openmc/mixin.py:72: IDWarning: Another Tally instance already exists with id=9.
+  warn(msg, IDWarning)
+/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-astra-kernel-20260926/openmc/mixin.py:72: IDWarning: Another Tally instance already exists with id=10.
+  warn(msg, IDWarning)
+/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-astra-kernel-20260926/openmc/mixin.py:72: IDWarning: Another Tally instance already exists with id=11.
+  warn(msg, IDWarning)
+/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-astra-kernel-20260926/openmc/mixin.py:72: IDWarning: Another Tally instance already exists with id=12.
+  warn(msg, IDWarning)
+/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-astra-kernel-20260926/openmc/mixin.py:72: IDWarning: Another Tally instance already exists with id=13.
+  warn(msg, IDWarning)
+/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-astra-kernel-20260926/openmc/mixin.py:72: IDWarning: Another Tally instance already exists with id=14.
+  warn(msg, IDWarning)
+/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-astra-kernel-20260926/openmc/mixin.py:72: IDWarning: Another Tally instance already exists with id=15.
+  warn(msg, IDWarning)
+/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-astra-kernel-20260926/openmc/mixin.py:72: IDWarning: Another Tally instance already exists with id=16.
+  warn(msg, IDWarning)
+/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-astra-kernel-20260926/openmc/mixin.py:72: IDWarning: Another Tally instance already exists with id=17.
+  warn(msg, IDWarning)
+/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-astra-kernel-20260926/openmc/mixin.py:72: IDWarning: Another Tally instance already exists with id=18.
+  warn(msg, IDWarning)
+/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-astra-kernel-20260926/openmc/mixin.py:72: IDWarning: Another MeshBase instance already exists with id=101.
+  warn(msg, IDWarning)
+/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-astra-kernel-20260926/openmc/mixin.py:72: IDWarning: Another MeshBase instance already exists with id=102.
+  warn(msg, IDWarning)
+/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-astra-kernel-20260926/openmc/mixin.py:72: IDWarning: Another MeshBase instance already exists with id=103.
+  warn(msg, IDWarning)
+/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-astra-kernel-20260926/openmc/mixin.py:72: IDWarning: Another MeshBase instance already exists with id=104.
+  warn(msg, IDWarning)
+/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-astra-kernel-20260926/openmc/mixin.py:72: IDWarning: Another MeshBase instance already exists with id=105.
+  warn(msg, IDWarning)
+/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-astra-kernel-20260926/openmc/mixin.py:72: IDWarning: Another Filter instance already exists with id=5.
+  warn(msg, IDWarning)
+/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-astra-kernel-20260926/openmc/mixin.py:72: IDWarning: Another Filter instance already exists with id=7.
+  warn(msg, IDWarning)
+/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-astra-kernel-20260926/openmc/mixin.py:72: IDWarning: Another Filter instance already exists with id=6.
+  warn(msg, IDWarning)
+/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-astra-kernel-20260926/openmc/mixin.py:72: IDWarning: Another Filter instance already exists with id=8.
+  warn(msg, IDWarning)
+/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-astra-kernel-20260926/openmc/mixin.py:72: IDWarning: Another Filter instance already exists with id=11.
+  warn(msg, IDWarning)
+/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-astra-kernel-20260926/openmc/mixin.py:72: IDWarning: Another Filter instance already exists with id=13.
+  warn(msg, IDWarning)
+/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-astra-kernel-20260926/openmc/mixin.py:72: IDWarning: Another Filter instance already exists with id=14.
+  warn(msg, IDWarning)
+/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-astra-kernel-20260926/openmc/mixin.py:72: IDWarning: Another Filter instance already exists with id=15.
+  warn(msg, IDWarning)
+/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-astra-kernel-20260926/openmc/mixin.py:72: IDWarning: Another Filter instance already exists with id=16.
+  warn(msg, IDWarning)
+/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-astra-kernel-20260926/openmc/mixin.py:72: IDWarning: Another Filter instance already exists with id=17.
+  warn(msg, IDWarning)
+/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-astra-kernel-20260926/openmc/mixin.py:72: IDWarning: Another Filter instance already exists with id=18.
+  warn(msg, IDWarning)
+/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-astra-kernel-20260926/openmc/mixin.py:72: IDWarning: Another Filter instance already exists with id=19.
+  warn(msg, IDWarning)
+/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-astra-kernel-20260926/openmc/mixin.py:72: IDWarning: Another Filter instance already exists with id=20.
+  warn(msg, IDWarning)
+/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-astra-kernel-20260926/openmc/mixin.py:72: IDWarning: Another Filter instance already exists with id=21.
+  warn(msg, IDWarning)
+/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-astra-kernel-20260926/openmc/mixin.py:72: IDWarning: Another Filter instance already exists with id=22.
+  warn(msg, IDWarning)
+/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-astra-kernel-20260926/openmc/mixin.py:72: IDWarning: Another Filter instance already exists with id=23.
+  warn(msg, IDWarning)
+/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-astra-kernel-20260926/openmc/mixin.py:72: IDWarning: Another Filter instance already exists with id=24.
+  warn(msg, IDWarning)
+/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-astra-kernel-20260926/openmc/mixin.py:72: IDWarning: Another Filter instance already exists with id=25.
+  warn(msg, IDWarning)
+/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-astra-kernel-20260926/openmc/mixin.py:72: IDWarning: Another Filter instance already exists with id=27.
+  warn(msg, IDWarning)
+/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-astra-kernel-20260926/openmc/mixin.py:72: IDWarning: Another Tally instance already exists with id=1.
+  warn(msg, IDWarning)
+/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-astra-kernel-20260926/openmc/mixin.py:72: IDWarning: Another Tally instance already exists with id=2.
+  warn(msg, IDWarning)
+/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-astra-kernel-20260926/openmc/mixin.py:72: IDWarning: Another Tally instance already exists with id=3.
+  warn(msg, IDWarning)
+/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-astra-kernel-20260926/openmc/mixin.py:72: IDWarning: Another Tally instance already exists with id=4.
+  warn(msg, IDWarning)
+/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-astra-kernel-20260926/openmc/mixin.py:72: IDWarning: Another Tally instance already exists with id=5.
+  warn(msg, IDWarning)
+/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-astra-kernel-20260926/openmc/mixin.py:72: IDWarning: Another Tally instance already exists with id=6.
+  warn(msg, IDWarning)
+/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-astra-kernel-20260926/openmc/mixin.py:72: IDWarning: Another Tally instance already exists with id=7.
+  warn(msg, IDWarning)
+/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-astra-kernel-20260926/openmc/mixin.py:72: IDWarning: Another Tally instance already exists with id=8.
+  warn(msg, IDWarning)
+/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-astra-kernel-20260926/openmc/mixin.py:72: IDWarning: Another Tally instance already exists with id=9.
+  warn(msg, IDWarning)
+/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-astra-kernel-20260926/openmc/mixin.py:72: IDWarning: Another Tally instance already exists with id=10.
+  warn(msg, IDWarning)
+/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-astra-kernel-20260926/openmc/mixin.py:72: IDWarning: Another Tally instance already exists with id=11.
+  warn(msg, IDWarning)
+/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-astra-kernel-20260926/openmc/mixin.py:72: IDWarning: Another Tally instance already exists with id=12.
+  warn(msg, IDWarning)
+/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-astra-kernel-20260926/openmc/mixin.py:72: IDWarning: Another Tally instance already exists with id=13.
+  warn(msg, IDWarning)
+/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-astra-kernel-20260926/openmc/mixin.py:72: IDWarning: Another Tally instance already exists with id=14.
+  warn(msg, IDWarning)
+/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-astra-kernel-20260926/openmc/mixin.py:72: IDWarning: Another Tally instance already exists with id=15.
+  warn(msg, IDWarning)
+/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-astra-kernel-20260926/openmc/mixin.py:72: IDWarning: Another Tally instance already exists with id=16.
+  warn(msg, IDWarning)
+/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-astra-kernel-20260926/openmc/mixin.py:72: IDWarning: Another Tally instance already exists with id=17.
+  warn(msg, IDWarning)
+/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-astra-kernel-20260926/openmc/mixin.py:72: IDWarning: Another Tally instance already exists with id=18.
+  warn(msg, IDWarning)
+/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-astra-kernel-20260926/openmc/mixin.py:72: IDWarning: Another MeshBase instance already exists with id=101.
+  warn(msg, IDWarning)
+/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-astra-kernel-20260926/openmc/mixin.py:72: IDWarning: Another MeshBase instance already exists with id=102.
+  warn(msg, IDWarning)
+/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-astra-kernel-20260926/openmc/mixin.py:72: IDWarning: Another MeshBase instance already exists with id=103.
+  warn(msg, IDWarning)
+/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-astra-kernel-20260926/openmc/mixin.py:72: IDWarning: Another MeshBase instance already exists with id=104.
+  warn(msg, IDWarning)
+/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-astra-kernel-20260926/openmc/mixin.py:72: IDWarning: Another MeshBase instance already exists with id=105.
+  warn(msg, IDWarning)
+/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-astra-kernel-20260926/openmc/mixin.py:72: IDWarning: Another Filter instance already exists with id=5.
+  warn(msg, IDWarning)
+/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-astra-kernel-20260926/openmc/mixin.py:72: IDWarning: Another Filter instance already exists with id=7.
+  warn(msg, IDWarning)
+/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-astra-kernel-20260926/openmc/mixin.py:72: IDWarning: Another Filter instance already exists with id=6.
+  warn(msg, IDWarning)
+/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-astra-kernel-20260926/openmc/mixin.py:72: IDWarning: Another Filter instance already exists with id=8.
+  warn(msg, IDWarning)
+/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-astra-kernel-20260926/openmc/mixin.py:72: IDWarning: Another Filter instance already exists with id=11.
+  warn(msg, IDWarning)
+/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-astra-kernel-20260926/openmc/mixin.py:72: IDWarning: Another Filter instance already exists with id=13.
+  warn(msg, IDWarning)
+/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-astra-kernel-20260926/openmc/mixin.py:72: IDWarning: Another Filter instance already exists with id=14.
+  warn(msg, IDWarning)
+/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-astra-kernel-20260926/openmc/mixin.py:72: IDWarning: Another Filter instance already exists with id=15.
+  warn(msg, IDWarning)
+/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-astra-kernel-20260926/openmc/mixin.py:72: IDWarning: Another Filter instance already exists with id=16.
+  warn(msg, IDWarning)
+/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-astra-kernel-20260926/openmc/mixin.py:72: IDWarning: Another Filter instance already exists with id=17.
+  warn(msg, IDWarning)
+/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-astra-kernel-20260926/openmc/mixin.py:72: IDWarning: Another Filter instance already exists with id=18.
+  warn(msg, IDWarning)
+/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-astra-kernel-20260926/openmc/mixin.py:72: IDWarning: Another Filter instance already exists with id=19.
+  warn(msg, IDWarning)
+/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-astra-kernel-20260926/openmc/mixin.py:72: IDWarning: Another Filter instance already exists with id=20.
+  warn(msg, IDWarning)
+/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-astra-kernel-20260926/openmc/mixin.py:72: IDWarning: Another Filter instance already exists with id=21.
+  warn(msg, IDWarning)
+/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-astra-kernel-20260926/openmc/mixin.py:72: IDWarning: Another Filter instance already exists with id=22.
+  warn(msg, IDWarning)
+/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-astra-kernel-20260926/openmc/mixin.py:72: IDWarning: Another Filter instance already exists with id=23.
+  warn(msg, IDWarning)
+/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-astra-kernel-20260926/openmc/mixin.py:72: IDWarning: Another Filter instance already exists with id=24.
+  warn(msg, IDWarning)
+/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-astra-kernel-20260926/openmc/mixin.py:72: IDWarning: Another Filter instance already exists with id=25.
+  warn(msg, IDWarning)
+/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-astra-kernel-20260926/openmc/mixin.py:72: IDWarning: Another Filter instance already exists with id=27.
+  warn(msg, IDWarning)
+/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-astra-kernel-20260926/openmc/mixin.py:72: IDWarning: Another Tally instance already exists with id=1.
+  warn(msg, IDWarning)
+/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-astra-kernel-20260926/openmc/mixin.py:72: IDWarning: Another Tally instance already exists with id=2.
+  warn(msg, IDWarning)
+/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-astra-kernel-20260926/openmc/mixin.py:72: IDWarning: Another Tally instance already exists with id=3.
+  warn(msg, IDWarning)
+/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-astra-kernel-20260926/openmc/mixin.py:72: IDWarning: Another Tally instance already exists with id=4.
+  warn(msg, IDWarning)
+/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-astra-kernel-20260926/openmc/mixin.py:72: IDWarning: Another Tally instance already exists with id=5.
+  warn(msg, IDWarning)
+/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-astra-kernel-20260926/openmc/mixin.py:72: IDWarning: Another Tally instance already exists with id=6.
+  warn(msg, IDWarning)
+/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-astra-kernel-20260926/openmc/mixin.py:72: IDWarning: Another Tally instance already exists with id=7.
+  warn(msg, IDWarning)
+/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-astra-kernel-20260926/openmc/mixin.py:72: IDWarning: Another Tally instance already exists with id=8.
+  warn(msg, IDWarning)
+/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-astra-kernel-20260926/openmc/mixin.py:72: IDWarning: Another Tally instance already exists with id=9.
+  warn(msg, IDWarning)
+/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-astra-kernel-20260926/openmc/mixin.py:72: IDWarning: Another Tally instance already exists with id=10.
+  warn(msg, IDWarning)
+/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-astra-kernel-20260926/openmc/mixin.py:72: IDWarning: Another Tally instance already exists with id=11.
+  warn(msg, IDWarning)
+/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-astra-kernel-20260926/openmc/mixin.py:72: IDWarning: Another Tally instance already exists with id=12.
+  warn(msg, IDWarning)
+/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-astra-kernel-20260926/openmc/mixin.py:72: IDWarning: Another Tally instance already exists with id=13.
+  warn(msg, IDWarning)
+/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-astra-kernel-20260926/openmc/mixin.py:72: IDWarning: Another Tally instance already exists with id=14.
+  warn(msg, IDWarning)
+/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-astra-kernel-20260926/openmc/mixin.py:72: IDWarning: Another Tally instance already exists with id=15.
+  warn(msg, IDWarning)
+/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-astra-kernel-20260926/openmc/mixin.py:72: IDWarning: Another Tally instance already exists with id=16.
+  warn(msg, IDWarning)
+/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-astra-kernel-20260926/openmc/mixin.py:72: IDWarning: Another Tally instance already exists with id=17.
+  warn(msg, IDWarning)
+/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-astra-kernel-20260926/openmc/mixin.py:72: IDWarning: Another Tally instance already exists with id=18.
+  warn(msg, IDWarning)
+/opt/openmc-venv/lib/python3.13/site-packages/uncertainties/core.py:1024: UserWarning: Using UFloat objects with std_dev==0 may give unexpected results.
+  warn("Using UFloat objects with std_dev==0 may give unexpected results.")
+/opt/openmc-venv/lib/python3.13/site-packages/uncertainties/core.py:1024: UserWarning: Using UFloat objects with std_dev==0 may give unexpected results.
+  warn("Using UFloat objects with std_dev==0 may give unexpected results.")
+/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-astra-kernel-20260926/openmc/mixin.py:72: IDWarning: Another MeshBase instance already exists with id=101.
+  warn(msg, IDWarning)
+/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-astra-kernel-20260926/openmc/mixin.py:72: IDWarning: Another MeshBase instance already exists with id=102.
+  warn(msg, IDWarning)
+/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-astra-kernel-20260926/openmc/mixin.py:72: IDWarning: Another MeshBase instance already exists with id=103.
+  warn(msg, IDWarning)
+/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-astra-kernel-20260926/openmc/mixin.py:72: IDWarning: Another MeshBase instance already exists with id=104.
+  warn(msg, IDWarning)
+/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-astra-kernel-20260926/openmc/mixin.py:72: IDWarning: Another MeshBase instance already exists with id=105.
+  warn(msg, IDWarning)
+/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-astra-kernel-20260926/openmc/mixin.py:72: IDWarning: Another Filter instance already exists with id=5.
+  warn(msg, IDWarning)
+/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-astra-kernel-20260926/openmc/mixin.py:72: IDWarning: Another Filter instance already exists with id=7.
+  warn(msg, IDWarning)
+/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-astra-kernel-20260926/openmc/mixin.py:72: IDWarning: Another Filter instance already exists with id=6.
+  warn(msg, IDWarning)
+/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-astra-kernel-20260926/openmc/mixin.py:72: IDWarning: Another Filter instance already exists with id=8.
+  warn(msg, IDWarning)
+/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-astra-kernel-20260926/openmc/mixin.py:72: IDWarning: Another Filter instance already exists with id=11.
+  warn(msg, IDWarning)
+/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-astra-kernel-20260926/openmc/mixin.py:72: IDWarning: Another Filter instance already exists with id=13.
+  warn(msg, IDWarning)
+/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-astra-kernel-20260926/openmc/mixin.py:72: IDWarning: Another Filter instance already exists with id=14.
+  warn(msg, IDWarning)
+/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-astra-kernel-20260926/openmc/mixin.py:72: IDWarning: Another Filter instance already exists with id=15.
+  warn(msg, IDWarning)
+/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-astra-kernel-20260926/openmc/mixin.py:72: IDWarning: Another Filter instance already exists with id=16.
+  warn(msg, IDWarning)
+/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-astra-kernel-20260926/openmc/mixin.py:72: IDWarning: Another Filter instance already exists with id=17.
+  warn(msg, IDWarning)
+/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-astra-kernel-20260926/openmc/mixin.py:72: IDWarning: Another Filter instance already exists with id=18.
+  warn(msg, IDWarning)
+/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-astra-kernel-20260926/openmc/mixin.py:72: IDWarning: Another Filter instance already exists with id=19.
+  warn(msg, IDWarning)
+/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-astra-kernel-20260926/openmc/mixin.py:72: IDWarning: Another Filter instance already exists with id=20.
+  warn(msg, IDWarning)
+/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-astra-kernel-20260926/openmc/mixin.py:72: IDWarning: Another Filter instance already exists with id=21.
+  warn(msg, IDWarning)
+/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-astra-kernel-20260926/openmc/mixin.py:72: IDWarning: Another Filter instance already exists with id=22.
+  warn(msg, IDWarning)
+/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-astra-kernel-20260926/openmc/mixin.py:72: IDWarning: Another Filter instance already exists with id=23.
+  warn(msg, IDWarning)
+/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-astra-kernel-20260926/openmc/mixin.py:72: IDWarning: Another Filter instance already exists with id=24.
+  warn(msg, IDWarning)
+/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-astra-kernel-20260926/openmc/mixin.py:72: IDWarning: Another Filter instance already exists with id=25.
+  warn(msg, IDWarning)
+/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-astra-kernel-20260926/openmc/mixin.py:72: IDWarning: Another Filter instance already exists with id=27.
+  warn(msg, IDWarning)
+/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-astra-kernel-20260926/openmc/mixin.py:72: IDWarning: Another Tally instance already exists with id=1.
+  warn(msg, IDWarning)
+/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-astra-kernel-20260926/openmc/mixin.py:72: IDWarning: Another Tally instance already exists with id=2.
+  warn(msg, IDWarning)
+/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-astra-kernel-20260926/openmc/mixin.py:72: IDWarning: Another Tally instance already exists with id=3.
+  warn(msg, IDWarning)
+/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-astra-kernel-20260926/openmc/mixin.py:72: IDWarning: Another Tally instance already exists with id=4.
+  warn(msg, IDWarning)
+/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-astra-kernel-20260926/openmc/mixin.py:72: IDWarning: Another Tally instance already exists with id=5.
+  warn(msg, IDWarning)
+/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-astra-kernel-20260926/openmc/mixin.py:72: IDWarning: Another Tally instance already exists with id=6.
+  warn(msg, IDWarning)
+/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-astra-kernel-20260926/openmc/mixin.py:72: IDWarning: Another Tally instance already exists with id=7.
+  warn(msg, IDWarning)
+/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-astra-kernel-20260926/openmc/mixin.py:72: IDWarning: Another Tally instance already exists with id=8.
+  warn(msg, IDWarning)
+/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-astra-kernel-20260926/openmc/mixin.py:72: IDWarning: Another Tally instance already exists with id=9.
+  warn(msg, IDWarning)
+/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-astra-kernel-20260926/openmc/mixin.py:72: IDWarning: Another Tally instance already exists with id=10.
+  warn(msg, IDWarning)
+/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-astra-kernel-20260926/openmc/mixin.py:72: IDWarning: Another Tally instance already exists with id=11.
+  warn(msg, IDWarning)
+/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-astra-kernel-20260926/openmc/mixin.py:72: IDWarning: Another Tally instance already exists with id=12.
+  warn(msg, IDWarning)
+/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-astra-kernel-20260926/openmc/mixin.py:72: IDWarning: Another Tally instance already exists with id=13.
+  warn(msg, IDWarning)
+/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-astra-kernel-20260926/openmc/mixin.py:72: IDWarning: Another Tally instance already exists with id=14.
+  warn(msg, IDWarning)
+/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-astra-kernel-20260926/openmc/mixin.py:72: IDWarning: Another Tally instance already exists with id=15.
+  warn(msg, IDWarning)
+/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-astra-kernel-20260926/openmc/mixin.py:72: IDWarning: Another Tally instance already exists with id=16.
+  warn(msg, IDWarning)
+/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-astra-kernel-20260926/openmc/mixin.py:72: IDWarning: Another Tally instance already exists with id=17.
+  warn(msg, IDWarning)
+/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-astra-kernel-20260926/openmc/mixin.py:72: IDWarning: Another Tally instance already exists with id=18.
+  warn(msg, IDWarning)
+/opt/openmc-venv/lib/python3.13/site-packages/uncertainties/core.py:1024: UserWarning: Using UFloat objects with std_dev==0 may give unexpected results.
+  warn("Using UFloat objects with std_dev==0 may give unexpected results.")
+/opt/openmc-venv/lib/python3.13/site-packages/uncertainties/core.py:1024: UserWarning: Using UFloat objects with std_dev==0 may give unexpected results.
+  warn("Using UFloat objects with std_dev==0 may give unexpected results.")
+{"state": "SPATIAL_TALLY_REGRESSION_DETECTED", "runs": 6, "tally_comparisons": 55}

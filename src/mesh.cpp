@@ -2159,6 +2159,18 @@ StructuredMesh::MeshIndex SphericalMesh::get_indices(
 
   MeshIndex idx = StructuredMesh::get_indices(mapped_r, in_mesh);
 
+  // acos(z/r) can round to pi/2 on either side of the equator. Preserve
+  // the hemisphere when this exact grid boundary is present.
+  if (mapped_r[1] == PI / 2 && r.z != 0.0) {
+    auto equator = std::lower_bound(grid_[1].begin(), grid_[1].end(), PI / 2);
+    if (equator != grid_[1].end() && *equator == PI / 2) {
+      idx[1] = static_cast<int>(equator - grid_[1].begin()) + (r.z < 0.0);
+      in_mesh = true;
+      for (int i = 0; i < n_dimension_; ++i)
+        in_mesh = in_mesh && idx[i] >= 1 && idx[i] <= shape_[i];
+    }
+  }
+
   idx[1] = sanitize_theta(idx[1]);
   idx[2] = sanitize_phi(idx[2]);
 
@@ -2232,6 +2244,16 @@ double SphericalMesh::find_theta_crossing(
     return INFTY;
 
   shell = sanitize_theta(shell);
+
+  // The equator is a plane. Squaring its cone equation gives a repeated
+  // root whose discriminant and residual sign are unstable under roundoff.
+  // Keep nearby (non-equatorial) cone boundaries on the general path.
+  if (grid_[1][shell] == PI / 2) {
+    if (u.z == 0.0)
+      return INFTY;
+    const double s = -r.z / u.z;
+    return s > l ? s : INFTY;
+  }
 
   // solving z(s) = cos/theta) * r(s) with r(s) = r+s*u
   // yields

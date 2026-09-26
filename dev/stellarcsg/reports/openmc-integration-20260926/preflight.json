@@ -1,0 +1,60 @@
+{
+  "time": "2026-09-26T18:12:39.5457773-04:00",
+  "ramKiB": 33457440,
+  "freeRamKiB": 4390044,
+  "drives": [
+    {
+      "Name": "C",
+      "Free": 105854844928,
+      "Used": 893110923264
+    },
+    {
+      "Name": "D",
+      "Free": 495976181760,
+      "Used": 1504421609472
+    }
+  ],
+  "processes": [
+    {
+      "ProcessName": "ChatGPT",
+      "Id": 14584,
+      "WorkingSet64": 1872764928
+    },
+    {
+      "ProcessName": "Memory Compression",
+      "Id": 3460,
+      "WorkingSet64": 1845428224
+    },
+    {
+      "ProcessName": "vmmemWSL",
+      "Id": 18788,
+      "WorkingSet64": 1601843200
+    },
+    {
+      "ProcessName": "codex",
+      "Id": 18736,
+      "WorkingSet64": 1446936576
+    },
+    {
+      "ProcessName": "OneDrive",
+      "Id": 23212,
+      "WorkingSet64": 733544448
+    },
+    {
+      "ProcessName": "ChatGPT",
+      "Id": 14592,
+      "WorkingSet64": 630341632
+    },
+    {
+      "ProcessName": "chrome",
+      "Id": 24572,
+      "WorkingSet64": 627232768
+    },
+    {
+      "ProcessName": "MsMpEng",
+      "Id": 5288,
+      "WorkingSet64": 618860544
+    }
+  ],
+  "plan": "No build, software acquisition, installation or environment modification. Reuse build04 native library and existing Python/data. One bounded integration child at a time, 2 GiB virtual memory, 180 seconds, finite six-run plan."
+}

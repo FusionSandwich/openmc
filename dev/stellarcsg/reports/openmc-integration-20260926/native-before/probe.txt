@@ -1,0 +1,1 @@
+FAILED after 3 checks: equator crossing missed or inaccurate

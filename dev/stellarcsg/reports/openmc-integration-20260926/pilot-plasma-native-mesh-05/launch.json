@@ -1,0 +1,40 @@
+{
+  "family": "plasma",
+  "variant": "native",
+  "source": "mesh",
+  "library": "7fa3dbf5bef055aa2227842800e54a2daa84537a1ba6730e97f4fb6cd25d317e",
+  "identities": {
+    "/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-astra-kernel-20260926/openmc/lib/libopenmc.so": "7fa3dbf5bef055aa2227842800e54a2daa84537a1ba6730e97f4fb6cd25d317e",
+    "/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-astra-kernel-20260926/dev/stellarcsg/qualification/check_openmc_integration.py": "f612e4c354849797613531dccd4f2b6b2e0c12cd1b1b4af68357a1c272f718ab",
+    "/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-astra-kernel-20260926/dev/stellarcsg/python/stellarcsg/openmc_tally.py": "8dbd323d6ce96262e25bdfb9283530dc0968ce87e2db9220b91e57185cde1c9f",
+    "/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-astra-kernel-20260926/dev/stellarcsg/reports/transport-proxy-20260926/fixtures/manifest.json": "846af34d0a163ea50e44def0ea84c75295eedb49fa0437b2f4e4ab87fec7b7ec",
+    "/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-astra-kernel-20260926/dev/stellarcsg/reports/transport-proxy-20260926/fixtures/plasma.h5": "72244e63328ddfed9bc372946ac103ef96a794761172e304b1eba69385faa728",
+    "/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-astra-kernel-20260926/dev/stellarcsg/reports/transport-proxy-20260926/fixtures/coil.h5": "a25e4f56da79b6b71e262d0011b15b401fa884d0f2e2cc2b9e3c7cfca351651a",
+    "/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-astra-kernel-20260926/dev/stellarcsg/reports/transport-proxy-20260926/fixtures/source.h5": "5ae218fa17c8d57afd55792e8dd68d4a458a46a212e471de1e1ec0db881d1c39",
+    "/mnt/c/Users/joshu/Documents/2026_DPA/openc-hts-dpa/.data/openmc/cross_sections.xml": "218236803b2c4a21b038992af93dacfdfe5c0c0401cbbc57f3ff3a947c63abc7",
+    "/mnt/c/Users/joshu/Documents/2026_DPA/openc-hts-dpa/.data/openmc/FENDL-3.1d_Fe56.h5": "18abc04dc9fd602948bafcf487323a1148681c75ee74e27863e843211fd6f1f8"
+  },
+  "xml_hashes": {
+    "geometry.xml": "1e34d73bded2ba3066bf8819dcad4aa07b8cbf541132df7a44e07fb4aa43637c",
+    "materials.xml": "af2a5fa8526432a9a088f29d3c9d8dbc6c34835fc988cc7511e7e0ae8ffc5669",
+    "settings.xml": "e58c733f46ceff874c8e039be43f4abc72910aaa71c0f4bd71e203db5eb4440d",
+    "tallies.xml": "d33c7a34e3c919ec5d0f5de639c8e5fa8ce5fb74408ad323459b343f2288b087"
+  },
+  "particles": 200,
+  "batches": 5,
+  "seed": 917431,
+  "local_bounds_cm": [
+    [
+      115.0,
+      -10.0,
+      -10.0
+    ],
+    [
+      122.0,
+      10.0,
+      10.0
+    ]
+  ],
+  "memory_cap_bytes": 2147483648,
+  "timeout_s": 180
+}

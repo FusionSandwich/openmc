@@ -1,0 +1,28 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<settings>
+  <run_mode>fixed source</run_mode>
+  <particles>40</particles>
+  <batches>5</batches>
+  <max_lost_particles>1</max_lost_particles>
+  <rel_max_lost_particles>1e-12</rel_max_lost_particles>
+  <source type="file" strength="1.0" file="/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-astra-kernel-20260926/dev/stellarcsg/reports/transport-proxy-20260926/fixtures/source.h5"/>
+  <output>
+    <summary>true</summary>
+    <tallies>false</tallies>
+  </output>
+  <state_point>
+    <batches>5</batches>
+  </state_point>
+  <seed>917431</seed>
+  <verbosity>5</verbosity>
+  <temperature_default>300.0</temperature_default>
+  <temperature_method>nearest</temperature_method>
+  <temperature_tolerance>1.0</temperature_tolerance>
+  <volume_calc>
+    <domain_type>cell</domain_type>
+    <domain_ids>4</domain_ids>
+    <samples>4096</samples>
+    <lower_left>98.0 -3.0 -3.0</lower_left>
+    <upper_right>103.0 3.0 3.0</upper_right>
+  </volume_calc>
+</settings>

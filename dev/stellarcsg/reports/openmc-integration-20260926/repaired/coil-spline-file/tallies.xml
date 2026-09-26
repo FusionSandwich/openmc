@@ -1,0 +1,179 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<tallies>
+  <mesh id="101">
+    <dimension>4 4 4</dimension>
+    <lower_left>-150.0 -150.0 -150.0</lower_left>
+    <upper_right>150.0 150.0 150.0</upper_right>
+  </mesh>
+  <mesh id="102">
+    <dimension>3 2 2</dimension>
+    <lower_left>98.0 -3.0 -3.0</lower_left>
+    <upper_right>103.0 3.0 3.0</upper_right>
+  </mesh>
+  <mesh id="103" type="rectilinear">
+    <x_grid>-150.0 0.0 150.0</x_grid>
+    <y_grid>-150.0 0.0 150.0</y_grid>
+    <z_grid>-150.0 0.0 150.0</z_grid>
+  </mesh>
+  <mesh id="104" type="cylindrical">
+    <r_grid>0.0 80.0 100.0 125.0 151.0</r_grid>
+    <phi_grid>0.0 3.141592653589793 6.283185307179586</phi_grid>
+    <z_grid>-151.0 0.0 151.0</z_grid>
+    <origin>0.0 0.0 0.0</origin>
+  </mesh>
+  <mesh id="105" type="spherical">
+    <r_grid>0.0 80.0 125.0 160.0</r_grid>
+    <theta_grid>0.0 1.5707963267948966 3.141592653589793</theta_grid>
+    <phi_grid>0.0 3.141592653589793 6.283185307179586</phi_grid>
+    <origin>0.0 0.0 0.0</origin>
+  </mesh>
+  <filter id="5" type="material">
+    <bins>1</bins>
+  </filter>
+  <filter id="7" type="cell">
+    <bins>2 4 5</bins>
+  </filter>
+  <filter id="6" type="energy">
+    <bins>0.0 1000.0 100000.0 1000000.0 5000000.0 10000000.0 14200000.0</bins>
+  </filter>
+  <filter id="8" type="mesh">
+    <bins>101</bins>
+  </filter>
+  <filter id="11" type="mesh">
+    <bins>102</bins>
+  </filter>
+  <filter id="13" type="cell">
+    <bins>4</bins>
+  </filter>
+  <filter id="14" type="mesh">
+    <bins>103</bins>
+  </filter>
+  <filter id="15" type="mesh">
+    <bins>104</bins>
+  </filter>
+  <filter id="16" type="mesh">
+    <bins>105</bins>
+  </filter>
+  <filter id="17" type="cellinstance">
+    <bins>2 0 4 0 5 0</bins>
+  </filter>
+  <filter id="18" type="universe">
+    <bins>1</bins>
+  </filter>
+  <filter id="19" type="surface">
+    <bins>10</bins>
+  </filter>
+  <filter id="20" type="meshsurface">
+    <bins>101</bins>
+  </filter>
+  <filter id="21" type="cellborn">
+    <bins>2 3 4 5</bins>
+  </filter>
+  <filter id="22" type="energyout">
+    <bins>0.0 1000.0 100000.0 1000000.0 5000000.0 10000000.0 14200000.0</bins>
+  </filter>
+  <filter id="23" type="mu">
+    <bins>-1.0 0.0 1.0</bins>
+  </filter>
+  <filter id="24" type="particle">
+    <bins>neutron</bins>
+  </filter>
+  <filter id="25" type="energyfunction">
+    <energy>0.0 20000000.0</energy>
+    <y>2.0 2.0</y>
+    <interpolation>linear-linear</interpolation>
+  </filter>
+  <filter id="27" type="time">
+    <bins>0.0 1e-07 1.0</bins>
+  </filter>
+  <tally id="1" name="material reference">
+    <filters>5</filters>
+    <scores>flux total absorption damage-energy</scores>
+    <estimator>tracklength</estimator>
+  </tally>
+  <tally id="2" name="subcell spectra">
+    <filters>7 6</filters>
+    <scores>flux total absorption damage-energy</scores>
+    <estimator>tracklength</estimator>
+  </tally>
+  <tally id="3" name="global Cartesian">
+    <filters>8 6 7</filters>
+    <scores>flux total absorption damage-energy</scores>
+    <estimator>tracklength</estimator>
+  </tally>
+  <tally id="4" name="local Cartesian">
+    <filters>11 6 13</filters>
+    <scores>flux total absorption damage-energy</scores>
+    <estimator>tracklength</estimator>
+  </tally>
+  <tally id="5" name="RectilinearMesh">
+    <filters>14 5 6</filters>
+    <scores>flux total absorption damage-energy</scores>
+    <estimator>tracklength</estimator>
+  </tally>
+  <tally id="6" name="CylindricalMesh">
+    <filters>15 5 6</filters>
+    <scores>flux total absorption damage-energy</scores>
+    <estimator>tracklength</estimator>
+  </tally>
+  <tally id="7" name="SphericalMesh">
+    <filters>16 5 6</filters>
+    <scores>flux total absorption damage-energy</scores>
+    <estimator>tracklength</estimator>
+  </tally>
+  <tally id="8" name="cell instances">
+    <filters>17 6</filters>
+    <scores>flux total absorption damage-energy</scores>
+    <estimator>tracklength</estimator>
+  </tally>
+  <tally id="9" name="universe and material">
+    <filters>18 5</filters>
+    <scores>flux total absorption damage-energy</scores>
+    <estimator>tracklength</estimator>
+  </tally>
+  <tally id="10" name="spline surface current">
+    <filters>19 6</filters>
+    <scores>current</scores>
+    <estimator>analog</estimator>
+  </tally>
+  <tally id="11" name="Cartesian mesh surface current">
+    <filters>20</filters>
+    <scores>current</scores>
+    <estimator>analog</estimator>
+  </tally>
+  <tally id="12" name="birth cell">
+    <filters>21 5</filters>
+    <scores>flux total absorption damage-energy</scores>
+    <estimator>tracklength</estimator>
+  </tally>
+  <tally id="13" name="collision scores">
+    <filters>5 6</filters>
+    <scores>flux total absorption damage-energy</scores>
+    <estimator>collision</estimator>
+  </tally>
+  <tally id="14" name="analog scores">
+    <filters>5 6</filters>
+    <scores>total absorption scatter</scores>
+    <estimator>analog</estimator>
+  </tally>
+  <tally id="15" name="outgoing energy and scattering cosine">
+    <filters>5 6 22 23 24</filters>
+    <scores>scatter</scores>
+    <estimator>analog</estimator>
+  </tally>
+  <tally id="16" name="constant response weight">
+    <filters>5 25</filters>
+    <scores>flux total absorption damage-energy</scores>
+    <estimator>tracklength</estimator>
+  </tally>
+  <tally id="17" name="local cell reference">
+    <filters>13 6</filters>
+    <scores>flux total absorption damage-energy</scores>
+    <estimator>tracklength</estimator>
+  </tally>
+  <tally id="18" name="time and particle">
+    <filters>5 27 24</filters>
+    <scores>flux total absorption damage-energy</scores>
+    <estimator>tracklength</estimator>
+  </tally>
+</tallies>

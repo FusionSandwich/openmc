@@ -1,0 +1,177 @@
+{
+  "memory": {
+    "command": [
+      "free",
+      "-b"
+    ],
+    "exit_code": 0,
+    "output": [
+      "               total        used        free      shared  buff/cache   available",
+      "Mem:     25200037888   947539968 24023556096     4378624   509665280 24252497920",
+      "Swap:    34359738368           0 34359738368"
+    ],
+    "stderr": ""
+  },
+  "disks": {
+    "command": [
+      "df",
+      "-B1",
+      "/",
+      "/mnt/c",
+      "/mnt/d"
+    ],
+    "exit_code": 0,
+    "output": [
+      "Filesystem         1B-blocks          Used     Available Use% Mounted on",
+      "/dev/sde       1081101176832    4724944896 1021383876608   1% /",
+      "C:\\             998965768192  896105705472  102860062720  90% /mnt/c",
+      "D:\\            2000397791232 1504883937280  495513853952  76% /mnt/d"
+    ],
+    "stderr": ""
+  },
+  "processes": {
+    "command": [
+      "ps",
+      "-eo",
+      "pid,comm,rss",
+      "--sort=-rss"
+    ],
+    "exit_code": 0,
+    "output": [
+      "    PID COMMAND           RSS",
+      "    264 python          17560",
+      "      1 systemd         14232",
+      "     43 systemd-journal 13760",
+      "    275 systemd         12652",
+      "     60 systemd-udevd   10060",
+      "    235 systemd-logind   9168",
+      "    313 bash             5872",
+      "    259 (udev-worker)    5576",
+      "    261 (udev-worker)    5576",
+      "    262 (udev-worker)    5576",
+      "    263 (udev-worker)    5576"
+    ],
+    "stderr": ""
+  },
+  "compiler": {
+    "command": [
+      "g++",
+      "--version"
+    ],
+    "exit_code": 0,
+    "output": [
+      "g++ (Debian 14.2.0-19) 14.2.0",
+      "Copyright (C) 2024 Free Software Foundation, Inc.",
+      "This is free software; see the source for copying conditions.  There is NO",
+      "warranty; not even for MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.",
+      ""
+    ],
+    "stderr": ""
+  },
+  "cmake": {
+    "command": [
+      "cmake",
+      "--version"
+    ],
+    "exit_code": 0,
+    "output": [
+      "cmake version 3.31.6",
+      "",
+      "CMake suite maintained and supported by Kitware (kitware.com/cmake)."
+    ],
+    "stderr": ""
+  },
+  "ninja": {
+    "command": [
+      "ninja",
+      "--version"
+    ],
+    "exit_code": 0,
+    "output": [
+      "1.12.1"
+    ],
+    "stderr": ""
+  },
+  "python": {
+    "command": [
+      "/opt/openmc-venv/bin/python",
+      "--version"
+    ],
+    "exit_code": 0,
+    "output": [
+      "Python 3.13.5"
+    ],
+    "stderr": ""
+  },
+  "formatter": {
+    "command": [
+      "/opt/openmc-venv/bin/clang-format",
+      "--version"
+    ],
+    "exit_code": 0,
+    "output": [
+      "clang-format version 18.1.8"
+    ],
+    "stderr": ""
+  },
+  "environment": {
+    "CONDA_PREFIX": null,
+    "VIRTUAL_ENV": null,
+    "PYTHONPATH": null
+  },
+  "local_paths": {
+    "/opt/openmc-venv": {
+      "exists": true,
+      "bytes": "565500956\t/opt/openmc-venv"
+    },
+    "/opt/g4gate7": {
+      "exists": true,
+      "bytes": "61\t/opt/g4gate7"
+    },
+    "/opt/g4native": {
+      "exists": true,
+      "bytes": "658156756\t/opt/g4native"
+    },
+    "/root/miniconda3": {
+      "exists": false,
+      "bytes": null
+    },
+    "/root/anaconda3": {
+      "exists": false,
+      "bytes": null
+    },
+    "/root/.conda/envs": {
+      "exists": false,
+      "bytes": null
+    },
+    "/root/.virtualenvs": {
+      "exists": false,
+      "bytes": null
+    },
+    "/root/.cache/pip": {
+      "exists": true,
+      "bytes": "154107503\t/root/.cache/pip"
+    },
+    "/root/.cache": {
+      "exists": true,
+      "bytes": "154136805\t/root/.cache"
+    },
+    "/var/cache/apt": {
+      "exists": true,
+      "bytes": "120767209\t/var/cache/apt"
+    },
+    "build/astra-native": {
+      "exists": true,
+      "bytes": "15972267\tbuild/astra-native"
+    }
+  },
+  "build_cache": [
+    "CMAKE_BUILD_TYPE:STRING=Release",
+    "OPENMC_USE_DAGMC:BOOL=OFF",
+    "OPENMC_USE_LIBMESH:BOOL=OFF",
+    "OPENMC_USE_MPI:BOOL=OFF",
+    "OPENMC_USE_OPENMP:BOOL=OFF",
+    "OPENMC_USE_UWUW:BOOL=OFF"
+  ],
+  "timestamp": "2026-09-26T18:47:16-04:00"
+}

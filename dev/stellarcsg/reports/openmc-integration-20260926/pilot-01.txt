@@ -1,0 +1,6 @@
+Traceback (most recent call last):
+  File "/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-astra-kernel-20260926/dev/stellarcsg/qualification/check_openmc_integration.py", line 13, in <module>
+    from proxy_transport import DATA, ENERGY, ROOT, SCORES, model, sha
+  File "/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-astra-kernel-20260926/dev/stellarcsg/qualification/proxy_transport.py", line 22, in <module>
+    from stellarcsg.coil import SweptSplineData, write_swept_collection
+ModuleNotFoundError: No module named 'stellarcsg'

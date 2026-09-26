@@ -1,0 +1,448 @@
+{
+  "state": "SPATIAL_TALLY_REGRESSION_DETECTED",
+  "raw_artifacts_valid": true,
+  "all_plasma_tallies_agree": false,
+  "runs": 6,
+  "pairs": [
+    {
+      "family": "plasma",
+      "source": "mesh",
+      "sampled_source_identical": true,
+      "native_local_volume_cm3": [
+        429.296875,
+        15.762949190008996
+      ],
+      "spline_local_volume_cm3": [
+        429.296875,
+        15.762949190008996
+      ],
+      "tallies": [
+        {
+          "id": "1",
+          "name": "material reference",
+          "bins": 4,
+          "max_abs_difference": 7.639755494892597e-11,
+          "sampled_agreement": true
+        },
+        {
+          "id": "2",
+          "name": "subcell spectra",
+          "bins": 72,
+          "max_abs_difference": 4.3655745685100555e-11,
+          "sampled_agreement": true
+        },
+        {
+          "id": "3",
+          "name": "global Cartesian",
+          "bins": 4608,
+          "max_abs_difference": 2.1827872842550278e-11,
+          "sampled_agreement": true
+        },
+        {
+          "id": "4",
+          "name": "local Cartesian",
+          "bins": 288,
+          "max_abs_difference": 3.0127011996228248e-12,
+          "sampled_agreement": true
+        },
+        {
+          "id": "5",
+          "name": "RectilinearMesh",
+          "bins": 192,
+          "max_abs_difference": 3.183231456205249e-11,
+          "sampled_agreement": true
+        },
+        {
+          "id": "6",
+          "name": "CylindricalMesh",
+          "bins": 384,
+          "max_abs_difference": 3.387867764104158e-11,
+          "sampled_agreement": true
+        },
+        {
+          "id": "7",
+          "name": "SphericalMesh",
+          "bins": 288,
+          "max_abs_difference": 7.882870249886764e-07,
+          "sampled_agreement": true
+        },
+        {
+          "id": "8",
+          "name": "cell instances",
+          "bins": 72,
+          "max_abs_difference": 4.3655745685100555e-11,
+          "sampled_agreement": true
+        },
+        {
+          "id": "9",
+          "name": "universe and material",
+          "bins": 4,
+          "max_abs_difference": 7.639755494892597e-11,
+          "sampled_agreement": true
+        },
+        {
+          "id": "10",
+          "name": "spline surface current",
+          "bins": 6,
+          "max_abs_difference": 0.0,
+          "sampled_agreement": true
+        },
+        {
+          "id": "11",
+          "name": "Cartesian mesh surface current",
+          "bins": 768,
+          "max_abs_difference": 0.0,
+          "sampled_agreement": true
+        },
+        {
+          "id": "12",
+          "name": "birth cell",
+          "bins": 20,
+          "max_abs_difference": 8.003553375601768e-11,
+          "sampled_agreement": true
+        },
+        {
+          "id": "13",
+          "name": "collision scores",
+          "bins": 24,
+          "max_abs_difference": 0.0,
+          "sampled_agreement": true
+        },
+        {
+          "id": "14",
+          "name": "analog scores",
+          "bins": 18,
+          "max_abs_difference": 0.0,
+          "sampled_agreement": true
+        },
+        {
+          "id": "15",
+          "name": "outgoing energy and scattering cosine",
+          "bins": 72,
+          "max_abs_difference": 0.0,
+          "sampled_agreement": true
+        },
+        {
+          "id": "16",
+          "name": "constant response weight",
+          "bins": 4,
+          "max_abs_difference": 1.5279510989785194e-10,
+          "sampled_agreement": true
+        },
+        {
+          "id": "17",
+          "name": "local cell reference",
+          "bins": 24,
+          "max_abs_difference": 2.9558577807620168e-12,
+          "sampled_agreement": true
+        },
+        {
+          "id": "18",
+          "name": "time and particle",
+          "bins": 8,
+          "max_abs_difference": 7.639755494892597e-11,
+          "sampled_agreement": true
+        },
+        {
+          "id": "19",
+          "name": "birth mesh including secondary births",
+          "bins": 256,
+          "max_abs_difference": 3.728928277269006e-11,
+          "sampled_agreement": true
+        }
+      ]
+    },
+    {
+      "family": "plasma",
+      "source": "box",
+      "sampled_source_identical": true,
+      "native_local_volume_cm3": [
+        429.296875,
+        15.762949190008996
+      ],
+      "spline_local_volume_cm3": [
+        429.296875,
+        15.762949190008996
+      ],
+      "tallies": [
+        {
+          "id": "1",
+          "name": "material reference",
+          "bins": 4,
+          "max_abs_difference": 7.275957614183426e-12,
+          "sampled_agreement": true
+        },
+        {
+          "id": "2",
+          "name": "subcell spectra",
+          "bins": 72,
+          "max_abs_difference": 4.001776687800884e-11,
+          "sampled_agreement": true
+        },
+        {
+          "id": "3",
+          "name": "global Cartesian",
+          "bins": 4608,
+          "max_abs_difference": 3.8198777474462986e-11,
+          "sampled_agreement": true
+        },
+        {
+          "id": "4",
+          "name": "local Cartesian",
+          "bins": 288,
+          "max_abs_difference": 4.547473508864641e-12,
+          "sampled_agreement": true
+        },
+        {
+          "id": "5",
+          "name": "RectilinearMesh",
+          "bins": 192,
+          "max_abs_difference": 3.637978807091713e-11,
+          "sampled_agreement": true
+        },
+        {
+          "id": "6",
+          "name": "CylindricalMesh",
+          "bins": 384,
+          "max_abs_difference": 4.3655745685100555e-11,
+          "sampled_agreement": true
+        },
+        {
+          "id": "7",
+          "name": "SphericalMesh",
+          "bins": 288,
+          "max_abs_difference": 29.431014922383838,
+          "sampled_agreement": false
+        },
+        {
+          "id": "8",
+          "name": "cell instances",
+          "bins": 72,
+          "max_abs_difference": 4.001776687800884e-11,
+          "sampled_agreement": true
+        },
+        {
+          "id": "9",
+          "name": "universe and material",
+          "bins": 4,
+          "max_abs_difference": 7.275957614183426e-12,
+          "sampled_agreement": true
+        },
+        {
+          "id": "10",
+          "name": "spline surface current",
+          "bins": 6,
+          "max_abs_difference": 0.0,
+          "sampled_agreement": true
+        },
+        {
+          "id": "11",
+          "name": "Cartesian mesh surface current",
+          "bins": 768,
+          "max_abs_difference": 0.0,
+          "sampled_agreement": true
+        },
+        {
+          "id": "12",
+          "name": "birth cell",
+          "bins": 20,
+          "max_abs_difference": 3.524291969370097e-12,
+          "sampled_agreement": true
+        },
+        {
+          "id": "13",
+          "name": "collision scores",
+          "bins": 24,
+          "max_abs_difference": 0.0,
+          "sampled_agreement": true
+        },
+        {
+          "id": "14",
+          "name": "analog scores",
+          "bins": 18,
+          "max_abs_difference": 0.0,
+          "sampled_agreement": true
+        },
+        {
+          "id": "15",
+          "name": "outgoing energy and scattering cosine",
+          "bins": 72,
+          "max_abs_difference": 0.0,
+          "sampled_agreement": true
+        },
+        {
+          "id": "16",
+          "name": "constant response weight",
+          "bins": 4,
+          "max_abs_difference": 1.4551915228366852e-11,
+          "sampled_agreement": true
+        },
+        {
+          "id": "17",
+          "name": "local cell reference",
+          "bins": 24,
+          "max_abs_difference": 3.637978807091713e-12,
+          "sampled_agreement": true
+        },
+        {
+          "id": "18",
+          "name": "time and particle",
+          "bins": 8,
+          "max_abs_difference": 2.8066438062523957e-11,
+          "sampled_agreement": true
+        }
+      ]
+    },
+    {
+      "family": "coil",
+      "source": "file",
+      "sampled_source_identical": true,
+      "native_local_volume_cm3": [
+        180.0,
+        0.0
+      ],
+      "spline_local_volume_cm3": [
+        180.0,
+        0.0
+      ],
+      "tallies": [
+        {
+          "id": "1",
+          "name": "material reference",
+          "bins": 4,
+          "max_abs_difference": 0.02630653520463966,
+          "sampled_agreement": true
+        },
+        {
+          "id": "2",
+          "name": "subcell spectra",
+          "bins": 72,
+          "max_abs_difference": 0.022571942194190342,
+          "sampled_agreement": true
+        },
+        {
+          "id": "3",
+          "name": "global Cartesian",
+          "bins": 4608,
+          "max_abs_difference": 0.023085977240043576,
+          "sampled_agreement": true
+        },
+        {
+          "id": "4",
+          "name": "local Cartesian",
+          "bins": 288,
+          "max_abs_difference": 0.0,
+          "sampled_agreement": true
+        },
+        {
+          "id": "5",
+          "name": "RectilinearMesh",
+          "bins": 192,
+          "max_abs_difference": 0.023085977241862565,
+          "sampled_agreement": true
+        },
+        {
+          "id": "6",
+          "name": "CylindricalMesh",
+          "bins": 384,
+          "max_abs_difference": 0.03065759569290094,
+          "sampled_agreement": true
+        },
+        {
+          "id": "7",
+          "name": "SphericalMesh",
+          "bins": 288,
+          "max_abs_difference": 0.023085977241862565,
+          "sampled_agreement": true
+        },
+        {
+          "id": "8",
+          "name": "cell instances",
+          "bins": 72,
+          "max_abs_difference": 0.022571942194190342,
+          "sampled_agreement": true
+        },
+        {
+          "id": "9",
+          "name": "universe and material",
+          "bins": 4,
+          "max_abs_difference": 0.02630653520463966,
+          "sampled_agreement": true
+        },
+        {
+          "id": "10",
+          "name": "spline surface current",
+          "bins": 6,
+          "max_abs_difference": 0.0,
+          "sampled_agreement": true
+        },
+        {
+          "id": "11",
+          "name": "Cartesian mesh surface current",
+          "bins": 768,
+          "max_abs_difference": 0.0,
+          "sampled_agreement": true
+        },
+        {
+          "id": "12",
+          "name": "birth cell",
+          "bins": 16,
+          "max_abs_difference": 0.025378353224368766,
+          "sampled_agreement": true
+        },
+        {
+          "id": "13",
+          "name": "collision scores",
+          "bins": 24,
+          "max_abs_difference": 0.0,
+          "sampled_agreement": true
+        },
+        {
+          "id": "14",
+          "name": "analog scores",
+          "bins": 18,
+          "max_abs_difference": 0.0,
+          "sampled_agreement": true
+        },
+        {
+          "id": "15",
+          "name": "outgoing energy and scattering cosine",
+          "bins": 72,
+          "max_abs_difference": 0.0,
+          "sampled_agreement": true
+        },
+        {
+          "id": "16",
+          "name": "constant response weight",
+          "bins": 4,
+          "max_abs_difference": 0.05261307040927932,
+          "sampled_agreement": true
+        },
+        {
+          "id": "17",
+          "name": "local cell reference",
+          "bins": 24,
+          "max_abs_difference": 0.0,
+          "sampled_agreement": true
+        },
+        {
+          "id": "18",
+          "name": "time and particle",
+          "bins": 8,
+          "max_abs_difference": 0.026248414505971596,
+          "sampled_agreement": true
+        }
+      ]
+    }
+  ],
+  "audit_sha256": "633c212b2dfbe509a5ae2f3f6cacfb506ab654f1c4638039c13f04f9af1385e1",
+  "receipt_sha256": {
+    "plasma-native-mesh": "a391e0bcae24bc24693247461603f57608dadf8e37c15c8660391343eb6d50b4",
+    "plasma-spline-mesh": "f46bf980b172603cfbf8d737498b22280ca8b0847994f6604871510a30233d8b",
+    "plasma-native-box": "8358dd2df9cf9f276f5faf05a28966c24195aade022dfcecc8e0daf623e69669",
+    "plasma-spline-box": "1a21a4b870a37f5e30921c0c7c2abae674742ba625b5a5d11709795bb8fcf6ab",
+    "coil-native-file": "130e3c0dd9695bbfa85cf3571eca837d9944cd118b2816f2cb1ebba2f2ee9b3b",
+    "coil-spline-file": "6831ffd337fd1af69778ad5a1993e9b77cb63fa4dde61e6717b200fb4318ca4a"
+  },
+  "claim_boundary": "Matched finite proxy integration regression only; not universal filter/estimator, spectral or physical-source equivalence. Coil geometry is approximate; all sampling and statistics are limited."
+}

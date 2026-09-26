@@ -1,0 +1,51 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<settings>
+  <run_mode>fixed source</run_mode>
+  <particles>200</particles>
+  <batches>5</batches>
+  <max_lost_particles>1</max_lost_particles>
+  <rel_max_lost_particles>1e-12</rel_max_lost_particles>
+  <source type="mesh" strength="1.0" mesh="106">
+    <source type="independent" strength="0.25" particle="neutron">
+      <angle type="isotropic"/>
+      <energy type="discrete">
+        <parameters>2450000.0 1.0</parameters>
+      </energy>
+    </source>
+    <source type="independent" strength="0.75" particle="neutron">
+      <angle type="isotropic"/>
+      <energy type="discrete">
+        <parameters>14100000.0 1.0</parameters>
+      </energy>
+    </source>
+    <constraints>
+      <domain_type>cell</domain_type>
+      <domain_ids>1</domain_ids>
+      <rejection_strategy>resample</rejection_strategy>
+    </constraints>
+  </source>
+  <mesh id="106">
+    <dimension>2 1 1</dimension>
+    <lower_left>95.0 -1.0 -1.0</lower_left>
+    <upper_right>105.0 1.0 1.0</upper_right>
+  </mesh>
+  <output>
+    <summary>true</summary>
+    <tallies>false</tallies>
+  </output>
+  <state_point>
+    <batches>5</batches>
+  </state_point>
+  <seed>917431</seed>
+  <verbosity>5</verbosity>
+  <temperature_default>300.0</temperature_default>
+  <temperature_method>nearest</temperature_method>
+  <temperature_tolerance>1.0</temperature_tolerance>
+  <volume_calc>
+    <domain_type>cell</domain_type>
+    <domain_ids>4</domain_ids>
+    <samples>4096</samples>
+    <lower_left>115.0 -10.0 -10.0</lower_left>
+    <upper_right>122.0 10.0 10.0</upper_right>
+  </volume_calc>
+</settings>
