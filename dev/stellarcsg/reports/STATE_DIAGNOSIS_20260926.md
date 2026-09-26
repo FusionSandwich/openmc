@@ -1,5 +1,7 @@
 # StellarCSG: current state, blocker diagnosis, and continuation — 2026-09-26
 
+**Later September 26 update:** [the new synthesis](CHAT_SYNTHESIS_20260926.md) reviews the subsequent restricted exact-control offset milestone, independent scalar bank, internal accelerator timing, active matched transport follow-up, and mathematical alternatives. The legacy general-swept findings below remain valid for their recorded representation/source; they are not the latest status of the new offset mode.
+
 ## Assessment
 
 The main barrier to near-native OpenMC speed is an **unfinished correct general swept-surface intersection algorithm**. The implementation finds plausible crossings, but cannot certify that a closer crossing was not missed. The latest saved strict replay admits **zero general-swept hits**: 73/160 queries are unresolved and 87/160 are no-hits. This is an intentional failure-preservation repair after four wrong roots were found in the old fast kernel. Returning those candidate distances would restore apparent speed while restoring the correctness gap.
