@@ -1,0 +1,19 @@
+{
+  "command": [
+    "cmake",
+    "--build",
+    "/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-astra-kernel-20260926/dev/stellarcsg/reports/plasma-best-time-20260926/source-rebuild-010-01/build",
+    "--target",
+    "openmc",
+    "--parallel",
+    "1"
+  ],
+  "exit_code": 0,
+  "timed_out": false,
+  "wall_s": 764.9194470550028,
+  "cap_bytes": 1610612736,
+  "timeout_s": 1759.9119686749982,
+  "cwd": null,
+  "stdout_sha256": "d1d58379e8e5e06537e11891b728005c6e842282a843f042100506ae30ae7902",
+  "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+}

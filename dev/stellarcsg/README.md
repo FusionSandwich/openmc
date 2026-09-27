@@ -1,18 +1,30 @@
 # StellarCSG: native stellarator CSG research inside the OpenMC fork
 
-This subtree contains an isolated, runnable implementation of the first stages
-of the native stellarator CSG development plan. It is intentionally developed
-on `FusionSandwich/openmc` branch
-`codex/stellarcsg-native-csg-foundation-20260828`; there is no pull request and
-ordinary OpenMC builds are unchanged.
+## Project goal and current method map
+
+Build CSG that reproduces **complex stellarator plasma and coil winding-pack shapes**,
+with particle transport **at least 80% as fast** as similarly sized built-in
+OpenMC CSG proxies: a basic torus for plasma and flat rings for magnets.
+The elapsed-time gate is **custom transport <=1.25 x proxy transport**.
+Shape accuracy and ordinary OpenMC source/local tally integration must also pass.
+
+Start with the [project goal](PROJECT_GOAL.md) and the
+[current coil/plasma method map](METHOD_MAP.md). The map selects **P00 native
+facet/component CSG for physical-pack development**, with repaired swept BVHs
+as an alternative, and **periodic patch/BVH with the checked adapter for
+nonaxisymmetric plasma**. Neither full target is qualified yet.
+
+This research is in `FusionSandwich/openmc`; current consolidation is on
+`JS/stellarcsg-astra-kernel-20260926` in [draft PR #5](https://github.com/FusionSandwich/openmc/pull/5).
+The foundation branch remains historical lineage, rather than the current handoff.
 
 The long-term objective is a CAD-free workflow in which a user supplies a
-plasma/equilibrium surface and coil centerlines, then receives native smooth
-OpenMC CSG surfaces plus companion meshes for spatially resolved magnet
+plasma/equilibrium surface and coil centerlines, then receives native
+OpenMC CSG geometry plus companion meshes for spatially resolved magnet
 spectra. The current code is a **research prototype**, not a production
 geometry kernel.
 
-## Implemented in this milestone
+## Foundation implementation retained in this subtree
 
 ### Standalone C++ kernel
 

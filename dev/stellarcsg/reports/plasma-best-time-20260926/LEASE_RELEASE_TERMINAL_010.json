@@ -1,0 +1,17 @@
+{
+  "lock_absent_after_operation": true,
+  "completion_utc": "2026-09-27T02:17:19.6291489Z",
+  "ownership_basis": "Recorded own mkdir/owner run and PID, successful synchronous child terminal, owner removal in own finally; atomic lease directory remained empty and blocks other legitimate acquisition",
+  "observation_utc": "2026-09-27T02:17:11.4654749Z",
+  "exit_code": 0,
+  "operation": "One bounded nonrecursive WSL empty-directory rmdir; stop if owner/any entry exists",
+  "run": "plasma-rebuild-010-20260927T0156247567Z",
+  "outer_wrapper_exit": 1,
+  "wrapper_failure": "WindowsRemove-Item directory removal denied after own owner.json removed",
+  "terminal_driver_exit": 0,
+  "original_wrapper_pid": 46940,
+  "output": [
+    "drwxrwxrwx 1 root root 4096 Sep 26 22:11 /mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/local-coil-wave-20260926/compute.lock",
+    "OWN_EMPTY_LEASE_DIRECTORY_RELEASED"
+  ]
+}

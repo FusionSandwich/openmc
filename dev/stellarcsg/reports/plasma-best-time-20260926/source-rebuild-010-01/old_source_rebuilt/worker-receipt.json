@@ -1,0 +1,29 @@
+{
+  "command": [
+    "/opt/openmc-venv/bin/python",
+    "/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-astra-kernel-20260926/dev/stellarcsg/experiments/plasma_best_time_20260926/rebuild_compare_010.py",
+    "--output",
+    "/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-astra-kernel-20260926/dev/stellarcsg/reports/plasma-best-time-20260926/source-rebuild-010-01/old_source_rebuilt",
+    "--inventory",
+    "/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-astra-kernel-20260926/dev/stellarcsg/reports/plasma-best-time-20260926/plasma-rebuild-010-20260927T0156247567Z-wsl-inventory",
+    "--review",
+    "/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-astra-kernel-20260926/dev/stellarcsg/reports/coil-hybrid-accuracy-20260926/PLASMA_PREBUILD_ADMISSION_010.json",
+    "--lease-run",
+    "plasma-rebuild-010-20260927T0156247567Z",
+    "--worker",
+    "--binary",
+    "/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-astra-kernel-20260926/dev/stellarcsg/reports/plasma-best-time-20260926/source-rebuild-010-01/build/bin/openmc",
+    "--library",
+    "/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-astra-kernel-20260926/dev/stellarcsg/reports/plasma-best-time-20260926/source-rebuild-010-01/build/lib/libopenmc.so",
+    "--native-timeout",
+    "580"
+  ],
+  "exit_code": 0,
+  "timed_out": false,
+  "wall_s": 42.70284875499783,
+  "cap_bytes": 1073741824,
+  "timeout_s": 595,
+  "cwd": null,
+  "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+}

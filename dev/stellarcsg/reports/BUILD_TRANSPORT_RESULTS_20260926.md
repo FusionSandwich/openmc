@@ -1,5 +1,24 @@
 # Geometry build and transport: elapsed-time evidence
 
+The [project goal](../PROJECT_GOAL.md) and [current coil/plasma method map](../METHOD_MAP.md) select target-specific development routes. The elapsed-time target is complex custom geometry <=1.25 times a similarly sized native flat ring (coils) or torus (plasma), with independent target accuracy and ordinary source/local tally usability.
+
+## Corrected coil fixed-section pair /010
+
+Latest corrected coil control: `coil-profile-20260926/fixed-section-pair-010` records two completed 20k workers. Derived P00 facets transport **5.774115369 s**, fixed30 native rings **1.203532667 s**, ratio **4.79763909 FAIL**. Initialization was 5.276662125 / 5.130763384 s, statepoint output 0.030490800 / 0.024877401 s and native process wall 11.152920394 / 6.440697556 s. This repeats the same P00 implementation; it is not a new measured optimization over the earlier 7.84 s observation. Source/physics/tallies stay frozen; shape-induced initial iron occupancy remains 0/18 versus 4/18 sites. Reused XML preparation was 0.1445532 / 0.156726508 s. Cold geometry build UNKNOWN, no software build. Independent timing/binding review accepted the diagnostic; physical CAD/ownership/normal/local-bin fidelity remains open.
+
+## Matched old/current general-plasma replay /010
+
+Both variants completed 20,000 tally-enabled histories with frozen identical geometry/material/settings/tally XML, source bank, LCFS payload, nuclear data and one CPU affinity. This is a runtime comparison, not a new built-in torus comparison. It rebuilds old source with current GNU14/HDF, not the original archive binary.
+
+| Runtime | Initialization s | Transport s | Statepoint output s | Native process wall s |
+|---|---:|---:|---:|---:|
+| Old source rebuilt offline | 5.296172 | **27.225501** | 0.240643 | 32.866227 |
+| Current retained checked implementation | 6.483235 | **28.970192** | 0.239159 | 35.788988 |
+
+Current/old transport time is **1.064083** in this one ordered pair. This does not establish a large implementation regression, statistical equivalence or portable superiority. Current and old principal generic solver bodies match after whitespace removal; complete runtime/adapter/compiler policies differ. Old unchecked no-hit handling remains diagnostic only. Independent first-root/per-bin geometry/scoring acceptance remains open.
+
+Configure took 25.937595 s and software compilation 764.919447 s; these are not geometry build times. Cold geometry build is UNKNOWN. Source-rebuild block wall was 898.005908 s. Driver and both native workers exited zero, but the outer wrapper exited 1 during lease-directory cleanup; subsequent own empty-directory release and absent-lock evidence are retained. Independent review accepted matched timing/binding/finite-array accounting as a diagnostic, with physical geometry/first-root/scoring accuracy still unresolved. Evidence: `plasma-best-time-20260926/source-rebuild-010-01/comparison.json`, worker/native receipts, `TERMINAL_VALIDATION_REBUILD_010.json`, `LEASE_RELEASE_TERMINAL_010.json`, and `coil-hybrid-accuracy-20260926/PLASMA_TERMINAL_ACCEPTANCE_010.json`.
+
 **Scope correction:** these recent pilots measure particular paths, not the fastest of all developed methods. The [method/branch ranking and rerun audit](FASTEST_METHOD_BRANCH_REVIEW_20260926.md) identifies older faster recorded architectures and preserves their correctness/workload limits.
 
 Report seconds, separately for coils and plasma. The working transport acceptance limit is custom time / built-in time <= 1.25 (10 seconds built-in permits 12.5 seconds custom). Geometry build is a separate measurement. No full-target three-method comparison is yet complete.

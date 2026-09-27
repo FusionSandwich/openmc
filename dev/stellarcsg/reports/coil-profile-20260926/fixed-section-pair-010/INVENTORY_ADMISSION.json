@@ -1,0 +1,17 @@
+{
+  "Windows": {
+    "age_seconds": 10.787294,
+    "Windows_free_bytes": 9184022528,
+    "required_free_bytes": 3221225472,
+    "drive_minimum_free_bytes": 536870912
+  },
+  "WSL": {
+    "WSL_available_bytes": 24219295744,
+    "required_available_bytes": 3221225472
+  },
+  "acquisition_bytes": 0,
+  "software_build": "NOT_RUN",
+  "parent_and_worker_address_space_cap_bytes": 1073741824,
+  "outer_TERM_seconds": 1780,
+  "outer_KILL_grace_seconds": 10
+}

@@ -1,0 +1,86 @@
+                                %%%%%%%%%%%%%%%
+                           %%%%%%%%%%%%%%%%%%%%%%%%
+                        %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+                      %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+                    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+                   %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+                                    %%%%%%%%%%%%%%%%%%%%%%%%
+                                     %%%%%%%%%%%%%%%%%%%%%%%%
+                 ###############      %%%%%%%%%%%%%%%%%%%%%%%%
+                ##################     %%%%%%%%%%%%%%%%%%%%%%%
+                ###################     %%%%%%%%%%%%%%%%%%%%%%%
+                ####################     %%%%%%%%%%%%%%%%%%%%%%
+                #####################     %%%%%%%%%%%%%%%%%%%%%
+                ######################     %%%%%%%%%%%%%%%%%%%%
+                #######################     %%%%%%%%%%%%%%%%%%
+                 #######################     %%%%%%%%%%%%%%%%%
+                 ######################     %%%%%%%%%%%%%%%%%
+                  ####################     %%%%%%%%%%%%%%%%%
+                    #################     %%%%%%%%%%%%%%%%%
+                     ###############     %%%%%%%%%%%%%%%%
+                       ############     %%%%%%%%%%%%%%%
+                          ########     %%%%%%%%%%%%%%
+                                      %%%%%%%%%%%
+
+                 | The OpenMC Monte Carlo Code
+       Copyright | 2011-2026 MIT, UChicago Argonne LLC, and contributors
+         License | https://docs.openmc.org/en/latest/license.html
+         Version | 0.15.1-dev701
+     Commit Hash | 63359cb83d36b419a7e9ba60c45f867073703c21
+       Date/Time | 2026-09-26 22:11:06
+
+ Reading settings XML file...
+ Reading source file from
+ /mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-astra-kernel
+ -20260926/dev/stellarcsg/reports/plasma-best-time-20260926/transport-009-01/sour
+ ce.h5...
+ Reading cross sections XML file...
+ Reading materials XML file...
+ Reading geometry XML file...
+ Reading Fe56 from
+ /mnt/c/Users/joshu/Documents/2026_DPA/openc-hts-dpa/.data/openmc/FENDL-3.1d_Fe56
+ .h5
+ Minimum neutron data temperature: 300 K
+ Maximum neutron data temperature: 300 K
+ Reading tallies XML file...
+ Preparing distributed cell instances...
+ Reading plot XML file...
+ Writing summary.h5 file...
+ Maximum neutron transport energy: 150000000 eV for Fe56
+
+ ===============>     FIXED SOURCE TRANSPORT SIMULATION     <===============
+
+ Simulating batch 1
+ Creating state point statepoint.1.h5...
+ Simulating batch 2
+ Creating state point statepoint.2.h5...
+ Simulating batch 3
+ Creating state point statepoint.3.h5...
+ Simulating batch 4
+ Creating state point statepoint.4.h5...
+ Simulating batch 5
+ Creating state point statepoint.5.h5...
+ Simulating batch 6
+ Creating state point statepoint.6.h5...
+ Simulating batch 7
+ Creating state point statepoint.7.h5...
+ Simulating batch 8
+ Creating state point statepoint.8.h5...
+
+ =======================>     TIMING STATISTICS     <=======================
+
+ Total time for initialization     = 6.4832e+00 seconds
+   Reading cross sections          = 1.8195e+00 seconds
+ Total time in simulation          = 2.9216e+01 seconds
+   Time in transport only          = 2.8970e+01 seconds
+   Time in active batches          = 2.9216e+01 seconds
+   Time accumulating tallies       = 1.0600e-05 seconds
+   Time writing statepoints        = 2.4287e-01 seconds
+ Total time for finalization       = 1.2000e-06 seconds
+ Total time elapsed                = 3.5701e+01 seconds
+ Calculation Rate (active)         = 684.564 particles/second
+
+ ============================>     RESULTS     <============================
+
+ Leakage Fraction            = 1.00285 +/- 0.00355
+

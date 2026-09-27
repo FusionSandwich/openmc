@@ -1,0 +1,50 @@
+{
+  "status": "PREPARED_FOR_INDEPENDENT_REVIEW; NOT_EXECUTED",
+  "paired_methods": [
+    "derived_seam_repaired_P00_facets",
+    "native_fixed30x30_flat_rings"
+  ],
+  "batches": 20,
+  "particles": 1000,
+  "histories_per_method": 20000,
+  "seed": 1741,
+  "threads": 1,
+  "worker_memory_bytes": 1073741824,
+  "worker_timeout_seconds": 600,
+  "block_timeout_seconds": 1800,
+  "source": "unchanged18-site1MeV file bank; do not shift points/directions/weights",
+  "material": "sameFe56 density7.8g/cm3,300K",
+  "settings_tallies_world": "same XML except geometry; same quarter rotational periodic x/y planes,cylinder2500cm,z\u00b1700cm,3cell/energy/material production tallies,final-onlystatepoint,no tracks",
+  "control": "18annular rectangles, eachradialwidth30cm andaxialheight30cm; oldPCAplacement/meanradius/count retained",
+  "custom": "DERIVED_SEAM_REPAIRED_P00_FACETS; not byte-identical acceptedH5M",
+  "mesh_movement_bound_cm": 0.0033287735930590413,
+  "fidelity": "Piecewise-linear movement bound only; continuousCAD, fullWISTELL windingpack, physical overlap/percoil ownership andproxy equivalenceOPEN",
+  "binding_hashes": {
+    "/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-local-continuation-20260925/build/native-local-20260925/bin/openmc": "dd0f316e5bd0965092f2a080167da9bbde83416392b6473763063fd95ec63dde",
+    "/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-local-continuation-20260925/build/native-local-20260925/lib/libopenmc.so": "fbc38dedc17e20342a56dd50e2d56f86330238dae00b95ab3e4602864967cba4",
+    "/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-local-continuation-20260925/dev/stellarcsg/reports/local-cont-20260925/p00-periodic-facet-candidate-02.h5": "3db1723d250319d7e6e3d0a4cbbba7b88a68c830fba4214d001a8c2c2545c2d4",
+    "/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-local-continuation-20260925/dev/stellarcsg/reports/local-cont-20260925/p00-magnet-material-bank-02/source.h5": "d13553a31262d45067a8e096e73857d459054b482cf7bf0ccb52b927c611b442",
+    "/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-astra-kernel-20260926/dev/stellarcsg/experiments/coil_profile_20260926/prepare_fixed_section_010.py": "4c4ce170a4268382e8f0312b40431cf520c849d80d1da982d0d85a10c2794a0b"
+  },
+  "xml_hashes": {
+    "custom": {
+      "geometry.xml": "7a7205105faf26522170153620c3f3e73e69d026f43b1bc1600c836677f067e8",
+      "materials.xml": "74e108f7acf8182f959d941e1c8dca68da8aafaa2edf3ee3abdcbd0afaf7b891",
+      "settings.xml": "437fe983b1dd7c7e671a4067d3bccfd5fea6c72d99c4079f896a4fb4a567c532",
+      "tallies.xml": "96aacc7f9812c31ad9c8b36f14f354f0d4617bc18231bba982fc597c11a76fd0"
+    },
+    "fixed30": {
+      "geometry.xml": "4305806f834f9bb9261b4b80746b707ee91e4880e2534a7e46153f1ccaf62bef",
+      "materials.xml": "74e108f7acf8182f959d941e1c8dca68da8aafaa2edf3ee3abdcbd0afaf7b891",
+      "settings.xml": "437fe983b1dd7c7e671a4067d3bccfd5fea6c72d99c4079f896a4fb4a567c532",
+      "tallies.xml": "96aacc7f9812c31ad9c8b36f14f354f0d4617bc18231bba982fc597c11a76fd0"
+    }
+  },
+  "failure_policy": "first missing/changed identity,heldlease,resourceunknown,timeout/nonzero,incompletehistories,unresolved/trackingerror ornonfinite/missingtally stop; no automaticretry",
+  "independent_review_request": "Review fixed sections, placement, source occupancy, seam/fidelity labels and failure gates before this separately authorized diagnostic",
+  "owner_execution": "explicitly authorized new pair after matched-replay-010 FAILED_STOPPED; not a retry of failed current legacy",
+  "independent_review_path": "/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-astra-kernel-20260926/dev/stellarcsg/reports/coil-hybrid-accuracy-20260926/P00_FIXED_SECTION_EXECUTION_ADMISSION_010.json",
+  "independent_review_sha256": "f7c5bd1d9c73f7b4a034a71e156f9ef1fcfc9469b64a69ff6f78b63ad40e2abd",
+  "prepared_cold_derivation_seconds": "UNKNOWN; plan generation not separately timed",
+  "fresh_output": "/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-astra-kernel-20260926/dev/stellarcsg/reports/coil-profile-20260926/fixed-section-pair-010"
+}

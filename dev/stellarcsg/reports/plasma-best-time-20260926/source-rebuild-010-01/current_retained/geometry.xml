@@ -1,0 +1,7 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<geometry>
+  <cell id="2" material="1" region="-10" universe="1"/>
+  <cell id="3" material="void" region="10 -99" universe="1"/>
+  <surface id="10" type="periodic-spline" data_file="/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-astra-kernel-20260926/dev/stellarcsg/qualified/wistell_d_periodic_surfaces.h5" dataset="/surfaces/wistell_d_lcfs" content_id="sha256:0d299bcfa901c5c5572abee7926ba9814b4220e96721c5e5c5c680aff3584f26" solver="layered" units="cm"/>
+  <surface id="99" type="sphere" boundary="vacuum" coeffs="0.0 0.0 0.0 3282.858531617667"/>
+</geometry>

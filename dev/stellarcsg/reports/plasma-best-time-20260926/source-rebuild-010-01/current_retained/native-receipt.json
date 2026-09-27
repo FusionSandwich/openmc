@@ -1,0 +1,13 @@
+{
+  "command": [
+    "/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-astra-kernel-20260926/build/astra-native/bin/openmc"
+  ],
+  "exit_code": 0,
+  "timed_out": false,
+  "wall_s": 35.78898808200029,
+  "cap_bytes": 1073741824,
+  "timeout_s": 580.0,
+  "cwd": "/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-astra-kernel-20260926/dev/stellarcsg/reports/plasma-best-time-20260926/source-rebuild-010-01/current_retained",
+  "stdout_sha256": "cfb1c9711cce48f70ae1daa30fb803246eb6d877163c3a29683d151701d7fa07",
+  "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+}

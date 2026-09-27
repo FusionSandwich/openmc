@@ -1,0 +1,420 @@
+{
+  "note": "Goal/method-map and reviewed terminal evidence publication. Review receipts bind local bytes; Git text normalization can change CRLF/LF. Both forms are bound here. Manifest omits itself to avoid circular hashing. Raw native stdout whitespace retained; no HDF5/binary/build outputs published.",
+  "parent_commit": "64d9c311713acd6873dd21426cbcb6d0e4815112",
+  "files": [
+    {
+      "path": "README.md",
+      "local_bytes_sha256": "2f6c8cdfa073e7be7e0e77db6bd4c4d1a0b62d9a879f8a7311747c7b1377647a",
+      "published_blob_sha256": "32adfca64899fd65aea242d824d4068eb993c18a780c9b6b803a27e65213be2f",
+      "byte_equal": false
+    },
+    {
+      "path": "dev/stellarcsg/METHOD_MAP.md",
+      "local_bytes_sha256": "bf5ba074664d051d59948203de899ffda4d5ae5aaeb2a391975ef19e5d1ad4bd",
+      "published_blob_sha256": "bf5ba074664d051d59948203de899ffda4d5ae5aaeb2a391975ef19e5d1ad4bd",
+      "byte_equal": true
+    },
+    {
+      "path": "dev/stellarcsg/PROJECT_GOAL.md",
+      "local_bytes_sha256": "1b11754a1d158f059bb5f1d7d044e9b8e2c0d2c124268f7163667236c3663cb3",
+      "published_blob_sha256": "1b11754a1d158f059bb5f1d7d044e9b8e2c0d2c124268f7163667236c3663cb3",
+      "byte_equal": true
+    },
+    {
+      "path": "dev/stellarcsg/README.md",
+      "local_bytes_sha256": "58bb7b2ba7efe2a5b33d344278762561b7229d6260a9a23658c9aaac60d3f630",
+      "published_blob_sha256": "640c6722d54e3001150f063a53407e524a9fa02e29d48ccd962098c56101a269",
+      "byte_equal": false
+    },
+    {
+      "path": "dev/stellarcsg/reports/BUILD_TRANSPORT_RESULTS_20260926.md",
+      "local_bytes_sha256": "ba233f76af3c0617f49615aca1deff5185f2ff92defd31b2ee082c572bb9e55c",
+      "published_blob_sha256": "ba233f76af3c0617f49615aca1deff5185f2ff92defd31b2ee082c572bb9e55c",
+      "byte_equal": true
+    },
+    {
+      "path": "dev/stellarcsg/reports/CONSOLIDATED_DEVELOPMENT_20260926.md",
+      "local_bytes_sha256": "732b91dc1b1fc34f8c747c5b3981f8eb7d41f6b29534886bcc43ed26d567e2a4",
+      "published_blob_sha256": "732b91dc1b1fc34f8c747c5b3981f8eb7d41f6b29534886bcc43ed26d567e2a4",
+      "byte_equal": true
+    },
+    {
+      "path": "dev/stellarcsg/reports/FASTEST_METHOD_BRANCH_REVIEW_20260926.md",
+      "local_bytes_sha256": "a924f17b08a4709f7601c20709dd1ad24fcfd810652098cc74cc43d1c97513ec",
+      "published_blob_sha256": "a924f17b08a4709f7601c20709dd1ad24fcfd810652098cc74cc43d1c97513ec",
+      "byte_equal": true
+    },
+    {
+      "path": "dev/stellarcsg/reports/coil-hybrid-accuracy-20260926/GOAL_METHOD_MAP_ACCEPTANCE_010.md",
+      "local_bytes_sha256": "3d3145d134f77a0d33b7b41b44e13e1d73670dd71154817b84856d2fa2fcb4ec",
+      "published_blob_sha256": "3d3145d134f77a0d33b7b41b44e13e1d73670dd71154817b84856d2fa2fcb4ec",
+      "byte_equal": true
+    },
+    {
+      "path": "dev/stellarcsg/reports/coil-hybrid-accuracy-20260926/METHOD_MAP_PUBLICATION_ADDENDUM_010.md",
+      "local_bytes_sha256": "7e32dd672382de56373a021f2bbd118bf2f2f920f828eead532e37a93fa1e176",
+      "published_blob_sha256": "7e32dd672382de56373a021f2bbd118bf2f2f920f828eead532e37a93fa1e176",
+      "byte_equal": true
+    },
+    {
+      "path": "dev/stellarcsg/reports/coil-hybrid-accuracy-20260926/P00_FIXED_SECTION_ESTIMATOR_ADDENDUM_010.md",
+      "local_bytes_sha256": "12193a6353b1b0ebee2d422af6aa97894fec44083267720c99ccb7c9bc896d8e",
+      "published_blob_sha256": "12193a6353b1b0ebee2d422af6aa97894fec44083267720c99ccb7c9bc896d8e",
+      "byte_equal": true
+    },
+    {
+      "path": "dev/stellarcsg/reports/coil-hybrid-accuracy-20260926/P00_FIXED_SECTION_TERMINAL_ACCEPTANCE_010.json",
+      "local_bytes_sha256": "ae6a9b2c4f2e5d4616c5489d9d23e9ad96ba7ba064baa18b1d8c800904088f9a",
+      "published_blob_sha256": "ae6a9b2c4f2e5d4616c5489d9d23e9ad96ba7ba064baa18b1d8c800904088f9a",
+      "byte_equal": true
+    },
+    {
+      "path": "dev/stellarcsg/reports/coil-hybrid-accuracy-20260926/P00_FIXED_SECTION_TERMINAL_ACCEPTANCE_010.md",
+      "local_bytes_sha256": "8e5799d3aa6cb73bf1d18dded9b2d280612524c547125a3346adfa0e5dfcb6a2",
+      "published_blob_sha256": "8e5799d3aa6cb73bf1d18dded9b2d280612524c547125a3346adfa0e5dfcb6a2",
+      "byte_equal": true
+    },
+    {
+      "path": "dev/stellarcsg/reports/coil-hybrid-accuracy-20260926/PLASMA_TERMINAL_ACCEPTANCE_010.json",
+      "local_bytes_sha256": "31d3f53b7201e47326a2dacd9c4d181e884cae2c408a0d86268c5ce1914b60ca",
+      "published_blob_sha256": "31d3f53b7201e47326a2dacd9c4d181e884cae2c408a0d86268c5ce1914b60ca",
+      "byte_equal": true
+    },
+    {
+      "path": "dev/stellarcsg/reports/coil-profile-20260926/METHOD_COMPARISON_010.md",
+      "local_bytes_sha256": "4ec4b222d34a3d35aec9b8125836de17f47eb45c7c2d087f9c4064595bd3198c",
+      "published_blob_sha256": "4ec4b222d34a3d35aec9b8125836de17f47eb45c7c2d087f9c4064595bd3198c",
+      "byte_equal": true
+    },
+    {
+      "path": "dev/stellarcsg/reports/coil-profile-20260926/P00_RING_DIMENSIONS_010.md",
+      "local_bytes_sha256": "b4797412dcd584d98836954f6ba214f94e6ef5492d3a2c6649f0eb038d3a1249",
+      "published_blob_sha256": "761cb5852599d11e2977fdc8b84a3633f1027fe0c2cf5bdcfda5449e51e14d99",
+      "byte_equal": false
+    },
+    {
+      "path": "dev/stellarcsg/reports/coil-profile-20260926/fixed-section-pair-010/INVENTORY_ADMISSION.json",
+      "local_bytes_sha256": "547b1f98c527d09670596b2e050a5e8fb40490851a41185a873d89348b131f5c",
+      "published_blob_sha256": "547b1f98c527d09670596b2e050a5e8fb40490851a41185a873d89348b131f5c",
+      "byte_equal": true
+    },
+    {
+      "path": "dev/stellarcsg/reports/coil-profile-20260926/fixed-section-pair-010/OWNER_FILE_AUDIT.json",
+      "local_bytes_sha256": "e93e7c12b0fc9bd99cf6d4b647f18ffc73c8c1b14f08880b05b3a19723c83e23",
+      "published_blob_sha256": "e93e7c12b0fc9bd99cf6d4b647f18ffc73c8c1b14f08880b05b3a19723c83e23",
+      "byte_equal": true
+    },
+    {
+      "path": "dev/stellarcsg/reports/coil-profile-20260926/fixed-section-pair-010/PARTIAL_RESULTS.json",
+      "local_bytes_sha256": "1c0aadea746b29a91b36e1f359b1efc0117ca2c043bd54fbaa7736cd5e204cbb",
+      "published_blob_sha256": "1c0aadea746b29a91b36e1f359b1efc0117ca2c043bd54fbaa7736cd5e204cbb",
+      "byte_equal": true
+    },
+    {
+      "path": "dev/stellarcsg/reports/coil-profile-20260926/fixed-section-pair-010/PLAN.json",
+      "local_bytes_sha256": "2a8fa6e817e8449359308954ef7019ea3500d291f94fc318b3b206fa76182acb",
+      "published_blob_sha256": "2a8fa6e817e8449359308954ef7019ea3500d291f94fc318b3b206fa76182acb",
+      "byte_equal": true
+    },
+    {
+      "path": "dev/stellarcsg/reports/coil-profile-20260926/fixed-section-pair-010/SUMMARY.json",
+      "local_bytes_sha256": "04d373bd12ec1f6ad8bc611f3635a88dd8e2ede7bfce9fd4d90f6a28f4f8030d",
+      "published_blob_sha256": "04d373bd12ec1f6ad8bc611f3635a88dd8e2ede7bfce9fd4d90f6a28f4f8030d",
+      "byte_equal": true
+    },
+    {
+      "path": "dev/stellarcsg/reports/coil-profile-20260926/fixed-section-pair-010/TERMINAL.json",
+      "local_bytes_sha256": "023d3e4046a78e29d0d918e5cb8c321b91ff31f33cb10d09cf85fa058d6fd60f",
+      "published_blob_sha256": "023d3e4046a78e29d0d918e5cb8c321b91ff31f33cb10d09cf85fa058d6fd60f",
+      "byte_equal": true
+    },
+    {
+      "path": "dev/stellarcsg/reports/coil-profile-20260926/fixed-section-pair-010/custom/geometry.xml",
+      "local_bytes_sha256": "7a7205105faf26522170153620c3f3e73e69d026f43b1bc1600c836677f067e8",
+      "published_blob_sha256": "7a7205105faf26522170153620c3f3e73e69d026f43b1bc1600c836677f067e8",
+      "byte_equal": true
+    },
+    {
+      "path": "dev/stellarcsg/reports/coil-profile-20260926/fixed-section-pair-010/custom/materials.xml",
+      "local_bytes_sha256": "74e108f7acf8182f959d941e1c8dca68da8aafaa2edf3ee3abdcbd0afaf7b891",
+      "published_blob_sha256": "74e108f7acf8182f959d941e1c8dca68da8aafaa2edf3ee3abdcbd0afaf7b891",
+      "byte_equal": true
+    },
+    {
+      "path": "dev/stellarcsg/reports/coil-profile-20260926/fixed-section-pair-010/custom/process-receipt.json",
+      "local_bytes_sha256": "832a2e468459631583ce1757f9237d80d3b283982d11747be462d1681bc50cdd",
+      "published_blob_sha256": "832a2e468459631583ce1757f9237d80d3b283982d11747be462d1681bc50cdd",
+      "byte_equal": true
+    },
+    {
+      "path": "dev/stellarcsg/reports/coil-profile-20260926/fixed-section-pair-010/custom/process.stderr",
+      "local_bytes_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "published_blob_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "byte_equal": true
+    },
+    {
+      "path": "dev/stellarcsg/reports/coil-profile-20260926/fixed-section-pair-010/custom/process.stdout",
+      "local_bytes_sha256": "62cdc04c0f7e5032cf011ad48c8d1fdf4c6382cec7d4d800fd1df4e6e9d943eb",
+      "published_blob_sha256": "62cdc04c0f7e5032cf011ad48c8d1fdf4c6382cec7d4d800fd1df4e6e9d943eb",
+      "byte_equal": true
+    },
+    {
+      "path": "dev/stellarcsg/reports/coil-profile-20260926/fixed-section-pair-010/custom/receipt.json",
+      "local_bytes_sha256": "478bf34175c494d03bcbd5e63b2053874465bfb4c5229c69393000d18479655a",
+      "published_blob_sha256": "478bf34175c494d03bcbd5e63b2053874465bfb4c5229c69393000d18479655a",
+      "byte_equal": true
+    },
+    {
+      "path": "dev/stellarcsg/reports/coil-profile-20260926/fixed-section-pair-010/custom/settings.xml",
+      "local_bytes_sha256": "437fe983b1dd7c7e671a4067d3bccfd5fea6c72d99c4079f896a4fb4a567c532",
+      "published_blob_sha256": "437fe983b1dd7c7e671a4067d3bccfd5fea6c72d99c4079f896a4fb4a567c532",
+      "byte_equal": true
+    },
+    {
+      "path": "dev/stellarcsg/reports/coil-profile-20260926/fixed-section-pair-010/custom/tallies.xml",
+      "local_bytes_sha256": "96aacc7f9812c31ad9c8b36f14f354f0d4617bc18231bba982fc597c11a76fd0",
+      "published_blob_sha256": "96aacc7f9812c31ad9c8b36f14f354f0d4617bc18231bba982fc597c11a76fd0",
+      "byte_equal": true
+    },
+    {
+      "path": "dev/stellarcsg/reports/coil-profile-20260926/fixed-section-pair-010/fixed30/geometry.xml",
+      "local_bytes_sha256": "4305806f834f9bb9261b4b80746b707ee91e4880e2534a7e46153f1ccaf62bef",
+      "published_blob_sha256": "4305806f834f9bb9261b4b80746b707ee91e4880e2534a7e46153f1ccaf62bef",
+      "byte_equal": true
+    },
+    {
+      "path": "dev/stellarcsg/reports/coil-profile-20260926/fixed-section-pair-010/fixed30/materials.xml",
+      "local_bytes_sha256": "74e108f7acf8182f959d941e1c8dca68da8aafaa2edf3ee3abdcbd0afaf7b891",
+      "published_blob_sha256": "74e108f7acf8182f959d941e1c8dca68da8aafaa2edf3ee3abdcbd0afaf7b891",
+      "byte_equal": true
+    },
+    {
+      "path": "dev/stellarcsg/reports/coil-profile-20260926/fixed-section-pair-010/fixed30/process-receipt.json",
+      "local_bytes_sha256": "00aaccff0e931ea6458fe00edc6b8fec088d65fc34f6c4c84baab10b8d753308",
+      "published_blob_sha256": "00aaccff0e931ea6458fe00edc6b8fec088d65fc34f6c4c84baab10b8d753308",
+      "byte_equal": true
+    },
+    {
+      "path": "dev/stellarcsg/reports/coil-profile-20260926/fixed-section-pair-010/fixed30/process.stderr",
+      "local_bytes_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "published_blob_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "byte_equal": true
+    },
+    {
+      "path": "dev/stellarcsg/reports/coil-profile-20260926/fixed-section-pair-010/fixed30/process.stdout",
+      "local_bytes_sha256": "a1d2f2dc59069fbbde5f74e6cbcc4287725843995129d7da241fb46f799cdc90",
+      "published_blob_sha256": "a1d2f2dc59069fbbde5f74e6cbcc4287725843995129d7da241fb46f799cdc90",
+      "byte_equal": true
+    },
+    {
+      "path": "dev/stellarcsg/reports/coil-profile-20260926/fixed-section-pair-010/fixed30/receipt.json",
+      "local_bytes_sha256": "cc9ea33bbda59aa33999e120a62f394acbdb60122437fb5cddc4406357b75aa6",
+      "published_blob_sha256": "cc9ea33bbda59aa33999e120a62f394acbdb60122437fb5cddc4406357b75aa6",
+      "byte_equal": true
+    },
+    {
+      "path": "dev/stellarcsg/reports/coil-profile-20260926/fixed-section-pair-010/fixed30/settings.xml",
+      "local_bytes_sha256": "437fe983b1dd7c7e671a4067d3bccfd5fea6c72d99c4079f896a4fb4a567c532",
+      "published_blob_sha256": "437fe983b1dd7c7e671a4067d3bccfd5fea6c72d99c4079f896a4fb4a567c532",
+      "byte_equal": true
+    },
+    {
+      "path": "dev/stellarcsg/reports/coil-profile-20260926/fixed-section-pair-010/fixed30/tallies.xml",
+      "local_bytes_sha256": "96aacc7f9812c31ad9c8b36f14f354f0d4617bc18231bba982fc597c11a76fd0",
+      "published_blob_sha256": "96aacc7f9812c31ad9c8b36f14f354f0d4617bc18231bba982fc597c11a76fd0",
+      "byte_equal": true
+    },
+    {
+      "path": "dev/stellarcsg/reports/coil-profile-20260926/fixed-section-pair-010/identities.json",
+      "local_bytes_sha256": "d0e1bdbb35c9c7618bcb9a66fec8bbc370577fdf51a11a565aa97192352fdfc6",
+      "published_blob_sha256": "d0e1bdbb35c9c7618bcb9a66fec8bbc370577fdf51a11a565aa97192352fdfc6",
+      "byte_equal": true
+    },
+    {
+      "path": "dev/stellarcsg/reports/coil-profile-20260926/fixed-section-pair-010/loader.json",
+      "local_bytes_sha256": "d409ad85bbf233131e3782f60adcf2d967cd9dc04ce5b3ab8bab970cdd7e9a4e",
+      "published_blob_sha256": "d409ad85bbf233131e3782f60adcf2d967cd9dc04ce5b3ab8bab970cdd7e9a4e",
+      "byte_equal": true
+    },
+    {
+      "path": "dev/stellarcsg/reports/coil-profile-20260926/fixed-section-pair-010/windows-inventory.json",
+      "local_bytes_sha256": "395f7feea370ce87df2cbc5e63fd2bee61d6933e6b746668d1a309cc7d7704fa",
+      "published_blob_sha256": "0653821b1042118399ed4096fe5e47f85aa49ad29f1fd7babca55a41e0e132a4",
+      "byte_equal": false
+    },
+    {
+      "path": "dev/stellarcsg/reports/coil-profile-20260926/fixed-section-pair-010/wsl-inventory.json",
+      "local_bytes_sha256": "af88c7031bff4dda1f32777f37ca5277b98f7d0bbafb36e8ef2bb91d97c9e98d",
+      "published_blob_sha256": "af88c7031bff4dda1f32777f37ca5277b98f7d0bbafb36e8ef2bb91d97c9e98d",
+      "byte_equal": true
+    },
+    {
+      "path": "dev/stellarcsg/reports/plasma-best-time-20260926/LEASE_RELEASE_TERMINAL_010.json",
+      "local_bytes_sha256": "f40f5026be7bb3bc120fc14db935c7a19e7370c1ff6c14a7f0796f2d06f72261",
+      "published_blob_sha256": "227e62717ed527639fb668bf76ff8dcdc0040984b1ba9199f14bde6613dc40af",
+      "byte_equal": false
+    },
+    {
+      "path": "dev/stellarcsg/reports/plasma-best-time-20260926/METHOD_COMPARISON_REBUILD_010.json",
+      "local_bytes_sha256": "1b3c791da223e722a05be7587958396bc4845322ac0866d8a407f898c27c682c",
+      "published_blob_sha256": "9fe349d684e7dbbeb8708c141663371b7c8bd7cab8c0d595abee6ca575ce37c0",
+      "byte_equal": false
+    },
+    {
+      "path": "dev/stellarcsg/reports/plasma-best-time-20260926/METHOD_COMPARISON_REBUILD_010.md",
+      "local_bytes_sha256": "b6ba027053fd15b70598b46d50582e66235c9f834e65c82c95496165962d0d71",
+      "published_blob_sha256": "b6ba027053fd15b70598b46d50582e66235c9f834e65c82c95496165962d0d71",
+      "byte_equal": true
+    },
+    {
+      "path": "dev/stellarcsg/reports/plasma-best-time-20260926/TERMINAL_VALIDATION_REBUILD_010.json",
+      "local_bytes_sha256": "612813e549ee3f47d2a8643acba79703489d76648924e3436fafe66f976ef7de",
+      "published_blob_sha256": "7a8c62e34130d99aae7064d15fbad9baf9c890fb0e58dd9cec62ba537534bb19",
+      "byte_equal": false
+    },
+    {
+      "path": "dev/stellarcsg/reports/plasma-best-time-20260926/source-rebuild-010-01/block-plan.json",
+      "local_bytes_sha256": "334009cc791ffbb696bc5d4d117ac66ec9adf1e8f31d4c461ff4f1ae377601e5",
+      "published_blob_sha256": "334009cc791ffbb696bc5d4d117ac66ec9adf1e8f31d4c461ff4f1ae377601e5",
+      "byte_equal": true
+    },
+    {
+      "path": "dev/stellarcsg/reports/plasma-best-time-20260926/source-rebuild-010-01/build-receipt.json",
+      "local_bytes_sha256": "69fba0172a6a5ee24e36d145b973a3c20b585d2660286cba6f57865c42678d4c",
+      "published_blob_sha256": "69fba0172a6a5ee24e36d145b973a3c20b585d2660286cba6f57865c42678d4c",
+      "byte_equal": true
+    },
+    {
+      "path": "dev/stellarcsg/reports/plasma-best-time-20260926/source-rebuild-010-01/comparison.json",
+      "local_bytes_sha256": "4d3ab2737d821a24c8ce65f4a4d561998d2d9b3529c87826a3da172582993f4b",
+      "published_blob_sha256": "4d3ab2737d821a24c8ce65f4a4d561998d2d9b3529c87826a3da172582993f4b",
+      "byte_equal": true
+    },
+    {
+      "path": "dev/stellarcsg/reports/plasma-best-time-20260926/source-rebuild-010-01/configure-receipt.json",
+      "local_bytes_sha256": "b43d618661026d326d7034bdea221348c732df0c699d19542ed6e628221b1ea2",
+      "published_blob_sha256": "b43d618661026d326d7034bdea221348c732df0c699d19542ed6e628221b1ea2",
+      "byte_equal": true
+    },
+    {
+      "path": "dev/stellarcsg/reports/plasma-best-time-20260926/source-rebuild-010-01/current_retained/binding.json",
+      "local_bytes_sha256": "9630ca387b9d9b74a6a0e101f3a5aeee0c7700d06f60df9bede6881367ebb050",
+      "published_blob_sha256": "9630ca387b9d9b74a6a0e101f3a5aeee0c7700d06f60df9bede6881367ebb050",
+      "byte_equal": true
+    },
+    {
+      "path": "dev/stellarcsg/reports/plasma-best-time-20260926/source-rebuild-010-01/current_retained/geometry.xml",
+      "local_bytes_sha256": "455a5d23ff8857e261a1c037c91099370bbeb4793a26dc23816e064981255735",
+      "published_blob_sha256": "455a5d23ff8857e261a1c037c91099370bbeb4793a26dc23816e064981255735",
+      "byte_equal": true
+    },
+    {
+      "path": "dev/stellarcsg/reports/plasma-best-time-20260926/source-rebuild-010-01/current_retained/materials.xml",
+      "local_bytes_sha256": "ea9072b865729401b0393ab7af88b47fe75cbfce372ede05305fa3acbb36c1a1",
+      "published_blob_sha256": "ea9072b865729401b0393ab7af88b47fe75cbfce372ede05305fa3acbb36c1a1",
+      "byte_equal": true
+    },
+    {
+      "path": "dev/stellarcsg/reports/plasma-best-time-20260926/source-rebuild-010-01/current_retained/native-receipt.json",
+      "local_bytes_sha256": "fb9967f6f6ac0a2e0474ae475aa7c6cdbd32af5566b7ff8d653bdad835ce89f7",
+      "published_blob_sha256": "fb9967f6f6ac0a2e0474ae475aa7c6cdbd32af5566b7ff8d653bdad835ce89f7",
+      "byte_equal": true
+    },
+    {
+      "path": "dev/stellarcsg/reports/plasma-best-time-20260926/source-rebuild-010-01/current_retained/native-stderr.txt",
+      "local_bytes_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "published_blob_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "byte_equal": true
+    },
+    {
+      "path": "dev/stellarcsg/reports/plasma-best-time-20260926/source-rebuild-010-01/current_retained/native-stdout.txt",
+      "local_bytes_sha256": "cfb1c9711cce48f70ae1daa30fb803246eb6d877163c3a29683d151701d7fa07",
+      "published_blob_sha256": "cfb1c9711cce48f70ae1daa30fb803246eb6d877163c3a29683d151701d7fa07",
+      "byte_equal": true
+    },
+    {
+      "path": "dev/stellarcsg/reports/plasma-best-time-20260926/source-rebuild-010-01/current_retained/result.json",
+      "local_bytes_sha256": "27689e1c89c5c887fa6ae45dd8e05c57c5f3cb4717c3cbeac23a859ec5052517",
+      "published_blob_sha256": "27689e1c89c5c887fa6ae45dd8e05c57c5f3cb4717c3cbeac23a859ec5052517",
+      "byte_equal": true
+    },
+    {
+      "path": "dev/stellarcsg/reports/plasma-best-time-20260926/source-rebuild-010-01/current_retained/settings.xml",
+      "local_bytes_sha256": "14235669e6de2b3048d5300544d6f96badbb4d56240cad10906a991a26d094f8",
+      "published_blob_sha256": "14235669e6de2b3048d5300544d6f96badbb4d56240cad10906a991a26d094f8",
+      "byte_equal": true
+    },
+    {
+      "path": "dev/stellarcsg/reports/plasma-best-time-20260926/source-rebuild-010-01/current_retained/tallies.xml",
+      "local_bytes_sha256": "d9adb44d2be814780c3a662d52b6955859cf64d92b99dc1aecc1ede675bea6ca",
+      "published_blob_sha256": "d9adb44d2be814780c3a662d52b6955859cf64d92b99dc1aecc1ede675bea6ca",
+      "byte_equal": true
+    },
+    {
+      "path": "dev/stellarcsg/reports/plasma-best-time-20260926/source-rebuild-010-01/current_retained/worker-receipt.json",
+      "local_bytes_sha256": "b8c35bfbb96947e2af7b00712c13bb3270e010ead89b549afeb88738f5a3ca23",
+      "published_blob_sha256": "b8c35bfbb96947e2af7b00712c13bb3270e010ead89b549afeb88738f5a3ca23",
+      "byte_equal": true
+    },
+    {
+      "path": "dev/stellarcsg/reports/plasma-best-time-20260926/source-rebuild-010-01/old_source_rebuilt/binding.json",
+      "local_bytes_sha256": "91af10e766f4ff16c8b398744c39c2f2a59a358cc817224976b2c48d294c64c2",
+      "published_blob_sha256": "91af10e766f4ff16c8b398744c39c2f2a59a358cc817224976b2c48d294c64c2",
+      "byte_equal": true
+    },
+    {
+      "path": "dev/stellarcsg/reports/plasma-best-time-20260926/source-rebuild-010-01/old_source_rebuilt/geometry.xml",
+      "local_bytes_sha256": "455a5d23ff8857e261a1c037c91099370bbeb4793a26dc23816e064981255735",
+      "published_blob_sha256": "455a5d23ff8857e261a1c037c91099370bbeb4793a26dc23816e064981255735",
+      "byte_equal": true
+    },
+    {
+      "path": "dev/stellarcsg/reports/plasma-best-time-20260926/source-rebuild-010-01/old_source_rebuilt/materials.xml",
+      "local_bytes_sha256": "ea9072b865729401b0393ab7af88b47fe75cbfce372ede05305fa3acbb36c1a1",
+      "published_blob_sha256": "ea9072b865729401b0393ab7af88b47fe75cbfce372ede05305fa3acbb36c1a1",
+      "byte_equal": true
+    },
+    {
+      "path": "dev/stellarcsg/reports/plasma-best-time-20260926/source-rebuild-010-01/old_source_rebuilt/native-receipt.json",
+      "local_bytes_sha256": "adac6a159f8a876a1e8a3f3b62838b80bd5dc99145a04fb4d5561204dc6805ba",
+      "published_blob_sha256": "adac6a159f8a876a1e8a3f3b62838b80bd5dc99145a04fb4d5561204dc6805ba",
+      "byte_equal": true
+    },
+    {
+      "path": "dev/stellarcsg/reports/plasma-best-time-20260926/source-rebuild-010-01/old_source_rebuilt/native-stderr.txt",
+      "local_bytes_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "published_blob_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "byte_equal": true
+    },
+    {
+      "path": "dev/stellarcsg/reports/plasma-best-time-20260926/source-rebuild-010-01/old_source_rebuilt/native-stdout.txt",
+      "local_bytes_sha256": "3b0bde1474e4549c945775ae5e34a19cae4f97d64181912105975cc7538b1a47",
+      "published_blob_sha256": "3b0bde1474e4549c945775ae5e34a19cae4f97d64181912105975cc7538b1a47",
+      "byte_equal": true
+    },
+    {
+      "path": "dev/stellarcsg/reports/plasma-best-time-20260926/source-rebuild-010-01/old_source_rebuilt/result.json",
+      "local_bytes_sha256": "439514a6861cd1ba60e857ca6d4a055503af66755ab1f6d2c18b065f8315d158",
+      "published_blob_sha256": "439514a6861cd1ba60e857ca6d4a055503af66755ab1f6d2c18b065f8315d158",
+      "byte_equal": true
+    },
+    {
+      "path": "dev/stellarcsg/reports/plasma-best-time-20260926/source-rebuild-010-01/old_source_rebuilt/settings.xml",
+      "local_bytes_sha256": "14235669e6de2b3048d5300544d6f96badbb4d56240cad10906a991a26d094f8",
+      "published_blob_sha256": "14235669e6de2b3048d5300544d6f96badbb4d56240cad10906a991a26d094f8",
+      "byte_equal": true
+    },
+    {
+      "path": "dev/stellarcsg/reports/plasma-best-time-20260926/source-rebuild-010-01/old_source_rebuilt/tallies.xml",
+      "local_bytes_sha256": "d9adb44d2be814780c3a662d52b6955859cf64d92b99dc1aecc1ede675bea6ca",
+      "published_blob_sha256": "d9adb44d2be814780c3a662d52b6955859cf64d92b99dc1aecc1ede675bea6ca",
+      "byte_equal": true
+    },
+    {
+      "path": "dev/stellarcsg/reports/plasma-best-time-20260926/source-rebuild-010-01/old_source_rebuilt/worker-receipt.json",
+      "local_bytes_sha256": "209a9c0c5e7c110875cd806400f0e5a95c5f2849733d1044436a5d8c55156443",
+      "published_blob_sha256": "209a9c0c5e7c110875cd806400f0e5a95c5f2849733d1044436a5d8c55156443",
+      "byte_equal": true
+    }
+  ]
+}

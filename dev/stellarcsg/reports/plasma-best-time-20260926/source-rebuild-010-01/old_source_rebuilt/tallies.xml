@@ -1,0 +1,35 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<tallies>
+  <mesh id="1" type="rectilinear">
+    <x_grid>1206.9965478168172 1208.9965478168172 1210.9965478168172</x_grid>
+    <y_grid>-2.0 0.0 2.0</y_grid>
+    <z_grid>-1.999999999999782 2.1815882433884326e-13 2.000000000000218</z_grid>
+  </mesh>
+  <filter id="1" type="material">
+    <bins>1</bins>
+  </filter>
+  <filter id="2" type="cell">
+    <bins>2</bins>
+  </filter>
+  <filter id="3" type="energy">
+    <bins>0 1000 100000 1000000 5000000 10000000 14200000</bins>
+  </filter>
+  <filter id="5" type="mesh">
+    <bins>1</bins>
+  </filter>
+  <tally id="1">
+    <filters>1</filters>
+    <scores>flux total absorption damage-energy</scores>
+    <estimator>tracklength</estimator>
+  </tally>
+  <tally id="2">
+    <filters>2 3</filters>
+    <scores>flux total absorption damage-energy</scores>
+    <estimator>tracklength</estimator>
+  </tally>
+  <tally id="3">
+    <filters>2 5</filters>
+    <scores>flux total absorption damage-energy</scores>
+    <estimator>tracklength</estimator>
+  </tally>
+</tallies>

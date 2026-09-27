@@ -1,0 +1,62 @@
+{
+  "schema": "stellarcsg.fixed-section-owner-audit/v1",
+  "utc": "2026-09-27T02:27:09.301180+00:00",
+  "reviewer": "Owner file-only self-review; independent acceptance separate",
+  "terminalSHA256": "023d3e4046a78e29d0d918e5cb8c321b91ff31f33cb10d09cf85fa058d6fd60f",
+  "summarySHA256": "04d373bd12ec1f6ad8bc611f3635a88dd8e2ede7bfce9fd4d90f6a28f4f8030d",
+  "frozenIdentityCount": 24,
+  "frozenIdentityMismatches": [],
+  "nativeExitCodes": [
+    0,
+    0
+  ],
+  "wrapperExitCode": 0,
+  "completedHistories": 40000,
+  "leaseAbsentAtObservation": true,
+  "customToFixed30TransportRatio": 4.797639089758085,
+  "within125TimingGate": false,
+  "physicsEstimators": [
+    {
+      "method": "custom",
+      "materialTracklengthMeanCmPerSource": 47.49960037904508,
+      "totalReactionEstimatorPerSource": 8.282691684069375,
+      "absorptionEstimatorPerSource": 0.013398996481595907,
+      "damageEnergyEstimatorPerSource": 70206.21027646406,
+      "actualCollisionEventCount": "UNKNOWN; estimator is not an event counter",
+      "actualSurfaceCrossingEventCount": "UNKNOWN"
+    },
+    {
+      "method": "fixed30",
+      "materialTracklengthMeanCmPerSource": 11.907338337394888,
+      "totalReactionEstimatorPerSource": 2.137045589274032,
+      "absorptionEstimatorPerSource": 0.0035067872791349057,
+      "damageEnergyEstimatorPerSource": 18192.88738141927,
+      "actualCollisionEventCount": "UNKNOWN; estimator is not an event counter",
+      "actualSurfaceCrossingEventCount": "UNKNOWN"
+    }
+  ],
+  "repeatedCustomRawArrayComparisons": [
+    {
+      "path": "tallies/tally 1/results",
+      "values": 864,
+      "changedBinary64Values": 0,
+      "maxAbsoluteRawDifference": 0.0
+    },
+    {
+      "path": "tallies/tally 2/results",
+      "values": 144,
+      "changedBinary64Values": 0,
+      "maxAbsoluteRawDifference": 0.0
+    },
+    {
+      "path": "tallies/tally 3/results",
+      "values": 8,
+      "changedBinary64Values": 0,
+      "maxAbsoluteRawDifference": 0.0
+    }
+  ],
+  "repeatClaim": "Deterministic same-seed repeat only; no physical fidelity or statistical qualification",
+  "sourceOccupancy": "Unshifted bank: custom18initialvoid; fixed30 diagnostic4/18iron; broad18/18iron",
+  "finalGoal": "NOT_ACHIEVED; fixed-section timing FAIL and physical target/Embree fidelity OPEN",
+  "noRetryOrSuccessor": true
+}

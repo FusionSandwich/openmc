@@ -1,10 +1,12 @@
 # Fastest methods, branches and apparent regression
 
+For the selected complex-target development routes, start with the [project goal](../PROJECT_GOAL.md) and [current coil/plasma method map](../METHOD_MAP.md). Those select P00 facet/component CSG for pack development and local periodic patch/BVH with the checked adapter for stellarator plasma; historical analytic fixtures are not target winners.
+
 ## Direct answer
 
 **No: the recent coil benchmark did not demonstrate use of our fastest developed method.** It measured the restricted certified global-offset path with its accepted interval cache. Earlier local/span and shared-coil BVH implementations recorded far shorter elapsed transport. The latest benchmark report must not be read as a ranking of all available methods.
 
-For plasma, the current and preserved generic patch solver bodies are textually identical after whitespace removal. The adapter, compiler policy, executable dependencies and workload differ. The 34.82 s result is a serious current performance failure, but a matched old/current experiment is needed to establish an implementation regression.
+For plasma, the current and preserved generic patch solver bodies are textually identical after whitespace removal. The new frozen 20k pair recorded old-source-rebuilt 27.225501 s versus current-retained 28.970192 s: current/old 1.064083 in this single diagnostic pair. The adapter/compiler policies differ; old unchecked misses cannot be promoted. This pair does not reproduce the archival binary or establish portable equivalence. The 34.82 s versus 0.218 s native-torus comparison remains a serious target-speed failure; the new pair is not a replacement torus comparison.
 
 Three questions must remain separate: fastest recorded result within a declared workload; fastest runnable implementation on the current common workload; and fastest correct representation of the intended physical geometry. We currently have historical leaders, not a qualified universal winner.
 

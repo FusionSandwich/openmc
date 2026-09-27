@@ -1,0 +1,105 @@
+{
+  "utc": "2026-09-27T02:18:48.5603592Z",
+  "run": "plasma-rebuild-010-20260927T0156247567Z",
+  "session_terminal_exit": 1,
+  "driver_exit": 0,
+  "wrapper_failure": "Directory release failed; own empty lease subsequently retired with documented WSLrmdir",
+  "lease_release_receipt": "LEASE_RELEASE_TERMINAL_010.json",
+  "methods": {
+    "current_retained": {
+      "output_statepoints": 8,
+      "native_stderr_bytes": 0,
+      "xml": {
+        "materials.xml": {
+          "matches_frozen": true,
+          "sha256": "ea9072b865729401b0393ab7af88b47fe75cbfce372ede05305fa3acbb36c1a1"
+        },
+        "geometry.xml": {
+          "matches_frozen": true,
+          "sha256": "455a5d23ff8857e261a1c037c91099370bbeb4793a26dc23816e064981255735"
+        },
+        "tallies.xml": {
+          "matches_frozen": true,
+          "sha256": "d9adb44d2be814780c3a662d52b6955859cf64d92b99dc1aecc1ede675bea6ca"
+        },
+        "settings.xml": {
+          "matches_frozen": true,
+          "sha256": "14235669e6de2b3048d5300544d6f96badbb4d56240cad10906a991a26d094f8"
+        }
+      },
+      "transport_positive": true,
+      "library_sha256": "f301f7a76a1d4bc1910ea17b582dd31ce70f35cc35690ae5c390c1880ce714a6",
+      "counts": {
+        "seed": 1741,
+        "histories": 20000
+      },
+      "binary_sha256": "47a1d0f4a15aba391a3f3ae5cb1dd0776f5041afe073e2e2d3fb58b04885a398",
+      "finite_result_and_arrays": true,
+      "cpu_affinity": [
+        0
+      ],
+      "phases": {
+        "worker": {
+          "wall_s": 39.68403957800183,
+          "timed_out": false,
+          "exit_code": 0
+        },
+        "native": {
+          "wall_s": 35.78898808200029,
+          "timed_out": false,
+          "exit_code": 0
+        }
+      }
+    },
+    "old_source_rebuilt": {
+      "output_statepoints": 8,
+      "native_stderr_bytes": 0,
+      "xml": {
+        "materials.xml": {
+          "matches_frozen": true,
+          "sha256": "ea9072b865729401b0393ab7af88b47fe75cbfce372ede05305fa3acbb36c1a1"
+        },
+        "geometry.xml": {
+          "matches_frozen": true,
+          "sha256": "455a5d23ff8857e261a1c037c91099370bbeb4793a26dc23816e064981255735"
+        },
+        "tallies.xml": {
+          "matches_frozen": true,
+          "sha256": "d9adb44d2be814780c3a662d52b6955859cf64d92b99dc1aecc1ede675bea6ca"
+        },
+        "settings.xml": {
+          "matches_frozen": true,
+          "sha256": "14235669e6de2b3048d5300544d6f96badbb4d56240cad10906a991a26d094f8"
+        }
+      },
+      "transport_positive": true,
+      "library_sha256": "67afbe7df15dd677fd63ba8c9d8fda45824f46c0abd6579832bcec453a092ff8",
+      "counts": {
+        "seed": 1741,
+        "histories": 20000
+      },
+      "binary_sha256": "05ef76e478db02d8e284104534698f6af1cb1210ab87b0b51b8955ff2fcacbaf",
+      "finite_result_and_arrays": true,
+      "cpu_affinity": [
+        0
+      ],
+      "phases": {
+        "worker": {
+          "wall_s": 42.70284875499783,
+          "timed_out": false,
+          "exit_code": 0
+        },
+        "native": {
+          "wall_s": 32.866227154001535,
+          "timed_out": false,
+          "exit_code": 0
+        }
+      }
+    }
+  },
+  "all_finite": true,
+  "source_reproduction_not_archive_binary": true,
+  "independent_acceptance": "PENDING",
+  "new_workers": 0,
+  "new_builds": 0
+}
