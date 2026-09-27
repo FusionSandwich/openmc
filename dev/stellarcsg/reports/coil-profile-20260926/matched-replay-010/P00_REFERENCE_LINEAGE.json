@@ -1,0 +1,8 @@
+{
+  "path": "D:/2026_DPA/asc_poster_builds_orderfix_2feabb0f_r2/P00_full/dagmc.h5m",
+  "bytes": 5017612,
+  "observedSHA256": "549c42bf66b290f8f56b6f4d7523940c3b32b9d256d993ea42605f4dddb33e39",
+  "expectedSHA256": "549c42bf66b290f8f56b6f4d7523940c3b32b9d256d993ea42605f4dddb33e39",
+  "lineageHashMatches": true,
+  "fidelity": "Native admitted faceted payload lineage; not continuous CAD or full WISTELL-D pack admission"
+}

@@ -1,5 +1,7 @@
 # StellarCSG: goal, evidence and next work
 
+**Method-selection correction:** the recent certified-offset coil pilot is not our fastest historically measured implementation. See [fastest-method/branch review](FASTEST_METHOD_BRANCH_REVIEW_20260926.md) for recomputed elapsed records, source/branch identities, P00 faceted alternatives and matched rerun status. The older local span/shared-coil BVH remains the performance architecture to repair; current-workload winners are not established by comparing different historical workloads.
+
 ## 1. Goal and benchmark contract
 
 Develop OpenMC CSG representations of WISTELL-D and other stellarator/tokamak coil and plasma geometry with accuracy approaching the intended CAD/DAGMC boundary, ordinary OpenMC tally/source integration, and transport nearly as fast as built-in CSG.

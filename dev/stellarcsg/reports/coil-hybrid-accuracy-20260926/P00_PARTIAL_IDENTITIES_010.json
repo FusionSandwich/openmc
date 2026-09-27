@@ -1,0 +1,30 @@
+{
+  "timestamp": "2026-09-27T01:38:28.8798823Z",
+  "disposition": "ACCEPT_DIAGNOSTIC_PHASE_ACCOUNTING",
+  "time_gate": "PASS_SIZING_PAIR_ONLY",
+  "transport_ratio": 0.9056619322398726,
+  "block_terminal": "NOT_AVAILABLE_AT_REVIEW_SNAPSHOT",
+  "compute_runs": 0,
+  "evidence": [
+    {
+      "path": "dev/stellarcsg/reports/coil-hybrid-accuracy-20260926/P00_PARTIAL_ACCEPTANCE_010.md",
+      "sha256": "eac734e55016ef95b95f521e6d050de44c6485f6bf136284df573acd7db35ad7"
+    },
+    {
+      "path": "dev/stellarcsg/reports/coil-profile-20260926/matched-replay-010/p00_facets/receipt.json",
+      "sha256": "b2eea837bbc7b6be6d0c4d5a334155444ce5b616e71b627a8248a7b99ad08879"
+    },
+    {
+      "path": "dev/stellarcsg/reports/coil-profile-20260926/matched-replay-010/p00_flat_rings/receipt.json",
+      "sha256": "0448629a4748ce559d573cb6abda48ec355227ebf18a84f9b23d3d3d5a0e4dff"
+    },
+    {
+      "path": "dev/stellarcsg/reports/coil-profile-20260926/matched-replay-010/identities.json",
+      "sha256": "94d69fd573794d048622556968217d7bf6a4aa136968d4d2b6db4cf4e82934c5"
+    },
+    {
+      "path": "dev/stellarcsg/reports/coil-profile-20260926/matched-replay-010/PLAN.json",
+      "sha256": "1efbfb8d881f660c85514328eb59c6bbae59c8486e34f981f8dc11bb22afde69"
+    }
+  ]
+}

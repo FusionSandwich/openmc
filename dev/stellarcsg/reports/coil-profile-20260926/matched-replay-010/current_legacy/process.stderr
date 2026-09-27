@@ -1,0 +1,2 @@
+terminate called after throwing an instance of 'std::runtime_error'
+  what():  StellarCSG surface 10 has an unresolved nearest-boundary query

@@ -1,6 +1,23 @@
 # Geometry build and transport: elapsed-time evidence
 
+**Scope correction:** these recent pilots measure particular paths, not the fastest of all developed methods. The [method/branch ranking and rerun audit](FASTEST_METHOD_BRANCH_REVIEW_20260926.md) identifies older faster recorded architectures and preserves their correctness/workload limits.
+
 Report seconds, separately for coils and plasma. The working transport acceptance limit is custom time / built-in time <= 1.25 (10 seconds built-in permits 12.5 seconds custom). Geometry build is a separate measurement. No full-target three-method comparison is yet complete.
+
+## Method replay /010: 20,000 histories per completed method
+
+The finite replay completed five workers and stopped when current legacy surface 10 aborted on an unresolved nearest-boundary query. Full phase timings, branch/runtime identities and eligibility are in the [method review](FASTEST_METHOD_BRANCH_REVIEW_20260926.md). These rows update method selection; they do not replace the /009 receipts below.
+
+| Workload family | Method | Transport s | Native process wall s |
+|---|---|---:|---:|
+| Near-circle round tube | Certified offset/cache | 165.927178 | 172.083797 |
+| Near-circle round tube | Retained composite kernel control | 0.233747 | 6.342860 |
+| Near-circle round tube | Retained recovered kernel | 0.228377 | 6.341732 |
+| Near-circle round tube | Current legacy rounded-frame | FAILED: unresolved query | 5.940352 until abort |
+| Derived periodic winding-pack facets | P00 component CSG | 7.836203 | 13.906716 |
+| P00 proxy collection | Built-in PCA ring envelopes | 8.652459 | 14.608073 |
+
+The old near-circle runtimes may dispatch to an averaged analytic torus; their times cannot be attributed to the generic BVH until dispatch is verified. Known generic wrong-root defects and moving-frame/constant-metric solid differences remain. P00 ratio 0.90566 is an **envelope-sizing diagnostic**: some proxy sections are much thicker than the nominal 30x30 cm pack. Fixed-section control is pending. The periodic facet candidate has vertex displacement <=0.003328773593059 cm from seam repair; continuous CAD and comprehensive tally-bin accuracy remain open. Separate frozen source banks are used for the round and P00 families. Cold geometry build remains unknown.
 
 ## New coil diagnostic: 20,000 histories per method
 

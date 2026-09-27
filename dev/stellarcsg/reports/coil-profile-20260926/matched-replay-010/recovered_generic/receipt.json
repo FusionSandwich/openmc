@@ -1,0 +1,222 @@
+{
+  "method": "recovered_generic",
+  "family": "round",
+  "completed_histories": 20000,
+  "counters": {
+    "n_particles": 1000,
+    "n_batches": 20,
+    "current_batch": 20,
+    "n_realizations": 20
+  },
+  "geometry_prepare_reuse_or_fit_export_seconds": 0.1397430369979702,
+  "cold_source_CAD_or_coefficient_build_seconds": "UNKNOWN",
+  "initialization_seconds": 6.010794553,
+  "geometry_load_compile_seconds": "UNKNOWN separately; nested initialization",
+  "transport_seconds": 0.228377333,
+  "recorded_statepoint_write_seconds": 0.029619204,
+  "complete_output_finalization_seconds": "UNKNOWN separately; external wall contains it",
+  "process_wall_seconds": 6.341732105000119,
+  "result_validation_seconds": 0.037876206002692925,
+  "raw_native_timers_seconds": {
+    "accumulating tallies": 0.0001238,
+    "active batches": 0.256721037,
+    "reading cross sections": 2.066279394,
+    "simulation": 0.255803737,
+    "total": 6.26968469,
+    "total initialization": 6.010794553,
+    "transport": 0.228377333,
+    "writing statepoints": 0.029619204
+  },
+  "binary_sha256": "8c7f76b5e0c3f1fc3bd6569eb71d0683e011253894592416c40adf0dfec9e985",
+  "library_sha256": "630f71801795b18f0fe858ee6d557ce9dec905f3adc6b5fdec25d6137730faa4",
+  "preload_sha256": null,
+  "xml_hashes": {
+    "geometry.xml": "ddc44f6cd2d0b375766f6ce7bfd9bb71b72f60451b67d8b19ac5d909d2404c40",
+    "materials.xml": "af2a5fa8526432a9a088f29d3c9d8dbc6c34835fc988cc7511e7e0ae8ffc5669",
+    "settings.xml": "fb66616954f11d74ed2cf20b1146b5a109185aa9d4658d6375746788701c0e0f",
+    "tallies.xml": "2cac3f93d2c54d4a92c5530ecf71e2fbdc441981b027ccdc5913b9b7bb8d223a"
+  },
+  "statepoint_sha256": "4c976c5beac1b56d6472643ee5cf35f965fd30bab81516e9a50a3299fa4a17e1",
+  "tallies": [
+    {
+      "path": "tallies/tally 1/results",
+      "shape": [
+        6,
+        4,
+        2
+      ],
+      "nonzero_elements": 48,
+      "raw_values": [
+        [
+          [
+            0.055092898052925963,
+            0.0016117536512054045
+          ],
+          [
+            0.05100805272156509,
+            0.0014184361972102686
+          ],
+          [
+            0.00010587071508975319,
+            7.648390185271543e-09
+          ],
+          [
+            0.10403747325068477,
+            0.006515026136650292
+          ]
+        ],
+        [
+          [
+            3.266999857853435,
+            0.5891585652930248
+          ],
+          [
+            1.1520782177417097,
+            0.078290663338665
+          ],
+          [
+            0.0015099862154720999,
+            2.925528142052875e-07
+          ],
+          [
+            1419.5501215655488,
+            119464.16505205762
+          ]
+        ],
+        [
+          [
+            48.73214110220665,
+            119.29459267337408
+          ],
+          [
+            10.017569645065734,
+            5.042817875573352
+          ],
+          [
+            0.011587769899149529,
+            6.9851572860816784e-06
+          ],
+          [
+            104943.02824883164,
+            553999159.948124
+          ]
+        ],
+        [
+          [
+            52.76255470314784,
+            139.68675136210177
+          ],
+          [
+            13.060259733370891,
+            8.556526768572112
+          ],
+          [
+            0.009187494641068864,
+            4.235730016834547e-06
+          ],
+          [
+            395312.157113913,
+            7839828833.215857
+          ]
+        ],
+        [
+          [
+            7.121168074213331,
+            2.5917458976178724
+          ],
+          [
+            2.076644611526118,
+            0.22040886849779734
+          ],
+          [
+            0.022839075311657613,
+            2.6751266119479604e-05
+          ],
+          [
+            111682.99619459247,
+            637253543.4780118
+          ]
+        ],
+        [
+          [
+            97.67865938347057,
+            477.18643034173726
+          ],
+          [
+            21.24649536610078,
+            22.576834651872733
+          ],
+          [
+            1.3276135415111052,
+            0.08815236029112479
+          ],
+          [
+            2108478.3118326385,
+            222345010430.20398
+          ]
+        ]
+      ]
+    },
+    {
+      "path": "tallies/tally 2/results",
+      "shape": [
+        1,
+        4,
+        2
+      ],
+      "nonzero_elements": 8,
+      "raw_values": [
+        [
+          [
+            209.61661601894477,
+            2197.93597754215
+          ],
+          [
+            47.60405562652678,
+            113.37029083332828
+          ],
+          [
+            1.3728437382935432,
+            0.09426307214945107
+          ],
+          [
+            2721836.1475490145,
+            370499817712.90485
+          ]
+        ]
+      ]
+    },
+    {
+      "path": "tallies/tally 3/results",
+      "shape": [
+        1,
+        4,
+        2
+      ],
+      "nonzero_elements": 8,
+      "raw_values": [
+        [
+          [
+            209.61661601894477,
+            2197.93597754215
+          ],
+          [
+            47.60405562652678,
+            113.37029083332828
+          ],
+          [
+            1.3728437382935432,
+            0.09426307214945107
+          ],
+          [
+            2721836.1475490145,
+            370499817712.90485
+          ]
+        ]
+      ]
+    }
+  ],
+  "raw_failure_diagnostics": [],
+  "fidelity": "same input coefficients; moving-frame versus constant-metric solids not proved identical",
+  "promotion": "NOT_ACCURACY_ACCEPTED; known old first-root defects remain"
+}

@@ -1,0 +1,222 @@
+{
+  "method": "certified_cache",
+  "family": "round",
+  "completed_histories": 20000,
+  "counters": {
+    "n_particles": 1000,
+    "n_batches": 20,
+    "current_batch": 20,
+    "n_realizations": 20
+  },
+  "geometry_prepare_reuse_or_fit_export_seconds": 0.12156310099817347,
+  "cold_source_CAD_or_coefficient_build_seconds": "UNKNOWN",
+  "initialization_seconds": 6.008040928,
+  "geometry_load_compile_seconds": "UNKNOWN separately; nested initialization",
+  "transport_seconds": 165.9271777,
+  "recorded_statepoint_write_seconds": 0.0321374,
+  "complete_output_finalization_seconds": "UNKNOWN separately; external wall contains it",
+  "process_wall_seconds": 172.0837970270004,
+  "result_validation_seconds": 0.04643959999884828,
+  "raw_native_timers_seconds": {
+    "accumulating tallies": 5.9600000000000005e-05,
+    "active batches": 165.958046,
+    "reading cross sections": 1.882413909,
+    "simulation": 165.9570416,
+    "total": 171.968520028,
+    "total initialization": 6.008040928,
+    "transport": 165.9271777,
+    "writing statepoints": 0.0321374
+  },
+  "binary_sha256": "47a1d0f4a15aba391a3f3ae5cb1dd0776f5041afe073e2e2d3fb58b04885a398",
+  "library_sha256": "f301f7a76a1d4bc1910ea17b582dd31ce70f35cc35690ae5c390c1880ce714a6",
+  "preload_sha256": "b3f2aeea1b80c00b806b6bb96435e4e0acc3e7a6b94beaea565ccde733387e68",
+  "xml_hashes": {
+    "geometry.xml": "9122b77fed201b243c32caf738565c193835b4fe6ef05e2c52b93767d0fb3c25",
+    "materials.xml": "af2a5fa8526432a9a088f29d3c9d8dbc6c34835fc988cc7511e7e0ae8ffc5669",
+    "settings.xml": "fb66616954f11d74ed2cf20b1146b5a109185aa9d4658d6375746788701c0e0f",
+    "tallies.xml": "2cac3f93d2c54d4a92c5530ecf71e2fbdc441981b027ccdc5913b9b7bb8d223a"
+  },
+  "statepoint_sha256": "dea8a17021f573addec2dec373626a1cae47270ed63aac44cdb27c0b9f40ae7c",
+  "tallies": [
+    {
+      "path": "tallies/tally 1/results",
+      "shape": [
+        6,
+        4,
+        2
+      ],
+      "nonzero_elements": 48,
+      "raw_values": [
+        [
+          [
+            0.05509294631434518,
+            0.0016117569333737563
+          ],
+          [
+            0.051008100449564206,
+            0.001418439323509358
+          ],
+          [
+            0.00010587087952700842,
+            7.648417839160551e-09
+          ],
+          [
+            0.10403752851194469,
+            0.006515029356676846
+          ]
+        ],
+        [
+          [
+            3.2670001160805255,
+            0.5891586656971637
+          ],
+          [
+            1.1520781652785792,
+            0.0782906649364104
+          ],
+          [
+            0.001509985908727595,
+            2.9255272590589204e-07
+          ],
+          [
+            1419.5500005919948,
+            119464.1665841147
+          ]
+        ],
+        [
+          [
+            48.73214032890396,
+            119.29458837658905
+          ],
+          [
+            10.01756927004481,
+            5.042817466804031
+          ],
+          [
+            0.01158776959718325,
+            6.9851575178250164e-06
+          ],
+          [
+            104943.02214593886,
+            553999095.3137609
+          ]
+        ],
+        [
+          [
+            52.76255110041202,
+            139.68673332209744
+          ],
+          [
+            13.060258566645444,
+            8.556525268407292
+          ],
+          [
+            0.009187494025306794,
+            4.2357294836663755e-06
+          ],
+          [
+            395312.12266899797,
+            7839827481.418702
+          ]
+        ],
+        [
+          [
+            7.121167396186455,
+            2.591745369395891
+          ],
+          [
+            2.0766444227853706,
+            0.22040882506976106
+          ],
+          [
+            0.022839071841921067,
+            2.6751257498809203e-05
+          ],
+          [
+            111682.98488800086,
+            637253404.8888224
+          ]
+        ],
+        [
+          [
+            97.67865498494523,
+            477.18638789165993
+          ],
+          [
+            21.246494410377327,
+            22.576832645469032
+          ],
+          [
+            1.327613481579915,
+            0.08815235243089893
+          ],
+          [
+            2108478.2167813075,
+            222344990629.48233
+          ]
+        ]
+      ]
+    },
+    {
+      "path": "tallies/tally 2/results",
+      "shape": [
+        1,
+        4,
+        2
+      ],
+      "nonzero_elements": 8,
+      "raw_values": [
+        [
+          [
+            209.6166068728426,
+            2197.935786068426
+          ],
+          [
+            47.60405293558108,
+            113.37027798665713
+          ],
+          [
+            1.3728436738325807,
+            0.09426306339528015
+          ],
+          [
+            2721836.0005223653,
+            370499777803.1613
+          ]
+        ]
+      ]
+    },
+    {
+      "path": "tallies/tally 3/results",
+      "shape": [
+        1,
+        4,
+        2
+      ],
+      "nonzero_elements": 8,
+      "raw_values": [
+        [
+          [
+            209.6166068728426,
+            2197.935786068426
+          ],
+          [
+            47.60405293558108,
+            113.37027798665713
+          ],
+          [
+            1.3728436738325807,
+            0.09426306339528015
+          ],
+          [
+            2721836.0005223653,
+            370499777803.1613
+          ]
+        ]
+      ]
+    }
+  ],
+  "raw_failure_diagnostics": [],
+  "fidelity": "same input coefficients; moving-frame versus constant-metric solids not proved identical",
+  "promotion": "NOT_FULL_TARGET_ACCEPTED"
+}

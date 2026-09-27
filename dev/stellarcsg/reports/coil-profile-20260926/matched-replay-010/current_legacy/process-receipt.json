@@ -1,0 +1,18 @@
+{
+  "exit_code": -6,
+  "timeout": false,
+  "command": [
+    "/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-astra-kernel-20260926/build/astra-native/bin/openmc"
+  ],
+  "environment": {
+    "OMP_NUM_THREADS": "1",
+    "LD_LIBRARY_PATH": "/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-astra-kernel-20260926/build/astra-native/lib",
+    "OPENMC_CROSS_SECTIONS": "/mnt/c/Users/joshu/Documents/2026_DPA/openc-hts-dpa/.data/openmc/cross_sections.xml"
+  },
+  "preload": null,
+  "process_wall_seconds": 5.940351867000572,
+  "preparation_seconds": 0.14427852099834126,
+  "timeout_seconds": 600,
+  "threads": 1,
+  "address_space_bytes": 1073741824
+}

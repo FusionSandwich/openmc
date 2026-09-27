@@ -1,0 +1,710 @@
+{
+  "method": "18 native arbitrary-axis circular annular rectangles via two quadrics/two planes each",
+  "priority": "ascending component IDs, same bookkeeping policy as facet family",
+  "components": [
+    {
+      "component_id": 8,
+      "center_cm": [
+        889.9357529466872,
+        1.2760182902953758,
+        -289.72964245446315
+      ],
+      "axis": [
+        -0.12027536743109295,
+        0.9927389993518534,
+        0.0017649802251940017
+      ],
+      "inner_radius_cm": 12.535448901070692,
+      "outer_radius_cm": 76.1788895764774,
+      "axial_limits_cm": [
+        -3.710328512002375,
+        9.27483871765342
+      ],
+      "eigenvalues": [
+        11.621223287454228,
+        162.29338716633995,
+        1532.6069893389422
+      ],
+      "vertices": 10,
+      "triangles": 16,
+      "bbox_min_cm": [
+        877.0595633821018,
+        0.0,
+        -364.4225178017857
+      ],
+      "bbox_max_cm": [
+        910.254474417693,
+        12.416950671922168,
+        -214.61468741787638
+      ],
+      "native_annular_volume_cm3": 230327.01993419224,
+      "fit": "unweighted unique-vertex PCA, smallest eigenvector axis, min/max radial and axial envelope, inner floor 5% of outer",
+      "fidelity": "NOT_EQUIVALENT; envelopes can fill large gaps and differ in periodic cap geometry; no volume/chord fit or containment proof"
+    },
+    {
+      "component_id": 9,
+      "center_cm": [
+        997.0552817650145,
+        16.035640293204168,
+        -303.34241503794686
+      ],
+      "axis": [
+        0.9519666661510156,
+        0.2872995118187727,
+        0.10591721789216091
+      ],
+      "inner_radius_cm": 16.328196072679273,
+      "outer_radius_cm": 188.43370596398177,
+      "axial_limits_cm": [
+        -22.779047047832233,
+        22.457788079337575
+      ],
+      "eigenvalues": [
+        161.6279751933339,
+        482.5886020223614,
+        16638.924263146706
+      ],
+      "vertices": 31,
+      "triangles": 58,
+      "bbox_min_cm": [
+        962.0463441237698,
+        0.0,
+        -487.8960653466863
+      ],
+      "bbox_max_cm": [
+        1035.9418741048012,
+        71.18252560101237,
+        -124.94924313465347
+      ],
+      "native_annular_volume_cm3": 5008250.178278732,
+      "fit": "unweighted unique-vertex PCA, smallest eigenvector axis, min/max radial and axial envelope, inner floor 5% of outer",
+      "fidelity": "NOT_EQUIVALENT; envelopes can fill large gaps and differ in periodic cap geometry; no volume/chord fit or containment proof"
+    },
+    {
+      "component_id": 10,
+      "center_cm": [
+        1204.4899535822246,
+        38.80916959064873,
+        -268.16204845423937
+      ],
+      "axis": [
+        0.18342463347383428,
+        0.9600147077136136,
+        0.2114879779290877
+      ],
+      "inner_radius_cm": 149.82602015512703,
+      "outer_radius_cm": 335.2551697593389,
+      "axial_limits_cm": [
+        -43.09226361773542,
+        56.78855844110563
+      ],
+      "eigenvalues": [
+        670.1447791098556,
+        13646.443588850863,
+        46976.59312725543
+      ],
+      "vertices": 50,
+      "triangles": 96,
+      "bbox_min_cm": [
+        1009.6336650263015,
+        0.0,
+        -483.19282967488687
+      ],
+      "bbox_max_cm": [
+        1538.1681221731983,
+        136.2253933191901,
+        -26.755578582032243
+      ],
+      "native_annular_volume_cm3": 28224380.7152732,
+      "fit": "unweighted unique-vertex PCA, smallest eigenvector axis, min/max radial and axial envelope, inner floor 5% of outer",
+      "fidelity": "NOT_EQUIVALENT; envelopes can fill large gaps and differ in periodic cap geometry; no volume/chord fit or containment proof"
+    },
+    {
+      "component_id": 11,
+      "center_cm": [
+        1328.3266705672256,
+        121.46880120618434,
+        -31.42821898311217
+      ],
+      "axis": [
+        -0.20940683295219983,
+        0.8920180330281813,
+        0.4005653592929175
+      ],
+      "inner_radius_cm": 197.88243949887914,
+      "outer_radius_cm": 452.21001142689965,
+      "axial_limits_cm": [
+        -70.25079417704045,
+        57.637485321868525
+      ],
+      "eigenvalues": [
+        754.7173132404733,
+        34473.29797116472,
+        62288.80420706227
+      ],
+      "vertices": 86,
+      "triangles": 168,
+      "bbox_min_cm": [
+        1015.3616803932653,
+        0.0,
+        -395.9613534197848
+      ],
+      "bbox_max_cm": [
+        1561.0251880821284,
+        283.31368746572406,
+        393.42340490230424
+      ],
+      "native_annular_volume_cm3": 66427695.38039531,
+      "fit": "unweighted unique-vertex PCA, smallest eigenvector axis, min/max radial and axial envelope, inner floor 5% of outer",
+      "fidelity": "NOT_EQUIVALENT; envelopes can fill large gaps and differ in periodic cap geometry; no volume/chord fit or containment proof"
+    },
+    {
+      "component_id": 12,
+      "center_cm": [
+        1184.3128797984568,
+        217.17306771633147,
+        125.1371408819637
+      ],
+      "axis": [
+        -0.5637261716121801,
+        0.7949236797865625,
+        0.22429700567342864
+      ],
+      "inner_radius_cm": 220.371747272759,
+      "outer_radius_cm": 476.0369476350633,
+      "axial_limits_cm": [
+        -64.61397196405731,
+        81.76862746296717
+      ],
+      "eigenvalues": [
+        1278.7922846459226,
+        41016.49927845683,
+        84505.63818748323
+      ],
+      "vertices": 107,
+      "triangles": 210,
+      "bbox_min_cm": [
+        962.0463563384019,
+        0.0,
+        -342.68202517983195
+      ],
+      "bbox_max_cm": [
+        1454.8459886937035,
+        440.53006396254176,
+        550.8944471960938
+      ],
+      "native_annular_volume_cm3": 81879490.37802608,
+      "fit": "unweighted unique-vertex PCA, smallest eigenvector axis, min/max radial and axial envelope, inner floor 5% of outer",
+      "fidelity": "NOT_EQUIVALENT; envelopes can fill large gaps and differ in periodic cap geometry; no volume/chord fit or containment proof"
+    },
+    {
+      "component_id": 13,
+      "center_cm": [
+        1064.1840232683828,
+        329.6480678136376,
+        139.79741454135484
+      ],
+      "axis": [
+        0.7587774015273536,
+        -0.6457864707487361,
+        -0.0849510984583971
+      ],
+      "inner_radius_cm": 206.37675724198712,
+      "outer_radius_cm": 466.07838015434965,
+      "axial_limits_cm": [
+        -129.34410968689377,
+        84.10331241253635
+      ],
+      "eigenvalues": [
+        2734.3139756160585,
+        40552.94770989439,
+        83017.41209234405
+      ],
+      "vertices": 104,
+      "triangles": 208,
+      "bbox_min_cm": [
+        832.0024582025468,
+        0.0,
+        -310.3374121390166
+      ],
+      "bbox_max_cm": [
+        1280.5705095277744,
+        548.2059582523821,
+        536.1585627310558
+      ],
+      "native_annular_volume_cm3": 117105897.30428137,
+      "fit": "unweighted unique-vertex PCA, smallest eigenvector axis, min/max radial and axial envelope, inner floor 5% of outer",
+      "fidelity": "NOT_EQUIVALENT; envelopes can fill large gaps and differ in periodic cap geometry; no volume/chord fit or containment proof"
+    },
+    {
+      "component_id": 14,
+      "center_cm": [
+        919.6964847904322,
+        431.4234332484208,
+        154.81231541294068
+      ],
+      "axis": [
+        0.8288207509038091,
+        -0.5336112831510493,
+        0.1682710948592678
+      ],
+      "inner_radius_cm": 214.49373794247248,
+      "outer_radius_cm": 456.1270924438644,
+      "axial_limits_cm": [
+        -158.9921576937296,
+        112.572492739072
+      ],
+      "eigenvalues": [
+        6137.359140865657,
+        37524.37177524991,
+        75759.49431292195
+      ],
+      "vertices": 108,
+      "triangles": 216,
+      "bbox_min_cm": [
+        580.794262074683,
+        46.52826188736344,
+        -258.29882187125725
+      ],
+      "bbox_max_cm": [
+        1175.5414966297164,
+        688.8636341003157,
+        529.283485984345
+      ],
+      "native_annular_volume_cm3": 138247419.0010087,
+      "fit": "unweighted unique-vertex PCA, smallest eigenvector axis, min/max radial and axial envelope, inner floor 5% of outer",
+      "fidelity": "NOT_EQUIVALENT; envelopes can fill large gaps and differ in periodic cap geometry; no volume/chord fit or containment proof"
+    },
+    {
+      "component_id": 15,
+      "center_cm": [
+        759.2284782871728,
+        485.24238267770784,
+        107.46808848772302
+      ],
+      "axis": [
+        0.7432723579789331,
+        -0.4397374789080808,
+        0.5041598471794454
+      ],
+      "inner_radius_cm": 199.8314541094111,
+      "outer_radius_cm": 438.4079430441628,
+      "axial_limits_cm": [
+        -204.50225321494645,
+        196.698572854718
+      ],
+      "eigenvalues": [
+        12066.030889736327,
+        30352.59846793677,
+        68238.40729947558
+      ],
+      "vertices": 176,
+      "triangles": 352,
+      "bbox_min_cm": [
+        425.6065550821928,
+        88.19679867424976,
+        -228.36454299932495
+      ],
+      "bbox_max_cm": [
+        1115.7110869284286,
+        784.4945775260403,
+        460.56991838949557
+      ],
+      "native_annular_volume_cm3": 191921196.67913142,
+      "fit": "unweighted unique-vertex PCA, smallest eigenvector axis, min/max radial and axial envelope, inner floor 5% of outer",
+      "fidelity": "NOT_EQUIVALENT; envelopes can fill large gaps and differ in periodic cap geometry; no volume/chord fit or containment proof"
+    },
+    {
+      "component_id": 16,
+      "center_cm": [
+        663.9800507958839,
+        548.6118773660894,
+        44.13198736663624
+      ],
+      "axis": [
+        0.6345089378611838,
+        -0.5238845926104232,
+        0.5682810408589073
+      ],
+      "inner_radius_cm": 192.55562339736508,
+      "outer_radius_cm": 423.63096349516735,
+      "axial_limits_cm": [
+        -213.64783825885957,
+        194.00870388715788
+      ],
+      "eigenvalues": [
+        12912.02623784738,
+        29090.24997456683,
+        70953.52600793203
+      ],
+      "vertices": 175,
+      "triangles": 350,
+      "bbox_min_cm": [
+        334.37030537490455,
+        163.9303375336631,
+        -221.2177960111899
+      ],
+      "bbox_max_cm": [
+        1020.5074884410725,
+        909.7189231030525,
+        343.44141404284505
+      ],
+      "native_annular_volume_cm3": 182351831.80136502,
+      "fit": "unweighted unique-vertex PCA, smallest eigenvector axis, min/max radial and axial envelope, inner floor 5% of outer",
+      "fidelity": "NOT_EQUIVALENT; envelopes can fill large gaps and differ in periodic cap geometry; no volume/chord fit or containment proof"
+    },
+    {
+      "component_id": 17,
+      "center_cm": [
+        548.6119644582822,
+        663.9799788188225,
+        -44.13198737262798
+      ],
+      "axis": [
+        -0.5238845091857635,
+        0.6345090064002584,
+        -0.5682810412394106
+      ],
+      "inner_radius_cm": 192.5556233803765,
+      "outer_radius_cm": 423.6309635051997,
+      "axial_limits_cm": [
+        -213.64783828154967,
+        194.00870400095457
+      ],
+      "eigenvalues": [
+        12912.026246583366,
+        29090.249978646923,
+        70953.52601611183
+      ],
+      "vertices": 175,
+      "triangles": 350,
+      "bbox_min_cm": [
+        163.9304229826198,
+        334.37022124174234,
+        -343.4414140602309
+      ],
+      "bbox_max_cm": [
+        909.7190364103969,
+        1020.5073934041174,
+        221.21779600290228
+      ],
+      "native_annular_volume_cm3": 182351831.88168278,
+      "fit": "unweighted unique-vertex PCA, smallest eigenvector axis, min/max radial and axial envelope, inner floor 5% of outer",
+      "fidelity": "NOT_EQUIVALENT; envelopes can fill large gaps and differ in periodic cap geometry; no volume/chord fit or containment proof"
+    },
+    {
+      "component_id": 18,
+      "center_cm": [
+        485.2424823155645,
+        759.2284146016237,
+        -107.46808851465151
+      ],
+      "axis": [
+        -0.43973738135304075,
+        0.7432724156321073,
+        -0.5041598472718576
+      ],
+      "inner_radius_cm": 199.83145404006038,
+      "outer_radius_cm": 438.4079430544273,
+      "axial_limits_cm": [
+        -204.50225315764112,
+        196.69857289142067
+      ],
+      "eigenvalues": [
+        12066.030895767351,
+        30352.59847420559,
+        68238.40728983871
+      ],
+      "vertices": 176,
+      "triangles": 352,
+      "bbox_min_cm": [
+        88.19688714738734,
+        425.60651919321253,
+        -460.56991847327754
+      ],
+      "bbox_max_cm": [
+        784.4946977637223,
+        1115.7110002240124,
+        228.36454300199475
+      ],
+      "native_annular_volume_cm3": 191921196.7155543,
+      "fit": "unweighted unique-vertex PCA, smallest eigenvector axis, min/max radial and axial envelope, inner floor 5% of outer",
+      "fidelity": "NOT_EQUIVALENT; envelopes can fill large gaps and differ in periodic cap geometry; no volume/chord fit or containment proof"
+    },
+    {
+      "component_id": 19,
+      "center_cm": [
+        431.41831254924557,
+        919.7135175282247,
+        -154.76102775277033
+      ],
+      "axis": [
+        -0.5336178036884527,
+        0.8287991405566167,
+        -0.1683568359150452
+      ],
+      "inner_radius_cm": 214.4905825395433,
+      "outer_radius_cm": 456.0772737563841,
+      "axial_limits_cm": [
+        -158.97347474206805,
+        112.59258589799539
+      ],
+      "eigenvalues": [
+        6138.471474106733,
+        37518.74874689501,
+        75784.59984196672
+      ],
+      "vertices": 108,
+      "triangles": 216,
+      "bbox_min_cm": [
+        46.52836548503527,
+        580.7942331135389,
+        -529.2834859812286
+      ],
+      "bbox_max_cm": [
+        688.8637594312788,
+        1175.541420540769,
+        258.29882186721426
+      ],
+      "native_annular_volume_cm3": 138210520.49593952,
+      "fit": "unweighted unique-vertex PCA, smallest eigenvector axis, min/max radial and axial envelope, inner floor 5% of outer",
+      "fidelity": "NOT_EQUIVALENT; envelopes can fill large gaps and differ in periodic cap geometry; no volume/chord fit or containment proof"
+    },
+    {
+      "component_id": 20,
+      "center_cm": [
+        329.64855612198113,
+        1064.1834918430486,
+        -139.7948221829399
+      ],
+      "axis": [
+        -0.6457844271952963,
+        0.758779228381408,
+        0.08495031588498292
+      ],
+      "inner_radius_cm": 206.37539734815914,
+      "outer_radius_cm": 466.07582167204805,
+      "axial_limits_cm": [
+        -129.34384260693207,
+        84.10289240307912
+      ],
+      "eigenvalues": [
+        2734.30698894436,
+        40552.3580407369,
+        83018.33766365933
+      ],
+      "vertices": 104,
+      "triangles": 208,
+      "bbox_min_cm": [
+        0.0,
+        832.0029669478354,
+        -536.1585178843013
+      ],
+      "bbox_max_cm": [
+        548.2061206231986,
+        1280.57045235969,
+        310.3374177328311
+      ],
+      "native_annular_volume_cm3": 117104297.50046192,
+      "fit": "unweighted unique-vertex PCA, smallest eigenvector axis, min/max radial and axial envelope, inner floor 5% of outer",
+      "fidelity": "NOT_EQUIVALENT; envelopes can fill large gaps and differ in periodic cap geometry; no volume/chord fit or containment proof"
+    },
+    {
+      "component_id": 21,
+      "center_cm": [
+        217.2506863789583,
+        1184.2598843737662,
+        -125.17716034194785
+      ],
+      "axis": [
+        0.7946179926357497,
+        -0.5641204281201361,
+        -0.224388922090833
+      ],
+      "inner_radius_cm": 220.37897462766983,
+      "outer_radius_cm": 476.0548970672761,
+      "axial_limits_cm": [
+        -64.574681232593,
+        81.69955555785813
+      ],
+      "eigenvalues": [
+        1280.9078748951297,
+        41019.43514195603,
+        84497.97278456016
+      ],
+      "vertices": 107,
+      "triangles": 210,
+      "bbox_min_cm": [
+        0.0,
+        962.0463441237698,
+        -550.8944504120185
+      ],
+      "bbox_max_cm": [
+        440.53024006203736,
+        1454.8459413933635,
+        342.68203553963843
+      ],
+      "native_annular_volume_cm3": 81825266.83632468,
+      "fit": "unweighted unique-vertex PCA, smallest eigenvector axis, min/max radial and axial envelope, inner floor 5% of outer",
+      "fidelity": "NOT_EQUIVALENT; envelopes can fill large gaps and differ in periodic cap geometry; no volume/chord fit or containment proof"
+    },
+    {
+      "component_id": 22,
+      "center_cm": [
+        121.46888709268795,
+        1328.326598389537,
+        31.428086635200966
+      ],
+      "axis": [
+        0.8920179697625057,
+        -0.20940702536544326,
+        -0.4005653995895982
+      ],
+      "inner_radius_cm": 197.88256177057275,
+      "outer_radius_cm": 452.2102322030368,
+      "axial_limits_cm": [
+        -70.25077767131688,
+        57.63747383519526
+      ],
+      "eigenvalues": [
+        754.7180234971721,
+        34473.33100655208,
+        62288.82937780598
+      ],
+      "vertices": 86,
+      "triangles": 168,
+      "bbox_min_cm": [
+        0.0,
+        1015.3616767158964,
+        -393.4237300727319
+      ],
+      "bbox_max_cm": [
+        283.3138674091358,
+        1561.025137725036,
+        395.9613576953092
+      ],
+      "native_annular_volume_cm3": 66427741.62220665,
+      "fit": "unweighted unique-vertex PCA, smallest eigenvector axis, min/max radial and axial envelope, inner floor 5% of outer",
+      "fidelity": "NOT_EQUIVALENT; envelopes can fill large gaps and differ in periodic cap geometry; no volume/chord fit or containment proof"
+    },
+    {
+      "component_id": 23,
+      "center_cm": [
+        38.80915398066029,
+        1204.4899290400735,
+        268.1619904396531
+      ],
+      "axis": [
+        0.960014781068041,
+        0.18342445257942097,
+        -0.21148780183930532
+      ],
+      "inner_radius_cm": 149.82600455117904,
+      "outer_radius_cm": 335.2552609278619,
+      "axial_limits_cm": [
+        -43.092328970523,
+        56.788554278485826
+      ],
+      "eigenvalues": [
+        670.1443610710388,
+        13646.457403112172,
+        46976.585289280076
+      ],
+      "vertices": 50,
+      "triangles": 96,
+      "bbox_min_cm": [
+        0.0,
+        1009.633669990416,
+        26.7555347336668
+      ],
+      "bbox_max_cm": [
+        136.2253478481696,
+        1538.168184297507,
+        483.1928934985276
+      ],
+      "native_annular_volume_cm3": 28224418.65511434,
+      "fit": "unweighted unique-vertex PCA, smallest eigenvector axis, min/max radial and axial envelope, inner floor 5% of outer",
+      "fidelity": "NOT_EQUIVALENT; envelopes can fill large gaps and differ in periodic cap geometry; no volume/chord fit or containment proof"
+    },
+    {
+      "component_id": 24,
+      "center_cm": [
+        16.035627764624397,
+        997.0551951919238,
+        303.3423670326488
+      ],
+      "axis": [
+        0.2872961709965333,
+        0.951967577662036,
+        -0.10591808727033453
+      ],
+      "inner_radius_cm": 16.328135387659536,
+      "outer_radius_cm": 188.43381605026607,
+      "axial_limits_cm": [
+        -22.778801842322466,
+        22.457820651229667
+      ],
+      "eigenvalues": [
+        161.62826253999194,
+        482.5871956134301,
+        16638.949174289482
+      ],
+      "vertices": 31,
+      "triangles": 58,
+      "bbox_min_cm": [
+        0.0,
+        962.0463563384019,
+        124.94918960761088
+      ],
+      "bbox_max_cm": [
+        71.18248213687988,
+        1035.941894937496,
+        487.896111080952
+      ],
+      "native_annular_volume_cm3": 5008232.814931649,
+      "fit": "unweighted unique-vertex PCA, smallest eigenvector axis, min/max radial and axial envelope, inner floor 5% of outer",
+      "fidelity": "NOT_EQUIVALENT; envelopes can fill large gaps and differ in periodic cap geometry; no volume/chord fit or containment proof"
+    },
+    {
+      "component_id": 25,
+      "center_cm": [
+        1.2760105904580854,
+        889.9357657942962,
+        289.7296818086333
+      ],
+      "axis": [
+        0.9927390201444509,
+        -0.12027519619170417,
+        -0.001764954300453077
+      ],
+      "inner_radius_cm": 12.535443546141787,
+      "outer_radius_cm": 76.1790298110682,
+      "axial_limits_cm": [
+        -3.710317681443082,
+        9.27481158920865
+      ],
+      "eigenvalues": [
+        11.621149025645735,
+        162.29329118257087,
+        1532.6199084854543
+      ],
+      "vertices": 10,
+      "triangles": 16,
+      "bbox_min_cm": [
+        0.0,
+        877.0595415275681,
+        214.6145824699792
+      ],
+      "bbox_max_cm": [
+        12.416911286572867,
+        910.2544898414944,
+        364.42264636896664
+      ],
+      "native_annular_volume_cm3": 230327.2237036395,
+      "fit": "unweighted unique-vertex PCA, smallest eigenvector axis, min/max radial and axial envelope, inner floor 5% of outer",
+      "fidelity": "NOT_EQUIVALENT; envelopes can fill large gaps and differ in periodic cap geometry; no volume/chord fit or containment proof"
+    }
+  ],
+  "source_payload_sha256": "3db1723d250319d7e6e3d0a4cbbba7b88a68c830fba4214d001a8c2c2545c2d4",
+  "geometry_fidelity": "sizing control only; periodic faceted P00 target differs"
+}

@@ -1,0 +1,666 @@
+{
+  "utc": "2026-09-27T01:33:24.9892954Z",
+  "ram": {
+    "TotalVisibleMemorySize": 33457440,
+    "FreePhysicalMemory": 9660676
+  },
+  "drives": [
+    {
+      "DeviceID": "C:",
+      "Size": 998965768192,
+      "FreeSpace": 95353618432
+    },
+    {
+      "DeviceID": "D:",
+      "Size": 2000397791232,
+      "FreeSpace": 494428479488
+    }
+  ],
+  "processes": [
+    {
+      "Id": 14584,
+      "ProcessName": "ChatGPT",
+      "WorkingSet64": 2753871872,
+      "CPU": 15678.953125
+    },
+    {
+      "Id": 3460,
+      "ProcessName": "Memory Compression",
+      "WorkingSet64": 1725751296,
+      "CPU": null
+    },
+    {
+      "Id": 18736,
+      "ProcessName": "codex",
+      "WorkingSet64": 1694646272,
+      "CPU": 4450.21875
+    },
+    {
+      "Id": 18788,
+      "ProcessName": "vmmemWSL",
+      "WorkingSet64": 1242476544,
+      "CPU": null
+    },
+    {
+      "Id": 23212,
+      "ProcessName": "OneDrive",
+      "WorkingSet64": 939802624,
+      "CPU": 17089.484375
+    },
+    {
+      "Id": 14592,
+      "ProcessName": "ChatGPT",
+      "WorkingSet64": 866947072,
+      "CPU": 4862.0625
+    },
+    {
+      "Id": 35164,
+      "ProcessName": "chrome",
+      "WorkingSet64": 635924480,
+      "CPU": 5554.796875
+    },
+    {
+      "Id": 5288,
+      "ProcessName": "MsMpEng",
+      "WorkingSet64": 613646336,
+      "CPU": null
+    },
+    {
+      "Id": 8160,
+      "ProcessName": "chrome",
+      "WorkingSet64": 598577152,
+      "CPU": 1222.328125
+    },
+    {
+      "Id": 20716,
+      "ProcessName": "chrome",
+      "WorkingSet64": 554713088,
+      "CPU": 760.09375
+    },
+    {
+      "Id": 18388,
+      "ProcessName": "ChatGPT",
+      "WorkingSet64": 538968064,
+      "CPU": 10807.578125
+    },
+    {
+      "Id": 24572,
+      "ProcessName": "chrome",
+      "WorkingSet64": 528228352,
+      "CPU": 2293.875
+    },
+    {
+      "Id": 52492,
+      "ProcessName": "chrome",
+      "WorkingSet64": 508149760,
+      "CPU": 274.046875
+    },
+    {
+      "Id": 26360,
+      "ProcessName": "chrome",
+      "WorkingSet64": 456675328,
+      "CPU": 338.28125
+    },
+    {
+      "Id": 26480,
+      "ProcessName": "chrome",
+      "WorkingSet64": 442683392,
+      "CPU": 270.65625
+    },
+    {
+      "Id": 39484,
+      "ProcessName": "chrome",
+      "WorkingSet64": 427630592,
+      "CPU": 155.09375
+    },
+    {
+      "Id": 12348,
+      "ProcessName": "explorer",
+      "WorkingSet64": 308781056,
+      "CPU": 980.75
+    },
+    {
+      "Id": 6852,
+      "ProcessName": "ChatGPT",
+      "WorkingSet64": 249892864,
+      "CPU": 4686.703125
+    },
+    {
+      "Id": 44212,
+      "ProcessName": "mcnp6",
+      "WorkingSet64": 229801984,
+      "CPU": 3965.453125
+    },
+    {
+      "Id": 20560,
+      "ProcessName": "ChatGPT",
+      "WorkingSet64": 223657984,
+      "CPU": 55.203125
+    }
+  ],
+  "executables": [
+    {
+      "Name": "python.exe",
+      "Source": "C:\\Users\\joshu\\AppData\\Local\\Programs\\Python\\Python312\\python.exe",
+      "Version": {
+        "Major": 3,
+        "Minor": 12,
+        "Build": 10150,
+        "Revision": 1013,
+        "MajorRevision": 0,
+        "MinorRevision": 1013
+      }
+    },
+    {
+      "Name": "python3.exe",
+      "Source": "C:\\Users\\joshu\\AppData\\Local\\Microsoft\\WindowsApps\\python3.exe",
+      "Version": {
+        "Major": 0,
+        "Minor": 0,
+        "Build": 0,
+        "Revision": 0,
+        "MajorRevision": 0,
+        "MinorRevision": 0
+      }
+    },
+    {
+      "Name": "wsl.exe",
+      "Source": "C:\\Windows\\system32\\wsl.exe",
+      "Version": {
+        "Major": 10,
+        "Minor": 0,
+        "Build": 26100,
+        "Revision": 9278,
+        "MajorRevision": 0,
+        "MinorRevision": 9278
+      }
+    },
+    {
+      "Name": "git.exe",
+      "Source": "C:\\Program Files\\Git\\cmd\\git.exe",
+      "Version": {
+        "Major": 2,
+        "Minor": 55,
+        "Build": 0,
+        "Revision": 3,
+        "MajorRevision": 0,
+        "MinorRevision": 3
+      }
+    },
+    {
+      "Name": "cmake.exe",
+      "Source": "C:\\Users\\joshu\\AppData\\Local\\Microsoft\\WinGet\\Packages\\Kitware.CMake_Microsoft.Winget.Source_8wekyb3d8bbwe\\cmake-4.4.0-windows-x86_64\\bin\\cmake.exe",
+      "Version": {
+        "Major": 4,
+        "Minor": 4,
+        "Build": 0,
+        "Revision": 0,
+        "MajorRevision": 0,
+        "MinorRevision": 0
+      }
+    }
+  ],
+  "environmentsCachesSources": [
+    {
+      "path": "C:/Users/joshu/miniconda3",
+      "exists": false,
+      "children": []
+    },
+    {
+      "path": "C:/Users/joshu/anaconda3",
+      "exists": false,
+      "children": []
+    },
+    {
+      "path": "C:/Users/joshu/.conda/envs",
+      "exists": false,
+      "children": []
+    },
+    {
+      "path": "C:/Users/joshu/.cache",
+      "exists": true,
+      "children": [
+        {
+          "Name": "claude",
+          "Mode": "d----",
+          "Length": null
+        },
+        {
+          "Name": "codex-runtimes",
+          "Mode": "d----",
+          "Length": null
+        },
+        {
+          "Name": "codex-tools",
+          "Mode": "d----",
+          "Length": null
+        },
+        {
+          "Name": "ezdxf",
+          "Mode": "d----",
+          "Length": null
+        },
+        {
+          "Name": "kilo",
+          "Mode": "d----",
+          "Length": null
+        },
+        {
+          "Name": "mathlib",
+          "Mode": "d----",
+          "Length": null
+        }
+      ]
+    },
+    {
+      "path": "C:/Users/joshu/AppData/Local/pip/Cache",
+      "exists": true,
+      "children": [
+        {
+          "Name": "http",
+          "Mode": "d----",
+          "Length": null
+        },
+        {
+          "Name": "http-v2",
+          "Mode": "d----",
+          "Length": null
+        },
+        {
+          "Name": "selfcheck",
+          "Mode": "d----",
+          "Length": null
+        },
+        {
+          "Name": "wheels",
+          "Mode": "d----",
+          "Length": null
+        }
+      ]
+    },
+    {
+      "path": "C:/Users/joshu/AppData/Local/uv/cache",
+      "exists": false,
+      "children": []
+    },
+    {
+      "path": "C:/Users/joshu/Downloads",
+      "exists": true,
+      "children": [
+        {
+          "Name": "7C75v2G",
+          "Mode": "d----",
+          "Length": null
+        },
+        {
+          "Name": "activation",
+          "Mode": "d----",
+          "Length": null
+        },
+        {
+          "Name": "big_models",
+          "Mode": "d----",
+          "Length": null
+        },
+        {
+          "Name": "Current Chat prompts",
+          "Mode": "d----",
+          "Length": null
+        },
+        {
+          "Name": "Example_FRQNT",
+          "Mode": "d----",
+          "Length": null
+        },
+        {
+          "Name": "examples_documents_for_NSERC_and_FRQNT_scholarship",
+          "Mode": "d----",
+          "Length": null
+        },
+        {
+          "Name": "flux_wires",
+          "Mode": "d----",
+          "Length": null
+        },
+        {
+          "Name": "GdBCO_Papers",
+          "Mode": "d----",
+          "Length": null
+        },
+        {
+          "Name": "GdBCO_thermal_scattering_data_package_v4",
+          "Mode": "d----",
+          "Length": null
+        },
+        {
+          "Name": "HPGeModeling-20260710T235338Z-2-001",
+          "Mode": "d----",
+          "Length": null
+        },
+        {
+          "Name": "HTS_irradiation_related_papers",
+          "Mode": "d----",
+          "Length": null
+        },
+        {
+          "Name": "NSERC_Uploads_extracted",
+          "Mode": "d----",
+          "Length": null
+        },
+        {
+          "Name": "OneDrive_1_7-30-2026",
+          "Mode": "d----",
+          "Length": null
+        },
+        {
+          "Name": "OneDrive_1_7-9-2026",
+          "Mode": "d----",
+          "Length": null
+        },
+        {
+          "Name": "paperbatch-zotero-0.2.0-windows-bundle",
+          "Mode": "d----",
+          "Length": null
+        },
+        {
+          "Name": "rotation_tests_01_07",
+          "Mode": "d----",
+          "Length": null
+        },
+        {
+          "Name": "SaRA_17_01_1659_000",
+          "Mode": "d----",
+          "Length": null
+        },
+        {
+          "Name": "Smandych_Thesis",
+          "Mode": "d----",
+          "Length": null
+        },
+        {
+          "Name": "spectra",
+          "Mode": "d----",
+          "Length": null
+        },
+        {
+          "Name": "uw_hpge_geant4_model",
+          "Mode": "d----",
+          "Length": null
+        },
+        {
+          "Name": "V_i7200_Z490A_BIOS_2CA",
+          "Mode": "d----",
+          "Length": null
+        },
+        {
+          "Name": "ybco_final_literature_vdos_package_2026-06-29",
+          "Mode": "d----",
+          "Length": null
+        },
+        {
+          "Name": "~$L Organizational PPDS.docx",
+          "Mode": "-a-h-",
+          "Length": 162
+        },
+        {
+          "Name": "~$ottier_Scholarship_2025_ApplicationForm_Joshua_Smandych_EN.docx",
+          "Mode": "-a-h-",
+          "Length": 162
+        },
+        {
+          "Name": "00_IMPLEMENTATION_PLAN_AND_READING.md",
+          "Mode": "-a---",
+          "Length": 35881
+        },
+        {
+          "Name": "0004177v1.pdf",
+          "Mode": "-a---",
+          "Length": 358706
+        },
+        {
+          "Name": "0022311573900172.htm",
+          "Mode": "-a---",
+          "Length": 171125
+        },
+        {
+          "Name": "01_fes_pka_damage_completion_plan.md",
+          "Mode": "-a---",
+          "Length": 10954
+        },
+        {
+          "Name": "01_parastell_test_spectra_activation_geometry_prompt.md",
+          "Mode": "-a---",
+          "Length": 13161
+        },
+        {
+          "Name": "01_parastell_wistell_d_completion_prompt_v2.md",
+          "Mode": "-a---",
+          "Length": 15135
+        }
+      ]
+    },
+    {
+      "path": "C:/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS",
+      "exists": true,
+      "children": [
+        {
+          "Name": ".git",
+          "Mode": "larh-",
+          "Length": null
+        },
+        {
+          "Name": "blanket",
+          "Mode": "lar--",
+          "Length": null
+        },
+        {
+          "Name": "campaigns",
+          "Mode": "lar--",
+          "Length": null
+        },
+        {
+          "Name": "chatgpt-pro-handoff",
+          "Mode": "lar--",
+          "Length": null
+        },
+        {
+          "Name": "local-coil-wave-20260926",
+          "Mode": "lar--",
+          "Length": null
+        },
+        {
+          "Name": "openmc-stellarcsg",
+          "Mode": "lar--",
+          "Length": null
+        },
+        {
+          "Name": "openmc-stellarcsg-composite",
+          "Mode": "lar--",
+          "Length": null
+        },
+        {
+          "Name": "openmc-stellarcsg-torus-class",
+          "Mode": "lar--",
+          "Length": null
+        },
+        {
+          "Name": "parastell",
+          "Mode": "lar--",
+          "Length": null
+        },
+        {
+          "Name": "pro-dispatch-20260925",
+          "Mode": "lar--",
+          "Length": null
+        },
+        {
+          "Name": "stellarcsg-acceptance-only-07",
+          "Mode": "lar--",
+          "Length": null
+        },
+        {
+          "Name": "stellarcsg-astra-kernel-20260926",
+          "Mode": "lar--",
+          "Length": null
+        },
+        {
+          "Name": "stellarcsg-benchmark-arena",
+          "Mode": "lar--",
+          "Length": null
+        },
+        {
+          "Name": "stellarcsg-cont-a",
+          "Mode": "lar--",
+          "Length": null
+        },
+        {
+          "Name": "stellarcsg-cont-b",
+          "Mode": "lar--",
+          "Length": null
+        },
+        {
+          "Name": "stellarcsg-cont-neutral",
+          "Mode": "lar--",
+          "Length": null
+        },
+        {
+          "Name": "stellarcsg-crossing-repair-07",
+          "Mode": "lar--",
+          "Length": null
+        },
+        {
+          "Name": "stellarcsg-fast-03",
+          "Mode": "lar--",
+          "Length": null
+        },
+        {
+          "Name": "stellarcsg-fast-recovery-04",
+          "Mode": "lar--",
+          "Length": null
+        },
+        {
+          "Name": "stellarcsg-import-05",
+          "Mode": "lar--",
+          "Length": null
+        },
+        {
+          "Name": "stellarcsg-local-continuation-20260925",
+          "Mode": "lar--",
+          "Length": null
+        },
+        {
+          "Name": "stellarcsg-local-repair-07",
+          "Mode": "lar--",
+          "Length": null
+        },
+        {
+          "Name": "stellarcsg-neutral-03",
+          "Mode": "lar--",
+          "Length": null
+        },
+        {
+          "Name": "stellarcsg-next-b",
+          "Mode": "lar--",
+          "Length": null
+        },
+        {
+          "Name": "stellarcsg-next-coil",
+          "Mode": "lar--",
+          "Length": null
+        },
+        {
+          "Name": "stellarcsg-next-neutral",
+          "Mode": "lar--",
+          "Length": null
+        },
+        {
+          "Name": "stellarcsg-next-plasma",
+          "Mode": "lar--",
+          "Length": null
+        },
+        {
+          "Name": "stellarcsg-product-05",
+          "Mode": "lar--",
+          "Length": null
+        },
+        {
+          "Name": "stellarcsg-recovery-bank-04",
+          "Mode": "lar--",
+          "Length": null
+        },
+        {
+          "Name": "stellarcsg-root-repair-07",
+          "Mode": "lar--",
+          "Length": null
+        }
+      ]
+    },
+    {
+      "path": "D:/2026_DPA/asc_poster_builds_orderfix_2feabb0f_r2/P00_full",
+      "exists": true,
+      "children": [
+        {
+          "Name": "dagmc.h5m",
+          "Mode": "-a---",
+          "Length": 5017612
+        },
+        {
+          "Name": "geometry_acceptance_receipt.json",
+          "Mode": "-a---",
+          "Length": 8657
+        },
+        {
+          "Name": "magnet_boundary_facet_catalog.json",
+          "Mode": "-a---",
+          "Length": 3431348
+        },
+        {
+          "Name": "magnet_dagmc_intermediate.h5m",
+          "Mode": "-a---",
+          "Length": 244976
+        },
+        {
+          "Name": "magnet_openmc_model_manifest.json",
+          "Mode": "-a---",
+          "Length": 25141
+        },
+        {
+          "Name": "model.xml",
+          "Mode": "-a---",
+          "Length": 4284494
+        },
+        {
+          "Name": "openmc_smoke_base_receipt.json",
+          "Mode": "-a---",
+          "Length": 18052
+        },
+        {
+          "Name": "overlap_check.txt",
+          "Mode": "-a---",
+          "Length": 129
+        },
+        {
+          "Name": "parastell_build_receipt.json",
+          "Mode": "-a---",
+          "Length": 15072
+        },
+        {
+          "Name": "source_mesh.h5m",
+          "Mode": "-a---",
+          "Length": 12256984
+        },
+        {
+          "Name": "source_strengths.npy",
+          "Mode": "-a---",
+          "Length": 1843328
+        }
+      ]
+    }
+  ],
+  "acquisitionBytes": 0,
+  "softwareBuild": "NOT_RUN",
+  "target": "C:\\Users\\joshu\\OneDrive\\Documents\\ChatGPT\\StellarCGS\\stellarcsg-astra-kernel-20260926\\dev\\stellarcsg\\reports\\coil-profile-20260926\\matched-replay-010",
+  "rollback": "No source, production binary or dependency environment mutation; retain fresh outputs",
+  "admission": "Existing complete source-bound old control, recovered/current/P00 executables and libraries, data and fixtures suffice for finite diagnostic block",
+  "declaredFidelity": "Moving-frame/offset solid equivalence open; PCA flat-ring P00 control is a sizing envelope, not mesh equivalent; no production promotion"
+}
