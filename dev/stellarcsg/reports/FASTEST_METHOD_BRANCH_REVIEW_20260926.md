@@ -83,6 +83,8 @@ The three preserved complete composite runtime pairs have been inventoried. The 
 
 The coil owner is also checking current runtime selectors for legacy rounded-frame and P00 faceted methods to avoid unnecessary builds. Unsupported/admission failures produce FAILED/NOT_RUN entries. Uncompiled BVH proposals, Pro-only ruled/ownership prototypes, known incorrect candidate B/D/atlas/arc solvers and absent Embree dependencies cannot be treated as successful transport competitors.
 
+Independent review accepted the fixed-section geometry construction, but rejected the first execution packet for missing enforcement of frozen review/input identities, resource observations and outer failure/lease cleanup. It also rejected the first plasma source-build launch packet for path conversion, fresh inventory and manifest/XML binding gaps. Owners are correcting these finite launch packets. These are execution-admission blockers, not negative numerical results or a demonstration that the mathematical formulations fail. Neither pending comparison is counted as completed here.
+
 Final current-workload winners remain **NOT_FULL_TARGET_QUALIFIED**. The completed diagnostic already establishes that the certified-offset path is not the fastest retained implementation for the tested near-circle. General coil performance, fixed-section P00 timing, matched old/current plasma and full geometry/tally accuracy remain unresolved. This report does not promote old inaccurate answers because they are fast.
 
 ## Continuation decision and remaining evidence

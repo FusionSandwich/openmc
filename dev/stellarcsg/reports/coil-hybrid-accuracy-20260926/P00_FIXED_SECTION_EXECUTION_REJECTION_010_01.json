@@ -1,0 +1,14 @@
+{
+  "disposition": "REJECT",
+  "scope": "fixed-section execution driver; construction accepted separately",
+  "driver_sha256": "c98cab1cd0f13b521419da5035bc467de5f573174ed7c1ff43baa8f0fa4a50ca",
+  "plan_sha256": "731728164ab61b6f8ffb564a465c11ec3bea396dd7eaae33a91379b10b6c24d0",
+  "reviewer_thread": "01a0e00b-f7f2-7ca3-ae93-7e39befae73b",
+  "reasons": [
+    "Driver only hashes review bytes, never parses approved disposition or checks review-pinned self/plan/helper/occupancy/dimension identities. Mutated inputs before launch could be silently re-frozen.",
+    "Windows inventory existence is checked without parsing required observations/headroom. WSL command success is checked but resource thresholds are not enforced.",
+    "No hard 1800-second outer supervisor is supplied; remaining native timeout alone does not bound inventory/hashing/HDF operations. Native/supervisor signal cleanup and child reaping must precede lease release.",
+    "Finally unlinks lock without checking current owner PID/run. Verify ownership and preserve changed lock."
+  ],
+  "required_next": "One final frozen execution driver and bounded wrapper/invocation; explicit ADMIT_DIAGNOSTIC_RUN parsing and exact reviewed identity enforcement. No launch from this rejected driver."
+}
