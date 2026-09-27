@@ -1,0 +1,46 @@
+{
+  "disposition": "ADMIT_DIAGNOSTIC_RUN",
+  "reviewer_thread": "01a0e00b-f7f2-7ca3-ae93-7e39befae73b",
+  "scope": "One separately authorized no-build fixed30x30 paired20000-history diagnostic, through exact reviewed wrapper only; no retry/successor",
+  "pins": {
+    "driver": "d45bc8b0595639d732ce8b5473b2aa64bda8c044a10929249ff0e9df9a8ab2b7",
+    "wrapper": "75d0bc2249bc1cc681578888e935d8024f96a739b8c17923228601d733ae8e35",
+    "plan": "731728164ab61b6f8ffb564a465c11ec3bea396dd7eaae33a91379b10b6c24d0",
+    "preparer": "4c4ce170a4268382e8f0312b40431cf520c849d80d1da982d0d85a10c2794a0b",
+    "matched_helper": "7abf58f73cbaac64dcb30e6c0ed60c82218dac1ea676216b4933c2fa340752ac",
+    "common_helper": "9aa3e2b5561b8ee11b90df8de0691bb5ae49f85427431870da47317e50f78e30",
+    "occupancy": "89360efcfeb3575965a1a1da8a598fec8bd1ca60de97cec82ae2c782bdee2141",
+    "dimensions": "ff7e926aab3fcae2c1f1ac66ae68c58924992b2429ca4a56f49285abbd4ef8a1",
+    "fixed_parameters": "f8df1ac7290dcd0bd72f48e616236ab0943b05aceb4ed290072ba59657bdef26",
+    "binary": "dd0f316e5bd0965092f2a080167da9bbde83416392b6473763063fd95ec63dde",
+    "library": "fbc38dedc17e20342a56dd50e2d56f86330238dae00b95ab3e4602864967cba4",
+    "facet_payload": "3db1723d250319d7e6e3d0a4cbbba7b88a68c830fba4214d001a8c2c2545c2d4",
+    "source_bank": "d13553a31262d45067a8e096e73857d459054b482cf7bf0ccb52b927c611b442",
+    "data_index": "218236803b2c4a21b038992af93dacfdfe5c0c0401cbbc57f3ff3a947c63abc7",
+    "data_file": "18abc04dc9fd602948bafcf487323a1148681c75ee74e27863e843211fd6f1f8",
+    "xml.custom.geometry.xml": "7a7205105faf26522170153620c3f3e73e69d026f43b1bc1600c836677f067e8",
+    "xml.custom.materials.xml": "74e108f7acf8182f959d941e1c8dca68da8aafaa2edf3ee3abdcbd0afaf7b891",
+    "xml.custom.settings.xml": "437fe983b1dd7c7e671a4067d3bccfd5fea6c72d99c4079f896a4fb4a567c532",
+    "xml.custom.tallies.xml": "96aacc7f9812c31ad9c8b36f14f354f0d4617bc18231bba982fc597c11a76fd0",
+    "xml.fixed30.geometry.xml": "4305806f834f9bb9261b4b80746b707ee91e4880e2534a7e46153f1ccaf62bef",
+    "xml.fixed30.materials.xml": "74e108f7acf8182f959d941e1c8dca68da8aafaa2edf3ee3abdcbd0afaf7b891",
+    "xml.fixed30.settings.xml": "437fe983b1dd7c7e671a4067d3bccfd5fea6c72d99c4079f896a4fb4a567c532",
+    "xml.fixed30.tallies.xml": "96aacc7f9812c31ad9c8b36f14f354f0d4617bc18231bba982fc597c11a76fd0"
+  },
+  "request_sha256": "0a18e0e91cb186ef5b129729ac6f71125063c04378fc2cd73db0f961b2114cc5",
+  "reasons": [
+    "All23pinned files independently hashed and match exact final packet",
+    "Explicit reviewer disposition/directory/fullpinset, actual timeout parent command, fresh output and inventory/headroom gates checked",
+    "Serial1CPU and1GiB address-space caps,600s native/1780s outer+10s killgrace, childgroup exit confirmation before ownerchecked lease release",
+    "Prepared geometry independently reconstructs18annular rectangles30x30cm, positive inner radii, unchanged sources/physics/quarter-world and priority semantics",
+    "Missing input/loader/resource/counter/tally/timer identity or timeout/nonzero/unresolved failure stops, preserves partial evidence, no retries"
+  ],
+  "limitations": [
+    "Source starts differ: facets18void sites, fixed4iron sites, envelope18iron sites; iron paths differ and ratio does not isolate algorithm cost",
+    "Midpoint/PCAplacement is a sizing control, not proven physicalpack centerline or same boundary",
+    "Facet payload is seam-repaired derived candidate, not unchanged acceptedH5M or continuousCAD certificate",
+    "Runtime affinity/loadedbinary/source/XML/data/terminal results still require independent acceptance",
+    "RLIMIT_AS is perprocess virtualaddress cap, not aggregate physicalmemory cgroup",
+    "No fulltarget winner, usefulperbin/ownership accuracy or Embree admission"
+  ]
+}

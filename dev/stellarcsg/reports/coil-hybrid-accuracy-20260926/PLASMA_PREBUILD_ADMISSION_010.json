@@ -1,0 +1,25 @@
+{
+  "disposition": "ADMIT_DIAGNOSTIC_BUILD_RUN",
+  "driver_sha256": "da43054031907d7ed1417be42a9d4f2b88763ca7c7cb3faf9652fae7a5d04fb4",
+  "wrapper_sha256": "3322355e7f9b81704e13dd4087321076ac95c7810449a7c4421d4e9f8a88c737",
+  "inventory_script_sha256": "635cdb66bb9f3dbef72889ef0a505dbd1c8a1cc5cd0e91bea6b876663954221c",
+  "inventory_plan_sha256": "147051e562c720553ee7a764dab14a2f33fae28cf38817b1534bca1541da7f22",
+  "reviewer_thread": "01a0e00b-f7f2-7ca3-ae93-7e39befae73b",
+  "scope": "One offline source build and matched old-rebuilt/current-retained20k diagnostic pair through exact wrapper only; no retries or production mutation",
+  "reasons": [
+    "All four packet hashes and source/dependency manifest digests independently match; reviewed observations have zero failed commands.",
+    "Exact review gate binds driver/wrapper/collector/plan. Safe drive conversion and exact owned output target checked.",
+    "Fresh host/WSL inventories under lease, RAM/space headroom and exact live/source/dependency/plan digest comparison precede configure.",
+    "Pilot manifest/original launch/four XML/geometry/source/Fe56/index and Python reader tree validated; workers use identical inputs and verify20k counters/seed.",
+    "CMake submodule updates disabled, disconnected flags enabled, existing local configs/staticarchives/HDF available; no install target/network acquisition.",
+    "Serial affinity, build1800s/worker600s/wholeblock2400s caps and reserved groupcleanup; owner checked before lease release."
+  ],
+  "limitations": [
+    "Old unchecked not-found-to-infinity handling is diagnostic-only, never production/accuracy admitted.",
+    "GNU14/HDF1.14.5 source rebuild is not archived binary reproduction or proof of historical regression.",
+    "Terminal/result acceptance remains pending. Worker does not explicitly gate finite tally arrays; independent review must reject nonfinite arrays/timers or incomplete identities before accepting timing.",
+    "RLIMIT_AS is per-process virtual address limit, not aggregate physical memory.",
+    "First-root/prefix/normal/scoring accuracy, coldCAD build, Embree and fulltarget winner unresolved."
+  ],
+  "supersedes": "Immutable PLASMA_PREBUILD_REJECTION_010_01.json; four exact new hashes only"
+}
