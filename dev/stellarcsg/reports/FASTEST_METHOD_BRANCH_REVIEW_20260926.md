@@ -87,6 +87,8 @@ Independent review accepted the fixed-section geometry construction, but rejecte
 
 **Admission update:** both corrected frozen launch packets subsequently passed independent review: `P00_FIXED_SECTION_EXECUTION_ADMISSION_010.json` and `PLASMA_PREBUILD_ADMISSION_010.json` in the reviewer directory. Each permits exactly one bounded diagnostic block, no acquisition/retry/production mutation. The plasma block has started fresh preflight inventory; the fixed-section block must wait for the shared lease. Admission does not count as a successful build, completed transport or accuracy acceptance. Terminal evidence remains pending.
 
+**Execution handoff snapshot:** the plasma owner recorded fresh inventory/binding PASS, configure PASS and compile 12/137 units at its startup observation. See [REBUILD_RUN_HANDOFF_010.md](plasma-best-time-20260926/REBUILD_RUN_HANDOFF_010.md) for exact run/session identity, finite deadlines and terminal collection/acceptance. Compilation runs asynchronously; there are no new plasma timing results. The fixed-section block is deferred behind the known plasma lease, without repeated lease attempts. Never start a duplicate block or remove that lease to obtain a comparison.
+
 Final current-workload winners remain **NOT_FULL_TARGET_QUALIFIED**. The completed diagnostic already establishes that the certified-offset path is not the fastest retained implementation for the tested near-circle. General coil performance, fixed-section P00 timing, matched old/current plasma and full geometry/tally accuracy remain unresolved. This report does not promote old inaccurate answers because they are fast.
 
 ## Continuation decision and remaining evidence
