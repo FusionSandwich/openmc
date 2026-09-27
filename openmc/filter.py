@@ -866,9 +866,28 @@ class MeshFilter(Filter):
         self._rotation = None
 
     def __hash__(self):
-        string = type(self).__name__ + '\n'
-        string += '{: <16}=\t{}\n'.format('\tMesh ID', self.mesh.id)
-        return hash(string)
+        return hash((type(self), self.mesh.id, self._bins_key(),
+                     self._transform_key(getattr(self, '_translation', None)),
+                     self._transform_key(getattr(self, '_rotation', None))))
+
+    @staticmethod
+    def _transform_key(transform):
+        if transform is None:
+            return None
+        return tuple(np.asarray(transform).ravel())
+
+    def __eq__(self, other):
+        return (type(self) is type(other)
+                and self.mesh.id == other.mesh.id
+                and self._bins_key() == other._bins_key()
+                and self._transform_key(getattr(self, '_translation', None))
+                == self._transform_key(getattr(other, '_translation', None))
+                and self._transform_key(getattr(self, '_rotation', None))
+                == self._transform_key(getattr(other, '_rotation', None)))
+
+    def _bins_key(self):
+        bins = np.asarray(self.bins, dtype=object)
+        return bins.shape, tuple(bins.ravel())
 
     def __repr__(self):
         string = type(self).__name__ + '\n'
@@ -901,7 +920,18 @@ class MeshFilter(Filter):
 
         rotation = group.get('rotation')
         if rotation:
-            out.rotation = rotation[()]
+            values = np.asarray(rotation[()])
+            if values.ndim != 1 or values.size not in (9, 12):
+                raise ValueError(
+                    "HDF5 mesh filter rotation must have shape (9,) or (12,).")
+            if not np.all(np.isfinite(values)):
+                raise ValueError(
+                    "HDF5 mesh filter rotation must contain only finite values.")
+            out.rotation = values[:9].reshape(3, 3)
+
+        if out.translation is not None and not np.all(np.isfinite(out.translation)):
+            raise ValueError(
+                "HDF5 mesh filter translation must contain only finite values.")
 
         return out
 
@@ -933,7 +963,10 @@ class MeshFilter(Filter):
     def translation(self, t):
         cv.check_type('mesh filter translation', t, Iterable, Real)
         cv.check_length('mesh filter translation', t, 3)
-        self._translation = np.asarray(t)
+        value = np.asarray(t)
+        if not np.all(np.isfinite(value)):
+            raise ValueError('mesh filter translation must contain only finite values')
+        self._translation = value
 
     @property
     def rotation(self):
@@ -941,8 +974,13 @@ class MeshFilter(Filter):
 
     @rotation.setter
     def rotation(self, rotation):
-        cv.check_length('mesh filter rotation', rotation, 3)
-        self._rotation = np.asarray(rotation)
+        value = np.asarray(rotation)
+        if value.shape not in ((3,), (3, 3)):
+            raise ValueError(
+                'mesh filter rotation must have shape (3,) or (3, 3)')
+        if not np.all(np.isfinite(value)):
+            raise ValueError('mesh filter rotation must contain only finite values')
+        self._rotation = value
 
     def can_merge(self, other):
         # Mesh filters cannot have more than one bin
@@ -1115,8 +1153,7 @@ class MeshMaterialFilter(MeshFilter):
         return cls(mesh, bins)
 
     def __hash__(self):
-        data = (type(self).__name__, self.mesh.id, tuple(self.bins.ravel()))
-        return hash(data)
+        return super().__hash__()
 
     def __repr__(self):
         string = type(self).__name__ + '\n'

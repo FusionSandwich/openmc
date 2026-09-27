@@ -1,0 +1,84 @@
+{
+  "on": {
+    "original": {
+      "process_wall_s": 18.4964795675005,
+      "setup_s": 0.13231020149942196,
+      "runtime_medians_s": {
+        "total initialization": 6.095014716,
+        "reading cross sections": 2.0060180415,
+        "transport": 12.2625011475,
+        "accumulating tallies": 5.23e-05,
+        "writing statepoints": 0.034352600999999997,
+        "total": 18.392881914500002
+      },
+      "external_residual_s": 0.1035976530005005
+    },
+    "cache": {
+      "process_wall_s": 13.233891149500778,
+      "setup_s": 0.12314220899861539,
+      "runtime_medians_s": {
+        "total initialization": 6.446416312,
+        "reading cross sections": 2.185220963,
+        "transport": 6.6484694845,
+        "accumulating tallies": 2.8499999999999998e-05,
+        "writing statepoints": 0.0300735,
+        "total": 13.126073946
+      },
+      "external_residual_s": 0.10781720350077784
+    },
+    "native": {
+      "process_wall_s": 6.664608530500118,
+      "setup_s": 0.13311434899878805,
+      "runtime_medians_s": {
+        "total initialization": 6.5556263755,
+        "reading cross sections": 2.0950968875,
+        "transport": 0.0064101,
+        "accumulating tallies": 5.699999999999998e-06,
+        "writing statepoints": 0.029897853000000002,
+        "total": 6.592782179
+      },
+      "external_residual_s": 0.07182635150011762
+    }
+  },
+  "off": {
+    "original": {
+      "process_wall_s": 18.724101652998797,
+      "setup_s": 0.11234395250176021,
+      "runtime_medians_s": {
+        "total initialization": 6.1943548265,
+        "reading cross sections": 1.9743999104999999,
+        "transport": 12.394476227,
+        "accumulating tallies": 0.00054615,
+        "writing statepoints": 0.01364395,
+        "total": 18.6036970535
+      },
+      "external_residual_s": 0.12040459949879612
+    },
+    "cache": {
+      "process_wall_s": 13.59401478250038,
+      "setup_s": 0.11862185549944115,
+      "runtime_medians_s": {
+        "total initialization": 6.7208349975,
+        "reading cross sections": 2.099590152,
+        "transport": 6.75564436,
+        "accumulating tallies": 0.00043925000000000013,
+        "writing statepoints": 0.013812205,
+        "total": 13.491587212999999
+      },
+      "external_residual_s": 0.10242756950038068
+    },
+    "native": {
+      "process_wall_s": 6.665970567499244,
+      "setup_s": 0.09832478149837698,
+      "runtime_medians_s": {
+        "total initialization": 6.5794269035,
+        "reading cross sections": 2.230538294,
+        "transport": 0.0055907505,
+        "accumulating tallies": 0.00027800000000000004,
+        "writing statepoints": 0.0121764,
+        "total": 6.597994154
+      },
+      "external_residual_s": 0.06797641349924355
+    }
+  }
+}

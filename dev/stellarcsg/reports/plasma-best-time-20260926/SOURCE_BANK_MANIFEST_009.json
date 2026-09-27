@@ -1,0 +1,131 @@
+{
+  "schema": "stellarcsg.plasma-source-bank-audit/v1",
+  "current_head": "54f8af0dbccb1ce2dcd066f27ea79667f2d6ee8f",
+  "preserved_head": "3041a938c3fb0bc349654f37b0b3ebcd3cd5a9bb",
+  "current_files": [
+    {
+      "path": "src/surface_periodic_spline.cpp",
+      "sha256": "c34cf83823c1856076e247e95337eb75a03553049fe510ad76149749c8483892"
+    },
+    {
+      "path": "include/openmc/surface_periodic_spline.h",
+      "sha256": "159070270e7ef9cd74b3a56e77b785888ac6bad0e369e0f7c1708374287f58ed"
+    },
+    {
+      "path": "dev/stellarcsg/src/compiled_periodic_surface.cpp",
+      "sha256": "adf78160d9df75786f8e10158970617084f53ca5739a090534f6e20da967f27d"
+    },
+    {
+      "path": "dev/stellarcsg/include/stellarcsg/compiled_periodic_surface.hpp",
+      "sha256": "05096628a3d3bbe2cda6ab921179f04b1426de9cfa5d4e25db064c5300e29b9a"
+    },
+    {
+      "path": "dev/stellarcsg/src/periodic_radial_surface.cpp",
+      "sha256": "da91b6e4d8267fefd48c1ab534ebd75279af8b0d38a2f4861f2c0b6162c3c54a"
+    },
+    {
+      "path": "dev/stellarcsg/include/stellarcsg/periodic_radial_surface.hpp",
+      "sha256": "2f6316ca46b59303c266f0fab895931c639dc9dd91900ebe36749a41da445cee"
+    },
+    {
+      "path": "dev/stellarcsg/include/stellarcsg/root_solver.hpp",
+      "sha256": "5eacbd469d12dd0f1d47e201359abcf8892269dc13f00e6d2e5377f07e4c6f6b"
+    },
+    {
+      "path": "include/openmc/stellarcsg_distance.h",
+      "sha256": "b9939d0c87e4485cb0d56b5a5858386f4c1e7cf3b40c888854bcd5bddc0d0e30"
+    },
+    {
+      "path": "src/surface.cpp",
+      "sha256": "d4cee6a21775941be4f428514676fa70ad6839eaece2840e7f655b031e44901d"
+    },
+    {
+      "path": "build/astra-native/CMakeCache.txt",
+      "sha256": "fdec6de9d3f7005b41e35277439dd5b32c5a630eb99368ac5c6de92718175896"
+    },
+    {
+      "path": "build/astra-native/compile_commands.json",
+      "sha256": "20823c7d70f92d43f72979a35a0256f0b7ffad2d91e011a37ddc02eb4af32fc2"
+    },
+    {
+      "path": "dev/stellarcsg/reports/plasma-best-time-20260926/transport-009-01/manifest.json",
+      "sha256": "71cd0bf0182627307c29c8f511f31fbd58bc5a48be457b8e0b2e87ef34918055"
+    },
+    {
+      "path": "dev/stellarcsg/reports/plasma-best-time-20260926/transport-009-01/source.h5",
+      "sha256": "223dc5849ec0196444a74a46c1ef54e87bcc24a67d6ccfd234fa332cbf5b381a"
+    },
+    {
+      "path": "dev/stellarcsg/reports/plasma-best-time-20260926/transport-009-01/block-result.json",
+      "sha256": "bb89936806cb4d9a9e0de63305d7f64e075e2075f1df50f3272f84ceeb674ae2"
+    },
+    {
+      "path": "dev/stellarcsg/qualified/wistell_d_periodic_surfaces.h5",
+      "sha256": "52695c3c6a7329faccdd009f1179c50c91e24c8902447356d3b2cd77c7f9ca36"
+    }
+  ],
+  "preserved_files": [
+    {
+      "path": "src/surface_periodic_spline.cpp",
+      "sha256": "3b3d309037c2b4866774d90047a1f00776b384676c981e2cf1d352e16e8c280d"
+    },
+    {
+      "path": "dev/stellarcsg/src/compiled_periodic_surface.cpp",
+      "sha256": "8cb39a306f0d1c201a99e2802de7efb56638f60f1804779b30483669f7b096f1"
+    },
+    {
+      "path": "dev/stellarcsg/src/periodic_radial_surface.cpp",
+      "sha256": "da91b6e4d8267fefd48c1ab534ebd75279af8b0d38a2f4861f2c0b6162c3c54a"
+    },
+    {
+      "path": "dev/stellarcsg/include/stellarcsg/root_solver.hpp",
+      "sha256": "8af80d17336bb913778e63c5e46afa254df1ea95abdcd6f3797607a1ff75e105"
+    },
+    {
+      "path": "dev/stellarcsg/qualified/wistell_d_periodic_surfaces.h5",
+      "sha256": "52695c3c6a7329faccdd009f1179c50c91e24c8902447356d3b2cd77c7f9ca36"
+    },
+    {
+      "path": "dev/stellarcsg/benchmarks/raw/wistell_openmc_patch_vs_fine_mesh_20260831.json",
+      "sha256": "4cbc4980a011025a3a9fcffc3177e206f982bf33768375de4b3ffbb2422908f8"
+    }
+  ],
+  "functions": [
+    {
+      "current_chars": 24114,
+      "nonwhitespace_text_equal": true,
+      "preserved_chars": 23856,
+      "name": "distance_general_periodic"
+    },
+    {
+      "current_chars": 4907,
+      "nonwhitespace_text_equal": true,
+      "preserved_chars": 4875,
+      "name": "sample_patch_parametric"
+    },
+    {
+      "current_chars": 12093,
+      "nonwhitespace_text_equal": true,
+      "preserved_chars": 12386,
+      "name": "build_periodic_patches"
+    },
+    {
+      "current_chars": 6067,
+      "nonwhitespace_text_equal": true,
+      "preserved_chars": 5985,
+      "name": "distance_shaped_axisymmetric"
+    },
+    {
+      "current_chars": 5416,
+      "nonwhitespace_text_equal": true,
+      "preserved_chars": 5305,
+      "name": "distance_exact_torus"
+    }
+  ],
+  "limitations": [
+    "Runtime ldd and hashes bind executed binary/library, but no byte-exact rebuild was performed; compile_commands are provenance data, not proof of binary reproducibility.",
+    "Whitespace normalization is a textual comparison, not semantic equivalence proof.",
+    "Archive WISTELL timing source hash not proven equal to preserved HEAD source.",
+    "No compute or rebuild in this audit."
+  ]
+}

@@ -1,0 +1,216 @@
+{
+  "schema": "stellarcsg.accepted-publication/v1",
+  "prepublication_head": "54f8af0dbccb1ce2dcd066f27ea79667f2d6ee8f",
+  "files": [
+    {
+      "path": "dev/stellarcsg/reports/ACCEPTED_PATCH_PUBLICATION_20260926.md",
+      "reviewed_local_sha256": "ade2ef3666a2742e24398a100e6039f9044c90bb97da7ed5d497ab21d6e396d3",
+      "staged_content_sha256": "ade2ef3666a2742e24398a100e6039f9044c90bb97da7ed5d497ab21d6e396d3",
+      "relation": "IDENTICAL"
+    },
+    {
+      "path": "dev/stellarcsg/reports/BENCHMARK_CONTRACT_BUILD_TRANSPORT_20260926.md",
+      "reviewed_local_sha256": "8c84fc0293df4b4614521ff0963916d58876efcfd155bb91f288de84eed1ad1d",
+      "staged_content_sha256": "8c84fc0293df4b4614521ff0963916d58876efcfd155bb91f288de84eed1ad1d",
+      "relation": "IDENTICAL"
+    },
+    {
+      "path": "dev/stellarcsg/reports/BUILD_TRANSPORT_RESULTS_20260926.md",
+      "reviewed_local_sha256": "53ccd4f65a0737f387d85aad0dbc1aba3417f337172b9ba987b36af172713c32",
+      "staged_content_sha256": "53ccd4f65a0737f387d85aad0dbc1aba3417f337172b9ba987b36af172713c32",
+      "relation": "IDENTICAL"
+    },
+    {
+      "path": "dev/stellarcsg/reports/CONSOLIDATED_DEVELOPMENT_20260926.md",
+      "reviewed_local_sha256": "e1d92508f9df32999a082b2d2c29ec2945cec87933886d201828124c0830ce8c",
+      "staged_content_sha256": "e1d92508f9df32999a082b2d2c29ec2945cec87933886d201828124c0830ce8c",
+      "relation": "IDENTICAL"
+    },
+    {
+      "path": "dev/stellarcsg/reports/coil-hybrid-accuracy-20260926/CACHE_ACCEPTANCE_003.md",
+      "reviewed_local_sha256": "b538912ccdc251d431b44c3e8f604976fad32606230a31eb6b59c60e33f0b75e",
+      "staged_content_sha256": "b538912ccdc251d431b44c3e8f604976fad32606230a31eb6b59c60e33f0b75e",
+      "relation": "IDENTICAL"
+    },
+    {
+      "path": "dev/stellarcsg/reports/coil-hybrid-accuracy-20260926/COIL_PILOT_TERMINAL_REVIEW_009.md",
+      "reviewed_local_sha256": "479417d40b0c6c4647894b22788a7c0a23146a110b0847276d314b03883fa895",
+      "staged_content_sha256": "479417d40b0c6c4647894b22788a7c0a23146a110b0847276d314b03883fa895",
+      "relation": "IDENTICAL"
+    },
+    {
+      "path": "dev/stellarcsg/reports/coil-hybrid-accuracy-20260926/EMBREE_AND_METHOD_REVIEW_009.md",
+      "reviewed_local_sha256": "c238d382c1b0bbd18fccc71421c8656164a2b972f678a35b8514a99402dac07c",
+      "staged_content_sha256": "c238d382c1b0bbd18fccc71421c8656164a2b972f678a35b8514a99402dac07c",
+      "relation": "IDENTICAL"
+    },
+    {
+      "path": "dev/stellarcsg/reports/coil-hybrid-accuracy-20260926/TALLY_ACCEPTANCE_005.md",
+      "reviewed_local_sha256": "03e419e95d517f3941d1da89ebc5a5699527e1a855feb11119aa043524e24e12",
+      "staged_content_sha256": "03e419e95d517f3941d1da89ebc5a5699527e1a855feb11119aa043524e24e12",
+      "relation": "IDENTICAL"
+    },
+    {
+      "path": "dev/stellarcsg/reports/coil-hybrid-accuracy-20260926/TALLY_RECEIPT_005.json",
+      "reviewed_local_sha256": "3e7edba8130dfb3f35402a3a067fdad468501230413e65d944cff27d6dd6f767",
+      "staged_content_sha256": "b578387f0d85836bef71bc9d889a21a3ad0118f221de2794f39d7439b18c47e2",
+      "relation": "CRLF_TO_LF_ONLY"
+    },
+    {
+      "path": "dev/stellarcsg/reports/coil-profile-20260926/MEANINGFUL_COIL_RESULTS_009.md",
+      "reviewed_local_sha256": "d215d4f50dfd39df5c5e666b5a28f7cc591c3a8a00359316435d02f9f376306d",
+      "staged_content_sha256": "d215d4f50dfd39df5c5e666b5a28f7cc591c3a8a00359316435d02f9f376306d",
+      "relation": "IDENTICAL"
+    },
+    {
+      "path": "dev/stellarcsg/reports/coil-profile-20260926/TOTAL_TIME_RESULTS_005.md",
+      "reviewed_local_sha256": "e0ca4d019155f1366d6f83a26464d9c83a2f01bfc417b1da969fd2e5c23f3e0b",
+      "staged_content_sha256": "e0ca4d019155f1366d6f83a26464d9c83a2f01bfc417b1da969fd2e5c23f3e0b",
+      "relation": "IDENTICAL"
+    },
+    {
+      "path": "dev/stellarcsg/reports/coil-profile-20260926/meaningful-coil-009/PLAN.json",
+      "reviewed_local_sha256": "29d03bc63fbbde766422ac0fc6d3d53840d6332755fb57917e07710f92ca4041",
+      "staged_content_sha256": "29d03bc63fbbde766422ac0fc6d3d53840d6332755fb57917e07710f92ca4041",
+      "relation": "IDENTICAL"
+    },
+    {
+      "path": "dev/stellarcsg/reports/coil-profile-20260926/meaningful-coil-009/SUMMARY.json",
+      "reviewed_local_sha256": "20f15f0fee3005e7582c9d674037709972242d194c2021b5bbf99841fd0dd33d",
+      "staged_content_sha256": "20f15f0fee3005e7582c9d674037709972242d194c2021b5bbf99841fd0dd33d",
+      "relation": "IDENTICAL"
+    },
+    {
+      "path": "dev/stellarcsg/reports/coil-profile-20260926/meaningful-coil-009/TERMINAL.json",
+      "reviewed_local_sha256": "23d93fd66972e0c5f640b204ce9b0d472f61b9d5989b36f620c40b533a932ecd",
+      "staged_content_sha256": "23d93fd66972e0c5f640b204ce9b0d472f61b9d5989b36f620c40b533a932ecd",
+      "relation": "IDENTICAL"
+    },
+    {
+      "path": "dev/stellarcsg/reports/coil-profile-20260926/meaningful-coil-009/cache/process-receipt.json",
+      "reviewed_local_sha256": "d312052697af5adcb60ef273ed8523ba0b3e63c80c8b8724a333f453f10d35c5",
+      "staged_content_sha256": "d312052697af5adcb60ef273ed8523ba0b3e63c80c8b8724a333f453f10d35c5",
+      "relation": "IDENTICAL"
+    },
+    {
+      "path": "dev/stellarcsg/reports/coil-profile-20260926/meaningful-coil-009/cache/receipt.json",
+      "reviewed_local_sha256": "9a1a1c350f898e649a6f7bdcc453fc38ba28d7ad3305c233a6215c2071ec6a6e",
+      "staged_content_sha256": "9a1a1c350f898e649a6f7bdcc453fc38ba28d7ad3305c233a6215c2071ec6a6e",
+      "relation": "IDENTICAL"
+    },
+    {
+      "path": "dev/stellarcsg/reports/coil-profile-20260926/meaningful-coil-009/flat_ring/process-receipt.json",
+      "reviewed_local_sha256": "b75478106962a1c9724ed64deeda6e261d099781b31c85e1c21e253768e150c9",
+      "staged_content_sha256": "b75478106962a1c9724ed64deeda6e261d099781b31c85e1c21e253768e150c9",
+      "relation": "IDENTICAL"
+    },
+    {
+      "path": "dev/stellarcsg/reports/coil-profile-20260926/meaningful-coil-009/flat_ring/receipt.json",
+      "reviewed_local_sha256": "e56cc3c68782c3a0b5305e6e10262ab4e375037715c39941ad971f94c862693a",
+      "staged_content_sha256": "e56cc3c68782c3a0b5305e6e10262ab4e375037715c39941ad971f94c862693a",
+      "relation": "IDENTICAL"
+    },
+    {
+      "path": "dev/stellarcsg/reports/coil-profile-20260926/meaningful-coil-009/identities.json",
+      "reviewed_local_sha256": "f9d0948d39ff8d737915e8b4e273c8731b7f078696c9f3a57862bfba146ce645",
+      "staged_content_sha256": "f9d0948d39ff8d737915e8b4e273c8731b7f078696c9f3a57862bfba146ce645",
+      "relation": "IDENTICAL"
+    },
+    {
+      "path": "dev/stellarcsg/reports/coil-profile-20260926/total-time-ab-005-02/PHASE_MEDIANS.json",
+      "reviewed_local_sha256": "f162d392f3731c844c66a8eccac78e1e0df40d95486ca9c132fc82e6cfab2caf",
+      "staged_content_sha256": "024e941bea11e8715e94cb42611f5fe108c7aa8953d196b2a9c03244374415f6",
+      "relation": "CRLF_TO_LF_ONLY"
+    },
+    {
+      "path": "dev/stellarcsg/reports/coil-profile-20260926/total-time-ab-005-02/SUMMARY.json",
+      "reviewed_local_sha256": "d93b29b032f2d63760a7cd22787f4562ee64c9720bc9a8e50c7ca2dff4f3858c",
+      "staged_content_sha256": "d93b29b032f2d63760a7cd22787f4562ee64c9720bc9a8e50c7ca2dff4f3858c",
+      "relation": "IDENTICAL"
+    },
+    {
+      "path": "dev/stellarcsg/reports/mesh-filter-transform-20260926/pytest-final.stdout",
+      "reviewed_local_sha256": "3d7abc207c7cd43ea317973d084b193724a602c2452fcce246dd99fa5a5198fe",
+      "staged_content_sha256": "3d7abc207c7cd43ea317973d084b193724a602c2452fcce246dd99fa5a5198fe",
+      "relation": "IDENTICAL"
+    },
+    {
+      "path": "dev/stellarcsg/reports/plasma-best-time-20260926/CALL_PATH_AUDIT_009.md",
+      "reviewed_local_sha256": "3888cef808f5a6daec92dd336a759e8540621590978b0a54d97b4fc1acf60902",
+      "staged_content_sha256": "3888cef808f5a6daec92dd336a759e8540621590978b0a54d97b4fc1acf60902",
+      "relation": "IDENTICAL"
+    },
+    {
+      "path": "dev/stellarcsg/reports/plasma-best-time-20260926/FINAL_VALIDATION_009.json",
+      "reviewed_local_sha256": "75f9d5ee29f5365cb471e7c1940b74262aa5da2842fbead38da4352716849214",
+      "staged_content_sha256": "a94742c90b9ed6f558af657c131dc1b40f292803b5e503a4959b58f349297af7",
+      "relation": "CRLF_TO_LF_ONLY"
+    },
+    {
+      "path": "dev/stellarcsg/reports/plasma-best-time-20260926/RESULTS.md",
+      "reviewed_local_sha256": "bb22b678fb58b3d184863c82c8251b4c0bf4f0b85cd7c823854fbd0c459cc924",
+      "staged_content_sha256": "bb22b678fb58b3d184863c82c8251b4c0bf4f0b85cd7c823854fbd0c459cc924",
+      "relation": "IDENTICAL"
+    },
+    {
+      "path": "dev/stellarcsg/reports/plasma-best-time-20260926/SOURCE_BANK_MANIFEST_009.json",
+      "reviewed_local_sha256": "a702742aa05029e6a140c74a1609663fc00820dec0babbcb6798acac2217b271",
+      "staged_content_sha256": "8f37dbc65d1b23461832b9ebefb96dea12b0f91efc719d2c500d17ecd5e5c3c4",
+      "relation": "CRLF_TO_LF_ONLY"
+    },
+    {
+      "path": "dev/stellarcsg/reports/plasma-best-time-20260926/SOURCE_REVIEW.md",
+      "reviewed_local_sha256": "90fa80d698137a49024982bdc255f9b29ed3d2e85cd531c156ab5ab527edc221",
+      "staged_content_sha256": "90fa80d698137a49024982bdc255f9b29ed3d2e85cd531c156ab5ab527edc221",
+      "relation": "IDENTICAL"
+    },
+    {
+      "path": "dev/stellarcsg/reports/plasma-best-time-20260926/transport-009-01/block-result.json",
+      "reviewed_local_sha256": "bb89936806cb4d9a9e0de63305d7f64e075e2075f1df50f3272f84ceeb674ae2",
+      "staged_content_sha256": "bb89936806cb4d9a9e0de63305d7f64e075e2075f1df50f3272f84ceeb674ae2",
+      "relation": "IDENTICAL"
+    },
+    {
+      "path": "dev/stellarcsg/reports/plasma-best-time-20260926/transport-009-01/builtin/receipt.json",
+      "reviewed_local_sha256": "b2e10a98e681729bb103089e005d170d2bcbad871b1f68a92f09d7376d6ce2c5",
+      "staged_content_sha256": "b2e10a98e681729bb103089e005d170d2bcbad871b1f68a92f09d7376d6ce2c5",
+      "relation": "IDENTICAL"
+    },
+    {
+      "path": "dev/stellarcsg/reports/plasma-best-time-20260926/transport-009-01/custom/receipt.json",
+      "reviewed_local_sha256": "96eb0f2027e1d9321022d13057e51a0140c97636c18659a3605ede27c59fb221",
+      "staged_content_sha256": "96eb0f2027e1d9321022d13057e51a0140c97636c18659a3605ede27c59fb221",
+      "relation": "IDENTICAL"
+    },
+    {
+      "path": "dev/stellarcsg/reports/plasma-best-time-20260926/transport-009-01/manifest.json",
+      "reviewed_local_sha256": "71cd0bf0182627307c29c8f511f31fbd58bc5a48be457b8e0b2e87ef34918055",
+      "staged_content_sha256": "71cd0bf0182627307c29c8f511f31fbd58bc5a48be457b8e0b2e87ef34918055",
+      "relation": "IDENTICAL"
+    },
+    {
+      "path": "dev/stellarcsg/src/certified_spline_offset.cpp",
+      "reviewed_local_sha256": "5f71bb5054f74c0e83815bcaf9a75f8509ff0ad59026ea4c551af245b20e6008",
+      "staged_content_sha256": "5f71bb5054f74c0e83815bcaf9a75f8509ff0ad59026ea4c551af245b20e6008",
+      "relation": "IDENTICAL"
+    },
+    {
+      "path": "openmc/filter.py",
+      "reviewed_local_sha256": "3a5371909d919f278369a1ce47719192ea7646cf18e08df48c6717a1f9063651",
+      "staged_content_sha256": "cb7b75534df34697c6150a4c6f4f751edcde837c52328cb890da675faf4f0e6e",
+      "relation": "CRLF_TO_LF_ONLY"
+    },
+    {
+      "path": "tests/unit_tests/test_mesh_filter_transform_identity.py",
+      "reviewed_local_sha256": "3d508ad8950f1362facf0a9defa60a49b4a9de2ca7cd53a803e5e9cde977dda5",
+      "staged_content_sha256": "3d508ad8950f1362facf0a9defa60a49b4a9de2ca7cd53a803e5e9cde977dda5",
+      "relation": "IDENTICAL"
+    }
+  ],
+  "production_rebuild": "NOT_RUN",
+  "new_full_target_speed_qualification": "NOT_RUN",
+  "new_diagnostic_histories_per_method": 20000,
+  "new_completed_histories_total": 80000,
+  "transport_target": "FAIL_BOTH",
+  "embree": "HISTORICAL_BINARY_PRESENT_CURRENT_DEPENDENCY_CLOSURE_UNVERIFIED"
+}

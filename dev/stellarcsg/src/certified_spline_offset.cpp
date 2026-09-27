@@ -122,6 +122,8 @@ struct Span {
   // Original four-control convex hull, transformed by the positive metric.
   // This bounds the exact cardinal spline independently of power arithmetic.
   V scaled_hull;
+  // Immutable geometry-only intervals; same arithmetic as center(s, I(0, 1)).
+  std::array<V, 3> full_center;
 };
 V sample(const Span& s, I u, int derivative = 0)
 {
@@ -196,6 +198,8 @@ struct CertifiedSplineOffset::Implementation {
   V point(const Vec3& p) const { return scaled({I(p.x), I(p.y), I(p.z)}); }
   V center(std::size_t s, I u, int derivative = 0) const
   {
+    if (u.lo == 0 && u.hi == 1 && derivative >= 0 && derivative <= 2)
+      return spans[s].full_center[derivative];
     return scaled(sample(spans[s], u, derivative));
   }
   V ray_point(const Vec3& o, const Vec3& d, I t) const
@@ -1005,6 +1009,8 @@ CertifiedSplineOffset::CertifiedSplineOffset(const SweptSplineSurfaceData& data)
         span.nominal[axis][k] = static_cast<double>(
           (span.c[axis][k].lo + span.c[axis][k].hi) / 2 *
           ((impl.scale[axis].lo + impl.scale[axis].hi) / 2));
+    for (int derivative = 0; derivative <= 2; ++derivative)
+      span.full_center[derivative] = impl.scaled(sample(span, I(0, 1), derivative));
     impl.spans.push_back(span);
     std::vector<std::pair<I, unsigned>> todo {{I(0, 1), 0}};
     while (!todo.empty()) {

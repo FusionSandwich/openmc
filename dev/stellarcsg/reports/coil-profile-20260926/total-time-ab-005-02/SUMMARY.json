@@ -1,0 +1,1183 @@
+{
+  "disposition": "PASS_FINITE_MATCHED_OBSERVATIONS",
+  "metric": "external input XML preparation through verified child exit, seconds for 1000 histories; excludes postrun audit",
+  "plan": {
+    "histories": 1000,
+    "particles_per_batch": 50,
+    "batches": 20,
+    "seed": 1741,
+    "threads": 1,
+    "variants": [
+      "original",
+      "cache",
+      "native"
+    ],
+    "tally_modes": [
+      "on",
+      "off"
+    ],
+    "repetitions": 2,
+    "statepoint_policy": "final batch only for every worker",
+    "input_contract": "same original/cached admitted offset; native round torus is approximate geometry control; reused existing fixture/source/data",
+    "geometry_compile": "NOT_SEPARATELY_MEASURED; occurs within native initialization",
+    "software_build": "NOT_RUN; historical DSOs reused",
+    "historical_fixture_export": "NOT_MEASURED; cannot infer zero cost",
+    "scheduled_workers": 12,
+    "max_worker_seconds": 60
+  },
+  "workers": [
+    {
+      "name": "0-on-original",
+      "repeat": 0,
+      "tally_mode": "on",
+      "variant": "original",
+      "histories": 1000,
+      "input_setup_export_copy_seconds": 0.1519129049993353,
+      "external_process_wall_seconds": 18.57241318800152,
+      "input_ready_to_child_exit_seconds": 18.76110429400069,
+      "receipt_overhead_seconds": 0.010215700000117067,
+      "raw_native_runtime_seconds": {
+        "accumulating tallies": 5.4699999999999995e-05,
+        "active batches": 12.271299997,
+        "reading cross sections": 2.022113662,
+        "simulation": 12.270052797,
+        "total": 18.471698987,
+        "total initialization": 6.19794609,
+        "transport": 12.236664497000001,
+        "writing statepoints": 0.035767
+      },
+      "completed": {
+        "particles_per_batch": 50,
+        "batches": 20,
+        "current_batch": 20,
+        "realizations": 20
+      },
+      "xml_hashes": {
+        "geometry.xml": "9122b77fed201b243c32caf738565c193835b4fe6ef05e2c52b93767d0fb3c25",
+        "materials.xml": "af2a5fa8526432a9a088f29d3c9d8dbc6c34835fc988cc7511e7e0ae8ffc5669",
+        "settings.xml": "b3ec51e6498b43ff7861318481c9140922980aed83759cf3789acf2cbdd84b9f",
+        "tallies.xml": "2cac3f93d2c54d4a92c5530ecf71e2fbdc441981b027ccdc5913b9b7bb8d223a"
+      },
+      "source_sha256": "615cfa0b20b747e166e20632b29912bdcabc3c096c35e4db33169095394f53a0",
+      "dso_sha256": "577dbee3d416b1e518fcad9dc403a26e38643918d3fee60d17a7ffb1f6789b54",
+      "unresolved_or_lost_raw_diagnostics": [],
+      "statepoint_sha256": "93b00458d97f8c3498cb0251863039ebe58d4c2564e6f3df5313d4ced9401d04",
+      "output_hashes": {
+        "geometry.xml": "9122b77fed201b243c32caf738565c193835b4fe6ef05e2c52b93767d0fb3c25",
+        "materials.xml": "af2a5fa8526432a9a088f29d3c9d8dbc6c34835fc988cc7511e7e0ae8ffc5669",
+        "settings.xml": "b3ec51e6498b43ff7861318481c9140922980aed83759cf3789acf2cbdd84b9f",
+        "statepoint.20.h5": "93b00458d97f8c3498cb0251863039ebe58d4c2564e6f3df5313d4ced9401d04",
+        "summary.h5": "1780dd352c1a3bc249635d07a76ff356ad6353f75bbb48cd17b5769c2c909eb3",
+        "tallies.xml": "2cac3f93d2c54d4a92c5530ecf71e2fbdc441981b027ccdc5913b9b7bb8d223a"
+      },
+      "wrong_root_count": "not inferred from transport; frozen bank count=0",
+      "geometry_setup": "reused coefficient fixture; compiled within initialization; separate time UNKNOWN",
+      "external_wall_minus_recorded_native_total_seconds": 0.1007142010015194,
+      "residual_semantics": "launch/teardown and any work outside recorded native total; not pure launch time"
+    },
+    {
+      "name": "0-on-cache",
+      "repeat": 0,
+      "tally_mode": "on",
+      "variant": "cache",
+      "histories": 1000,
+      "input_setup_export_copy_seconds": 0.12102189999859547,
+      "external_process_wall_seconds": 13.006881588000397,
+      "input_ready_to_child_exit_seconds": 13.161145989000943,
+      "receipt_overhead_seconds": 0.010431400001834845,
+      "raw_native_runtime_seconds": {
+        "accumulating tallies": 2.9299999999999994e-05,
+        "active batches": 6.620547417,
+        "reading cross sections": 2.011938264,
+        "simulation": 6.619656817,
+        "total": 12.901225586,
+        "total initialization": 6.27824027,
+        "transport": 6.591298215999999,
+        "writing statepoints": 0.030809301
+      },
+      "completed": {
+        "particles_per_batch": 50,
+        "batches": 20,
+        "current_batch": 20,
+        "realizations": 20
+      },
+      "xml_hashes": {
+        "geometry.xml": "9122b77fed201b243c32caf738565c193835b4fe6ef05e2c52b93767d0fb3c25",
+        "materials.xml": "af2a5fa8526432a9a088f29d3c9d8dbc6c34835fc988cc7511e7e0ae8ffc5669",
+        "settings.xml": "b3ec51e6498b43ff7861318481c9140922980aed83759cf3789acf2cbdd84b9f",
+        "tallies.xml": "2cac3f93d2c54d4a92c5530ecf71e2fbdc441981b027ccdc5913b9b7bb8d223a"
+      },
+      "source_sha256": "5f71bb5054f74c0e83815bcaf9a75f8509ff0ad59026ea4c551af245b20e6008",
+      "dso_sha256": "b3f2aeea1b80c00b806b6bb96435e4e0acc3e7a6b94beaea565ccde733387e68",
+      "unresolved_or_lost_raw_diagnostics": [],
+      "statepoint_sha256": "8c3a667ca95d361c411f6a4a79918f2aa84d46c08a9937b2160eea6ea2443783",
+      "output_hashes": {
+        "geometry.xml": "9122b77fed201b243c32caf738565c193835b4fe6ef05e2c52b93767d0fb3c25",
+        "materials.xml": "af2a5fa8526432a9a088f29d3c9d8dbc6c34835fc988cc7511e7e0ae8ffc5669",
+        "settings.xml": "b3ec51e6498b43ff7861318481c9140922980aed83759cf3789acf2cbdd84b9f",
+        "statepoint.20.h5": "8c3a667ca95d361c411f6a4a79918f2aa84d46c08a9937b2160eea6ea2443783",
+        "summary.h5": "4e1bab0e087f0fe2e3a25fd0c424a2384364e4f8e4759c4f3dac58d90a481a49",
+        "tallies.xml": "2cac3f93d2c54d4a92c5530ecf71e2fbdc441981b027ccdc5913b9b7bb8d223a"
+      },
+      "wrong_root_count": "not inferred from transport; frozen bank count=0",
+      "geometry_setup": "reused coefficient fixture; compiled within initialization; separate time UNKNOWN",
+      "external_wall_minus_recorded_native_total_seconds": 0.10565600200039604,
+      "residual_semantics": "launch/teardown and any work outside recorded native total; not pure launch time"
+    },
+    {
+      "name": "0-on-native",
+      "repeat": 0,
+      "tally_mode": "on",
+      "variant": "native",
+      "histories": 1000,
+      "input_setup_export_copy_seconds": 0.13653010499911034,
+      "external_process_wall_seconds": 6.6398802410003555,
+      "input_ready_to_child_exit_seconds": 6.810307146999548,
+      "receipt_overhead_seconds": 0.011863100000482518,
+      "raw_native_runtime_seconds": {
+        "accumulating tallies": 5.499999999999997e-06,
+        "active batches": 0.034539001,
+        "reading cross sections": 2.093739577,
+        "simulation": 0.033673601,
+        "total": 6.550107438,
+        "total initialization": 6.513471337,
+        "transport": 0.006654099999999999,
+        "writing statepoints": 0.029313401
+      },
+      "completed": {
+        "particles_per_batch": 50,
+        "batches": 20,
+        "current_batch": 20,
+        "realizations": 20
+      },
+      "xml_hashes": {
+        "geometry.xml": "8f0f7d52c4be8358ae16d27e6e5a8664a9e25b353279e14c149aa8975620705a",
+        "materials.xml": "af2a5fa8526432a9a088f29d3c9d8dbc6c34835fc988cc7511e7e0ae8ffc5669",
+        "settings.xml": "b3ec51e6498b43ff7861318481c9140922980aed83759cf3789acf2cbdd84b9f",
+        "tallies.xml": "2cac3f93d2c54d4a92c5530ecf71e2fbdc441981b027ccdc5913b9b7bb8d223a"
+      },
+      "source_sha256": null,
+      "dso_sha256": null,
+      "unresolved_or_lost_raw_diagnostics": [],
+      "statepoint_sha256": "cf8768e5649b0426c2313f9a7fb5ab28f26c2e44d0a5980996b0b3f212541d2c",
+      "output_hashes": {
+        "geometry.xml": "8f0f7d52c4be8358ae16d27e6e5a8664a9e25b353279e14c149aa8975620705a",
+        "materials.xml": "af2a5fa8526432a9a088f29d3c9d8dbc6c34835fc988cc7511e7e0ae8ffc5669",
+        "settings.xml": "b3ec51e6498b43ff7861318481c9140922980aed83759cf3789acf2cbdd84b9f",
+        "statepoint.20.h5": "cf8768e5649b0426c2313f9a7fb5ab28f26c2e44d0a5980996b0b3f212541d2c",
+        "summary.h5": "65bcfce60b4facba38d120e5ff6cbc09533ee76cafc7cd099818302af9976166",
+        "tallies.xml": "2cac3f93d2c54d4a92c5530ecf71e2fbdc441981b027ccdc5913b9b7bb8d223a"
+      },
+      "wrong_root_count": "not inferred from transport; frozen bank count=0",
+      "geometry_setup": "reused coefficient fixture; compiled within initialization; separate time UNKNOWN",
+      "external_wall_minus_recorded_native_total_seconds": 0.08977280300035506,
+      "residual_semantics": "launch/teardown and any work outside recorded native total; not pure launch time"
+    },
+    {
+      "name": "0-off-native",
+      "repeat": 0,
+      "tally_mode": "off",
+      "variant": "native",
+      "histories": 1000,
+      "input_setup_export_copy_seconds": 0.10778550299801282,
+      "external_process_wall_seconds": 6.541070138999203,
+      "input_ready_to_child_exit_seconds": 6.687649544997839,
+      "receipt_overhead_seconds": 0.0136157019987877,
+      "raw_native_runtime_seconds": {
+        "accumulating tallies": 0.00030790000000000006,
+        "active batches": 0.018344802,
+        "reading cross sections": 2.122251243,
+        "simulation": 0.017256802,
+        "total": 6.470834433,
+        "total initialization": 6.450248031,
+        "transport": 0.006154201,
+        "writing statepoints": 0.013436701
+      },
+      "completed": {
+        "particles_per_batch": 50,
+        "batches": 20,
+        "current_batch": 20,
+        "realizations": 20
+      },
+      "xml_hashes": {
+        "geometry.xml": "8f0f7d52c4be8358ae16d27e6e5a8664a9e25b353279e14c149aa8975620705a",
+        "materials.xml": "af2a5fa8526432a9a088f29d3c9d8dbc6c34835fc988cc7511e7e0ae8ffc5669",
+        "settings.xml": "b3ec51e6498b43ff7861318481c9140922980aed83759cf3789acf2cbdd84b9f",
+        "tallies.xml": "681eebdf0c5806626e7a5ee9230fdef1910da09a435e7142d7d52691f689367e"
+      },
+      "source_sha256": null,
+      "dso_sha256": null,
+      "unresolved_or_lost_raw_diagnostics": [],
+      "statepoint_sha256": "9f7623611efa6a2737e2754d74e9463a4fcf4cd8d7f3ca01cb73628286cf6aff",
+      "output_hashes": {
+        "geometry.xml": "8f0f7d52c4be8358ae16d27e6e5a8664a9e25b353279e14c149aa8975620705a",
+        "materials.xml": "af2a5fa8526432a9a088f29d3c9d8dbc6c34835fc988cc7511e7e0ae8ffc5669",
+        "settings.xml": "b3ec51e6498b43ff7861318481c9140922980aed83759cf3789acf2cbdd84b9f",
+        "statepoint.20.h5": "9f7623611efa6a2737e2754d74e9463a4fcf4cd8d7f3ca01cb73628286cf6aff",
+        "summary.h5": "ce1515b583ce70a154ac4d511c45663e481062542b7b790b0ddb07a6ec0f31f8",
+        "tallies.xml": "681eebdf0c5806626e7a5ee9230fdef1910da09a435e7142d7d52691f689367e"
+      },
+      "wrong_root_count": "not inferred from transport; frozen bank count=0",
+      "geometry_setup": "reused coefficient fixture; compiled within initialization; separate time UNKNOWN",
+      "external_wall_minus_recorded_native_total_seconds": 0.07023570599920248,
+      "residual_semantics": "launch/teardown and any work outside recorded native total; not pure launch time"
+    },
+    {
+      "name": "0-off-cache",
+      "repeat": 0,
+      "tally_mode": "off",
+      "variant": "cache",
+      "histories": 1000,
+      "input_setup_export_copy_seconds": 0.1271123139995325,
+      "external_process_wall_seconds": 13.87793431099999,
+      "input_ready_to_child_exit_seconds": 14.05760223100151,
+      "receipt_overhead_seconds": 0.012006401000689948,
+      "raw_native_runtime_seconds": {
+        "accumulating tallies": 0.0004967,
+        "active batches": 6.881358757,
+        "reading cross sections": 2.169830332,
+        "simulation": 6.880218957,
+        "total": 13.767109201,
+        "total initialization": 6.883531143,
+        "transport": 6.867677656,
+        "writing statepoints": 0.014590701
+      },
+      "completed": {
+        "particles_per_batch": 50,
+        "batches": 20,
+        "current_batch": 20,
+        "realizations": 20
+      },
+      "xml_hashes": {
+        "geometry.xml": "9122b77fed201b243c32caf738565c193835b4fe6ef05e2c52b93767d0fb3c25",
+        "materials.xml": "af2a5fa8526432a9a088f29d3c9d8dbc6c34835fc988cc7511e7e0ae8ffc5669",
+        "settings.xml": "b3ec51e6498b43ff7861318481c9140922980aed83759cf3789acf2cbdd84b9f",
+        "tallies.xml": "681eebdf0c5806626e7a5ee9230fdef1910da09a435e7142d7d52691f689367e"
+      },
+      "source_sha256": "5f71bb5054f74c0e83815bcaf9a75f8509ff0ad59026ea4c551af245b20e6008",
+      "dso_sha256": "b3f2aeea1b80c00b806b6bb96435e4e0acc3e7a6b94beaea565ccde733387e68",
+      "unresolved_or_lost_raw_diagnostics": [],
+      "statepoint_sha256": "f8c09a1b7b99981620a451f6573eba5c14f6894bbb0b2934c378188991dfa777",
+      "output_hashes": {
+        "geometry.xml": "9122b77fed201b243c32caf738565c193835b4fe6ef05e2c52b93767d0fb3c25",
+        "materials.xml": "af2a5fa8526432a9a088f29d3c9d8dbc6c34835fc988cc7511e7e0ae8ffc5669",
+        "settings.xml": "b3ec51e6498b43ff7861318481c9140922980aed83759cf3789acf2cbdd84b9f",
+        "statepoint.20.h5": "f8c09a1b7b99981620a451f6573eba5c14f6894bbb0b2934c378188991dfa777",
+        "summary.h5": "8b534923c6b4bb4515795cddbb241a109c3b25738550725095544c08c8ccdb0e",
+        "tallies.xml": "681eebdf0c5806626e7a5ee9230fdef1910da09a435e7142d7d52691f689367e"
+      },
+      "wrong_root_count": "not inferred from transport; frozen bank count=0",
+      "geometry_setup": "reused coefficient fixture; compiled within initialization; separate time UNKNOWN",
+      "external_wall_minus_recorded_native_total_seconds": 0.11082510999998973,
+      "residual_semantics": "launch/teardown and any work outside recorded native total; not pure launch time"
+    },
+    {
+      "name": "0-off-original",
+      "repeat": 0,
+      "tally_mode": "off",
+      "variant": "original",
+      "histories": 1000,
+      "input_setup_export_copy_seconds": 0.0874142060019949,
+      "external_process_wall_seconds": 18.723738245000277,
+      "input_ready_to_child_exit_seconds": 18.846129053003096,
+      "receipt_overhead_seconds": 0.011695000001054723,
+      "raw_native_runtime_seconds": {
+        "accumulating tallies": 0.0006148999999999997,
+        "active batches": 12.509830051,
+        "reading cross sections": 2.012301053,
+        "simulation": 12.508816151,
+        "total": 18.607631643,
+        "total initialization": 6.095412992,
+        "transport": 12.497432851,
+        "writing statepoints": 0.0132783
+      },
+      "completed": {
+        "particles_per_batch": 50,
+        "batches": 20,
+        "current_batch": 20,
+        "realizations": 20
+      },
+      "xml_hashes": {
+        "geometry.xml": "9122b77fed201b243c32caf738565c193835b4fe6ef05e2c52b93767d0fb3c25",
+        "materials.xml": "af2a5fa8526432a9a088f29d3c9d8dbc6c34835fc988cc7511e7e0ae8ffc5669",
+        "settings.xml": "b3ec51e6498b43ff7861318481c9140922980aed83759cf3789acf2cbdd84b9f",
+        "tallies.xml": "681eebdf0c5806626e7a5ee9230fdef1910da09a435e7142d7d52691f689367e"
+      },
+      "source_sha256": "615cfa0b20b747e166e20632b29912bdcabc3c096c35e4db33169095394f53a0",
+      "dso_sha256": "577dbee3d416b1e518fcad9dc403a26e38643918d3fee60d17a7ffb1f6789b54",
+      "unresolved_or_lost_raw_diagnostics": [],
+      "statepoint_sha256": "e25c02a7f814d3932712b989064045d1194ae7cacb9770b656a20838cb5a9854",
+      "output_hashes": {
+        "geometry.xml": "9122b77fed201b243c32caf738565c193835b4fe6ef05e2c52b93767d0fb3c25",
+        "materials.xml": "af2a5fa8526432a9a088f29d3c9d8dbc6c34835fc988cc7511e7e0ae8ffc5669",
+        "settings.xml": "b3ec51e6498b43ff7861318481c9140922980aed83759cf3789acf2cbdd84b9f",
+        "statepoint.20.h5": "e25c02a7f814d3932712b989064045d1194ae7cacb9770b656a20838cb5a9854",
+        "summary.h5": "09194356b50d36b288aa4ab4d65a36fcc07d71ea4570437a4146cfcdf60b60f2",
+        "tallies.xml": "681eebdf0c5806626e7a5ee9230fdef1910da09a435e7142d7d52691f689367e"
+      },
+      "wrong_root_count": "not inferred from transport; frozen bank count=0",
+      "geometry_setup": "reused coefficient fixture; compiled within initialization; separate time UNKNOWN",
+      "external_wall_minus_recorded_native_total_seconds": 0.11610660200027567,
+      "residual_semantics": "launch/teardown and any work outside recorded native total; not pure launch time"
+    },
+    {
+      "name": "1-off-original",
+      "repeat": 1,
+      "tally_mode": "off",
+      "variant": "original",
+      "histories": 1000,
+      "input_setup_export_copy_seconds": 0.13727369900152553,
+      "external_process_wall_seconds": 18.724465060997318,
+      "input_ready_to_child_exit_seconds": 18.902783960002125,
+      "receipt_overhead_seconds": 0.011628100004600128,
+      "raw_native_runtime_seconds": {
+        "accumulating tallies": 0.0004774000000000002,
+        "active batches": 12.304133203,
+        "reading cross sections": 1.936498768,
+        "simulation": 12.303166403,
+        "total": 18.599762464,
+        "total initialization": 6.293296661,
+        "transport": 12.291519603000001,
+        "writing statepoints": 0.0140096
+      },
+      "completed": {
+        "particles_per_batch": 50,
+        "batches": 20,
+        "current_batch": 20,
+        "realizations": 20
+      },
+      "xml_hashes": {
+        "geometry.xml": "9122b77fed201b243c32caf738565c193835b4fe6ef05e2c52b93767d0fb3c25",
+        "materials.xml": "af2a5fa8526432a9a088f29d3c9d8dbc6c34835fc988cc7511e7e0ae8ffc5669",
+        "settings.xml": "b3ec51e6498b43ff7861318481c9140922980aed83759cf3789acf2cbdd84b9f",
+        "tallies.xml": "681eebdf0c5806626e7a5ee9230fdef1910da09a435e7142d7d52691f689367e"
+      },
+      "source_sha256": "615cfa0b20b747e166e20632b29912bdcabc3c096c35e4db33169095394f53a0",
+      "dso_sha256": "577dbee3d416b1e518fcad9dc403a26e38643918d3fee60d17a7ffb1f6789b54",
+      "unresolved_or_lost_raw_diagnostics": [],
+      "statepoint_sha256": "7f537466c1a79055e647189b3907b9a842400d13d5767c980b3518a08ffdbab5",
+      "output_hashes": {
+        "geometry.xml": "9122b77fed201b243c32caf738565c193835b4fe6ef05e2c52b93767d0fb3c25",
+        "materials.xml": "af2a5fa8526432a9a088f29d3c9d8dbc6c34835fc988cc7511e7e0ae8ffc5669",
+        "settings.xml": "b3ec51e6498b43ff7861318481c9140922980aed83759cf3789acf2cbdd84b9f",
+        "statepoint.20.h5": "7f537466c1a79055e647189b3907b9a842400d13d5767c980b3518a08ffdbab5",
+        "summary.h5": "2dce0d525726c6ea9d7f9e0bbc60267d6b8f027b2931eecff3dde08e840a49ba",
+        "tallies.xml": "681eebdf0c5806626e7a5ee9230fdef1910da09a435e7142d7d52691f689367e"
+      },
+      "wrong_root_count": "not inferred from transport; frozen bank count=0",
+      "geometry_setup": "reused coefficient fixture; compiled within initialization; separate time UNKNOWN",
+      "external_wall_minus_recorded_native_total_seconds": 0.12470259699731656,
+      "residual_semantics": "launch/teardown and any work outside recorded native total; not pure launch time"
+    },
+    {
+      "name": "1-off-cache",
+      "repeat": 1,
+      "tally_mode": "off",
+      "variant": "cache",
+      "histories": 1000,
+      "input_setup_export_copy_seconds": 0.11013139699934982,
+      "external_process_wall_seconds": 13.310095254000771,
+      "input_ready_to_child_exit_seconds": 13.458099356997991,
+      "receipt_overhead_seconds": 0.010987306995957624,
+      "raw_native_runtime_seconds": {
+        "accumulating tallies": 0.0003818000000000003,
+        "active batches": 6.655557172,
+        "reading cross sections": 2.029349972,
+        "simulation": 6.654627671,
+        "total": 13.216065225,
+        "total initialization": 6.558138852,
+        "transport": 6.643611064,
+        "writing statepoints": 0.013033709
+      },
+      "completed": {
+        "particles_per_batch": 50,
+        "batches": 20,
+        "current_batch": 20,
+        "realizations": 20
+      },
+      "xml_hashes": {
+        "geometry.xml": "9122b77fed201b243c32caf738565c193835b4fe6ef05e2c52b93767d0fb3c25",
+        "materials.xml": "af2a5fa8526432a9a088f29d3c9d8dbc6c34835fc988cc7511e7e0ae8ffc5669",
+        "settings.xml": "b3ec51e6498b43ff7861318481c9140922980aed83759cf3789acf2cbdd84b9f",
+        "tallies.xml": "681eebdf0c5806626e7a5ee9230fdef1910da09a435e7142d7d52691f689367e"
+      },
+      "source_sha256": "5f71bb5054f74c0e83815bcaf9a75f8509ff0ad59026ea4c551af245b20e6008",
+      "dso_sha256": "b3f2aeea1b80c00b806b6bb96435e4e0acc3e7a6b94beaea565ccde733387e68",
+      "unresolved_or_lost_raw_diagnostics": [],
+      "statepoint_sha256": "9ebf429988d9bfbfec4b1401ef92708b290e10cb08a6ec2b1d7ad1356f56daac",
+      "output_hashes": {
+        "geometry.xml": "9122b77fed201b243c32caf738565c193835b4fe6ef05e2c52b93767d0fb3c25",
+        "materials.xml": "af2a5fa8526432a9a088f29d3c9d8dbc6c34835fc988cc7511e7e0ae8ffc5669",
+        "settings.xml": "b3ec51e6498b43ff7861318481c9140922980aed83759cf3789acf2cbdd84b9f",
+        "statepoint.20.h5": "9ebf429988d9bfbfec4b1401ef92708b290e10cb08a6ec2b1d7ad1356f56daac",
+        "summary.h5": "d9ad6cf8ac4f21105943e04cabc42dc02ff97a5889fb9412bb43daf71fe452c1",
+        "tallies.xml": "681eebdf0c5806626e7a5ee9230fdef1910da09a435e7142d7d52691f689367e"
+      },
+      "wrong_root_count": "not inferred from transport; frozen bank count=0",
+      "geometry_setup": "reused coefficient fixture; compiled within initialization; separate time UNKNOWN",
+      "external_wall_minus_recorded_native_total_seconds": 0.09403002900077162,
+      "residual_semantics": "launch/teardown and any work outside recorded native total; not pure launch time"
+    },
+    {
+      "name": "1-off-native",
+      "repeat": 1,
+      "tally_mode": "off",
+      "variant": "native",
+      "histories": 1000,
+      "input_setup_export_copy_seconds": 0.08886405999874114,
+      "external_process_wall_seconds": 6.790870995999285,
+      "input_ready_to_child_exit_seconds": 6.911452868997003,
+      "receipt_overhead_seconds": 0.010796998998557683,
+      "raw_native_runtime_seconds": {
+        "accumulating tallies": 0.0002481,
+        "active batches": 0.014828799,
+        "reading cross sections": 2.338825345,
+        "simulation": 0.013933499,
+        "total": 6.725153875,
+        "total initialization": 6.708605776,
+        "transport": 0.005027299999999999,
+        "writing statepoints": 0.010916099
+      },
+      "completed": {
+        "particles_per_batch": 50,
+        "batches": 20,
+        "current_batch": 20,
+        "realizations": 20
+      },
+      "xml_hashes": {
+        "geometry.xml": "8f0f7d52c4be8358ae16d27e6e5a8664a9e25b353279e14c149aa8975620705a",
+        "materials.xml": "af2a5fa8526432a9a088f29d3c9d8dbc6c34835fc988cc7511e7e0ae8ffc5669",
+        "settings.xml": "b3ec51e6498b43ff7861318481c9140922980aed83759cf3789acf2cbdd84b9f",
+        "tallies.xml": "681eebdf0c5806626e7a5ee9230fdef1910da09a435e7142d7d52691f689367e"
+      },
+      "source_sha256": null,
+      "dso_sha256": null,
+      "unresolved_or_lost_raw_diagnostics": [],
+      "statepoint_sha256": "ae72a88c3e7d74511f67e53f0dddd799ecb32eae964269f71011a028cffd8823",
+      "output_hashes": {
+        "geometry.xml": "8f0f7d52c4be8358ae16d27e6e5a8664a9e25b353279e14c149aa8975620705a",
+        "materials.xml": "af2a5fa8526432a9a088f29d3c9d8dbc6c34835fc988cc7511e7e0ae8ffc5669",
+        "settings.xml": "b3ec51e6498b43ff7861318481c9140922980aed83759cf3789acf2cbdd84b9f",
+        "statepoint.20.h5": "ae72a88c3e7d74511f67e53f0dddd799ecb32eae964269f71011a028cffd8823",
+        "summary.h5": "f4393236c8c6dd96743155408f583d5082fe4db0c537916d3d757a4bcecee095",
+        "tallies.xml": "681eebdf0c5806626e7a5ee9230fdef1910da09a435e7142d7d52691f689367e"
+      },
+      "wrong_root_count": "not inferred from transport; frozen bank count=0",
+      "geometry_setup": "reused coefficient fixture; compiled within initialization; separate time UNKNOWN",
+      "external_wall_minus_recorded_native_total_seconds": 0.06571712099928462,
+      "residual_semantics": "launch/teardown and any work outside recorded native total; not pure launch time"
+    },
+    {
+      "name": "1-on-native",
+      "repeat": 1,
+      "tally_mode": "on",
+      "variant": "native",
+      "histories": 1000,
+      "input_setup_export_copy_seconds": 0.12969859299846576,
+      "external_process_wall_seconds": 6.68933681999988,
+      "input_ready_to_child_exit_seconds": 6.849638714000321,
+      "receipt_overhead_seconds": 0.010243701999570476,
+      "raw_native_runtime_seconds": {
+        "accumulating tallies": 5.899999999999998e-06,
+        "active batches": 0.035468205,
+        "reading cross sections": 2.096454198,
+        "simulation": 0.034656004,
+        "total": 6.63545692,
+        "total initialization": 6.597781414,
+        "transport": 0.006166100000000002,
+        "writing statepoints": 0.030482305
+      },
+      "completed": {
+        "particles_per_batch": 50,
+        "batches": 20,
+        "current_batch": 20,
+        "realizations": 20
+      },
+      "xml_hashes": {
+        "geometry.xml": "8f0f7d52c4be8358ae16d27e6e5a8664a9e25b353279e14c149aa8975620705a",
+        "materials.xml": "af2a5fa8526432a9a088f29d3c9d8dbc6c34835fc988cc7511e7e0ae8ffc5669",
+        "settings.xml": "b3ec51e6498b43ff7861318481c9140922980aed83759cf3789acf2cbdd84b9f",
+        "tallies.xml": "2cac3f93d2c54d4a92c5530ecf71e2fbdc441981b027ccdc5913b9b7bb8d223a"
+      },
+      "source_sha256": null,
+      "dso_sha256": null,
+      "unresolved_or_lost_raw_diagnostics": [],
+      "statepoint_sha256": "a6499aefb48db6d0ef9d212549c640b3fb565b4dcf8cdb78b3da295bc6a61feb",
+      "output_hashes": {
+        "geometry.xml": "8f0f7d52c4be8358ae16d27e6e5a8664a9e25b353279e14c149aa8975620705a",
+        "materials.xml": "af2a5fa8526432a9a088f29d3c9d8dbc6c34835fc988cc7511e7e0ae8ffc5669",
+        "settings.xml": "b3ec51e6498b43ff7861318481c9140922980aed83759cf3789acf2cbdd84b9f",
+        "statepoint.20.h5": "a6499aefb48db6d0ef9d212549c640b3fb565b4dcf8cdb78b3da295bc6a61feb",
+        "summary.h5": "8a5768e8ee0cba68e41ba98fd2462183bfcd959771777c953fe38987ba52ce90",
+        "tallies.xml": "2cac3f93d2c54d4a92c5530ecf71e2fbdc441981b027ccdc5913b9b7bb8d223a"
+      },
+      "wrong_root_count": "not inferred from transport; frozen bank count=0",
+      "geometry_setup": "reused coefficient fixture; compiled within initialization; separate time UNKNOWN",
+      "external_wall_minus_recorded_native_total_seconds": 0.05387989999988019,
+      "residual_semantics": "launch/teardown and any work outside recorded native total; not pure launch time"
+    },
+    {
+      "name": "1-on-cache",
+      "repeat": 1,
+      "tally_mode": "on",
+      "variant": "cache",
+      "histories": 1000,
+      "input_setup_export_copy_seconds": 0.1252625179986353,
+      "external_process_wall_seconds": 13.460900711001159,
+      "input_ready_to_child_exit_seconds": 13.617940431999159,
+      "receipt_overhead_seconds": 0.009539099999528844,
+      "raw_native_runtime_seconds": {
+        "accumulating tallies": 2.7700000000000002e-05,
+        "active batches": 6.733941352,
+        "reading cross sections": 2.358503662,
+        "simulation": 6.733035952,
+        "total": 13.350922306,
+        "total initialization": 6.614592354,
+        "transport": 6.705640753000001,
+        "writing statepoints": 0.029337699
+      },
+      "completed": {
+        "particles_per_batch": 50,
+        "batches": 20,
+        "current_batch": 20,
+        "realizations": 20
+      },
+      "xml_hashes": {
+        "geometry.xml": "9122b77fed201b243c32caf738565c193835b4fe6ef05e2c52b93767d0fb3c25",
+        "materials.xml": "af2a5fa8526432a9a088f29d3c9d8dbc6c34835fc988cc7511e7e0ae8ffc5669",
+        "settings.xml": "b3ec51e6498b43ff7861318481c9140922980aed83759cf3789acf2cbdd84b9f",
+        "tallies.xml": "2cac3f93d2c54d4a92c5530ecf71e2fbdc441981b027ccdc5913b9b7bb8d223a"
+      },
+      "source_sha256": "5f71bb5054f74c0e83815bcaf9a75f8509ff0ad59026ea4c551af245b20e6008",
+      "dso_sha256": "b3f2aeea1b80c00b806b6bb96435e4e0acc3e7a6b94beaea565ccde733387e68",
+      "unresolved_or_lost_raw_diagnostics": [],
+      "statepoint_sha256": "505683e3ec99ac0b395e9c39bc34e8ac32fc2137c84565e78ad6a05248bb1ae9",
+      "output_hashes": {
+        "geometry.xml": "9122b77fed201b243c32caf738565c193835b4fe6ef05e2c52b93767d0fb3c25",
+        "materials.xml": "af2a5fa8526432a9a088f29d3c9d8dbc6c34835fc988cc7511e7e0ae8ffc5669",
+        "settings.xml": "b3ec51e6498b43ff7861318481c9140922980aed83759cf3789acf2cbdd84b9f",
+        "statepoint.20.h5": "505683e3ec99ac0b395e9c39bc34e8ac32fc2137c84565e78ad6a05248bb1ae9",
+        "summary.h5": "45e4838432da261a969de7b03e4586713c546e8109fbeff497bf1141bd5da58a",
+        "tallies.xml": "2cac3f93d2c54d4a92c5530ecf71e2fbdc441981b027ccdc5913b9b7bb8d223a"
+      },
+      "wrong_root_count": "not inferred from transport; frozen bank count=0",
+      "geometry_setup": "reused coefficient fixture; compiled within initialization; separate time UNKNOWN",
+      "external_wall_minus_recorded_native_total_seconds": 0.10997840500115963,
+      "residual_semantics": "launch/teardown and any work outside recorded native total; not pure launch time"
+    },
+    {
+      "name": "1-on-original",
+      "repeat": 1,
+      "tally_mode": "on",
+      "variant": "original",
+      "histories": 1000,
+      "input_setup_export_copy_seconds": 0.11270749799950863,
+      "external_process_wall_seconds": 18.420545946999482,
+      "input_ready_to_child_exit_seconds": 18.564264545002516,
+      "receipt_overhead_seconds": 0.010076801001559943,
+      "raw_native_runtime_seconds": {
+        "accumulating tallies": 4.989999999999999e-05,
+        "active batches": 12.3197992,
+        "reading cross sections": 1.989922421,
+        "simulation": 12.3188424,
+        "total": 18.314064842,
+        "total initialization": 5.992083342,
+        "transport": 12.288337797999999,
+        "writing statepoints": 0.032938202
+      },
+      "completed": {
+        "particles_per_batch": 50,
+        "batches": 20,
+        "current_batch": 20,
+        "realizations": 20
+      },
+      "xml_hashes": {
+        "geometry.xml": "9122b77fed201b243c32caf738565c193835b4fe6ef05e2c52b93767d0fb3c25",
+        "materials.xml": "af2a5fa8526432a9a088f29d3c9d8dbc6c34835fc988cc7511e7e0ae8ffc5669",
+        "settings.xml": "b3ec51e6498b43ff7861318481c9140922980aed83759cf3789acf2cbdd84b9f",
+        "tallies.xml": "2cac3f93d2c54d4a92c5530ecf71e2fbdc441981b027ccdc5913b9b7bb8d223a"
+      },
+      "source_sha256": "615cfa0b20b747e166e20632b29912bdcabc3c096c35e4db33169095394f53a0",
+      "dso_sha256": "577dbee3d416b1e518fcad9dc403a26e38643918d3fee60d17a7ffb1f6789b54",
+      "unresolved_or_lost_raw_diagnostics": [],
+      "statepoint_sha256": "8bc8d929a177b1b816561953433ca5f5dde00b71bd2246c027f16c17515d852c",
+      "output_hashes": {
+        "geometry.xml": "9122b77fed201b243c32caf738565c193835b4fe6ef05e2c52b93767d0fb3c25",
+        "materials.xml": "af2a5fa8526432a9a088f29d3c9d8dbc6c34835fc988cc7511e7e0ae8ffc5669",
+        "settings.xml": "b3ec51e6498b43ff7861318481c9140922980aed83759cf3789acf2cbdd84b9f",
+        "statepoint.20.h5": "8bc8d929a177b1b816561953433ca5f5dde00b71bd2246c027f16c17515d852c",
+        "summary.h5": "d4ebf14b1c6c8832df947ecec0439a039198f89ffbbffa7b09a2da3018a52e45",
+        "tallies.xml": "2cac3f93d2c54d4a92c5530ecf71e2fbdc441981b027ccdc5913b9b7bb8d223a"
+      },
+      "wrong_root_count": "not inferred from transport; frozen bank count=0",
+      "geometry_setup": "reused coefficient fixture; compiled within initialization; separate time UNKNOWN",
+      "external_wall_minus_recorded_native_total_seconds": 0.1064811049994816,
+      "residual_semantics": "launch/teardown and any work outside recorded native total; not pure launch time"
+    }
+  ],
+  "raw_local_bin_comparisons": [
+    {
+      "repeat": 0,
+      "tally_mode": "on",
+      "tally_datasets": [
+        {
+          "path": "tallies/filters/filter 1/bins",
+          "shape": [
+            1
+          ],
+          "elements": 1,
+          "identical": true
+        },
+        {
+          "path": "tallies/filters/filter 1/n_bins",
+          "shape": [],
+          "elements": 1,
+          "identical": true
+        },
+        {
+          "path": "tallies/filters/filter 1/type",
+          "shape": [],
+          "elements": 1,
+          "identical": true
+        },
+        {
+          "path": "tallies/filters/filter 2/bins",
+          "shape": [
+            7
+          ],
+          "elements": 7,
+          "identical": true
+        },
+        {
+          "path": "tallies/filters/filter 2/n_bins",
+          "shape": [],
+          "elements": 1,
+          "identical": true
+        },
+        {
+          "path": "tallies/filters/filter 2/type",
+          "shape": [],
+          "elements": 1,
+          "identical": true
+        },
+        {
+          "path": "tallies/filters/filter 4/bins",
+          "shape": [
+            1
+          ],
+          "elements": 1,
+          "identical": true
+        },
+        {
+          "path": "tallies/filters/filter 4/n_bins",
+          "shape": [],
+          "elements": 1,
+          "identical": true
+        },
+        {
+          "path": "tallies/filters/filter 4/type",
+          "shape": [],
+          "elements": 1,
+          "identical": true
+        },
+        {
+          "path": "tallies/tally 1/estimator",
+          "shape": [],
+          "elements": 1,
+          "identical": true
+        },
+        {
+          "path": "tallies/tally 1/filters",
+          "shape": [
+            2
+          ],
+          "elements": 2,
+          "identical": true
+        },
+        {
+          "path": "tallies/tally 1/n_filters",
+          "shape": [],
+          "elements": 1,
+          "identical": true
+        },
+        {
+          "path": "tallies/tally 1/n_realizations",
+          "shape": [],
+          "elements": 1,
+          "identical": true
+        },
+        {
+          "path": "tallies/tally 1/n_score_bins",
+          "shape": [],
+          "elements": 1,
+          "identical": true
+        },
+        {
+          "path": "tallies/tally 1/name",
+          "shape": [],
+          "elements": 1,
+          "identical": true
+        },
+        {
+          "path": "tallies/tally 1/nuclides",
+          "shape": [
+            1
+          ],
+          "elements": 1,
+          "identical": true
+        },
+        {
+          "path": "tallies/tally 1/results",
+          "shape": [
+            6,
+            4,
+            2
+          ],
+          "elements": 48,
+          "identical": true
+        },
+        {
+          "path": "tallies/tally 1/score_bins",
+          "shape": [
+            4
+          ],
+          "elements": 4,
+          "identical": true
+        },
+        {
+          "path": "tallies/tally 2/estimator",
+          "shape": [],
+          "elements": 1,
+          "identical": true
+        },
+        {
+          "path": "tallies/tally 2/filters",
+          "shape": [
+            1
+          ],
+          "elements": 1,
+          "identical": true
+        },
+        {
+          "path": "tallies/tally 2/n_filters",
+          "shape": [],
+          "elements": 1,
+          "identical": true
+        },
+        {
+          "path": "tallies/tally 2/n_realizations",
+          "shape": [],
+          "elements": 1,
+          "identical": true
+        },
+        {
+          "path": "tallies/tally 2/n_score_bins",
+          "shape": [],
+          "elements": 1,
+          "identical": true
+        },
+        {
+          "path": "tallies/tally 2/name",
+          "shape": [],
+          "elements": 1,
+          "identical": true
+        },
+        {
+          "path": "tallies/tally 2/nuclides",
+          "shape": [
+            1
+          ],
+          "elements": 1,
+          "identical": true
+        },
+        {
+          "path": "tallies/tally 2/results",
+          "shape": [
+            1,
+            4,
+            2
+          ],
+          "elements": 8,
+          "identical": true
+        },
+        {
+          "path": "tallies/tally 2/score_bins",
+          "shape": [
+            4
+          ],
+          "elements": 4,
+          "identical": true
+        },
+        {
+          "path": "tallies/tally 3/estimator",
+          "shape": [],
+          "elements": 1,
+          "identical": true
+        },
+        {
+          "path": "tallies/tally 3/filters",
+          "shape": [
+            1
+          ],
+          "elements": 1,
+          "identical": true
+        },
+        {
+          "path": "tallies/tally 3/n_filters",
+          "shape": [],
+          "elements": 1,
+          "identical": true
+        },
+        {
+          "path": "tallies/tally 3/n_realizations",
+          "shape": [],
+          "elements": 1,
+          "identical": true
+        },
+        {
+          "path": "tallies/tally 3/n_score_bins",
+          "shape": [],
+          "elements": 1,
+          "identical": true
+        },
+        {
+          "path": "tallies/tally 3/name",
+          "shape": [],
+          "elements": 1,
+          "identical": true
+        },
+        {
+          "path": "tallies/tally 3/nuclides",
+          "shape": [
+            1
+          ],
+          "elements": 1,
+          "identical": true
+        },
+        {
+          "path": "tallies/tally 3/results",
+          "shape": [
+            1,
+            4,
+            2
+          ],
+          "elements": 8,
+          "identical": true
+        },
+        {
+          "path": "tallies/tally 3/score_bins",
+          "shape": [
+            4
+          ],
+          "elements": 4,
+          "identical": true
+        }
+      ],
+      "identical": true
+    },
+    {
+      "repeat": 0,
+      "tally_mode": "off",
+      "tally_datasets": [],
+      "identical": true
+    },
+    {
+      "repeat": 1,
+      "tally_mode": "on",
+      "tally_datasets": [
+        {
+          "path": "tallies/filters/filter 1/bins",
+          "shape": [
+            1
+          ],
+          "elements": 1,
+          "identical": true
+        },
+        {
+          "path": "tallies/filters/filter 1/n_bins",
+          "shape": [],
+          "elements": 1,
+          "identical": true
+        },
+        {
+          "path": "tallies/filters/filter 1/type",
+          "shape": [],
+          "elements": 1,
+          "identical": true
+        },
+        {
+          "path": "tallies/filters/filter 2/bins",
+          "shape": [
+            7
+          ],
+          "elements": 7,
+          "identical": true
+        },
+        {
+          "path": "tallies/filters/filter 2/n_bins",
+          "shape": [],
+          "elements": 1,
+          "identical": true
+        },
+        {
+          "path": "tallies/filters/filter 2/type",
+          "shape": [],
+          "elements": 1,
+          "identical": true
+        },
+        {
+          "path": "tallies/filters/filter 4/bins",
+          "shape": [
+            1
+          ],
+          "elements": 1,
+          "identical": true
+        },
+        {
+          "path": "tallies/filters/filter 4/n_bins",
+          "shape": [],
+          "elements": 1,
+          "identical": true
+        },
+        {
+          "path": "tallies/filters/filter 4/type",
+          "shape": [],
+          "elements": 1,
+          "identical": true
+        },
+        {
+          "path": "tallies/tally 1/estimator",
+          "shape": [],
+          "elements": 1,
+          "identical": true
+        },
+        {
+          "path": "tallies/tally 1/filters",
+          "shape": [
+            2
+          ],
+          "elements": 2,
+          "identical": true
+        },
+        {
+          "path": "tallies/tally 1/n_filters",
+          "shape": [],
+          "elements": 1,
+          "identical": true
+        },
+        {
+          "path": "tallies/tally 1/n_realizations",
+          "shape": [],
+          "elements": 1,
+          "identical": true
+        },
+        {
+          "path": "tallies/tally 1/n_score_bins",
+          "shape": [],
+          "elements": 1,
+          "identical": true
+        },
+        {
+          "path": "tallies/tally 1/name",
+          "shape": [],
+          "elements": 1,
+          "identical": true
+        },
+        {
+          "path": "tallies/tally 1/nuclides",
+          "shape": [
+            1
+          ],
+          "elements": 1,
+          "identical": true
+        },
+        {
+          "path": "tallies/tally 1/results",
+          "shape": [
+            6,
+            4,
+            2
+          ],
+          "elements": 48,
+          "identical": true
+        },
+        {
+          "path": "tallies/tally 1/score_bins",
+          "shape": [
+            4
+          ],
+          "elements": 4,
+          "identical": true
+        },
+        {
+          "path": "tallies/tally 2/estimator",
+          "shape": [],
+          "elements": 1,
+          "identical": true
+        },
+        {
+          "path": "tallies/tally 2/filters",
+          "shape": [
+            1
+          ],
+          "elements": 1,
+          "identical": true
+        },
+        {
+          "path": "tallies/tally 2/n_filters",
+          "shape": [],
+          "elements": 1,
+          "identical": true
+        },
+        {
+          "path": "tallies/tally 2/n_realizations",
+          "shape": [],
+          "elements": 1,
+          "identical": true
+        },
+        {
+          "path": "tallies/tally 2/n_score_bins",
+          "shape": [],
+          "elements": 1,
+          "identical": true
+        },
+        {
+          "path": "tallies/tally 2/name",
+          "shape": [],
+          "elements": 1,
+          "identical": true
+        },
+        {
+          "path": "tallies/tally 2/nuclides",
+          "shape": [
+            1
+          ],
+          "elements": 1,
+          "identical": true
+        },
+        {
+          "path": "tallies/tally 2/results",
+          "shape": [
+            1,
+            4,
+            2
+          ],
+          "elements": 8,
+          "identical": true
+        },
+        {
+          "path": "tallies/tally 2/score_bins",
+          "shape": [
+            4
+          ],
+          "elements": 4,
+          "identical": true
+        },
+        {
+          "path": "tallies/tally 3/estimator",
+          "shape": [],
+          "elements": 1,
+          "identical": true
+        },
+        {
+          "path": "tallies/tally 3/filters",
+          "shape": [
+            1
+          ],
+          "elements": 1,
+          "identical": true
+        },
+        {
+          "path": "tallies/tally 3/n_filters",
+          "shape": [],
+          "elements": 1,
+          "identical": true
+        },
+        {
+          "path": "tallies/tally 3/n_realizations",
+          "shape": [],
+          "elements": 1,
+          "identical": true
+        },
+        {
+          "path": "tallies/tally 3/n_score_bins",
+          "shape": [],
+          "elements": 1,
+          "identical": true
+        },
+        {
+          "path": "tallies/tally 3/name",
+          "shape": [],
+          "elements": 1,
+          "identical": true
+        },
+        {
+          "path": "tallies/tally 3/nuclides",
+          "shape": [
+            1
+          ],
+          "elements": 1,
+          "identical": true
+        },
+        {
+          "path": "tallies/tally 3/results",
+          "shape": [
+            1,
+            4,
+            2
+          ],
+          "elements": 8,
+          "identical": true
+        },
+        {
+          "path": "tallies/tally 3/score_bins",
+          "shape": [
+            4
+          ],
+          "elements": 4,
+          "identical": true
+        }
+      ],
+      "identical": true
+    },
+    {
+      "repeat": 1,
+      "tally_mode": "off",
+      "tally_datasets": [],
+      "identical": true
+    }
+  ],
+  "median_input_to_exit_seconds": {
+    "on": {
+      "original": 18.662684419501602,
+      "cache": 13.389543210500051,
+      "native": 6.829972930499935
+    },
+    "off": {
+      "original": 18.87445650650261,
+      "cache": 13.75785079399975,
+      "native": 6.799551206997421
+    }
+  },
+  "cache_total_time_fraction_of_original": {
+    "on": 0.7174500146671626,
+    "off": 0.7289137459009698
+  },
+  "cache_total_time_fraction_of_native_proxy": {
+    "on": 1.9604094110984969,
+    "off": 2.0233468908714944
+  },
+  "native_80_percent_time_test": {
+    "on": false,
+    "off": false
+  },
+  "wrong_root_frozen_queries": 0,
+  "normal_gaps": 9,
+  "unresolved_transport_diagnostics": 0,
+  "physical_fidelity": "NOT_ADMITTED; native approximate control",
+  "fresh_software_build_seconds": "NOT_RUN",
+  "historical_fixture_export_seconds": "UNKNOWN",
+  "geometry_compilation_seconds": "UNKNOWN separately; included in native initialization",
+  "statistical_equivalence": "NOT_CLAIMED",
+  "timing_portability": "two observations per condition only; host background activity retained"
+}

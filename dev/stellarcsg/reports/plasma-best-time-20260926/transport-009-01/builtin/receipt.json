@@ -1,0 +1,193 @@
+{
+  "exit_code": 0,
+  "timed_out": false,
+  "worker_external_process_wall_s": 12.251063428000634,
+  "input_validation_launch_worker_wall_s": 12.936353009001323,
+  "command": [
+    "/opt/openmc-venv/bin/python",
+    "/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-astra-kernel-20260926/dev/stellarcsg/experiments/plasma_best_time_20260926/build_transport_harness_009.py",
+    "--manifest",
+    "/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-astra-kernel-20260926/dev/stellarcsg/reports/plasma-best-time-20260926/transport-009-01/manifest.json",
+    "--method",
+    "builtin",
+    "--output",
+    "/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-astra-kernel-20260926/dev/stellarcsg/reports/plasma-best-time-20260926/transport-009-01/builtin",
+    "--lease-run",
+    "plasma-transport-009-20260927T0101065606Z",
+    "--worker"
+  ],
+  "manifest_sha256": "71cd0bf0182627307c29c8f511f31fbd58bc5a48be457b8e0b2e87ef34918055",
+  "harness_sha256": "bc87e3855bf6399380b8ecdb6c5176cdd89f2d37249291cc417130b834f26523",
+  "completed_histories": 20000,
+  "state": "COMPLETED_NOT_ACCURACY_ACCEPTED",
+  "worker": {
+    "exit_code": 0,
+    "timed_out": false,
+    "diagnostics": [],
+    "native_invocation_external_wall_s": 8.643225120998977,
+    "xml_sha256": {
+      "geometry.xml": "e0444f257960b43e8773ea7ef7eeb9662341398bba9acc9d8e4db71e39351c5b",
+      "materials.xml": "ea9072b865729401b0393ab7af88b47fe75cbfce372ede05305fa3acbb36c1a1",
+      "settings.xml": "14235669e6de2b3048d5300544d6f96badbb4d56240cad10906a991a26d094f8",
+      "tallies.xml": "d9adb44d2be814780c3a662d52b6955859cf64d92b99dc1aecc1ede675bea6ca"
+    },
+    "module_import_wall_s": 2.1978963740002655,
+    "geometry_construction_export_reuse_wall_s": 0.026043402001960203,
+    "cold_geometry_build_wall_s": 0.026043402001960203,
+    "cold_geometry_status": "primitive/model construction and export only; imports separate",
+    "completed_histories": 20000,
+    "runtime": {
+      "accumulating tallies": 1.08e-05,
+      "active batches": 0.569791634,
+      "reading cross sections": 2.412519144,
+      "simulation": 0.568510534,
+      "total": 8.558861416000001,
+      "total initialization": 7.985720082,
+      "transport": 0.218000213,
+      "writing statepoints": 0.34809662100000005
+    },
+    "tally_means": {
+      "1": [
+        [
+          [
+            33.986621680178025,
+            5.411718694719908,
+            0.038808770315894976,
+            90504.77035697179
+          ]
+        ]
+      ],
+      "2": [
+        [
+          [
+            0.4197173802243125,
+            0.403972514141805,
+            0.0030735729963414305,
+            1.5105586587434283
+          ]
+        ],
+        [
+          [
+            6.626655536561305,
+            1.0784291475479846,
+            0.0025789083350040132,
+            1158.8319555698095
+          ]
+        ],
+        [
+          [
+            21.753146381560587,
+            2.759416061215961,
+            0.003966410804923115,
+            22624.01671352244
+          ]
+        ],
+        [
+          [
+            2.877853713588573,
+            0.6482019022687197,
+            0.0005080765917926233,
+            18471.701067815302
+          ]
+        ],
+        [
+          [
+            0.2531841244132818,
+            0.07360361325501313,
+            0.0008191263187114958,
+            3964.1787604688143
+          ]
+        ],
+        [
+          [
+            2.056064543829907,
+            0.4480954562904195,
+            0.027862675269122245,
+            44284.531300936666
+          ]
+        ]
+      ],
+      "3": [
+        [
+          [
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ]
+        ],
+        [
+          [
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ]
+        ],
+        [
+          [
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ]
+        ],
+        [
+          [
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ]
+        ],
+        [
+          [
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ]
+        ],
+        [
+          [
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ]
+        ],
+        [
+          [
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ]
+        ],
+        [
+          [
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ]
+        ]
+      ]
+    },
+    "initialization_s": 7.985720082,
+    "xs_read_s_nested_in_initialization": 2.412519144,
+    "transport_s": 0.218000213,
+    "statepoint_output_s": 0.34809662100000005,
+    "accumulating_tallies_s_nested": 1.08e-05,
+    "geometry_load_bvh_s": null,
+    "geometry_load_bvh_status": "UNKNOWN: nested in native initialization; no separate timer",
+    "crossings_per_history": null,
+    "crossings_status": "UNKNOWN: complete tracking instrumentation missing",
+    "worker_input_to_validated_result_wall_s": 11.206466522002302,
+    "tally_policy": "on",
+    "transport_acceptance": "NOT_ASSESSED",
+    "tally_accuracy": "UNRESOLVED: needs independent raw per-bin auditor; proxy means may differ"
+  },
+  "input_to_checked_result_wall_s": 13.70165425400046,
+  "timer_policy": "External process/validation timers contain native/init/transport/output; do not sum nested timers. Transport ratios only from matched completed tally-on work."
+}

@@ -1,0 +1,32 @@
+{
+  "scientific_native_transport": "NOT_RUN",
+  "reviewer_reexecution": false,
+  "native_library_sha256": "f301f7a76a1d4bc1910ea17b582dd31ce70f35cc35690ae5c390c1880ce714a6",
+  "test_sha256": "3d508ad8950f1362facf0a9defa60a49b4a9de2ca7cd53a803e5e9cde977dda5",
+  "decision": "ACCEPT_SOURCE / PASS_TARGETED",
+  "utc": "2026-09-27T00:39:33.9881716Z",
+  "source_sha256": "3a5371909d919f278369a1ce47719192ea7646cf18e08df48c6717a1f9063651",
+  "scope": "Python identity/XML/manually constructed native-layout HDF5 controls",
+  "owner_receipt": {
+    "timestamp_utc": "2026-09-26T23:42:00Z",
+    "hypothesis": "Run the targeted mesh-filter identity/HDF5 suite on exact final source and test bytes in the existing Linux environment.",
+    "inputs": {
+      "source_sha256_before": "3a5371909d919f278369a1ce47719192ea7646cf18e08df48c6717a1f9063651",
+      "source_sha256_after": "3a5371909d919f278369a1ce47719192ea7646cf18e08df48c6717a1f9063651",
+      "test_sha256_before": "3d508ad8950f1362facf0a9defa60a49b4a9de2ca7cd53a803e5e9cde977dda5",
+      "test_sha256_after": "3d508ad8950f1362facf0a9defa60a49b4a9de2ca7cd53a803e5e9cde977dda5",
+      "python": "/opt/openmc-venv/bin/python, WSL OpenMC-Dev-D",
+      "openmc_import": "/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-astra-kernel-20260926/openmc/__init__.py",
+      "h5py": "3.16.0",
+      "native_library": "/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-astra-kernel-20260926/openmc/lib/libopenmc.so",
+      "native_library_sha256": "f301f7a76a1d4bc1910ea17b582dd31ce70f35cc35690ae5c390c1880ce714a6"
+    },
+    "command": "PYTHONPATH=<checkout> timeout 60s /opt/openmc-venv/bin/python -m pytest -q tests/unit_tests/test_mesh_filter_transform_identity.py --disable-warnings --maxfail=1",
+    "limits": "exclusive compute.lock; one thread; virtual memory ulimit 524288 KiB; timeout 60s",
+    "disposition": "PASS",
+    "evidence": "pytest-final.stdout; SHA256 3D7ABC207C7CD43EA317973D084B193724A602C2452FCCE246DD99FA5A5198FE",
+    "reason": "Captured output reports 13 passed in 1.16s. WSL command exited zero; pre/post source and test hashes are identical. Lease removed after process exit. git diff --check is clean.",
+    "next": "independent Sol acceptance; stop"
+  },
+  "stdout_sha256": "3d7abc207c7cd43ea317973d084b193724a602c2452fcce246dd99fa5a5198fe"
+}

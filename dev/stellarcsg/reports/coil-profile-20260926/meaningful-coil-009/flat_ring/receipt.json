@@ -1,0 +1,229 @@
+{
+  "method": "flat_ring",
+  "completed_histories": 20000,
+  "completed": {
+    "n_particles": 1000,
+    "n_batches": 20,
+    "current_batch": 20,
+    "n_realizations": 20
+  },
+  "raw_native_runtime_seconds": {
+    "accumulating tallies": 1.2499999999999999e-05,
+    "active batches": 0.132253698,
+    "reading cross sections": 2.114072873,
+    "simulation": 0.131392998,
+    "total": 6.58068764,
+    "total initialization": 6.446435942,
+    "transport": 0.10474359900000002,
+    "writing statepoints": 0.028771399
+  },
+  "geometry_reuse_export_seconds": 0.1733470990002388,
+  "cold_geometry_build_seconds": "UNKNOWN; existing payload reused",
+  "geometry_load_compile_seconds": "UNKNOWN separately; within total initialization",
+  "initialization_seconds": 6.446435942,
+  "transport_seconds": 0.10474359900000002,
+  "recorded_statepoint_write_seconds": 0.028771399,
+  "output_finalization_seconds": "UNKNOWN; native snapshot incomplete, external wall contains finalization",
+  "external_process_wall_seconds": 6.6949411389978195,
+  "result_validation_seconds": 0.04162709999945946,
+  "reused_input_to_validated_result_seconds": 6.925897037999675,
+  "raw_fatal_lost_unresolved_diagnostics": [],
+  "tally_arrays": [
+    {
+      "path": "tallies/tally 1/results",
+      "shape": [
+        6,
+        4,
+        2
+      ],
+      "values": [
+        [
+          [
+            0.05109443691533623,
+            0.001472228387064037
+          ],
+          [
+            0.04741983386716651,
+            0.0013137695257406593
+          ],
+          [
+            0.00010118904136747502,
+            7.606759274266577e-09
+          ],
+          [
+            0.10246413678078076,
+            0.00625100798395805
+          ]
+        ],
+        [
+          [
+            3.072972551399092,
+            0.5171312668110449
+          ],
+          [
+            1.1223719622638542,
+            0.07387763780746229
+          ],
+          [
+            0.001481871608978948,
+            2.9990636361447913e-07
+          ],
+          [
+            1363.2875569150503,
+            111797.3405626421
+          ]
+        ],
+        [
+          [
+            46.05844615792344,
+            106.5726628147583
+          ],
+          [
+            9.497779816046117,
+            4.53906412957779
+          ],
+          [
+            0.010988009545256736,
+            6.2718963024979905e-06
+          ],
+          [
+            99668.06783921582,
+            500314226.2393616
+          ]
+        ],
+        [
+          [
+            50.83788442469397,
+            129.67847073221154
+          ],
+          [
+            12.558820792227374,
+            7.911611324326445
+          ],
+          [
+            0.008844526653692713,
+            3.925245820696385e-06
+          ],
+          [
+            381502.6875736233,
+            7303248284.391244
+          ]
+        ],
+        [
+          [
+            6.891921478569657,
+            2.425638578058511
+          ],
+          [
+            2.009283833293602,
+            0.20620472516793495
+          ],
+          [
+            0.022092491622707475,
+            2.4965283021502568e-05
+          ],
+          [
+            108056.10458265184,
+            595851853.1262728
+          ]
+        ],
+        [
+          [
+            97.06751199711537,
+            471.2379591692794
+          ],
+          [
+            21.113756886558335,
+            22.29581881219222
+          ],
+          [
+            1.3192756701165027,
+            0.08704919827309135
+          ],
+          [
+            2095272.330783104,
+            219570357374.71448
+          ]
+        ]
+      ],
+      "nonzero_elements": 48
+    },
+    {
+      "path": "tallies/tally 2/results",
+      "shape": [
+        1,
+        4,
+        2
+      ],
+      "values": [
+        [
+          [
+            203.9798310466168,
+            2080.9475803442165
+          ],
+          [
+            46.34943312425643,
+            107.46566493617699
+          ],
+          [
+            1.362783758588506,
+            0.09288596124323156
+          ],
+          [
+            2685862.580799648,
+            360753598784.5606
+          ]
+        ]
+      ],
+      "nonzero_elements": 8
+    },
+    {
+      "path": "tallies/tally 3/results",
+      "shape": [
+        1,
+        4,
+        2
+      ],
+      "values": [
+        [
+          [
+            203.9798310466168,
+            2080.9475803442165
+          ],
+          [
+            46.34943312425643,
+            107.46566493617699
+          ],
+          [
+            1.362783758588506,
+            0.09288596124323156
+          ],
+          [
+            2685862.580799648,
+            360753598784.5606
+          ]
+        ]
+      ],
+      "nonzero_elements": 8
+    }
+  ],
+  "xml_hashes": {
+    "geometry.xml": "a0cf39d67a6dc0cc9e5713fbdf644d889de4ea0209abc55066a48d6212c80db3",
+    "materials.xml": "af2a5fa8526432a9a088f29d3c9d8dbc6c34835fc988cc7511e7e0ae8ffc5669",
+    "settings.xml": "fb66616954f11d74ed2cf20b1146b5a109185aa9d4658d6375746788701c0e0f",
+    "tallies.xml": "2cac3f93d2c54d4a92c5530ecf71e2fbdc441981b027ccdc5913b9b7bb8d223a"
+  },
+  "output_hashes": {
+    "geometry.xml": "a0cf39d67a6dc0cc9e5713fbdf644d889de4ea0209abc55066a48d6212c80db3",
+    "materials.xml": "af2a5fa8526432a9a088f29d3c9d8dbc6c34835fc988cc7511e7e0ae8ffc5669",
+    "process-receipt.json": "b75478106962a1c9724ed64deeda6e261d099781b31c85e1c21e253768e150c9",
+    "process.stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "process.stdout": "0aff7f17640e5c5cca2c334ca968bea6e35e57834f4687af9e2635983faf8ceb",
+    "settings.xml": "fb66616954f11d74ed2cf20b1146b5a109185aa9d4658d6375746788701c0e0f",
+    "statepoint.20.h5": "b330475748edc08ff1f0bd1ec820c1f0a5338fe2a48e7b4ba712817c82edbd1f",
+    "summary.h5": "194e45100c5081a3f053642fde028bf0c6ff7291f0a25831651c50fe062069bf",
+    "tallies.xml": "2cac3f93d2c54d4a92c5530ecf71e2fbdc441981b027ccdc5913b9b7bb8d223a"
+  },
+  "crossings_per_history": "UNKNOWN; not recorded",
+  "fidelity": "OPEN; different proxy shapes"
+}
