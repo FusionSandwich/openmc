@@ -1,5 +1,7 @@
 # Current coil and stellarator-plasma method map
 
+September 30 continuation: [best results, failed attempts and work for the new chat](reports/BEST_METHOD_CONTINUATION_20260930.md). Preserve the selected target routes below until correctness-accepted measured evidence supports a change.
+
 The [project goal](PROJECT_GOAL.md) is accurate complex target geometry with transport elapsed time <=1.25 times a similarly sized built-in **flat ring for coils** or **torus for plasma**. Analytic torus/circular-coil timings do not qualify the complex target.
 
 ## Current choices: use these for the next development work

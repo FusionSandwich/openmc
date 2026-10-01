@@ -36,7 +36,7 @@ The finite replay completed five workers and stopped when current legacy surface
 | Derived periodic winding-pack facets | P00 component CSG | 7.836203 | 13.906716 |
 | P00 proxy collection | Built-in PCA ring envelopes | 8.652459 | 14.608073 |
 
-The old near-circle runtimes may dispatch to an averaged analytic torus; their times cannot be attributed to the generic BVH until dispatch is verified. Known generic wrong-root defects and moving-frame/constant-metric solid differences remain. P00 ratio 0.90566 is an **envelope-sizing diagnostic**: some proxy sections are much thicker than the nominal 30x30 cm pack. Fixed-section control is pending. The periodic facet candidate has vertex displacement <=0.003328773593059 cm from seam repair; continuous CAD and comprehensive tally-bin accuracy remain open. Separate frozen source banks are used for the round and P00 families. Cold geometry build remains unknown.
+Source-gate reconstruction predicts averaged analytic torus dispatch for the old near-circle runtimes; their times cannot be attributed to generic BVH performance. Known generic wrong-root defects and moving-frame/constant-metric solid differences remain. P00 ratio 0.90566 is an **envelope-sizing diagnostic**: some proxy sections are much thicker than the nominal 30x30 cm pack. The corrected fixed-section control completed with a failed 4.797639 time ratio, as recorded above. The periodic facet candidate has vertex displacement <=0.003328773593059 cm from seam repair; continuous CAD and comprehensive tally-bin accuracy remain open. Separate frozen source banks are used for the round and P00 families. Cold geometry build remains unknown.
 
 ## New coil diagnostic: 20,000 histories per method
 
