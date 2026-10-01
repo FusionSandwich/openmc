@@ -7,6 +7,7 @@
 #include <cstdlib>
 #include <fstream>
 #include <iostream>
+#include <limits>
 #include <map>
 #include <stdexcept>
 #include <string>
@@ -122,6 +123,28 @@ int main()
     require(!surface.contains(near_face).has_value()
       && surface.normal_at(near_face).has_value(),
       "near-face coincidence retains unresolved parity and local normal");
+    int near_face_index = 0;
+    for (const Vec3 point : {Vec3 {1.0 + 1.0e-13, 0.31, 0.42},
+           Vec3 {0.31, -1.0e-13, 0.42},
+           Vec3 {0.31, 1.0 + 1.0e-13, 0.42},
+           Vec3 {0.31, 0.42, -1.0e-13},
+           Vec3 {0.31, 0.42, 1.0 + 1.0e-13}}) {
+      const auto side = surface.contains(point);
+      // The original three-ray routine resolves the +z point as outside;
+      // the other five face points are unresolved with a local normal.
+      require((near_face_index == 4 ? side == false : !side.has_value())
+        && surface.normal_at(point).has_value(),
+        "near-face classification and normal match the original routine");
+      ++near_face_index;
+    }
+    bool rejected_nonfinite = false;
+    try {
+      (void) surface.contains({-std::numeric_limits<double>::infinity(),
+        0.31, 0.42});
+    } catch (const std::invalid_argument&) {
+      rejected_nonfinite = true;
+    }
+    require(rejected_nonfinite, "nonfinite exterior query rejected");
     const Vec3 seam_direction = stellarcsg::normalized({0.573, 0.711, 0.404});
     const Vec3 distant_seam = Vec3 {0.0, 0.5, 0.5}
       - 10.0 * seam_direction;

@@ -5,6 +5,7 @@
 #include <iostream>
 #include <map>
 #include <stdexcept>
+#include <string>
 #include <vector>
 
 using stellarcsg::CompiledFacetSurfaceSet;
@@ -13,7 +14,8 @@ using stellarcsg::Vec3;
 
 int main(int argc, char** argv)
 {
-  if (argc != 2) return 2;
+  if (argc != 2 && (argc != 3 || std::string {argv[2]} != "--per-case"))
+    return 2;
   std::ifstream input {argv[1]};
   std::size_t triangle_count = 0;
   input >> triangle_count;
@@ -41,6 +43,17 @@ int main(int argc, char** argv)
     points.push_back(point);
   }
   if (!input) return 5;
+
+  if (argc == 3) {
+    for (const auto& [id, surface] : surfaces) {
+      for (std::size_t index = 0; index < points.size(); ++index) {
+        const auto result = surface.contains(points[index]);
+        std::cout << id << ' ' << index << ' '
+                  << (result ? (*result ? 'I' : 'O') : 'U') << '\n';
+      }
+    }
+    return 0;
+  }
 
   std::size_t outside_bounds = 0;
   for (const auto& [id, surface] : surfaces) {

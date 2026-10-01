@@ -1,0 +1,6 @@
+0 unresolved normal
+1 unresolved normal
+2 unresolved normal
+3 unresolved normal
+4 unresolved normal
+5 outside normal

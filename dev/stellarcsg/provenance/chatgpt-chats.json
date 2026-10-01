@@ -1,0 +1,31 @@
+{
+  "p00-math": {
+    "purpose": "Independent Pro research into conservative P00 geometry math and deterministic transport alternatives",
+    "chat_title": "Stellarator Geometry Investigation",
+    "canonical_url": "https://chatgpt.com/c/6abde084-7428-83ea-b477-101034e78cb8",
+    "conversation_id": "6abde084-7428-83ea-b477-101034e78cb8",
+    "browser_tab_hint": "1085614129",
+    "requested_model": "Pro",
+    "ui_observed_model": "Pro, 5 of 5",
+    "ui_observed_mode": "Chat",
+    "ui_verified_at_utc": "2026-10-01 04:01:26 UTC",
+    "repository_url": "https://github.com/FusionSandwich/openmc",
+    "branch": "JS/stellarcsg-p00-profile-20260930",
+    "pinned_source_commit": "c243652ef1f1b9a7d1bd7629abe79e22671fc96c",
+    "repository_access": "not_verified; branch absent from origin at read-only ls-remote",
+    "messages": [
+      {
+        "dispatch_id": "StellarCSG / p00-math / initial-001",
+        "payload_path": "dev/stellarcsg/reports/P00_PRO_MATH_PROMPT_20261001.txt",
+        "utf8_sha256": "cf926bdd1176a17c608dbf596b70209b8a167dad0976720c8b3c6d7655bd0ade",
+        "status": "submitted",
+        "prepared_at_utc": "2026-10-01 04:01:26 UTC",
+        "submission_verified_at_utc": "2026-10-01 04:25:02 UTC"
+      }
+    ],
+    "latest_response_state": "complete",
+    "response_observed_at_utc": "2026-10-01 05:15:42 UTC",
+    "response_work_time": "19m 36s",
+    "response_summary": "Conditional AABB proof; current raw tally equality is sampled evidence; recommends compile-time-removable thread-local geometry-work census before selecting near-first traversal; deterministic Boltzmann solver is a separate response-accuracy study. Pro stated that it did not inspect the local branch."
+  }
+}

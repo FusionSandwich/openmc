@@ -1,0 +1,3 @@
+c79d43aee833e144712ec0516d8c47ccc081df252434171a2a96541cbf179283  ../stellarcsg-local-continuation-20260925/dev/stellarcsg/src/compiled_facet_surface_set.cpp
+1655faa810906f712e3b7a04c176c7f9207963e6fd7f2f031c0da52a30208a9d  dev/stellarcsg/src/compiled_facet_surface_set.cpp
+62aef8cf197a248ee5155fe5d05555c0a6cc4c82f01827cfed56b459c8cf47f7  dev/stellarcsg/experiments/p00_near_face_probe_20261001.cpp

@@ -1,0 +1,22 @@
+{
+  "original_20k_statepoint_sha256": "fc4b28026e93889cdbf78fa4ba42d11f26c61578d7fd81e125fb22656a92620a",
+  "production_tallies": [
+    1,
+    2,
+    3
+  ],
+  "exact_original_baseline_candidate_20k": true,
+  "exact_baseline_candidate_100k_by_seed": {
+    "1741": {
+      "baseline_statepoint_sha256": "5b79197335f6e75c9f65dbc1fa1e1b3d70154a4f2338f23969ef839d52d3fcd7",
+      "candidate_statepoint_sha256": "42aa6c67fa4272c0885fa2f752505dbc2fb266034ccb181eaaec8559239ab16e",
+      "equal": true
+    },
+    "1742": {
+      "baseline_statepoint_sha256": "21986fc95750943ee56ff45fa1eed806f5fc9282ec96008a055d7a9e489c0790",
+      "candidate_statepoint_sha256": "88ec50743bc829d43abd91f66331ceafabf150f2fe744f337fdfe772cdc274c1",
+      "equal": true
+    }
+  },
+  "negative_control_rejected": true
+}
