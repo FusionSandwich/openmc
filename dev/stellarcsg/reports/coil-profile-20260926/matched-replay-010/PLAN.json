@@ -1,0 +1,69 @@
+{
+  "workers": [
+    {
+      "name": "p00_facets",
+      "family": "P00",
+      "binary": "/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-local-continuation-20260925/build/native-local-20260925/bin/openmc",
+      "library": "/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-local-continuation-20260925/build/native-local-20260925/lib/libopenmc.so",
+      "preload": null
+    },
+    {
+      "name": "p00_flat_rings",
+      "family": "P00",
+      "binary": "/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-local-continuation-20260925/build/native-local-20260925/bin/openmc",
+      "library": "/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-local-continuation-20260925/build/native-local-20260925/lib/libopenmc.so",
+      "preload": null
+    },
+    {
+      "name": "certified_cache",
+      "family": "round",
+      "binary": "/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-astra-kernel-20260926/build/astra-native/bin/openmc",
+      "library": "/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-astra-kernel-20260926/build/astra-native/lib/libopenmc.so",
+      "preload": "/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-astra-kernel-20260926/dev/stellarcsg/reports/coil-profile-20260926/candidate-04/candidate.so"
+    },
+    {
+      "name": "composite_kernel_old_control",
+      "family": "round",
+      "binary": "/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-run-compare-06/build/native-old-control-06/openmc",
+      "library": "/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-run-compare-06/build/native-old-control-06/libopenmc.so",
+      "preload": null
+    },
+    {
+      "name": "recovered_generic",
+      "family": "round",
+      "binary": "/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-run-compare-06/build/native-recovered-06/bin/openmc",
+      "library": "/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-run-compare-06/build/native-recovered-06/lib/libopenmc.so",
+      "preload": null
+    },
+    {
+      "name": "current_legacy",
+      "family": "round",
+      "binary": "/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-astra-kernel-20260926/build/astra-native/bin/openmc",
+      "library": "/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-astra-kernel-20260926/build/astra-native/lib/libopenmc.so",
+      "preload": null
+    }
+  ],
+  "histories_per_worker": 20000,
+  "batches": 20,
+  "particles": 1000,
+  "seed": 1741,
+  "tallies": "on",
+  "threads": 1,
+  "affinity": "same single allowed CPU",
+  "worker_memory_bytes": 1073741824,
+  "worker_timeout_seconds": 600,
+  "block_timeout_seconds": 1800,
+  "software_build": "NOT_RUN; existing coherent runtimes",
+  "acquisition_bytes": 0,
+  "rollback": "no source/binary/environment mutation; retain fresh artifacts",
+  "round_geometry": "same HDF5 coefficient payload, legacy moving-frame round tube versus restricted constant-metric offset; equivalence OPEN",
+  "P00_geometry": "accepted periodic 18-component faceted P00 mesh versus fitted native flat-ring sizing envelopes, Fe56 diagnostic replaces historical 51-nuclide magnet mixture, retained 18-site 1MeV source",
+  "excluded": [
+    "exact C0 direct native adapter: original complete composite runtime dependencies unavailable; kernel control adapter differs",
+    "current uncached offset: inventoried retained baseline, omitted from this fixed block to prioritize full-pack facet and legacy methods",
+    "new BVH proposal: source-only, not compiled",
+    "DAGMC/Embree: dependency closure unsupported"
+  ],
+  "failure_policy": "first capability, native, identity or completeness failure stops whole block; no retries; partial successful rows retained",
+  "promotion": "old generic wrong-first-root/tangent cases remain disqualifying; no fastest-production claim"
+}

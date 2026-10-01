@@ -1,0 +1,1217 @@
+{
+  "state": "STAGED_BYTES_VERIFIED",
+  "files": [
+    {
+      "path": ".gitattributes",
+      "raw_sha256": "7b3ed425cee1b079380a0554de0d914a639a30d9e178625682f49321a6e17a02",
+      "staged_sha256": "825b290ba952cac158ede39d6db007ed2c21ec6476b60568a1549414ba58065a",
+      "bytes": 7092,
+      "line_endings_only": true
+    },
+    {
+      "path": "src/mesh.cpp",
+      "raw_sha256": "2077f0850d1f9597a193e4e1c6af5c09efb4e1eda6bdd5500ddb5b63fa36a575",
+      "staged_sha256": "52c2efd1a83540980c8b099fff39b35ad824c41da71feaf96e57cd19bba4d8ee",
+      "bytes": 123962,
+      "line_endings_only": true
+    },
+    {
+      "path": "dev/stellarcsg/python/stellarcsg/openmc_tally.py",
+      "raw_sha256": "8dbd323d6ce96262e25bdfb9283530dc0968ce87e2db9220b91e57185cde1c9f",
+      "staged_sha256": "7843e94d155fb2b7ea349611bb9300aa53db5fdda2e6424fe69462f83f62dd65",
+      "bytes": 3020,
+      "line_endings_only": true
+    },
+    {
+      "path": "dev/stellarcsg/python/stellarcsg/plasma_source.py",
+      "raw_sha256": "a9a6341a6ee2a5087294cf1fd081de43daa95dcc69b825f72de2cd9d2644de23",
+      "staged_sha256": "b7eb1294c02af00d8a7dc4b366de6797baeeef00e1c63602f4413806d4969abd",
+      "bytes": 15209,
+      "line_endings_only": true
+    },
+    {
+      "path": "dev/stellarcsg/tests/test_local_tally_api.py",
+      "raw_sha256": "582053d89e441745959cb80ebfed891b593dbb7c5d68c6ed4546b42bdaf288d9",
+      "staged_sha256": "582053d89e441745959cb80ebfed891b593dbb7c5d68c6ed4546b42bdaf288d9",
+      "bytes": 2131,
+      "line_endings_only": false
+    },
+    {
+      "path": "dev/stellarcsg/tests/test_plasma_source_handoff.py",
+      "raw_sha256": "5e9464158ce4e4fe399c88fcd0cdef5ef21963777185d16d88a72cf03640b493",
+      "staged_sha256": "aae66db5b20c96a21566c6bd077d8212aa6857f8aeb113aad63972bc2d228e63",
+      "bytes": 11868,
+      "line_endings_only": true
+    },
+    {
+      "path": "dev/stellarcsg/docs/OPENMC_INTEGRATION.md",
+      "raw_sha256": "2bdc468e0ebf209963c4653defd63ac09177950bd505260216a85c071c596d7d",
+      "staged_sha256": "2bdc468e0ebf209963c4653defd63ac09177950bd505260216a85c071c596d7d",
+      "bytes": 7474,
+      "line_endings_only": false
+    },
+    {
+      "path": "dev/stellarcsg/docs/PLASMA_SOURCE_HANDOFF.md",
+      "raw_sha256": "9ddb91aeff9323cddccecf4aeb54c5d74e2d2c76bb3d9b413888c20345300d76",
+      "staged_sha256": "7df0dfa6a1b4ab09a50f23c372e84cd0a9fdf4c4ad80d1ae22da53f4eb200f86",
+      "bytes": 5143,
+      "line_endings_only": true
+    },
+    {
+      "path": "dev/stellarcsg/qualification/audit_openmc_integration.py",
+      "raw_sha256": "c2d5945161bf1abdbe95fec6e1ad683835a72472edbb6d70eb58b1a467a754d6",
+      "staged_sha256": "c2d5945161bf1abdbe95fec6e1ad683835a72472edbb6d70eb58b1a467a754d6",
+      "bytes": 11649,
+      "line_endings_only": false
+    },
+    {
+      "path": "dev/stellarcsg/qualification/build_integration_probe.py",
+      "raw_sha256": "272577f0e01934ace9a67607bd164dfa1d44b4e6d177703f251bd71a8b4bbb56",
+      "staged_sha256": "272577f0e01934ace9a67607bd164dfa1d44b4e6d177703f251bd71a8b4bbb56",
+      "bytes": 3743,
+      "line_endings_only": false
+    },
+    {
+      "path": "dev/stellarcsg/qualification/check_openmc_integration.py",
+      "raw_sha256": "95eb585a198fe1ab470836ea11c56dfb9f2ee8261f02abbed0170d52901bba37",
+      "staged_sha256": "95eb585a198fe1ab470836ea11c56dfb9f2ee8261f02abbed0170d52901bba37",
+      "bytes": 14517,
+      "line_endings_only": false
+    },
+    {
+      "path": "dev/stellarcsg/qualification/check_spherical_equator.cpp",
+      "raw_sha256": "8921e9379dc13f61e11f07ac2454241d0c62fb5e7bdd67e4fb34a07ede2e090a",
+      "staged_sha256": "8921e9379dc13f61e11f07ac2454241d0c62fb5e7bdd67e4fb34a07ede2e090a",
+      "bytes": 4729,
+      "line_endings_only": false
+    },
+    {
+      "path": "dev/stellarcsg/qualification/check_spherical_partial_indices.cpp",
+      "raw_sha256": "65cf0335b830e256d5198785ac0258026cd99b04b8b0fff66f3b4e18adf94c8e",
+      "staged_sha256": "65cf0335b830e256d5198785ac0258026cd99b04b8b0fff66f3b4e18adf94c8e",
+      "bytes": 1739,
+      "line_endings_only": false
+    },
+    {
+      "path": "dev/stellarcsg/qualification/run_openmc_integration.py",
+      "raw_sha256": "929e1bcd9971f8556afcd7fb3e57ef39f3c2432889322b78835460dda8f94552",
+      "staged_sha256": "929e1bcd9971f8556afcd7fb3e57ef39f3c2432889322b78835460dda8f94552",
+      "bytes": 3381,
+      "line_endings_only": false
+    },
+    {
+      "path": "dev/stellarcsg/qualification/test_integration_artifact_controls.py",
+      "raw_sha256": "85d8be363fa435cd71c341b26526af4a05bf96683c692517ec32daf91de7b011",
+      "staged_sha256": "85d8be363fa435cd71c341b26526af4a05bf96683c692517ec32daf91de7b011",
+      "bytes": 4954,
+      "line_endings_only": false
+    },
+    {
+      "path": "dev/stellarcsg/reports/openmc-integration-20260926/.gitignore",
+      "raw_sha256": "77c8b00c459b6a4c67db96f053b1a4ce393a4f46e755828333340cb4e5069233",
+      "staged_sha256": "77c8b00c459b6a4c67db96f053b1a4ce393a4f46e755828333340cb4e5069233",
+      "bytes": 79,
+      "line_endings_only": false
+    },
+    {
+      "path": "dev/stellarcsg/reports/openmc-integration-20260926/acceptance.json",
+      "raw_sha256": "84656e0d39867b449cb0472c3305b96aaf23a9eb939928aeff47e2ebe1b31c8e",
+      "staged_sha256": "84656e0d39867b449cb0472c3305b96aaf23a9eb939928aeff47e2ebe1b31c8e",
+      "bytes": 5654,
+      "line_endings_only": false
+    },
+    {
+      "path": "dev/stellarcsg/reports/openmc-integration-20260926/audit-01.txt",
+      "raw_sha256": "245dcbd11b9651190ba47f0b5806cc147dc77b66b494287c81871d29aa29c0c5",
+      "staged_sha256": "245dcbd11b9651190ba47f0b5806cc147dc77b66b494287c81871d29aa29c0c5",
+      "bytes": 1686,
+      "line_endings_only": false
+    },
+    {
+      "path": "dev/stellarcsg/reports/openmc-integration-20260926/audit-02.txt",
+      "raw_sha256": "0d3ac2a2ca01569d7c378008b47a72d1dfe815b31a47f404068ff52cbf38226a",
+      "staged_sha256": "0d3ac2a2ca01569d7c378008b47a72d1dfe815b31a47f404068ff52cbf38226a",
+      "bytes": 42258,
+      "line_endings_only": false
+    },
+    {
+      "path": "dev/stellarcsg/reports/openmc-integration-20260926/audit-03.txt",
+      "raw_sha256": "5411396247e42503880cd6598e8f0f3f436b79ed3dfdbe331d8d4c975ac59a78",
+      "staged_sha256": "5411396247e42503880cd6598e8f0f3f436b79ed3dfdbe331d8d4c975ac59a78",
+      "bytes": 42254,
+      "line_endings_only": false
+    },
+    {
+      "path": "dev/stellarcsg/reports/openmc-integration-20260926/campaign-plan.json",
+      "raw_sha256": "7cc95ec29ab1f15715359139c5907fe9b38724404a66c3854d72088dadf16488",
+      "staged_sha256": "7cc95ec29ab1f15715359139c5907fe9b38724404a66c3854d72088dadf16488",
+      "bytes": 517,
+      "line_endings_only": false
+    },
+    {
+      "path": "dev/stellarcsg/reports/openmc-integration-20260926/campaign-progress.json",
+      "raw_sha256": "c288ed6b77d22d6dd91b221a8cb08410adaffdcfd25e624d90c9dfc5464417bd",
+      "staged_sha256": "c288ed6b77d22d6dd91b221a8cb08410adaffdcfd25e624d90c9dfc5464417bd",
+      "bytes": 5134,
+      "line_endings_only": false
+    },
+    {
+      "path": "dev/stellarcsg/reports/openmc-integration-20260926/campaign.txt",
+      "raw_sha256": "144897df490108eefebe922d238272ac848acf79de52947ca970456686a85f29",
+      "staged_sha256": "144897df490108eefebe922d238272ac848acf79de52947ca970456686a85f29",
+      "bytes": 4477,
+      "line_endings_only": false
+    },
+    {
+      "path": "dev/stellarcsg/reports/openmc-integration-20260926/coil-native-file/geometry.xml",
+      "raw_sha256": "16767d3dbe6eab21f6f667f281689db2ade4bf25f71574ec9b9cf34938e7ac25",
+      "staged_sha256": "16767d3dbe6eab21f6f667f281689db2ade4bf25f71574ec9b9cf34938e7ac25",
+      "bytes": 859,
+      "line_endings_only": false
+    },
+    {
+      "path": "dev/stellarcsg/reports/openmc-integration-20260926/coil-native-file/launch.json",
+      "raw_sha256": "e811fe306ab3d8e7832b96dadd9d121d76d3ff49de3894cb3410905501b6ee29",
+      "staged_sha256": "e811fe306ab3d8e7832b96dadd9d121d76d3ff49de3894cb3410905501b6ee29",
+      "bytes": 2645,
+      "line_endings_only": false
+    },
+    {
+      "path": "dev/stellarcsg/reports/openmc-integration-20260926/coil-native-file/local-flux.csv",
+      "raw_sha256": "26c4b1693d9268774083a83ec5d0fcb509baa1c2a61b5b0b9be428307ac1003e",
+      "staged_sha256": "26c4b1693d9268774083a83ec5d0fcb509baa1c2a61b5b0b9be428307ac1003e",
+      "bytes": 5080,
+      "line_endings_only": false
+    },
+    {
+      "path": "dev/stellarcsg/reports/openmc-integration-20260926/coil-native-file/materials.xml",
+      "raw_sha256": "af2a5fa8526432a9a088f29d3c9d8dbc6c34835fc988cc7511e7e0ae8ffc5669",
+      "staged_sha256": "af2a5fa8526432a9a088f29d3c9d8dbc6c34835fc988cc7511e7e0ae8ffc5669",
+      "bytes": 221,
+      "line_endings_only": false
+    },
+    {
+      "path": "dev/stellarcsg/reports/openmc-integration-20260926/coil-native-file/receipt.json",
+      "raw_sha256": "130e3c0dd9695bbfa85cf3571eca837d9944cd118b2816f2cb1ebba2f2ee9b3b",
+      "staged_sha256": "130e3c0dd9695bbfa85cf3571eca837d9944cd118b2816f2cb1ebba2f2ee9b3b",
+      "bytes": 482013,
+      "line_endings_only": false
+    },
+    {
+      "path": "dev/stellarcsg/reports/openmc-integration-20260926/coil-native-file/settings.xml",
+      "raw_sha256": "7e7ac420bf7fe053e08f389424ac7e5544f9be930613a20e967a7b9ab023241e",
+      "staged_sha256": "7e7ac420bf7fe053e08f389424ac7e5544f9be930613a20e967a7b9ab023241e",
+      "bytes": 1013,
+      "line_endings_only": false
+    },
+    {
+      "path": "dev/stellarcsg/reports/openmc-integration-20260926/coil-native-file/tallies.xml",
+      "raw_sha256": "a587cd41a170a7457d1799d4f735200248e68f627629346a130199e1d8aa144f",
+      "staged_sha256": "a587cd41a170a7457d1799d4f735200248e68f627629346a130199e1d8aa144f",
+      "bytes": 5623,
+      "line_endings_only": false
+    },
+    {
+      "path": "dev/stellarcsg/reports/openmc-integration-20260926/coil-native-file.txt",
+      "raw_sha256": "f9433915c1accf82534bf29083196c514802219e31e79b4d7b1aaa8441315f0d",
+      "staged_sha256": "f9433915c1accf82534bf29083196c514802219e31e79b4d7b1aaa8441315f0d",
+      "bytes": 13167,
+      "line_endings_only": false
+    },
+    {
+      "path": "dev/stellarcsg/reports/openmc-integration-20260926/coil-spline-file/geometry.xml",
+      "raw_sha256": "cb7deb12bc3545e0cf6326362902c9b33e2497799c03eb3fe611d2b019bec0c5",
+      "staged_sha256": "cb7deb12bc3545e0cf6326362902c9b33e2497799c03eb3fe611d2b019bec0c5",
+      "bytes": 1180,
+      "line_endings_only": false
+    },
+    {
+      "path": "dev/stellarcsg/reports/openmc-integration-20260926/coil-spline-file/launch.json",
+      "raw_sha256": "5b9568b718bd4e167dc9d7bb065671b2ab5abeeff119758b555e1f13c002d4c2",
+      "staged_sha256": "5b9568b718bd4e167dc9d7bb065671b2ab5abeeff119758b555e1f13c002d4c2",
+      "bytes": 2645,
+      "line_endings_only": false
+    },
+    {
+      "path": "dev/stellarcsg/reports/openmc-integration-20260926/coil-spline-file/local-flux.csv",
+      "raw_sha256": "26c4b1693d9268774083a83ec5d0fcb509baa1c2a61b5b0b9be428307ac1003e",
+      "staged_sha256": "26c4b1693d9268774083a83ec5d0fcb509baa1c2a61b5b0b9be428307ac1003e",
+      "bytes": 5080,
+      "line_endings_only": false
+    },
+    {
+      "path": "dev/stellarcsg/reports/openmc-integration-20260926/coil-spline-file/materials.xml",
+      "raw_sha256": "af2a5fa8526432a9a088f29d3c9d8dbc6c34835fc988cc7511e7e0ae8ffc5669",
+      "staged_sha256": "af2a5fa8526432a9a088f29d3c9d8dbc6c34835fc988cc7511e7e0ae8ffc5669",
+      "bytes": 221,
+      "line_endings_only": false
+    },
+    {
+      "path": "dev/stellarcsg/reports/openmc-integration-20260926/coil-spline-file/receipt.json",
+      "raw_sha256": "6831ffd337fd1af69778ad5a1993e9b77cb63fa4dde61e6717b200fb4318ca4a",
+      "staged_sha256": "6831ffd337fd1af69778ad5a1993e9b77cb63fa4dde61e6717b200fb4318ca4a",
+      "bytes": 482046,
+      "line_endings_only": false
+    },
+    {
+      "path": "dev/stellarcsg/reports/openmc-integration-20260926/coil-spline-file/settings.xml",
+      "raw_sha256": "7e7ac420bf7fe053e08f389424ac7e5544f9be930613a20e967a7b9ab023241e",
+      "staged_sha256": "7e7ac420bf7fe053e08f389424ac7e5544f9be930613a20e967a7b9ab023241e",
+      "bytes": 1013,
+      "line_endings_only": false
+    },
+    {
+      "path": "dev/stellarcsg/reports/openmc-integration-20260926/coil-spline-file/tallies.xml",
+      "raw_sha256": "a587cd41a170a7457d1799d4f735200248e68f627629346a130199e1d8aa144f",
+      "staged_sha256": "a587cd41a170a7457d1799d4f735200248e68f627629346a130199e1d8aa144f",
+      "bytes": 5623,
+      "line_endings_only": false
+    },
+    {
+      "path": "dev/stellarcsg/reports/openmc-integration-20260926/coil-spline-file.txt",
+      "raw_sha256": "f1e782350acc0e5a040eb91c09561ae09003ad498059ed019c7fe3ef18b3de1f",
+      "staged_sha256": "f1e782350acc0e5a040eb91c09561ae09003ad498059ed019c7fe3ef18b3de1f",
+      "bytes": 13167,
+      "line_endings_only": false
+    },
+    {
+      "path": "dev/stellarcsg/reports/openmc-integration-20260926/comparison-after.json",
+      "raw_sha256": "7fcc38c02946ed840de63f3737a50a9d6f9efe4150ea0465bfefd128f9098e98",
+      "staged_sha256": "7fcc38c02946ed840de63f3737a50a9d6f9efe4150ea0465bfefd128f9098e98",
+      "bytes": 12409,
+      "line_endings_only": false
+    },
+    {
+      "path": "dev/stellarcsg/reports/openmc-integration-20260926/comparison-before.json",
+      "raw_sha256": "2a966918710e71623f591b527074e0a64a6dff89e6e60386df43aaac62453a00",
+      "staged_sha256": "2a966918710e71623f591b527074e0a64a6dff89e6e60386df43aaac62453a00",
+      "bytes": 12412,
+      "line_endings_only": false
+    },
+    {
+      "path": "dev/stellarcsg/reports/openmc-integration-20260926/CONTINUATION_HANDOFF.md",
+      "raw_sha256": "e2e15243757c733a0fe49c3d9bd10a2fcb54857a4fe74e40cd398a6be14b72fb",
+      "staged_sha256": "e2e15243757c733a0fe49c3d9bd10a2fcb54857a4fe74e40cd398a6be14b72fb",
+      "bytes": 3700,
+      "line_endings_only": false
+    },
+    {
+      "path": "dev/stellarcsg/reports/openmc-integration-20260926/finalize.py",
+      "raw_sha256": "1ace48898e82af6dc5c0dac055ff4c0a18e41bc5ae5c922317bab47970da8515",
+      "staged_sha256": "1ace48898e82af6dc5c0dac055ff4c0a18e41bc5ae5c922317bab47970da8515",
+      "bytes": 5547,
+      "line_endings_only": false
+    },
+    {
+      "path": "dev/stellarcsg/reports/openmc-integration-20260926/initial-runner.py",
+      "raw_sha256": "0143261f2af108b53af2e1d424dd7449fd3cb60a11fd5c226732217490beee8b",
+      "staged_sha256": "0143261f2af108b53af2e1d424dd7449fd3cb60a11fd5c226732217490beee8b",
+      "bytes": 2912,
+      "line_endings_only": false
+    },
+    {
+      "path": "dev/stellarcsg/reports/openmc-integration-20260926/initial-worker.py",
+      "raw_sha256": "c45d5e53a2f5c252761c8d79b573985f974cfade593e7f45d94eb30a5bc40aba",
+      "staged_sha256": "c45d5e53a2f5c252761c8d79b573985f974cfade593e7f45d94eb30a5bc40aba",
+      "bytes": 14444,
+      "line_endings_only": false
+    },
+    {
+      "path": "dev/stellarcsg/reports/openmc-integration-20260926/native-after/command-0.txt",
+      "raw_sha256": "d5457c14b71ee28079ba9fbbc6175919f29359a4a2cfe4f00870f58223ea4ca2",
+      "staged_sha256": "d5457c14b71ee28079ba9fbbc6175919f29359a4a2cfe4f00870f58223ea4ca2",
+      "bytes": 156,
+      "line_endings_only": false
+    },
+    {
+      "path": "dev/stellarcsg/reports/openmc-integration-20260926/native-after/command-1.txt",
+      "raw_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "staged_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0,
+      "line_endings_only": false
+    },
+    {
+      "path": "dev/stellarcsg/reports/openmc-integration-20260926/native-after/probe.txt",
+      "raw_sha256": "c5bbf1f0b15f164b1cc6734270d6f9ecfc4ce877de65bb7d90d8982dc855d378",
+      "staged_sha256": "c5bbf1f0b15f164b1cc6734270d6f9ecfc4ce877de65bb7d90d8982dc855d378",
+      "bytes": 29,
+      "line_endings_only": false
+    },
+    {
+      "path": "dev/stellarcsg/reports/openmc-integration-20260926/native-after/receipt.json",
+      "raw_sha256": "c5375d2434dbf2c08d1a41e123d09db7a1a8f1b1f6d5fc99d473770e67d1608c",
+      "staged_sha256": "c5375d2434dbf2c08d1a41e123d09db7a1a8f1b1f6d5fc99d473770e67d1608c",
+      "bytes": 4212,
+      "line_endings_only": false
+    },
+    {
+      "path": "dev/stellarcsg/reports/openmc-integration-20260926/native-after-build.txt",
+      "raw_sha256": "96d23adcc087ef2c757e9cf47fa3b188e4da90090501d7ae7a64bd8e8cab366d",
+      "staged_sha256": "96d23adcc087ef2c757e9cf47fa3b188e4da90090501d7ae7a64bd8e8cab366d",
+      "bytes": 3876,
+      "line_endings_only": false
+    },
+    {
+      "path": "dev/stellarcsg/reports/openmc-integration-20260926/native-before/command-0.txt",
+      "raw_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "staged_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0,
+      "line_endings_only": false
+    },
+    {
+      "path": "dev/stellarcsg/reports/openmc-integration-20260926/native-before/probe.txt",
+      "raw_sha256": "5e4b1de4e0c998c9efa0fa8d960d7b51e666ce30d4e6c4f66d46bd81df01d073",
+      "staged_sha256": "5e4b1de4e0c998c9efa0fa8d960d7b51e666ce30d4e6c4f66d46bd81df01d073",
+      "bytes": 61,
+      "line_endings_only": false
+    },
+    {
+      "path": "dev/stellarcsg/reports/openmc-integration-20260926/native-before/receipt.json",
+      "raw_sha256": "6cab9e5345b9d3b619746cb6666c19732768b61ffce97f022bff03f044f7e381",
+      "staged_sha256": "6cab9e5345b9d3b619746cb6666c19732768b61ffce97f022bff03f044f7e381",
+      "bytes": 3976,
+      "line_endings_only": false
+    },
+    {
+      "path": "dev/stellarcsg/reports/openmc-integration-20260926/native-before-build.txt",
+      "raw_sha256": "eb02cbaa0b0ec7ef320962ac9c7584e52a4f22b60ce127b3e6fff79421706eb6",
+      "staged_sha256": "eb02cbaa0b0ec7ef320962ac9c7584e52a4f22b60ce127b3e6fff79421706eb6",
+      "bytes": 3732,
+      "line_endings_only": false
+    },
+    {
+      "path": "dev/stellarcsg/reports/openmc-integration-20260926/native-partial/compile.txt",
+      "raw_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "staged_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0,
+      "line_endings_only": false
+    },
+    {
+      "path": "dev/stellarcsg/reports/openmc-integration-20260926/native-partial/probe.txt",
+      "raw_sha256": "8866d70044c3b2fc3944d3ba87f22be9423e0f1f34c400dfacd62f4d63adacbf",
+      "staged_sha256": "8866d70044c3b2fc3944d3ba87f22be9423e0f1f34c400dfacd62f4d63adacbf",
+      "bytes": 90,
+      "line_endings_only": false
+    },
+    {
+      "path": "dev/stellarcsg/reports/openmc-integration-20260926/native-partial/receipt.json",
+      "raw_sha256": "eea2b6abd62fd9e9fb4e811eebca740e55214bceaa2011da0785eccb5825bd23",
+      "staged_sha256": "eea2b6abd62fd9e9fb4e811eebca740e55214bceaa2011da0785eccb5825bd23",
+      "bytes": 3281,
+      "line_endings_only": false
+    },
+    {
+      "path": "dev/stellarcsg/reports/openmc-integration-20260926/native-partial-02/compile.txt",
+      "raw_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "staged_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0,
+      "line_endings_only": false
+    },
+    {
+      "path": "dev/stellarcsg/reports/openmc-integration-20260926/native-partial-02/probe.txt",
+      "raw_sha256": "3c217f85a65809625bcad5faeaad76552c2748ca7ae331f87c1962844f08b680",
+      "staged_sha256": "3c217f85a65809625bcad5faeaad76552c2748ca7ae331f87c1962844f08b680",
+      "bytes": 72,
+      "line_endings_only": false
+    },
+    {
+      "path": "dev/stellarcsg/reports/openmc-integration-20260926/native-partial-02/receipt.json",
+      "raw_sha256": "47a7dc0223efc3c545f30245658eb831dd0197d994d7f5dfdb1351c074cc1832",
+      "staged_sha256": "47a7dc0223efc3c545f30245658eb831dd0197d994d7f5dfdb1351c074cc1832",
+      "bytes": 3279,
+      "line_endings_only": false
+    },
+    {
+      "path": "dev/stellarcsg/reports/openmc-integration-20260926/negative-controls-01.txt",
+      "raw_sha256": "0c59c5b6399c88820f7921a7054d3bea9cf06cea449e35bcfa6229e6f716ed59",
+      "staged_sha256": "0c59c5b6399c88820f7921a7054d3bea9cf06cea449e35bcfa6229e6f716ed59",
+      "bytes": 68556,
+      "line_endings_only": false
+    },
+    {
+      "path": "dev/stellarcsg/reports/openmc-integration-20260926/negative-controls.json",
+      "raw_sha256": "e35bc22de2929d89955938eb0f7b3218bd65644fe193d1738fd897333f3b6cc1",
+      "staged_sha256": "e35bc22de2929d89955938eb0f7b3218bd65644fe193d1738fd897333f3b6cc1",
+      "bytes": 1864,
+      "line_endings_only": false
+    },
+    {
+      "path": "dev/stellarcsg/reports/openmc-integration-20260926/partial-probe.py",
+      "raw_sha256": "f444a36aae880fb48f30de9d1a5c06cbfc5c8558e8f52130ac0fdc44e9607c60",
+      "staged_sha256": "f444a36aae880fb48f30de9d1a5c06cbfc5c8558e8f52130ac0fdc44e9607c60",
+      "bytes": 3506,
+      "line_endings_only": false
+    },
+    {
+      "path": "dev/stellarcsg/reports/openmc-integration-20260926/pilot-01.txt",
+      "raw_sha256": "40868ca64f677dbf6a8072300cf9cfb300547e6f3f9df7b4ecba5ee57a5c077f",
+      "staged_sha256": "40868ca64f677dbf6a8072300cf9cfb300547e6f3f9df7b4ecba5ee57a5c077f",
+      "bytes": 575,
+      "line_endings_only": false
+    },
+    {
+      "path": "dev/stellarcsg/reports/openmc-integration-20260926/pilot-02.txt",
+      "raw_sha256": "c3754f8dda86e841b6e917e486e9d5e586899ce4c9062d91a1f74e85cf342f3d",
+      "staged_sha256": "c3754f8dda86e841b6e917e486e9d5e586899ce4c9062d91a1f74e85cf342f3d",
+      "bytes": 791,
+      "line_endings_only": false
+    },
+    {
+      "path": "dev/stellarcsg/reports/openmc-integration-20260926/pilot-03.txt",
+      "raw_sha256": "d59b96a9a6551f7c47051de45096b715d1a3c08e40bfe3ce64f53159aeef4585",
+      "staged_sha256": "d59b96a9a6551f7c47051de45096b715d1a3c08e40bfe3ce64f53159aeef4585",
+      "bytes": 809,
+      "line_endings_only": false
+    },
+    {
+      "path": "dev/stellarcsg/reports/openmc-integration-20260926/pilot-04.txt",
+      "raw_sha256": "c4ad93c92f7ad5928eadaee8716a8dd1a8ac822f9121c069dfd2d0de4442f80f",
+      "staged_sha256": "c4ad93c92f7ad5928eadaee8716a8dd1a8ac822f9121c069dfd2d0de4442f80f",
+      "bytes": 3005,
+      "line_endings_only": false
+    },
+    {
+      "path": "dev/stellarcsg/reports/openmc-integration-20260926/pilot-05.txt",
+      "raw_sha256": "b4180fdf419a9320ea83148112c7e3196bd8bf64b8dfa41c1177e11994b60ec2",
+      "staged_sha256": "b4180fdf419a9320ea83148112c7e3196bd8bf64b8dfa41c1177e11994b60ec2",
+      "bytes": 1856,
+      "line_endings_only": false
+    },
+    {
+      "path": "dev/stellarcsg/reports/openmc-integration-20260926/pilot-plasma-native-mesh-04/geometry.xml",
+      "raw_sha256": "1e34d73bded2ba3066bf8819dcad4aa07b8cbf541132df7a44e07fb4aa43637c",
+      "staged_sha256": "1e34d73bded2ba3066bf8819dcad4aa07b8cbf541132df7a44e07fb4aa43637c",
+      "bytes": 1007,
+      "line_endings_only": false
+    },
+    {
+      "path": "dev/stellarcsg/reports/openmc-integration-20260926/pilot-plasma-native-mesh-04/launch.json",
+      "raw_sha256": "f0b5ad361715bd6f85fccbc24bef3ace5e5e4ca10328764e04c01c1b0ad890c7",
+      "staged_sha256": "f0b5ad361715bd6f85fccbc24bef3ace5e5e4ca10328764e04c01c1b0ad890c7",
+      "bytes": 2653,
+      "line_endings_only": false
+    },
+    {
+      "path": "dev/stellarcsg/reports/openmc-integration-20260926/pilot-plasma-native-mesh-04/materials.xml",
+      "raw_sha256": "af2a5fa8526432a9a088f29d3c9d8dbc6c34835fc988cc7511e7e0ae8ffc5669",
+      "staged_sha256": "af2a5fa8526432a9a088f29d3c9d8dbc6c34835fc988cc7511e7e0ae8ffc5669",
+      "bytes": 221,
+      "line_endings_only": false
+    },
+    {
+      "path": "dev/stellarcsg/reports/openmc-integration-20260926/pilot-plasma-native-mesh-04/settings.xml",
+      "raw_sha256": "e58c733f46ceff874c8e039be43f4abc72910aaa71c0f4bd71e203db5eb4440d",
+      "staged_sha256": "e58c733f46ceff874c8e039be43f4abc72910aaa71c0f4bd71e203db5eb4440d",
+      "bytes": 1606,
+      "line_endings_only": false
+    },
+    {
+      "path": "dev/stellarcsg/reports/openmc-integration-20260926/pilot-plasma-native-mesh-04/tallies.xml",
+      "raw_sha256": "ffc265605eb1a4b3533cd4c0c9ff15eea367d3657eae886018bcaecb52db52c7",
+      "staged_sha256": "ffc265605eb1a4b3533cd4c0c9ff15eea367d3657eae886018bcaecb52db52c7",
+      "bytes": 6019,
+      "line_endings_only": false
+    },
+    {
+      "path": "dev/stellarcsg/reports/openmc-integration-20260926/pilot-plasma-native-mesh-05/geometry.xml",
+      "raw_sha256": "1e34d73bded2ba3066bf8819dcad4aa07b8cbf541132df7a44e07fb4aa43637c",
+      "staged_sha256": "1e34d73bded2ba3066bf8819dcad4aa07b8cbf541132df7a44e07fb4aa43637c",
+      "bytes": 1007,
+      "line_endings_only": false
+    },
+    {
+      "path": "dev/stellarcsg/reports/openmc-integration-20260926/pilot-plasma-native-mesh-05/launch.json",
+      "raw_sha256": "e3841a962033afd01e175e6c949788438c7e53df62742d82a50f72d7ec6356d2",
+      "staged_sha256": "e3841a962033afd01e175e6c949788438c7e53df62742d82a50f72d7ec6356d2",
+      "bytes": 2653,
+      "line_endings_only": false
+    },
+    {
+      "path": "dev/stellarcsg/reports/openmc-integration-20260926/pilot-plasma-native-mesh-05/local-flux.csv",
+      "raw_sha256": "bb3f8ce86ba0eac3d1e7e218237171a9448f76502721752187cc18adeb7bce3c",
+      "staged_sha256": "bb3f8ce86ba0eac3d1e7e218237171a9448f76502721752187cc18adeb7bce3c",
+      "bytes": 4092,
+      "line_endings_only": false
+    },
+    {
+      "path": "dev/stellarcsg/reports/openmc-integration-20260926/pilot-plasma-native-mesh-05/materials.xml",
+      "raw_sha256": "af2a5fa8526432a9a088f29d3c9d8dbc6c34835fc988cc7511e7e0ae8ffc5669",
+      "staged_sha256": "af2a5fa8526432a9a088f29d3c9d8dbc6c34835fc988cc7511e7e0ae8ffc5669",
+      "bytes": 221,
+      "line_endings_only": false
+    },
+    {
+      "path": "dev/stellarcsg/reports/openmc-integration-20260926/pilot-plasma-native-mesh-05/receipt.json",
+      "raw_sha256": "d864d711338f6d5da033387e0f4a43fa9d7d7c9ee21f26108b43359ef9dcd03d",
+      "staged_sha256": "d864d711338f6d5da033387e0f4a43fa9d7d7c9ee21f26108b43359ef9dcd03d",
+      "bytes": 507029,
+      "line_endings_only": false
+    },
+    {
+      "path": "dev/stellarcsg/reports/openmc-integration-20260926/pilot-plasma-native-mesh-05/settings.xml",
+      "raw_sha256": "e58c733f46ceff874c8e039be43f4abc72910aaa71c0f4bd71e203db5eb4440d",
+      "staged_sha256": "e58c733f46ceff874c8e039be43f4abc72910aaa71c0f4bd71e203db5eb4440d",
+      "bytes": 1606,
+      "line_endings_only": false
+    },
+    {
+      "path": "dev/stellarcsg/reports/openmc-integration-20260926/pilot-plasma-native-mesh-05/tallies.xml",
+      "raw_sha256": "d33c7a34e3c919ec5d0f5de639c8e5fa8ce5fb74408ad323459b343f2288b087",
+      "staged_sha256": "d33c7a34e3c919ec5d0f5de639c8e5fa8ce5fb74408ad323459b343f2288b087",
+      "bytes": 5896,
+      "line_endings_only": false
+    },
+    {
+      "path": "dev/stellarcsg/reports/openmc-integration-20260926/plasma-native-box/geometry.xml",
+      "raw_sha256": "1e34d73bded2ba3066bf8819dcad4aa07b8cbf541132df7a44e07fb4aa43637c",
+      "staged_sha256": "1e34d73bded2ba3066bf8819dcad4aa07b8cbf541132df7a44e07fb4aa43637c",
+      "bytes": 1007,
+      "line_endings_only": false
+    },
+    {
+      "path": "dev/stellarcsg/reports/openmc-integration-20260926/plasma-native-box/launch.json",
+      "raw_sha256": "39486bd03b697d33119a3ce78b8d41f09b8a6f6a72e95a7821eefbad2d773618",
+      "staged_sha256": "39486bd03b697d33119a3ce78b8d41f09b8a6f6a72e95a7821eefbad2d773618",
+      "bytes": 2652,
+      "line_endings_only": false
+    },
+    {
+      "path": "dev/stellarcsg/reports/openmc-integration-20260926/plasma-native-box/local-flux.csv",
+      "raw_sha256": "078fadc3806505472cd34f6d265c1f377017a8a1efa506ba45d6402a101ff59d",
+      "staged_sha256": "078fadc3806505472cd34f6d265c1f377017a8a1efa506ba45d6402a101ff59d",
+      "bytes": 4498,
+      "line_endings_only": false
+    },
+    {
+      "path": "dev/stellarcsg/reports/openmc-integration-20260926/plasma-native-box/materials.xml",
+      "raw_sha256": "af2a5fa8526432a9a088f29d3c9d8dbc6c34835fc988cc7511e7e0ae8ffc5669",
+      "staged_sha256": "af2a5fa8526432a9a088f29d3c9d8dbc6c34835fc988cc7511e7e0ae8ffc5669",
+      "bytes": 221,
+      "line_endings_only": false
+    },
+    {
+      "path": "dev/stellarcsg/reports/openmc-integration-20260926/plasma-native-box/receipt.json",
+      "raw_sha256": "8358dd2df9cf9f276f5faf05a28966c24195aade022dfcecc8e0daf623e69669",
+      "staged_sha256": "8358dd2df9cf9f276f5faf05a28966c24195aade022dfcecc8e0daf623e69669",
+      "bytes": 495533,
+      "line_endings_only": false
+    },
+    {
+      "path": "dev/stellarcsg/reports/openmc-integration-20260926/plasma-native-box/settings.xml",
+      "raw_sha256": "651f8178cd852fd737050c121e66b064ea6715a1e737f028fe5e0cc3eb592e8c",
+      "staged_sha256": "651f8178cd852fd737050c121e66b064ea6715a1e737f028fe5e0cc3eb592e8c",
+      "bytes": 1272,
+      "line_endings_only": false
+    },
+    {
+      "path": "dev/stellarcsg/reports/openmc-integration-20260926/plasma-native-box/tallies.xml",
+      "raw_sha256": "6d7aafacb0fd8c2309a7a9bdf33bd6416a1d43d2a4e358f82272aab76a5db403",
+      "staged_sha256": "6d7aafacb0fd8c2309a7a9bdf33bd6416a1d43d2a4e358f82272aab76a5db403",
+      "bytes": 5630,
+      "line_endings_only": false
+    },
+    {
+      "path": "dev/stellarcsg/reports/openmc-integration-20260926/plasma-native-box.txt",
+      "raw_sha256": "b7c2233fcb5d791f2be143ad2b4834671450c2d05fe869ac3d852b78dc4401b2",
+      "staged_sha256": "b7c2233fcb5d791f2be143ad2b4834671450c2d05fe869ac3d852b78dc4401b2",
+      "bytes": 13098,
+      "line_endings_only": false
+    },
+    {
+      "path": "dev/stellarcsg/reports/openmc-integration-20260926/plasma-native-mesh/geometry.xml",
+      "raw_sha256": "1e34d73bded2ba3066bf8819dcad4aa07b8cbf541132df7a44e07fb4aa43637c",
+      "staged_sha256": "1e34d73bded2ba3066bf8819dcad4aa07b8cbf541132df7a44e07fb4aa43637c",
+      "bytes": 1007,
+      "line_endings_only": false
+    },
+    {
+      "path": "dev/stellarcsg/reports/openmc-integration-20260926/plasma-native-mesh/launch.json",
+      "raw_sha256": "9aa5e2872b034221c8e1fe2e693a2213483c6f1a798414d9048536a5ed1e0f9b",
+      "staged_sha256": "9aa5e2872b034221c8e1fe2e693a2213483c6f1a798414d9048536a5ed1e0f9b",
+      "bytes": 2653,
+      "line_endings_only": false
+    },
+    {
+      "path": "dev/stellarcsg/reports/openmc-integration-20260926/plasma-native-mesh/local-flux.csv",
+      "raw_sha256": "bb3f8ce86ba0eac3d1e7e218237171a9448f76502721752187cc18adeb7bce3c",
+      "staged_sha256": "bb3f8ce86ba0eac3d1e7e218237171a9448f76502721752187cc18adeb7bce3c",
+      "bytes": 4092,
+      "line_endings_only": false
+    },
+    {
+      "path": "dev/stellarcsg/reports/openmc-integration-20260926/plasma-native-mesh/materials.xml",
+      "raw_sha256": "af2a5fa8526432a9a088f29d3c9d8dbc6c34835fc988cc7511e7e0ae8ffc5669",
+      "staged_sha256": "af2a5fa8526432a9a088f29d3c9d8dbc6c34835fc988cc7511e7e0ae8ffc5669",
+      "bytes": 221,
+      "line_endings_only": false
+    },
+    {
+      "path": "dev/stellarcsg/reports/openmc-integration-20260926/plasma-native-mesh/receipt.json",
+      "raw_sha256": "a391e0bcae24bc24693247461603f57608dadf8e37c15c8660391343eb6d50b4",
+      "staged_sha256": "a391e0bcae24bc24693247461603f57608dadf8e37c15c8660391343eb6d50b4",
+      "bytes": 507020,
+      "line_endings_only": false
+    },
+    {
+      "path": "dev/stellarcsg/reports/openmc-integration-20260926/plasma-native-mesh/settings.xml",
+      "raw_sha256": "e58c733f46ceff874c8e039be43f4abc72910aaa71c0f4bd71e203db5eb4440d",
+      "staged_sha256": "e58c733f46ceff874c8e039be43f4abc72910aaa71c0f4bd71e203db5eb4440d",
+      "bytes": 1606,
+      "line_endings_only": false
+    },
+    {
+      "path": "dev/stellarcsg/reports/openmc-integration-20260926/plasma-native-mesh/tallies.xml",
+      "raw_sha256": "d33c7a34e3c919ec5d0f5de639c8e5fa8ce5fb74408ad323459b343f2288b087",
+      "staged_sha256": "d33c7a34e3c919ec5d0f5de639c8e5fa8ce5fb74408ad323459b343f2288b087",
+      "bytes": 5896,
+      "line_endings_only": false
+    },
+    {
+      "path": "dev/stellarcsg/reports/openmc-integration-20260926/plasma-native-mesh.txt",
+      "raw_sha256": "a6f58999374c429e22286828d18fb3b60f0f373dfc918cde1cbec0e5b991143b",
+      "staged_sha256": "a6f58999374c429e22286828d18fb3b60f0f373dfc918cde1cbec0e5b991143b",
+      "bytes": 13686,
+      "line_endings_only": false
+    },
+    {
+      "path": "dev/stellarcsg/reports/openmc-integration-20260926/plasma-spline-box/geometry.xml",
+      "raw_sha256": "05d38b11ac4c29dcc96f829d2bb57aa50336ad84841ed5c34ba934260f063672",
+      "staged_sha256": "05d38b11ac4c29dcc96f829d2bb57aa50336ad84841ed5c34ba934260f063672",
+      "bytes": 1287,
+      "line_endings_only": false
+    },
+    {
+      "path": "dev/stellarcsg/reports/openmc-integration-20260926/plasma-spline-box/launch.json",
+      "raw_sha256": "c080bbacca9ba17b36bf2ec61c5c3c30178f3e6b66f0ad2f82a4aa79ee47cc8a",
+      "staged_sha256": "c080bbacca9ba17b36bf2ec61c5c3c30178f3e6b66f0ad2f82a4aa79ee47cc8a",
+      "bytes": 2652,
+      "line_endings_only": false
+    },
+    {
+      "path": "dev/stellarcsg/reports/openmc-integration-20260926/plasma-spline-box/local-flux.csv",
+      "raw_sha256": "46f0579cde9b7d82b4d81e95b736b7375d15a96f2b78adc19b461a80d888c44d",
+      "staged_sha256": "46f0579cde9b7d82b4d81e95b736b7375d15a96f2b78adc19b461a80d888c44d",
+      "bytes": 4499,
+      "line_endings_only": false
+    },
+    {
+      "path": "dev/stellarcsg/reports/openmc-integration-20260926/plasma-spline-box/materials.xml",
+      "raw_sha256": "af2a5fa8526432a9a088f29d3c9d8dbc6c34835fc988cc7511e7e0ae8ffc5669",
+      "staged_sha256": "af2a5fa8526432a9a088f29d3c9d8dbc6c34835fc988cc7511e7e0ae8ffc5669",
+      "bytes": 221,
+      "line_endings_only": false
+    },
+    {
+      "path": "dev/stellarcsg/reports/openmc-integration-20260926/plasma-spline-box/receipt.json",
+      "raw_sha256": "1a21a4b870a37f5e30921c0c7c2abae674742ba625b5a5d11709795bb8fcf6ab",
+      "staged_sha256": "1a21a4b870a37f5e30921c0c7c2abae674742ba625b5a5d11709795bb8fcf6ab",
+      "bytes": 495555,
+      "line_endings_only": false
+    },
+    {
+      "path": "dev/stellarcsg/reports/openmc-integration-20260926/plasma-spline-box/settings.xml",
+      "raw_sha256": "651f8178cd852fd737050c121e66b064ea6715a1e737f028fe5e0cc3eb592e8c",
+      "staged_sha256": "651f8178cd852fd737050c121e66b064ea6715a1e737f028fe5e0cc3eb592e8c",
+      "bytes": 1272,
+      "line_endings_only": false
+    },
+    {
+      "path": "dev/stellarcsg/reports/openmc-integration-20260926/plasma-spline-box/tallies.xml",
+      "raw_sha256": "6d7aafacb0fd8c2309a7a9bdf33bd6416a1d43d2a4e358f82272aab76a5db403",
+      "staged_sha256": "6d7aafacb0fd8c2309a7a9bdf33bd6416a1d43d2a4e358f82272aab76a5db403",
+      "bytes": 5630,
+      "line_endings_only": false
+    },
+    {
+      "path": "dev/stellarcsg/reports/openmc-integration-20260926/plasma-spline-box.txt",
+      "raw_sha256": "d50b5abb239c281471d5566b403864458fb7f66ee9b72405a65fb0d885e4ec5a",
+      "staged_sha256": "d50b5abb239c281471d5566b403864458fb7f66ee9b72405a65fb0d885e4ec5a",
+      "bytes": 13098,
+      "line_endings_only": false
+    },
+    {
+      "path": "dev/stellarcsg/reports/openmc-integration-20260926/plasma-spline-mesh/geometry.xml",
+      "raw_sha256": "05d38b11ac4c29dcc96f829d2bb57aa50336ad84841ed5c34ba934260f063672",
+      "staged_sha256": "05d38b11ac4c29dcc96f829d2bb57aa50336ad84841ed5c34ba934260f063672",
+      "bytes": 1287,
+      "line_endings_only": false
+    },
+    {
+      "path": "dev/stellarcsg/reports/openmc-integration-20260926/plasma-spline-mesh/launch.json",
+      "raw_sha256": "b94bcdb35349e287546fb5aaa20ffa69a550a553a9966717936a83d5f02fc472",
+      "staged_sha256": "b94bcdb35349e287546fb5aaa20ffa69a550a553a9966717936a83d5f02fc472",
+      "bytes": 2653,
+      "line_endings_only": false
+    },
+    {
+      "path": "dev/stellarcsg/reports/openmc-integration-20260926/plasma-spline-mesh/local-flux.csv",
+      "raw_sha256": "0ef9510ade1ed976b4e26a62a814966157eb99e82195e8f933a63acc15f2673c",
+      "staged_sha256": "0ef9510ade1ed976b4e26a62a814966157eb99e82195e8f933a63acc15f2673c",
+      "bytes": 4091,
+      "line_endings_only": false
+    },
+    {
+      "path": "dev/stellarcsg/reports/openmc-integration-20260926/plasma-spline-mesh/materials.xml",
+      "raw_sha256": "af2a5fa8526432a9a088f29d3c9d8dbc6c34835fc988cc7511e7e0ae8ffc5669",
+      "staged_sha256": "af2a5fa8526432a9a088f29d3c9d8dbc6c34835fc988cc7511e7e0ae8ffc5669",
+      "bytes": 221,
+      "line_endings_only": false
+    },
+    {
+      "path": "dev/stellarcsg/reports/openmc-integration-20260926/plasma-spline-mesh/receipt.json",
+      "raw_sha256": "f46bf980b172603cfbf8d737498b22280ca8b0847994f6604871510a30233d8b",
+      "staged_sha256": "f46bf980b172603cfbf8d737498b22280ca8b0847994f6604871510a30233d8b",
+      "bytes": 507200,
+      "line_endings_only": false
+    },
+    {
+      "path": "dev/stellarcsg/reports/openmc-integration-20260926/plasma-spline-mesh/settings.xml",
+      "raw_sha256": "e58c733f46ceff874c8e039be43f4abc72910aaa71c0f4bd71e203db5eb4440d",
+      "staged_sha256": "e58c733f46ceff874c8e039be43f4abc72910aaa71c0f4bd71e203db5eb4440d",
+      "bytes": 1606,
+      "line_endings_only": false
+    },
+    {
+      "path": "dev/stellarcsg/reports/openmc-integration-20260926/plasma-spline-mesh/tallies.xml",
+      "raw_sha256": "d33c7a34e3c919ec5d0f5de639c8e5fa8ce5fb74408ad323459b343f2288b087",
+      "staged_sha256": "d33c7a34e3c919ec5d0f5de639c8e5fa8ce5fb74408ad323459b343f2288b087",
+      "bytes": 5896,
+      "line_endings_only": false
+    },
+    {
+      "path": "dev/stellarcsg/reports/openmc-integration-20260926/plasma-spline-mesh.txt",
+      "raw_sha256": "357c97d3920bb1b5e86aa5bb3a75f8b60443929bd56185a1ac52365b10ec397e",
+      "staged_sha256": "357c97d3920bb1b5e86aa5bb3a75f8b60443929bd56185a1ac52365b10ec397e",
+      "bytes": 13686,
+      "line_endings_only": false
+    },
+    {
+      "path": "dev/stellarcsg/reports/openmc-integration-20260926/PR_DESCRIPTION.md",
+      "raw_sha256": "98cd836268184f9abdc7a791fe2519e25d320861e029f0e81e11e19921e0eca6",
+      "staged_sha256": "98cd836268184f9abdc7a791fe2519e25d320861e029f0e81e11e19921e0eca6",
+      "bytes": 4159,
+      "line_endings_only": false
+    },
+    {
+      "path": "dev/stellarcsg/reports/openmc-integration-20260926/prebuild-windows.json",
+      "raw_sha256": "f3239bfdf7f36e6aab5a63feb2b3a6681ab060227d8dd2aba3b496d4b8bb2db5",
+      "staged_sha256": "f3239bfdf7f36e6aab5a63feb2b3a6681ab060227d8dd2aba3b496d4b8bb2db5",
+      "bytes": 4887,
+      "line_endings_only": false
+    },
+    {
+      "path": "dev/stellarcsg/reports/openmc-integration-20260926/prebuild-wsl.json",
+      "raw_sha256": "649af723d1ec21a3ae09f895786adbc2567da2912b5ac63f816e5dd9ae0a085b",
+      "staged_sha256": "649af723d1ec21a3ae09f895786adbc2567da2912b5ac63f816e5dd9ae0a085b",
+      "bytes": 4005,
+      "line_endings_only": false
+    },
+    {
+      "path": "dev/stellarcsg/reports/openmc-integration-20260926/preflight.json",
+      "raw_sha256": "67c9fe9346c693da87fb0a908ed9fd40c842a3c9b87ecdeb3f81c1ed04f4e2f7",
+      "staged_sha256": "67c9fe9346c693da87fb0a908ed9fd40c842a3c9b87ecdeb3f81c1ed04f4e2f7",
+      "bytes": 1390,
+      "line_endings_only": false
+    },
+    {
+      "path": "dev/stellarcsg/reports/openmc-integration-20260926/prepartial-windows.json",
+      "raw_sha256": "31311dcfc7b525a9152f1d16f0755f6e7634dee48b3c9e1a5762b601e52fe045",
+      "staged_sha256": "31311dcfc7b525a9152f1d16f0755f6e7634dee48b3c9e1a5762b601e52fe045",
+      "bytes": 4897,
+      "line_endings_only": false
+    },
+    {
+      "path": "dev/stellarcsg/reports/openmc-integration-20260926/prepartial-wsl.json",
+      "raw_sha256": "5572e18f7d345f85408ba874a519867186d6f54be33f740c18b2b0362bfdadf3",
+      "staged_sha256": "5572e18f7d345f85408ba874a519867186d6f54be33f740c18b2b0362bfdadf3",
+      "bytes": 4050,
+      "line_endings_only": false
+    },
+    {
+      "path": "dev/stellarcsg/reports/openmc-integration-20260926/repaired/campaign-plan.json",
+      "raw_sha256": "abbeb085f0861689a059f12d563d622e32d90ffeb97edaca87e657c4bf5fe9b3",
+      "staged_sha256": "abbeb085f0861689a059f12d563d622e32d90ffeb97edaca87e657c4bf5fe9b3",
+      "bytes": 605,
+      "line_endings_only": false
+    },
+    {
+      "path": "dev/stellarcsg/reports/openmc-integration-20260926/repaired/campaign-progress.json",
+      "raw_sha256": "f9c17a5f69fc8e2ae6a133f206ac17916ba713e6dc2dd4e06137c1d2a30b0d6f",
+      "staged_sha256": "f9c17a5f69fc8e2ae6a133f206ac17916ba713e6dc2dd4e06137c1d2a30b0d6f",
+      "bytes": 5788,
+      "line_endings_only": false
+    },
+    {
+      "path": "dev/stellarcsg/reports/openmc-integration-20260926/repaired/coil-native-file/geometry.xml",
+      "raw_sha256": "16767d3dbe6eab21f6f667f281689db2ade4bf25f71574ec9b9cf34938e7ac25",
+      "staged_sha256": "16767d3dbe6eab21f6f667f281689db2ade4bf25f71574ec9b9cf34938e7ac25",
+      "bytes": 859,
+      "line_endings_only": false
+    },
+    {
+      "path": "dev/stellarcsg/reports/openmc-integration-20260926/repaired/coil-native-file/launch.json",
+      "raw_sha256": "3f950b7a023c3b014156118232c1ff16da8d6f1e60f3ccd12feef844c192566b",
+      "staged_sha256": "3f950b7a023c3b014156118232c1ff16da8d6f1e60f3ccd12feef844c192566b",
+      "bytes": 2645,
+      "line_endings_only": false
+    },
+    {
+      "path": "dev/stellarcsg/reports/openmc-integration-20260926/repaired/coil-native-file/local-flux.csv",
+      "raw_sha256": "26c4b1693d9268774083a83ec5d0fcb509baa1c2a61b5b0b9be428307ac1003e",
+      "staged_sha256": "26c4b1693d9268774083a83ec5d0fcb509baa1c2a61b5b0b9be428307ac1003e",
+      "bytes": 5080,
+      "line_endings_only": false
+    },
+    {
+      "path": "dev/stellarcsg/reports/openmc-integration-20260926/repaired/coil-native-file/materials.xml",
+      "raw_sha256": "af2a5fa8526432a9a088f29d3c9d8dbc6c34835fc988cc7511e7e0ae8ffc5669",
+      "staged_sha256": "af2a5fa8526432a9a088f29d3c9d8dbc6c34835fc988cc7511e7e0ae8ffc5669",
+      "bytes": 221,
+      "line_endings_only": false
+    },
+    {
+      "path": "dev/stellarcsg/reports/openmc-integration-20260926/repaired/coil-native-file/receipt.json",
+      "raw_sha256": "ea93b8ca9c747de57b16dd2d213238085a2e0eb3a5987649182b11f73ac802d5",
+      "staged_sha256": "ea93b8ca9c747de57b16dd2d213238085a2e0eb3a5987649182b11f73ac802d5",
+      "bytes": 482151,
+      "line_endings_only": false
+    },
+    {
+      "path": "dev/stellarcsg/reports/openmc-integration-20260926/repaired/coil-native-file/settings.xml",
+      "raw_sha256": "7e7ac420bf7fe053e08f389424ac7e5544f9be930613a20e967a7b9ab023241e",
+      "staged_sha256": "7e7ac420bf7fe053e08f389424ac7e5544f9be930613a20e967a7b9ab023241e",
+      "bytes": 1013,
+      "line_endings_only": false
+    },
+    {
+      "path": "dev/stellarcsg/reports/openmc-integration-20260926/repaired/coil-native-file/tallies.xml",
+      "raw_sha256": "a587cd41a170a7457d1799d4f735200248e68f627629346a130199e1d8aa144f",
+      "staged_sha256": "a587cd41a170a7457d1799d4f735200248e68f627629346a130199e1d8aa144f",
+      "bytes": 5623,
+      "line_endings_only": false
+    },
+    {
+      "path": "dev/stellarcsg/reports/openmc-integration-20260926/repaired/coil-native-file.txt",
+      "raw_sha256": "f9433915c1accf82534bf29083196c514802219e31e79b4d7b1aaa8441315f0d",
+      "staged_sha256": "f9433915c1accf82534bf29083196c514802219e31e79b4d7b1aaa8441315f0d",
+      "bytes": 13167,
+      "line_endings_only": false
+    },
+    {
+      "path": "dev/stellarcsg/reports/openmc-integration-20260926/repaired/coil-spline-file/geometry.xml",
+      "raw_sha256": "cb7deb12bc3545e0cf6326362902c9b33e2497799c03eb3fe611d2b019bec0c5",
+      "staged_sha256": "cb7deb12bc3545e0cf6326362902c9b33e2497799c03eb3fe611d2b019bec0c5",
+      "bytes": 1180,
+      "line_endings_only": false
+    },
+    {
+      "path": "dev/stellarcsg/reports/openmc-integration-20260926/repaired/coil-spline-file/launch.json",
+      "raw_sha256": "611b40aa8a605fc7f9ae5a41ca5f2db096d80c18e41c319d0410f1312a9cb9a8",
+      "staged_sha256": "611b40aa8a605fc7f9ae5a41ca5f2db096d80c18e41c319d0410f1312a9cb9a8",
+      "bytes": 2645,
+      "line_endings_only": false
+    },
+    {
+      "path": "dev/stellarcsg/reports/openmc-integration-20260926/repaired/coil-spline-file/local-flux.csv",
+      "raw_sha256": "26c4b1693d9268774083a83ec5d0fcb509baa1c2a61b5b0b9be428307ac1003e",
+      "staged_sha256": "26c4b1693d9268774083a83ec5d0fcb509baa1c2a61b5b0b9be428307ac1003e",
+      "bytes": 5080,
+      "line_endings_only": false
+    },
+    {
+      "path": "dev/stellarcsg/reports/openmc-integration-20260926/repaired/coil-spline-file/materials.xml",
+      "raw_sha256": "af2a5fa8526432a9a088f29d3c9d8dbc6c34835fc988cc7511e7e0ae8ffc5669",
+      "staged_sha256": "af2a5fa8526432a9a088f29d3c9d8dbc6c34835fc988cc7511e7e0ae8ffc5669",
+      "bytes": 221,
+      "line_endings_only": false
+    },
+    {
+      "path": "dev/stellarcsg/reports/openmc-integration-20260926/repaired/coil-spline-file/receipt.json",
+      "raw_sha256": "38ea38e4265cf64d23822e2f58e7545b6bf40996b7ea6ff0956e940981fcf9ba",
+      "staged_sha256": "38ea38e4265cf64d23822e2f58e7545b6bf40996b7ea6ff0956e940981fcf9ba",
+      "bytes": 482198,
+      "line_endings_only": false
+    },
+    {
+      "path": "dev/stellarcsg/reports/openmc-integration-20260926/repaired/coil-spline-file/settings.xml",
+      "raw_sha256": "7e7ac420bf7fe053e08f389424ac7e5544f9be930613a20e967a7b9ab023241e",
+      "staged_sha256": "7e7ac420bf7fe053e08f389424ac7e5544f9be930613a20e967a7b9ab023241e",
+      "bytes": 1013,
+      "line_endings_only": false
+    },
+    {
+      "path": "dev/stellarcsg/reports/openmc-integration-20260926/repaired/coil-spline-file/tallies.xml",
+      "raw_sha256": "a587cd41a170a7457d1799d4f735200248e68f627629346a130199e1d8aa144f",
+      "staged_sha256": "a587cd41a170a7457d1799d4f735200248e68f627629346a130199e1d8aa144f",
+      "bytes": 5623,
+      "line_endings_only": false
+    },
+    {
+      "path": "dev/stellarcsg/reports/openmc-integration-20260926/repaired/coil-spline-file.txt",
+      "raw_sha256": "f1e782350acc0e5a040eb91c09561ae09003ad498059ed019c7fe3ef18b3de1f",
+      "staged_sha256": "f1e782350acc0e5a040eb91c09561ae09003ad498059ed019c7fe3ef18b3de1f",
+      "bytes": 13167,
+      "line_endings_only": false
+    },
+    {
+      "path": "dev/stellarcsg/reports/openmc-integration-20260926/repaired/plasma-native-box/geometry.xml",
+      "raw_sha256": "1e34d73bded2ba3066bf8819dcad4aa07b8cbf541132df7a44e07fb4aa43637c",
+      "staged_sha256": "1e34d73bded2ba3066bf8819dcad4aa07b8cbf541132df7a44e07fb4aa43637c",
+      "bytes": 1007,
+      "line_endings_only": false
+    },
+    {
+      "path": "dev/stellarcsg/reports/openmc-integration-20260926/repaired/plasma-native-box/launch.json",
+      "raw_sha256": "93539c503533037fd27e98fa5537d4edd06cda369781a0852f7ee9b0660c5938",
+      "staged_sha256": "93539c503533037fd27e98fa5537d4edd06cda369781a0852f7ee9b0660c5938",
+      "bytes": 2652,
+      "line_endings_only": false
+    },
+    {
+      "path": "dev/stellarcsg/reports/openmc-integration-20260926/repaired/plasma-native-box/local-flux.csv",
+      "raw_sha256": "078fadc3806505472cd34f6d265c1f377017a8a1efa506ba45d6402a101ff59d",
+      "staged_sha256": "078fadc3806505472cd34f6d265c1f377017a8a1efa506ba45d6402a101ff59d",
+      "bytes": 4498,
+      "line_endings_only": false
+    },
+    {
+      "path": "dev/stellarcsg/reports/openmc-integration-20260926/repaired/plasma-native-box/materials.xml",
+      "raw_sha256": "af2a5fa8526432a9a088f29d3c9d8dbc6c34835fc988cc7511e7e0ae8ffc5669",
+      "staged_sha256": "af2a5fa8526432a9a088f29d3c9d8dbc6c34835fc988cc7511e7e0ae8ffc5669",
+      "bytes": 221,
+      "line_endings_only": false
+    },
+    {
+      "path": "dev/stellarcsg/reports/openmc-integration-20260926/repaired/plasma-native-box/receipt.json",
+      "raw_sha256": "a3aed7f23151dffda84624552284104e28402b9313b563abc807c4ec9d25d0fd",
+      "staged_sha256": "a3aed7f23151dffda84624552284104e28402b9313b563abc807c4ec9d25d0fd",
+      "bytes": 495539,
+      "line_endings_only": false
+    },
+    {
+      "path": "dev/stellarcsg/reports/openmc-integration-20260926/repaired/plasma-native-box/settings.xml",
+      "raw_sha256": "651f8178cd852fd737050c121e66b064ea6715a1e737f028fe5e0cc3eb592e8c",
+      "staged_sha256": "651f8178cd852fd737050c121e66b064ea6715a1e737f028fe5e0cc3eb592e8c",
+      "bytes": 1272,
+      "line_endings_only": false
+    },
+    {
+      "path": "dev/stellarcsg/reports/openmc-integration-20260926/repaired/plasma-native-box/tallies.xml",
+      "raw_sha256": "6d7aafacb0fd8c2309a7a9bdf33bd6416a1d43d2a4e358f82272aab76a5db403",
+      "staged_sha256": "6d7aafacb0fd8c2309a7a9bdf33bd6416a1d43d2a4e358f82272aab76a5db403",
+      "bytes": 5630,
+      "line_endings_only": false
+    },
+    {
+      "path": "dev/stellarcsg/reports/openmc-integration-20260926/repaired/plasma-native-box.txt",
+      "raw_sha256": "b7c2233fcb5d791f2be143ad2b4834671450c2d05fe869ac3d852b78dc4401b2",
+      "staged_sha256": "b7c2233fcb5d791f2be143ad2b4834671450c2d05fe869ac3d852b78dc4401b2",
+      "bytes": 13098,
+      "line_endings_only": false
+    },
+    {
+      "path": "dev/stellarcsg/reports/openmc-integration-20260926/repaired/plasma-native-mesh/geometry.xml",
+      "raw_sha256": "1e34d73bded2ba3066bf8819dcad4aa07b8cbf541132df7a44e07fb4aa43637c",
+      "staged_sha256": "1e34d73bded2ba3066bf8819dcad4aa07b8cbf541132df7a44e07fb4aa43637c",
+      "bytes": 1007,
+      "line_endings_only": false
+    },
+    {
+      "path": "dev/stellarcsg/reports/openmc-integration-20260926/repaired/plasma-native-mesh/launch.json",
+      "raw_sha256": "272939ed5962370373136a1954a2569c8323073c8c7efcddc272cf2e846aa2f1",
+      "staged_sha256": "272939ed5962370373136a1954a2569c8323073c8c7efcddc272cf2e846aa2f1",
+      "bytes": 2653,
+      "line_endings_only": false
+    },
+    {
+      "path": "dev/stellarcsg/reports/openmc-integration-20260926/repaired/plasma-native-mesh/local-flux.csv",
+      "raw_sha256": "bb3f8ce86ba0eac3d1e7e218237171a9448f76502721752187cc18adeb7bce3c",
+      "staged_sha256": "bb3f8ce86ba0eac3d1e7e218237171a9448f76502721752187cc18adeb7bce3c",
+      "bytes": 4092,
+      "line_endings_only": false
+    },
+    {
+      "path": "dev/stellarcsg/reports/openmc-integration-20260926/repaired/plasma-native-mesh/materials.xml",
+      "raw_sha256": "af2a5fa8526432a9a088f29d3c9d8dbc6c34835fc988cc7511e7e0ae8ffc5669",
+      "staged_sha256": "af2a5fa8526432a9a088f29d3c9d8dbc6c34835fc988cc7511e7e0ae8ffc5669",
+      "bytes": 221,
+      "line_endings_only": false
+    },
+    {
+      "path": "dev/stellarcsg/reports/openmc-integration-20260926/repaired/plasma-native-mesh/receipt.json",
+      "raw_sha256": "e4d8f6071d31437c60490ab8b1d9b94914dfe1eb22670d1680b696b06606127a",
+      "staged_sha256": "e4d8f6071d31437c60490ab8b1d9b94914dfe1eb22670d1680b696b06606127a",
+      "bytes": 507026,
+      "line_endings_only": false
+    },
+    {
+      "path": "dev/stellarcsg/reports/openmc-integration-20260926/repaired/plasma-native-mesh/settings.xml",
+      "raw_sha256": "e58c733f46ceff874c8e039be43f4abc72910aaa71c0f4bd71e203db5eb4440d",
+      "staged_sha256": "e58c733f46ceff874c8e039be43f4abc72910aaa71c0f4bd71e203db5eb4440d",
+      "bytes": 1606,
+      "line_endings_only": false
+    },
+    {
+      "path": "dev/stellarcsg/reports/openmc-integration-20260926/repaired/plasma-native-mesh/tallies.xml",
+      "raw_sha256": "d33c7a34e3c919ec5d0f5de639c8e5fa8ce5fb74408ad323459b343f2288b087",
+      "staged_sha256": "d33c7a34e3c919ec5d0f5de639c8e5fa8ce5fb74408ad323459b343f2288b087",
+      "bytes": 5896,
+      "line_endings_only": false
+    },
+    {
+      "path": "dev/stellarcsg/reports/openmc-integration-20260926/repaired/plasma-native-mesh.txt",
+      "raw_sha256": "a6f58999374c429e22286828d18fb3b60f0f373dfc918cde1cbec0e5b991143b",
+      "staged_sha256": "a6f58999374c429e22286828d18fb3b60f0f373dfc918cde1cbec0e5b991143b",
+      "bytes": 13686,
+      "line_endings_only": false
+    },
+    {
+      "path": "dev/stellarcsg/reports/openmc-integration-20260926/repaired/plasma-spline-box/geometry.xml",
+      "raw_sha256": "05d38b11ac4c29dcc96f829d2bb57aa50336ad84841ed5c34ba934260f063672",
+      "staged_sha256": "05d38b11ac4c29dcc96f829d2bb57aa50336ad84841ed5c34ba934260f063672",
+      "bytes": 1287,
+      "line_endings_only": false
+    },
+    {
+      "path": "dev/stellarcsg/reports/openmc-integration-20260926/repaired/plasma-spline-box/launch.json",
+      "raw_sha256": "f69c2dd765af1ab0b62c184bbadd20744dfdd9c94ee8dac7d98287c263f51b2b",
+      "staged_sha256": "f69c2dd765af1ab0b62c184bbadd20744dfdd9c94ee8dac7d98287c263f51b2b",
+      "bytes": 2652,
+      "line_endings_only": false
+    },
+    {
+      "path": "dev/stellarcsg/reports/openmc-integration-20260926/repaired/plasma-spline-box/local-flux.csv",
+      "raw_sha256": "46f0579cde9b7d82b4d81e95b736b7375d15a96f2b78adc19b461a80d888c44d",
+      "staged_sha256": "46f0579cde9b7d82b4d81e95b736b7375d15a96f2b78adc19b461a80d888c44d",
+      "bytes": 4499,
+      "line_endings_only": false
+    },
+    {
+      "path": "dev/stellarcsg/reports/openmc-integration-20260926/repaired/plasma-spline-box/materials.xml",
+      "raw_sha256": "af2a5fa8526432a9a088f29d3c9d8dbc6c34835fc988cc7511e7e0ae8ffc5669",
+      "staged_sha256": "af2a5fa8526432a9a088f29d3c9d8dbc6c34835fc988cc7511e7e0ae8ffc5669",
+      "bytes": 221,
+      "line_endings_only": false
+    },
+    {
+      "path": "dev/stellarcsg/reports/openmc-integration-20260926/repaired/plasma-spline-box/receipt.json",
+      "raw_sha256": "486d93d5abfd812a8e71f190b584b77eb961021667defcdca9d4ab746e2b1e5f",
+      "staged_sha256": "486d93d5abfd812a8e71f190b584b77eb961021667defcdca9d4ab746e2b1e5f",
+      "bytes": 495546,
+      "line_endings_only": false
+    },
+    {
+      "path": "dev/stellarcsg/reports/openmc-integration-20260926/repaired/plasma-spline-box/settings.xml",
+      "raw_sha256": "651f8178cd852fd737050c121e66b064ea6715a1e737f028fe5e0cc3eb592e8c",
+      "staged_sha256": "651f8178cd852fd737050c121e66b064ea6715a1e737f028fe5e0cc3eb592e8c",
+      "bytes": 1272,
+      "line_endings_only": false
+    },
+    {
+      "path": "dev/stellarcsg/reports/openmc-integration-20260926/repaired/plasma-spline-box/tallies.xml",
+      "raw_sha256": "6d7aafacb0fd8c2309a7a9bdf33bd6416a1d43d2a4e358f82272aab76a5db403",
+      "staged_sha256": "6d7aafacb0fd8c2309a7a9bdf33bd6416a1d43d2a4e358f82272aab76a5db403",
+      "bytes": 5630,
+      "line_endings_only": false
+    },
+    {
+      "path": "dev/stellarcsg/reports/openmc-integration-20260926/repaired/plasma-spline-box.txt",
+      "raw_sha256": "d50b5abb239c281471d5566b403864458fb7f66ee9b72405a65fb0d885e4ec5a",
+      "staged_sha256": "d50b5abb239c281471d5566b403864458fb7f66ee9b72405a65fb0d885e4ec5a",
+      "bytes": 13098,
+      "line_endings_only": false
+    },
+    {
+      "path": "dev/stellarcsg/reports/openmc-integration-20260926/repaired/plasma-spline-mesh/geometry.xml",
+      "raw_sha256": "05d38b11ac4c29dcc96f829d2bb57aa50336ad84841ed5c34ba934260f063672",
+      "staged_sha256": "05d38b11ac4c29dcc96f829d2bb57aa50336ad84841ed5c34ba934260f063672",
+      "bytes": 1287,
+      "line_endings_only": false
+    },
+    {
+      "path": "dev/stellarcsg/reports/openmc-integration-20260926/repaired/plasma-spline-mesh/launch.json",
+      "raw_sha256": "5349df8e763f6a564b7afe8e8d17d1bae9827109d2f3994d1bc40990aaf855d3",
+      "staged_sha256": "5349df8e763f6a564b7afe8e8d17d1bae9827109d2f3994d1bc40990aaf855d3",
+      "bytes": 2653,
+      "line_endings_only": false
+    },
+    {
+      "path": "dev/stellarcsg/reports/openmc-integration-20260926/repaired/plasma-spline-mesh/local-flux.csv",
+      "raw_sha256": "0ef9510ade1ed976b4e26a62a814966157eb99e82195e8f933a63acc15f2673c",
+      "staged_sha256": "0ef9510ade1ed976b4e26a62a814966157eb99e82195e8f933a63acc15f2673c",
+      "bytes": 4091,
+      "line_endings_only": false
+    },
+    {
+      "path": "dev/stellarcsg/reports/openmc-integration-20260926/repaired/plasma-spline-mesh/materials.xml",
+      "raw_sha256": "af2a5fa8526432a9a088f29d3c9d8dbc6c34835fc988cc7511e7e0ae8ffc5669",
+      "staged_sha256": "af2a5fa8526432a9a088f29d3c9d8dbc6c34835fc988cc7511e7e0ae8ffc5669",
+      "bytes": 221,
+      "line_endings_only": false
+    },
+    {
+      "path": "dev/stellarcsg/reports/openmc-integration-20260926/repaired/plasma-spline-mesh/receipt.json",
+      "raw_sha256": "072971275a6e385327ee5f3971ea8777edb381516f1a5584661e5e85907729cb",
+      "staged_sha256": "072971275a6e385327ee5f3971ea8777edb381516f1a5584661e5e85907729cb",
+      "bytes": 507216,
+      "line_endings_only": false
+    },
+    {
+      "path": "dev/stellarcsg/reports/openmc-integration-20260926/repaired/plasma-spline-mesh/settings.xml",
+      "raw_sha256": "e58c733f46ceff874c8e039be43f4abc72910aaa71c0f4bd71e203db5eb4440d",
+      "staged_sha256": "e58c733f46ceff874c8e039be43f4abc72910aaa71c0f4bd71e203db5eb4440d",
+      "bytes": 1606,
+      "line_endings_only": false
+    },
+    {
+      "path": "dev/stellarcsg/reports/openmc-integration-20260926/repaired/plasma-spline-mesh/tallies.xml",
+      "raw_sha256": "d33c7a34e3c919ec5d0f5de639c8e5fa8ce5fb74408ad323459b343f2288b087",
+      "staged_sha256": "d33c7a34e3c919ec5d0f5de639c8e5fa8ce5fb74408ad323459b343f2288b087",
+      "bytes": 5896,
+      "line_endings_only": false
+    },
+    {
+      "path": "dev/stellarcsg/reports/openmc-integration-20260926/repaired/plasma-spline-mesh.txt",
+      "raw_sha256": "357c97d3920bb1b5e86aa5bb3a75f8b60443929bd56185a1ac52365b10ec397e",
+      "staged_sha256": "357c97d3920bb1b5e86aa5bb3a75f8b60443929bd56185a1ac52365b10ec397e",
+      "bytes": 13686,
+      "line_endings_only": false
+    },
+    {
+      "path": "dev/stellarcsg/reports/openmc-integration-20260926/repaired-campaign.txt",
+      "raw_sha256": "b4984df17a7a0ae7ecef832a0b8fae46c35027d4c23e56c55d7b4476aedb8886",
+      "staged_sha256": "b4984df17a7a0ae7ecef832a0b8fae46c35027d4c23e56c55d7b4476aedb8886",
+      "bytes": 5059,
+      "line_endings_only": false
+    },
+    {
+      "path": "dev/stellarcsg/reports/openmc-integration-20260926/RESULTS.md",
+      "raw_sha256": "1fc917f7146cac9a486bfad186ffb624d8e0bc694d0c82d08be62158c92d6e93",
+      "staged_sha256": "1fc917f7146cac9a486bfad186ffb624d8e0bc694d0c82d08be62158c92d6e93",
+      "bytes": 9135,
+      "line_endings_only": false
+    },
+    {
+      "path": "dev/stellarcsg/reports/openmc-integration-20260926/REVIEW.md",
+      "raw_sha256": "515774a86049187f12642c809d9f11a992f1404fd75163dbdb8a0a53763c2a04",
+      "staged_sha256": "515774a86049187f12642c809d9f11a992f1404fd75163dbdb8a0a53763c2a04",
+      "bytes": 19716,
+      "line_endings_only": false
+    },
+    {
+      "path": "dev/stellarcsg/reports/openmc-integration-20260926/unit-tests-01.txt",
+      "raw_sha256": "d56121580e26721a008b6efa8043338201ddad75d1563f1c8b48fc5bbc843b7c",
+      "staged_sha256": "d56121580e26721a008b6efa8043338201ddad75d1563f1c8b48fc5bbc843b7c",
+      "bytes": 106,
+      "line_endings_only": false
+    },
+    {
+      "path": "dev/stellarcsg/reports/openmc-integration-20260926/unit-tests-02.txt",
+      "raw_sha256": "acaa7342227e964c6494bbf36d158bd31b4d7be585ecb17083d025d8f80b3b7d",
+      "staged_sha256": "acaa7342227e964c6494bbf36d158bd31b4d7be585ecb17083d025d8f80b3b7d",
+      "bytes": 102,
+      "line_endings_only": false
+    }
+  ],
+  "note": "Report bytes preserved exactly; source differences limited to CRLF normalization. This receipt cannot include its own hash."
+}

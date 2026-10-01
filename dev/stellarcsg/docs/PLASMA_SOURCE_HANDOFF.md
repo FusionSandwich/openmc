@@ -41,6 +41,27 @@ fixed wall; sampled source sites alone cannot establish containment. The
 consumer validates bindings and stated conditions, but does not itself prove
 the clearance calculation or authenticate who wrote the evidence.
 
+The sampling record's `input_sha256` map must bind the named roles `source`,
+`mesh`, `mesh_data`, and `case` to the corresponding handoff file hashes.
+Checking only a set of hash values is insufficient: a role swap must fail.
+Producers using path-keyed maps need an explicit adapter to these named roles;
+the consumer does not guess their meaning. JSON duplicate keys and nonfinite
+constants, boolean exit codes/counts/strengths, and malformed role bindings are
+rejected. Clearance subtraction uses exact arithmetic on the stated binary64
+values so rounding cannot turn a deficit into an admission.
+
+`make_openmc_source(plasma_cells=[...])` optionally adds the ordinary native
+cell constraint with resampling and rechecks the mesh hash at construction.
+It remains a diagnostic guard: the wall-H5M clearance does not prove source
+containment in a different CSG plasma, and rejection can distort the intended
+spatial/energy PDF. Full CSG support containment and the actual producer's
+native sampling evidence must be qualified before physical use. The current
+native integration tests use a separate structured-mesh diagnostic source;
+they do not admit this MOAB/UQ source. The remaining file-open interval between
+construction and execution also requires an execution-time input identity
+check by the caller. See `OPENMC_INTEGRATION.md` for the standard source/tally
+interface and executable checks.
+
 The UQ project's current corrected ASC P00 geometry target is the fixed H5M
 SHA-256 `549c42bf66b290f8f56b6f4d7523940c3b32b9d256d993ea42605f4dddb33e39`
 and ASC case SHA-256 `742ef72f1e1c07f958ecc3e47796709d1b51a53407cb89b0448f7a595d722c59`.

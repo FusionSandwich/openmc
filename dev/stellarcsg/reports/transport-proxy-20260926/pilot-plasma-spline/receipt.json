@@ -1,0 +1,325 @@
+{
+  "family": "plasma",
+  "variant": "spline",
+  "seed": 1741,
+  "particles": 10,
+  "batches": 2,
+  "histories": 20,
+  "threads": 1,
+  "identities": {
+    "binary": "47a1d0f4a15aba391a3f3ae5cb1dd0776f5041afe073e2e2d3fb58b04885a398",
+    "library": "7fa3dbf5bef055aa2227842800e54a2daa84537a1ba6730e97f4fb6cd25d317e",
+    "harness": "b787ff1a06fa561baef10d698616fab9c8235c719be6ab54cc21110dfdcd0ae4",
+    "fixture_manifest": "846af34d0a163ea50e44def0ea84c75295eedb49fa0437b2f4e4ab87fec7b7ec",
+    "source": "5ae218fa17c8d57afd55792e8dd68d4a458a46a212e471de1e1ec0db881d1c39",
+    "data": "18abc04dc9fd602948bafcf487323a1148681c75ee74e27863e843211fd6f1f8",
+    "data_index": "218236803b2c4a21b038992af93dacfdfe5c0c0401cbbc57f3ff3a947c63abc7"
+  },
+  "input_hashes": {
+    "geometry.xml": "8bd4ab339cddfba5357d8b498bfa11e16e859c651245860e6aa7b8665f484b3d",
+    "materials.xml": "af2a5fa8526432a9a088f29d3c9d8dbc6c34835fc988cc7511e7e0ae8ffc5669",
+    "settings.xml": "e3faccbf031469c1de0b5a8477a3024586dd854c3b2a2f36cde6a6bafa70d8fa",
+    "tallies.xml": "2cac3f93d2c54d4a92c5530ecf71e2fbdc441981b027ccdc5913b9b7bb8d223a"
+  },
+  "energy_bins_eV": [
+    0.0,
+    1000.0,
+    100000.0,
+    1000000.0,
+    5000000.0,
+    10000000.0,
+    14200000.0
+  ],
+  "scores": [
+    "flux",
+    "total",
+    "absorption",
+    "damage-energy"
+  ],
+  "estimator": "tracklength",
+  "MT444_present": true,
+  "damage_model": "NRT-test-index",
+  "volume_cm3": 80930.75608893274,
+  "atoms": 6.796353517446057e+27,
+  "displacement_energy_eV": 40.0,
+  "timeout_s": 180.0,
+  "memory_cap_bytes": 2147483648,
+  "started": 1790458944.639645,
+  "exit_code": 0,
+  "timed_out": false,
+  "wall_s": 5.538988979000351,
+  "forbidden_diagnostics": [],
+  "statepoints": [
+    "statepoint.1.h5",
+    "statepoint.2.h5"
+  ],
+  "state": "OBSERVED_COMPLETE",
+  "batch_scores": [
+    [
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.3999063401787204,
+      0.07029554702175299,
+      0.00011706682273902934,
+      954.7156956345339,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      1.5529856907741257,
+      0.338252950218198,
+      0.02115733958820448,
+      33459.85985274097,
+      1.9528920309528464,
+      0.40854849723995096,
+      0.02127440641094351,
+      34414.5755483755,
+      1.9528920309528464,
+      0.40854849723995096,
+      0.02127440641094351,
+      34414.5755483755
+    ],
+    [
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.19064970103983347,
+      0.04839090234000201,
+      0.0014990076068574663,
+      3397.7413273517122,
+      1.2745364710191989,
+      0.27645825733613516,
+      0.01739613691553781,
+      27596.456633557988,
+      1.4651861720590325,
+      0.3248491596761371,
+      0.018895144522395275,
+      30994.19796090969,
+      1.4651861720590325,
+      0.3248491596761371,
+      0.018895144522395275,
+      30994.19796090969
+    ]
+  ],
+  "tally_means": {
+    "1": [
+      [
+        [
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ]
+      ],
+      [
+        [
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ]
+      ],
+      [
+        [
+          0.1999531700893602,
+          0.035147773510876494,
+          5.853341136951467e-05,
+          477.35784781726693
+        ]
+      ],
+      [
+        [
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ]
+      ],
+      [
+        [
+          0.09532485051991674,
+          0.024195451170001006,
+          0.0007495038034287332,
+          1698.8706636758561
+        ]
+      ],
+      [
+        [
+          1.4137610808966623,
+          0.3073556037771666,
+          0.019276738251871144,
+          30528.15824314948
+        ]
+      ]
+    ],
+    "2": [
+      [
+        [
+          1.7090391015059394,
+          0.366698828458044,
+          0.020084775466669393,
+          32704.386754642594
+        ]
+      ]
+    ],
+    "3": [
+      [
+        [
+          1.7090391015059394,
+          0.366698828458044,
+          0.020084775466669393,
+          32704.386754642594
+        ]
+      ]
+    ]
+  },
+  "tally_std_dev": {
+    "1": [
+      [
+        [
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ]
+      ],
+      [
+        [
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ]
+      ],
+      [
+        [
+          0.1999531700893602,
+          0.035147773510876494,
+          5.853341136951467e-05,
+          477.35784781726693
+        ]
+      ],
+      [
+        [
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ]
+      ],
+      [
+        [
+          0.09532485051991674,
+          0.024195451170001006,
+          0.0007495038034287332,
+          1698.8706636758561
+        ]
+      ],
+      [
+        [
+          0.13922460987746552,
+          0.03089734644103145,
+          0.001880601336333325,
+          2931.701609591485
+        ]
+      ]
+    ],
+    "2": [
+      [
+        [
+          0.2438529294469075,
+          0.0418496687819071,
+          0.0011896309442741154,
+          1710.1887937329047
+        ]
+      ]
+    ],
+    "3": [
+      [
+        [
+          0.2438529294469075,
+          0.0418496687819071,
+          0.0011896309442741154,
+          1710.1887937329047
+        ]
+      ]
+    ]
+  },
+  "runtime_s": {
+    "accumulating tallies": 2.2e-06,
+    "active batches": 0.055839001,
+    "reading cross sections": 1.645568735,
+    "simulation": 0.055100601,
+    "total": 5.473128978,
+    "total initialization": 5.413482877,
+    "transport": 0.0047594,
+    "writing statepoints": 0.052237301
+  },
+  "global_tallies": [
+    {
+      "name": "k-collision",
+      "mean": 0.0,
+      "std_dev": 0.0
+    },
+    {
+      "name": "k-absorption",
+      "mean": 0.0,
+      "std_dev": 0.0
+    },
+    {
+      "name": "k-tracklength",
+      "mean": 0.0,
+      "std_dev": 0.0
+    },
+    {
+      "name": "leakage",
+      "mean": 1.0,
+      "std_dev": 0.0
+    }
+  ],
+  "nrt_dpa_index_per_source": 4.8120490893670135e-26,
+  "normalization": "per source particle; coil uses declared reference atom count",
+  "closure": "PASS",
+  "statepoint_hashes": {
+    "statepoint.1.h5": "dee62b39d5254c980edef77b3fdcce53e5fa3a0c83cdc25d0cbdf8e771d53913",
+    "statepoint.2.h5": "c5e6460d4e6713f125d89a5a6fa93b1ebd0eec1d59a5d1d2d158933dba4d3421"
+  },
+  "identities_after": {
+    "binary": "47a1d0f4a15aba391a3f3ae5cb1dd0776f5041afe073e2e2d3fb58b04885a398",
+    "library": "7fa3dbf5bef055aa2227842800e54a2daa84537a1ba6730e97f4fb6cd25d317e",
+    "harness": "b787ff1a06fa561baef10d698616fab9c8235c719be6ab54cc21110dfdcd0ae4",
+    "fixture_manifest": "846af34d0a163ea50e44def0ea84c75295eedb49fa0437b2f4e4ab87fec7b7ec",
+    "source": "5ae218fa17c8d57afd55792e8dd68d4a458a46a212e471de1e1ec0db881d1c39",
+    "data": "18abc04dc9fd602948bafcf487323a1148681c75ee74e27863e843211fd6f1f8",
+    "data_index": "218236803b2c4a21b038992af93dacfdfe5c0c0401cbbc57f3ff3a947c63abc7"
+  },
+  "inputs_after": {
+    "geometry.xml": "8bd4ab339cddfba5357d8b498bfa11e16e859c651245860e6aa7b8665f484b3d",
+    "materials.xml": "af2a5fa8526432a9a088f29d3c9d8dbc6c34835fc988cc7511e7e0ae8ffc5669",
+    "settings.xml": "e3faccbf031469c1de0b5a8477a3024586dd854c3b2a2f36cde6a6bafa70d8fa",
+    "tallies.xml": "2cac3f93d2c54d4a92c5530ecf71e2fbdc441981b027ccdc5913b9b7bb8d223a"
+  }
+}

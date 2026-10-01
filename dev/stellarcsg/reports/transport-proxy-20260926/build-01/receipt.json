@@ -1,0 +1,77 @@
+{
+  "inputs_before": {
+    "src/surface_swept_spline.cpp": "59526c909c83f034d188064a819430a102c13807b5a897d74ebcccdd200f4b26",
+    "src/surface_periodic_spline.cpp": "c34cf83823c1856076e247e95337eb75a03553049fe510ad76149749c8483892",
+    "include/openmc/surface_swept_spline.h": "98438ce0353e99cebc5a32e463bb78b4d0602392e3f6fd83b9513ca055035be0",
+    "openmc/surface.py": "1135d3fe7e8c28028f0ac9e8135b2a5e5eb633389b2b9628e96bc65e8eb5adfb",
+    "dev/stellarcsg/src/compiled_periodic_surface.cpp": "abcaa01029e7b72c9cee0f7cce6aeadee1f1f0c5b70ca0c68724a19885dd8c7e",
+    "dev/stellarcsg/src/certified_spline_offset.cpp": "ef70e1574dea97cdfdef7465dff62215116079bd8c1424ca195c77ff2b5eca0c",
+    "dev/stellarcsg/include/stellarcsg/root_solver.hpp": "5eacbd469d12dd0f1d47e201359abcf8892269dc13f00e6d2e5377f07e4c6f6b",
+    "dev/stellarcsg/tests/test_compiled_surface.cpp": "293b8d762f5b7cf576da7f4f7a22e9004b73d62fe53d193d1c008d3fd529f271",
+    "dev/stellarcsg/tests/test_certified_offset.cpp": "02b5bd8d62908f33ccf49aa17c2536cdc229c7653855d40394bbc542c207d1f3",
+    "CMakeLists.txt": "bdd8a72af632c10433e6353bc9a480202d1324b00e6784901b0b562d76959887",
+    "dev/stellarcsg/CMakeLists.txt": "19c32c7eb245b4a4cec13c9ceb6ad5ab02818d8b5e876c0bdf62d7bcf0054a4f",
+    "build/astra/CMakeCache.txt": "b322ea8411c0e511e826bc1afc2b0f599771e13eca5b7c9e74017ddb10bc1184",
+    "build/astra/build.ninja": "720408965cb13945fdd0604ec45b75de0058a3c5747078bb80cd98003283150d",
+    "build/astra-native/CMakeCache.txt": "fdec6de9d3f7005b41e35277439dd5b32c5a630eb99368ac5c6de92718175896",
+    "build/astra-native/build.ninja": "4d52234d54058a8e4ac1f9d83637725715ad74ceb56f85754ed873fb29f683e1"
+  },
+  "inputs_after": {
+    "src/surface_swept_spline.cpp": "59526c909c83f034d188064a819430a102c13807b5a897d74ebcccdd200f4b26",
+    "src/surface_periodic_spline.cpp": "c34cf83823c1856076e247e95337eb75a03553049fe510ad76149749c8483892",
+    "include/openmc/surface_swept_spline.h": "98438ce0353e99cebc5a32e463bb78b4d0602392e3f6fd83b9513ca055035be0",
+    "openmc/surface.py": "1135d3fe7e8c28028f0ac9e8135b2a5e5eb633389b2b9628e96bc65e8eb5adfb",
+    "dev/stellarcsg/src/compiled_periodic_surface.cpp": "abcaa01029e7b72c9cee0f7cce6aeadee1f1f0c5b70ca0c68724a19885dd8c7e",
+    "dev/stellarcsg/src/certified_spline_offset.cpp": "ef70e1574dea97cdfdef7465dff62215116079bd8c1424ca195c77ff2b5eca0c",
+    "dev/stellarcsg/include/stellarcsg/root_solver.hpp": "5eacbd469d12dd0f1d47e201359abcf8892269dc13f00e6d2e5377f07e4c6f6b",
+    "dev/stellarcsg/tests/test_compiled_surface.cpp": "293b8d762f5b7cf576da7f4f7a22e9004b73d62fe53d193d1c008d3fd529f271",
+    "dev/stellarcsg/tests/test_certified_offset.cpp": "02b5bd8d62908f33ccf49aa17c2536cdc229c7653855d40394bbc542c207d1f3",
+    "CMakeLists.txt": "bdd8a72af632c10433e6353bc9a480202d1324b00e6784901b0b562d76959887",
+    "dev/stellarcsg/CMakeLists.txt": "19c32c7eb245b4a4cec13c9ceb6ad5ab02818d8b5e876c0bdf62d7bcf0054a4f",
+    "build/astra/CMakeCache.txt": "b322ea8411c0e511e826bc1afc2b0f599771e13eca5b7c9e74017ddb10bc1184",
+    "build/astra/build.ninja": "720408965cb13945fdd0604ec45b75de0058a3c5747078bb80cd98003283150d",
+    "build/astra-native/CMakeCache.txt": "fdec6de9d3f7005b41e35277439dd5b32c5a630eb99368ac5c6de92718175896",
+    "build/astra-native/build.ninja": "4d52234d54058a8e4ac1f9d83637725715ad74ceb56f85754ed873fb29f683e1"
+  },
+  "changed_inputs": [],
+  "outputs": {
+    "build/astra/stellarcsg_offset_tests": "eb44a487242b8bdf30e80f7943021c403030b0222cb925cdbcd0f2d97e55f63e",
+    "build/astra/stellarcsg_compiled_surface_tests": "cbae6903eef8239939e16e94b84b236e32e12fafabf4609b6ed80028c46dd2ca",
+    "build/astra-native/bin/openmc": "47a1d0f4a15aba391a3f3ae5cb1dd0776f5041afe073e2e2d3fb58b04885a398",
+    "build/astra-native/lib/libopenmc.so": "b6087066ff2a59da788c8468c81c26de692befe76ecf54b7b3ee127494aad085",
+    "build/astra-native/bin/stellarcsg_native_offset_probe": "ec48d87753fd9128feb636e6203c6ce6c573f52d453ab5b22ebad25b1a6660ba"
+  },
+  "builds": [
+    {
+      "command": [
+        "cmake",
+        "--build",
+        "build/astra",
+        "--parallel",
+        "1",
+        "--target",
+        "stellarcsg_offset_tests",
+        "stellarcsg_compiled_surface_tests"
+      ],
+      "exit_code": 0,
+      "seconds": 31.91851043701172
+    },
+    {
+      "command": [
+        "cmake",
+        "--build",
+        "build/astra-native",
+        "--parallel",
+        "1",
+        "--target",
+        "openmc",
+        "stellarcsg_native_offset_probe"
+      ],
+      "exit_code": 0,
+      "seconds": 53.60307335853577
+    }
+  ],
+  "acquisition_bytes": 0,
+  "parallel_jobs": 1,
+  "memory_limit_bytes": 1610612736
+}

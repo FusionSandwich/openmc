@@ -2,6 +2,7 @@
 
 #include <array>
 #include <cmath>
+#include <limits>
 #include <stdexcept>
 #include <utility>
 
@@ -58,23 +59,27 @@ long wrap_index(long index, std::size_t size)
 
 } // namespace
 
-UniformPeriodicBicubicSpline::UniformPeriodicBicubicSpline(
-  std::size_t n_theta, std::size_t n_phi, int n_field_periods,
-  std::vector<double> coefficients)
-  : n_theta_ {n_theta}
-  , n_phi_ {n_phi}
-  , n_field_periods_ {n_field_periods}
-  , coefficients_ {std::move(coefficients)}
+UniformPeriodicBicubicSpline::UniformPeriodicBicubicSpline(std::size_t n_theta,
+  std::size_t n_phi, int n_field_periods, std::vector<double> coefficients)
+  : n_theta_ {n_theta}, n_phi_ {n_phi}, n_field_periods_ {n_field_periods},
+    coefficients_ {std::move(coefficients)}
 {
   if (n_theta_ < 4 || n_phi_ < 4) {
-    throw std::invalid_argument(
-      "Periodic cubic B-splines require at least four coefficients per dimension");
+    throw std::invalid_argument("Periodic cubic B-splines require at least "
+                                "four coefficients per dimension");
   }
   if (n_field_periods_ <= 0) {
     throw std::invalid_argument("Field-period count must be positive");
   }
-  if (coefficients_.size() != n_theta_ * n_phi_) {
-    throw std::invalid_argument("Coefficient array size does not match spline dimensions");
+  if (n_theta_ > std::numeric_limits<std::size_t>::max() / n_phi_ ||
+      n_theta_ >
+        static_cast<std::size_t>(std::numeric_limits<long>::max()) / 2 ||
+      n_phi_ > static_cast<std::size_t>(std::numeric_limits<long>::max()) / 2 ||
+      n_phi_ > std::numeric_limits<std::size_t>::max() /
+                 static_cast<std::size_t>(n_field_periods_) ||
+      coefficients_.size() != n_theta_ * n_phi_) {
+    throw std::invalid_argument(
+      "Coefficient array size does not match spline dimensions");
   }
   for (const double coefficient : coefficients_) {
     if (!std::isfinite(coefficient)) {
@@ -91,14 +96,17 @@ double UniformPeriodicBicubicSpline::coefficient(
   return coefficients_[i * n_phi_ + j];
 }
 
-SplineSample UniformPeriodicBicubicSpline::sample(double theta, double phi) const
+SplineSample UniformPeriodicBicubicSpline::sample(
+  double theta, double phi) const
 {
   const double wrapped_theta = wrap_periodic(theta);
-  const double reduced_phi = wrap_periodic(static_cast<double>(n_field_periods_) * phi);
+  const double reduced_phi =
+    wrap_periodic(static_cast<double>(n_field_periods_) * phi);
 
   const double theta_coordinate =
     wrapped_theta * static_cast<double>(n_theta_) / two_pi;
-  const double phi_coordinate = reduced_phi * static_cast<double>(n_phi_) / two_pi;
+  const double phi_coordinate =
+    reduced_phi * static_cast<double>(n_phi_) / two_pi;
 
   const auto theta_cell = static_cast<long>(std::floor(theta_coordinate));
   const auto phi_cell = static_cast<long>(std::floor(phi_coordinate));
@@ -107,9 +115,11 @@ SplineSample UniformPeriodicBicubicSpline::sample(double theta, double phi) cons
 
   const Basis theta_basis = cubic_basis(u);
   const Basis phi_basis = cubic_basis(v);
-  const double dtheta_coordinate_dtheta = static_cast<double>(n_theta_) / two_pi;
+  const double dtheta_coordinate_dtheta =
+    static_cast<double>(n_theta_) / two_pi;
   const double dphi_coordinate_dphi =
-    static_cast<double>(n_phi_ * static_cast<std::size_t>(n_field_periods_)) / two_pi;
+    static_cast<double>(n_phi_ * static_cast<std::size_t>(n_field_periods_)) /
+    two_pi;
 
   SplineSample result;
   for (long a = 0; a < 4; ++a) {
@@ -118,10 +128,10 @@ SplineSample UniformPeriodicBicubicSpline::sample(double theta, double phi) cons
       const auto ai = static_cast<std::size_t>(a);
       const auto bi = static_cast<std::size_t>(b);
       result.value += control * theta_basis.value[ai] * phi_basis.value[bi];
-      result.dtheta += control * theta_basis.derivative[ai]
-                       * dtheta_coordinate_dtheta * phi_basis.value[bi];
-      result.dphi += control * theta_basis.value[ai]
-                     * phi_basis.derivative[bi] * dphi_coordinate_dphi;
+      result.dtheta += control * theta_basis.derivative[ai] *
+                       dtheta_coordinate_dtheta * phi_basis.value[bi];
+      result.dphi += control * theta_basis.value[ai] *
+                     phi_basis.derivative[bi] * dphi_coordinate_dphi;
     }
   }
   return result;

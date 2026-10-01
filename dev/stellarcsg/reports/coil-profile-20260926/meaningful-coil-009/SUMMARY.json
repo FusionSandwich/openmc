@@ -1,0 +1,498 @@
+{
+  "disposition": "COMPLETED_DIAGNOSTIC",
+  "plan": {
+    "histories_per_method": 20000,
+    "batches": 20,
+    "particles": 1000,
+    "seed": 1741,
+    "methods": [
+      "cache",
+      "flat_ring"
+    ],
+    "threads": 1,
+    "affinity": "one allowed CPU per child",
+    "tally_mode": "on",
+    "worker_timeout_seconds": 600,
+    "block_timeout_seconds": 1800,
+    "worker_address_space_bytes": 1073741824,
+    "statepoint": "final batch only",
+    "label": "admitted current round-tube diagnostic versus builtin flat-ring proxy; full winding pack NOT_ADMITTED",
+    "geometry_preparation": "reused existing coefficient HDF5 and XML; cold geometry build UNKNOWN",
+    "matching": "same settings/material/source/data/tallies/vacuum; shape intentionally differs",
+    "correctness": "retained independently reviewed same-solid cache gates; zero wrong roots, nine normal gaps",
+    "acceptance_gate": "custom transport / builtin transport <=1.25; fidelity separate and open",
+    "no_automatic_retry": true
+  },
+  "workers": [
+    {
+      "method": "cache",
+      "completed_histories": 20000,
+      "completed": {
+        "n_particles": 1000,
+        "n_batches": 20,
+        "current_batch": 20,
+        "n_realizations": 20
+      },
+      "raw_native_runtime_seconds": {
+        "accumulating tallies": 6.15e-05,
+        "active batches": 167.517782558,
+        "reading cross sections": 2.145957064,
+        "simulation": 167.516796358,
+        "total": 174.01277155499997,
+        "total initialization": 6.492197796,
+        "transport": 167.489938658,
+        "writing statepoints": 0.029161
+      },
+      "geometry_reuse_export_seconds": 0.1506007040006807,
+      "cold_geometry_build_seconds": "UNKNOWN; existing payload reused",
+      "geometry_load_compile_seconds": "UNKNOWN separately; within total initialization",
+      "initialization_seconds": 6.492197796,
+      "transport_seconds": 167.489938658,
+      "recorded_statepoint_write_seconds": 0.029161,
+      "output_finalization_seconds": "UNKNOWN; native snapshot incomplete, external wall contains finalization",
+      "external_process_wall_seconds": 174.0984735560014,
+      "result_validation_seconds": 0.03917609999916749,
+      "reused_input_to_validated_result_seconds": 174.30383885999981,
+      "raw_fatal_lost_unresolved_diagnostics": [],
+      "tally_arrays": [
+        {
+          "path": "tallies/tally 1/results",
+          "shape": [
+            6,
+            4,
+            2
+          ],
+          "values": [
+            [
+              [
+                0.05509294631434518,
+                0.0016117569333737563
+              ],
+              [
+                0.051008100449564206,
+                0.001418439323509358
+              ],
+              [
+                0.00010587087952700842,
+                7.648417839160551e-09
+              ],
+              [
+                0.10403752851194469,
+                0.006515029356676846
+              ]
+            ],
+            [
+              [
+                3.2670001160805255,
+                0.5891586656971637
+              ],
+              [
+                1.1520781652785792,
+                0.0782906649364104
+              ],
+              [
+                0.001509985908727595,
+                2.9255272590589204e-07
+              ],
+              [
+                1419.5500005919948,
+                119464.1665841147
+              ]
+            ],
+            [
+              [
+                48.73214032890396,
+                119.29458837658905
+              ],
+              [
+                10.01756927004481,
+                5.042817466804031
+              ],
+              [
+                0.01158776959718325,
+                6.9851575178250164e-06
+              ],
+              [
+                104943.02214593886,
+                553999095.3137609
+              ]
+            ],
+            [
+              [
+                52.76255110041202,
+                139.68673332209744
+              ],
+              [
+                13.060258566645444,
+                8.556525268407292
+              ],
+              [
+                0.009187494025306794,
+                4.2357294836663755e-06
+              ],
+              [
+                395312.12266899797,
+                7839827481.418702
+              ]
+            ],
+            [
+              [
+                7.121167396186455,
+                2.591745369395891
+              ],
+              [
+                2.0766444227853706,
+                0.22040882506976106
+              ],
+              [
+                0.022839071841921067,
+                2.6751257498809203e-05
+              ],
+              [
+                111682.98488800086,
+                637253404.8888224
+              ]
+            ],
+            [
+              [
+                97.67865498494523,
+                477.18638789165993
+              ],
+              [
+                21.246494410377327,
+                22.576832645469032
+              ],
+              [
+                1.327613481579915,
+                0.08815235243089893
+              ],
+              [
+                2108478.2167813075,
+                222344990629.48233
+              ]
+            ]
+          ],
+          "nonzero_elements": 48
+        },
+        {
+          "path": "tallies/tally 2/results",
+          "shape": [
+            1,
+            4,
+            2
+          ],
+          "values": [
+            [
+              [
+                209.6166068728426,
+                2197.935786068426
+              ],
+              [
+                47.60405293558108,
+                113.37027798665713
+              ],
+              [
+                1.3728436738325807,
+                0.09426306339528015
+              ],
+              [
+                2721836.0005223653,
+                370499777803.1613
+              ]
+            ]
+          ],
+          "nonzero_elements": 8
+        },
+        {
+          "path": "tallies/tally 3/results",
+          "shape": [
+            1,
+            4,
+            2
+          ],
+          "values": [
+            [
+              [
+                209.6166068728426,
+                2197.935786068426
+              ],
+              [
+                47.60405293558108,
+                113.37027798665713
+              ],
+              [
+                1.3728436738325807,
+                0.09426306339528015
+              ],
+              [
+                2721836.0005223653,
+                370499777803.1613
+              ]
+            ]
+          ],
+          "nonzero_elements": 8
+        }
+      ],
+      "xml_hashes": {
+        "geometry.xml": "9122b77fed201b243c32caf738565c193835b4fe6ef05e2c52b93767d0fb3c25",
+        "materials.xml": "af2a5fa8526432a9a088f29d3c9d8dbc6c34835fc988cc7511e7e0ae8ffc5669",
+        "settings.xml": "fb66616954f11d74ed2cf20b1146b5a109185aa9d4658d6375746788701c0e0f",
+        "tallies.xml": "2cac3f93d2c54d4a92c5530ecf71e2fbdc441981b027ccdc5913b9b7bb8d223a"
+      },
+      "output_hashes": {
+        "geometry.xml": "9122b77fed201b243c32caf738565c193835b4fe6ef05e2c52b93767d0fb3c25",
+        "materials.xml": "af2a5fa8526432a9a088f29d3c9d8dbc6c34835fc988cc7511e7e0ae8ffc5669",
+        "process-receipt.json": "d312052697af5adcb60ef273ed8523ba0b3e63c80c8b8724a333f453f10d35c5",
+        "process.stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "process.stdout": "7f540b742483e2e980078b3abbeb386f9a126fb44c313dcaea309f55313a2bce",
+        "settings.xml": "fb66616954f11d74ed2cf20b1146b5a109185aa9d4658d6375746788701c0e0f",
+        "statepoint.20.h5": "53706ba5721ad6431c03a517cabedd682dc48550e5e11bc97e825ed9998052fb",
+        "summary.h5": "900865cd75b797b04c5cadb7a00a26e660dc057294440d8631fa323221f478da",
+        "tallies.xml": "2cac3f93d2c54d4a92c5530ecf71e2fbdc441981b027ccdc5913b9b7bb8d223a"
+      },
+      "crossings_per_history": "UNKNOWN; not recorded",
+      "fidelity": "OPEN; different proxy shapes"
+    },
+    {
+      "method": "flat_ring",
+      "completed_histories": 20000,
+      "completed": {
+        "n_particles": 1000,
+        "n_batches": 20,
+        "current_batch": 20,
+        "n_realizations": 20
+      },
+      "raw_native_runtime_seconds": {
+        "accumulating tallies": 1.2499999999999999e-05,
+        "active batches": 0.132253698,
+        "reading cross sections": 2.114072873,
+        "simulation": 0.131392998,
+        "total": 6.58068764,
+        "total initialization": 6.446435942,
+        "transport": 0.10474359900000002,
+        "writing statepoints": 0.028771399
+      },
+      "geometry_reuse_export_seconds": 0.1733470990002388,
+      "cold_geometry_build_seconds": "UNKNOWN; existing payload reused",
+      "geometry_load_compile_seconds": "UNKNOWN separately; within total initialization",
+      "initialization_seconds": 6.446435942,
+      "transport_seconds": 0.10474359900000002,
+      "recorded_statepoint_write_seconds": 0.028771399,
+      "output_finalization_seconds": "UNKNOWN; native snapshot incomplete, external wall contains finalization",
+      "external_process_wall_seconds": 6.6949411389978195,
+      "result_validation_seconds": 0.04162709999945946,
+      "reused_input_to_validated_result_seconds": 6.925897037999675,
+      "raw_fatal_lost_unresolved_diagnostics": [],
+      "tally_arrays": [
+        {
+          "path": "tallies/tally 1/results",
+          "shape": [
+            6,
+            4,
+            2
+          ],
+          "values": [
+            [
+              [
+                0.05109443691533623,
+                0.001472228387064037
+              ],
+              [
+                0.04741983386716651,
+                0.0013137695257406593
+              ],
+              [
+                0.00010118904136747502,
+                7.606759274266577e-09
+              ],
+              [
+                0.10246413678078076,
+                0.00625100798395805
+              ]
+            ],
+            [
+              [
+                3.072972551399092,
+                0.5171312668110449
+              ],
+              [
+                1.1223719622638542,
+                0.07387763780746229
+              ],
+              [
+                0.001481871608978948,
+                2.9990636361447913e-07
+              ],
+              [
+                1363.2875569150503,
+                111797.3405626421
+              ]
+            ],
+            [
+              [
+                46.05844615792344,
+                106.5726628147583
+              ],
+              [
+                9.497779816046117,
+                4.53906412957779
+              ],
+              [
+                0.010988009545256736,
+                6.2718963024979905e-06
+              ],
+              [
+                99668.06783921582,
+                500314226.2393616
+              ]
+            ],
+            [
+              [
+                50.83788442469397,
+                129.67847073221154
+              ],
+              [
+                12.558820792227374,
+                7.911611324326445
+              ],
+              [
+                0.008844526653692713,
+                3.925245820696385e-06
+              ],
+              [
+                381502.6875736233,
+                7303248284.391244
+              ]
+            ],
+            [
+              [
+                6.891921478569657,
+                2.425638578058511
+              ],
+              [
+                2.009283833293602,
+                0.20620472516793495
+              ],
+              [
+                0.022092491622707475,
+                2.4965283021502568e-05
+              ],
+              [
+                108056.10458265184,
+                595851853.1262728
+              ]
+            ],
+            [
+              [
+                97.06751199711537,
+                471.2379591692794
+              ],
+              [
+                21.113756886558335,
+                22.29581881219222
+              ],
+              [
+                1.3192756701165027,
+                0.08704919827309135
+              ],
+              [
+                2095272.330783104,
+                219570357374.71448
+              ]
+            ]
+          ],
+          "nonzero_elements": 48
+        },
+        {
+          "path": "tallies/tally 2/results",
+          "shape": [
+            1,
+            4,
+            2
+          ],
+          "values": [
+            [
+              [
+                203.9798310466168,
+                2080.9475803442165
+              ],
+              [
+                46.34943312425643,
+                107.46566493617699
+              ],
+              [
+                1.362783758588506,
+                0.09288596124323156
+              ],
+              [
+                2685862.580799648,
+                360753598784.5606
+              ]
+            ]
+          ],
+          "nonzero_elements": 8
+        },
+        {
+          "path": "tallies/tally 3/results",
+          "shape": [
+            1,
+            4,
+            2
+          ],
+          "values": [
+            [
+              [
+                203.9798310466168,
+                2080.9475803442165
+              ],
+              [
+                46.34943312425643,
+                107.46566493617699
+              ],
+              [
+                1.362783758588506,
+                0.09288596124323156
+              ],
+              [
+                2685862.580799648,
+                360753598784.5606
+              ]
+            ]
+          ],
+          "nonzero_elements": 8
+        }
+      ],
+      "xml_hashes": {
+        "geometry.xml": "a0cf39d67a6dc0cc9e5713fbdf644d889de4ea0209abc55066a48d6212c80db3",
+        "materials.xml": "af2a5fa8526432a9a088f29d3c9d8dbc6c34835fc988cc7511e7e0ae8ffc5669",
+        "settings.xml": "fb66616954f11d74ed2cf20b1146b5a109185aa9d4658d6375746788701c0e0f",
+        "tallies.xml": "2cac3f93d2c54d4a92c5530ecf71e2fbdc441981b027ccdc5913b9b7bb8d223a"
+      },
+      "output_hashes": {
+        "geometry.xml": "a0cf39d67a6dc0cc9e5713fbdf644d889de4ea0209abc55066a48d6212c80db3",
+        "materials.xml": "af2a5fa8526432a9a088f29d3c9d8dbc6c34835fc988cc7511e7e0ae8ffc5669",
+        "process-receipt.json": "b75478106962a1c9724ed64deeda6e261d099781b31c85e1c21e253768e150c9",
+        "process.stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "process.stdout": "0aff7f17640e5c5cca2c334ca968bea6e35e57834f4687af9e2635983faf8ceb",
+        "settings.xml": "fb66616954f11d74ed2cf20b1146b5a109185aa9d4658d6375746788701c0e0f",
+        "statepoint.20.h5": "b330475748edc08ff1f0bd1ec820c1f0a5338fe2a48e7b4ba712817c82edbd1f",
+        "summary.h5": "194e45100c5081a3f053642fde028bf0c6ff7291f0a25831651c50fe062069bf",
+        "tallies.xml": "2cac3f93d2c54d4a92c5530ecf71e2fbdc441981b027ccdc5913b9b7bb8d223a"
+      },
+      "crossings_per_history": "UNKNOWN; not recorded",
+      "fidelity": "OPEN; different proxy shapes"
+    }
+  ],
+  "cache_to_flat_ring_transport_ratio": 1599.0470086673265,
+  "within_1_25_transport_gate": false,
+  "full_target_fidelity": "NOT_ADMITTED",
+  "independent_acceptance": "PENDING; this is owner evidence",
+  "proxy_tally_equality": "NOT_EXPECTED; shapes differ, raw local arrays retained",
+  "normal_gaps": 9,
+  "wrong_root_frozen_queries": 0,
+  "block_wall_seconds": 183.13372413999969,
+  "repeat_uncertainty": "one fixed seed; no error bar or superiority claim",
+  "background_activity": "Windows Julia and desktop processes recorded; timing precision limited",
+  "software_build": "NOT_RUN",
+  "DAGMC_Embree": "NOT_RUN; pinned build DAGMC OFF and same-target mesh unadmitted"
+}

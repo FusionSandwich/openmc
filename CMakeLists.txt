@@ -46,6 +46,7 @@ option(OPENMC_FORCE_VENDORED_LIBS "Explicitly use submodules defined in 'vendor'
 option(OPENMC_ENABLE_STRICT_FP "Enable strict FP flags to improve test portability"  OFF)
 option(OPENMC_ENABLE_EXPERIMENTAL_STELLARCSG
   "Enable experimental native periodic/swept spline CSG surfaces" OFF)
+option(STELLARCSG_BUILD_OFFSET_PROBE "Build exact-control native offset probe" OFF)
 option(STELLARCSG_ENABLE_PERFORMANCE_COUNTERS
   "Enable thread-local experimental StellarCSG performance counters" OFF)
 option(STELLARCSG_VERIFY_FAST_WITH_ORACLE
@@ -515,6 +516,7 @@ if(OPENMC_ENABLE_EXPERIMENTAL_STELLARCSG)
     dev/stellarcsg/src/swept_coefficient_file.cpp
     dev/stellarcsg/src/compiled_periodic_surface.cpp
     dev/stellarcsg/src/compiled_swept_surface.cpp
+    dev/stellarcsg/src/certified_spline_offset.cpp
     dev/stellarcsg/src/compiled_swept_surface_set.cpp
     dev/stellarcsg/src/compiled_facet_surface_set.cpp
     dev/stellarcsg/src/facet_payload_file.cpp
@@ -524,6 +526,10 @@ if(OPENMC_ENABLE_EXPERIMENTAL_STELLARCSG)
     dev/stellarcsg/src/sha256.cpp
     dev/stellarcsg/src/uniform_periodic_bicubic_spline.cpp
     dev/stellarcsg/src/uniform_periodic_cubic_spline.cpp)
+  if(CMAKE_CXX_COMPILER_ID MATCHES "GNU|Clang")
+    set_source_files_properties(dev/stellarcsg/src/certified_spline_offset.cpp
+      PROPERTIES COMPILE_OPTIONS "-fno-fast-math;-ffp-contract=off")
+  endif()
 endif()
 
 # For Visual Studio compilers
@@ -565,6 +571,13 @@ if(OPENMC_ENABLE_EXPERIMENTAL_STELLARCSG)
   if(STELLARCSG_VERIFY_FAST_WITH_ORACLE)
     target_compile_definitions(libopenmc
       PUBLIC STELLARCSG_VERIFY_FAST_WITH_ORACLE)
+  endif()
+  if(STELLARCSG_BUILD_OFFSET_PROBE)
+    add_executable(stellarcsg_native_offset_probe
+      dev/stellarcsg/qualification/certified_offset_probe.cpp)
+    target_compile_definitions(stellarcsg_native_offset_probe PRIVATE
+      STELLARCSG_OFFSET_NATIVE)
+    target_link_libraries(stellarcsg_native_offset_probe PRIVATE libopenmc)
   endif()
 endif()
 

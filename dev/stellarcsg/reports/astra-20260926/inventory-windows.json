@@ -1,0 +1,112 @@
+{
+  "time": "2026-09-26T15:39:35.0735077-04:00",
+  "memory": {
+    "TotalVisibleMemorySize": 33457440,
+    "FreePhysicalMemory": 4765568
+  },
+  "disks": [
+    {
+      "DeviceID": "C:",
+      "Size": 998965768192,
+      "FreeSpace": 106666717184
+    },
+    {
+      "DeviceID": "D:",
+      "Size": 2000397791232,
+      "FreeSpace": 496054804480
+    }
+  ],
+  "processes": [
+    {
+      "ProcessName": "Memory Compression",
+      "Id": 3460,
+      "CPU": null,
+      "WorkingSet64": 2278121472
+    },
+    {
+      "ProcessName": "ChatGPT",
+      "Id": 14584,
+      "CPU": 3027.90625,
+      "WorkingSet64": 1469399040
+    },
+    {
+      "ProcessName": "codex",
+      "Id": 18736,
+      "CPU": 434.65625,
+      "WorkingSet64": 961052672
+    },
+    {
+      "ProcessName": "vmmemWSL",
+      "Id": 18788,
+      "CPU": null,
+      "WorkingSet64": 864251904
+    },
+    {
+      "ProcessName": "chrome",
+      "Id": 35164,
+      "CPU": 698.234375,
+      "WorkingSet64": 703590400
+    },
+    {
+      "ProcessName": "chrome",
+      "Id": 24572,
+      "CPU": 902.71875,
+      "WorkingSet64": 645021696
+    },
+    {
+      "ProcessName": "chrome",
+      "Id": 20716,
+      "CPU": 365.40625,
+      "WorkingSet64": 612990976
+    },
+    {
+      "ProcessName": "MsMpEng",
+      "Id": 5288,
+      "CPU": null,
+      "WorkingSet64": 526512128
+    },
+    {
+      "ProcessName": "chrome",
+      "Id": 26360,
+      "CPU": 231.890625,
+      "WorkingSet64": 522063872
+    },
+    {
+      "ProcessName": "chrome",
+      "Id": 26480,
+      "CPU": 187.484375,
+      "WorkingSet64": 509493248
+    }
+  ],
+  "commands": [
+    {
+      "Name": "git.exe",
+      "Source": "C:\\Program Files\\Git\\cmd\\git.exe"
+    },
+    {
+      "Name": "gh.exe",
+      "Source": "C:\\Program Files\\GitHub CLI\\gh.exe"
+    },
+    {
+      "Name": "wsl.exe",
+      "Source": "C:\\Windows\\system32\\wsl.exe"
+    },
+    {
+      "Name": "python.exe",
+      "Source": "C:\\Users\\joshu\\AppData\\Local\\Programs\\Python\\Python312\\python.exe"
+    },
+    {
+      "Name": "cmake.exe",
+      "Source": "C:\\Users\\joshu\\AppData\\Local\\Microsoft\\WinGet\\Packages\\Kitware.CMake_Microsoft.Winget.Source_8wekyb3d8bbwe\\cmake-4.4.0-windows-x86_64\\bin\\cmake.exe"
+    }
+  ],
+  "caches": [
+    "C:\\Users\\joshu\\AppData\\Local\\cache",
+    "C:\\Users\\joshu\\AppData\\Local\\conda",
+    "C:\\Users\\joshu\\AppData\\Local\\D3DSCache",
+    "C:\\Users\\joshu\\AppData\\Local\\npm-cache",
+    "C:\\Users\\joshu\\AppData\\Local\\Package Cache",
+    "C:\\Users\\joshu\\AppData\\Local\\pip"
+  ],
+  "environments": null
+}

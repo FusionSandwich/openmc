@@ -1,0 +1,44 @@
+{
+  "schema": "stellarcsg.proxy-fixtures/v1",
+  "plasma_id": "sha256:2f42f0c674f6906ece8fc52ad198a882c72701a4f762c9dec56a3416dd83a048",
+  "coil_id": "sha256:1a1f42dd9fec3aecdc6a519c08228910210007b134cfa32d3e9b4e6e8f7c6882",
+  "source_sites": 256,
+  "source_energy_eV": 14100000.0,
+  "source_location_cm": [
+    100.0,
+    0.0,
+    0.0
+  ],
+  "material": "Fe56",
+  "density_g_cm3": 7.8,
+  "temperature_K": 300.0,
+  "displacement_energy_eV": 40.0,
+  "displacement_energy_status": "Explicit NRT test convention, not fitted material data",
+  "energy_bins_eV": [
+    0.0,
+    1000.0,
+    100000.0,
+    1000000.0,
+    5000000.0,
+    10000000.0,
+    14200000.0
+  ],
+  "scores": [
+    "flux",
+    "total",
+    "absorption",
+    "damage-energy"
+  ],
+  "plasma_material_volume_cm3": 80930.75608893274,
+  "coil_reference_volume_cm3": 49348.02200544679,
+  "coil_volume_policy": "Native torus reference volume; spline DPA index uses same normalization, not a certified physical coil atom count",
+  "hashes": {
+    "plasma.h5": "72244e63328ddfed9bc372946ac103ef96a794761172e304b1eba69385faa728",
+    "coil.h5": "a25e4f56da79b6b71e262d0011b15b401fa884d0f2e2cc2b9e3c7cfca351651a",
+    "source.h5": "5ae218fa17c8d57afd55792e8dd68d4a458a46a212e471de1e1ec0db881d1c39"
+  },
+  "data_index_sha256": "218236803b2c4a21b038992af93dacfdfe5c0c0401cbbc57f3ff3a947c63abc7",
+  "Fe56_h5_sha256": "18abc04dc9fd602948bafcf487323a1148681c75ee74e27863e843211fd6f1f8",
+  "Fe56_bytes": 8132160,
+  "MT444_present": true
+}

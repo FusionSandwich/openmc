@@ -1,0 +1,44 @@
+{
+  "command": [
+    "cmake",
+    "-S",
+    "/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/openmc-stellarcsg-composite",
+    "-B",
+    "/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-astra-kernel-20260926/dev/stellarcsg/reports/plasma-best-time-20260926/source-rebuild-010-01/build",
+    "-G",
+    "Ninja",
+    "-DCMAKE_BUILD_TYPE=Release",
+    "-DCMAKE_CXX_COMPILER=/usr/bin/c++",
+    "-DCMAKE_C_COMPILER=/usr/bin/cc",
+    "-DCMAKE_CXX_FLAGS_RELEASE=-O3 -DNDEBUG",
+    "-DOPENMC_ENABLE_EXPERIMENTAL_STELLARCSG=ON",
+    "-DOPENMC_USE_DAGMC=OFF",
+    "-DOPENMC_USE_OPENMP=OFF",
+    "-DOPENMC_USE_MPI=OFF",
+    "-DOPENMC_USE_LIBMESH=OFF",
+    "-DOPENMC_USE_UWUW=OFF",
+    "-DOPENMC_BUILD_TESTS=OFF",
+    "-DOPENMC_ENABLE_STRICT_FP=OFF",
+    "-DSTELLARCSG_ENABLE_PERFORMANCE_COUNTERS=OFF",
+    "-DSTELLARCSG_VERIFY_FAST_WITH_ORACLE=OFF",
+    "-DGIT_SUBMODULE=OFF",
+    "-DFETCHCONTENT_FULLY_DISCONNECTED=ON",
+    "-DFETCHCONTENT_UPDATES_DISCONNECTED=ON",
+    "-Dfmt_DIR=/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/openmc-stellarcsg/build/openmc-stellarcsg-enabled/vendor/fmt",
+    "-Dpugixml_DIR=/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/openmc-stellarcsg/build/openmc-stellarcsg-enabled/vendor/pugixml"
+  ],
+  "review_sha256": "125f1c38bdb92d45e2e5700510b313a82ae9865384896b75cc69062f37d1f6e1",
+  "inventory_plan_sha256": "147051e562c720553ee7a764dab14a2f33fae28cf38817b1534bca1541da7f22",
+  "source_reproduction_not_archived_binary": true,
+  "cpu_affinity": [
+    0
+  ],
+  "lease_run": "plasma-rebuild-010-20260927T0156247567Z",
+  "effective_block_budget_s": 2368.0,
+  "limits": {
+    "build_s": 1800,
+    "worker_s": 600,
+    "block_s": 2400
+  },
+  "unchecked_old_adapter": "diagnostic only; no production promotion/accuracy claim"
+}

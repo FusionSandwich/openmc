@@ -1,0 +1,8 @@
+========================= OpenMC Environment Warnings ==========================
+WARNING: OPENMC_CROSS_SECTIONS environment variable is not set. Regression tests require the NNDC HDF5 cross section data.
+
+.............                                                            [100%]
+========================= OpenMC Environment Warnings ==========================
+WARNING: OPENMC_CROSS_SECTIONS environment variable is not set. Regression tests require the NNDC HDF5 cross section data.
+
+13 passed in 1.16s

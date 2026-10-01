@@ -1,0 +1,39 @@
+{
+  "plan": [
+    [
+      "plasma",
+      "native",
+      "mesh"
+    ],
+    [
+      "plasma",
+      "spline",
+      "mesh"
+    ],
+    [
+      "plasma",
+      "native",
+      "box"
+    ],
+    [
+      "plasma",
+      "spline",
+      "box"
+    ],
+    [
+      "coil",
+      "native",
+      "file"
+    ],
+    [
+      "coil",
+      "spline",
+      "file"
+    ]
+  ],
+  "worker_sha256": "95eb585a198fe1ab470836ea11c56dfb9f2ee8261f02abbed0170d52901bba37",
+  "timeout_s": 180,
+  "memory_cap_bytes": 2147483648,
+  "threads": 1,
+  "library_sha256": "f301f7a76a1d4bc1910ea17b582dd31ce70f35cc35690ae5c390c1880ce714a6"
+}

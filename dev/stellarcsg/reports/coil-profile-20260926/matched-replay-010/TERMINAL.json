@@ -1,0 +1,7 @@
+{
+  "disposition": "FAILED_STOPPED",
+  "reason": "RuntimeError('native worker failed current_legacy')",
+  "completed_workers": 5,
+  "completed_histories": 100000,
+  "utc": "2026-09-27T01:37:20.176901+00:00"
+}

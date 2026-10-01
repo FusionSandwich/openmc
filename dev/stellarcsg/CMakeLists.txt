@@ -21,11 +21,16 @@ add_library(stellarcsg_reference STATIC
   src/uniform_periodic_cubic_spline.cpp
   src/compiled_periodic_surface.cpp
   src/compiled_swept_surface.cpp
+  src/certified_spline_offset.cpp
   src/compiled_swept_surface_set.cpp
   src/compiled_facet_surface_set.cpp
   ../../src/external/quartic_solver.cpp
 )
 add_library(StellarCSG::reference ALIAS stellarcsg_reference)
+if(CMAKE_CXX_COMPILER_ID MATCHES "GNU|Clang")
+  set_source_files_properties(src/certified_spline_offset.cpp PROPERTIES
+    COMPILE_OPTIONS "-fno-fast-math;-ffp-contract=off")
+endif()
 target_compile_features(stellarcsg_reference PUBLIC cxx_std_17)
 if(STELLARCSG_ENABLE_PERFORMANCE_COUNTERS)
   target_compile_definitions(stellarcsg_reference
@@ -76,6 +81,13 @@ endif()
 
 if(STELLARCSG_BUILD_TESTS)
   enable_testing()
+  add_executable(stellarcsg_offset_tests tests/test_certified_offset.cpp)
+  target_link_libraries(stellarcsg_offset_tests PRIVATE StellarCSG::reference)
+  add_test(NAME stellarcsg_offset_tests COMMAND stellarcsg_offset_tests)
+  if(STELLARCSG_ENABLE_HDF5)
+    add_executable(stellarcsg_offset_probe qualification/certified_offset_probe.cpp)
+    target_link_libraries(stellarcsg_offset_probe PRIVATE StellarCSG::reference)
+  endif()
 
   add_executable(stellarcsg_reference_tests
     tests/test_reference_kernel.cpp)

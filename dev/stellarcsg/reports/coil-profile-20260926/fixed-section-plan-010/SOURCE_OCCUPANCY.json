@@ -1,0 +1,569 @@
+{
+  "source_bank_sha256": "d13553a31262d45067a8e096e73857d459054b482cf7bf0ccb52b927c611b442",
+  "unique_sites": 18,
+  "sources_unchanged": true,
+  "custom_retained_initial_void_sites": 18,
+  "envelope_initial_material_sites": 18,
+  "fixed30_initial_material_sites": 4,
+  "site_rows": [
+    {
+      "component_target": 8,
+      "source_position_cm": [
+        896.7235845282671,
+        4.3297341331944255,
+        -329.3153048661797
+      ],
+      "direction": [
+        0.26317011234765625,
+        -0.9537528794351806,
+        0.14524784657964493
+      ],
+      "custom_initial_material": "void; retained360-entry native track receipt, same geometry/source bank",
+      "envelope": {
+        "inside_components": [
+          8
+        ],
+        "priority_component": 8,
+        "source_material_id": 7,
+        "near_boundary_components": [],
+        "semantics": "analytic floating diagnostic; no certified boundary classification; same quarter-world source coordinates"
+      },
+      "fixed30": {
+        "inside_components": [
+          8
+        ],
+        "priority_component": 8,
+        "source_material_id": 7,
+        "near_boundary_components": [],
+        "semantics": "analytic floating diagnostic; no certified boundary classification; same quarter-world source coordinates"
+      }
+    },
+    {
+      "component_target": 9,
+      "source_position_cm": [
+        988.6048337703086,
+        25.101168934577046,
+        -367.22939617284726
+      ],
+      "direction": [
+        0.8649672055939951,
+        0.5018007899959122,
+        -0.005263117554647406
+      ],
+      "custom_initial_material": "void; retained360-entry native track receipt, same geometry/source bank",
+      "envelope": {
+        "inside_components": [
+          9
+        ],
+        "priority_component": 9,
+        "source_material_id": 7,
+        "near_boundary_components": [],
+        "semantics": "analytic floating diagnostic; no certified boundary classification; same quarter-world source coordinates"
+      },
+      "fixed30": {
+        "inside_components": [],
+        "priority_component": null,
+        "source_material_id": -1,
+        "near_boundary_components": [],
+        "semantics": "analytic floating diagnostic; no certified boundary classification; same quarter-world source coordinates"
+      }
+    },
+    {
+      "component_target": 10,
+      "source_position_cm": [
+        1069.6964056787983,
+        93.63891751003223,
+        -346.5365803514107
+      ],
+      "direction": [
+        0.6127135644010832,
+        0.772830965264584,
+        0.16527064811130582
+      ],
+      "custom_initial_material": "void; retained360-entry native track receipt, same geometry/source bank",
+      "envelope": {
+        "inside_components": [
+          10
+        ],
+        "priority_component": 10,
+        "source_material_id": 7,
+        "near_boundary_components": [],
+        "semantics": "analytic floating diagnostic; no certified boundary classification; same quarter-world source coordinates"
+      },
+      "fixed30": {
+        "inside_components": [],
+        "priority_component": null,
+        "source_material_id": -1,
+        "near_boundary_components": [],
+        "semantics": "analytic floating diagnostic; no certified boundary classification; same quarter-world source coordinates"
+      }
+    },
+    {
+      "component_target": 11,
+      "source_position_cm": [
+        1150.4632020627942,
+        208.03191258830367,
+        -342.683317571569
+      ],
+      "direction": [
+        -0.1857684043693724,
+        -0.9629860881744357,
+        -0.19531485842238208
+      ],
+      "custom_initial_material": "void; retained360-entry native track receipt, same geometry/source bank",
+      "envelope": {
+        "inside_components": [
+          11
+        ],
+        "priority_component": 11,
+        "source_material_id": 7,
+        "near_boundary_components": [],
+        "semantics": "analytic floating diagnostic; no certified boundary classification; same quarter-world source coordinates"
+      },
+      "fixed30": {
+        "inside_components": [],
+        "priority_component": null,
+        "source_material_id": -1,
+        "near_boundary_components": [],
+        "semantics": "analytic floating diagnostic; no certified boundary classification; same quarter-world source coordinates"
+      }
+    },
+    {
+      "component_target": 12,
+      "source_position_cm": [
+        1131.279740349871,
+        130.24572583352665,
+        544.7644359730731
+      ],
+      "direction": [
+        -0.1456706843964794,
+        0.1910331089040288,
+        -0.9707143776672533
+      ],
+      "custom_initial_material": "void; retained360-entry native track receipt, same geometry/source bank",
+      "envelope": {
+        "inside_components": [
+          12
+        ],
+        "priority_component": 12,
+        "source_material_id": 7,
+        "near_boundary_components": [],
+        "semantics": "analytic floating diagnostic; no certified boundary classification; same quarter-world source coordinates"
+      },
+      "fixed30": {
+        "inside_components": [],
+        "priority_component": null,
+        "source_material_id": -1,
+        "near_boundary_components": [],
+        "semantics": "analytic floating diagnostic; no certified boundary classification; same quarter-world source coordinates"
+      }
+    },
+    {
+      "component_target": 13,
+      "source_position_cm": [
+        872.8320657499287,
+        204.29814380167286,
+        520.5845103992793
+      ],
+      "direction": [
+        0.19959499852407372,
+        0.08089439466062794,
+        -0.9765336315133574
+      ],
+      "custom_initial_material": "void; retained360-entry native track receipt, same geometry/source bank",
+      "envelope": {
+        "inside_components": [
+          13
+        ],
+        "priority_component": 13,
+        "source_material_id": 7,
+        "near_boundary_components": [],
+        "semantics": "analytic floating diagnostic; no certified boundary classification; same quarter-world source coordinates"
+      },
+      "fixed30": {
+        "inside_components": [],
+        "priority_component": null,
+        "source_material_id": -1,
+        "near_boundary_components": [],
+        "semantics": "analytic floating diagnostic; no certified boundary classification; same quarter-world source coordinates"
+      }
+    },
+    {
+      "component_target": 14,
+      "source_position_cm": [
+        984.9410159314219,
+        594.1559310563775,
+        -235.77154336457613
+      ],
+      "direction": [
+        -0.12218898552531512,
+        0.7407340887771608,
+        0.6605928106933677
+      ],
+      "custom_initial_material": "void; retained360-entry native track receipt, same geometry/source bank",
+      "envelope": {
+        "inside_components": [
+          14,
+          15
+        ],
+        "priority_component": 14,
+        "source_material_id": 7,
+        "near_boundary_components": [],
+        "semantics": "analytic floating diagnostic; no certified boundary classification; same quarter-world source coordinates"
+      },
+      "fixed30": {
+        "inside_components": [],
+        "priority_component": null,
+        "source_material_id": -1,
+        "near_boundary_components": [],
+        "semantics": "analytic floating diagnostic; no certified boundary classification; same quarter-world source coordinates"
+      }
+    },
+    {
+      "component_target": 15,
+      "source_position_cm": [
+        521.1925344051424,
+        666.1151506171631,
+        300.12160678127634
+      ],
+      "direction": [
+        0.26231241962251484,
+        -0.6540505957025572,
+        -0.7095139271169466
+      ],
+      "custom_initial_material": "void; retained360-entry native track receipt, same geometry/source bank",
+      "envelope": {
+        "inside_components": [
+          15,
+          16,
+          17
+        ],
+        "priority_component": 15,
+        "source_material_id": 7,
+        "near_boundary_components": [],
+        "semantics": "analytic floating diagnostic; no certified boundary classification; same quarter-world source coordinates"
+      },
+      "fixed30": {
+        "inside_components": [
+          16
+        ],
+        "priority_component": 16,
+        "source_material_id": 7,
+        "near_boundary_components": [],
+        "semantics": "analytic floating diagnostic; no certified boundary classification; same quarter-world source coordinates"
+      }
+    },
+    {
+      "component_target": 16,
+      "source_position_cm": [
+        841.9555757355049,
+        861.8029694823365,
+        -127.44973704078163
+      ],
+      "direction": [
+        -0.6081775523528958,
+        0.35756742365378047,
+        0.7087069933023369
+      ],
+      "custom_initial_material": "void; retained360-entry native track receipt, same geometry/source bank",
+      "envelope": {
+        "inside_components": [
+          16,
+          17,
+          18
+        ],
+        "priority_component": 16,
+        "source_material_id": 7,
+        "near_boundary_components": [],
+        "semantics": "analytic floating diagnostic; no certified boundary classification; same quarter-world source coordinates"
+      },
+      "fixed30": {
+        "inside_components": [],
+        "priority_component": null,
+        "source_material_id": -1,
+        "near_boundary_components": [],
+        "semantics": "analytic floating diagnostic; no certified boundary classification; same quarter-world source coordinates"
+      }
+    },
+    {
+      "component_target": 17,
+      "source_position_cm": [
+        861.8030801898003,
+        841.9554627453812,
+        127.44973702678193
+      ],
+      "direction": [
+        0.35756734136334595,
+        -0.6081775992823861,
+        -0.7087069945481432
+      ],
+      "custom_initial_material": "void; retained360-entry native track receipt, same geometry/source bank",
+      "envelope": {
+        "inside_components": [
+          15,
+          16,
+          17
+        ],
+        "priority_component": 15,
+        "source_material_id": 7,
+        "near_boundary_components": [],
+        "semantics": "analytic floating diagnostic; no certified boundary classification; same quarter-world source coordinates"
+      },
+      "fixed30": {
+        "inside_components": [],
+        "priority_component": null,
+        "source_material_id": -1,
+        "near_boundary_components": [],
+        "semantics": "analytic floating diagnostic; no certified boundary classification; same quarter-world source coordinates"
+      }
+    },
+    {
+      "component_target": 18,
+      "source_position_cm": [
+        666.1152192518199,
+        521.1924474195735,
+        -300.1216066792137
+      ],
+      "direction": [
+        -0.6540505604313129,
+        0.26231250398444017,
+        0.7095139284417878
+      ],
+      "custom_initial_material": "void; retained360-entry native track receipt, same geometry/source bank",
+      "envelope": {
+        "inside_components": [
+          16,
+          17,
+          18
+        ],
+        "priority_component": 16,
+        "source_material_id": 7,
+        "near_boundary_components": [],
+        "semantics": "analytic floating diagnostic; no certified boundary classification; same quarter-world source coordinates"
+      },
+      "fixed30": {
+        "inside_components": [
+          17
+        ],
+        "priority_component": 17,
+        "source_material_id": 7,
+        "near_boundary_components": [],
+        "semantics": "analytic floating diagnostic; no certified boundary classification; same quarter-world source coordinates"
+      }
+    },
+    {
+      "component_target": 19,
+      "source_position_cm": [
+        594.1560602066857,
+        984.9409380040619,
+        235.77154335911678
+      ],
+      "direction": [
+        0.7407340729310136,
+        -0.12218908266448046,
+        -0.6605928104942141
+      ],
+      "custom_initial_material": "void; retained360-entry native track receipt, same geometry/source bank",
+      "envelope": {
+        "inside_components": [
+          18,
+          19
+        ],
+        "priority_component": 18,
+        "source_material_id": 7,
+        "near_boundary_components": [],
+        "semantics": "analytic floating diagnostic; no certified boundary classification; same quarter-world source coordinates"
+      },
+      "fixed30": {
+        "inside_components": [],
+        "priority_component": null,
+        "source_material_id": -1,
+        "near_boundary_components": [],
+        "semantics": "analytic floating diagnostic; no certified boundary classification; same quarter-world source coordinates"
+      }
+    },
+    {
+      "component_target": 20,
+      "source_position_cm": [
+        204.29766707560847,
+        872.8316306388134,
+        -520.5843337400388
+      ],
+      "direction": [
+        0.08089367668617149,
+        0.19959673395703229,
+        0.9765333362798624
+      ],
+      "custom_initial_material": "void; retained360-entry native track receipt, same geometry/source bank",
+      "envelope": {
+        "inside_components": [
+          20
+        ],
+        "priority_component": 20,
+        "source_material_id": 7,
+        "near_boundary_components": [],
+        "semantics": "analytic floating diagnostic; no certified boundary classification; same quarter-world source coordinates"
+      },
+      "fixed30": {
+        "inside_components": [],
+        "priority_component": null,
+        "source_material_id": -1,
+        "near_boundary_components": [],
+        "semantics": "analytic floating diagnostic; no certified boundary classification; same quarter-world source coordinates"
+      }
+    },
+    {
+      "component_target": 21,
+      "source_position_cm": [
+        130.2457904866726,
+        1131.2795876378777,
+        -544.7644365015856
+      ],
+      "direction": [
+        0.19103331366680326,
+        -0.1456703208157329,
+        0.9707143919314898
+      ],
+      "custom_initial_material": "void; retained360-entry native track receipt, same geometry/source bank",
+      "envelope": {
+        "inside_components": [
+          21
+        ],
+        "priority_component": 21,
+        "source_material_id": 7,
+        "near_boundary_components": [],
+        "semantics": "analytic floating diagnostic; no certified boundary classification; same quarter-world source coordinates"
+      },
+      "fixed30": {
+        "inside_components": [],
+        "priority_component": null,
+        "source_material_id": -1,
+        "near_boundary_components": [],
+        "semantics": "analytic floating diagnostic; no certified boundary classification; same quarter-world source coordinates"
+      }
+    },
+    {
+      "component_target": 22,
+      "source_position_cm": [
+        208.0320656534806,
+        1150.463054776352,
+        342.6832470608369
+      ],
+      "direction": [
+        -0.9629859901943502,
+        -0.1857686418725298,
+        0.19531511561126733
+      ],
+      "custom_initial_material": "void; retained360-entry native track receipt, same geometry/source bank",
+      "envelope": {
+        "inside_components": [
+          22
+        ],
+        "priority_component": 22,
+        "source_material_id": 7,
+        "near_boundary_components": [],
+        "semantics": "analytic floating diagnostic; no certified boundary classification; same quarter-world source coordinates"
+      },
+      "fixed30": {
+        "inside_components": [],
+        "priority_component": null,
+        "source_material_id": -1,
+        "near_boundary_components": [],
+        "semantics": "analytic floating diagnostic; no certified boundary classification; same quarter-world source coordinates"
+      }
+    },
+    {
+      "component_target": 23,
+      "source_position_cm": [
+        93.638897022017,
+        1069.696336507311,
+        346.53644595412976
+      ],
+      "direction": [
+        0.7728309060045551,
+        0.6127136333213554,
+        -0.16527066970978868
+      ],
+      "custom_initial_material": "void; retained360-entry native track receipt, same geometry/source bank",
+      "envelope": {
+        "inside_components": [
+          23
+        ],
+        "priority_component": 23,
+        "source_material_id": 7,
+        "near_boundary_components": [],
+        "semantics": "analytic floating diagnostic; no certified boundary classification; same quarter-world source coordinates"
+      },
+      "fixed30": {
+        "inside_components": [],
+        "priority_component": null,
+        "source_material_id": -1,
+        "near_boundary_components": [],
+        "semantics": "analytic floating diagnostic; no certified boundary classification; same quarter-world source coordinates"
+      }
+    },
+    {
+      "component_target": 24,
+      "source_position_cm": [
+        25.10114208516208,
+        988.6048268425043,
+        367.22936045363656
+      ],
+      "direction": [
+        0.5018008066608586,
+        0.8649671960363146,
+        0.005263099427849394
+      ],
+      "custom_initial_material": "void; retained360-entry native track receipt, same geometry/source bank",
+      "envelope": {
+        "inside_components": [
+          24
+        ],
+        "priority_component": 24,
+        "source_material_id": 7,
+        "near_boundary_components": [],
+        "semantics": "analytic floating diagnostic; no certified boundary classification; same quarter-world source coordinates"
+      },
+      "fixed30": {
+        "inside_components": [],
+        "priority_component": null,
+        "source_material_id": -1,
+        "near_boundary_components": [],
+        "semantics": "analytic floating diagnostic; no certified boundary classification; same quarter-world source coordinates"
+      }
+    },
+    {
+      "component_target": 25,
+      "source_position_cm": [
+        4.329720972982128,
+        896.7235631932399,
+        329.31511126729623
+      ],
+      "direction": [
+        -0.9537527206221594,
+        0.26317084782020117,
+        -0.14524755682429133
+      ],
+      "custom_initial_material": "void; retained360-entry native track receipt, same geometry/source bank",
+      "envelope": {
+        "inside_components": [
+          25
+        ],
+        "priority_component": 25,
+        "source_material_id": 7,
+        "near_boundary_components": [],
+        "semantics": "analytic floating diagnostic; no certified boundary classification; same quarter-world source coordinates"
+      },
+      "fixed30": {
+        "inside_components": [
+          25
+        ],
+        "priority_component": 25,
+        "source_material_id": 7,
+        "near_boundary_components": [],
+        "semantics": "analytic floating diagnostic; no certified boundary classification; same quarter-world source coordinates"
+      }
+    }
+  ],
+  "actual_event_collision_counts": "UNKNOWN; not recorded; tally tracklength/reaction estimators are not event counters"
+}

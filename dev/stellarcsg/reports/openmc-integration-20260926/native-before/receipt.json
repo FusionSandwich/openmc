@@ -1,0 +1,50 @@
+{
+  "stage": "before",
+  "inputs_before": {
+    "/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-astra-kernel-20260926/dev/stellarcsg/qualification/check_spherical_equator.cpp": "8921e9379dc13f61e11f07ac2454241d0c62fb5e7bdd67e4fb34a07ede2e090a",
+    "/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-astra-kernel-20260926/src/mesh.cpp": "c936736683ac0377bafcfb91ff6869b8ed902462a6e37f7f25f66f33d821410c",
+    "/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-astra-kernel-20260926/include/openmc/mesh.h": "6ed13c14d8a5d093577241d59b9b47b674b34dbecf8abd049c8e6bac91f3e813",
+    "/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-astra-kernel-20260926/build/astra-native/CMakeCache.txt": "fdec6de9d3f7005b41e35277439dd5b32c5a630eb99368ac5c6de92718175896",
+    "/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-astra-kernel-20260926/build/astra-native/build.ninja": "4d52234d54058a8e4ac1f9d83637725715ad74ceb56f85754ed873fb29f683e1"
+  },
+  "inputs_after": {
+    "/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-astra-kernel-20260926/dev/stellarcsg/qualification/check_spherical_equator.cpp": "8921e9379dc13f61e11f07ac2454241d0c62fb5e7bdd67e4fb34a07ede2e090a",
+    "/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-astra-kernel-20260926/src/mesh.cpp": "c936736683ac0377bafcfb91ff6869b8ed902462a6e37f7f25f66f33d821410c",
+    "/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-astra-kernel-20260926/include/openmc/mesh.h": "6ed13c14d8a5d093577241d59b9b47b674b34dbecf8abd049c8e6bac91f3e813",
+    "/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-astra-kernel-20260926/build/astra-native/CMakeCache.txt": "fdec6de9d3f7005b41e35277439dd5b32c5a630eb99368ac5c6de92718175896",
+    "/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-astra-kernel-20260926/build/astra-native/build.ninja": "4d52234d54058a8e4ac1f9d83637725715ad74ceb56f85754ed873fb29f683e1"
+  },
+  "old_library_sha256": "7fa3dbf5bef055aa2227842800e54a2daa84537a1ba6730e97f4fb6cd25d317e",
+  "new_library_sha256": "7fa3dbf5bef055aa2227842800e54a2daa84537a1ba6730e97f4fb6cd25d317e",
+  "executable_sha256": "47a1d0f4a15aba391a3f3ae5cb1dd0776f5041afe073e2e2d3fb58b04885a398",
+  "python_library_sha256": "7fa3dbf5bef055aa2227842800e54a2daa84537a1ba6730e97f4fb6cd25d317e",
+  "probe_sha256": "f5eabfa3306d82cf862657eee1c4d8bb7173f2590a41132271adc0316c2d8e67",
+  "commands": [
+    {
+      "command": [
+        "g++",
+        "-std=c++17",
+        "-O2",
+        "-fno-fast-math",
+        "-Iinclude",
+        "-Ibuild/astra-native/include",
+        "-I/usr/include/hdf5/serial",
+        "-I/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/openmc-stellarcsg/vendor/fmt/include",
+        "-I/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/openmc-stellarcsg/vendor/pugixml/src",
+        "/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-astra-kernel-20260926/dev/stellarcsg/qualification/check_spherical_equator.cpp",
+        "/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-astra-kernel-20260926/build/astra-native/lib/libopenmc.so",
+        "/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/openmc-stellarcsg/build/openmc-stellarcsg-enabled/lib/libfmt.a",
+        "/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/openmc-stellarcsg/build/openmc-stellarcsg-enabled/lib/libpugixml.a",
+        "-Wl,-rpath,/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-astra-kernel-20260926/build/astra-native/lib",
+        "-o",
+        "/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-astra-kernel-20260926/build/astra-native/bin/stellarcsg_spherical_equator_probe"
+      ],
+      "exit_code": 0,
+      "seconds": 6.2382893562316895
+    }
+  ],
+  "test_exit_code": 1,
+  "acquisition_bytes": 0,
+  "parallel_jobs": 1,
+  "memory_cap_bytes": 1610612736
+}

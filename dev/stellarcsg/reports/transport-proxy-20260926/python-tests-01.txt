@@ -1,0 +1,9 @@
+./mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-astra-kernel-20260926/openmc/mixin.py:72: IDWarning: Another Surface instance already exists with id=3.
+  warn(msg, IDWarning)
+../mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-astra-kernel-20260926/openmc/mixin.py:72: IDWarning: Another Surface instance already exists with id=9.
+  warn(msg, IDWarning)
+.
+----------------------------------------------------------------------
+Ran 4 tests in 0.017s
+
+OK

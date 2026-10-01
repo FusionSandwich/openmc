@@ -1,0 +1,21 @@
+{
+  "utc": "2026-09-27T01:58:48.6044454Z",
+  "run": "plasma-rebuild-010-20260927T0156247567Z",
+  "wrapper_process": {
+    "ProcessId": 46940,
+    "CreationDate": "2026-09-26T21:56:23.209056-04:00",
+    "ExecutablePath": "C:\\Users\\joshu\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\native\\powershell\\pwsh.exe",
+    "CommandLine": "\"C:\\Users\\joshu\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\native\\powershell\\pwsh.exe\" -Command \"try { [Console]::OutputEncoding=[System.Text.Encoding]::UTF8 } catch {}\n& 'dev/stellarcsg/experiments/plasma_best_time_20260926/run-rebuild-reviewed-010.ps1' -Output 'C:/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-astra-kernel-20260926/dev/stellarcsg/reports/plasma-best-time-20260926/source-rebuild-010-01' -Inventory 'C:/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-astra-kernel-20260926/dev/stellarcsg/reports/plasma-best-time-20260926/prebuild-inventory-010-04' -Review 'C:/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-astra-kernel-20260926/dev/stellarcsg/reports/coil-hybrid-accuracy-20260926/PLASMA_PREBUILD_ADMISSION_010.json'\""
+  },
+  "lease": {
+    "process": 46940,
+    "owner": "plasma-rebuild-010",
+    "utc": "2026-09-27T01:56:32.3790846Z",
+    "run": "plasma-rebuild-010-20260927T0156247567Z"
+  },
+  "handoff": "REBUILD_RUN_HANDOFF_010.md",
+  "session_id": 85338,
+  "receipt_path": "source-rebuild-010-01/block-plan.json",
+  "allowed_next_action": "One startup/terminal evidence collection; no retries or input changes",
+  "automatic_schedules": 0
+}

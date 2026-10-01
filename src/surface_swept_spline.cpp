@@ -1,10 +1,10 @@
 #include "openmc/surface_swept_spline.h"
 
 #include <algorithm>
-#include <filesystem>
-#include <limits>
 #include <cstdlib>
+#include <filesystem>
 #include <iostream>
+#include <limits>
 #include <sstream>
 #include <stdexcept>
 #include <unordered_set>
@@ -17,14 +17,20 @@
 #include "openmc/settings.h"
 #include "openmc/stellarcsg_distance.h"
 #include "openmc/xml_interface.h"
-#include "stellarcsg/swept_coefficient_file.hpp"
 #include "stellarcsg/performance_counters.hpp"
+#include "stellarcsg/swept_coefficient_file.hpp"
 
 namespace openmc {
 namespace {
-stellarcsg::Vec3 convert(Position value) { return {value.x, value.y, value.z}; }
-Direction convert(stellarcsg::Vec3 value) { return {value.x, value.y, value.z}; }
+stellarcsg::Vec3 convert(Position value)
+{
+  return {value.x, value.y, value.z};
 }
+Direction convert(stellarcsg::Vec3 value)
+{
+  return {value.x, value.y, value.z};
+}
+} // namespace
 
 SurfaceSweptSpline::SurfaceSweptSpline(pugi::xml_node node) : Surface(node)
 {
@@ -37,15 +43,32 @@ SurfaceSweptSpline::SurfaceSweptSpline(pugi::xml_node node) : Surface(node)
   const bool contiguous = has_prefix && has_count && !has_indices;
   const bool indexed = has_prefix && has_indices && !has_count && !has_start;
   const bool collection = contiguous || indexed;
+  if (check_for_node(node, "representation"))
+    representation_ = get_node_value(node, "representation", false, true);
+  if (representation_ != "legacy_rounded_frame" &&
+      representation_ != "exact_control_offset")
+    fatal_error("Unknown swept-spline representation");
+  if (representation_ == "exact_control_offset" && !single)
+    fatal_error("Exact-control offset currently requires a single member");
+  if (check_for_node(node, "bernstein_prefix")) {
+    const auto value = get_node_value(node, "bernstein_prefix", true, true);
+    if (value != "true" && value != "false")
+      fatal_error("bernstein_prefix must be true or false");
+    bernstein_prefix_ = value == "true";
+    if (representation_ != "exact_control_offset")
+      fatal_error("bernstein_prefix requires exact_control_offset");
+  }
   if (!check_for_node(node, "data_file") ||
-      (single && (has_prefix || has_count || has_start || has_indices
-                  || has_member_ids)) ||
+      (single && (has_prefix || has_count || has_start || has_indices ||
+                   has_member_ids)) ||
       (!single && !collection))
     fatal_error(fmt::format(
       "Swept-spline surface {} requires data_file and exactly one of dataset "
-      "or dataset_prefix plus dataset_count or dataset_indices", id_));
+      "or dataset_prefix plus dataset_count or dataset_indices",
+      id_));
   data_file_ = get_node_value(node, "data_file", false, true);
-  if (single) dataset_ = get_node_value(node, "dataset", false, true);
+  if (single)
+    dataset_ = get_node_value(node, "dataset", false, true);
   if (collection) {
     dataset_prefix_ = get_node_value(node, "dataset_prefix", false, true);
     const auto read_integer = [&](const char* name) {
@@ -53,7 +76,8 @@ SurfaceSweptSpline::SurfaceSweptSpline(pugi::xml_node node) : Surface(node)
       try {
         std::size_t consumed = 0;
         const int value = std::stoi(text, &consumed);
-        if (consumed != text.size()) throw std::invalid_argument("trailing text");
+        if (consumed != text.size())
+          throw std::invalid_argument("trailing text");
         return value;
       } catch (const std::exception&) {
         fatal_error(fmt::format(
@@ -67,40 +91,51 @@ SurfaceSweptSpline::SurfaceSweptSpline(pugi::xml_node node) : Surface(node)
       std::unordered_set<int> seen;
       std::string token;
       while (stream >> token) {
-        if (token.empty() || !std::all_of(token.begin(), token.end(),
+        if (token.empty() ||
+            !std::all_of(token.begin(), token.end(),
               [](char digit) { return digit >= '0' && digit <= '9'; }))
           fatal_error(fmt::format("Swept-spline surface {} requires decimal "
-                                  "dataset_indices", id_));
+                                  "dataset_indices",
+            id_));
         int value;
         try {
           std::size_t consumed = 0;
           value = std::stoi(token, &consumed);
-          if (consumed != token.size()) throw std::invalid_argument("trailing text");
+          if (consumed != token.size())
+            throw std::invalid_argument("trailing text");
         } catch (const std::exception&) {
           fatal_error(fmt::format("Swept-spline surface {} has an "
-                                  "unrepresentable dataset index", id_));
+                                  "unrepresentable dataset index",
+            id_));
         }
         if (!seen.insert(value).second)
           fatal_error(fmt::format("Swept-spline surface {} has duplicate "
-                                  "dataset indices", id_));
+                                  "dataset indices",
+            id_));
         dataset_indices_.push_back(value);
       }
       if (dataset_indices_.empty())
         fatal_error(fmt::format("Swept-spline surface {} requires at least "
-                                "one dataset index", id_));
-      if (dataset_indices_.size()
-          > static_cast<std::size_t>(std::numeric_limits<int>::max()))
+                                "one dataset index",
+          id_));
+      if (dataset_indices_.size() >
+          static_cast<std::size_t>(std::numeric_limits<int>::max()))
         fatal_error(fmt::format("Swept-spline surface {} has too many "
-                                "dataset indices", id_));
+                                "dataset indices",
+          id_));
       dataset_count_ = static_cast<int>(dataset_indices_.size());
     } else {
       dataset_count_ = read_integer("dataset_count");
-      if (has_start) dataset_start_ = read_integer("dataset_start");
+      if (has_start)
+        dataset_start_ = read_integer("dataset_start");
       if (dataset_count_ <= 0 || dataset_start_ < 0 ||
-          dataset_start_ > std::numeric_limits<int>::max() - (dataset_count_ - 1)) {
-        fatal_error(fmt::format("Swept-spline surface {} requires positive "
-                                "dataset_count and a nonnegative, representable "
-                                "dataset index range", id_));
+          dataset_start_ >
+            std::numeric_limits<int>::max() - (dataset_count_ - 1)) {
+        fatal_error(
+          fmt::format("Swept-spline surface {} requires positive "
+                      "dataset_count and a nonnegative, representable "
+                      "dataset index range",
+            id_));
       }
     }
   }
@@ -110,39 +145,50 @@ SurfaceSweptSpline::SurfaceSweptSpline(pugi::xml_node node) : Surface(node)
     const auto values = get_node_value(node, "member_content_ids", false, true);
     std::istringstream stream {values};
     std::string value;
-    while (stream >> value) member_content_ids_.push_back(value);
-    if (member_content_ids_.size()
-        != static_cast<std::size_t>(dataset_count_)) {
+    while (stream >> value)
+      member_content_ids_.push_back(value);
+    if (member_content_ids_.size() !=
+        static_cast<std::size_t>(dataset_count_)) {
       fatal_error(fmt::format("Swept-spline collection surface {} requires one "
-                              "member_content_id per selected dataset", id_));
+                              "member_content_id per selected dataset",
+        id_));
     }
   }
-  if (check_for_node(node, "units")
-      && get_node_value(node, "units", true, true) != "cm")
-    fatal_error(fmt::format("Swept-spline surface {} requires units='cm'", id_));
+  if (check_for_node(node, "units") &&
+      get_node_value(node, "units", true, true) != "cm")
+    fatal_error(
+      fmt::format("Swept-spline surface {} requires units='cm'", id_));
   std::filesystem::path path {data_file_};
-  if (path.is_relative()) path = std::filesystem::path {settings::path_input} / path;
+  if (path.is_relative())
+    path = std::filesystem::path {settings::path_input} / path;
   try {
     const auto filename = path.lexically_normal().string();
     if (single) {
       auto data = stellarcsg::read_swept_spline_surface_hdf5(
         filename, dataset_, content_id_);
-      if (content_id_.empty()) content_id_ = data.content_id;
+      if (content_id_.empty())
+        content_id_ = data.content_id;
       surface_ = std::make_unique<stellarcsg::CompiledSweptSplineSurface>(
-        std::move(data));
+        std::move(data), false, stellarcsg::SweptTorusMode::faithful_spline,
+        representation_ == "exact_control_offset"
+          ? stellarcsg::SweptRepresentation::exact_control_offset
+          : stellarcsg::SweptRepresentation::legacy_rounded_frame);
     } else {
-      if (!content_id_.empty()) fatal_error(fmt::format(
-        "Swept-spline collection surface {} uses per-coil content IDs and "
-        "must not specify content_id", id_));
+      if (!content_id_.empty())
+        fatal_error(fmt::format(
+          "Swept-spline collection surface {} uses per-coil content IDs and "
+          "must not specify content_id",
+          id_));
       std::vector<stellarcsg::SweptSplineSurfaceData> coils;
       coils.reserve(static_cast<std::size_t>(dataset_count_));
       for (int offset = 0; offset < dataset_count_; ++offset) {
-        const int coil_id = indexed ? dataset_indices_[offset]
-                                    : dataset_start_ + offset;
-        auto coil = stellarcsg::read_swept_spline_surface_hdf5(
-          filename, fmt::format("{}{:03d}", dataset_prefix_, coil_id),
+        const int coil_id =
+          indexed ? dataset_indices_[offset] : dataset_start_ + offset;
+        auto coil = stellarcsg::read_swept_spline_surface_hdf5(filename,
+          fmt::format("{}{:03d}", dataset_prefix_, coil_id),
           has_member_ids ? member_content_ids_[offset] : std::string {});
-        if (!has_member_ids) member_content_ids_.push_back(coil.content_id);
+        if (!has_member_ids)
+          member_content_ids_.push_back(coil.content_id);
         coils.push_back(std::move(coil));
       }
       surface_set_ =
@@ -150,15 +196,16 @@ SurfaceSweptSpline::SurfaceSweptSpline(pugi::xml_node node) : Surface(node)
           std::move(coils));
     }
   } catch (const std::exception& error) {
-    fatal_error(fmt::format("Unable to initialize swept-spline surface {}: {}",
-      id_, error.what()));
+    fatal_error(fmt::format(
+      "Unable to initialize swept-spline surface {}: {}", id_, error.what()));
   }
 }
 
 SurfaceSweptSpline::~SurfaceSweptSpline()
 {
-  if (std::getenv("STELLARCSG_REPORT_COUNTERS") == nullptr
-      || !stellarcsg::performance_counters_enabled()) return;
+  if (std::getenv("STELLARCSG_REPORT_COUNTERS") == nullptr ||
+      !stellarcsg::performance_counters_enabled())
+    return;
   const auto c = stellarcsg::performance_counters_snapshot();
   std::cerr << "STELLARCSG_COUNTERS {"
             << "\"distance_calls\":" << c.distance_calls << ','
@@ -169,9 +216,9 @@ SurfaceSweptSpline::~SurfaceSweptSpline()
             << "\"proxy_seeds\":" << c.proxy_seeds << ','
             << "\"newton_iterations\":" << c.newton_iterations << ','
             << "\"newton_failures\":" << c.newton_failures << ','
-            << "\"local_subdivision_calls\":" << c.local_subdivision_calls << ','
-            << "\"global_reference_calls\":" << c.global_reference_calls << ','
-            << "\"accepted_roots\":" << c.accepted_roots << ','
+            << "\"local_subdivision_calls\":" << c.local_subdivision_calls
+            << ',' << "\"global_reference_calls\":" << c.global_reference_calls
+            << ',' << "\"accepted_roots\":" << c.accepted_roots << ','
             << "\"no_hit_returns\":" << c.no_hit_returns << ','
             << "\"cache_hits\":" << c.cache_hits << ','
             << "\"cache_misses\":" << c.cache_misses << "}\n";
@@ -183,32 +230,35 @@ double SurfaceSweptSpline::evaluate(Position r) const
                   : surface_set_->evaluate(convert(r));
 }
 
-double SurfaceSweptSpline::distance(Position r, Direction u, bool coincident) const
+double SurfaceSweptSpline::distance(
+  Position r, Direction u, bool coincident) const
 {
   stellarcsg::RootSearchOptions options;
   options.initial_subdivisions = 48;
   options.max_refinement_levels = 6;
+  options.enable_bernstein_prefix = bernstein_prefix_;
   if (surface_) {
-    const auto result = surface_->distance(
-      convert(r), convert(u), coincident, options);
+    const auto result =
+      surface_->distance(convert(r), convert(u), coincident, options);
     return checked_stellarcsg_distance(result, id_);
   }
-  const auto result = surface_set_->distance(
-    convert(r), convert(u), coincident, options);
+  const auto result =
+    surface_set_->distance(convert(r), convert(u), coincident, options);
   return checked_stellarcsg_distance(result.root, id_);
 }
 
 Direction SurfaceSweptSpline::normal(Position r) const
 {
-  return convert(surface_ ? surface_->normal(convert(r))
-                          : surface_set_->normal(convert(r)));
+  return convert(
+    surface_ ? surface_->normal(convert(r)) : surface_set_->normal(convert(r)));
 }
 
 BoundingBox SurfaceSweptSpline::bounding_box(bool pos_side) const
 {
-  if (pos_side) return BoundingBox::infinite();
-  const auto& box = surface_ ? surface_->bounding_box()
-                             : surface_set_->bounding_box();
+  if (pos_side)
+    return BoundingBox::infinite();
+  const auto& box =
+    surface_ ? surface_->bounding_box() : surface_set_->bounding_box();
   return {{box.lower.x, box.lower.y, box.lower.z},
     {box.upper.x, box.upper.y, box.upper.z}};
 }
@@ -217,6 +267,10 @@ void SurfaceSweptSpline::to_hdf5_inner(hid_t group) const
 {
   write_string(group, "type", "swept-spline", false);
   write_string(group, "data_file", data_file_, false);
+  write_string(group, "representation", representation_, false);
+  if (representation_ == "exact_control_offset")
+    write_string(
+      group, "bernstein_prefix", bernstein_prefix_ ? "true" : "false", false);
   if (surface_) {
     write_string(group, "dataset", dataset_, false);
     write_string(group, "content_id", content_id_, false);
@@ -224,14 +278,16 @@ void SurfaceSweptSpline::to_hdf5_inner(hid_t group) const
     write_string(group, "dataset_prefix", dataset_prefix_, false);
     std::string ids;
     for (const auto& value : member_content_ids_) {
-      if (!ids.empty()) ids += ' ';
+      if (!ids.empty())
+        ids += ' ';
       ids += value;
     }
     write_string(group, "member_content_ids", ids, false);
     if (!dataset_indices_.empty()) {
       std::string indices;
       for (const int value : dataset_indices_) {
-        if (!indices.empty()) indices += ' ';
+        if (!indices.empty())
+          indices += ' ';
         indices += std::to_string(value);
       }
       write_string(group, "dataset_indices", indices, false);

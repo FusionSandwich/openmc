@@ -1,0 +1,37 @@
+{
+  "identities": {
+    "/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-astra-kernel-20260926/dev/stellarcsg/qualification/check_spherical_partial_indices.cpp": "57cb3ad7c5739783d131232a3ce1326d3d4811144fd1e7316bc559156f17b280",
+    "/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-astra-kernel-20260926/dev/stellarcsg/qualification/check_spherical_equator.cpp": "8921e9379dc13f61e11f07ac2454241d0c62fb5e7bdd67e4fb34a07ede2e090a",
+    "/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-astra-kernel-20260926/src/mesh.cpp": "2077f0850d1f9597a193e4e1c6af5c09efb4e1eda6bdd5500ddb5b63fa36a575",
+    "/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-astra-kernel-20260926/include/openmc/mesh.h": "6ed13c14d8a5d093577241d59b9b47b674b34dbecf8abd049c8e6bac91f3e813",
+    "/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-astra-kernel-20260926/build/astra-native/lib/libopenmc.so": "f301f7a76a1d4bc1910ea17b582dd31ce70f35cc35690ae5c390c1880ce714a6",
+    "/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-astra-kernel-20260926/dev/stellarcsg/reports/openmc-integration-20260926/partial-probe.py": "06695fb70cb4f46ea60cf30b73e9712862b8ceadc5cf18604a4c4046ea8848f2",
+    "/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-astra-kernel-20260926/dev/stellarcsg/reports/openmc-integration-20260926/prepartial-windows.json": "31311dcfc7b525a9152f1d16f0755f6e7634dee48b3c9e1a5762b601e52fe045",
+    "/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-astra-kernel-20260926/dev/stellarcsg/reports/openmc-integration-20260926/prepartial-wsl.json": "5572e18f7d345f85408ba874a519867186d6f54be33f740c18b2b0362bfdadf3"
+  },
+  "command": [
+    "g++",
+    "-std=c++17",
+    "-O2",
+    "-fno-fast-math",
+    "-Iinclude",
+    "-Ibuild/astra-native/include",
+    "-I/usr/include/hdf5/serial",
+    "-I/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/openmc-stellarcsg/vendor/fmt/include",
+    "-I/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/openmc-stellarcsg/vendor/pugixml/src",
+    "/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-astra-kernel-20260926/dev/stellarcsg/qualification/check_spherical_partial_indices.cpp",
+    "/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-astra-kernel-20260926/build/astra-native/lib/libopenmc.so",
+    "/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/openmc-stellarcsg/build/openmc-stellarcsg-enabled/lib/libfmt.a",
+    "/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/openmc-stellarcsg/build/openmc-stellarcsg-enabled/lib/libpugixml.a",
+    "-Wl,-rpath,/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-astra-kernel-20260926/build/astra-native/lib",
+    "-o",
+    "/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-astra-kernel-20260926/build/astra-native/bin/stellarcsg_spherical_partial_probe"
+  ],
+  "compile_exit_code": 0,
+  "test_exit_code": 255,
+  "probe_sha256": "d044f6d79fefc601065ee9928822297a817c05299ef805896b4ea658446d82b1",
+  "output_sha256": "8866d70044c3b2fc3944d3ba87f22be9423e0f1f34c400dfacd62f4d63adacbf",
+  "acquisition_bytes": 0,
+  "memory_cap_bytes": 1610612736,
+  "parallel_jobs": 1
+}

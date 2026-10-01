@@ -1,0 +1,10 @@
+[0/1] Re-running CMake...
+-- Configuring done (5.7s)
+-- Generating done (0.2s)
+-- Build files have been written to: /mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-astra-kernel-20260926/build/astra
+[1/7] Building CXX object CMakeFiles/stellarcsg_reference.dir/src/certified_spline_offset.cpp.o
+[2/7] Linking CXX static library libstellarcsg_reference.a
+[3/7] Building CXX object CMakeFiles/stellarcsg_offset_tests.dir/tests/test_certified_offset.cpp.o
+[4/7] Linking CXX executable stellarcsg_offset_tests
+[5/7] Linking CXX executable stellarcsg_offset_probe
+[6/7] Linking CXX executable stellarcsg_recovery04_bank

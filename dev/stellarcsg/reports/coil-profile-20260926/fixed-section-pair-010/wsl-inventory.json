@@ -1,0 +1,170 @@
+{
+  "utc": "2026-09-27T02:24:45.406322+00:00",
+  "observations": [
+    {
+      "command": [
+        "free",
+        "-b"
+      ],
+      "exit_code": 0,
+      "stdout": "               total        used        free      shared  buff/cache   available\nMem:     25200037888   980742144 23936774144     4382720   570228736 24219295744\nSwap:    34359738368           0 34359738368\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "df",
+        "-B1",
+        "/",
+        "/tmp",
+        "/mnt/c",
+        "/mnt/d"
+      ],
+      "exit_code": 0,
+      "stdout": "Filesystem         1B-blocks          Used     Available Use% Mounted on\n/dev/sde       1081101176832    4724998144 1021383823360   1% /\ntmpfs            12600020992             0   12600020992   0% /tmp\nC:\\             998965768192  903012630528   95953137664  91% /mnt/c\nD:\\            2000397791232 1506044067840  494353723392  76% /mnt/d\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "ps",
+        "-eo",
+        "pid,comm,rss,pcpu",
+        "--sort=-rss"
+      ],
+      "exit_code": 0,
+      "stdout": "    PID COMMAND           RSS %CPU\n    311 python          49240  8.7\n      1 systemd         14280  3.5\n     40 systemd-journal 13724  3.4\n    268 systemd         12624  3.5\n     57 systemd-udevd   10016  1.3\n    229 systemd-logind   9124  0.8\n    306 bash             5860  0.3\n    227 dbus-daemon      4480  0.2\n    258 login            4316  0.0\n    315 ps               4060  0.0\n    270 (sd-pam)         3624  0.0\n    226 cron             2872  0.0\n    239 agetty           2832  0.0\n      2 init-systemd(Op  2204  0.0\n    257 timeout          2064  0.0\n      7 init             2044  0.0\n    254 Relay(257)       1192  0.0\n    252 SessionLeader    1116  0.0\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "g++",
+        "--version"
+      ],
+      "exit_code": 0,
+      "stdout": "g++ (Debian 14.2.0-19) 14.2.0\nCopyright (C) 2024 Free Software Foundation, Inc.\nThis is free software; see the source for copying conditions.  There is NO\nwarranty; not even for MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.\n\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "cmake",
+        "--version"
+      ],
+      "exit_code": 0,
+      "stdout": "cmake version 3.31.6\n\nCMake suite maintained and supported by Kitware (kitware.com/cmake).\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "/opt/openmc-venv/bin/python",
+        "--version"
+      ],
+      "exit_code": 0,
+      "stdout": "Python 3.13.5\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "ldd",
+        "/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-astra-kernel-20260926/build/astra-native/bin/openmc"
+      ],
+      "exit_code": 0,
+      "stdout": "\tlinux-vdso.so.1 (0x0000757595356000)\n\tlibopenmc.so => /mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-astra-kernel-20260926/build/astra-native/lib/libopenmc.so (0x0000757594fd0000)\n\tlibstdc++.so.6 => /lib/x86_64-linux-gnu/libstdc++.so.6 (0x0000757594c00000)\n\tlibm.so.6 => /lib/x86_64-linux-gnu/libm.so.6 (0x0000757594ed9000)\n\tlibgcc_s.so.1 => /lib/x86_64-linux-gnu/libgcc_s.so.1 (0x0000757594eac000)\n\tlibc.so.6 => /lib/x86_64-linux-gnu/libc.so.6 (0x0000757594a0a000)\n\tlibhdf5_serial.so.310 => /lib/x86_64-linux-gnu/libhdf5_serial.so.310 (0x0000757594600000)\n\tlibhdf5_serial_hl.so.310 => /lib/x86_64-linux-gnu/libhdf5_serial_hl.so.310 (0x0000757594e85000)\n\tlibpng16.so.16 => /lib/x86_64-linux-gnu/libpng16.so.16 (0x00007575945c7000)\n\t/lib64/ld-linux-x86-64.so.2 (0x0000757595358000)\n\tlibcrypto.so.3 => /lib/x86_64-linux-gnu/libcrypto.so.3 (0x0000757593e00000)\n\tlibcurl.so.4 => /lib/x86_64-linux-gnu/libcurl.so.4 (0x00007575944d7000)\n\tlibsz.so.2 => /lib/x86_64-linux-gnu/libsz.so.2 (0x0000757594e7e000)\n\tlibz.so.1 => /lib/x86_64-linux-gnu/libz.so.1 (0x00007575944b7000)\n\tlibzstd.so.1 => /lib/x86_64-linux-gnu/libzstd.so.1 (0x0000757593d36000)\n\tlibnghttp3.so.9 => /lib/x86_64-linux-gnu/libnghttp3.so.9 (0x000075759448d000)\n\tlibnghttp2.so.14 => /lib/x86_64-linux-gnu/libnghttp2.so.14 (0x000075759445b000)\n\tlibidn2.so.0 => /lib/x86_64-linux-gnu/libidn2.so.0 (0x0000757593d03000)\n\tlibrtmp.so.1 => /lib/x86_64-linux-gnu/librtmp.so.1 (0x000075759443d000)\n\tlibssh2.so.1 => /lib/x86_64-linux-gnu/libssh2.so.1 (0x0000757593cba000)\n\tlibpsl.so.5 => /lib/x86_64-linux-gnu/libpsl.so.5 (0x0000757594e68000)\n\tlibssl.so.3 => /lib/x86_64-linux-gnu/libssl.so.3 (0x0000757593bac000)\n\tlibgssapi_krb5.so.2 => /lib/x86_64-linux-gnu/libgssapi_krb5.so.2 (0x0000757593b56000)\n\tlibldap.so.2 => /lib/x86_64-linux-gnu/libldap.so.2 (0x0000757593af2000)\n\tliblber.so.2 => /lib/x86_64-linux-gnu/liblber.so.2 (0x0000757593ae1000)\n\tlibbrotlidec.so.1 => /lib/x86_64-linux-gnu/libbrotlidec.so.1 (0x0000757593ad3000)\n\tlibaec.so.0 => /lib/x86_64-linux-gnu/libaec.so.0 (0x0000757593ac8000)\n\tlibunistring.so.5 => /lib/x86_64-linux-gnu/libunistring.so.5 (0x00007575938e0000)\n\tlibgnutls.so.30 => /lib/x86_64-linux-gnu/libgnutls.so.30 (0x0000757593600000)\n\tlibhogweed.so.6 => /lib/x86_64-linux-gnu/libhogweed.so.6 (0x0000757593895000)\n\tlibnettle.so.8 => /lib/x86_64-linux-gnu/libnettle.so.8 (0x000075759383f000)\n\tlibgmp.so.10 => /lib/x86_64-linux-gnu/libgmp.so.10 (0x0000757593576000)\n\tlibkrb5.so.3 => /lib/x86_64-linux-gnu/libkrb5.so.3 (0x000075759349e000)\n\tlibk5crypto.so.3 => /lib/x86_64-linux-gnu/libk5crypto.so.3 (0x0000757593470000)\n\tlibcom_err.so.2 => /lib/x86_64-linux-gnu/libcom_err.so.2 (0x0000757593839000)\n\tlibkrb5support.so.0 => /lib/x86_64-linux-gnu/libkrb5support.so.0 (0x000075759382b000)\n\tlibsasl2.so.2 => /lib/x86_64-linux-gnu/libsasl2.so.2 (0x0000757593454000)\n\tlibbrotlicommon.so.1 => /lib/x86_64-linux-gnu/libbrotlicommon.so.1 (0x0000757593431000)\n\tlibp11-kit.so.0 => /lib/x86_64-linux-gnu/libp11-kit.so.0 (0x0000757593290000)\n\tlibtasn1.so.6 => /lib/x86_64-linux-gnu/libtasn1.so.6 (0x000075759327a000)\n\tlibkeyutils.so.1 => /lib/x86_64-linux-gnu/libkeyutils.so.1 (0x0000757593273000)\n\tlibresolv.so.2 => /lib/x86_64-linux-gnu/libresolv.so.2 (0x0000757593261000)\n\tlibffi.so.8 => /lib/x86_64-linux-gnu/libffi.so.8 (0x0000757593254000)\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "ldd",
+        "/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-astra-kernel-20260926/dev/stellarcsg/reports/coil-profile-20260926/candidate-04/candidate.so"
+      ],
+      "exit_code": 0,
+      "stdout": "\tlinux-vdso.so.1 (0x000077ba1560c000)\n\tlibstdc++.so.6 => /lib/x86_64-linux-gnu/libstdc++.so.6 (0x000077ba15200000)\n\tlibm.so.6 => /lib/x86_64-linux-gnu/libm.so.6 (0x000077ba154ec000)\n\tlibgcc_s.so.1 => /lib/x86_64-linux-gnu/libgcc_s.so.1 (0x000077ba154bf000)\n\tlibc.so.6 => /lib/x86_64-linux-gnu/libc.so.6 (0x000077ba1500a000)\n\t/lib64/ld-linux-x86-64.so.2 (0x000077ba1560e000)\n",
+      "stderr": ""
+    }
+  ],
+  "local_environments_caches_checkouts": {
+    "/opt/*venv*": [
+      "/opt/openmc-venv"
+    ],
+    "/opt/*conda*": [],
+    "/root/.cache/*": [
+      "/root/.cache/pip",
+      "/root/.cache/matplotlib"
+    ],
+    "/home/*/.cache/*": [],
+    "/mnt/c/Users/joshu/.cache/*": [
+      "/mnt/c/Users/joshu/.cache/claude",
+      "/mnt/c/Users/joshu/.cache/codex-runtimes",
+      "/mnt/c/Users/joshu/.cache/codex-tools",
+      "/mnt/c/Users/joshu/.cache/ezdxf",
+      "/mnt/c/Users/joshu/.cache/kilo",
+      "/mnt/c/Users/joshu/.cache/mathlib"
+    ],
+    "/mnt/c/Users/joshu/AppData/Local/pip/Cache": [
+      "/mnt/c/Users/joshu/AppData/Local/pip/Cache"
+    ],
+    "/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/*/build*": [
+      "/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/local-coil-wave-20260926/build-transport-steering-007.txt",
+      "/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/openmc-stellarcsg/build",
+      "/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/openmc-stellarcsg-composite/build",
+      "/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/openmc-stellarcsg-torus-class/build",
+      "/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-astra-kernel-20260926/build",
+      "/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-fast-recovery-04/build",
+      "/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-local-continuation-20260925/build",
+      "/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-local-repair-07/build",
+      "/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-product-05/build",
+      "/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-root-repair-07/build",
+      "/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-run-compare-06/build",
+      "/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-track-a/build"
+    ],
+    "/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/*/.git": [
+      "/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/blanket/.git",
+      "/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/openmc-stellarcsg/.git",
+      "/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/openmc-stellarcsg-composite/.git",
+      "/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/openmc-stellarcsg-torus-class/.git",
+      "/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/parastell/.git",
+      "/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-acceptance-only-07/.git",
+      "/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-astra-kernel-20260926/.git",
+      "/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-benchmark-arena/.git",
+      "/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-cont-a/.git",
+      "/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-cont-b/.git",
+      "/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-cont-neutral/.git",
+      "/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-crossing-repair-07/.git",
+      "/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-fast-03/.git",
+      "/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-fast-recovery-04/.git",
+      "/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-import-05/.git",
+      "/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-local-continuation-20260925/.git",
+      "/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-local-repair-07/.git",
+      "/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-neutral-03/.git",
+      "/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-next-b/.git",
+      "/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-next-coil/.git",
+      "/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-next-neutral/.git",
+      "/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-next-plasma/.git",
+      "/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-product-05/.git",
+      "/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-recovery-bank-04/.git",
+      "/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-root-repair-07/.git",
+      "/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-run-compare-06/.git",
+      "/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-run-harness-06/.git",
+      "/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-track-a/.git",
+      "/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-track-b/.git",
+      "/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/wistell-d-openmc/.git"
+    ]
+  },
+  "available_affinity": [
+    0,
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    11
+  ],
+  "acquisition_bytes": 0,
+  "capabilities_sufficient": "existing executable, complete reviewed DSO, h5py/numpy and fixtures suffice for diagnostic",
+  "full_target_capability": "not admitted; DAGMC OFF, no verified Embree target",
+  "target": "/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-astra-kernel-20260926/dev/stellarcsg/reports/coil-profile-20260926/fixed-section-pair-010",
+  "rollback": "retain fresh diagnostic artifacts; no source/environment mutation"
+}

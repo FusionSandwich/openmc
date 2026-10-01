@@ -1,0 +1,1130 @@
+{
+  "schema": "stellarcsg.offset-cost-observation/v1",
+  "source_candidate": "dev/stellarcsg/reports/astra-20260926/frozen-offset-03/candidate.jsonl",
+  "candidate_jsonl_sha256": "42e015482fbf12e30f322a92b07b55be8a78cbd824ef09b13453bab43d900e17",
+  "frozen_bank_csv": "dev/stellarcsg/qualification/recovery04_frozen_bank.csv",
+  "frozen_bank_sha256": "fc9da0be5eb66e3d56649a8d709db16f9b096c7767a565c57d5488bd19430723",
+  "identity_checks": {
+    "query_count_160": true,
+    "ordered_ids_match_frozen_csv": true,
+    "candidate_hash_matches_receipt": true,
+    "bank_hash_matches_receipt": true,
+    "representation": "exact_control_offset"
+  },
+  "run": {
+    "walltime_seconds": 27.18635630607605,
+    "exit_code": 0,
+    "timed_out": false,
+    "provenance_unchanged": true
+  },
+  "percentile_method": "nearest rank: sorted[ceil(0.95*n)-1]; median uses Python statistics.median",
+  "timing_fields_ns": {
+    "distance": "candidate_distance_ns",
+    "evaluation": "evaluate_ns",
+    "normal": "normal_ns"
+  },
+  "all": {
+    "count": 160,
+    "resolved": 160,
+    "candidate_blocked": 0,
+    "telemetry_blocked": 9,
+    "candidate_distance_ns": {
+      "sum": 24945547355,
+      "median": 3150849.5,
+      "p95_nearest_rank": 423480069,
+      "missing": 0
+    },
+    "evaluate_ns": {
+      "sum": 417215192,
+      "median": 2208650.0,
+      "p95_nearest_rank": 4852100,
+      "missing": 8
+    },
+    "normal_ns": {
+      "sum": 790606753,
+      "median": 4992199,
+      "p95_nearest_rank": 7301800,
+      "missing": 9
+    },
+    "minimum_calls_min": 0,
+    "minimum_nodes_min": 0,
+    "projection_visits_min": 0,
+    "excluded_slabs_min": 0,
+    "diagnostic_counters": {
+      "minimum_calls": {
+        "sum": 4104,
+        "missing": 0
+      },
+      "minimum_nodes": {
+        "sum": 40758,
+        "missing": 0
+      },
+      "projection_visits": {
+        "sum": 16712,
+        "missing": 0
+      },
+      "excluded_slabs": {
+        "sum": 134,
+        "missing": 0
+      }
+    }
+  },
+  "by_disposition": {
+    "hit": {
+      "count": 69,
+      "resolved": 69,
+      "candidate_blocked": 0,
+      "telemetry_blocked": 0,
+      "candidate_distance_ns": {
+        "sum": 24446837799,
+        "median": 236340183,
+        "p95_nearest_rank": 1765711170,
+        "missing": 0
+      },
+      "evaluate_ns": {
+        "sum": 160735495,
+        "median": 1998000,
+        "p95_nearest_rank": 4754800,
+        "missing": 0
+      },
+      "normal_ns": {
+        "sum": 352751677,
+        "median": 4992199,
+        "p95_nearest_rank": 7251100,
+        "missing": 0
+      },
+      "minimum_calls_min": 0,
+      "minimum_nodes_min": 0,
+      "projection_visits_min": 0,
+      "excluded_slabs_min": 0,
+      "diagnostic_counters": {
+        "minimum_calls": {
+          "sum": 3969,
+          "missing": 0
+        },
+        "minimum_nodes": {
+          "sum": 39406,
+          "missing": 0
+        },
+        "projection_visits": {
+          "sum": 16410,
+          "missing": 0
+        },
+        "excluded_slabs": {
+          "sum": 95,
+          "missing": 0
+        }
+      }
+    },
+    "no_hit": {
+      "count": 91,
+      "resolved": 91,
+      "candidate_blocked": 0,
+      "telemetry_blocked": 9,
+      "candidate_distance_ns": {
+        "sum": 498709556,
+        "median": 2500,
+        "p95_nearest_rank": 44868796,
+        "missing": 0
+      },
+      "evaluate_ns": {
+        "sum": 256479697,
+        "median": 2596500,
+        "p95_nearest_rank": 4879400,
+        "missing": 8
+      },
+      "normal_ns": {
+        "sum": 437855076,
+        "median": 5000350.5,
+        "p95_nearest_rank": 7301800,
+        "missing": 9
+      },
+      "minimum_calls_min": 0,
+      "minimum_nodes_min": 0,
+      "projection_visits_min": 0,
+      "excluded_slabs_min": 0,
+      "diagnostic_counters": {
+        "minimum_calls": {
+          "sum": 135,
+          "missing": 0
+        },
+        "minimum_nodes": {
+          "sum": 1352,
+          "missing": 0
+        },
+        "projection_visits": {
+          "sum": 302,
+          "missing": 0
+        },
+        "excluded_slabs": {
+          "sum": 39,
+          "missing": 0
+        }
+      }
+    }
+  },
+  "by_category": {
+    "clear_miss": {
+      "count": 1,
+      "resolved": 1,
+      "candidate_blocked": 0,
+      "telemetry_blocked": 1,
+      "candidate_distance_ns": {
+        "sum": 8800,
+        "median": 8800,
+        "p95_nearest_rank": 8800,
+        "missing": 0
+      },
+      "evaluate_ns": {
+        "sum": 37977502,
+        "median": 37977502,
+        "p95_nearest_rank": 37977502,
+        "missing": 0
+      },
+      "normal_ns": {
+        "sum": null,
+        "median": null,
+        "p95_nearest_rank": null,
+        "missing": 1
+      },
+      "minimum_calls_min": 0,
+      "minimum_nodes_min": 0,
+      "projection_visits_min": 0,
+      "excluded_slabs_min": 0,
+      "diagnostic_counters": {
+        "minimum_calls": {
+          "sum": 0,
+          "missing": 0
+        },
+        "minimum_nodes": {
+          "sum": 0,
+          "missing": 0
+        },
+        "projection_visits": {
+          "sum": 0,
+          "missing": 0
+        },
+        "excluded_slabs": {
+          "sum": 0,
+          "missing": 0
+        }
+      }
+    },
+    "coincident_in": {
+      "count": 1,
+      "resolved": 1,
+      "candidate_blocked": 0,
+      "telemetry_blocked": 0,
+      "candidate_distance_ns": {
+        "sum": 276424004,
+        "median": 276424004,
+        "p95_nearest_rank": 276424004,
+        "missing": 0
+      },
+      "evaluate_ns": {
+        "sum": 711400,
+        "median": 711400,
+        "p95_nearest_rank": 711400,
+        "missing": 0
+      },
+      "normal_ns": {
+        "sum": 4031000,
+        "median": 4031000,
+        "p95_nearest_rank": 4031000,
+        "missing": 0
+      },
+      "minimum_calls_min": 58,
+      "minimum_nodes_min": 459,
+      "projection_visits_min": 93,
+      "excluded_slabs_min": 1,
+      "diagnostic_counters": {
+        "minimum_calls": {
+          "sum": 58,
+          "missing": 0
+        },
+        "minimum_nodes": {
+          "sum": 459,
+          "missing": 0
+        },
+        "projection_visits": {
+          "sum": 93,
+          "missing": 0
+        },
+        "excluded_slabs": {
+          "sum": 1,
+          "missing": 0
+        }
+      }
+    },
+    "coincident_out": {
+      "count": 1,
+      "resolved": 1,
+      "candidate_blocked": 0,
+      "telemetry_blocked": 0,
+      "candidate_distance_ns": {
+        "sum": 1828800,
+        "median": 1828800,
+        "p95_nearest_rank": 1828800,
+        "missing": 0
+      },
+      "evaluate_ns": {
+        "sum": 701300,
+        "median": 701300,
+        "p95_nearest_rank": 701300,
+        "missing": 0
+      },
+      "normal_ns": {
+        "sum": 3499300,
+        "median": 3499300,
+        "p95_nearest_rank": 3499300,
+        "missing": 0
+      },
+      "minimum_calls_min": 2,
+      "minimum_nodes_min": 2,
+      "projection_visits_min": 0,
+      "excluded_slabs_min": 1,
+      "diagnostic_counters": {
+        "minimum_calls": {
+          "sum": 2,
+          "missing": 0
+        },
+        "minimum_nodes": {
+          "sum": 2,
+          "missing": 0
+        },
+        "projection_visits": {
+          "sum": 0,
+          "missing": 0
+        },
+        "excluded_slabs": {
+          "sum": 1,
+          "missing": 0
+        }
+      }
+    },
+    "competing_roots": {
+      "count": 1,
+      "resolved": 1,
+      "candidate_blocked": 0,
+      "telemetry_blocked": 0,
+      "candidate_distance_ns": {
+        "sum": 2084616340,
+        "median": 2084616340,
+        "p95_nearest_rank": 2084616340,
+        "missing": 0
+      },
+      "evaluate_ns": {
+        "sum": 4484901,
+        "median": 4484901,
+        "p95_nearest_rank": 4484901,
+        "missing": 0
+      },
+      "normal_ns": {
+        "sum": 7554402,
+        "median": 7554402,
+        "p95_nearest_rank": 7554402,
+        "missing": 0
+      },
+      "minimum_calls_min": 60,
+      "minimum_nodes_min": 4159,
+      "projection_visits_min": 181,
+      "excluded_slabs_min": 0,
+      "diagnostic_counters": {
+        "minimum_calls": {
+          "sum": 60,
+          "missing": 0
+        },
+        "minimum_nodes": {
+          "sum": 4159,
+          "missing": 0
+        },
+        "projection_visits": {
+          "sum": 181,
+          "missing": 0
+        },
+        "excluded_slabs": {
+          "sum": 0,
+          "missing": 0
+        }
+      }
+    },
+    "direction_scaling": {
+      "count": 2,
+      "resolved": 2,
+      "candidate_blocked": 0,
+      "telemetry_blocked": 0,
+      "candidate_distance_ns": {
+        "sum": 3523969441,
+        "median": 1761984720.5,
+        "p95_nearest_rank": 1765711170,
+        "missing": 0
+      },
+      "evaluate_ns": {
+        "sum": 1300300,
+        "median": 650150.0,
+        "p95_nearest_rank": 652400,
+        "missing": 0
+      },
+      "normal_ns": {
+        "sum": 7034901,
+        "median": 3517450.5,
+        "p95_nearest_rank": 3548201,
+        "missing": 0
+      },
+      "minimum_calls_min": 60,
+      "minimum_nodes_min": 3968,
+      "projection_visits_min": 158,
+      "excluded_slabs_min": 0,
+      "diagnostic_counters": {
+        "minimum_calls": {
+          "sum": 120,
+          "missing": 0
+        },
+        "minimum_nodes": {
+          "sum": 7936,
+          "missing": 0
+        },
+        "projection_visits": {
+          "sum": 316,
+          "missing": 0
+        },
+        "excluded_slabs": {
+          "sum": 0,
+          "missing": 0
+        }
+      }
+    },
+    "grazing": {
+      "count": 1,
+      "resolved": 1,
+      "candidate_blocked": 0,
+      "telemetry_blocked": 0,
+      "candidate_distance_ns": {
+        "sum": 3300,
+        "median": 3300,
+        "p95_nearest_rank": 3300,
+        "missing": 0
+      },
+      "evaluate_ns": {
+        "sum": 1159400,
+        "median": 1159400,
+        "p95_nearest_rank": 1159400,
+        "missing": 0
+      },
+      "normal_ns": {
+        "sum": 3652801,
+        "median": 3652801,
+        "p95_nearest_rank": 3652801,
+        "missing": 0
+      },
+      "minimum_calls_min": 0,
+      "minimum_nodes_min": 0,
+      "projection_visits_min": 0,
+      "excluded_slabs_min": 0,
+      "diagnostic_counters": {
+        "minimum_calls": {
+          "sum": 0,
+          "missing": 0
+        },
+        "minimum_nodes": {
+          "sum": 0,
+          "missing": 0
+        },
+        "projection_visits": {
+          "sum": 0,
+          "missing": 0
+        },
+        "excluded_slabs": {
+          "sum": 0,
+          "missing": 0
+        }
+      }
+    },
+    "heldout_unique": {
+      "count": 136,
+      "resolved": 136,
+      "candidate_blocked": 0,
+      "telemetry_blocked": 0,
+      "candidate_distance_ns": {
+        "sum": 14437228104,
+        "median": 3400.0,
+        "p95_nearest_rank": 338395268,
+        "missing": 0
+      },
+      "evaluate_ns": {
+        "sum": 363812388,
+        "median": 2536700.0,
+        "p95_nearest_rank": 4852100,
+        "missing": 0
+      },
+      "normal_ns": {
+        "sum": 734491845,
+        "median": 5282400.0,
+        "p95_nearest_rank": 7301800,
+        "missing": 0
+      },
+      "minimum_calls_min": 0,
+      "minimum_nodes_min": 0,
+      "projection_visits_min": 0,
+      "excluded_slabs_min": 0,
+      "diagnostic_counters": {
+        "minimum_calls": {
+          "sum": 3388,
+          "missing": 0
+        },
+        "minimum_nodes": {
+          "sum": 13191,
+          "missing": 0
+        },
+        "projection_visits": {
+          "sum": 14246,
+          "missing": 0
+        },
+        "excluded_slabs": {
+          "sum": 99,
+          "missing": 0
+        }
+      }
+    },
+    "inside": {
+      "count": 1,
+      "resolved": 1,
+      "candidate_blocked": 0,
+      "telemetry_blocked": 0,
+      "candidate_distance_ns": {
+        "sum": 50483702,
+        "median": 50483702,
+        "p95_nearest_rank": 50483702,
+        "missing": 0
+      },
+      "evaluate_ns": {
+        "sum": 723200,
+        "median": 723200,
+        "p95_nearest_rank": 723200,
+        "missing": 0
+      },
+      "normal_ns": {
+        "sum": 3646600,
+        "median": 3646600,
+        "p95_nearest_rank": 3646600,
+        "missing": 0
+      },
+      "minimum_calls_min": 46,
+      "minimum_nodes_min": 46,
+      "projection_visits_min": 158,
+      "excluded_slabs_min": 1,
+      "diagnostic_counters": {
+        "minimum_calls": {
+          "sum": 46,
+          "missing": 0
+        },
+        "minimum_nodes": {
+          "sum": 46,
+          "missing": 0
+        },
+        "projection_visits": {
+          "sum": 158,
+          "missing": 0
+        },
+        "excluded_slabs": {
+          "sum": 1,
+          "missing": 0
+        }
+      }
+    },
+    "near_entry_002": {
+      "count": 1,
+      "resolved": 1,
+      "candidate_blocked": 0,
+      "telemetry_blocked": 0,
+      "candidate_distance_ns": {
+        "sum": 250238512,
+        "median": 250238512,
+        "p95_nearest_rank": 250238512,
+        "missing": 0
+      },
+      "evaluate_ns": {
+        "sum": 637900,
+        "median": 637900,
+        "p95_nearest_rank": 637900,
+        "missing": 0
+      },
+      "normal_ns": {
+        "sum": 3470101,
+        "median": 3470101,
+        "p95_nearest_rank": 3470101,
+        "missing": 0
+      },
+      "minimum_calls_min": 60,
+      "minimum_nodes_min": 399,
+      "projection_visits_min": 160,
+      "excluded_slabs_min": 0,
+      "diagnostic_counters": {
+        "minimum_calls": {
+          "sum": 60,
+          "missing": 0
+        },
+        "minimum_nodes": {
+          "sum": 399,
+          "missing": 0
+        },
+        "projection_visits": {
+          "sum": 160,
+          "missing": 0
+        },
+        "excluded_slabs": {
+          "sum": 0,
+          "missing": 0
+        }
+      }
+    },
+    "near_entry_502": {
+      "count": 1,
+      "resolved": 1,
+      "candidate_blocked": 0,
+      "telemetry_blocked": 0,
+      "candidate_distance_ns": {
+        "sum": 1812381393,
+        "median": 1812381393,
+        "p95_nearest_rank": 1812381393,
+        "missing": 0
+      },
+      "evaluate_ns": {
+        "sum": 641500,
+        "median": 641500,
+        "p95_nearest_rank": 641500,
+        "missing": 0
+      },
+      "normal_ns": {
+        "sum": 3539201,
+        "median": 3539201,
+        "p95_nearest_rank": 3539201,
+        "missing": 0
+      },
+      "minimum_calls_min": 60,
+      "minimum_nodes_min": 4000,
+      "projection_visits_min": 158,
+      "excluded_slabs_min": 0,
+      "diagnostic_counters": {
+        "minimum_calls": {
+          "sum": 60,
+          "missing": 0
+        },
+        "minimum_nodes": {
+          "sum": 4000,
+          "missing": 0
+        },
+        "projection_visits": {
+          "sum": 158,
+          "missing": 0
+        },
+        "excluded_slabs": {
+          "sum": 0,
+          "missing": 0
+        }
+      }
+    },
+    "near_tangent_minus": {
+      "count": 1,
+      "resolved": 1,
+      "candidate_blocked": 0,
+      "telemetry_blocked": 0,
+      "candidate_distance_ns": {
+        "sum": 108421501,
+        "median": 108421501,
+        "p95_nearest_rank": 108421501,
+        "missing": 0
+      },
+      "evaluate_ns": {
+        "sum": 1176001,
+        "median": 1176001,
+        "p95_nearest_rank": 1176001,
+        "missing": 0
+      },
+      "normal_ns": {
+        "sum": 3097800,
+        "median": 3097800,
+        "p95_nearest_rank": 3097800,
+        "missing": 0
+      },
+      "minimum_calls_min": 93,
+      "minimum_nodes_min": 93,
+      "projection_visits_min": 1058,
+      "excluded_slabs_min": 5,
+      "diagnostic_counters": {
+        "minimum_calls": {
+          "sum": 93,
+          "missing": 0
+        },
+        "minimum_nodes": {
+          "sum": 93,
+          "missing": 0
+        },
+        "projection_visits": {
+          "sum": 1058,
+          "missing": 0
+        },
+        "excluded_slabs": {
+          "sum": 5,
+          "missing": 0
+        }
+      }
+    },
+    "near_tangent_plus": {
+      "count": 1,
+      "resolved": 1,
+      "candidate_blocked": 0,
+      "telemetry_blocked": 0,
+      "candidate_distance_ns": {
+        "sum": 4600,
+        "median": 4600,
+        "p95_nearest_rank": 4600,
+        "missing": 0
+      },
+      "evaluate_ns": {
+        "sum": 1161100,
+        "median": 1161100,
+        "p95_nearest_rank": 1161100,
+        "missing": 0
+      },
+      "normal_ns": {
+        "sum": 3658800,
+        "median": 3658800,
+        "p95_nearest_rank": 3658800,
+        "missing": 0
+      },
+      "minimum_calls_min": 0,
+      "minimum_nodes_min": 0,
+      "projection_visits_min": 0,
+      "excluded_slabs_min": 0,
+      "diagnostic_counters": {
+        "minimum_calls": {
+          "sum": 0,
+          "missing": 0
+        },
+        "minimum_nodes": {
+          "sum": 0,
+          "missing": 0
+        },
+        "projection_visits": {
+          "sum": 0,
+          "missing": 0
+        },
+        "excluded_slabs": {
+          "sum": 0,
+          "missing": 0
+        }
+      }
+    },
+    "rigid_transform": {
+      "count": 1,
+      "resolved": 1,
+      "candidate_blocked": 0,
+      "telemetry_blocked": 0,
+      "candidate_distance_ns": {
+        "sum": 286631104,
+        "median": 286631104,
+        "p95_nearest_rank": 286631104,
+        "missing": 0
+      },
+      "evaluate_ns": {
+        "sum": 176300,
+        "median": 176300,
+        "p95_nearest_rank": 176300,
+        "missing": 0
+      },
+      "normal_ns": {
+        "sum": 1584700,
+        "median": 1584700,
+        "p95_nearest_rank": 1584700,
+        "missing": 0
+      },
+      "minimum_calls_min": 60,
+      "minimum_nodes_min": 5228,
+      "projection_visits_min": 184,
+      "excluded_slabs_min": 0,
+      "diagnostic_counters": {
+        "minimum_calls": {
+          "sum": 60,
+          "missing": 0
+        },
+        "minimum_nodes": {
+          "sum": 5228,
+          "missing": 0
+        },
+        "projection_visits": {
+          "sum": 184,
+          "missing": 0
+        },
+        "excluded_slabs": {
+          "sum": 0,
+          "missing": 0
+        }
+      }
+    },
+    "seam": {
+      "count": 1,
+      "resolved": 1,
+      "candidate_blocked": 0,
+      "telemetry_blocked": 0,
+      "candidate_distance_ns": {
+        "sum": 16300,
+        "median": 16300,
+        "p95_nearest_rank": 16300,
+        "missing": 0
+      },
+      "evaluate_ns": {
+        "sum": 663000,
+        "median": 663000,
+        "p95_nearest_rank": 663000,
+        "missing": 0
+      },
+      "normal_ns": {
+        "sum": 4573901,
+        "median": 4573901,
+        "p95_nearest_rank": 4573901,
+        "missing": 0
+      },
+      "minimum_calls_min": 0,
+      "minimum_nodes_min": 0,
+      "projection_visits_min": 0,
+      "excluded_slabs_min": 0,
+      "diagnostic_counters": {
+        "minimum_calls": {
+          "sum": 0,
+          "missing": 0
+        },
+        "minimum_nodes": {
+          "sum": 0,
+          "missing": 0
+        },
+        "projection_visits": {
+          "sum": 0,
+          "missing": 0
+        },
+        "excluded_slabs": {
+          "sum": 0,
+          "missing": 0
+        }
+      }
+    },
+    "tangent": {
+      "count": 1,
+      "resolved": 1,
+      "candidate_blocked": 0,
+      "telemetry_blocked": 0,
+      "candidate_distance_ns": {
+        "sum": 3700,
+        "median": 3700,
+        "p95_nearest_rank": 3700,
+        "missing": 0
+      },
+      "evaluate_ns": {
+        "sum": 1172600,
+        "median": 1172600,
+        "p95_nearest_rank": 1172600,
+        "missing": 0
+      },
+      "normal_ns": {
+        "sum": 3260401,
+        "median": 3260401,
+        "p95_nearest_rank": 3260401,
+        "missing": 0
+      },
+      "minimum_calls_min": 0,
+      "minimum_nodes_min": 0,
+      "projection_visits_min": 0,
+      "excluded_slabs_min": 0,
+      "diagnostic_counters": {
+        "minimum_calls": {
+          "sum": 0,
+          "missing": 0
+        },
+        "minimum_nodes": {
+          "sum": 0,
+          "missing": 0
+        },
+        "projection_visits": {
+          "sum": 0,
+          "missing": 0
+        },
+        "excluded_slabs": {
+          "sum": 0,
+          "missing": 0
+        }
+      }
+    },
+    "transverse": {
+      "count": 1,
+      "resolved": 1,
+      "candidate_blocked": 0,
+      "telemetry_blocked": 0,
+      "candidate_distance_ns": {
+        "sum": 1779646685,
+        "median": 1779646685,
+        "p95_nearest_rank": 1779646685,
+        "missing": 0
+      },
+      "evaluate_ns": {
+        "sum": 716400,
+        "median": 716400,
+        "p95_nearest_rank": 716400,
+        "missing": 0
+      },
+      "normal_ns": {
+        "sum": 3511000,
+        "median": 3511000,
+        "p95_nearest_rank": 3511000,
+        "missing": 0
+      },
+      "minimum_calls_min": 60,
+      "minimum_nodes_min": 3968,
+      "projection_visits_min": 158,
+      "excluded_slabs_min": 0,
+      "diagnostic_counters": {
+        "minimum_calls": {
+          "sum": 60,
+          "missing": 0
+        },
+        "minimum_nodes": {
+          "sum": 3968,
+          "missing": 0
+        },
+        "projection_visits": {
+          "sum": 158,
+          "missing": 0
+        },
+        "excluded_slabs": {
+          "sum": 0,
+          "missing": 0
+        }
+      }
+    },
+    "wistell_coil031_real": {
+      "count": 8,
+      "resolved": 8,
+      "candidate_blocked": 0,
+      "telemetry_blocked": 8,
+      "candidate_distance_ns": {
+        "sum": 333641069,
+        "median": 39049046.5,
+        "p95_nearest_rank": 74327593,
+        "missing": 0
+      },
+      "evaluate_ns": {
+        "sum": null,
+        "median": null,
+        "p95_nearest_rank": null,
+        "missing": 8
+      },
+      "normal_ns": {
+        "sum": null,
+        "median": null,
+        "p95_nearest_rank": null,
+        "missing": 8
+      },
+      "minimum_calls_min": 6,
+      "minimum_nodes_min": 66,
+      "projection_visits_min": 0,
+      "excluded_slabs_min": 2,
+      "diagnostic_counters": {
+        "minimum_calls": {
+          "sum": 97,
+          "missing": 0
+        },
+        "minimum_nodes": {
+          "sum": 1277,
+          "missing": 0
+        },
+        "projection_visits": {
+          "sum": 0,
+          "missing": 0
+        },
+        "excluded_slabs": {
+          "sum": 27,
+          "missing": 0
+        }
+      }
+    }
+  },
+  "by_geometry": {
+    "torus": {
+      "count": 151,
+      "resolved": 151,
+      "candidate_blocked": 0,
+      "telemetry_blocked": 1,
+      "candidate_distance_ns": {
+        "sum": 24325275182,
+        "median": 4600,
+        "p95_nearest_rank": 487371955,
+        "missing": 0
+      },
+      "evaluate_ns": {
+        "sum": 417038892,
+        "median": 2237600,
+        "p95_nearest_rank": 4852100,
+        "missing": 0
+      },
+      "normal_ns": {
+        "sum": 789022053,
+        "median": 5005150.0,
+        "p95_nearest_rank": 7301800,
+        "missing": 1
+      },
+      "minimum_calls_min": 0,
+      "minimum_nodes_min": 0,
+      "projection_visits_min": 0,
+      "excluded_slabs_min": 0,
+      "diagnostic_counters": {
+        "minimum_calls": {
+          "sum": 3947,
+          "missing": 0
+        },
+        "minimum_nodes": {
+          "sum": 34253,
+          "missing": 0
+        },
+        "projection_visits": {
+          "sum": 16528,
+          "missing": 0
+        },
+        "excluded_slabs": {
+          "sum": 107,
+          "missing": 0
+        }
+      }
+    },
+    "torus_rigid": {
+      "count": 1,
+      "resolved": 1,
+      "candidate_blocked": 0,
+      "telemetry_blocked": 0,
+      "candidate_distance_ns": {
+        "sum": 286631104,
+        "median": 286631104,
+        "p95_nearest_rank": 286631104,
+        "missing": 0
+      },
+      "evaluate_ns": {
+        "sum": 176300,
+        "median": 176300,
+        "p95_nearest_rank": 176300,
+        "missing": 0
+      },
+      "normal_ns": {
+        "sum": 1584700,
+        "median": 1584700,
+        "p95_nearest_rank": 1584700,
+        "missing": 0
+      },
+      "minimum_calls_min": 60,
+      "minimum_nodes_min": 5228,
+      "projection_visits_min": 184,
+      "excluded_slabs_min": 0,
+      "diagnostic_counters": {
+        "minimum_calls": {
+          "sum": 60,
+          "missing": 0
+        },
+        "minimum_nodes": {
+          "sum": 5228,
+          "missing": 0
+        },
+        "projection_visits": {
+          "sum": 184,
+          "missing": 0
+        },
+        "excluded_slabs": {
+          "sum": 0,
+          "missing": 0
+        }
+      }
+    },
+    "wistell_coil031": {
+      "count": 8,
+      "resolved": 8,
+      "candidate_blocked": 0,
+      "telemetry_blocked": 8,
+      "candidate_distance_ns": {
+        "sum": 333641069,
+        "median": 39049046.5,
+        "p95_nearest_rank": 74327593,
+        "missing": 0
+      },
+      "evaluate_ns": {
+        "sum": null,
+        "median": null,
+        "p95_nearest_rank": null,
+        "missing": 8
+      },
+      "normal_ns": {
+        "sum": null,
+        "median": null,
+        "p95_nearest_rank": null,
+        "missing": 8
+      },
+      "minimum_calls_min": 6,
+      "minimum_nodes_min": 66,
+      "projection_visits_min": 0,
+      "excluded_slabs_min": 2,
+      "diagnostic_counters": {
+        "minimum_calls": {
+          "sum": 97,
+          "missing": 0
+        },
+        "minimum_nodes": {
+          "sum": 1277,
+          "missing": 0
+        },
+        "projection_visits": {
+          "sum": 0,
+          "missing": 0
+        },
+        "excluded_slabs": {
+          "sum": 27,
+          "missing": 0
+        }
+      }
+    }
+  },
+  "telemetry_blocked_ids_and_errors": [
+    {
+      "id": "a00",
+      "error": "Exact-control offset normal has no certified unique projection"
+    },
+    {
+      "id": "w0",
+      "error": "Exact-control offset normal minimum budget exhausted"
+    },
+    {
+      "id": "w1",
+      "error": "Exact-control offset normal minimum budget exhausted"
+    },
+    {
+      "id": "w2",
+      "error": "Exact-control offset normal minimum budget exhausted"
+    },
+    {
+      "id": "w3",
+      "error": "Exact-control offset normal minimum budget exhausted"
+    },
+    {
+      "id": "w4",
+      "error": "Exact-control offset normal minimum budget exhausted"
+    },
+    {
+      "id": "w5",
+      "error": "Exact-control offset normal minimum budget exhausted"
+    },
+    {
+      "id": "w6",
+      "error": "Exact-control offset normal minimum budget exhausted"
+    },
+    {
+      "id": "w7",
+      "error": "Exact-control offset normal minimum budget exhausted"
+    }
+  ],
+  "scope_note": "Single fresh-process observation from this run. Timings are descriptive, not a matched benchmark or native-throughput comparison; no performance ratio or 80% claim is made.",
+  "diagnostic_counter_method": "For minimum_calls, minimum_nodes, projection_visits, and excluded_slabs: sum the row values within each group and count missing values; these are per-row diagnostic fields, not group minima."
+}

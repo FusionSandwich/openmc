@@ -1,4 +1,6 @@
 .git_archival.txt  export-subst
+# Preserve hash-bound local execution evidence byte-for-byte.
+dev/stellarcsg/reports/astra-20260926/** -text
 dev/stellarcsg/tests/transport_contracts/*.sh text eol=lf
 dev/stellarcsg/qualification/build_period_candidate_manifest.py text eol=lf
 dev/stellarcsg/qualification/compare_period_candidate_manifests.py text eol=lf
@@ -80,3 +82,6 @@ dev/stellarcsg/reports/local-cont-20260925/p00-magnet-union-equivalence-02.json 
 dev/stellarcsg/qualification/audit_compiled_horner_enclosure.py text eol=lf
 dev/stellarcsg/reports/local-cont-20260925/compiled-horner-enclosure-02.json text eol=lf
 dev/stellarcsg/reports/local-cont-20260925/compiled-horner-enclosure-03.json text eol=lf
+
+dev/stellarcsg/reports/transport-proxy-20260926/** -text
+dev/stellarcsg/reports/openmc-integration-20260926/** -text

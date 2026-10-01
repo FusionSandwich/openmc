@@ -1,0 +1,4 @@
+[1/4] Building CXX object CMakeFiles/stellarcsg_reference.dir/src/certified_spline_offset.cpp.o
+[2/4] Linking CXX static library libstellarcsg_reference.a
+[3/4] Linking CXX executable stellarcsg_offset_tests
+[4/4] Linking CXX executable stellarcsg_offset_probe

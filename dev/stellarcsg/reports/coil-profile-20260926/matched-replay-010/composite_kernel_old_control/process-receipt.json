@@ -1,0 +1,18 @@
+{
+  "exit_code": 0,
+  "timeout": false,
+  "command": [
+    "/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-run-compare-06/build/native-old-control-06/openmc"
+  ],
+  "environment": {
+    "OMP_NUM_THREADS": "1",
+    "LD_LIBRARY_PATH": "/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-run-compare-06/build/native-old-control-06",
+    "OPENMC_CROSS_SECTIONS": "/mnt/c/Users/joshu/Documents/2026_DPA/openc-hts-dpa/.data/openmc/cross_sections.xml"
+  },
+  "preload": null,
+  "process_wall_seconds": 6.342860222001036,
+  "preparation_seconds": 0.16248849800103926,
+  "timeout_seconds": 600,
+  "threads": 1,
+  "address_space_bytes": 1073741824
+}

@@ -1,0 +1,7 @@
+<?xml version='1.0' encoding='utf-8'?>
+<materials>
+  <material id="1" name="Fe56 matched proxy" temperature="300.0">
+    <density value="7.8" units="g/cm3"/>
+    <nuclide name="Fe56" ao="1.0"/>
+  </material>
+</materials>

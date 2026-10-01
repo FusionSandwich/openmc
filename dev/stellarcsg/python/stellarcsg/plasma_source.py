@@ -8,6 +8,7 @@ constructed from an exported mesh that lacks bound sampling and clearance.
 from __future__ import annotations
 
 from dataclasses import dataclass
+from fractions import Fraction
 import hashlib
 import json
 import math
@@ -25,6 +26,22 @@ _SAMPLING_CHECKS = (
     "conditional_energy_support_passed",
     "pooled_uniform_barycentric_moments_passed",
 )
+
+
+def _read_json(path: Path):
+    def unique(pairs):
+        result = {}
+        for key, value in pairs:
+            if key in result:
+                raise ValueError(f"duplicate JSON key: {key}")
+            result[key] = value
+        return result
+
+    def nonfinite(value):
+        raise ValueError(f"nonfinite JSON constant: {value}")
+
+    return json.loads(path.read_text(), object_pairs_hook=unique,
+                      parse_constant=nonfinite)
 
 
 def _sha256(path: Path) -> str:
@@ -74,6 +91,7 @@ def _positive_tetra_volumes(mesh_data: dict) -> int:
             or len(connectivity) != len(tetra_s)
             or len(connectivity) != len(centroids)
             or len(vertex_s) != len(vertices)
+            or type(mesh_data["tetrahedron_count"]) is not int
             or mesh_data["tetrahedron_count"] != len(connectivity)):
         raise ValueError("invalid source mesh array lengths or support")
     points = []
@@ -120,17 +138,33 @@ class BoundedPlasmaSource:
     wall_sha256: str
     physical_rate_n_s: None = None
 
-    def make_openmc_source(self, openmc_module=None):
-        """Construct normalized OpenMC objects; native sampling is upstream evidence."""
+    def make_openmc_source(self, openmc_module=None, *, plasma_cells=None):
+        """Construct a normalized mesh source with optional native cell rejection.
+
+        ``plasma_cells`` uses OpenMC's domain constraint with resampling. This
+        is a diagnostic guard, not proof that the source mesh fits the CSG
+        boundary. Rejection can change element weights and energy correlations;
+        certify containment against the actual CSG model before physical use.
+        The admitted wall hash alone does not establish that correspondence.
+        """
         if openmc_module is None:
             import openmc as openmc_module
+        if _sha256(self.mesh_path) != self.mesh_sha256:
+            raise ValueError("source mesh changed after admission")
+        constraints = None
+        if plasma_cells is not None:
+            plasma_cells = list(plasma_cells)
+            if not plasma_cells or any(not isinstance(cell, openmc_module.Cell)
+                                       for cell in plasma_cells):
+                raise ValueError("plasma_cells must contain OpenMC cells")
+            constraints = {"domains": plasma_cells, "rejection_strategy": "resample"}
         mesh = openmc_module.UnstructuredMesh(
             str(self.mesh_path), library="moab", length_multiplier=1.0)
         sources = [openmc_module.IndependentSource(
             strength=p, angle=openmc_module.stats.Isotropic(),
             energy=openmc_module.stats.Discrete(energies, weights))
             for p, (energies, weights) in zip(self.probabilities, self.spectra)]
-        source = openmc_module.MeshSource(mesh, sources)
+        source = openmc_module.MeshSource(mesh, sources, constraints=constraints)
         if not math.isclose(source.strength, 1.0, rel_tol=0, abs_tol=1e-12):
             raise ValueError("OpenMC normalized source strength changed")
         return mesh, source
@@ -145,7 +179,7 @@ def load_bounded_plasma_source(
         raise ValueError("expected fixed-wall SHA-256 is required")
     handoff_path = Path(handoff_path).resolve(strict=True)
     directory = handoff_path.parent
-    handoff = json.loads(handoff_path.read_text())
+    handoff = _read_json(handoff_path)
     if (handoff.get("schema") != "stellarcsg.plasma-source-handoff/v1"
             or handoff.get("state") != "ADMITTED_BOUNDED_DIAGNOSTIC"
             or handoff.get("field_period_degrees") != 90
@@ -158,17 +192,20 @@ def load_bounded_plasma_source(
     bound = {name: _bound_file(directory, handoff["files"][name], name)
              for name in _FILES}
     source_result, sampling, clearance, mesh_data, case = (
-        json.loads(bound[name][0].read_text()) for name in
+        _read_json(bound[name][0]) for name in
         ("source_result", "sampling_result", "clearance_result", "mesh_data", "case"))
     hashes = {name: binding[1] for name, binding in bound.items()}
     if hashes["wall"] != expected_wall_sha256:
         raise ValueError("source wall differs from the expected fixed geometry")
     if (source_result.get("status") != "VMEC_SOURCE_MESH_EXPORTED_PENDING_CONTAINMENT"
+            or type(source_result.get("exit_code")) is not int
             or source_result.get("exit_code") != 0
             or source_result.get("evidence_class") != "B"
             or source_result.get("phase") != "analyst_stress_test"
+            or type(source_result.get("checks", {}).get("vmec", {}).get("nfp")) is not int
             or source_result.get("checks", {}).get("vmec", {}).get("nfp") != 4
             or source_result.get("physical_rate_n_s", 0) is not None
+            or type(source_result.get("tetrahedron_count")) is not int
             or source_result.get("tetrahedron_count") != mesh_data.get("tetrahedron_count")
             or source_result.get("checks", {}).get("support_s_max") != mesh_data.get("support_s_max")
             or source_result.get("mesh_file", {}).get("sha256") != hashes["mesh"]
@@ -183,17 +220,22 @@ def load_bounded_plasma_source(
             or case.get("evidence_class") != "B"
             or case.get("phase") != "analyst_stress_test"
             or case.get("physical_rate_n_s", 0) is not None
+            or isinstance(case.get("source_strength"), bool)
             or case.get("source_strength") != 1.0):
         raise ValueError("source case identity or evidence is invalid")
     if (sampling.get("status") != "VMEC_NATIVE_SOURCE_SAMPLING_CHECKS_PASSED"
+            or type(sampling.get("exit_code")) is not int
             or sampling.get("exit_code") != 0
             or sampling.get("evidence_class") != "B"
             or sampling.get("case_id") != handoff["case_id"]
             or sampling.get("physical_rate_n_s", 0) is not None
+            or isinstance(sampling.get("source_strength"), bool)
             or sampling.get("source_strength") != 1.0
             or any(sampling.get(flag) is not True for flag in _SAMPLING_CHECKS)
-            or not set(hashes[name] for name in ("source_result", "mesh", "mesh_data", "case"))
-                <= set(sampling.get("input_sha256", {}).values())):
+            or not isinstance(sampling.get("input_sha256"), dict)
+            or any(sampling["input_sha256"].get(role) != hashes[name]
+                   for role, name in (("source", "source_result"), ("mesh", "mesh"),
+                                      ("mesh_data", "mesh_data"), ("case", "case")))):
         raise ValueError("native source sampling evidence is incomplete")
     gap = _number(clearance.get("certified_gap_lower_bound_cm"), "source-wall gap")
     error = _number(clearance.get("continuous_wall_error_bound_cm"), "wall error")
@@ -206,10 +248,12 @@ def load_bounded_plasma_source(
             or clearance.get("whole_cells_inside_cavity") is not True
             or clearance.get("periodic_sector_contained") is not True
             or clearance.get("source_wall_intersection_excluded") is not True
-            or error < 0 or gap - error < required):
+            or error < 0
+            or Fraction(gap) - Fraction(error) < Fraction(required)):
         raise ValueError("source clearance does not admit bounded support")
     count = _positive_tetra_volumes(mesh_data)
-    if (sampling.get("native_element_count") != count
+    if (type(sampling.get("native_element_count")) is not int
+            or sampling.get("native_element_count") != count
             or len(case.get("probabilities", [])) != count
             or len(case.get("cell_birth_spectra", [])) != count):
         raise ValueError("source element order or array length mismatch")

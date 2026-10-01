@@ -1,0 +1,434 @@
+[
+  {
+    "component_id": 8,
+    "center_cm": [
+      889.6011161919079,
+      4.038071437015973,
+      -289.7247318292252
+    ],
+    "axis": [
+      -0.12027536743109295,
+      0.9927389993518534,
+      0.0017649802251940017
+    ],
+    "mean_radius_cm": 44.35716923877405,
+    "inner_radius_cm": 29.35716923877405,
+    "outer_radius_cm": 59.35716923877405,
+    "radial_thickness_cm": 30,
+    "axial_height_cm": 30,
+    "axial_limits_cm": [
+      -15,
+      15
+    ],
+    "placement_rule": "same PCA axis/radial origin; shift axial center to old envelope midpoint",
+    "section": "constant native annular rectangle30x30cm; quarter-world clipping can reduce represented segment"
+  },
+  {
+    "component_id": 9,
+    "center_cm": [
+      996.90236785041,
+      15.989491520796209,
+      -303.3594284660298
+    ],
+    "axis": [
+      0.9519666661510156,
+      0.2872995118187727,
+      0.10591721789216091
+    ],
+    "mean_radius_cm": 102.38095101833052,
+    "inner_radius_cm": 87.38095101833052,
+    "outer_radius_cm": 117.38095101833052,
+    "radial_thickness_cm": 30,
+    "axial_height_cm": 30,
+    "axial_limits_cm": [
+      -15,
+      15
+    ],
+    "placement_rule": "same PCA axis/radial origin; shift axial center to old envelope midpoint",
+    "section": "constant native annular rectangle30x30cm; quarter-world clipping can reduce represented segment"
+  },
+  {
+    "component_id": 10,
+    "center_cm": [
+      1205.7460725111878,
+      45.383491826457345,
+      -266.7137476055818
+    ],
+    "axis": [
+      0.18342463347383428,
+      0.9600147077136136,
+      0.2114879779290877
+    ],
+    "mean_radius_cm": 242.54059495723297,
+    "inner_radius_cm": 227.54059495723297,
+    "outer_radius_cm": 257.540594957233,
+    "radial_thickness_cm": 30,
+    "axial_height_cm": 30,
+    "axial_limits_cm": [
+      -15,
+      15
+    ],
+    "placement_rule": "same PCA axis/radial origin; shift axial center to old envelope midpoint",
+    "section": "constant native annular rectangle30x30cm; quarter-world clipping can reduce represented segment"
+  },
+  {
+    "component_id": 11,
+    "center_cm": [
+      1329.6473270974304,
+      115.84315172870063,
+      -33.95444627983441
+    ],
+    "axis": [
+      -0.20940683295219983,
+      0.8920180330281813,
+      0.4005653592929175
+    ],
+    "mean_radius_cm": 325.0462254628894,
+    "inner_radius_cm": 310.0462254628894,
+    "outer_radius_cm": 340.0462254628894,
+    "radial_thickness_cm": 30,
+    "axial_height_cm": 30,
+    "axial_limits_cm": [
+      -15,
+      15
+    ],
+    "placement_rule": "same PCA axis/radial origin; shift axial center to old envelope midpoint",
+    "section": "constant native annular rectangle30x30cm; quarter-world clipping can reduce represented segment"
+  },
+  {
+    "component_id": 12,
+    "center_cm": [
+      1179.4776156635937,
+      223.9913886536636,
+      127.06100981284605
+    ],
+    "axis": [
+      -0.5637261716121801,
+      0.7949236797865625,
+      0.22429700567342864
+    ],
+    "mean_radius_cm": 348.20434745391117,
+    "inner_radius_cm": 333.20434745391117,
+    "outer_radius_cm": 363.20434745391117,
+    "radial_thickness_cm": 30,
+    "axial_height_cm": 30,
+    "axial_limits_cm": [
+      -15,
+      15
+    ],
+    "placement_rule": "same PCA axis/radial origin; shift axial center to old envelope midpoint",
+    "section": "constant native annular rectangle30x30cm; quarter-world clipping can reduce represented segment"
+  },
+  {
+    "component_id": 13,
+    "center_cm": [
+      1047.0201759689514,
+      344.25601521647076,
+      141.71904225315
+    ],
+    "axis": [
+      0.7587774015273536,
+      -0.6457864707487361,
+      -0.0849510984583971
+    ],
+    "mean_radius_cm": 336.2275686981684,
+    "inner_radius_cm": 321.2275686981684,
+    "outer_radius_cm": 351.2275686981684,
+    "radial_thickness_cm": 30,
+    "axial_height_cm": 30,
+    "axial_limits_cm": [
+      -15,
+      15
+    ],
+    "placement_rule": "same PCA axis/radial origin; shift axial center to old envelope midpoint",
+    "section": "constant native annular rectangle30x30cm; quarter-world clipping can reduce represented segment"
+  },
+  {
+    "component_id": 14,
+    "center_cm": [
+      900.4596940082209,
+      443.8084617383691,
+      150.90677149048037
+    ],
+    "axis": [
+      0.8288207509038091,
+      -0.5336112831510493,
+      0.1682710948592678
+    ],
+    "mean_radius_cm": 335.3104151931684,
+    "inner_radius_cm": 320.3104151931684,
+    "outer_radius_cm": 350.3104151931684,
+    "radial_thickness_cm": 30,
+    "axial_height_cm": 30,
+    "axial_limits_cm": [
+      -15,
+      15
+    ],
+    "placement_rule": "same PCA axis/radial origin; shift axial center to old envelope midpoint",
+    "section": "constant native annular rectangle30x30cm; quarter-world clipping can reduce represented segment"
+  },
+  {
+    "component_id": 15,
+    "center_cm": [
+      756.3283483360424,
+      486.95816804161353,
+      105.50093733879802
+    ],
+    "axis": [
+      0.7432723579789331,
+      -0.4397374789080808,
+      0.5041598471794454
+    ],
+    "mean_radius_cm": 319.11969857678696,
+    "inner_radius_cm": 304.11969857678696,
+    "outer_radius_cm": 334.11969857678696,
+    "radial_thickness_cm": 30,
+    "axial_height_cm": 30,
+    "axial_limits_cm": [
+      -15,
+      15
+    ],
+    "placement_rule": "same PCA axis/radial origin; shift axial center to old envelope midpoint",
+    "section": "constant native annular rectangle30x30cm; quarter-world clipping can reduce represented segment"
+  },
+  {
+    "component_id": 16,
+    "center_cm": [
+      657.7494476505332,
+      553.7561973208595,
+      38.55171350547695
+    ],
+    "axis": [
+      0.6345089378611838,
+      -0.5238845926104232,
+      0.5682810408589073
+    ],
+    "mean_radius_cm": 308.0932934462662,
+    "inner_radius_cm": 293.0932934462662,
+    "outer_radius_cm": 323.0932934462662,
+    "radial_thickness_cm": 30,
+    "axial_height_cm": 30,
+    "axial_limits_cm": [
+      -15,
+      15
+    ],
+    "placement_rule": "same PCA axis/radial origin; shift axial center to old envelope midpoint",
+    "section": "constant native annular rectangle30x30cm; quarter-world clipping can reduce represented segment"
+  },
+  {
+    "component_id": 17,
+    "center_cm": [
+      553.7562835699936,
+      657.7493750293517,
+      -38.55171353361939
+    ],
+    "axis": [
+      -0.5238845091857635,
+      0.6345090064002584,
+      -0.5682810412394106
+    ],
+    "mean_radius_cm": 308.0932934427881,
+    "inner_radius_cm": 293.0932934427881,
+    "outer_radius_cm": 323.0932934427881,
+    "radial_thickness_cm": 30,
+    "axial_height_cm": 30,
+    "axial_limits_cm": [
+      -15,
+      15
+    ],
+    "placement_rule": "same PCA axis/radial origin; shift axial center to old envelope midpoint",
+    "section": "constant native annular rectangle30x30cm; quarter-world clipping can reduce represented segment"
+  },
+  {
+    "component_id": 18,
+    "center_cm": [
+      486.95826727815654,
+      756.3282844604767,
+      -105.50093738906345
+    ],
+    "axis": [
+      -0.43973738135304075,
+      0.7432724156321073,
+      -0.5041598472718576
+    ],
+    "mean_radius_cm": 319.11969854724384,
+    "inner_radius_cm": 304.11969854724384,
+    "outer_radius_cm": 334.11969854724384,
+    "radial_thickness_cm": 30,
+    "axial_height_cm": 30,
+    "axial_limits_cm": [
+      -15,
+      15
+    ],
+    "placement_rule": "same PCA axis/radial origin; shift axial center to old envelope midpoint",
+    "section": "constant native annular rectangle30x30cm; quarter-world clipping can reduce represented segment"
+  },
+  {
+    "component_id": 19,
+    "center_cm": [
+      443.7931465682917,
+      900.493297122115,
+      -150.85675790641258
+    ],
+    "axis": [
+      -0.5336178036884527,
+      0.8287991405566167,
+      -0.1683568359150452
+    ],
+    "mean_radius_cm": 335.2839281479637,
+    "inner_radius_cm": 320.2839281479637,
+    "outer_radius_cm": 350.2839281479637,
+    "radial_thickness_cm": 30,
+    "axial_height_cm": 30,
+    "axial_limits_cm": [
+      -15,
+      15
+    ],
+    "placement_rule": "same PCA axis/radial origin; shift axial center to old envelope midpoint",
+    "section": "constant native annular rectangle30x30cm; quarter-world clipping can reduce represented segment"
+  },
+  {
+    "component_id": 20,
+    "center_cm": [
+      344.25650667856416,
+      1047.019545199588,
+      -141.71643868831694
+    ],
+    "axis": [
+      -0.6457844271952963,
+      0.758779228381408,
+      0.08495031588498292
+    ],
+    "mean_radius_cm": 336.2256095101036,
+    "inner_radius_cm": 321.2256095101036,
+    "outer_radius_cm": 351.2256095101036,
+    "radial_thickness_cm": 30,
+    "axial_height_cm": 30,
+    "axial_limits_cm": [
+      -15,
+      15
+    ],
+    "placement_rule": "same PCA axis/radial origin; shift axial center to old envelope midpoint",
+    "section": "constant native annular rectangle30x30cm; quarter-world clipping can reduce represented segment"
+  },
+  {
+    "component_id": 21,
+    "center_cm": [
+      224.05455300919914,
+      1179.42963865583,
+      -127.09847638734146
+    ],
+    "axis": [
+      0.7946179926357497,
+      -0.5641204281201361,
+      -0.224388922090833
+    ],
+    "mean_radius_cm": 348.216935847473,
+    "inner_radius_cm": 333.216935847473,
+    "outer_radius_cm": 363.216935847473,
+    "radial_thickness_cm": 30,
+    "axial_height_cm": 30,
+    "axial_limits_cm": [
+      -15,
+      15
+    ],
+    "placement_rule": "same PCA axis/radial origin; shift axial center to old envelope midpoint",
+    "section": "constant native annular rectangle30x30cm; quarter-world clipping can reduce represented segment"
+  },
+  {
+    "component_id": 22,
+    "center_cm": [
+      115.84324025274053,
+      1329.6472556077133,
+      33.9543131808315
+    ],
+    "axis": [
+      0.8920179697625057,
+      -0.20940702536544326,
+      -0.4005653995895982
+    ],
+    "mean_radius_cm": 325.0463969868048,
+    "inner_radius_cm": 310.0463969868048,
+    "outer_radius_cm": 340.0463969868048,
+    "radial_thickness_cm": 30,
+    "axial_height_cm": 30,
+    "axial_limits_cm": [
+      -15,
+      15
+    ],
+    "placement_rule": "same PCA axis/radial origin; shift axial center to old envelope midpoint",
+    "section": "constant native annular rectangle30x30cm; quarter-world clipping can reduce represented segment"
+  },
+  {
+    "component_id": 23,
+    "center_cm": [
+      45.38344335090154,
+      1205.7460403548323,
+      266.71369814771464
+    ],
+    "axis": [
+      0.960014781068041,
+      0.18342445257942097,
+      -0.21148780183930532
+    ],
+    "mean_radius_cm": 242.54063273952048,
+    "inner_radius_cm": 227.54063273952048,
+    "outer_radius_cm": 257.54063273952045,
+    "radial_thickness_cm": 30,
+    "axial_height_cm": 30,
+    "axial_limits_cm": [
+      -15,
+      15
+    ],
+    "placement_rule": "same PCA axis/radial origin; shift axial center to old envelope midpoint",
+    "section": "constant native annular rectangle30x30cm; quarter-world clipping can reduce represented segment"
+  },
+  {
+    "component_id": 24,
+    "center_cm": [
+      15.989519431042964,
+      996.9024133484439,
+      303.35936588955394
+    ],
+    "axis": [
+      0.2872961709965333,
+      0.951967577662036,
+      -0.10591808727033453
+    ],
+    "mean_radius_cm": 102.3809757189628,
+    "inner_radius_cm": 87.3809757189628,
+    "outer_radius_cm": 117.3809757189628,
+    "radial_thickness_cm": 30,
+    "axial_height_cm": 30,
+    "axial_limits_cm": [
+      -15,
+      15
+    ],
+    "placement_rule": "same PCA axis/radial origin; shift axial center to old envelope midpoint",
+    "section": "constant native annular rectangle30x30cm; quarter-world clipping can reduce represented segment"
+  },
+  {
+    "component_id": 25,
+    "center_cm": [
+      4.038055705255564,
+      889.6011304960642,
+      289.72477126990714
+    ],
+    "axis": [
+      0.9927390201444509,
+      -0.12027519619170417,
+      -0.001764954300453077
+    ],
+    "mean_radius_cm": 44.357236678605,
+    "inner_radius_cm": 29.357236678605,
+    "outer_radius_cm": 59.357236678605,
+    "radial_thickness_cm": 30,
+    "axial_height_cm": 30,
+    "axial_limits_cm": [
+      -15,
+      15
+    ],
+    "placement_rule": "same PCA axis/radial origin; shift axial center to old envelope midpoint",
+    "section": "constant native annular rectangle30x30cm; quarter-world clipping can reduce represented segment"
+  }
+]

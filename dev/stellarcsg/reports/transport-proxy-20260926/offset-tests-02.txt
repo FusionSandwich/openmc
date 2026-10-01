@@ -1,0 +1,2 @@
+vertical case scale=0.125 center=1,0 interior=0 prefix=0 found=0 unresolved=1 distance=inf expected=0.09375
+translated/scaled exact vertical root disagrees

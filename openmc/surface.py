@@ -2852,6 +2852,15 @@ class SweptSplineSurface(Surface):
         Explicit numbered groups for a noncontiguous collection.
     member_content_ids : sequence of str, optional
         Canonical payload IDs in the same order as the selected groups.
+    representation : {'legacy_rounded_frame', 'exact_control_offset'}, optional
+        Exact-control offset explicitly interprets the original controls as a
+        continuous periodic spline. It supports single constant circular tubes
+        and planar xy coils with constant elliptical sections; unsupported
+        geometry is rejected by the native compiler. It does not approximate
+        the centerline by a torus or admit a rectangular winding pack.
+    bernstein_prefix : bool, optional
+        Enable certified prefix acceleration for exact-control offsets.
+        False selects the ordered certificate solver for validation.
     """
 
     _type = 'swept-spline'
@@ -2860,12 +2869,23 @@ class SweptSplineSurface(Surface):
     def __init__(self, data_file, dataset=None, content_id=None, *,
                  dataset_prefix=None, dataset_start=None, dataset_count=None,
                  dataset_indices=None, member_content_ids=None,
+                 representation='legacy_rounded_frame',
+                 bernstein_prefix=True,
                  **kwargs):
         super().__init__(**kwargs)
         check_type('data_file', data_file, (str, Path))
         collection = (dataset_prefix is not None or dataset_count is not None
                       or dataset_indices is not None
                       or member_content_ids is not None)
+        check_value('representation', representation,
+                    ('legacy_rounded_frame', 'exact_control_offset'))
+        if collection and representation == 'exact_control_offset':
+            raise ValueError('exact_control_offset requires a single member')
+        self.representation = representation
+        check_type('bernstein_prefix', bernstein_prefix, bool)
+        if not bernstein_prefix and representation != 'exact_control_offset':
+            raise ValueError('disabling bernstein_prefix requires exact_control_offset')
+        self.bernstein_prefix = bernstein_prefix
         if collection:
             if dataset is not None or content_id is not None:
                 raise ValueError('collection and single-member selectors cannot be mixed')
@@ -2925,10 +2945,12 @@ class SweptSplineSurface(Surface):
             return False
         return (self.data_file, self.dataset, self.content_id,
                 self.dataset_prefix, self.dataset_start, self.dataset_count,
-                self.dataset_indices, self.member_content_ids) == (
+                self.dataset_indices, self.member_content_ids,
+                self.representation, self.bernstein_prefix) == (
                     other.data_file, other.dataset, other.content_id,
                     other.dataset_prefix, other.dataset_start, other.dataset_count,
-                    other.dataset_indices, other.member_content_ids)
+                    other.dataset_indices, other.member_content_ids,
+                    other.representation, other.bernstein_prefix)
 
     def _get_base_coeffs(self):
         return ()
@@ -2963,6 +2985,20 @@ class SweptSplineSurface(Surface):
                         raise ValueError('swept-spline member content ID mismatch')
                 if group.attrs['units'] not in ('cm', b'cm'):
                     raise ValueError("swept-spline payload units must be 'cm'")
+                if self.representation == 'exact_control_offset':
+                    # The control hull encloses the exact periodic spline.
+                    # Expanded bounds are outward rounded in stored units.
+                    centers = np.asarray(group['centerline_coefficients'])
+                    radii = np.concatenate((
+                        np.asarray(group['major_radius_coefficients']).ravel(),
+                        np.asarray(group['minor_radius_coefficients']).ravel()))
+                    if (not np.isfinite(centers).all()
+                            or not np.isfinite(radii).all() or np.any(radii <= 0)):
+                        raise ValueError('invalid exact-control offset bounds')
+                    centers = centers.reshape(-1, 3)
+                    return BoundingBox(
+                        np.nextafter(centers.min(axis=0) - radii.max(), -np.inf),
+                        np.nextafter(centers.max(axis=0) + radii.max(), np.inf))
                 for _, _, span_lower, span_upper in _swept_compiled_member_boxes(group):
                     lower = span_lower if lower is None else np.minimum(lower, span_lower)
                     upper = span_upper if upper is None else np.maximum(upper, span_upper)
@@ -2985,6 +3021,9 @@ class SweptSplineSurface(Surface):
         element.attrib.pop('coeffs', None)
         element.set('data_file', self.data_file)
         if self.dataset is not None:
+            element.set('representation', self.representation)
+            if self.representation == 'exact_control_offset':
+                element.set('bernstein_prefix', str(self.bernstein_prefix).lower())
             element.set('dataset', self.dataset)
             element.set('content_id', self.content_id)
         else:
@@ -3003,7 +3042,16 @@ class SweptSplineSurface(Surface):
     def _from_xml_element(cls, elem):
         if get_text(elem, 'units', 'cm') != 'cm':
             raise ValueError("swept-spline XML units must be 'cm'")
+        prefix = get_text(elem, 'bernstein_prefix', 'true')
+        if prefix not in ('true', 'false'):
+            raise ValueError('bernstein_prefix must be true or false')
+        if (get_text(elem, 'bernstein_prefix') is not None
+                and get_text(elem, 'representation', 'legacy_rounded_frame')
+                != 'exact_control_offset'):
+            raise ValueError('bernstein_prefix requires exact_control_offset')
         kwargs = {
+            'bernstein_prefix': prefix == 'true',
+            'representation': get_text(elem, 'representation', 'legacy_rounded_frame'),
             'surface_id': int(get_text(elem, 'id')),
             'boundary_type': get_text(elem, 'boundary', 'transmission'),
             'name': get_text(elem, 'name'),
@@ -3075,7 +3123,16 @@ class SweptSplineSurface(Surface):
                          'content_id': text('content_id'),
                          'member_content_ids': text('member_content_ids').split()
                          if 'member_content_ids' in group else None}
-        return cls(data_file=text('data_file'), **selectors, **kwargs)
+        prefix = text('bernstein_prefix') if 'bernstein_prefix' in group else 'true'
+        if prefix not in ('true', 'false'):
+            raise ValueError('bernstein_prefix must be true or false')
+        if ('bernstein_prefix' in group
+                and ('representation' not in group
+                     or text('representation') != 'exact_control_offset')):
+            raise ValueError('bernstein_prefix requires exact_control_offset')
+        return cls(data_file=text('data_file'), bernstein_prefix=prefix == 'true',
+                   representation=text('representation') if 'representation' in group
+                   else 'legacy_rounded_frame', **selectors, **kwargs)
 
 
 class FacetSetSurface(Surface):

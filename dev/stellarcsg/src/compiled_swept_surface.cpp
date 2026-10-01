@@ -1,4 +1,5 @@
 #include "stellarcsg/compiled_swept_surface.hpp"
+#include "stellarcsg/certified_spline_offset.hpp"
 #include "stellarcsg/performance_counters.hpp"
 
 #include <algorithm>
@@ -299,6 +300,13 @@ CompiledSweptSplineSurface::CompiledSweptSplineSurface(
 CompiledSweptSplineSurface::CompiledSweptSplineSurface(
   SweptSplineSurfaceData data, bool force_general_solver,
   SweptTorusMode torus_mode)
+  : CompiledSweptSplineSurface(std::move(data), force_general_solver, torus_mode,
+      SweptRepresentation::legacy_rounded_frame)
+{}
+
+CompiledSweptSplineSurface::CompiledSweptSplineSurface(
+  SweptSplineSurfaceData data, bool force_general_solver,
+  SweptTorusMode torus_mode, SweptRepresentation representation)
   : data_ {[&data]() { validate(data); return std::move(data); }()}
   , center_x_ {data_.sample_count, 1,
       component(data_.centerline_coefficients, data_.sample_count, 0)}
@@ -323,6 +331,13 @@ CompiledSweptSplineSurface::CompiledSweptSplineSurface(
 {
   instance_id_ = next_swept_surface_instance.fetch_add(
     1, std::memory_order_relaxed);
+  if (representation == SweptRepresentation::exact_control_offset) {
+    if (torus_mode != SweptTorusMode::faithful_spline)
+      throw std::invalid_argument("Exact-control offset cannot use a torus surrogate");
+    certified_offset_ = std::make_shared<CertifiedSplineOffset>(data_);
+    bounds_ = certified_offset_->bounding_box();
+    return;
+  }
   circular_radius_ = data_.major_radius_coefficients.front();
   circular_cross_section_ = std::all_of(
     data_.major_radius_coefficients.begin(),
@@ -831,6 +846,8 @@ double CompiledSweptSplineSurface::evaluate_in_span(
 SweptLocalCoordinates CompiledSweptSplineSurface::local_coordinates(
   const Vec3& point) const
 {
+  if (certified_offset_)
+    throw std::logic_error("Legacy angle coordinates are unavailable in exact-control mode");
   if (!std::isfinite(point.x) || !std::isfinite(point.y)
       || !std::isfinite(point.z))
     throw std::invalid_argument("Swept local-coordinate point must be finite");
@@ -905,6 +922,7 @@ SweptLocalCoordinates CompiledSweptSplineSurface::local_coordinates(
 
 double CompiledSweptSplineSurface::evaluate(const Vec3& point) const
 {
+  if (certified_offset_) return certified_offset_->evaluate(point);
   add_performance_counter(PerformanceCounter::evaluate_calls);
   auto& cache = swept_evaluation_cache;
   if (cache.valid && cache.instance_id == instance_id_
@@ -929,6 +947,7 @@ double CompiledSweptSplineSurface::evaluate(const Vec3& point) const
 
 Vec3 CompiledSweptSplineSurface::normal(const Vec3& point) const
 {
+  if (certified_offset_) return certified_offset_->normal(point);
   add_performance_counter(PerformanceCounter::normal_calls);
   if (exact_torus_) return exact_torus_->normal(point);
   const auto local = local_coordinates(point);
@@ -953,6 +972,8 @@ DistanceResult CompiledSweptSplineSurface::distance_reference(
   const Vec3& origin, const Vec3& direction, bool coincident,
   const RootSearchOptions& options) const
 {
+  if (certified_offset_)
+    throw std::logic_error("Legacy reference is not an exact-control oracle");
   add_performance_counter(PerformanceCounter::distance_calls);
   add_performance_counter(PerformanceCounter::global_reference_calls);
   if (coincident) add_performance_counter(PerformanceCounter::coincident_cases);
@@ -1006,6 +1027,8 @@ DistanceResult CompiledSweptSplineSurface::distance(
   const Vec3& origin, const Vec3& direction, bool coincident,
   const RootSearchOptions& options) const
 {
+  if (certified_offset_)
+    return certified_offset_->distance(origin, direction, coincident, options);
   add_performance_counter(PerformanceCounter::distance_calls);
   if (coincident) add_performance_counter(PerformanceCounter::coincident_cases);
   [[maybe_unused]] ScopedDistanceTimer timer;

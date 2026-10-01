@@ -1,0 +1,80 @@
+{
+  "schema": "stellarcsg.proxy-publication-binding/v1",
+  "build_receipt_sha256": "632bc8a0ebd5a3fa04defc0f0b96bddf4c21b6e8654e0b1725db87a0948d7fc3",
+  "source_inputs": [
+    {
+      "path": "src/surface_swept_spline.cpp",
+      "build_raw_sha256": "59526c909c83f034d188064a819430a102c13807b5a897d74ebcccdd200f4b26",
+      "committed_content_sha256": "d35c9818c24336f6a0b5a43cf4d35747e5ae576a48309236c5b05aa18830d259",
+      "raw_to_committed_relation": "CRLF_TO_LF_ONLY"
+    },
+    {
+      "path": "src/surface_periodic_spline.cpp",
+      "build_raw_sha256": "c34cf83823c1856076e247e95337eb75a03553049fe510ad76149749c8483892",
+      "committed_content_sha256": "1577b034550d1d3abda30abf153f44b2187c8f94a6518a8ba0c1e48d5abf4762",
+      "raw_to_committed_relation": "CRLF_TO_LF_ONLY"
+    },
+    {
+      "path": "include/openmc/surface_swept_spline.h",
+      "build_raw_sha256": "98438ce0353e99cebc5a32e463bb78b4d0602392e3f6fd83b9513ca055035be0",
+      "committed_content_sha256": "e2e7379e82e078dbdadb4d4c0d058ef3ec7f2dfd32867d1f0e01fe0702bb740b",
+      "raw_to_committed_relation": "CRLF_TO_LF_ONLY"
+    },
+    {
+      "path": "openmc/surface.py",
+      "build_raw_sha256": "dd20e51811b9aa81bd628942964910d83269e65ca898b2e1bd769800bcd0aba1",
+      "committed_content_sha256": "748c87a14c9298fdea619d1108a40f02986cc46a83973f4c4d42f1c24e252132",
+      "raw_to_committed_relation": "CRLF_TO_LF_ONLY"
+    },
+    {
+      "path": "dev/stellarcsg/src/compiled_periodic_surface.cpp",
+      "build_raw_sha256": "adf78160d9df75786f8e10158970617084f53ca5739a090534f6e20da967f27d",
+      "committed_content_sha256": "777a736f2395edcfb58d34421a53dfce0f20c893f83b1a63066f5751a761691e",
+      "raw_to_committed_relation": "CRLF_TO_LF_ONLY"
+    },
+    {
+      "path": "dev/stellarcsg/src/uniform_periodic_bicubic_spline.cpp",
+      "build_raw_sha256": "2074b5ac50635373e5bf08dbb93c0357910c2d3b0c9943defedf2862e945d51f",
+      "committed_content_sha256": "c056437b0dfb126f29d2fbb23b15e80cce1a8d71e8cb50473e4a1c80f05c7e6e",
+      "raw_to_committed_relation": "CRLF_TO_LF_ONLY"
+    },
+    {
+      "path": "dev/stellarcsg/src/certified_spline_offset.cpp",
+      "build_raw_sha256": "615cfa0b20b747e166e20632b29912bdcabc3c096c35e4db33169095394f53a0",
+      "committed_content_sha256": "615cfa0b20b747e166e20632b29912bdcabc3c096c35e4db33169095394f53a0",
+      "raw_to_committed_relation": "IDENTICAL"
+    },
+    {
+      "path": "dev/stellarcsg/include/stellarcsg/root_solver.hpp",
+      "build_raw_sha256": "5eacbd469d12dd0f1d47e201359abcf8892269dc13f00e6d2e5377f07e4c6f6b",
+      "committed_content_sha256": "b87325a57bc2a5c935e8a1d11568bd26bc9461e6eb15cf40bad7f8bf91d3314b",
+      "raw_to_committed_relation": "CRLF_TO_LF_ONLY"
+    },
+    {
+      "path": "dev/stellarcsg/tests/test_compiled_surface.cpp",
+      "build_raw_sha256": "77de51b6bbd2af1baa8bc6e636200a9fc7d4a9e306bd9c7847d4b1edffbb73ef",
+      "committed_content_sha256": "9cebe6cab3d8cb71e4380768da53a3736178f7a11801f198922be976dd65c96f",
+      "raw_to_committed_relation": "CRLF_TO_LF_ONLY"
+    },
+    {
+      "path": "dev/stellarcsg/tests/test_certified_offset.cpp",
+      "build_raw_sha256": "043221985c6cf29dc900142cd4c958cc66562d5f3fdb50b2b9896ec90312b69f",
+      "committed_content_sha256": "043221985c6cf29dc900142cd4c958cc66562d5f3fdb50b2b9896ec90312b69f",
+      "raw_to_committed_relation": "IDENTICAL"
+    },
+    {
+      "path": "CMakeLists.txt",
+      "build_raw_sha256": "bdd8a72af632c10433e6353bc9a480202d1324b00e6784901b0b562d76959887",
+      "committed_content_sha256": "151fc6866c55855f43f8578951862e17e683a3e1a6b81520f763b0d1e9f8d73d",
+      "raw_to_committed_relation": "CRLF_TO_LF_ONLY"
+    },
+    {
+      "path": "dev/stellarcsg/CMakeLists.txt",
+      "build_raw_sha256": "19c32c7eb245b4a4cec13c9ceb6ad5ab02818d8b5e876c0bdf62d7bcf0054a4f",
+      "committed_content_sha256": "71db1c21a99ff6f471c17086392fe93e18d83c02e7cf711caec1d7054b3365b7",
+      "raw_to_committed_relation": "CRLF_TO_LF_ONLY"
+    }
+  ],
+  "report_files_verified": 249,
+  "policy": "Report bytes preserved in Git with scoped -text; source normalization is mapped explicitly and is not a rebuild. Local HDF5/data/binaries are excluded."
+}

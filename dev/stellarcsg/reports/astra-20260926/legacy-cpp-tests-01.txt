@@ -1,0 +1,8 @@
+Internal ctest changing into directory: /mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-astra-kernel-20260926/build/astra
+Test project /mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-astra-kernel-20260926/build/astra
+    Start 3: stellarcsg_compiled_surface_tests
+1/1 Test #3: stellarcsg_compiled_surface_tests ...   Passed    0.15 sec
+
+100% tests passed, 0 tests failed out of 1
+
+Total Test time (real) =   0.17 sec

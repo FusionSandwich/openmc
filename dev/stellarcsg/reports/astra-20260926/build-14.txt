@@ -1,0 +1,24 @@
+[1/17] Building CXX object CMakeFiles/stellarcsg_reference.dir/src/periodic_radial_surface.cpp.o
+[2/17] Building CXX object CMakeFiles/stellarcsg_reference.dir/src/root_solver.cpp.o
+[3/17] Building CXX object CMakeFiles/stellarcsg_reference.dir/src/compiled_periodic_surface.cpp.o
+[4/17] Building CXX object CMakeFiles/stellarcsg_reference.dir/src/compiled_swept_surface.cpp.o
+[5/17] Building CXX object CMakeFiles/stellarcsg_reference.dir/src/certified_spline_offset.cpp.o
+/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-astra-kernel-20260926/dev/stellarcsg/src/certified_spline_offset.cpp: In member function ‘bool stellarcsg::CertifiedSplineOffset::Implementation::outside_prefix(const stellarcsg::Vec3&, const stellarcsg::Vec3&, stellarcsg::{anonymous}::Real, stellarcsg::{anonymous}::Real, std::size_t, stellarcsg::RootSearchDiagnostics&) const’:
+/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-astra-kernel-20260926/dev/stellarcsg/src/certified_spline_offset.cpp:781:20: warning: declaration of ‘box’ shadows a member of ‘stellarcsg::CertifiedSplineOffset::Implementation’ [-Wshadow]
+  781 |         const auto box = todo.back();
+      |                    ^~~
+/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-astra-kernel-20260926/dev/stellarcsg/src/certified_spline_offset.cpp:185:15: note: shadowed declaration is here
+  185 |   BoundingBox box;
+      |               ^~~
+[6/17] Building CXX object CMakeFiles/stellarcsg_reference.dir/src/compiled_swept_surface_set.cpp.o
+[7/17] Building CXX object CMakeFiles/stellarcsg_reference.dir/src/coefficient_file.cpp.o
+[8/17] Building CXX object CMakeFiles/stellarcsg_reference.dir/src/swept_coefficient_file.cpp.o
+[9/17] Linking CXX static library libstellarcsg_reference.a
+[10/17] Building CXX object CMakeFiles/stellarcsg_offset_tests.dir/tests/test_certified_offset.cpp.o
+[11/17] Building CXX object CMakeFiles/stellarcsg_offset_probe.dir/qualification/certified_offset_probe.cpp.o
+[12/17] Building CXX object CMakeFiles/stellarcsg_compiled_surface_tests.dir/tests/test_compiled_surface.cpp.o
+[13/17] Building CXX object CMakeFiles/stellarcsg_recovery04_bank.dir/qualification/recovery04_frozen_bank.cpp.o
+[14/17] Linking CXX executable stellarcsg_offset_tests
+[15/17] Linking CXX executable stellarcsg_offset_probe
+[16/17] Linking CXX executable stellarcsg_compiled_surface_tests
+[17/17] Linking CXX executable stellarcsg_recovery04_bank

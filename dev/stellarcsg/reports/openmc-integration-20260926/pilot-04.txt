@@ -1,0 +1,31 @@
+/mnt/d/openc-hts-dpa-data/openmc-personal/v2/openmc-hpge-integrated-charged-transport-architecture-v1/openmc/mixin.py:72: IDWarning: Another Tally instance already exists with id=1.
+  warn(msg, IDWarning)
+/mnt/d/openc-hts-dpa-data/openmc-personal/v2/openmc-hpge-integrated-charged-transport-architecture-v1/openmc/mixin.py:72: IDWarning: Another Tally instance already exists with id=2.
+  warn(msg, IDWarning)
+/mnt/d/openc-hts-dpa-data/openmc-personal/v2/openmc-hpge-integrated-charged-transport-architecture-v1/openmc/mixin.py:72: IDWarning: Another Tally instance already exists with id=3.
+  warn(msg, IDWarning)
+/mnt/d/openc-hts-dpa-data/openmc-personal/v2/openmc-hpge-integrated-charged-transport-architecture-v1/openmc/mixin.py:72: IDWarning: Another Tally instance already exists with id=4.
+  warn(msg, IDWarning)
+/mnt/d/openc-hts-dpa-data/openmc-personal/v2/openmc-hpge-integrated-charged-transport-architecture-v1/openmc/mixin.py:72: IDWarning: Another Tally instance already exists with id=5.
+  warn(msg, IDWarning)
+/mnt/d/openc-hts-dpa-data/openmc-personal/v2/openmc-hpge-integrated-charged-transport-architecture-v1/openmc/mixin.py:72: IDWarning: Another Filter instance already exists with id=6.
+  warn(msg, IDWarning)
+/mnt/d/openc-hts-dpa-data/openmc-personal/v2/openmc-hpge-integrated-charged-transport-architecture-v1/openmc/mixin.py:72: IDWarning: Another Filter instance already exists with id=7.
+  warn(msg, IDWarning)
+/mnt/d/openc-hts-dpa-data/openmc-personal/v2/openmc-hpge-integrated-charged-transport-architecture-v1/openmc/mixin.py:72: IDWarning: Another Filter instance already exists with id=13.
+  warn(msg, IDWarning)
+/mnt/d/openc-hts-dpa-data/openmc-personal/v2/openmc-hpge-integrated-charged-transport-architecture-v1/openmc/mixin.py:72: IDWarning: Another Filter instance already exists with id=24.
+  warn(msg, IDWarning)
+ WARNING: Mesh with ID=106 appears in multiple files.
+Traceback (most recent call last):
+  File "/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-astra-kernel-20260926/dev/stellarcsg/qualification/check_openmc_integration.py", line 238, in <module>
+    main()
+    ~~~~^^
+  File "/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-astra-kernel-20260926/dev/stellarcsg/qualification/check_openmc_integration.py", line 225, in main
+    observed = inspect_results(args, result)
+  File "/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-astra-kernel-20260926/dev/stellarcsg/qualification/check_openmc_integration.py", line 176, in inspect_results
+    require(np.allclose(means[19].sum(axis=(0, 1)), reference, rtol=2e-10, atol=1e-10), "birth mesh closure")
+    ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-astra-kernel-20260926/dev/stellarcsg/qualification/check_openmc_integration.py", line 25, in require
+    raise ValueError(message)
+ValueError: birth mesh closure

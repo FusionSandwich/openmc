@@ -1,0 +1,35 @@
+Sat Sep 26 07:50:34 PM UTC 2026
+               total        used        free      shared  buff/cache   available
+Mem:     25200037888   925450240 23998099456     4374528   545259520 24274587648
+Swap:    34359738368           0 34359738368
+Filesystem         1B-blocks          Used     Available Use% Mounted on
+/dev/sde       1081101176832    4723421184 1021385400320   1% /
+C:\             998965768192  893141450752  105824317440  90% /mnt/c
+D:\            2000397791232 1504371843072  496025948160  76% /mnt/d
+    PID COMMAND           RSS %CPU
+    269 python          62632  6.8
+      1 systemd         14328  2.7
+     40 systemd-journal 12656  0.7
+    281 systemd         12648  2.5
+     81 systemd-udevd    9988  1.0
+    243 systemd-logind   9148  0.4
+    319 bash             5872  0.2
+    326 (udev-worker)    5524  0.0
+    327 (udev-worker)    5524  0.0
+g++ (Debian 14.2.0-19) 14.2.0
+cmake version 3.31.6
+1.12.1
+Python 3.13.5
+/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/openmc-stellarcsg/build/openmc-stellarcsg-enabled/vendor/fmt
+/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/openmc-stellarcsg/build/openmc-stellarcsg-enabled/vendor/pugixml
+/opt/g4gate7
+/opt/g4native
+/opt/openmc-venv
+/root/.cache/matplotlib
+/root/.cache/pip
+/usr/local/src
+/var/cache/apt
+libhdf5-dev	1.14.5+repack-3
+152M	/root/.cache/pip
+606M	/opt/openmc-venv
+116M	/var/cache/apt

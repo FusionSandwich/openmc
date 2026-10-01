@@ -1,0 +1,9 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<geometry>
+  <cell id="1" material="void" region="-10" universe="1"/>
+  <cell id="2" material="1" region="10 -11" universe="1"/>
+  <cell id="3" material="void" region="11 -99" universe="1"/>
+  <surface id="10" type="z-torus" coeffs="0.0 0.0 0.0 100.0 20.0 20.0"/>
+  <surface id="11" type="z-torus" coeffs="0.0 0.0 0.0 100.0 21.0 21.0"/>
+  <surface id="99" type="sphere" boundary="vacuum" coeffs="0.0 0.0 0.0 150.0"/>
+</geometry>

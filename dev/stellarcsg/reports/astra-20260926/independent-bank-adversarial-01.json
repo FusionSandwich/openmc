@@ -1,0 +1,10 @@
+{
+  "schema": "stellarcsg.independent-bank-adversarial/v1",
+  "tests": {
+    "later_exit_does_not_certify_nearest": true,
+    "false_early_hit_has_no_inside_endpoint": true,
+    "false_miss_does_not_certify": true
+  },
+  "all_pass": true,
+  "verifier_sha256": "4e104e68c56e67cad84255fb47cb44606a36b758f8e2164cf6764c1332345535"
+}

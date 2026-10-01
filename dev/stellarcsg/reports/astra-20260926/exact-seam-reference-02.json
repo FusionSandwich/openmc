@@ -1,0 +1,121 @@
+{
+  "schema": "stellarcsg.independent-exact-offset-seam-reference/v1",
+  "state": "FIRST_BOUNDARY_BRACKET_CERTIFIED_EXACT_RATIONAL",
+  "h5_path": "/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-local-continuation-20260925/dev/stellarcsg/qualified/analytic_swept_coils.h5",
+  "h5_sha256": "39f77da5ab1fe427cce58b153e9b52cf8915e9973a9b8f3dfad5ab3b00a9e46d",
+  "script_sha256": "c1c1e038435bc547a554bfaf4c93b4961f5e1947b4e5465a21090727b4f0e66b",
+  "dataset": "/coils/coil_002",
+  "sample_count": 256,
+  "geometry_representation": "exact_control_offset",
+  "origin": [
+    550,
+    0,
+    0
+  ],
+  "direction": [
+    -1,
+    0,
+    0
+  ],
+  "actual_control_radii": {
+    "a": 24,
+    "b": 14
+  },
+  "global_x_support": {
+    "lower": {
+      "rational": "520",
+      "approximate": 520.0
+    },
+    "upper": {
+      "rational": "6860952557322241/13194139533312",
+      "approximate": 520.0000000000001
+    },
+    "subdivisions": 0,
+    "maximum_depth": 0,
+    "terminal_tiles": 256
+  },
+  "seam_witness_exact": [
+    {
+      "rational": "520",
+      "approximate": 520.0
+    },
+    {
+      "rational": "61586673559/59421121885698253195157962752",
+      "approximate": 1.036444139803812e-18
+    },
+    {
+      "rational": "0",
+      "approximate": 0.0
+    }
+  ],
+  "strict_outside_t": {
+    "rational": "51539607551996534633903/3221225472000000000000",
+    "approximate": 15.999999999998924
+  },
+  "root_free_prefix_exclusive_upper_t": {
+    "rational": "211106232532991/13194139533312",
+    "approximate": 15.999999999999924
+  },
+  "strict_inside_t": {
+    "rational": "16000000000001/1000000000000",
+    "approximate": 16.000000000001
+  },
+  "strict_outside_x_clearance": {
+    "rational": "1/1000000000000",
+    "approximate": 1e-12
+  },
+  "inside_witness_scaled_distance_squared": {
+    "rational": "41249422212021511188779082728474410465399623812663589312394085557102967829169/41249422212027403963380800718584371946769040092954624000000000000000000000000",
+    "approximate": 0.9999999999998571
+  },
+  "inside_witness_margin": {
+    "rational": "5892774601717990109961481369416280291034687605914442897032170831/41249422212027403963380800718584371946769040092954624000000000000000000000000",
+    "approximate": 1.4285714285713774e-13
+  },
+  "first_boundary_enclosure": [
+    {
+      "rational": "211106232532991/13194139533312",
+      "approximate": 15.999999999999924
+    },
+    {
+      "rational": "16000000000001/1000000000000",
+      "approximate": 16.000000000001
+    }
+  ],
+  "first_boundary_enclosure_width": {
+    "rational": "3465366097/3221225472000000000000",
+    "approximate": 1.075791225147744e-12
+  },
+  "proof": [
+    "Exact Bezier convex hulls cover every owned cubic parameter; adaptive exact de Casteljau subdivision bounds global maximum x.",
+    "For every t below the prefix upper endpoint, ray x exceeds every center x plus b=14, hence every scaled squared center distance exceeds one.",
+    "The seam control-derived center witness has scaled squared distance strictly below one at the right endpoint, hence the global minimum is inside.",
+    "Continuity of distance to the compact scaled curve proves a first boundary point within the enclosure; no stationarity or runtime arithmetic assumptions are used."
+  ],
+  "claim_boundary": "One member-2 exact-control x-ray first-boundary existence/enclosure. Does not prove crossing uniqueness, normals, implementation equivalence, legacy geometry, whole frozen bank, or transport qualification.",
+  "source_sha256": {
+    "src/certified_spline_offset.cpp": "80ec385d3b90e58c8b8fbb7c21a7ade81d6349921ec66a6f8de1ec17f846cc0f",
+    "src/compiled_swept_surface.cpp": "fc304a6c48dbfd45ffd4d860b81217bf888e41557b140589be0c655cbb800176",
+    "qualification/certified_offset_probe.cpp": "45bdcc7f1c2ad24d16d7f939ccd2c0b87a882d1e99f777ba37a4b311d42ada45"
+  },
+  "observed_distance_acceptance": {
+    "probe_path": "/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-astra-kernel-20260926/dev/stellarcsg/reports/astra-20260926/probe-07.jsonl",
+    "probe_sha256": "47c9ca250ee0df5d02d1f7fae2aff6f18d51616051da363151903883488c12a7",
+    "binary_path": "/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-astra-kernel-20260926/build/astra/stellarcsg_offset_probe",
+    "binary_sha256": "544ba62f64b2d024578c2109aefbc3e5ef3297acb0512f9c3d5526bfaaee9f27",
+    "observed_binary64_distance_exact": {
+      "rational": "4503599627370885/281474976710656",
+      "approximate": 16.000000000001382
+    },
+    "worst_error_to_any_first_root_in_enclosure": {
+      "rational": "1231/844424930131968",
+      "approximate": 1.4577968462011388e-12
+    },
+    "absolute_tolerance": {
+      "rational": "1/100000000000",
+      "approximate": 1e-11
+    },
+    "state": "SCALAR_DISTANCE_INDEPENDENTLY_ACCEPTED",
+    "execution_binding_limit": "Hashes bind supplied artifacts; the build/launch receipt must establish that this executable produced the supplied probe and corresponds to these sources."
+  }
+}

@@ -1,0 +1,308 @@
+{
+  "schema": "stellarcsg.independent-exact-ring-support-contacts/v1",
+  "state": "EXACT_SUPPORT_CONTACTS_CERTIFIED",
+  "geometry_representation": "exact_control_offset",
+  "script_sha256": "9d2f04bede5721e6e34d42ba890ede6ed46cd853dfd91ed1620e9205a79b2c82",
+  "bank_path": "/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-astra-kernel-20260926/dev/stellarcsg/qualification/recovery04_frozen_bank.csv",
+  "bank_sha256": "fc9da0be5eb66e3d56649a8d709db16f9b096c7767a565c57d5488bd19430723",
+  "generated_payload_fnv": "c5aec2165cdec18c",
+  "generated_payload_sha256": "28129502fa67f3367360058bd479ae254f6e997c4f5ad71322135d15b6bf2dce",
+  "generator": "Original torus_data(false) expression order; local libm sine/cosine; full payload FNV checked against unchanged frozen metadata.",
+  "certificates": [
+    {
+      "id": "a06",
+      "origin_exact": [
+        {
+          "rational": "737742331408973/140737488355328",
+          "approximate": 5.241974544453662
+        },
+        {
+          "rational": "0",
+          "approximate": 0.0
+        },
+        {
+          "rational": "0",
+          "approximate": 0.0
+        }
+      ],
+      "direction_exact": [
+        {
+          "rational": "0",
+          "approximate": 0.0
+        },
+        {
+          "rational": "1",
+          "approximate": 1.0
+        },
+        {
+          "rational": "0",
+          "approximate": 0.0
+        }
+      ],
+      "case": "outer_support_edge",
+      "support_coordinate_exact": {
+        "rational": "702557959320141/140737488355328",
+        "approximate": 4.991974544453662
+      },
+      "global_bezier_support_upper_exact": {
+        "rational": "702557959320141/140737488355328",
+        "approximate": 4.991974544453662
+      },
+      "support_seams": [
+        0
+      ],
+      "all_support_spans_nonflat": true,
+      "contacts_ordered": [
+        {
+          "span": 0,
+          "center_exact": [
+            {
+              "rational": "702557959320141/140737488355328",
+              "approximate": 4.991974544453662
+            },
+            {
+              "rational": "3/36028797018963968",
+              "approximate": 8.326672684688674e-17
+            },
+            {
+              "rational": "0",
+              "approximate": 0.0
+            }
+          ],
+          "t_exact": {
+            "rational": "3/36028797018963968",
+            "approximate": 8.326672684688674e-17
+          },
+          "returned_binary64_exact": {
+            "rational": "3/36028797018963968",
+            "approximate": 8.326672684688674e-17
+          },
+          "return_error_exact": {
+            "rational": "0",
+            "approximate": 0.0
+          },
+          "residual_upper_exact": {
+            "rational": "0",
+            "approximate": 0.0
+          }
+        }
+      ],
+      "first_eligible_unsuppressed_contact": {
+        "span": 0,
+        "center_exact": [
+          {
+            "rational": "702557959320141/140737488355328",
+            "approximate": 4.991974544453662
+          },
+          {
+            "rational": "3/36028797018963968",
+            "approximate": 8.326672684688674e-17
+          },
+          {
+            "rational": "0",
+            "approximate": 0.0
+          }
+        ],
+        "t_exact": {
+          "rational": "3/36028797018963968",
+          "approximate": 8.326672684688674e-17
+        },
+        "returned_binary64_exact": {
+          "rational": "3/36028797018963968",
+          "approximate": 8.326672684688674e-17
+        },
+        "return_error_exact": {
+          "rational": "0",
+          "approximate": 0.0
+        },
+        "residual_upper_exact": {
+          "rational": "0",
+          "approximate": 0.0
+        }
+      },
+      "outward_normal_exact": [
+        1,
+        0,
+        0
+      ],
+      "root_kind": "stationary_tangent",
+      "strict_origin_outside": true,
+      "default_coincident_minimum_t_exact": {
+        "rational": "4835703278458517/1208925819614629174706176",
+        "approximate": 4e-09
+      },
+      "coincident_result": "no_hit",
+      "coincident_first_contact": null,
+      "proof": [
+        "All exact cardinal Bezier support controls are at or below M; every chart has at least one strict control, so all interior parameters lie strictly below M.",
+        "Only canonical seam endpoints with support coordinate M can achieve equality. The cardinal edge/cap relation gives Q>=1 for every point on the complete ray.",
+        "Q=1 exactly when the ray coordinate matches the corresponding support seam center; the finite ordered contact list therefore excludes every earlier root.",
+        "All active centers at a contact have the same position and the same outward metric gradient, giving the stated exact normal. The tangent ray has zero normal dot direction."
+      ]
+    },
+    {
+      "id": "a08",
+      "origin_exact": [
+        {
+          "rational": "702557959320141/140737488355328",
+          "approximate": 4.991974544453662
+        },
+        {
+          "rational": "-2",
+          "approximate": -2.0
+        },
+        {
+          "rational": "1/4",
+          "approximate": 0.25
+        }
+      ],
+      "direction_exact": [
+        {
+          "rational": "0",
+          "approximate": 0.0
+        },
+        {
+          "rational": "1",
+          "approximate": 1.0
+        },
+        {
+          "rational": "0",
+          "approximate": 0.0
+        }
+      ],
+      "case": "normal_cap",
+      "support_coordinate_exact": {
+        "rational": "702557959320141/140737488355328",
+        "approximate": 4.991974544453662
+      },
+      "global_bezier_support_upper_exact": {
+        "rational": "702557959320141/140737488355328",
+        "approximate": 4.991974544453662
+      },
+      "support_seams": [
+        0
+      ],
+      "all_support_spans_nonflat": true,
+      "contacts_ordered": [
+        {
+          "span": 0,
+          "center_exact": [
+            {
+              "rational": "702557959320141/140737488355328",
+              "approximate": 4.991974544453662
+            },
+            {
+              "rational": "3/36028797018963968",
+              "approximate": 8.326672684688674e-17
+            },
+            {
+              "rational": "0",
+              "approximate": 0.0
+            }
+          ],
+          "t_exact": {
+            "rational": "72057594037927939/36028797018963968",
+            "approximate": 2.0
+          },
+          "returned_binary64_exact": {
+            "rational": "2",
+            "approximate": 2.0
+          },
+          "return_error_exact": {
+            "rational": "3/36028797018963968",
+            "approximate": 8.326672684688674e-17
+          },
+          "residual_upper_exact": {
+            "rational": "9/81129638414606681695789005144064",
+            "approximate": 1.1093356479670479e-31
+          }
+        }
+      ],
+      "first_eligible_unsuppressed_contact": {
+        "span": 0,
+        "center_exact": [
+          {
+            "rational": "702557959320141/140737488355328",
+            "approximate": 4.991974544453662
+          },
+          {
+            "rational": "3/36028797018963968",
+            "approximate": 8.326672684688674e-17
+          },
+          {
+            "rational": "0",
+            "approximate": 0.0
+          }
+        ],
+        "t_exact": {
+          "rational": "72057594037927939/36028797018963968",
+          "approximate": 2.0
+        },
+        "returned_binary64_exact": {
+          "rational": "2",
+          "approximate": 2.0
+        },
+        "return_error_exact": {
+          "rational": "3/36028797018963968",
+          "approximate": 8.326672684688674e-17
+        },
+        "residual_upper_exact": {
+          "rational": "9/81129638414606681695789005144064",
+          "approximate": 1.1093356479670479e-31
+        }
+      },
+      "outward_normal_exact": [
+        0,
+        0,
+        1
+      ],
+      "root_kind": "stationary_tangent",
+      "strict_origin_outside": true,
+      "default_coincident_minimum_t_exact": {
+        "rational": "4835703278458517/1208925819614629174706176",
+        "approximate": 4e-09
+      },
+      "coincident_result": "hit",
+      "coincident_first_contact": {
+        "span": 0,
+        "center_exact": [
+          {
+            "rational": "702557959320141/140737488355328",
+            "approximate": 4.991974544453662
+          },
+          {
+            "rational": "3/36028797018963968",
+            "approximate": 8.326672684688674e-17
+          },
+          {
+            "rational": "0",
+            "approximate": 0.0
+          }
+        ],
+        "t_exact": {
+          "rational": "72057594037927939/36028797018963968",
+          "approximate": 2.0
+        },
+        "returned_binary64_exact": {
+          "rational": "2",
+          "approximate": 2.0
+        },
+        "return_error_exact": {
+          "rational": "3/36028797018963968",
+          "approximate": 8.326672684688674e-17
+        },
+        "residual_upper_exact": {
+          "rational": "9/81129638414606681695789005144064",
+          "approximate": 1.1093356479670479e-31
+        }
+      },
+      "proof": [
+        "All exact cardinal Bezier support controls are at or below M; every chart has at least one strict control, so all interior parameters lie strictly below M.",
+        "Only canonical seam endpoints with support coordinate M can achieve equality. The cardinal edge/cap relation gives Q>=1 for every point on the complete ray.",
+        "Q=1 exactly when the ray coordinate matches the corresponding support seam center; the finite ordered contact list therefore excludes every earlier root.",
+        "All active centers at a contact have the same position and the same outward metric gradient, giving the stated exact normal. The tangent ray has zero normal dot direction."
+      ]
+    }
+  ],
+  "claim_boundary": "Independent exact geometric contact proof for the verified generated ring payload. FNV is a fixture identifier, not a cryptographic attestation of a runtime dump. Does not qualify legacy geometry or tangent transport sense."
+}

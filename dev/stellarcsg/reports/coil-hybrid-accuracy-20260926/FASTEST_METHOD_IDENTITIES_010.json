@@ -1,0 +1,38 @@
+{
+  "timestamp": "2026-09-27T01:36:52.6453244Z",
+  "compute_runs": 0,
+  "root_metadata": "ACCEPT_ARITHMETIC_FIX_GEOMETRY_HASH_LABEL",
+  "coil_plan": "ACCEPT_DIAGNOSTIC_PLAN",
+  "plasma_build": "NOT_ADMITTED_INCOMPLETE_INVENTORY",
+  "full_target_winner": "NOT_ESTABLISHED",
+  "evidence": [
+    {
+      "path": "dev/stellarcsg/reports/coil-hybrid-accuracy-20260926/FASTEST_METHOD_ACCEPTANCE_010.md",
+      "sha256": "2f5fee6948dd33ac9c4b264940f0dab307b806e38cc92f1708cc55e4d08f3203"
+    },
+    {
+      "path": "dev/stellarcsg/reports/FASTEST_METHOD_BRANCH_REVIEW_20260926.md",
+      "sha256": "c5ed82b5ff0638687dd5d0093d6fbe5c3c677243ce2ccacaf683ed28e76bc8fb"
+    },
+    {
+      "path": "dev/stellarcsg/reports/HISTORICAL_ELAPSED_METHODS_010.json",
+      "sha256": "a0ced9cfa9b06a996f73865c2c8beeb794ab30621b5caae806eb065e5330ea5a"
+    },
+    {
+      "path": "dev/stellarcsg/qualification/extract_elapsed_method_history_010.py",
+      "sha256": "ed6396d2eb6d533300ed2df13ed21a56619f959e488f729b0c05731722e35052"
+    },
+    {
+      "path": "dev/stellarcsg/experiments/coil_profile_20260926/matched_methods_010.py",
+      "sha256": "7abf58f73cbaac64dcb30e6c0ed60c82218dac1ea676216b4933c2fa340752ac"
+    },
+    {
+      "path": "dev/stellarcsg/reports/plasma-best-time-20260926/METHOD_COMPARISON_010.md",
+      "sha256": "96b702cb9b2a8793d46372e6d0bbd27a3a430a86f1e5f787bbb60f95405eca4c"
+    },
+    {
+      "path": "dev/stellarcsg/reports/plasma-best-time-20260926/prebuild-inventory-010-01/observations.json",
+      "sha256": "b753b71a71c33e6dc23e075c8328a8833215f1ad1d1a4ecb56d18cc3c53a9b99"
+    }
+  ]
+}

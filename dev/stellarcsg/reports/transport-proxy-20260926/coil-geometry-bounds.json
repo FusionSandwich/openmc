@@ -1,0 +1,29 @@
+{
+  "schema": "stellarcsg.exact-proxy-centerline-enclosure/v1",
+  "coil_sha256": "a25e4f56da79b6b71e262d0011b15b401fa884d0f2e2cc2b9e3c7cfca351651a",
+  "method": "Original binary64 controls as Fractions; exact cardinal Bezier conversion, Bernstein products and six dyadic subdivisions",
+  "radial_squared_bounds_exact": [
+    "58413311327877605424983002872913726961/5841333965851681082096808370372608",
+    "152118072027387519496167036528620677/15211807202738752817960438464512"
+  ],
+  "radial_bounds_cm": [
+    99.99997574985197,
+    100.00000000000003
+  ],
+  "max_radial_deviation_from_R100_cm": 2.4250148030091623e-05,
+  "angular_derivative_positive": true,
+  "signed_curvature_positive": true,
+  "span_chord_homotopy_in_origin_free_halfplane": true,
+  "exact_seam_polygon_winding": 1,
+  "curvature_upper_per_cm": 0.010008044824561227,
+  "length_bounds_cm": [
+    628.3184423425413,
+    628.3184566045675
+  ],
+  "tube_volume_bounds_cm3": [
+    49348.01506445773,
+    49348.01618459468
+  ],
+  "volume_assumption": "Convex simple planar C2 curve, tube radius below minimum curvature radius: embedded tube has volume pi*r^2*length; independent reviewer must accept the reach argument before physical atom-count use",
+  "claim_boundary": "Centerline geometric enclosure, not transport/tally equivalence. Prepared fixture only."
+}

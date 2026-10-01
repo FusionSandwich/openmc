@@ -1,0 +1,93 @@
+{
+  "disposition": "ACCEPT_COMPLETED_TIMING_DIAGNOSTIC_WITH_FAILED_SPEED_GATE",
+  "reviewer_thread": "01a0e00b-f7f2-7ca3-ae93-7e39befae73b",
+  "terminal_sha256": "023d3e4046a78e29d0d918e5cb8c321b91ff31f33cb10d09cf85fa058d6fd60f",
+  "summary_sha256": "04d373bd12ec1f6ad8bc611f3635a88dd8e2ede7bfce9fd4d90f6a28f4f8030d",
+  "custom_receipt_sha256": "478bf34175c494d03bcbd5e63b2053874465bfb4c5229c69393000d18479655a",
+  "fixed30_receipt_sha256": "cc9ea33bbda59aa33999e120a62f394acbdb60122437fb5cddc4406357b75aa6",
+  "inventory_admission_sha256": "547b1f98c527d09670596b2e050a5e8fb40490851a41185a873d89348b131f5c",
+  "identities_sha256": "d0e1bdbb35c9c7618bcb9a66fec8bbc370577fdf51a11a565aa97192352fdfc6",
+  "checks": {
+    "frozen_identities": "24/24 rehashed match, including reviewed driver/wrapper/review/source/runtime/data/XML",
+    "XML": "8/8 match",
+    "final_statepoint_bytes": "2/2 hashes match; no HDF content reopening",
+    "counts": "20x1000, current_batch20, realizations20 each from admitted driver/receipt",
+    "runtime_and_tallies": "serialized timers and three raw arrays per method all finite",
+    "tally_shapes": [
+      [
+        108,
+        4,
+        2
+      ],
+      [
+        18,
+        4,
+        2
+      ],
+      [
+        1,
+        4,
+        2
+      ]
+    ],
+    "native_exit": "0 each, no timeout or raw errors, stderr empty",
+    "loader": "exact selected complete fbc38ded library path, no missing dependency/interposition",
+    "lease": "owner-checked release in ATTEMPTS; lock absent at bounded terminal read"
+  },
+  "timing": {
+    "custom_transport_s": 5.774115369,
+    "fixed30_transport_s": 1.203532667,
+    "custom_over_fixed30": 4.797639089758085,
+    "time_gate_max_ratio": 1.25,
+    "allowed_custom_transport_s": 1.50441583375,
+    "speed_gate": "FAIL_IN_THIS_PILOT",
+    "custom_init_s": 5.276662125,
+    "fixed30_init_s": 5.130763384,
+    "custom_native_wall_s": 11.152920393997192,
+    "fixed30_native_wall_s": 6.440697556001396,
+    "custom_reused_XML_prepare_s": 0.1445531999997911,
+    "fixed30_reused_XML_prepare_s": 0.15672650800115662,
+    "custom_statepoint_output_s": 0.0304908,
+    "fixed30_statepoint_output_s": 0.024877401,
+    "block_s": 19.93896388400026,
+    "cold_geometry_build_s": null,
+    "software_build": "NOT_RUN"
+  },
+  "source_and_fidelity_limits": [
+    "Same frozen source positions/directions/physics/settings/tallies/world; custom18sites initiallyvoid, fixed4sites initiallyiron. Material chords differ and event/crossing counts unrecorded.",
+    "Fixed30 rings are PCA midpoint/meanradius native sizing controls, not boundary-equivalent physical packs.",
+    "Custom seam-repaired periodic facets are derived mesh target with maximum vertex movement0.0033287735930590413cm, not unchangedH5M or continuousCAD certificate.",
+    "First-root/tangent/prefix/normal/seam/overlap/percoil/localbin accuracy and verified Embree fulltarget reference unresolved.",
+    "Same P00 method repeated versus earlier7.836203s; no kernel change or portable speedup inferred from this lower timer. One ordered fixedseed pilot has no repeat uncertainty.",
+    "SpeedFAIL is accepted diagnostic result, not scientific fulltarget accuracy qualification; no old envelope0.90566success claim survives as finaltargetgoal."
+  ],
+  "map_publication": "ACCEPT_DIAGNOSTIC_PUBLICATION METHOD_MAP.md 41ac6733ceba4937bbf78fa86f2b4e1b8813ef4888b537114639297a6eb8a5e4. Pending terminal wording can become diagnostic accepted with speedFAIL/accuracy unresolved.",
+  "publish_files": [
+    "dev/stellarcsg/reports/coil-profile-20260926/fixed-section-pair-010/PLAN.json",
+    "dev/stellarcsg/reports/coil-profile-20260926/fixed-section-pair-010/INVENTORY_ADMISSION.json",
+    "dev/stellarcsg/reports/coil-profile-20260926/fixed-section-pair-010/identities.json",
+    "dev/stellarcsg/reports/coil-profile-20260926/fixed-section-pair-010/loader.json",
+    "dev/stellarcsg/reports/coil-profile-20260926/fixed-section-pair-010/PARTIAL_RESULTS.json",
+    "dev/stellarcsg/reports/coil-profile-20260926/fixed-section-pair-010/SUMMARY.json",
+    "dev/stellarcsg/reports/coil-profile-20260926/fixed-section-pair-010/TERMINAL.json",
+    "dev/stellarcsg/reports/coil-profile-20260926/fixed-section-pair-010/windows-inventory.json",
+    "dev/stellarcsg/reports/coil-profile-20260926/fixed-section-pair-010/wsl-inventory.json",
+    "dev/stellarcsg/reports/coil-profile-20260926/fixed-section-pair-010/custom/receipt.json",
+    "dev/stellarcsg/reports/coil-profile-20260926/fixed-section-pair-010/custom/process-receipt.json",
+    "dev/stellarcsg/reports/coil-profile-20260926/fixed-section-pair-010/custom/process.stdout",
+    "dev/stellarcsg/reports/coil-profile-20260926/fixed-section-pair-010/custom/process.stderr",
+    "dev/stellarcsg/reports/coil-profile-20260926/fixed-section-pair-010/custom/geometry.xml",
+    "dev/stellarcsg/reports/coil-profile-20260926/fixed-section-pair-010/custom/materials.xml",
+    "dev/stellarcsg/reports/coil-profile-20260926/fixed-section-pair-010/custom/settings.xml",
+    "dev/stellarcsg/reports/coil-profile-20260926/fixed-section-pair-010/custom/tallies.xml",
+    "dev/stellarcsg/reports/coil-profile-20260926/fixed-section-pair-010/fixed30/receipt.json",
+    "dev/stellarcsg/reports/coil-profile-20260926/fixed-section-pair-010/fixed30/process-receipt.json",
+    "dev/stellarcsg/reports/coil-profile-20260926/fixed-section-pair-010/fixed30/process.stdout",
+    "dev/stellarcsg/reports/coil-profile-20260926/fixed-section-pair-010/fixed30/process.stderr",
+    "dev/stellarcsg/reports/coil-profile-20260926/fixed-section-pair-010/fixed30/geometry.xml",
+    "dev/stellarcsg/reports/coil-profile-20260926/fixed-section-pair-010/fixed30/materials.xml",
+    "dev/stellarcsg/reports/coil-profile-20260926/fixed-section-pair-010/fixed30/settings.xml",
+    "dev/stellarcsg/reports/coil-profile-20260926/fixed-section-pair-010/fixed30/tallies.xml"
+  ],
+  "exclude": "Raw HDF/statepoints and binaries; preserve locally."
+}

@@ -1,0 +1,11 @@
+Traceback (most recent call last):
+  File "/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-astra-kernel-20260926/dev/stellarcsg/qualification/check_openmc_integration.py", line 240, in <module>
+    main()
+    ~~~~^^
+  File "/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-astra-kernel-20260926/dev/stellarcsg/qualification/check_openmc_integration.py", line 214, in main
+    result, bounds = assemble(args, fixture)
+                     ~~~~~~~~^^^^^^^^^^^^^^^
+  File "/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-astra-kernel-20260926/dev/stellarcsg/qualification/check_openmc_integration.py", line 40, in assemble
+    result, _ = model(settings, fixture, meta)
+    ^^^^^^^^^
+ValueError: too many values to unpack (expected 2)

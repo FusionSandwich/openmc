@@ -1,0 +1,96 @@
+{
+  "schema": "stellarcsg.independent-exact-offset-seam-reference/v1",
+  "state": "FIRST_BOUNDARY_BRACKET_CERTIFIED_EXACT_RATIONAL",
+  "h5_path": "/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-local-continuation-20260925/dev/stellarcsg/qualified/analytic_swept_coils.h5",
+  "h5_sha256": "39f77da5ab1fe427cce58b153e9b52cf8915e9973a9b8f3dfad5ab3b00a9e46d",
+  "script_sha256": "8f179c3d198268f440e45ec40906ba85710ebd614ddc840b6b1fd2c994c786fc",
+  "dataset": "/coils/coil_002",
+  "sample_count": 256,
+  "geometry_representation": "exact_control_offset",
+  "origin": [
+    550,
+    0,
+    0
+  ],
+  "direction": [
+    -1,
+    0,
+    0
+  ],
+  "actual_control_radii": {
+    "a": 24,
+    "b": 14
+  },
+  "global_x_support": {
+    "lower": {
+      "rational": "520",
+      "approximate": 520.0
+    },
+    "upper": {
+      "rational": "6860952557322241/13194139533312",
+      "approximate": 520.0000000000001
+    },
+    "subdivisions": 0,
+    "maximum_depth": 0,
+    "terminal_tiles": 256
+  },
+  "seam_witness_exact": [
+    {
+      "rational": "520",
+      "approximate": 520.0
+    },
+    {
+      "rational": "61586673559/59421121885698253195157962752",
+      "approximate": 1.036444139803812e-18
+    },
+    {
+      "rational": "0",
+      "approximate": 0.0
+    }
+  ],
+  "strict_outside_t": {
+    "rational": "51539607551996534633903/3221225472000000000000",
+    "approximate": 15.999999999998924
+  },
+  "root_free_prefix_exclusive_upper_t": {
+    "rational": "211106232532991/13194139533312",
+    "approximate": 15.999999999999924
+  },
+  "strict_inside_t": {
+    "rational": "16000000001/1000000000",
+    "approximate": 16.000000001
+  },
+  "strict_outside_x_clearance": {
+    "rational": "1/1000000000000",
+    "approximate": 1e-12
+  },
+  "inside_witness_scaled_distance_squared": {
+    "rational": "2639963021192616279159875608842416942189081160008105655220085263669582441/2639963021569753853656371245989399804593218565949095936000000000000000000",
+    "approximate": 0.9999999998571428
+  },
+  "inside_witness_margin": {
+    "rational": "377137574496495637146982862404137405940990280779914736330417559/2639963021569753853656371245989399804593218565949095936000000000000000000",
+    "approximate": 1.428571428520408e-10
+  },
+  "first_boundary_enclosure": [
+    {
+      "rational": "211106232532991/13194139533312",
+      "approximate": 15.999999999999924
+    },
+    {
+      "rational": "16000000001/1000000000",
+      "approximate": 16.000000001
+    }
+  ],
+  "first_boundary_enclosure_width": {
+    "rational": "25771756901/25769803776000000000",
+    "approximate": 1.0000757912251477e-09
+  },
+  "proof": [
+    "Exact Bezier convex hulls cover every owned cubic parameter; adaptive exact de Casteljau subdivision bounds global maximum x.",
+    "For every t below the prefix upper endpoint, ray x exceeds every center x plus b=14, hence every scaled squared center distance exceeds one.",
+    "The seam control-derived center witness has scaled squared distance strictly below one at the right endpoint, hence the global minimum is inside.",
+    "Continuity of distance to the compact scaled curve proves a first boundary point within the enclosure; no stationarity or runtime arithmetic assumptions are used."
+  ],
+  "claim_boundary": "One member-2 exact-control x-ray first-boundary existence/enclosure. Does not prove crossing uniqueness, normals, implementation equivalence, legacy geometry, whole frozen bank, or transport qualification."
+}

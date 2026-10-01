@@ -1,0 +1,414 @@
+{
+  "source_evidence_commit": "b9bd7ed9fd544127213085764e84b62e65f7538c",
+  "note": "Independent receipts bind local artifact bytes. Git text normalization may change CRLF to LF; this manifest binds both forms. Raw native stdout whitespace is intentionally preserved. No binary or HDF5 file was published.",
+  "files": [
+    {
+      "path": "dev/stellarcsg/experiments/coil_profile_20260926/matched_methods_010.py",
+      "local_bytes_sha256": "7abf58f73cbaac64dcb30e6c0ed60c82218dac1ea676216b4933c2fa340752ac",
+      "git_blob_bytes_sha256": "7abf58f73cbaac64dcb30e6c0ed60c82218dac1ea676216b4933c2fa340752ac",
+      "byte_equal": true
+    },
+    {
+      "path": "dev/stellarcsg/qualification/extract_elapsed_method_history_010.py",
+      "local_bytes_sha256": "3addd4528bd098ef9f111cea11f1593f0ef5e43ef58983e0b5982df4fe3630b2",
+      "git_blob_bytes_sha256": "3addd4528bd098ef9f111cea11f1593f0ef5e43ef58983e0b5982df4fe3630b2",
+      "byte_equal": true
+    },
+    {
+      "path": "dev/stellarcsg/reports/BUILD_TRANSPORT_RESULTS_20260926.md",
+      "local_bytes_sha256": "eac0150c517462591202b0bcc500fa3c2b1d00e8d6e2be78dede3a6cef5cc3aa",
+      "git_blob_bytes_sha256": "eac0150c517462591202b0bcc500fa3c2b1d00e8d6e2be78dede3a6cef5cc3aa",
+      "byte_equal": true
+    },
+    {
+      "path": "dev/stellarcsg/reports/CONSOLIDATED_DEVELOPMENT_20260926.md",
+      "local_bytes_sha256": "4341f2ec4363586800ebd9d277247edc1da2c6c981ea98acd43abd5ec928074b",
+      "git_blob_bytes_sha256": "4341f2ec4363586800ebd9d277247edc1da2c6c981ea98acd43abd5ec928074b",
+      "byte_equal": true
+    },
+    {
+      "path": "dev/stellarcsg/reports/FASTEST_METHOD_BRANCH_REVIEW_20260926.md",
+      "local_bytes_sha256": "75c964ec7ed48953317d47261565d3c2ef36748641fc07b29c7b522cb28e765b",
+      "git_blob_bytes_sha256": "75c964ec7ed48953317d47261565d3c2ef36748641fc07b29c7b522cb28e765b",
+      "byte_equal": true
+    },
+    {
+      "path": "dev/stellarcsg/reports/HISTORICAL_ELAPSED_METHODS_010.json",
+      "local_bytes_sha256": "c731a0de005e6618c5db75a6038825532a0778dd0df2301c97249a1c81946b00",
+      "git_blob_bytes_sha256": "764c9898e1349d71499df3fda9c04679baa077cf387943b8f962d27527f5b326",
+      "byte_equal": false
+    },
+    {
+      "path": "dev/stellarcsg/reports/coil-hybrid-accuracy-20260926/FASTEST_METHOD_ACCEPTANCE_010.md",
+      "local_bytes_sha256": "2f5fee6948dd33ac9c4b264940f0dab307b806e38cc92f1708cc55e4d08f3203",
+      "git_blob_bytes_sha256": "2f5fee6948dd33ac9c4b264940f0dab307b806e38cc92f1708cc55e4d08f3203",
+      "byte_equal": true
+    },
+    {
+      "path": "dev/stellarcsg/reports/coil-hybrid-accuracy-20260926/FASTEST_METHOD_IDENTITIES_010.json",
+      "local_bytes_sha256": "6826517aa37bc9a448a3097f364652fd28fc5ff484b8c9a94894f9fefe976dcf",
+      "git_blob_bytes_sha256": "4adc745acaacd1cd8bb2bc5b40b9a4acfba26da2f3a377cfeb2b79f47c271a4e",
+      "byte_equal": false
+    },
+    {
+      "path": "dev/stellarcsg/reports/coil-hybrid-accuracy-20260926/P00_PARTIAL_ACCEPTANCE_010.md",
+      "local_bytes_sha256": "eac734e55016ef95b95f521e6d050de44c6485f6bf136284df573acd7db35ad7",
+      "git_blob_bytes_sha256": "eac734e55016ef95b95f521e6d050de44c6485f6bf136284df573acd7db35ad7",
+      "byte_equal": true
+    },
+    {
+      "path": "dev/stellarcsg/reports/coil-hybrid-accuracy-20260926/P00_PARTIAL_IDENTITIES_010.json",
+      "local_bytes_sha256": "18f3a9fe1e749bc4a099059a9912069d38961f1a4acd29714580a341743ce709",
+      "git_blob_bytes_sha256": "018db50b42a568a1a4f5edd4918620012bc946fcd7eb1f9c6b6e0a3a80dfdf9e",
+      "byte_equal": false
+    },
+    {
+      "path": "dev/stellarcsg/reports/coil-hybrid-accuracy-20260926/PUBLICATION_ACCEPTANCE_010.md",
+      "local_bytes_sha256": "b7fb05941aaa958fce63c4dd2c2e5edd1513f9ed86b7bfe368316b63dcbc9505",
+      "git_blob_bytes_sha256": "b7fb05941aaa958fce63c4dd2c2e5edd1513f9ed86b7bfe368316b63dcbc9505",
+      "byte_equal": true
+    },
+    {
+      "path": "dev/stellarcsg/reports/coil-profile-20260926/matched-replay-010/OLD_SAMPLED_TORUS_GATE_AUDIT.json",
+      "local_bytes_sha256": "956c7100b2d2d4140cd230663bb6a389a72b697bfd35355ad53faf172b7cec1c",
+      "git_blob_bytes_sha256": "956c7100b2d2d4140cd230663bb6a389a72b697bfd35355ad53faf172b7cec1c",
+      "byte_equal": true
+    },
+    {
+      "path": "dev/stellarcsg/reports/coil-profile-20260926/matched-replay-010/P00_REFERENCE_LINEAGE.json",
+      "local_bytes_sha256": "eaff73f76a577f80cfe98b2dc006daf42e7dc7ef7690af757c7be927c0d21818",
+      "git_blob_bytes_sha256": "cb770ad8934bd4f19b2a9376b78de78854cbe0e1354ca9b07a9cd9bf324d49cf",
+      "byte_equal": false
+    },
+    {
+      "path": "dev/stellarcsg/reports/coil-profile-20260926/matched-replay-010/PARTIAL_RESULTS.json",
+      "local_bytes_sha256": "7f3f6ede81ef022771cdea13ba30f09d767d6b5e9ea658ccbad6587cef0e80dc",
+      "git_blob_bytes_sha256": "7f3f6ede81ef022771cdea13ba30f09d767d6b5e9ea658ccbad6587cef0e80dc",
+      "byte_equal": true
+    },
+    {
+      "path": "dev/stellarcsg/reports/coil-profile-20260926/matched-replay-010/PLAN.json",
+      "local_bytes_sha256": "1efbfb8d881f660c85514328eb59c6bbae59c8486e34f981f8dc11bb22afde69",
+      "git_blob_bytes_sha256": "1efbfb8d881f660c85514328eb59c6bbae59c8486e34f981f8dc11bb22afde69",
+      "byte_equal": true
+    },
+    {
+      "path": "dev/stellarcsg/reports/coil-profile-20260926/matched-replay-010/TERMINAL.json",
+      "local_bytes_sha256": "54b5e9b142f255d3c9136dcd7dc67024f207753a5d9787ad4e0d744687569b36",
+      "git_blob_bytes_sha256": "54b5e9b142f255d3c9136dcd7dc67024f207753a5d9787ad4e0d744687569b36",
+      "byte_equal": true
+    },
+    {
+      "path": "dev/stellarcsg/reports/coil-profile-20260926/matched-replay-010/certified_cache/geometry.xml",
+      "local_bytes_sha256": "9122b77fed201b243c32caf738565c193835b4fe6ef05e2c52b93767d0fb3c25",
+      "git_blob_bytes_sha256": "9122b77fed201b243c32caf738565c193835b4fe6ef05e2c52b93767d0fb3c25",
+      "byte_equal": true
+    },
+    {
+      "path": "dev/stellarcsg/reports/coil-profile-20260926/matched-replay-010/certified_cache/materials.xml",
+      "local_bytes_sha256": "af2a5fa8526432a9a088f29d3c9d8dbc6c34835fc988cc7511e7e0ae8ffc5669",
+      "git_blob_bytes_sha256": "af2a5fa8526432a9a088f29d3c9d8dbc6c34835fc988cc7511e7e0ae8ffc5669",
+      "byte_equal": true
+    },
+    {
+      "path": "dev/stellarcsg/reports/coil-profile-20260926/matched-replay-010/certified_cache/process-receipt.json",
+      "local_bytes_sha256": "2cd47bb20a4ce3916b2f7318a6c95feb43230d48ce7ccf85549524c7ae2c505c",
+      "git_blob_bytes_sha256": "2cd47bb20a4ce3916b2f7318a6c95feb43230d48ce7ccf85549524c7ae2c505c",
+      "byte_equal": true
+    },
+    {
+      "path": "dev/stellarcsg/reports/coil-profile-20260926/matched-replay-010/certified_cache/process.stderr",
+      "local_bytes_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "git_blob_bytes_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "byte_equal": true
+    },
+    {
+      "path": "dev/stellarcsg/reports/coil-profile-20260926/matched-replay-010/certified_cache/process.stdout",
+      "local_bytes_sha256": "009c6b68aa7acb21d236c13fb2024a43d12d45eb302fb042c112c47eafe62fca",
+      "git_blob_bytes_sha256": "009c6b68aa7acb21d236c13fb2024a43d12d45eb302fb042c112c47eafe62fca",
+      "byte_equal": true
+    },
+    {
+      "path": "dev/stellarcsg/reports/coil-profile-20260926/matched-replay-010/certified_cache/receipt.json",
+      "local_bytes_sha256": "26b8838f8980da8178629a0330a7d5d0a757d82faddccb0831c53b13a611c2df",
+      "git_blob_bytes_sha256": "26b8838f8980da8178629a0330a7d5d0a757d82faddccb0831c53b13a611c2df",
+      "byte_equal": true
+    },
+    {
+      "path": "dev/stellarcsg/reports/coil-profile-20260926/matched-replay-010/certified_cache/settings.xml",
+      "local_bytes_sha256": "fb66616954f11d74ed2cf20b1146b5a109185aa9d4658d6375746788701c0e0f",
+      "git_blob_bytes_sha256": "fb66616954f11d74ed2cf20b1146b5a109185aa9d4658d6375746788701c0e0f",
+      "byte_equal": true
+    },
+    {
+      "path": "dev/stellarcsg/reports/coil-profile-20260926/matched-replay-010/certified_cache/tallies.xml",
+      "local_bytes_sha256": "2cac3f93d2c54d4a92c5530ecf71e2fbdc441981b027ccdc5913b9b7bb8d223a",
+      "git_blob_bytes_sha256": "2cac3f93d2c54d4a92c5530ecf71e2fbdc441981b027ccdc5913b9b7bb8d223a",
+      "byte_equal": true
+    },
+    {
+      "path": "dev/stellarcsg/reports/coil-profile-20260926/matched-replay-010/composite_kernel_old_control/geometry.xml",
+      "local_bytes_sha256": "ddc44f6cd2d0b375766f6ce7bfd9bb71b72f60451b67d8b19ac5d909d2404c40",
+      "git_blob_bytes_sha256": "ddc44f6cd2d0b375766f6ce7bfd9bb71b72f60451b67d8b19ac5d909d2404c40",
+      "byte_equal": true
+    },
+    {
+      "path": "dev/stellarcsg/reports/coil-profile-20260926/matched-replay-010/composite_kernel_old_control/materials.xml",
+      "local_bytes_sha256": "af2a5fa8526432a9a088f29d3c9d8dbc6c34835fc988cc7511e7e0ae8ffc5669",
+      "git_blob_bytes_sha256": "af2a5fa8526432a9a088f29d3c9d8dbc6c34835fc988cc7511e7e0ae8ffc5669",
+      "byte_equal": true
+    },
+    {
+      "path": "dev/stellarcsg/reports/coil-profile-20260926/matched-replay-010/composite_kernel_old_control/process-receipt.json",
+      "local_bytes_sha256": "4fa196cf2e1b17c7420d5792ac3b2cdd3599ed33a42ab1062f199005e5a320c4",
+      "git_blob_bytes_sha256": "4fa196cf2e1b17c7420d5792ac3b2cdd3599ed33a42ab1062f199005e5a320c4",
+      "byte_equal": true
+    },
+    {
+      "path": "dev/stellarcsg/reports/coil-profile-20260926/matched-replay-010/composite_kernel_old_control/process.stderr",
+      "local_bytes_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "git_blob_bytes_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "byte_equal": true
+    },
+    {
+      "path": "dev/stellarcsg/reports/coil-profile-20260926/matched-replay-010/composite_kernel_old_control/process.stdout",
+      "local_bytes_sha256": "69b3f1874367795fe04cb18a946ef6fd8dbacea6f411d085bba82401a9bad946",
+      "git_blob_bytes_sha256": "69b3f1874367795fe04cb18a946ef6fd8dbacea6f411d085bba82401a9bad946",
+      "byte_equal": true
+    },
+    {
+      "path": "dev/stellarcsg/reports/coil-profile-20260926/matched-replay-010/composite_kernel_old_control/receipt.json",
+      "local_bytes_sha256": "30bb23a49e499339cb1ea8e59c445a55a95e68f8c66a760eb157108ddb4f47e2",
+      "git_blob_bytes_sha256": "30bb23a49e499339cb1ea8e59c445a55a95e68f8c66a760eb157108ddb4f47e2",
+      "byte_equal": true
+    },
+    {
+      "path": "dev/stellarcsg/reports/coil-profile-20260926/matched-replay-010/composite_kernel_old_control/settings.xml",
+      "local_bytes_sha256": "fb66616954f11d74ed2cf20b1146b5a109185aa9d4658d6375746788701c0e0f",
+      "git_blob_bytes_sha256": "fb66616954f11d74ed2cf20b1146b5a109185aa9d4658d6375746788701c0e0f",
+      "byte_equal": true
+    },
+    {
+      "path": "dev/stellarcsg/reports/coil-profile-20260926/matched-replay-010/composite_kernel_old_control/tallies.xml",
+      "local_bytes_sha256": "2cac3f93d2c54d4a92c5530ecf71e2fbdc441981b027ccdc5913b9b7bb8d223a",
+      "git_blob_bytes_sha256": "2cac3f93d2c54d4a92c5530ecf71e2fbdc441981b027ccdc5913b9b7bb8d223a",
+      "byte_equal": true
+    },
+    {
+      "path": "dev/stellarcsg/reports/coil-profile-20260926/matched-replay-010/current_legacy/geometry.xml",
+      "local_bytes_sha256": "ddc44f6cd2d0b375766f6ce7bfd9bb71b72f60451b67d8b19ac5d909d2404c40",
+      "git_blob_bytes_sha256": "ddc44f6cd2d0b375766f6ce7bfd9bb71b72f60451b67d8b19ac5d909d2404c40",
+      "byte_equal": true
+    },
+    {
+      "path": "dev/stellarcsg/reports/coil-profile-20260926/matched-replay-010/current_legacy/materials.xml",
+      "local_bytes_sha256": "af2a5fa8526432a9a088f29d3c9d8dbc6c34835fc988cc7511e7e0ae8ffc5669",
+      "git_blob_bytes_sha256": "af2a5fa8526432a9a088f29d3c9d8dbc6c34835fc988cc7511e7e0ae8ffc5669",
+      "byte_equal": true
+    },
+    {
+      "path": "dev/stellarcsg/reports/coil-profile-20260926/matched-replay-010/current_legacy/process-receipt.json",
+      "local_bytes_sha256": "6991c46ec5de48a208a203298f08a23e93214b8f878065bffd0f649f6c6874e9",
+      "git_blob_bytes_sha256": "6991c46ec5de48a208a203298f08a23e93214b8f878065bffd0f649f6c6874e9",
+      "byte_equal": true
+    },
+    {
+      "path": "dev/stellarcsg/reports/coil-profile-20260926/matched-replay-010/current_legacy/process.stderr",
+      "local_bytes_sha256": "2e7b8b650b892006f10e863448324e0769220dd796c8fc8841e3c1974c3ca848",
+      "git_blob_bytes_sha256": "2e7b8b650b892006f10e863448324e0769220dd796c8fc8841e3c1974c3ca848",
+      "byte_equal": true
+    },
+    {
+      "path": "dev/stellarcsg/reports/coil-profile-20260926/matched-replay-010/current_legacy/process.stdout",
+      "local_bytes_sha256": "5cdbf8a52e9cedc5166b63c01fc2772ed88a7bead1cf126a812ef471c7d11280",
+      "git_blob_bytes_sha256": "5cdbf8a52e9cedc5166b63c01fc2772ed88a7bead1cf126a812ef471c7d11280",
+      "byte_equal": true
+    },
+    {
+      "path": "dev/stellarcsg/reports/coil-profile-20260926/matched-replay-010/current_legacy/settings.xml",
+      "local_bytes_sha256": "fb66616954f11d74ed2cf20b1146b5a109185aa9d4658d6375746788701c0e0f",
+      "git_blob_bytes_sha256": "fb66616954f11d74ed2cf20b1146b5a109185aa9d4658d6375746788701c0e0f",
+      "byte_equal": true
+    },
+    {
+      "path": "dev/stellarcsg/reports/coil-profile-20260926/matched-replay-010/current_legacy/tallies.xml",
+      "local_bytes_sha256": "2cac3f93d2c54d4a92c5530ecf71e2fbdc441981b027ccdc5913b9b7bb8d223a",
+      "git_blob_bytes_sha256": "2cac3f93d2c54d4a92c5530ecf71e2fbdc441981b027ccdc5913b9b7bb8d223a",
+      "byte_equal": true
+    },
+    {
+      "path": "dev/stellarcsg/reports/coil-profile-20260926/matched-replay-010/identities.json",
+      "local_bytes_sha256": "94d69fd573794d048622556968217d7bf6a4aa136968d4d2b6db4cf4e82934c5",
+      "git_blob_bytes_sha256": "94d69fd573794d048622556968217d7bf6a4aa136968d4d2b6db4cf4e82934c5",
+      "byte_equal": true
+    },
+    {
+      "path": "dev/stellarcsg/reports/coil-profile-20260926/matched-replay-010/loader-bindings.json",
+      "local_bytes_sha256": "dd1ea44d9cdad17a396dbd82f9b1390a319a56837f7f9df9704490a50e44bb65",
+      "git_blob_bytes_sha256": "dd1ea44d9cdad17a396dbd82f9b1390a319a56837f7f9df9704490a50e44bb65",
+      "byte_equal": true
+    },
+    {
+      "path": "dev/stellarcsg/reports/coil-profile-20260926/matched-replay-010/p00_facets/geometry.xml",
+      "local_bytes_sha256": "7a7205105faf26522170153620c3f3e73e69d026f43b1bc1600c836677f067e8",
+      "git_blob_bytes_sha256": "7a7205105faf26522170153620c3f3e73e69d026f43b1bc1600c836677f067e8",
+      "byte_equal": true
+    },
+    {
+      "path": "dev/stellarcsg/reports/coil-profile-20260926/matched-replay-010/p00_facets/materials.xml",
+      "local_bytes_sha256": "74e108f7acf8182f959d941e1c8dca68da8aafaa2edf3ee3abdcbd0afaf7b891",
+      "git_blob_bytes_sha256": "74e108f7acf8182f959d941e1c8dca68da8aafaa2edf3ee3abdcbd0afaf7b891",
+      "byte_equal": true
+    },
+    {
+      "path": "dev/stellarcsg/reports/coil-profile-20260926/matched-replay-010/p00_facets/process-receipt.json",
+      "local_bytes_sha256": "1aa22e83a250b3367e81916edd6311d4bf9c37cf39dfce58dcc7014ee72bcf53",
+      "git_blob_bytes_sha256": "1aa22e83a250b3367e81916edd6311d4bf9c37cf39dfce58dcc7014ee72bcf53",
+      "byte_equal": true
+    },
+    {
+      "path": "dev/stellarcsg/reports/coil-profile-20260926/matched-replay-010/p00_facets/process.stderr",
+      "local_bytes_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "git_blob_bytes_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "byte_equal": true
+    },
+    {
+      "path": "dev/stellarcsg/reports/coil-profile-20260926/matched-replay-010/p00_facets/process.stdout",
+      "local_bytes_sha256": "ec131d37a6a68792f77a852ebee0d1add5a1858f9041ab96308fc8c836bc95a8",
+      "git_blob_bytes_sha256": "ec131d37a6a68792f77a852ebee0d1add5a1858f9041ab96308fc8c836bc95a8",
+      "byte_equal": true
+    },
+    {
+      "path": "dev/stellarcsg/reports/coil-profile-20260926/matched-replay-010/p00_facets/receipt.json",
+      "local_bytes_sha256": "b2eea837bbc7b6be6d0c4d5a334155444ce5b616e71b627a8248a7b99ad08879",
+      "git_blob_bytes_sha256": "b2eea837bbc7b6be6d0c4d5a334155444ce5b616e71b627a8248a7b99ad08879",
+      "byte_equal": true
+    },
+    {
+      "path": "dev/stellarcsg/reports/coil-profile-20260926/matched-replay-010/p00_facets/settings.xml",
+      "local_bytes_sha256": "437fe983b1dd7c7e671a4067d3bccfd5fea6c72d99c4079f896a4fb4a567c532",
+      "git_blob_bytes_sha256": "437fe983b1dd7c7e671a4067d3bccfd5fea6c72d99c4079f896a4fb4a567c532",
+      "byte_equal": true
+    },
+    {
+      "path": "dev/stellarcsg/reports/coil-profile-20260926/matched-replay-010/p00_facets/tallies.xml",
+      "local_bytes_sha256": "96aacc7f9812c31ad9c8b36f14f354f0d4617bc18231bba982fc597c11a76fd0",
+      "git_blob_bytes_sha256": "96aacc7f9812c31ad9c8b36f14f354f0d4617bc18231bba982fc597c11a76fd0",
+      "byte_equal": true
+    },
+    {
+      "path": "dev/stellarcsg/reports/coil-profile-20260926/matched-replay-010/p00_flat_rings/flat-ring-parameters.json",
+      "local_bytes_sha256": "109383ba4318764a573a659870ea5b50f0ec43f623e0e9ff04dabdac3360e08c",
+      "git_blob_bytes_sha256": "109383ba4318764a573a659870ea5b50f0ec43f623e0e9ff04dabdac3360e08c",
+      "byte_equal": true
+    },
+    {
+      "path": "dev/stellarcsg/reports/coil-profile-20260926/matched-replay-010/p00_flat_rings/geometry.xml",
+      "local_bytes_sha256": "81400a6a63044545893bcc850a16a92d2a01c1743acd706184694add83211ec7",
+      "git_blob_bytes_sha256": "81400a6a63044545893bcc850a16a92d2a01c1743acd706184694add83211ec7",
+      "byte_equal": true
+    },
+    {
+      "path": "dev/stellarcsg/reports/coil-profile-20260926/matched-replay-010/p00_flat_rings/materials.xml",
+      "local_bytes_sha256": "74e108f7acf8182f959d941e1c8dca68da8aafaa2edf3ee3abdcbd0afaf7b891",
+      "git_blob_bytes_sha256": "74e108f7acf8182f959d941e1c8dca68da8aafaa2edf3ee3abdcbd0afaf7b891",
+      "byte_equal": true
+    },
+    {
+      "path": "dev/stellarcsg/reports/coil-profile-20260926/matched-replay-010/p00_flat_rings/process-receipt.json",
+      "local_bytes_sha256": "873a29f727292451d40c2dc79c4c636713e5457dcc7e15c33924824a61afef27",
+      "git_blob_bytes_sha256": "873a29f727292451d40c2dc79c4c636713e5457dcc7e15c33924824a61afef27",
+      "byte_equal": true
+    },
+    {
+      "path": "dev/stellarcsg/reports/coil-profile-20260926/matched-replay-010/p00_flat_rings/process.stderr",
+      "local_bytes_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "git_blob_bytes_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "byte_equal": true
+    },
+    {
+      "path": "dev/stellarcsg/reports/coil-profile-20260926/matched-replay-010/p00_flat_rings/process.stdout",
+      "local_bytes_sha256": "b3389e6e2ee6928612fbc68704ac144aba4c36baa77e4975032f33cd27e9e177",
+      "git_blob_bytes_sha256": "b3389e6e2ee6928612fbc68704ac144aba4c36baa77e4975032f33cd27e9e177",
+      "byte_equal": true
+    },
+    {
+      "path": "dev/stellarcsg/reports/coil-profile-20260926/matched-replay-010/p00_flat_rings/receipt.json",
+      "local_bytes_sha256": "0448629a4748ce559d573cb6abda48ec355227ebf18a84f9b23d3d3d5a0e4dff",
+      "git_blob_bytes_sha256": "0448629a4748ce559d573cb6abda48ec355227ebf18a84f9b23d3d3d5a0e4dff",
+      "byte_equal": true
+    },
+    {
+      "path": "dev/stellarcsg/reports/coil-profile-20260926/matched-replay-010/p00_flat_rings/settings.xml",
+      "local_bytes_sha256": "437fe983b1dd7c7e671a4067d3bccfd5fea6c72d99c4079f896a4fb4a567c532",
+      "git_blob_bytes_sha256": "437fe983b1dd7c7e671a4067d3bccfd5fea6c72d99c4079f896a4fb4a567c532",
+      "byte_equal": true
+    },
+    {
+      "path": "dev/stellarcsg/reports/coil-profile-20260926/matched-replay-010/p00_flat_rings/tallies.xml",
+      "local_bytes_sha256": "96aacc7f9812c31ad9c8b36f14f354f0d4617bc18231bba982fc597c11a76fd0",
+      "git_blob_bytes_sha256": "96aacc7f9812c31ad9c8b36f14f354f0d4617bc18231bba982fc597c11a76fd0",
+      "byte_equal": true
+    },
+    {
+      "path": "dev/stellarcsg/reports/coil-profile-20260926/matched-replay-010/recovered_generic/geometry.xml",
+      "local_bytes_sha256": "ddc44f6cd2d0b375766f6ce7bfd9bb71b72f60451b67d8b19ac5d909d2404c40",
+      "git_blob_bytes_sha256": "ddc44f6cd2d0b375766f6ce7bfd9bb71b72f60451b67d8b19ac5d909d2404c40",
+      "byte_equal": true
+    },
+    {
+      "path": "dev/stellarcsg/reports/coil-profile-20260926/matched-replay-010/recovered_generic/materials.xml",
+      "local_bytes_sha256": "af2a5fa8526432a9a088f29d3c9d8dbc6c34835fc988cc7511e7e0ae8ffc5669",
+      "git_blob_bytes_sha256": "af2a5fa8526432a9a088f29d3c9d8dbc6c34835fc988cc7511e7e0ae8ffc5669",
+      "byte_equal": true
+    },
+    {
+      "path": "dev/stellarcsg/reports/coil-profile-20260926/matched-replay-010/recovered_generic/process-receipt.json",
+      "local_bytes_sha256": "35ec966dcd3c306277d262171ea5ed57ff826d2cf7177816645e779b82119d3c",
+      "git_blob_bytes_sha256": "35ec966dcd3c306277d262171ea5ed57ff826d2cf7177816645e779b82119d3c",
+      "byte_equal": true
+    },
+    {
+      "path": "dev/stellarcsg/reports/coil-profile-20260926/matched-replay-010/recovered_generic/process.stderr",
+      "local_bytes_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "git_blob_bytes_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "byte_equal": true
+    },
+    {
+      "path": "dev/stellarcsg/reports/coil-profile-20260926/matched-replay-010/recovered_generic/process.stdout",
+      "local_bytes_sha256": "47fcab13f9de4490e3b836f1f29a4ad6d198c8305d1d62d5792c8129db841168",
+      "git_blob_bytes_sha256": "47fcab13f9de4490e3b836f1f29a4ad6d198c8305d1d62d5792c8129db841168",
+      "byte_equal": true
+    },
+    {
+      "path": "dev/stellarcsg/reports/coil-profile-20260926/matched-replay-010/recovered_generic/receipt.json",
+      "local_bytes_sha256": "fc2443e8afc42ff6788d4e37cf73b6d83a71ddfafef359da25af264c72037589",
+      "git_blob_bytes_sha256": "fc2443e8afc42ff6788d4e37cf73b6d83a71ddfafef359da25af264c72037589",
+      "byte_equal": true
+    },
+    {
+      "path": "dev/stellarcsg/reports/coil-profile-20260926/matched-replay-010/recovered_generic/settings.xml",
+      "local_bytes_sha256": "fb66616954f11d74ed2cf20b1146b5a109185aa9d4658d6375746788701c0e0f",
+      "git_blob_bytes_sha256": "fb66616954f11d74ed2cf20b1146b5a109185aa9d4658d6375746788701c0e0f",
+      "byte_equal": true
+    },
+    {
+      "path": "dev/stellarcsg/reports/coil-profile-20260926/matched-replay-010/recovered_generic/tallies.xml",
+      "local_bytes_sha256": "2cac3f93d2c54d4a92c5530ecf71e2fbdc441981b027ccdc5913b9b7bb8d223a",
+      "git_blob_bytes_sha256": "2cac3f93d2c54d4a92c5530ecf71e2fbdc441981b027ccdc5913b9b7bb8d223a",
+      "byte_equal": true
+    },
+    {
+      "path": "dev/stellarcsg/reports/coil-profile-20260926/matched-replay-010/windows-inventory.json",
+      "local_bytes_sha256": "5461a3c31bea022d8f3f1ccb8f9d015698a5b55340f3d762483c14a21ddfb3a4",
+      "git_blob_bytes_sha256": "20ecfefaaf761c975468bb5d9b9d1b07428200e942ac39e967b1c056cc704ad9",
+      "byte_equal": false
+    },
+    {
+      "path": "dev/stellarcsg/reports/coil-profile-20260926/matched-replay-010/wsl-inventory.json",
+      "local_bytes_sha256": "a9c5286f1bc038d8b667016b3a6aafa03f87a1fe94f0c5210fe884b1f92f92d0",
+      "git_blob_bytes_sha256": "a9c5286f1bc038d8b667016b3a6aafa03f87a1fe94f0c5210fe884b1f92f92d0",
+      "byte_equal": true
+    }
+  ]
+}

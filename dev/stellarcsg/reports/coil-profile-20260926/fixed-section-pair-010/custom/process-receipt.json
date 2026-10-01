@@ -1,0 +1,12 @@
+{
+  "exit_code": 0,
+  "timeout": false,
+  "command": [
+    "/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-local-continuation-20260925/build/native-local-20260925/bin/openmc"
+  ],
+  "process_wall_seconds": 11.152920393997192,
+  "reused_XML_prepare_seconds": 0.1445531999997911,
+  "timeout_seconds": 600,
+  "threads": 1,
+  "address_space_bytes": 1073741824
+}

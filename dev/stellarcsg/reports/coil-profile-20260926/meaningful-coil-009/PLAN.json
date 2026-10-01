@@ -1,0 +1,23 @@
+{
+  "histories_per_method": 20000,
+  "batches": 20,
+  "particles": 1000,
+  "seed": 1741,
+  "methods": [
+    "cache",
+    "flat_ring"
+  ],
+  "threads": 1,
+  "affinity": "one allowed CPU per child",
+  "tally_mode": "on",
+  "worker_timeout_seconds": 600,
+  "block_timeout_seconds": 1800,
+  "worker_address_space_bytes": 1073741824,
+  "statepoint": "final batch only",
+  "label": "admitted current round-tube diagnostic versus builtin flat-ring proxy; full winding pack NOT_ADMITTED",
+  "geometry_preparation": "reused existing coefficient HDF5 and XML; cold geometry build UNKNOWN",
+  "matching": "same settings/material/source/data/tallies/vacuum; shape intentionally differs",
+  "correctness": "retained independently reviewed same-solid cache gates; zero wrong roots, nine normal gaps",
+  "acceptance_gate": "custom transport / builtin transport <=1.25; fidelity separate and open",
+  "no_automatic_retry": true
+}

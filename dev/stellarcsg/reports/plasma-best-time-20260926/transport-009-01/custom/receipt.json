@@ -1,0 +1,193 @@
+{
+  "exit_code": 0,
+  "timed_out": false,
+  "worker_external_process_wall_s": 47.89147841700105,
+  "input_validation_launch_worker_wall_s": 48.64551896199919,
+  "command": [
+    "/opt/openmc-venv/bin/python",
+    "/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-astra-kernel-20260926/dev/stellarcsg/experiments/plasma_best_time_20260926/build_transport_harness_009.py",
+    "--manifest",
+    "/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-astra-kernel-20260926/dev/stellarcsg/reports/plasma-best-time-20260926/transport-009-01/manifest.json",
+    "--method",
+    "custom",
+    "--output",
+    "/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-astra-kernel-20260926/dev/stellarcsg/reports/plasma-best-time-20260926/transport-009-01/custom",
+    "--lease-run",
+    "plasma-transport-009-20260927T0101065606Z",
+    "--worker"
+  ],
+  "manifest_sha256": "71cd0bf0182627307c29c8f511f31fbd58bc5a48be457b8e0b2e87ef34918055",
+  "harness_sha256": "bc87e3855bf6399380b8ecdb6c5176cdd89f2d37249291cc417130b834f26523",
+  "completed_histories": 20000,
+  "state": "COMPLETED_NOT_ACCURACY_ACCEPTED",
+  "worker": {
+    "exit_code": 0,
+    "timed_out": false,
+    "diagnostics": [],
+    "native_invocation_external_wall_s": 44.18527835099667,
+    "xml_sha256": {
+      "geometry.xml": "455a5d23ff8857e261a1c037c91099370bbeb4793a26dc23816e064981255735",
+      "materials.xml": "ea9072b865729401b0393ab7af88b47fe75cbfce372ede05305fa3acbb36c1a1",
+      "settings.xml": "14235669e6de2b3048d5300544d6f96badbb4d56240cad10906a991a26d094f8",
+      "tallies.xml": "d9adb44d2be814780c3a662d52b6955859cf64d92b99dc1aecc1ede675bea6ca"
+    },
+    "module_import_wall_s": 2.354548211002111,
+    "geometry_construction_export_reuse_wall_s": 0.022720500001014443,
+    "cold_geometry_build_wall_s": null,
+    "cold_geometry_status": "UNKNOWN: coefficient/certificate preparation omitted from this cached custom worker",
+    "completed_histories": 20000,
+    "runtime": {
+      "accumulating tallies": 8e-06,
+      "active batches": 35.14013021,
+      "reading cross sections": 2.343825687,
+      "simulation": 35.13892901,
+      "total": 44.05252585,
+      "total initialization": 8.90898774,
+      "transport": 34.819716295999996,
+      "writing statepoints": 0.31850421399999995
+    },
+    "tally_means": {
+      "1": [
+        [
+          [
+            460.34347626784063,
+            68.40270553081025,
+            0.2874675093710914,
+            630699.97086879
+          ]
+        ]
+      ],
+      "2": [
+        [
+          [
+            8.072108190073164,
+            7.783680957069652,
+            0.054786101737547256,
+            27.324609520637487
+          ]
+        ],
+        [
+          [
+            115.12284570746806,
+            18.12261136031958,
+            0.048579691199917646,
+            18954.368339937304
+          ]
+        ],
+        [
+          [
+            306.4691564350034,
+            35.68311595637631,
+            0.05439968815748978,
+            272590.84597738564
+          ]
+        ],
+        [
+          [
+            20.313665440400396,
+            4.45211420007917,
+            0.003608363946388389,
+            124139.20887173867
+          ]
+        ],
+        [
+          [
+            1.3525267907126857,
+            0.39427427919115043,
+            0.004237586751476768,
+            21129.235002996844
+          ]
+        ],
+        [
+          [
+            9.013173704184638,
+            1.966908777774207,
+            0.1218560775782703,
+            193858.9880672166
+          ]
+        ]
+      ],
+      "3": [
+        [
+          [
+            0.43442163711299986,
+            0.09815406334914904,
+            0.004105070948814551,
+            7214.795337948339
+          ]
+        ],
+        [
+          [
+            0.35238851771945756,
+            0.08091883411963617,
+            0.0030752290374130016,
+            5526.508893444854
+          ]
+        ],
+        [
+          [
+            0.3962109588279149,
+            0.08954089334245943,
+            0.0036413003516209165,
+            6444.985558542938
+          ]
+        ],
+        [
+          [
+            0.4322477241439399,
+            0.09767382027015006,
+            0.004042209529309296,
+            7134.650123862644
+          ]
+        ],
+        [
+          [
+            0.3783061181598874,
+            0.08538370177587738,
+            0.003363226939341506,
+            6021.091286946715
+          ]
+        ],
+        [
+          [
+            0.41782004376012927,
+            0.09480767637029479,
+            0.003842854545045869,
+            6807.283335668408
+          ]
+        ],
+        [
+          [
+            0.40982042989202155,
+            0.0929110200308631,
+            0.0037179396042809755,
+            6589.702406451132
+          ]
+        ],
+        [
+          [
+            0.4634383992096222,
+            0.10494342610552773,
+            0.004427972024959252,
+            7749.154341327282
+          ]
+        ]
+      ]
+    },
+    "initialization_s": 8.90898774,
+    "xs_read_s_nested_in_initialization": 2.343825687,
+    "transport_s": 34.819716295999996,
+    "statepoint_output_s": 0.31850421399999995,
+    "accumulating_tallies_s_nested": 8e-06,
+    "geometry_load_bvh_s": null,
+    "geometry_load_bvh_status": "UNKNOWN: nested in native initialization; no separate timer",
+    "crossings_per_history": null,
+    "crossings_status": "UNKNOWN: complete tracking instrumentation missing",
+    "worker_input_to_validated_result_wall_s": 46.79566026300017,
+    "tally_policy": "on",
+    "transport_acceptance": "NOT_ASSESSED",
+    "tally_accuracy": "UNRESOLVED: needs independent raw per-bin auditor; proxy means may differ"
+  },
+  "input_to_checked_result_wall_s": 49.37737377400117,
+  "timer_policy": "External process/validation timers contain native/init/transport/output; do not sum nested timers. Transport ratios only from matched completed tally-on work."
+}

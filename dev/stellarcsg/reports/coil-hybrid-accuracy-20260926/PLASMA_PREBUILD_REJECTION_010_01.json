@@ -1,0 +1,30 @@
+{
+  "disposition": "REJECT",
+  "driver_sha256": "2df4f2069011d783121010eda16c9532d81224f8ee2deefa36b902f2438280de",
+  "wrapper_sha256": "905bc99d4239ab42a6a764c4e85ee74902dd48c66fa3d290f779749d80241d62",
+  "inventory_plan_sha256": "73d3a00ab5424fca09046744a0fd28557ceeae0d491ddd1924fc2b4b4fa17261",
+  "reviewer": {
+    "thread_id": "01a0e00b-f7f2-7ca3-ae93-7e39befae73b",
+    "role": "independent Sol reviewer"
+  },
+  "review_type": "read-only source/plan review; no configure/build/transport",
+  "reasons": [
+    "PowerShell Replace('\\\\','/') matches two literal backslashes rather than one. Output/inventory/review conversion retains normal Windows separators. Resolve and validate every path and require output equal reviewed target.",
+    "Wrapper never invokes inventory_build_010.py although packet claims fresh WSL inventory. Driver only hashes stale source/dependency maps. Fresh WSL memory, root/C/D space, processes, tools/versions, environments, caches and source status observations must complete under lease before configure; required unknowns or insufficient headroom must stop.",
+    "validate_inventory omits source-files.json and dependency-identities.json digest checks against reviewed plan's source_manifest_sha256 and dependency_manifest_sha256. Verify these before trusting entries.",
+    "Four pilot custom XML inputs are copied without validation against immutable accepted hashes. Freeze and check all four prior to configure and each worker, with exact work/seed/source/material/tally identity.",
+    "Validate fresh inventory identities against reviewed packet, review inventory collector hash and wrapper hash, and enforce reviewed output path. Present one frozen corrected packet for re-review."
+  ],
+  "accepted_design_elements": [
+    "One fresh complete executable/library build rather than partial-object/helper interposition.",
+    "GIT_SUBMODULE=OFF in audited CMake path prevents submodule update. Existing local fmt/pugixml configs/static archives, HDF5 and GNU14 provide proposed offline capability; no install target is invoked.",
+    "Explicit serial CPU affinity, one-thread compile, bounded build and worker deadlines, stop-on-first-failure, preserved finite receipts.",
+    "Old/current lane uses intended same pilot workload; newly rebuilt source is clearly distinguished from archived runtime."
+  ],
+  "limitations": [
+    "Old adapter's not-found-to-infinity path remains disqualified for production and independent accuracy acceptance.",
+    "This review admits no build/run. Corrected exact hashes require independent review.",
+    "RLIMIT_AS is an inherited per-process virtual address limit, not an aggregate physical-memory cgroup.",
+    "No current or archived binary parity, universal first-root/normal proof, per-bin accuracy or full-device winner is established."
+  ]
+}

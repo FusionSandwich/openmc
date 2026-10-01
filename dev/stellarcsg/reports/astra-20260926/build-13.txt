@@ -1,0 +1,16 @@
+[1/9] Building CXX object CMakeFiles/stellarcsg_reference.dir/src/certified_spline_offset.cpp.o
+/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-astra-kernel-20260926/dev/stellarcsg/src/certified_spline_offset.cpp: In member function ‘bool stellarcsg::CertifiedSplineOffset::Implementation::outside_prefix(const stellarcsg::Vec3&, const stellarcsg::Vec3&, stellarcsg::{anonymous}::Real, stellarcsg::{anonymous}::Real, std::size_t, stellarcsg::RootSearchDiagnostics&) const’:
+/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-astra-kernel-20260926/dev/stellarcsg/src/certified_spline_offset.cpp:781:20: warning: declaration of ‘box’ shadows a member of ‘stellarcsg::CertifiedSplineOffset::Implementation’ [-Wshadow]
+  781 |         const auto box = todo.back();
+      |                    ^~~
+/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-astra-kernel-20260926/dev/stellarcsg/src/certified_spline_offset.cpp:185:15: note: shadowed declaration is here
+  185 |   BoundingBox box;
+      |               ^~~
+[2/9] Linking CXX static library libstellarcsg_reference.a
+[3/9] Building CXX object CMakeFiles/stellarcsg_offset_tests.dir/tests/test_certified_offset.cpp.o
+[4/9] Building CXX object CMakeFiles/stellarcsg_offset_probe.dir/qualification/certified_offset_probe.cpp.o
+[5/9] Building CXX object CMakeFiles/stellarcsg_recovery04_bank.dir/qualification/recovery04_frozen_bank.cpp.o
+[6/9] Linking CXX executable stellarcsg_offset_tests
+[7/9] Linking CXX executable stellarcsg_offset_probe
+[8/9] Linking CXX executable stellarcsg_compiled_surface_tests
+[9/9] Linking CXX executable stellarcsg_recovery04_bank

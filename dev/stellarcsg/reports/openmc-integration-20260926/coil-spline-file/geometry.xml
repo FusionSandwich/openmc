@@ -1,0 +1,16 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<geometry>
+  <cell id="2" material="1" region="-10 -7" universe="1"/>
+  <cell id="3" material="void" region="10 -99" universe="1"/>
+  <cell id="4" name="local scoring cell" material="1" region="-10 7 -2 1 -4 3 -6 5" universe="1"/>
+  <cell id="5" material="1" region="-10 7 (2 | -1 | 4 | -3 | 6 | -5)" universe="1"/>
+  <surface id="1" type="x-plane" coeffs="98.0"/>
+  <surface id="2" type="x-plane" coeffs="103.0"/>
+  <surface id="3" type="y-plane" coeffs="-3.0"/>
+  <surface id="4" type="y-plane" coeffs="3.0"/>
+  <surface id="5" type="z-plane" coeffs="-3.0"/>
+  <surface id="6" type="z-plane" coeffs="3.0"/>
+  <surface id="7" type="x-plane" coeffs="0.0"/>
+  <surface id="10" type="swept-spline" data_file="/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-astra-kernel-20260926/dev/stellarcsg/reports/transport-proxy-20260926/fixtures/coil.h5" representation="exact_control_offset" bernstein_prefix="true" dataset="/coils/coil_000" content_id="sha256:1a1f42dd9fec3aecdc6a519c08228910210007b134cfa32d3e9b4e6e8f7c6882" units="cm"/>
+  <surface id="99" type="sphere" boundary="vacuum" coeffs="0.0 0.0 0.0 150.0"/>
+</geometry>

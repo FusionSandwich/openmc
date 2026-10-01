@@ -1,0 +1,24 @@
+{
+  "source_sha256": "93b4723fd1f18dea0f6db6a006eccbf636ef06d5519c2ed2a7bb78008d53b51c",
+  "payload_sha256": "a25e4f56da79b6b71e262d0011b15b401fa884d0f2e2cc2b9e3c7cfca351651a",
+  "sample_count": 64,
+  "checks": 64,
+  "characteristic_length_cm": 628.3185307179587,
+  "tolerance_cm": 0.0006283185307179586,
+  "means_cm": {
+    "radius": 100.0,
+    "z": 0.0,
+    "cross": 4.999999999999999
+  },
+  "sampled_deviations_cm": {
+    "radius": 4.263256414560601e-14,
+    "z": 0.0,
+    "major": 0.0,
+    "minor": 0.0
+  },
+  "sampled_gate_pass": true,
+  "off_knot_radial_deviation_sample_cm": 2.4250148015880768e-05,
+  "force_general_solver": "false in retained adapter default constructor",
+  "expected_branch": "old/recovered constructor promotes fixture to averaged torus; timing does not measure generic span/BVH",
+  "evidence_limit": "source-gate reconstruction, not fresh dynamic branch telemetry; finite off-knot sampling not a global fidelity bound"
+}

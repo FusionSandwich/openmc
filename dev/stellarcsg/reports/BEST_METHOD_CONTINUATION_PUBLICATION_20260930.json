@@ -1,0 +1,56 @@
+{
+  "schema": "stellarcsg.continuation-publication/v1",
+  "review_date": "2026-09-30",
+  "parent_commit": "ecd66adf7885d0f6e49c6f6dec7ad3e70df8c278",
+  "status": "ACCEPT_DOCUMENTATION_AFTER_FRESHNESS_CORRECTION",
+  "independent_review": "Separate GPT-6 Sol high review, read-only; decisive timings, route selection, eligibility and failure instructions accepted. Reviewer identified stale unresolved timing wording; root corrected it. No new physical geometry or production acceptance.",
+  "note": "Preserves prior manifests as historical snapshots. Local byte SHA256 and normalized Git blob identity are distinct. No binaries/HDF/software build outputs added. Manifest excludes itself.",
+  "doc_pins": [
+    {
+      "path": "dev/stellarcsg/METHOD_MAP.md",
+      "local_bytes_sha256": "6215c6a38749d37517bc398913c90b08a6be539443eecff5bbff68cd379c3b43",
+      "git_normalized_blob_sha1": "e778faeebfc1d90d7eeaa29ded99aad5e6a80de4"
+    },
+    {
+      "path": "dev/stellarcsg/reports/BEST_METHOD_CONTINUATION_20260930.md",
+      "local_bytes_sha256": "defb71d00ecbbce937b0d603e6507f6e675a315ca6d144e7293248ddc039e344",
+      "git_normalized_blob_sha1": "d018066f0b0927477e06b5e3b656841a8212ef13"
+    },
+    {
+      "path": "dev/stellarcsg/reports/BUILD_TRANSPORT_RESULTS_20260926.md",
+      "local_bytes_sha256": "02f694373998c66b078b6732b8632989faa9afead9f60342f7b52400a722aa08",
+      "git_normalized_blob_sha1": "215ddf45fb482c6a76d76d130e44cd7ac6fca234"
+    },
+    {
+      "path": "dev/stellarcsg/reports/CONSOLIDATED_DEVELOPMENT_20260926.md",
+      "local_bytes_sha256": "e3ee419be65a21269abcc3e98a6cfd3f3a2a500ae7d4ca86723e166efd41b397",
+      "git_normalized_blob_sha1": "c0042d44917aae51685d1d8a18152b43ccf1241e"
+    },
+    {
+      "path": "dev/stellarcsg/reports/FASTEST_METHOD_BRANCH_REVIEW_20260926.md",
+      "local_bytes_sha256": "c344b2767132815999f82ee29a2550555b985c20b1e3a27d0eb19e7a0425eb20",
+      "git_normalized_blob_sha1": "5e0fabbb0bf8426e3fc1ff114e882d049c3b4a7b"
+    }
+  ],
+  "evidence_pins": [
+    {
+      "path": "dev/stellarcsg/reports/coil-profile-20260926/fixed-section-pair-010/SUMMARY.json",
+      "local_bytes_sha256": "04d373bd12ec1f6ad8bc611f3635a88dd8e2ede7bfce9fd4d90f6a28f4f8030d"
+    },
+    {
+      "path": "dev/stellarcsg/reports/plasma-best-time-20260926/RESULTS.md",
+      "local_bytes_sha256": "bb22b678fb58b3d184863c82c8251b4c0bf4f0b85cd7c823854fbd0c459cc924"
+    },
+    {
+      "path": "dev/stellarcsg/reports/plasma-best-time-20260926/source-rebuild-010-01/comparison.json",
+      "local_bytes_sha256": "4d3ab2737d821a24c8ce65f4a4d561998d2d9b3529c87826a3da172582993f4b"
+    },
+    {
+      "path": "dev/stellarcsg/reports/HISTORICAL_ELAPSED_METHODS_010.json",
+      "local_bytes_sha256": "c731a0de005e6618c5db75a6038825532a0778dd0df2301c97249a1c81946b00"
+    }
+  ],
+  "new_compute_runs": 0,
+  "new_builds": 0,
+  "new_acquisition": 0
+}

@@ -1,0 +1,239 @@
+{
+  "roles": {
+    "geometry": {
+      "path": "/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-astra-kernel-20260926/dev/stellarcsg/qualified/wistell_d_periodic_surfaces.h5",
+      "sha256": "52695c3c6a7329faccdd009f1179c50c91e24c8902447356d3b2cd77c7f9ca36"
+    },
+    "source": {
+      "path": "/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-astra-kernel-20260926/dev/stellarcsg/reports/plasma-best-time-20260926/transport-009-01/source.h5",
+      "sha256": "223dc5849ec0196444a74a46c1ef54e87bcc24a67d6ccfd234fa332cbf5b381a"
+    },
+    "binary": {
+      "path": "/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-astra-kernel-20260926/build/astra-native/bin/openmc",
+      "sha256": "47a1d0f4a15aba391a3f3ae5cb1dd0776f5041afe073e2e2d3fb58b04885a398"
+    },
+    "library": {
+      "path": "/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-astra-kernel-20260926/openmc/lib/libopenmc.so",
+      "sha256": "f301f7a76a1d4bc1910ea17b582dd31ce70f35cc35690ae5c390c1880ce714a6"
+    },
+    "data_index": {
+      "path": "/mnt/c/Users/joshu/Documents/2026_DPA/openc-hts-dpa/.data/openmc/cross_sections.xml",
+      "sha256": "218236803b2c4a21b038992af93dacfdfe5c0c0401cbbc57f3ff3a947c63abc7"
+    },
+    "Fe56_data": {
+      "path": "/mnt/c/Users/joshu/Documents/2026_DPA/openc-hts-dpa/.data/openmc/FENDL-3.1d_Fe56.h5",
+      "sha256": "18abc04dc9fd602948bafcf487323a1148681c75ee74e27863e843211fd6f1f8"
+    },
+    "adapter": {
+      "path": "/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-astra-kernel-20260926/src/surface_periodic_spline.cpp",
+      "sha256": "c34cf83823c1856076e247e95337eb75a03553049fe510ad76149749c8483892"
+    },
+    "compiled_kernel": {
+      "path": "/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-astra-kernel-20260926/dev/stellarcsg/src/compiled_periodic_surface.cpp",
+      "sha256": "adf78160d9df75786f8e10158970617084f53ca5739a090534f6e20da967f27d"
+    },
+    "harness": {
+      "path": "/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-astra-kernel-20260926/dev/stellarcsg/experiments/plasma_best_time_20260926/build_transport_harness_009.py",
+      "sha256": "bc87e3855bf6399380b8ecdb6c5176cdd89f2d37249291cc417130b834f26523"
+    },
+    "driver": {
+      "path": "/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-astra-kernel-20260926/dev/stellarcsg/experiments/plasma_best_time_20260926/run_transport_009.py",
+      "sha256": "3395cd7f3e6ca70e2eb5092083069c0446b8c381aaa4c369f89a5642d56c80e8"
+    },
+    "cmake_cache": {
+      "path": "/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-astra-kernel-20260926/build/astra-native/CMakeCache.txt",
+      "sha256": "fdec6de9d3f7005b41e35277439dd5b32c5a630eb99368ac5c6de92718175896"
+    }
+  },
+  "python_source_hashes": {
+    "openmc/__init__.py": "87de78f517b50f09b054b7e41fe6db9ce74cb66a67b435c32d4d62ddbc8c761c",
+    "openmc/_sparse_compat.py": "d231d255b4956a1dc02c41dd9f4878fc4d19b1dc86f1093f25f8e5acf5ea12f9",
+    "openmc/_xml.py": "bc1091d2a6de83d4df95de8c6d5ad628e7159107f26200d5f14ed934143568d1",
+    "openmc/arithmetic.py": "728857df52853676d1e258dfc3be4543f2208331c15a107ee89002724379c70b",
+    "openmc/bounding_box.py": "d3d273d8bc26d8d129cf33a3d37ea85b0b090176c0f198cd18e093c7fef5710a",
+    "openmc/cell.py": "4b9829a2725b2483dd78d62a93cf62438931f643a9e9398a23328b828bddec02",
+    "openmc/checkvalue.py": "463b8e0046ac5edcf765bd1d8a549ed4db75cdbdb76f565c7b9241ba2290f897",
+    "openmc/cmfd.py": "4aa3b9e6d2e3ed147104a08bb12fb79f51584ffd9c269c08a0ba6fd93b71e944",
+    "openmc/config.py": "80d28211e0343a266ac03bb6a62ebf25a46554a62488403877609a7e78fc0d16",
+    "openmc/dagmc.py": "0f3f370ca4ed4433a069ae33c8991f50a7a55a094929e9c8b48c98d0a121c3d1",
+    "openmc/data/__init__.py": "31782558337ab3c1c3e778de5f14acbe448e8aad504ec04dfe86ab59005788c6",
+    "openmc/data/ace.py": "2f662f6f65e1883d369b7674570f1fd7f36818318c08d27b2b27514dac37e6e8",
+    "openmc/data/angle_distribution.py": "d77160221e2925556ca466b36d2d49821e03180a1ce47f74b30993427c2879d6",
+    "openmc/data/angle_energy.py": "2729ee698f1ceb1b80af11098954edbce6396b47a0943543f9823bebc6f3a890",
+    "openmc/data/correlated.py": "fe1838db4c96b12de5933bcd11dd32b99535baec70a5f497f415d5e77a5ef01e",
+    "openmc/data/data.py": "822c1da366c182e923d7975c48faf9ded5cfb85fbb57851126941a0eb50cbfb0",
+    "openmc/data/decay.py": "a2dbccd5a6765ac286cd720c7060d0dd9dfe8a8884b16d04b422c0607fdbb046",
+    "openmc/data/dose/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "openmc/data/dose/dose.py": "d0eb25d5738ddbf940d0ebc65ac6c17c3a7b11b9961501a128fc12c5348851d2",
+    "openmc/data/dose/icrp74/generate_photon_effective_dose.py": "1c10ba745ae7dc69dd271d4d5228bd8dd04b44b129d5ccbe0227b373d964212b",
+    "openmc/data/dose/mass_attenuation.py": "51ba4b8260fa29dedba012d3d0f5163c1a515f605feff3cf7cab6450d20f27fc",
+    "openmc/data/endf.py": "af5e1b0f782339b996e51d7ff391ca13d4ef7ce001fee1855bfa70526249a6c2",
+    "openmc/data/energy_distribution.py": "50de41aa5964bd65bec7645754be3377d1d6f7d83d0a5b5db7abb04ccabd6153",
+    "openmc/data/fission_energy.py": "48fd138c5671ab9743ee748ba22ed737e14f52474ec0f8193488fc7405857b35",
+    "openmc/data/function.py": "5ed1dd263d18eb008c00b6170a7bab173196702380a5e2d201c8819cd5e89b02",
+    "openmc/data/grid.py": "ffae60753adead40e0f299f8edbfca325ba3ceade0bcd69016a058a4dbc68769",
+    "openmc/data/kalbach_mann.py": "85d4e6d5e19662ebe0f7bf7bdd228dfa19cf4feaa02eb245b9de9c9472bceaea",
+    "openmc/data/laboratory.py": "2ccc5b70fb37afbd4a8021e2ca8a5346a09e2402c58bb2cf369c655fe5287acc",
+    "openmc/data/library.py": "ea876ad121121da5a17299a9ab7d1e5abd749df8ef094094da9d2a6eb104baf2",
+    "openmc/data/multipole.py": "c92a9f4f1fedffb67dc2676c779dc6852a9e87082808a4e4caadd2eaecfac3ae",
+    "openmc/data/nbody.py": "1f53b0370be58e1a397275e5bf7fd8ebc8dfbbe4b320d17da73a66118ab403af",
+    "openmc/data/neutron.py": "17f5a4825bd78c8690de6efe6199c40f51f7f0904707dc6246fb48c77da25c15",
+    "openmc/data/njoy.py": "b52115e5632a28b8ac823d85997e89ce435bdf9cceae2b4117274d76cddc762e",
+    "openmc/data/photon.py": "24d9cecf7993a556ba62743e0c05f4d464c253e480de98e2697af2b4d9f3bd23",
+    "openmc/data/product.py": "b8bd16a76980fe25ae3eff904deb4822efe0f064463a9c1ecbb84adc52a306e3",
+    "openmc/data/reaction.py": "8e3c78500a461bb9b5e59adbec4023b41f5cc4b63d25b0c5e4570b0519f3d293",
+    "openmc/data/resonance.py": "c4d1bafb4e949679c1945aea8f429949f6ddc0c6b940d10bb0e443afc322078d",
+    "openmc/data/resonance_covariance.py": "ce06b7dc47ec1a73c6186301eeb16a27c015eddfcd1b47405267506644399f09",
+    "openmc/data/thermal.py": "e705b9427510fd40e0d86e2f2641072b7c44d1f22c1012bac473b2dbba719d36",
+    "openmc/data/thermal_angle_energy.py": "e5e15247dfaac33b8c8b1ae62e928f86c7f714e58c11ecdd5211c0c621265bdd",
+    "openmc/data/uncorrelated.py": "ed38f2dd5ae51b9e6ec947d5b8969bca32b683e660079532f1cefff83c40f0bc",
+    "openmc/data/urr.py": "88faa2db99b4219e76d2c93caf113b2505b739b094cf41ddb55169dd8e3390c0",
+    "openmc/data/vectfit.py": "df89ba875838f999dc78403207aaca6efd306e944080b9563bcd82190638c9f3",
+    "openmc/deplete/__init__.py": "2b6d4bd918b88506c2de5c49a7ec67ba1b39516be132b8aafb7ece6cdac025f9",
+    "openmc/deplete/_matrix_funcs.py": "40eca4e16187318c6c3917509a25f9d21aadfecad7234cb037ef1b185ca51fdc",
+    "openmc/deplete/abc.py": "32ff202c8f24aa0435844da858155118f68ff0e9c7be3353e0df1128b3f405ed",
+    "openmc/deplete/atom_number.py": "34fdfaa8f655ed12f5943edd32554ff785aeeec36db5a3cf10d4adf84dc8784f",
+    "openmc/deplete/chain.py": "dde4d310c2b43bc5437301a8f5a674726124addf2f6dfc26b8f5ac5be1f7e3ce",
+    "openmc/deplete/coupled_operator.py": "903a88161ebe07eac897095b3b44e867f6e98b936af03cf9f92d3ac638ddeeff",
+    "openmc/deplete/cram.py": "1ccb5b5319eccf3e859a557a575e291aa73350d63b2c5ceb3303620c5eb72f8b",
+    "openmc/deplete/d1s.py": "9a26937189977960946c0aac94061c97e924bd6d4d7422df5a7226000e94e6d6",
+    "openmc/deplete/helpers.py": "6831247c9c370cb1eb4da765dd84f5ffc4d0d4c39ad60c1bc7ff021b741b18b5",
+    "openmc/deplete/independent_operator.py": "5de458297b275be18ecb67ff49bffa4040a7040595650d043e358e12fd049cbe",
+    "openmc/deplete/integrators.py": "b6ad2a06f05bbcbe634c4f9cfa6b42682bc3b052b986c46540765fcd67ac5ac8",
+    "openmc/deplete/keff_search_control.py": "7260b8d0817527024f2dfb31b616f034cbe83c09d9232367fd102f5618c06f03",
+    "openmc/deplete/microxs.py": "5e67d692611123cbad2c4ffc87b3a2e8dc4b341c95d30daa9f51d0dcd46a2494",
+    "openmc/deplete/nuclide.py": "c9ee118e1e27b76919d2411e3cee5bffa8c5878a3ea4ae5d0cac05f444d4850b",
+    "openmc/deplete/openmc_operator.py": "1178710e358ff808e28826dde9bffb400654aa47fa4a7088584a9a245839c616",
+    "openmc/deplete/pool.py": "a7f1c962458102041dc8dd62d5635cb005790f9d47b9906288ce908b06db20aa",
+    "openmc/deplete/r2s.py": "333aff0e1779fde06d94926011871bdc28dbda50ab3476912b95138cbd3df686",
+    "openmc/deplete/reaction_rates.py": "9ff59f8eda786540d2e920b890f9f1e7648a905f2aa466c591ce3061cfae6071",
+    "openmc/deplete/results.py": "c49603688d8c80713ed16b9477e23f06a579fd2856b74b4d0d7f7513444dbfe7",
+    "openmc/deplete/stepresult.py": "15f5fb6b6f9f95a28367f142a3398cd977e22cacecb33b244c86cb2808f2971a",
+    "openmc/deplete/transfer_rates.py": "f321218dae05690868549a624801f5174f488d298da40562568244924e68e2ad",
+    "openmc/dummy_comm.py": "49ff0fc5b34bd9dfae2ef147d30bce84dc11bf0e5176e6501c96c7e810a59d3e",
+    "openmc/element.py": "812beb7e71de8e223a1f3c9f0fc381c236d0e7cce6f44e5f048667327dd7ddc6",
+    "openmc/examples.py": "77562979a2367800566e9868f8cf8120aae5bfa88fe11465570452e8ddca90fa",
+    "openmc/exceptions.py": "aca0e0aa991c05ec7ff4ad3cd11a393caf6fecac0590d9370293c74df632e9ec",
+    "openmc/executor.py": "d4f049557d316a8e318c9d960c19622d0fd5710b412e3e8b1131742e9220e9b6",
+    "openmc/filter.py": "3a5371909d919f278369a1ce47719192ea7646cf18e08df48c6717a1f9063651",
+    "openmc/filter_expansion.py": "9882320e02bce10b055f132ebd7b8fa2382c59f99c711f1f9d771ed59fd5fb7d",
+    "openmc/geometry.py": "ca886b6a27b4dfeed8fcd6ea4400926d2d9d9a07ac038661943a9bafcda7594d",
+    "openmc/lattice.py": "3126fef50573e4bcfd02222d88ad81859e361297ecbca9664ed968b486a110e0",
+    "openmc/lib/__init__.py": "875f96852aa3b6674dfca2c8ec774d0bb57445e174b72c9c8d8211db1b7fe1b5",
+    "openmc/lib/cell.py": "e1ebeac84bf510803f31ab4cef1f03b7f12e5848336920683a9543772b16ea55",
+    "openmc/lib/core.py": "f856fd110ba0f058fd47a766db5d16607c216de07b0d7f2f9c1293c39d38c695",
+    "openmc/lib/dagmc.py": "8269d1b752164743a27ed41488758dd72e3ceede614dfcdaea49c6d2d4730348",
+    "openmc/lib/error.py": "bb41d03777ebcc19d064f6e38eb746e60ecddd8d4fe9633d9fbc3e29928b53cd",
+    "openmc/lib/filter.py": "c5ce5c323d6e21f7f05fc5c7b35c92012a26c5ee5e559f43d83e0d92ffca6eea",
+    "openmc/lib/material.py": "fbcf4b9206d522bde3d1c38591eb28cfee9f393580b638fc6422158a440a9c09",
+    "openmc/lib/math.py": "95da2406a6822b20030ce66380a8f31a02b586e55e06a1cd2c61776f5d0e4493",
+    "openmc/lib/mesh.py": "6645e00aceabc1aa2b1021062f9fd8bd1ed228c7ce89b6d2e6500fabe50a1da1",
+    "openmc/lib/nuclide.py": "4a445032e3434aad8a7ea62a6ba426de3c02272c1cf99fbbebdcb4a336f8891e",
+    "openmc/lib/plot.py": "da5bc681d1f9f24b1e8dd3cc0ec1e8697be065452e97b44f33dc77ee3c9fc7cc",
+    "openmc/lib/settings.py": "08b6241c60370879df8272cd0b68cf40842eab7f52befb82891a73df6e6ed827",
+    "openmc/lib/tally.py": "7366b20ca9fd2d1296bff4ae6a9714374ce4e237c581d4b816f70fce8fa9ec54",
+    "openmc/lib/weight_windows.py": "7ad9336d67004f3969b83bead084959b8643700ff1566c5916335878551f3bf3",
+    "openmc/macroscopic.py": "2beb38b89f8173bf543077a4be746a6c8a859fb4e5f79a62a5b249f470d3438e",
+    "openmc/material.py": "45bed07af8b05a322e77b73f955fb8413f0585efcf65ce628ab676677c098ada",
+    "openmc/mesh.py": "01e42ded269aa305bd7db97408acbc4aefc97202710af9b5d76ee326586be92d",
+    "openmc/mgxs/__init__.py": "83b80d14b70d11e060682280d5f3096112d734502f98992b1b2b92beb3610189",
+    "openmc/mgxs/groups.py": "c1ff4e5883d4acafdab340a4800fa903e9fe9473fe71969ba7fff20ba2e1bc0d",
+    "openmc/mgxs/library.py": "87121c4776b9f7a397c230eb28d3b9a27568b106a79b1652d6db1bda7f8ff170",
+    "openmc/mgxs/mdgxs.py": "23cb19da468b5ce3e655d4716744ef14298772f02067e32f24b3ffe1634e1b84",
+    "openmc/mgxs/mgxs.py": "85da24e52529c69331a931b010693545814fe8e106d24b5e6b185fe073895e1e",
+    "openmc/mgxs_library.py": "619485c04618f2960ef1a8f90e5829b4fce46b5b57e05e7f08add849501d762a",
+    "openmc/mixin.py": "06d203c645437e19273aa7e2f49c68cb4e59b4820f4a30e97c357abdd8138131",
+    "openmc/model/__init__.py": "c43203a2691636254a44fde839f841e69a129f00e643de38127294a30860f80c",
+    "openmc/model/funcs.py": "2c721e434652e978b896f2ab1f5608c8ecbcfabf0aed637640c5a80e708f4b9b",
+    "openmc/model/model.py": "7a1c055c333d858b8cb8a9d8b916aad6bacfbc6739650d2ea52d3d603f08457e",
+    "openmc/model/surface_composite.py": "7ae6a191f50ab1dd8999713d2e5406f129087d1810cae9d3a9940861f9685728",
+    "openmc/model/triso.py": "d1433831c8b02a1702f7bd1acb5a6b2307b9ab1dcf89a310b625a6feadf722fa",
+    "openmc/mpi.py": "9af15c6ea9d3214c3085f9278a66b2b67dd0a782a909ca3b19cdf5c27c8b0420",
+    "openmc/nuclide.py": "961163eb06a385bf7d96160afc546657e629b57fb404600ec4a6f922debfec25",
+    "openmc/openmoc_compatible.py": "a55e7e521cbd163caebaa95799d5fd58d4dfcb005e38e4c4e70aac8d2bd82e89",
+    "openmc/particle_restart.py": "0af36aa068c6a3d0eb1da69ef2fb2c89e598a9efcb411dd380d9ba6ada46bbd6",
+    "openmc/particle_type.py": "863a8a771dc28f36bbca774823ad32bc27e9479984bb2bf2acfb435ff812544d",
+    "openmc/plots.py": "40c2729848c8120b71ba3b7e9fecc17b2f504ea3efab09d13e354ca188be1029",
+    "openmc/plotter.py": "a9beb7e02c62df7957d8e2f67ef074996017a528b2f8055c239c4c4d514f6ec3",
+    "openmc/polynomial.py": "098b59bde5b959cf0f411acdfe9b0d57522be16b0bba1074e935c9ac42a8f86b",
+    "openmc/region.py": "e871ac2430babf9e11a7defc97db6829c9721fc9bbe97462845ea6ce6f4bcba3",
+    "openmc/search.py": "218779faabac0d5244488e5db9257df648659197f455127a9fb160672c71f8a7",
+    "openmc/settings.py": "0805e96e60950498dec0b85addb2b1579c1f07952f98f7014973018bcbfda045",
+    "openmc/source.py": "c3e0c8e8aed03d3e4b3585d345f2d4e884b37584e31a0db9d5ccbaa83cae6c08",
+    "openmc/statepoint.py": "17005e5fa3be98947b58500bbac8c2b914dc927c8d4c14803095e118221428eb",
+    "openmc/stats/__init__.py": "ae21a99a075a0d1a5a0d26bde372223577f44d3e6dd3d2f4798d9bd482d089d5",
+    "openmc/stats/multivariate.py": "1bc2cd31568619e0c37a167fbe5f7ce2487d8184fcae5ee66dbcb1947d9b1390",
+    "openmc/stats/univariate.py": "d095cd2240e33730a2fe3046099a8b1c583cc332d5ffd52f056799dbeaf14cc0",
+    "openmc/summary.py": "8ce033783c65e25c2f48348be62f07be79ea6a5007ffaf1fa1586d303ae7aeef",
+    "openmc/surface.py": "dd20e51811b9aa81bd628942964910d83269e65ca898b2e1bd769800bcd0aba1",
+    "openmc/tallies.py": "7954e6a840120aaa4457999dcbe2b5314040314a7aaeb415f30eaf7cbfbd1175",
+    "openmc/tally_derivative.py": "d654a11c2e1f83e26919e3e98c8a3305470577e7f2aa7d8b7a713d41abeebb08",
+    "openmc/tracks.py": "08a64a42d57cfe1ae305e2833d4ea0a0f6b1fb1f127388be254d379c54abb7ab",
+    "openmc/trigger.py": "6491b5280dbea045388278c3813496d8f81e9aeb473c770bbb8a979ed2e89efe",
+    "openmc/universe.py": "1d994342d20e2aec1bb84a6f64a0f92887dd06fb65873e6358a0fa8e278ce0ff",
+    "openmc/utility_funcs.py": "3ed25413e4aa6c07012ccbeb78740d824eae38d509aa3cfa4c56e9176f782978",
+    "openmc/volume.py": "00e7f9bfd9db0238e8e627b2411c56f9c0348adf732ce80e1569a16a8256f4b1",
+    "openmc/waste.py": "fbed118695f0be8d710ec1af5bcd511aac2399f5b73dd735852c8016b31b62b6",
+    "openmc/weight_windows.py": "98afa0de74a0eaa4321e1cf0da217c15115d98bc0eea12076d936b32118bc418"
+  },
+  "geometry": {
+    "dataset": "/surfaces/wistell_d_lcfs",
+    "content_id": "sha256:0d299bcfa901c5c5572abee7926ba9814b4220e96721c5e5c5c680aff3584f26",
+    "solver": "layered",
+    "coefficient_shape": [
+      512,
+      192
+    ],
+    "n_field_periods": 4
+  },
+  "builtin_control": {
+    "major_radius_cm": 1007.0123168134345,
+    "z_offset_cm": 4.736951571734001e-15,
+    "minor_radius_cm": 136.37390689213385,
+    "definition": "arithmetic coefficient means; similarly sized shape approximation"
+  },
+  "source_position_cm": [
+    1208.9965478168172,
+    0.0,
+    2.1815882433884326e-13
+  ],
+  "source_bank_sites": 256,
+  "source_energy_eV": 14100000.0,
+  "world_radius_cm": 3282.858531617667,
+  "local_mesh_cm": {
+    "x": [
+      1206.9965478168172,
+      1208.9965478168172,
+      1210.9965478168172
+    ],
+    "y": [
+      -2,
+      0,
+      2
+    ],
+    "z": [
+      -1.999999999999782,
+      2.1815882433884326e-13,
+      2.000000000000218
+    ]
+  },
+  "energy_bins_eV": [
+    0,
+    1000,
+    100000,
+    1000000,
+    5000000,
+    10000000,
+    14200000
+  ],
+  "particles": 2500,
+  "batches": 8,
+  "seed": 1741,
+  "threads": 1,
+  "tally_policy": "on",
+  "native_timeout_s": 580,
+  "workload_status": "real nonaxisymmetric boundary; solid Fe56 computational diagnostic, not physical plasma",
+  "DAGMC_status": "UNSUPPORTED: OPENMC_USE_DAGMC=OFF; Embree NOT_VERIFIED; same-target mesh absent from qualified directory",
+  "cold_custom_geometry_build_s": null,
+  "cad_accuracy": "UNRESOLVED; retained sampled fidelity is not a continuous proof"
+}

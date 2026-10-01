@@ -1,0 +1,193 @@
+{
+  "time": "2026-09-26T18:30:45.6223238-04:00",
+  "totalRamKiB": 33457440,
+  "freeRamKiB": 6387360,
+  "drives": [
+    {
+      "Name": "C",
+      "Free": 104589144064,
+      "Used": 894376624128
+    },
+    {
+      "Name": "D",
+      "Free": 495783518208,
+      "Used": 1504614273024
+    }
+  ],
+  "processes": [
+    {
+      "ProcessName": "ChatGPT",
+      "Id": 14584,
+      "WorkingSet64": 1817550848
+    },
+    {
+      "ProcessName": "codex",
+      "Id": 18736,
+      "WorkingSet64": 1405009920
+    },
+    {
+      "ProcessName": "vmmemWSL",
+      "Id": 18788,
+      "WorkingSet64": 1222500352
+    },
+    {
+      "ProcessName": "OneDrive",
+      "Id": 23212,
+      "WorkingSet64": 794451968
+    },
+    {
+      "ProcessName": "ChatGPT",
+      "Id": 14592,
+      "WorkingSet64": 638164992
+    },
+    {
+      "ProcessName": "chrome",
+      "Id": 35164,
+      "WorkingSet64": 613838848
+    },
+    {
+      "ProcessName": "chrome",
+      "Id": 24572,
+      "WorkingSet64": 601829376
+    },
+    {
+      "ProcessName": "MsMpEng",
+      "Id": 5288,
+      "WorkingSet64": 587132928
+    },
+    {
+      "ProcessName": "chrome",
+      "Id": 20716,
+      "WorkingSet64": 545058816
+    },
+    {
+      "ProcessName": "chrome",
+      "Id": 41688,
+      "WorkingSet64": 510959616
+    }
+  ],
+  "executables": [
+    {
+      "Name": "git.exe",
+      "Source": "C:\\Program Files\\Git\\cmd\\git.exe",
+      "Version": {
+        "Major": 2,
+        "Minor": 55,
+        "Build": 0,
+        "Revision": 3,
+        "MajorRevision": 0,
+        "MinorRevision": 3
+      }
+    },
+    {
+      "Name": "cmake.exe",
+      "Source": "C:\\Users\\joshu\\AppData\\Local\\Microsoft\\WinGet\\Packages\\Kitware.CMake_Microsoft.Winget.Source_8wekyb3d8bbwe\\cmake-4.4.0-windows-x86_64\\bin\\cmake.exe",
+      "Version": {
+        "Major": 4,
+        "Minor": 4,
+        "Build": 0,
+        "Revision": 0,
+        "MajorRevision": 0,
+        "MinorRevision": 0
+      }
+    },
+    {
+      "Name": "python.exe",
+      "Source": "C:\\Users\\joshu\\AppData\\Local\\Programs\\Python\\Python312\\python.exe",
+      "Version": {
+        "Major": 3,
+        "Minor": 12,
+        "Build": 10150,
+        "Revision": 1013,
+        "MajorRevision": 0,
+        "MinorRevision": 1013
+      }
+    },
+    {
+      "Name": "wsl.exe",
+      "Source": "C:\\Windows\\system32\\wsl.exe",
+      "Version": {
+        "Major": 10,
+        "Minor": 0,
+        "Build": 26100,
+        "Revision": 9278,
+        "MajorRevision": 0,
+        "MinorRevision": 9278
+      }
+    },
+    {
+      "Name": "rg.exe",
+      "Source": "C:\\Users\\joshu\\AppData\\Local\\OpenAI\\Codex\\bin\\0ddb895c950eaeba\\rg.exe",
+      "Version": {
+        "Major": 0,
+        "Minor": 0,
+        "Build": 0,
+        "Revision": 0,
+        "MajorRevision": 0,
+        "MinorRevision": 0
+      }
+    }
+  ],
+  "windowsEnvironmentPaths": [
+    {
+      "path": "C:\\Users\\joshu\\miniconda3",
+      "exists": false
+    },
+    {
+      "path": "C:\\Users\\joshu\\anaconda3",
+      "exists": false
+    },
+    {
+      "path": "C:\\ProgramData\\miniconda3",
+      "exists": false
+    },
+    {
+      "path": "C:\\Users\\joshu\\.conda\\envs",
+      "exists": false
+    },
+    {
+      "path": "C:\\Users\\joshu\\AppData\\Local\\pip\\Cache",
+      "exists": true
+    }
+  ],
+  "localCheckouts": [
+    "blanket",
+    "campaigns",
+    "chatgpt-pro-handoff",
+    "openmc-stellarcsg",
+    "openmc-stellarcsg-composite",
+    "openmc-stellarcsg-torus-class",
+    "parastell",
+    "pro-dispatch-20260925",
+    "stellarcsg-acceptance-only-07",
+    "stellarcsg-astra-kernel-20260926",
+    "stellarcsg-benchmark-arena",
+    "stellarcsg-cont-a",
+    "stellarcsg-cont-b",
+    "stellarcsg-cont-neutral",
+    "stellarcsg-crossing-repair-07",
+    "stellarcsg-fast-03",
+    "stellarcsg-fast-recovery-04",
+    "stellarcsg-import-05",
+    "stellarcsg-local-continuation-20260925",
+    "stellarcsg-local-repair-07",
+    "stellarcsg-neutral-03",
+    "stellarcsg-next-b",
+    "stellarcsg-next-coil",
+    "stellarcsg-next-neutral",
+    "stellarcsg-next-plasma",
+    "stellarcsg-product-05",
+    "stellarcsg-recovery-bank-04",
+    "stellarcsg-root-repair-07",
+    "stellarcsg-run-compare-06",
+    "stellarcsg-run-harness-06",
+    "stellarcsg-track-a",
+    "stellarcsg-track-b",
+    "wistell-d-openmc"
+  ],
+  "plannedAcquisitionBytes": 0,
+  "plannedIncrementalBytes": 536870912,
+  "target": "Existing build/astra-native and new integration report artifacts on C",
+  "reason": "Existing native spherical-mesh equator root solver misses crossings; repair and rebuild required",
+  "rollback": "Preserve previous libopenmc.so/executable locally before build; commit narrowly scoped source/test changes; no environment changes"
+}

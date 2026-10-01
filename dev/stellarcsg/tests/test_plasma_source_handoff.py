@@ -25,7 +25,9 @@ def _write(directory: Path, name: str, value) -> dict:
 
 def synthetic_bundle(directory: Path, *, clearance_status="QUALIFIED_BOUNDED_SOURCE",
                      gap=2.0, source_probability=1.0, sampling_valid=True,
-                     physical_rate=None, invert_cell=False) -> Path:
+                     physical_rate=None, invert_cell=False, source_exit=0,
+                     sampling_exit=0, source_strength=1.0, element_count=1,
+                     wall_error=.1) -> Path:
     # This intentionally fabricated fixture exercises wiring. Its evidence
     # flags are not a real clearance or sampling certificate.
     mesh = directory / "synthetic-mesh.h5m"
@@ -40,13 +42,13 @@ def synthetic_bundle(directory: Path, *, clearance_status="QUALIFIED_BOUNDED_SOU
         "connectivity": [[0, 2, 1, 3] if invert_cell else [0, 1, 2, 3]],
         "volumes_cm3": [1 / 6], "support_s_max": 1.0,
         "tetra_s": [[0, .5, .5, .5]], "centroids_cm": [[1.25, 1.25, .25]],
-        "tetrahedron_count": 1,
+        "tetrahedron_count": element_count,
     }
     mesh_data_binding = _write(directory, "mesh-data.json", mesh_data)
     case = {
         "case_id": "synthetic", "evidence_class": "B",
         "phase": "analyst_stress_test", "physical_rate_n_s": physical_rate,
-        "source_strength": 1.0, "source_mesh": {"sha256": mesh_binding["sha256"]},
+        "source_strength": source_strength, "source_mesh": {"sha256": mesh_binding["sha256"]},
         "mesh_data": {"sha256": mesh_data_binding["sha256"]},
         "probabilities": [source_probability],
         "integrated_shape_strengths_cm3": [1 / 6],
@@ -57,10 +59,10 @@ def synthetic_bundle(directory: Path, *, clearance_status="QUALIFIED_BOUNDED_SOU
     case_binding = _write(directory, "case.json", case)
     source_result = {
         "status": "VMEC_SOURCE_MESH_EXPORTED_PENDING_CONTAINMENT",
-        "exit_code": 0, "physical_rate_n_s": None,
+        "exit_code": source_exit, "physical_rate_n_s": None,
         "evidence_class": "B", "phase": "analyst_stress_test",
         "checks": {"vmec": {"nfp": 4}, "support_s_max": 1.0},
-        "tetrahedron_count": 1,
+        "tetrahedron_count": element_count,
         "mesh_file": {"sha256": mesh_binding["sha256"]},
         "mesh_data_file": {"sha256": mesh_data_binding["sha256"]},
         "cases": [{"id": "synthetic", "source_file":
@@ -69,9 +71,9 @@ def synthetic_bundle(directory: Path, *, clearance_status="QUALIFIED_BOUNDED_SOU
     source_binding = _write(directory, "source-result.json", source_result)
     sampling = {
         "status": "VMEC_NATIVE_SOURCE_SAMPLING_CHECKS_PASSED",
-        "exit_code": 0, "case_id": "synthetic", "physical_rate_n_s": None,
-        "evidence_class": "B", "source_strength": 1.0,
-        "native_element_count": 1,
+        "exit_code": sampling_exit, "case_id": "synthetic", "physical_rate_n_s": None,
+        "evidence_class": "B", "source_strength": source_strength,
+        "native_element_count": element_count,
         "input_sha256": {name: binding["sha256"] for name, binding in
                          (("source", source_binding), ("mesh", mesh_binding),
                           ("mesh_data", mesh_data_binding), ("case", case_binding))},
@@ -89,7 +91,7 @@ def synthetic_bundle(directory: Path, *, clearance_status="QUALIFIED_BOUNDED_SOU
         "source_mesh_sha256": mesh_binding["sha256"],
         "wall_h5m_sha256": wall_binding["sha256"],
         "certified_gap_lower_bound_cm": gap,
-        "continuous_wall_error_bound_cm": .1,
+        "continuous_wall_error_bound_cm": wall_error,
         "required_clearance_cm": 1.0,
         "whole_cells_inside_cavity": True,
         "periodic_sector_contained": True,
@@ -116,6 +118,61 @@ def _load(handoff: Path):
 
 
 class PlasmaSourceHandoffTests(unittest.TestCase):
+    def test_boolean_codes_counts_strengths_rejected(self):
+        for overrides in ({"source_exit": False}, {"sampling_exit": False},
+                          {"source_strength": True}, {"element_count": True}):
+            with self.subTest(overrides=overrides), TemporaryDirectory() as temporary:
+                handoff = synthetic_bundle(Path(temporary), **overrides)
+                with self.assertRaises(ValueError):
+                    _load(handoff)
+
+    def test_sub_ulp_clearance_deficit_rejected(self):
+        with TemporaryDirectory() as temporary:
+            handoff = synthetic_bundle(Path(temporary), gap=1., wall_error=2.**-54)
+            with self.assertRaisesRegex(ValueError, "clearance"):
+                _load(handoff)
+
+    def test_swapped_role_hashes_rejected(self):
+        with TemporaryDirectory() as temporary:
+            handoff = synthetic_bundle(Path(temporary))
+            document = json.loads(handoff.read_text())
+            sampling_path = handoff.parent / "sampling-result.json"
+            sampling = json.loads(sampling_path.read_text())
+            hashes = sampling["input_sha256"]
+            hashes["mesh"], hashes["case"] = hashes["case"], hashes["mesh"]
+            sampling_path.write_text(json.dumps(sampling))
+            document["files"]["sampling_result"]["sha256"] = _sha(sampling_path)
+            handoff.write_text(json.dumps(document))
+            with self.assertRaisesRegex(ValueError, "sampling"):
+                _load(handoff)
+
+    def test_duplicate_and_nonfinite_json_rejected(self):
+        for fragment in ('"case_id":"another",', '"unused":NaN,'):
+            with self.subTest(fragment=fragment), TemporaryDirectory() as temporary:
+                handoff = synthetic_bundle(Path(temporary))
+                handoff.write_text("{" + fragment + handoff.read_text()[1:])
+                with self.assertRaises(ValueError):
+                    _load(handoff)
+
+    def test_mesh_rechecked_at_construction(self):
+        with TemporaryDirectory() as temporary:
+            admitted = _load(synthetic_bundle(Path(temporary)))
+            admitted.mesh_path.write_bytes(b"changed after admission")
+            with self.assertRaisesRegex(ValueError, "changed after admission"):
+                admitted.make_openmc_source()
+
+    def test_optional_native_cell_constraint(self):
+        import openmc
+        with TemporaryDirectory() as temporary:
+            admitted = _load(synthetic_bundle(Path(temporary)))
+            cell = openmc.Cell()
+            _, source = admitted.make_openmc_source(plasma_cells=[cell])
+            self.assertEqual(source.constraints["domain_ids"], [cell.id])
+            self.assertEqual(source.constraints["rejection_strategy"], "resample")
+            for cells in ([], [cell.id]):
+                with self.assertRaises(ValueError):
+                    admitted.make_openmc_source(plasma_cells=cells)
+
     def test_synthetic_constructor_contract(self):
         with TemporaryDirectory() as temporary:
             handoff = synthetic_bundle(Path(temporary))

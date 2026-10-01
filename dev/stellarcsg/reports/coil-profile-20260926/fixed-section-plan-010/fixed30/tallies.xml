@@ -1,0 +1,27 @@
+<?xml version='1.0' encoding='utf-8'?>
+<tallies>
+  <filter id="1" type="cell">
+    <bins>2008 2009 2010 2011 2012 2013 2014 2015 2016 2017 2018 2019 2020 2021 2022 2023 2024 2025</bins>
+  </filter>
+  <filter id="2" type="energy">
+    <bins>0.0 1000.0 100000.0 1000000.0 5000000.0 10000000.0 14200000.0</bins>
+  </filter>
+  <filter id="4" type="material">
+    <bins>7</bins>
+  </filter>
+  <tally id="1" name="material energy-resolved scores">
+    <filters>1 2</filters>
+    <scores>flux total absorption damage-energy</scores>
+    <estimator>tracklength</estimator>
+  </tally>
+  <tally id="2" name="material integral scores">
+    <filters>1</filters>
+    <scores>flux total absorption damage-energy</scores>
+    <estimator>tracklength</estimator>
+  </tally>
+  <tally id="3" name="material ownership closure">
+    <filters>4</filters>
+    <scores>flux total absorption damage-energy</scores>
+    <estimator>tracklength</estimator>
+  </tally>
+</tallies>

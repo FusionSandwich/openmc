@@ -1,0 +1,29 @@
+{
+  "timestamp": "2026-09-27T01:05:06.4100977Z",
+  "head": "54f8af0dbccb1ce2dcd066f27ea79667f2d6ee8f",
+  "lease_released": false,
+  "comparisons": {
+    "materials.xml": {
+      "custom": "ea9072b865729401b0393ab7af88b47fe75cbfce372ede05305fa3acbb36c1a1",
+      "builtin": "ea9072b865729401b0393ab7af88b47fe75cbfce372ede05305fa3acbb36c1a1",
+      "same": true
+    },
+    "tallies.xml": {
+      "custom": "d9adb44d2be814780c3a662d52b6955859cf64d92b99dc1aecc1ede675bea6ca",
+      "builtin": "d9adb44d2be814780c3a662d52b6955859cf64d92b99dc1aecc1ede675bea6ca",
+      "same": true
+    },
+    "settings.xml": {
+      "custom": "14235669e6de2b3048d5300544d6f96badbb4d56240cad10906a991a26d094f8",
+      "builtin": "14235669e6de2b3048d5300544d6f96badbb4d56240cad10906a991a26d094f8",
+      "same": true
+    }
+  },
+  "native_library_observed_sha256": "f301f7a76a1d4bc1910ea17b582dd31ce70f35cc35690ae5c390c1880ce714a6",
+  "production_adapter_sha256": "c34cf83823c1856076e247e95337eb75a03553049fe510ad76149749c8483892",
+  "production_header_sha256": "159070270e7ef9cd74b3a56e77b785888ac6bad0e369e0f7c1708374287f58ed",
+  "duplicate_filters": {
+    "builtin": [],
+    "custom": []
+  }
+}

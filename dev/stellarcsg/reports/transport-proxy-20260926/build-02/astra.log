@@ -1,0 +1,10 @@
+[1/7] Building CXX object CMakeFiles/stellarcsg_reference.dir/src/uniform_periodic_bicubic_spline.cpp.o
+[2/7] Building CXX object CMakeFiles/stellarcsg_reference.dir/src/compiled_periodic_surface.cpp.o
+/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-astra-kernel-20260926/dev/stellarcsg/src/compiled_periodic_surface.cpp:89:8: warning: ‘double stellarcsg::{anonymous}::mean(const std::vector<double>&)’ defined but not used [-Wunused-function]
+   89 | double mean(const std::vector<double>& values)
+      |        ^~~~
+[3/7] Linking CXX static library libstellarcsg_reference.a
+[4/7] Building CXX object CMakeFiles/stellarcsg_offset_tests.dir/tests/test_certified_offset.cpp.o
+[5/7] Building CXX object CMakeFiles/stellarcsg_compiled_surface_tests.dir/tests/test_compiled_surface.cpp.o
+[6/7] Linking CXX executable stellarcsg_offset_tests
+[7/7] Linking CXX executable stellarcsg_compiled_surface_tests

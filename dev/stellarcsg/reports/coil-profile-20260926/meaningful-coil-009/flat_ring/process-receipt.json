@@ -1,0 +1,11 @@
+{
+  "exit_code": 0,
+  "timeout": false,
+  "external_process_wall_seconds": 6.6949411389978195,
+  "geometry_reuse_export_seconds": 0.1733470990002388,
+  "preparation_to_process_exit_seconds": 6.868295837997721,
+  "utc": "2026-09-27T01:06:46.862520+00:00",
+  "timeout_seconds": 600,
+  "address_space_bytes": 1073741824,
+  "threads": 1
+}

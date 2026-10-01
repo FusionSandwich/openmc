@@ -1,5 +1,13 @@
 # OpenMC Monte Carlo Particle Transport Code
 
+## StellarCSG research in this fork
+
+Our goal is accurate complex stellarator plasma and coil CSG with transport at least
+80% as fast as similarly sized built-in OpenMC torus/flat-ring proxies.
+See the [project goal](dev/stellarcsg/PROJECT_GOAL.md) and
+[current coil/plasma method map](dev/stellarcsg/METHOD_MAP.md) for selected methods,
+elapsed-time evidence, accuracy limits and next work.
+
 [![License](https://img.shields.io/badge/license-MIT-green)](https://docs.openmc.org/en/latest/license.html)
 [![GitHub Actions build status (Linux)](https://github.com/openmc-dev/openmc/actions/workflows/ci.yml/badge.svg?branch=develop)](https://github.com/openmc-dev/openmc/actions/workflows/ci.yml)
 [![Code Coverage](https://coveralls.io/repos/github/openmc-dev/openmc/badge.svg?branch=develop)](https://coveralls.io/github/openmc-dev/openmc?branch=develop)

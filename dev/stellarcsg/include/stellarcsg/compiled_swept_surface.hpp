@@ -14,6 +14,10 @@
 
 namespace stellarcsg {
 
+class CertifiedSplineOffset;
+
+enum class SweptRepresentation { legacy_rounded_frame, exact_control_offset };
+
 struct SweptSplineSurfaceData {
   int coil_id {0};
   std::string content_id {};
@@ -76,6 +80,9 @@ public:
     SweptSplineSurfaceData data, bool force_general_solver = false);
   CompiledSweptSplineSurface(SweptSplineSurfaceData data,
     bool force_general_solver, SweptTorusMode torus_mode);
+  CompiledSweptSplineSurface(SweptSplineSurfaceData data,
+    bool force_general_solver, SweptTorusMode torus_mode,
+    SweptRepresentation representation);
 
   [[nodiscard]] SweptLocalCoordinates local_coordinates(const Vec3& point) const;
   [[nodiscard]] double evaluate(const Vec3& point) const;
@@ -115,6 +122,7 @@ private:
   UniformPeriodicCubicSpline minor_radius_;
   BoundingBox bounds_;
   std::unique_ptr<CompiledPeriodicSplineSurface> exact_torus_;
+  std::shared_ptr<CertifiedSplineOffset> certified_offset_;
   std::vector<SweptSpan> spans_ {};
   std::vector<std::uint32_t> span_indices_ {};
   std::vector<SweptSpanBVHNode> span_bvh_ {};

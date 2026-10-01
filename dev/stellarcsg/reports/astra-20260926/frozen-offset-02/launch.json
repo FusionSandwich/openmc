@@ -1,0 +1,25 @@
+{
+  "pid": 316,
+  "started": 1790454088.9151528,
+  "command": [
+    "build/astra/stellarcsg_recovery04_bank",
+    "--replay",
+    "dev/stellarcsg/qualification/recovery04_frozen_bank.csv",
+    "--wistell-h5",
+    "../stellarcsg-root-repair-07/dev/stellarcsg/reports/recovery04/wistell-coils-1cm.h5",
+    "--skip-reference",
+    "--exact-control-offset"
+  ],
+  "timeout_seconds": 900,
+  "memory_limit_inherited": true,
+  "hashes_before": {
+    "binary": "8c2ef275a57675df31d416442d0671a4b4272fdcd429d2ea6722882064186989",
+    "frozen_csv": "fc9da0be5eb66e3d56649a8d709db16f9b096c7767a565c57d5488bd19430723",
+    "wistell_h5": "9bb178c308e7f3ec659e1651a7d57e0ecbff734d3320000df1c2bf79fcf3262b",
+    "offset_engine_cpp": "44da95c5f6f1e4a3bbe59df8eed7a6e35ab16d43dc74e350681c1fadb7de652b",
+    "offset_engine_hpp": "0f93bb162f78069dbb1a86797149cf2c144173d98a6680e96672b9dd86730f2c",
+    "frozen_bank_cpp": "d07a70cab69cf8dfd89a6ca22ab9c7e8e5a7041a9e9ee71d85b57988547b5c16",
+    "runner_script": "271f451492f4b7355f60a23265d0c2f2d14ab2b6fdfddae50b678b3f46608025"
+  },
+  "build_binding_limitation": "Hash equality observes file identity before and after execution; it does not prove which sources or headers the compiler consumed to produce the binary."
+}

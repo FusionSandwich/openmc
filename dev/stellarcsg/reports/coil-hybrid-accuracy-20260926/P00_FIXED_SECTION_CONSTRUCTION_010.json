@@ -1,0 +1,35 @@
+{
+  "disposition": "ACCEPT_DIAGNOSTIC_CONSTRUCTION_PENDING_EXECUTION_DRIVER",
+  "plan_sha256": "731728164ab61b6f8ffb564a465c11ec3bea396dd7eaae33a91379b10b6c24d0",
+  "preparation_sha256": "4c4ce170a4268382e8f0312b40431cf520c849d80d1da982d0d85a10c2794a0b",
+  "reviewer_thread": "01a0e00b-f7f2-7ca3-ae93-7e39befae73b",
+  "checks": {
+    "xml_hashes": "8/8 match",
+    "rings": 18,
+    "fixed_radial_width_cm": 30,
+    "fixed_axial_height_cm": 30,
+    "min_inner_radius_cm": 29.35716923877405,
+    "quadric_and_plane_reconstruction": "independent file-only calculation passes all coefficients",
+    "axis_norms": "unit to 1e-12",
+    "source_fixed_iron_sites": "4/18 independently recalculated",
+    "source_envelope_iron_sites": 18,
+    "source_custom_void_sites": "18 retained track-receipt claim, not fresh native classification",
+    "envelope_radial_width_range_cm": [
+      63.64344067540671,
+      259.7016229123625
+    ],
+    "envelope_height_range_cm": [
+      12.985129270651731,
+      407.65654228250423
+    ]
+  },
+  "reason": "Fixed sections are valid native annular rectangles under declared PCA placement and existing quarter-world clipping. Same axis, mean radius, midpoint and component ordering are retained; priority exclusions partition overlaps. Sources/settings/materials/tallies remain unchanged. Geometry difference and source occupancy differences are explicitly reported.",
+  "execution_status": "NOT_ADMITTED: exact frozen execution driver/wrapper has not been supplied. Preparation script only emits XML/plan. Need finite-resource/deadline/lease/hash validation/failure/cleanup inspection before workers.",
+  "limitations": [
+    "Fixed30 rings are native sizing controls, not same physical P00 boundaries. Different occupancy and iron chord lengths confound a geometry-only cost ranking.",
+    "Midpoint placement is preserved from whole-coil PCA envelope, not proven physical pack centerline placement; quarter-world clipping can reduce section.",
+    "No source relocation is allowed.",
+    "Prior envelope timing remains legitimate conditional sizing diagnostic; no full-target or CAD accuracy promotion.",
+    "Continuous CAD, seam ownership, overlap, local tally accuracy and event collision counters remain unresolved."
+  ]
+}
