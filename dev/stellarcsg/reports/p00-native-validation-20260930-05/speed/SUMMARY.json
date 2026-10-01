@@ -1,0 +1,338 @@
+{
+  "disposition": "COMPLETED_TWO_MATCHED_100K_PAIRS",
+  "schedule": [
+    "seed1741-baseline",
+    "seed1741-candidate",
+    "seed1741-flat_ring",
+    "seed1742-flat_ring",
+    "seed1742-candidate",
+    "seed1742-baseline"
+  ],
+  "workers": {
+    "seed1741-baseline": {
+      "seed": 1741,
+      "name": "baseline",
+      "completed_histories": 100000,
+      "runtime": "/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-local-continuation-20260925/build/native-local-20260925",
+      "binary_sha256": "dd0f316e5bd0965092f2a080167da9bbde83416392b6473763063fd95ec63dde",
+      "library_sha256": "fbc38dedc17e20342a56dd50e2d56f86330238dae00b95ab3e4602864967cba4",
+      "xml_sha256": {
+        "geometry.xml": "7a7205105faf26522170153620c3f3e73e69d026f43b1bc1600c836677f067e8",
+        "materials.xml": "74e108f7acf8182f959d941e1c8dca68da8aafaa2edf3ee3abdcbd0afaf7b891",
+        "settings.xml": "ff11120701c2fcbead4786ae43de35f1501f232a2588b68bd109285cb248df84",
+        "tallies.xml": "96aacc7f9812c31ad9c8b36f14f354f0d4617bc18231bba982fc597c11a76fd0"
+      },
+      "statepoint_sha256": "5b79197335f6e75c9f65dbc1fa1e1b3d70154a4f2338f23969ef839d52d3fcd7",
+      "counters": {
+        "n_particles": 1000,
+        "n_batches": 100,
+        "current_batch": 100,
+        "n_realizations": 100
+      },
+      "preparation_seconds": 0.15875640400008706,
+      "initialization_seconds": 8.142372302,
+      "transport_seconds": 41.894221819,
+      "statepoint_seconds": 0.0375481,
+      "process_wall_seconds": 50.2115419239999,
+      "tally_shapes": {
+        "1": [
+          108,
+          4,
+          2
+        ],
+        "2": [
+          18,
+          4,
+          2
+        ],
+        "3": [
+          1,
+          4,
+          2
+        ]
+      },
+      "tally_nonzero": {
+        "1": 424,
+        "2": 144,
+        "3": 8
+      }
+    },
+    "seed1741-candidate": {
+      "seed": 1741,
+      "name": "candidate",
+      "completed_histories": 100000,
+      "runtime": "/home/sman/builds/stellarcsg-p00-bbox-20260930-03",
+      "binary_sha256": "22392af0f94a5ae2702815493b113e6bba504c6bc86afc94edea96c0cdf71228",
+      "library_sha256": "b83f361249cedcd1d67adc4829d0fc0222d8fcf11a7722f69e74f36f2ba25090",
+      "xml_sha256": {
+        "geometry.xml": "7a7205105faf26522170153620c3f3e73e69d026f43b1bc1600c836677f067e8",
+        "materials.xml": "74e108f7acf8182f959d941e1c8dca68da8aafaa2edf3ee3abdcbd0afaf7b891",
+        "settings.xml": "ff11120701c2fcbead4786ae43de35f1501f232a2588b68bd109285cb248df84",
+        "tallies.xml": "96aacc7f9812c31ad9c8b36f14f354f0d4617bc18231bba982fc597c11a76fd0"
+      },
+      "statepoint_sha256": "42aa6c67fa4272c0885fa2f752505dbc2fb266034ccb181eaaec8559239ab16e",
+      "counters": {
+        "n_particles": 1000,
+        "n_batches": 100,
+        "current_batch": 100,
+        "n_realizations": 100
+      },
+      "preparation_seconds": 0.1607299020006394,
+      "initialization_seconds": 7.563005461,
+      "transport_seconds": 24.648241750999993,
+      "statepoint_seconds": 0.0303823,
+      "process_wall_seconds": 32.310085813000114,
+      "tally_shapes": {
+        "1": [
+          108,
+          4,
+          2
+        ],
+        "2": [
+          18,
+          4,
+          2
+        ],
+        "3": [
+          1,
+          4,
+          2
+        ]
+      },
+      "tally_nonzero": {
+        "1": 424,
+        "2": 144,
+        "3": 8
+      }
+    },
+    "seed1741-flat_ring": {
+      "seed": 1741,
+      "name": "flat_ring",
+      "completed_histories": 100000,
+      "runtime": "/home/sman/builds/stellarcsg-p00-bbox-20260930-03",
+      "binary_sha256": "22392af0f94a5ae2702815493b113e6bba504c6bc86afc94edea96c0cdf71228",
+      "library_sha256": "b83f361249cedcd1d67adc4829d0fc0222d8fcf11a7722f69e74f36f2ba25090",
+      "xml_sha256": {
+        "geometry.xml": "4305806f834f9bb9261b4b80746b707ee91e4880e2534a7e46153f1ccaf62bef",
+        "materials.xml": "74e108f7acf8182f959d941e1c8dca68da8aafaa2edf3ee3abdcbd0afaf7b891",
+        "settings.xml": "ff11120701c2fcbead4786ae43de35f1501f232a2588b68bd109285cb248df84",
+        "tallies.xml": "96aacc7f9812c31ad9c8b36f14f354f0d4617bc18231bba982fc597c11a76fd0"
+      },
+      "statepoint_sha256": "05e453e6013ae1a304999b5dc67648f501d52edfd863405c6a14e28a9ef7305b",
+      "counters": {
+        "n_particles": 1000,
+        "n_batches": 100,
+        "current_batch": 100,
+        "n_realizations": 100
+      },
+      "preparation_seconds": 0.16040659899954335,
+      "initialization_seconds": 6.801020964,
+      "transport_seconds": 10.407934450000004,
+      "statepoint_seconds": 0.0322808,
+      "process_wall_seconds": 17.318191113000466,
+      "tally_shapes": {
+        "1": [
+          108,
+          4,
+          2
+        ],
+        "2": [
+          18,
+          4,
+          2
+        ],
+        "3": [
+          1,
+          4,
+          2
+        ]
+      },
+      "tally_nonzero": {
+        "1": 392,
+        "2": 144,
+        "3": 8
+      }
+    },
+    "seed1742-flat_ring": {
+      "seed": 1742,
+      "name": "flat_ring",
+      "completed_histories": 100000,
+      "runtime": "/home/sman/builds/stellarcsg-p00-bbox-20260930-03",
+      "binary_sha256": "22392af0f94a5ae2702815493b113e6bba504c6bc86afc94edea96c0cdf71228",
+      "library_sha256": "b83f361249cedcd1d67adc4829d0fc0222d8fcf11a7722f69e74f36f2ba25090",
+      "xml_sha256": {
+        "geometry.xml": "4305806f834f9bb9261b4b80746b707ee91e4880e2534a7e46153f1ccaf62bef",
+        "materials.xml": "74e108f7acf8182f959d941e1c8dca68da8aafaa2edf3ee3abdcbd0afaf7b891",
+        "settings.xml": "3d740c8c4183c9245aaab422ff68aa3a714eaf109e61984e9cc719634ff1f246",
+        "tallies.xml": "96aacc7f9812c31ad9c8b36f14f354f0d4617bc18231bba982fc597c11a76fd0"
+      },
+      "statepoint_sha256": "8b28ca7a588e1a1508f608c64011b1a2e7b51ab75b2a8ddafa43e52cf9a66c69",
+      "counters": {
+        "n_particles": 1000,
+        "n_batches": 100,
+        "current_batch": 100,
+        "n_realizations": 100
+      },
+      "preparation_seconds": 0.1509198980002111,
+      "initialization_seconds": 6.709603497,
+      "transport_seconds": 9.962340493999996,
+      "statepoint_seconds": 0.0273591,
+      "process_wall_seconds": 16.768485890000193,
+      "tally_shapes": {
+        "1": [
+          108,
+          4,
+          2
+        ],
+        "2": [
+          18,
+          4,
+          2
+        ],
+        "3": [
+          1,
+          4,
+          2
+        ]
+      },
+      "tally_nonzero": {
+        "1": 392,
+        "2": 144,
+        "3": 8
+      }
+    },
+    "seed1742-candidate": {
+      "seed": 1742,
+      "name": "candidate",
+      "completed_histories": 100000,
+      "runtime": "/home/sman/builds/stellarcsg-p00-bbox-20260930-03",
+      "binary_sha256": "22392af0f94a5ae2702815493b113e6bba504c6bc86afc94edea96c0cdf71228",
+      "library_sha256": "b83f361249cedcd1d67adc4829d0fc0222d8fcf11a7722f69e74f36f2ba25090",
+      "xml_sha256": {
+        "geometry.xml": "7a7205105faf26522170153620c3f3e73e69d026f43b1bc1600c836677f067e8",
+        "materials.xml": "74e108f7acf8182f959d941e1c8dca68da8aafaa2edf3ee3abdcbd0afaf7b891",
+        "settings.xml": "3d740c8c4183c9245aaab422ff68aa3a714eaf109e61984e9cc719634ff1f246",
+        "tallies.xml": "96aacc7f9812c31ad9c8b36f14f354f0d4617bc18231bba982fc597c11a76fd0"
+      },
+      "statepoint_sha256": "88ec50743bc829d43abd91f66331ceafabf150f2fe744f337fdfe772cdc274c1",
+      "counters": {
+        "n_particles": 1000,
+        "n_batches": 100,
+        "current_batch": 100,
+        "n_realizations": 100
+      },
+      "preparation_seconds": 0.1383883970001989,
+      "initialization_seconds": 6.812823609,
+      "transport_seconds": 25.984509642000006,
+      "statepoint_seconds": 0.033388296,
+      "process_wall_seconds": 32.908921741000086,
+      "tally_shapes": {
+        "1": [
+          108,
+          4,
+          2
+        ],
+        "2": [
+          18,
+          4,
+          2
+        ],
+        "3": [
+          1,
+          4,
+          2
+        ]
+      },
+      "tally_nonzero": {
+        "1": 424,
+        "2": 144,
+        "3": 8
+      }
+    },
+    "seed1742-baseline": {
+      "seed": 1742,
+      "name": "baseline",
+      "completed_histories": 100000,
+      "runtime": "/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-local-continuation-20260925/build/native-local-20260925",
+      "binary_sha256": "dd0f316e5bd0965092f2a080167da9bbde83416392b6473763063fd95ec63dde",
+      "library_sha256": "fbc38dedc17e20342a56dd50e2d56f86330238dae00b95ab3e4602864967cba4",
+      "xml_sha256": {
+        "geometry.xml": "7a7205105faf26522170153620c3f3e73e69d026f43b1bc1600c836677f067e8",
+        "materials.xml": "74e108f7acf8182f959d941e1c8dca68da8aafaa2edf3ee3abdcbd0afaf7b891",
+        "settings.xml": "3d740c8c4183c9245aaab422ff68aa3a714eaf109e61984e9cc719634ff1f246",
+        "tallies.xml": "96aacc7f9812c31ad9c8b36f14f354f0d4617bc18231bba982fc597c11a76fd0"
+      },
+      "statepoint_sha256": "21986fc95750943ee56ff45fa1eed806f5fc9282ec96008a055d7a9e489c0790",
+      "counters": {
+        "n_particles": 1000,
+        "n_batches": 100,
+        "current_batch": 100,
+        "n_realizations": 100
+      },
+      "preparation_seconds": 0.1799170829999639,
+      "initialization_seconds": 7.006732947,
+      "transport_seconds": 41.330776889,
+      "statepoint_seconds": 0.035288801,
+      "process_wall_seconds": 48.505126632999236,
+      "tally_shapes": {
+        "1": [
+          108,
+          4,
+          2
+        ],
+        "2": [
+          18,
+          4,
+          2
+        ],
+        "3": [
+          1,
+          4,
+          2
+        ]
+      },
+      "tally_nonzero": {
+        "1": 424,
+        "2": 144,
+        "3": 8
+      }
+    }
+  },
+  "comparisons": [
+    {
+      "seed": 1741,
+      "exact_before_after_bins": {
+        "1": true,
+        "2": true,
+        "3": true
+      },
+      "baseline_s": 41.894221819,
+      "candidate_s": 24.648241750999993,
+      "flat_ring_s": 10.407934450000004,
+      "candidate_over_baseline": 0.5883446614067777,
+      "candidate_over_flat_ring": 2.3682164669090495
+    },
+    {
+      "seed": 1742,
+      "exact_before_after_bins": {
+        "1": true,
+        "2": true,
+        "3": true
+      },
+      "baseline_s": 41.330776889,
+      "candidate_s": 25.984509642000006,
+      "flat_ring_s": 9.962340493999996,
+      "candidate_over_baseline": 0.6286963758698585,
+      "candidate_over_flat_ring": 2.6082735937051797
+    }
+  ],
+  "medians_seconds": {
+    "baseline": 41.612499354,
+    "candidate": 25.3163756965,
+    "flat_ring": 10.185137472000001
+  },
+  "cold_geometry_build": "UNKNOWN",
+  "instrumentation": "NONE: frozen three production tallies",
+  "source_occupancy": "custom 0/18 source sites initially in material; flat ring 4/18",
+  "continuous_CAD_and_distinct_physical_coil_ownership": "UNRESOLVED"
+}

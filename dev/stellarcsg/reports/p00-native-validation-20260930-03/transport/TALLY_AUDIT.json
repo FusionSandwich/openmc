@@ -1,0 +1,38 @@
+{
+  "disposition": "PASS_REPRESENTED_SOLID_DIAGNOSTIC_ACCOUNTING",
+  "evidence": {
+    "baseline": {
+      "energy_to_cell_per_cell_per_score": true,
+      "max_abs_energy_cell_difference": 4.3655745685100555e-11,
+      "cell_to_material_per_score": true,
+      "max_abs_cell_material_difference": 6.984919309616089e-10,
+      "local_mesh_cell_bin_partition": true,
+      "local_mesh_nonzero_bins": 64,
+      "local_cell_mesh_nonzero_bins": 8,
+      "local_mesh_total": 90.14472828696213,
+      "local_cell_mesh_total": 9.936383672080542
+    },
+    "candidate": {
+      "energy_to_cell_per_cell_per_score": true,
+      "max_abs_energy_cell_difference": 4.3655745685100555e-11,
+      "cell_to_material_per_score": true,
+      "max_abs_cell_material_difference": 6.984919309616089e-10,
+      "local_mesh_cell_bin_partition": true,
+      "local_mesh_nonzero_bins": 64,
+      "local_cell_mesh_nonzero_bins": 8,
+      "local_mesh_total": 90.14472828696213,
+      "local_cell_mesh_total": 9.936383672080542
+    }
+  },
+  "before_after_exact_raw_bins": {
+    "1": true,
+    "2": true,
+    "3": true,
+    "301": true,
+    "302": true,
+    "303": true,
+    "304": true
+  },
+  "scope": "retained P00 facet fixture, seed 1741, 20k histories; no independent CAD or per-physical-coil proof",
+  "transformed_overlapping_filters": "NOT_TESTED; default assume_separate=false"
+}

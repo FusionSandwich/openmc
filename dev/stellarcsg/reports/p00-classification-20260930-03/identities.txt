@@ -1,0 +1,5 @@
+c79d43aee833e144712ec0516d8c47ccc081df252434171a2a96541cbf179283  dev/stellarcsg/reports/p00-classification-20260930-03/baseline.cpp
+1655faa810906f712e3b7a04c176c7f9207963e6fd7f2f031c0da52a30208a9d  dev/stellarcsg/src/compiled_facet_surface_set.cpp
+e3bb70b70012f7899fadb3d8b736123b96e5e472afa3bc645d303013ef715b05  dev/stellarcsg/reports/local-cont-20260925/p00-accepted-facet-fixture.txt
+4c1a3bb0d326a6cd84c69561798d407096c2641d802e9fd9a89a93bb0d8b9d8a  dev/stellarcsg/reports/p00-classification-20260930-03/baseline-probe
+1a8d24ad40a01930a90567201d5b35e5861ee9ca834a8040448e36d4936d65b4  dev/stellarcsg/reports/p00-classification-20260930-03/candidate-probe

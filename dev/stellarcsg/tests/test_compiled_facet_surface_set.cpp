@@ -111,6 +111,22 @@ int main()
       "second cube inside");
     require(surface.contains({2.0, 0.31, 0.42}) == false,
       "gap outside");
+    require(surface.contains({-0.25, 0.31, 0.42}) == false
+      && surface.contains({4.25, 0.31, 0.42}) == false
+      && surface.contains({0.31, -0.25, 0.42}) == false
+      && surface.contains({0.31, 0.42, 1.25}) == false,
+      "outside component bounds has resolved exterior sense");
+    require(surface.contains({0.25, 0.31, 0.42}) == true,
+      "component interior remains inside bounding box");
+    const Vec3 near_face {-1.0e-13, 0.31, 0.42};
+    require(!surface.contains(near_face).has_value()
+      && surface.normal_at(near_face).has_value(),
+      "near-face coincidence retains unresolved parity and local normal");
+    const Vec3 seam_direction = stellarcsg::normalized({0.573, 0.711, 0.404});
+    const Vec3 distant_seam = Vec3 {0.0, 0.5, 0.5}
+      - 10.0 * seam_direction;
+    require(surface.contains(distant_seam) == false,
+      "certified exterior box resolves a distant parity seam ambiguity");
 
     const auto first = surface.distance({-1.0, 0.31, 0.42},
       {1.0, 0.0, 0.0});

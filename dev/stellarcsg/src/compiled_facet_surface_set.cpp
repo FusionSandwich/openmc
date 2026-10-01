@@ -461,6 +461,23 @@ std::optional<bool> CompiledFacetSurfaceSet::contains(const Vec3& point) const
 {
   if (!finite(point))
     throw std::invalid_argument("Facet query point must be finite");
+  // A closed facet solid cannot contain a point well outside all its facets.
+  // Keep the local coincidence band on the original parity/normal path:
+  // OpenMC uses a 1e-12 cm boundary tolerance, and normal_at also permits
+  // small barycentric extrapolation beyond an edge. One-ULP box padding alone
+  // would turn a near-face unresolved side into a definite exterior side.
+  const double scale = std::max({1.0,
+    std::abs(bounds_.lower.x), std::abs(bounds_.lower.y),
+    std::abs(bounds_.lower.z), std::abs(bounds_.upper.x),
+    std::abs(bounds_.upper.y), std::abs(bounds_.upper.z)});
+  const double margin = 1.0e-8 * scale;
+  if (point.x < bounds_.lower.x - margin
+      || point.x > bounds_.upper.x + margin
+      || point.y < bounds_.lower.y - margin
+      || point.y > bounds_.upper.y + margin
+      || point.z < bounds_.lower.z - margin
+      || point.z > bounds_.upper.z + margin)
+    return false;
   const std::array<Vec3, 3> directions {
     normalized({0.573, 0.711, 0.404}),
     normalized({0.797, -0.363, 0.483}),

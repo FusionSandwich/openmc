@@ -1,0 +1,2 @@
+queries=194400 outside_bounds_per_sweep=1788 inside=5400 outside=189000 unresolved=0 elapsed_s=0.145305
+queries=194400 outside_bounds_per_sweep=1788 inside=5400 outside=189000 unresolved=0 elapsed_s=0.155

@@ -1,0 +1,218 @@
+{
+  "disposition": "COMPLETED_WORKERS_COLLECTED_AFTER_DRIVER_ASSERTION",
+  "original_driver_failure": "42.809 versus 42.809000000000005 collision-score floating summation",
+  "worker_order": [
+    "baseline",
+    "candidate",
+    "flat_ring"
+  ],
+  "receipts": {
+    "baseline": {
+      "name": "baseline",
+      "completed_histories": 20000,
+      "counters": {
+        "n_particles": 1000,
+        "n_batches": 20,
+        "current_batch": 20,
+        "n_realizations": 20
+      },
+      "timings_seconds": {
+        "initialization": 8.0636436,
+        "transport": 8.935849468,
+        "statepoint_output": 0.054842201
+      },
+      "statepoint_sha256": "073519c8ca1f7799cf4c28fc2d40a62f03859f9f70f9c4f7ab35b318b58cd2ca",
+      "xml_sha256": {
+        "geometry.xml": "7a7205105faf26522170153620c3f3e73e69d026f43b1bc1600c836677f067e8",
+        "materials.xml": "74e108f7acf8182f959d941e1c8dca68da8aafaa2edf3ee3abdcbd0afaf7b891",
+        "settings.xml": "437fe983b1dd7c7e671a4067d3bccfd5fea6c72d99c4079f896a4fb4a567c532",
+        "tallies.xml": "4a071ece4ad845a4fd17db4c36a1b62dedffdb1d0d432c61f34c38ae98f7d12d"
+      },
+      "collision_events": 165678,
+      "local_mesh_nonzero_values": 128,
+      "local_cell_mesh_nonzero_values": 16,
+      "raw_tally_shapes": {
+        "1": [
+          108,
+          4,
+          2
+        ],
+        "2": [
+          18,
+          4,
+          2
+        ],
+        "3": [
+          1,
+          4,
+          2
+        ],
+        "301": [
+          64,
+          1,
+          2
+        ],
+        "302": [
+          1152,
+          1,
+          2
+        ],
+        "303": [
+          1,
+          1,
+          2
+        ],
+        "304": [
+          18,
+          1,
+          2
+        ]
+      },
+      "native_terminal": true,
+      "native_exit_zero": "observed by original driver before partition assertion"
+    },
+    "candidate": {
+      "name": "candidate",
+      "completed_histories": 20000,
+      "counters": {
+        "n_particles": 1000,
+        "n_batches": 20,
+        "current_batch": 20,
+        "n_realizations": 20
+      },
+      "timings_seconds": {
+        "initialization": 7.936960949,
+        "transport": 5.2604758170000006,
+        "statepoint_output": 0.0501446
+      },
+      "statepoint_sha256": "0e7d6356fd1b81253c82574cda148b35b1f36f84ecccc5b57004971c0398e467",
+      "xml_sha256": {
+        "geometry.xml": "7a7205105faf26522170153620c3f3e73e69d026f43b1bc1600c836677f067e8",
+        "materials.xml": "74e108f7acf8182f959d941e1c8dca68da8aafaa2edf3ee3abdcbd0afaf7b891",
+        "settings.xml": "437fe983b1dd7c7e671a4067d3bccfd5fea6c72d99c4079f896a4fb4a567c532",
+        "tallies.xml": "4a071ece4ad845a4fd17db4c36a1b62dedffdb1d0d432c61f34c38ae98f7d12d"
+      },
+      "collision_events": 165678,
+      "local_mesh_nonzero_values": 128,
+      "local_cell_mesh_nonzero_values": 16,
+      "raw_tally_shapes": {
+        "1": [
+          108,
+          4,
+          2
+        ],
+        "2": [
+          18,
+          4,
+          2
+        ],
+        "3": [
+          1,
+          4,
+          2
+        ],
+        "301": [
+          64,
+          1,
+          2
+        ],
+        "302": [
+          1152,
+          1,
+          2
+        ],
+        "303": [
+          1,
+          1,
+          2
+        ],
+        "304": [
+          18,
+          1,
+          2
+        ]
+      },
+      "native_terminal": true,
+      "native_exit_zero": "observed by original driver before partition assertion"
+    },
+    "flat_ring": {
+      "name": "flat_ring",
+      "completed_histories": 20000,
+      "counters": {
+        "n_particles": 1000,
+        "n_batches": 20,
+        "current_batch": 20,
+        "n_realizations": 20
+      },
+      "timings_seconds": {
+        "initialization": 7.336946084,
+        "transport": 4.124665084,
+        "statepoint_output": 0.067728599
+      },
+      "statepoint_sha256": "f83a84bc6547af9d0cf2650291ca0d3546bedd54ebac7148f29f5e178c033509",
+      "xml_sha256": {
+        "geometry.xml": "4305806f834f9bb9261b4b80746b707ee91e4880e2534a7e46153f1ccaf62bef",
+        "materials.xml": "74e108f7acf8182f959d941e1c8dca68da8aafaa2edf3ee3abdcbd0afaf7b891",
+        "settings.xml": "437fe983b1dd7c7e671a4067d3bccfd5fea6c72d99c4079f896a4fb4a567c532",
+        "tallies.xml": "4a071ece4ad845a4fd17db4c36a1b62dedffdb1d0d432c61f34c38ae98f7d12d"
+      },
+      "collision_events": 42809,
+      "local_mesh_nonzero_values": 128,
+      "local_cell_mesh_nonzero_values": 22,
+      "raw_tally_shapes": {
+        "1": [
+          108,
+          4,
+          2
+        ],
+        "2": [
+          18,
+          4,
+          2
+        ],
+        "3": [
+          1,
+          4,
+          2
+        ],
+        "301": [
+          64,
+          1,
+          2
+        ],
+        "302": [
+          1152,
+          1,
+          2
+        ],
+        "303": [
+          1,
+          1,
+          2
+        ],
+        "304": [
+          18,
+          1,
+          2
+        ]
+      },
+      "native_terminal": true,
+      "native_exit_zero": "observed by original driver before partition assertion"
+    }
+  },
+  "exact_before_after_raw_tally_bins": {
+    "1": true,
+    "2": true,
+    "3": true,
+    "301": true,
+    "302": true,
+    "303": true,
+    "304": true
+  },
+  "candidate_over_baseline_transport": 0.5886934237017073,
+  "candidate_over_flat_ring_transport": 1.2753704142927693,
+  "diagnostic_gate_1_25": false,
+  "speed_acceptance": "UNQUALIFIED: collision event counters add profiling tally overhead; single ordered observation",
+  "target_fidelity": "derived seam-repaired facets only; continuous CAD, pack frame, distinct coil ownership unresolved",
+  "actual_boundary_crossing_count": "UNKNOWN"
+}
