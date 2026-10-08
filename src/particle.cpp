@@ -1,4 +1,7 @@
 #include "openmc/particle.h"
+#ifdef OPENMC_EXPERIMENTAL_AXIS_PLANES
+#include "openmc/axis_plane_events.h"
+#endif
 
 #include <algorithm> // copy, min
 #include <cmath>     // log, abs
@@ -243,6 +246,10 @@ void Particle::event_calculate_xs()
     check_cell_overlap(*this);
 
   // Calculate microscopic and macroscopic cross sections
+#ifdef OPENMC_EXPERIMENTAL_AXIS_PLANES
+  if (settings::experimental_axis_plane_events)
+    axis_plane_validate_particle(*this);
+#endif
   if (material() != MATERIAL_VOID) {
     if (settings::run_CE) {
       if (material() != material_last() || sqrtkT() != sqrtkT_last() ||
@@ -271,6 +278,10 @@ void Particle::event_calculate_xs()
 
 void Particle::event_advance()
 {
+#ifdef OPENMC_EXPERIMENTAL_AXIS_PLANES
+  if (settings::experimental_axis_plane_events)
+    axis_plane_validate_particle(*this);
+#endif
   // Find the distance to the nearest boundary
   boundary() = distance_to_boundary(*this);
 
@@ -295,6 +306,10 @@ void Particle::event_advance()
 
   // Advance particle in space and time
   this->move_distance(distance);
+#ifdef OPENMC_EXPERIMENTAL_AXIS_PLANES
+  if (settings::experimental_axis_plane_events)
+    axis_plane_advance_endpoint(*this, distance);
+#endif
   double dt = distance / speed;
   this->time() += dt;
   this->lifetime() += dt;
@@ -372,7 +387,12 @@ void Particle::event_cross_surface()
     if (surf.surf_source_ && surf.bc_) {
       add_surf_source_to_bank(*this, surf);
     }
-    this->cross_surface(surf);
+#ifdef OPENMC_EXPERIMENTAL_AXIS_PLANES
+    if (settings::experimental_axis_plane_events)
+      axis_plane_commit(*this);
+    else
+#endif
+      this->cross_surface(surf);
     // If no BC, add particle to surface source after crossing surface
     if (surf.surf_source_ && !surf.bc_) {
       add_surf_source_to_bank(*this, surf);
@@ -393,6 +413,10 @@ void Particle::event_cross_surface()
 
 void Particle::event_collide()
 {
+#ifdef OPENMC_EXPERIMENTAL_AXIS_PLANES
+  if (settings::experimental_axis_plane_events)
+    throw std::runtime_error("AXIS_PLANE_UNSUPPORTED: collision event");
+#endif
 
   // Score collision estimate of keff
   if (settings::run_mode == RunMode::EIGENVALUE && type().is_neutron()) {

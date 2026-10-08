@@ -1,4 +1,7 @@
 #include "openmc/geometry.h"
+#ifdef OPENMC_EXPERIMENTAL_AXIS_PLANES
+#include "openmc/axis_plane_events.h"
+#endif
 
 #include <fmt/core.h>
 #include <fmt/ostream.h>
@@ -341,6 +344,10 @@ void reconcile_cell_after_collision(GeometryState& p)
 
 bool exhaustive_find_cell(GeometryState& p, bool verbose)
 {
+#ifdef OPENMC_EXPERIMENTAL_AXIS_PLANES
+  if (settings::experimental_axis_plane_events)
+    return axis_plane_find_cell(p);
+#endif
   int i_universe = p.lowest_coord().universe();
   if (i_universe == C_NONE) {
     p.coord(0).universe() = model::root_universe;
@@ -418,6 +425,10 @@ void cross_lattice(GeometryState& p, const BoundaryInfo& boundary, bool verbose)
 
 BoundaryInfo distance_to_boundary(GeometryState& p)
 {
+#ifdef OPENMC_EXPERIMENTAL_AXIS_PLANES
+  if (settings::experimental_axis_plane_events)
+    return axis_plane_boundary(p);
+#endif
   BoundaryInfo info;
   double d_lat = INFINITY;
   double d_surf = INFINITY;

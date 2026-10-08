@@ -8,6 +8,9 @@
 #include "openmc/random_lcg.h"
 #include "openmc/tallies/filter_match.h"
 #include "openmc/vector.h"
+#ifdef OPENMC_EXPERIMENTAL_AXIS_PLANES
+#include "openmc/axis_plane_context.h"
+#endif
 
 #ifdef OPENMC_DAGMC_ENABLED
 #include "DagMC.hpp"
@@ -289,6 +292,9 @@ public:
   // resets all coordinate levels for the particle
   void clear()
   {
+#ifdef OPENMC_EXPERIMENTAL_AXIS_PLANES
+    axis_plane_context_.reset();
+#endif
     for (auto& level : coord_) {
       level.reset();
     }
@@ -393,6 +399,10 @@ public:
 
   // Boundary information
   BoundaryInfo& boundary() { return boundary_; }
+#ifdef OPENMC_EXPERIMENTAL_AXIS_PLANES
+  AxisPlaneContext& axis_plane_context() { return axis_plane_context_; }
+  const AxisPlaneContext& axis_plane_context() const { return axis_plane_context_; }
+#endif
 
 #ifdef OPENMC_DAGMC_ENABLED
   // DagMC state variables
@@ -437,6 +447,9 @@ private:
     SURFACE_NONE}; //!< surface token for surface the particle is currently on
 
   BoundaryInfo boundary_; //!< Info about the next intersection
+#ifdef OPENMC_EXPERIMENTAL_AXIS_PLANES
+  AxisPlaneContext axis_plane_context_;
+#endif
 
   int material_ {-1};      //!< index for current material
   int material_last_ {-1}; //!< index for last material
