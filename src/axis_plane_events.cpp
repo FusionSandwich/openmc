@@ -51,6 +51,48 @@ UnitAxisRay ray(Position r, Direction u)
   return UnitAxisRay({r.x, r.y, r.z}, axis, u[axis] > 0.0 ? 1 : -1);
 }
 
+void validate_vacuum_enclosure()
+{
+  // Admit only two distinct vacuum faces per axis. Conservative Boolean cell
+  // boxes must fit inside, and collectively reach, this common outer box.
+  // An internal or masked vacuum plane therefore fails before any scoring.
+  array<vector<std::pair<double, int>>, 3> offsets;
+  for (int i = 0; i < static_cast<int>(model::surfaces.size()); ++i) {
+    const auto& s = model::surfaces[i];
+    if (s->bc_) {
+      const auto p = plane(*s);
+      offsets[p.axis].push_back({p.offset, i + 1});
+    }
+  }
+  BoundingBox enclosure;
+  for (int j = 0; j < 3; ++j) {
+    auto& values = offsets[j];
+    if (values.size() != 2 || values[0].first == values[1].first)
+      unsupported("vacuum requires six distinct common outer enclosure faces");
+    std::sort(values.begin(), values.end());
+    enclosure.min[j] = values[0].first;
+    enclosure.max[j] = values[1].first;
+  }
+  auto extent = BoundingBox::inverted();
+  for (const auto& c : model::cells) {
+    const auto box = c->bounding_box();
+    for (int j = 0; j < 3; ++j) {
+      const auto& cell = static_cast<const CSGCell&>(*c);
+      if (!cell.requires_axis_halfspace(offsets[j][0].second) ||
+          !cell.requires_axis_halfspace(-offsets[j][1].second))
+        unsupported("cell does not imply common vacuum enclosure halfspaces");
+      if (box.min[j] < enclosure.min[j] || box.max[j] > enclosure.max[j] ||
+          box.min[j] >= box.max[j])
+        unsupported("cell not bounded by common vacuum enclosure");
+    }
+    extent |= box;
+  }
+  for (int j = 0; j < 3; ++j) {
+    if (extent.min[j] != enclosure.min[j] || extent.max[j] != enclosure.max[j])
+      unsupported("vacuum faces do not bound common cell extent");
+  }
+}
+
 void validate_model()
 {
   if (model::n_coord_levels != 1 || model::universes.size() != 1 ||
@@ -65,19 +107,23 @@ void validate_model()
     unsupported("requires deterministic fixed-source events without auxiliary transport");
   for (auto cutoff : settings::time_cutoff)
     if (cutoff < INFTY) unsupported("finite time cutoff");
+  // Surface::surf_source_ is eligibility and defaults true for all surfaces
+  // when no ID list is set. Banking itself is controlled by these settings.
+  if (settings::surf_source_write || settings::surf_source_read)
+    unsupported("surface source banking");
   for (const auto& s : model::surfaces) {
     if (!std::isfinite(plane(*s).offset)) unsupported("nonfinite plane");
-    if (s->surf_source_) unsupported("surface source banking");
     if (s->bc_ && (s->bc_->type() != "vacuum" || s->bc_->has_albedo()))
       unsupported("boundary condition other than transmission/vacuum");
   }
   for (const auto& c : model::cells) {
     if (!dynamic_cast<const CSGCell*>(c.get()) || c->universe_ != 0 ||
         c->type_ != Fill::MATERIAL || c->material(0) != MATERIAL_VOID ||
-        c->distribcell_index_ != C_NONE || !c->rotation_.empty() ||
+        c->n_instances() != 1 || !c->rotation_.empty() ||
         c->translation_.x != 0.0 || c->translation_.y != 0.0 || c->translation_.z != 0.0)
       unsupported("requires untransformed nondistributed void CSG cells");
   }
+  validate_vacuum_enclosure();
   // Validate all configured tallies, even if an active-list accelerator omits one.
   for (const auto& t : model::tallies) {
     const bool flux = t->type_ == TallyType::VOLUME &&
@@ -162,7 +208,7 @@ double interval(const UnitAxisRay& r, double begin, double end)
   const auto exact = stellarcsg::axis_interval_length(r, begin, end);
   const auto rounded = exact.rounded();
   if (exact.sign() <= 0 || rounded.status != stellarcsg::DyadicRoundingStatus::finite ||
-      !std::isfinite(rounded.value) || rounded.value <= 0.0)
+      !std::isfinite(rounded.value) || rounded.value <= 0.0 || rounded.value == INFTY)
     unsupported("unrepresentable positive interval");
   return rounded.value;
 }

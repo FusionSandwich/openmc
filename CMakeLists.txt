@@ -576,9 +576,13 @@ if(OPENMC_ENABLE_EXPERIMENTAL_AXIS_PLANES)
     $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/dev/stellarcsg/include>)
   # Public because GeometryState owns the context: clients must match its ABI.
   target_compile_definitions(libopenmc PUBLIC OPENMC_EXPERIMENTAL_AXIS_PLANES)
+endif()
+
+option(STELLARCSG_BUILD_AXIS_TEST_CLIENT "Build deterministic axis-event client" OFF)
+if(OPENMC_ENABLE_EXPERIMENTAL_AXIS_PLANES OR STELLARCSG_BUILD_AXIS_TEST_CLIENT)
   add_executable(stellarcsg_native_axis_test
     dev/stellarcsg/tests/test_native_axis_events.cpp)
-  target_link_libraries(stellarcsg_native_axis_test PRIVATE libopenmc)
+  target_link_libraries(stellarcsg_native_axis_test PRIVATE libopenmc ${CMAKE_DL_LIBS})
 endif()
 
 if(OPENMC_ENABLE_EXPERIMENTAL_STELLARCSG)

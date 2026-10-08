@@ -81,6 +81,8 @@ public:
   bool contains(Position r, Direction u, int32_t on_surface) const;
 #ifdef OPENMC_EXPERIMENTAL_AXIS_PLANES
   bool contains_axis_sides(const vector<int>& sides) const;
+  // Conservative Boolean implication, independent of finite bbox sentinels.
+  bool requires_axis_halfspace(int32_t signed_surface) const;
 #endif
 
   //! Find the oncoming boundary of this cell.
@@ -436,6 +438,10 @@ public:
   bool contains_axis_sides(const vector<int>& sides) const
   {
     return region_.contains_axis_sides(sides);
+  }
+  bool requires_axis_halfspace(int32_t signed_surface) const
+  {
+    return region_.requires_axis_halfspace(signed_surface);
   }
 #endif
 
