@@ -1,0 +1,29 @@
+{
+  "files": {
+    "unsupported-sentinel/cross_sections.xml": "6c642a0c1fc5ffbe29dfa6993f4c6c4459030f4e45cee2038db7288d65708525",
+    "unsupported-sentinel/geometry.xml": "0d1af5f93420bda4c8a6ae1b03b930149c5fcdf78e399773da480e253c402a92",
+    "unsupported-sentinel/materials.xml": "d105cf78f35b925b50d7efcb34c051d3bb1c0345a688eba610f18bf6d3c7a506",
+    "unsupported-sentinel/queries.txt": "0fc44bb0b72736047ae25f1f2169dede25eea5b0645fea45cbc601d3ceda00cf",
+    "unsupported-sentinel/settings.xml": "9e1ba50047d0d1537c6e11dcf9ea1603464cd1ed2ae32347d7b015f345bf6696",
+    "unsupported-sentinel/tallies.xml": "c3cb98c6fb0f1b111dd8eaa736fae628ae17a6949fa0c41ac09c7b0cfba690a0"
+  },
+  "queries": [
+    {
+      "id": 0,
+      "p": [
+        -8.988465674311579e+307,
+        0.42,
+        0.27
+      ],
+      "d": [
+        1,
+        0.0,
+        0.0
+      ],
+      "hint": 0,
+      "steps": 1,
+      "mode": 0,
+      "enclosure_halfspaces": true
+    }
+  ]
+}

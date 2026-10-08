@@ -1,0 +1,9 @@
+{
+  "args": [
+    "/var/tmp/stellarcsg-axis-review-20261008-271-1791485152067081400/off/bin/stellarcsg_native_axis_test",
+    "/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-axis-integration-20261008/artifacts-integration/legacy-gap48-axis0",
+    "/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-axis-integration-20261008/artifacts-integration/legacy-gap48-axis0/queries.txt"
+  ],
+  "exit": 0,
+  "seconds": 1.952104415000008
+}

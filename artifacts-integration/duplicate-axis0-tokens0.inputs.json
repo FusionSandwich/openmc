@@ -1,0 +1,62 @@
+{
+  "files": {
+    "duplicate-axis0-tokens0/cross_sections.xml": "6c642a0c1fc5ffbe29dfa6993f4c6c4459030f4e45cee2038db7288d65708525",
+    "duplicate-axis0-tokens0/geometry.xml": "1258ab9f192af4624f581307e644e0c1b28f3d0ae8a77e125f57c754c7c1469e",
+    "duplicate-axis0-tokens0/materials.xml": "d105cf78f35b925b50d7efcb34c051d3bb1c0345a688eba610f18bf6d3c7a506",
+    "duplicate-axis0-tokens0/queries.txt": "67c04e6cf6cb4585a4147b5f83fb9e221d8713b678207a14722831a509cf7b13",
+    "duplicate-axis0-tokens0/settings.xml": "9e1ba50047d0d1537c6e11dcf9ea1603464cd1ed2ae32347d7b015f345bf6696",
+    "duplicate-axis0-tokens0/tallies.xml": "c3cb98c6fb0f1b111dd8eaa736fae628ae17a6949fa0c41ac09c7b0cfba690a0"
+  },
+  "queries": [
+    {
+      "id": 0,
+      "p": [
+        0.25,
+        0.42,
+        0.27
+      ],
+      "d": [
+        1,
+        0.0,
+        0.0
+      ],
+      "hint": 0,
+      "steps": 5,
+      "mode": 0,
+      "enclosure_halfspaces": true
+    },
+    {
+      "id": 1,
+      "p": [
+        0.75,
+        0.42,
+        0.27
+      ],
+      "d": [
+        -1,
+        0.0,
+        0.0
+      ],
+      "hint": 0,
+      "steps": 5,
+      "mode": 0,
+      "enclosure_halfspaces": true
+    },
+    {
+      "id": 2,
+      "p": [
+        1.0,
+        0.42,
+        0.27
+      ],
+      "d": [
+        1.0,
+        0.0,
+        0.0
+      ],
+      "hint": 11,
+      "steps": 4,
+      "mode": 0
+    }
+  ]
+}

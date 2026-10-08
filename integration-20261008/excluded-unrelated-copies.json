@@ -1,0 +1,19 @@
+{
+  "files": [
+    "dev/stellarcsg/tests/P00_ASSEMBLY_ACCEPTANCE_20261001.py",
+    "dev/stellarcsg/tests/P00_ASSEMBLY_ANALYTIC_REVIEW_20261001.py",
+    "dev/stellarcsg/tests/P00_ASSEMBLY_DRIVER_20261001.cpp",
+    "dev/stellarcsg/tests/P00_ASSEMBLY_INTERSECTION_REVIEW_20261001.py",
+    "dev/stellarcsg/tests/P00_ASSEMBLY_PLANES_20261001.py",
+    "dev/stellarcsg/tests/P00_ASSEMBLY_PLANES_FOCUSED_20261001.py",
+    "dev/stellarcsg/tests/P00_DYADIC_AXIS_ORACLE_20261001.py",
+    "dev/stellarcsg/tests/P00_NATIVE_AXIS_INVENTORY_20261001.ps1",
+    "dev/stellarcsg/tests/P00_STEP3_DERIVED_20261001.py",
+    "dev/stellarcsg/tests/P00_STEP3_DERIVED_RUN_20261001.sh",
+    "dev/stellarcsg/tests/P00_STEP3_DRIVER_20261001.cpp",
+    "dev/stellarcsg/tests/P00_STEP3_ORACLE_20261001.py",
+    "dev/stellarcsg/tests/P00_STEP3_RUN_20261001.sh"
+  ],
+  "reason": "Unreferenced old proof campaigns; excluded from integration and native source copy",
+  "originals_untouched": true
+}

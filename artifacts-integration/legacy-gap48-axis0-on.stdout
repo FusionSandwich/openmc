@@ -1,0 +1,127 @@
+META {"library":"/var/tmp/stellarcsg-axis-review-20261008-271-1791485152067081400/on/lib/libopenmc.so","geometry_state_bytes":664}
+                                %%%%%%%%%%%%%%%
+                           %%%%%%%%%%%%%%%%%%%%%%%%
+                        %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+                      %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+                    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+                   %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+                                    %%%%%%%%%%%%%%%%%%%%%%%%
+                                     %%%%%%%%%%%%%%%%%%%%%%%%
+                 ###############      %%%%%%%%%%%%%%%%%%%%%%%%
+                ##################     %%%%%%%%%%%%%%%%%%%%%%%
+                ###################     %%%%%%%%%%%%%%%%%%%%%%%
+                ####################     %%%%%%%%%%%%%%%%%%%%%%
+                #####################     %%%%%%%%%%%%%%%%%%%%%
+                ######################     %%%%%%%%%%%%%%%%%%%%
+                #######################     %%%%%%%%%%%%%%%%%%
+                 #######################     %%%%%%%%%%%%%%%%%
+                 ######################     %%%%%%%%%%%%%%%%%
+                  ####################     %%%%%%%%%%%%%%%%%
+                    #################     %%%%%%%%%%%%%%%%%
+                     ###############     %%%%%%%%%%%%%%%%
+                       ############     %%%%%%%%%%%%%%%
+                          ########     %%%%%%%%%%%%%%
+                                      %%%%%%%%%%%
+
+                 | The OpenMC Monte Carlo Code
+       Copyright | 2011-2026 MIT, UChicago Argonne LLC, and contributors
+         License | https://docs.openmc.org/en/latest/license.html
+         Version | 0.0.0
+     Commit Hash | 04a8061dde802f7fd4290fae45b7d84b33bfc020
+       Date/Time | 2026-10-08 14:52:23
+
+ Reading settings XML file...
+ Reading cross sections XML file...
+ Reading materials XML file...
+ Reading geometry XML file...
+ Minimum neutron data temperature: 1.7976931348623157e+308 K
+ Maximum neutron data temperature: 0 K
+ Reading tallies XML file...
+ Preparing distributed cell instances...
+ Reading plot XML file...
+
+ ===============>     FIXED SOURCE TRANSPORT SIMULATION     <===============
+
+ROW {"id":0,"cycle":0,"events":[{"before":108,"length":0.75,"region_length":0.75,"surface":11,"context":false,"coordinate":1,"contacts":[],"after":109,"weight":1,"scores":[[0,0.75,0],[0,0,0,0,0,0,0,1,0,0,0]]},{"before":109,"length":1.0000000000000036,"region_length":1.0000000000000036,"surface":21,"context":false,"coordinate":2.0000000000000036,"contacts":[],"after":100,"weight":1,"scores":[[0,0.75,1.0000000000000036],[0,0,0,0,0,0,0,1,0,1,0]]},{"before":100,"length":1.9999999999999964,"region_length":1.9999999999999964,"surface":2,"context":false,"coordinate":4,"contacts":[],"after":-1,"weight":0,"scores":[[1.9999999999999964,0.75,1.0000000000000036],[0,1,0,0,0,0,0,1,0,1,0]]}],"error":"","fixture_restored":true,"source_reset":true,"source_position_unchanged":false,"scores":[[1.9999999999999964,0.75,1.0000000000000036],[0,1,0,0,0,0,0,1,0,1,0]]}
+ROW {"id":1,"cycle":0,"events":[{"before":109,"length":0.75,"region_length":0.75,"surface":-20,"context":false,"coordinate":1.0000000000000036,"contacts":[],"after":108,"weight":1,"scores":[[0,0,0.75],[0,0,0,0,0,0,0,0,-1,0,0]]},{"before":108,"length":1.0000000000000036,"region_length":1.0000000000000036,"surface":-10,"context":false,"coordinate":0,"contacts":[],"after":100,"weight":1,"scores":[[0,1.0000000000000036,0.75],[0,0,0,0,0,0,-1,0,-1,0,0]]},{"before":100,"length":4,"region_length":4,"surface":-1,"context":false,"coordinate":-4,"contacts":[],"after":-1,"weight":0,"scores":[[4,1.0000000000000036,0.75],[-1,0,0,0,0,0,-1,0,-1,0,0]]}],"error":"","fixture_restored":true,"source_reset":true,"source_position_unchanged":false,"scores":[[4,1.0000000000000036,0.75],[-1,0,0,0,0,0,-1,0,-1,0,0]]}
+
+ =======================>     TIMING STATISTICS     <=======================
+
+ Total time for initialization     = 9.6930e-02 seconds
+   Reading cross sections          = 1.2054e-02 seconds
+ Total time in simulation          = 0.0000e+00 seconds
+   Time in transport only          = 0.0000e+00 seconds
+   Time in active batches          = 0.0000e+00 seconds
+   Time accumulating tallies       = 0.0000e+00 seconds
+   Time writing statepoints        = 0.0000e+00 seconds
+ Total time for finalization       = 6.2000e-06 seconds
+ Total time elapsed                = 9.6933e-02 seconds
+ Calculation Rate (active)         = -nan particles/second
+
+ ============================>     RESULTS     <============================
+
+ Leakage Fraction           = -nan
+
+                                %%%%%%%%%%%%%%%
+                           %%%%%%%%%%%%%%%%%%%%%%%%
+                        %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+                      %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+                    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+                   %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+                                    %%%%%%%%%%%%%%%%%%%%%%%%
+                                     %%%%%%%%%%%%%%%%%%%%%%%%
+                 ###############      %%%%%%%%%%%%%%%%%%%%%%%%
+                ##################     %%%%%%%%%%%%%%%%%%%%%%%
+                ###################     %%%%%%%%%%%%%%%%%%%%%%%
+                ####################     %%%%%%%%%%%%%%%%%%%%%%
+                #####################     %%%%%%%%%%%%%%%%%%%%%
+                ######################     %%%%%%%%%%%%%%%%%%%%
+                #######################     %%%%%%%%%%%%%%%%%%
+                 #######################     %%%%%%%%%%%%%%%%%
+                 ######################     %%%%%%%%%%%%%%%%%
+                  ####################     %%%%%%%%%%%%%%%%%
+                    #################     %%%%%%%%%%%%%%%%%
+                     ###############     %%%%%%%%%%%%%%%%
+                       ############     %%%%%%%%%%%%%%%
+                          ########     %%%%%%%%%%%%%%
+                                      %%%%%%%%%%%
+
+                 | The OpenMC Monte Carlo Code
+       Copyright | 2011-2026 MIT, UChicago Argonne LLC, and contributors
+         License | https://docs.openmc.org/en/latest/license.html
+         Version | 0.0.0
+     Commit Hash | 04a8061dde802f7fd4290fae45b7d84b33bfc020
+       Date/Time | 2026-10-08 14:52:23
+
+ Reading settings XML file...
+ Reading cross sections XML file...
+ Reading materials XML file...
+ Reading geometry XML file...
+ Minimum neutron data temperature: 0 K
+ Maximum neutron data temperature: 1.7976931348623157e+308 K
+ Reading tallies XML file...
+ Preparing distributed cell instances...
+ Reading plot XML file...
+
+ ===============>     FIXED SOURCE TRANSPORT SIMULATION     <===============
+
+ROW {"id":0,"cycle":1,"events":[{"before":108,"length":0.75,"region_length":0.75,"surface":11,"context":false,"coordinate":1,"contacts":[],"after":109,"weight":1,"scores":[[0,0.75,0],[0,0,0,0,0,0,0,1,0,0,0]]},{"before":109,"length":1.0000000000000036,"region_length":1.0000000000000036,"surface":21,"context":false,"coordinate":2.0000000000000036,"contacts":[],"after":100,"weight":1,"scores":[[0,0.75,1.0000000000000036],[0,0,0,0,0,0,0,1,0,1,0]]},{"before":100,"length":1.9999999999999964,"region_length":1.9999999999999964,"surface":2,"context":false,"coordinate":4,"contacts":[],"after":-1,"weight":0,"scores":[[1.9999999999999964,0.75,1.0000000000000036],[0,1,0,0,0,0,0,1,0,1,0]]}],"error":"","fixture_restored":true,"source_reset":true,"source_position_unchanged":false,"scores":[[1.9999999999999964,0.75,1.0000000000000036],[0,1,0,0,0,0,0,1,0,1,0]]}
+ROW {"id":1,"cycle":1,"events":[{"before":109,"length":0.75,"region_length":0.75,"surface":-20,"context":false,"coordinate":1.0000000000000036,"contacts":[],"after":108,"weight":1,"scores":[[0,0,0.75],[0,0,0,0,0,0,0,0,-1,0,0]]},{"before":108,"length":1.0000000000000036,"region_length":1.0000000000000036,"surface":-10,"context":false,"coordinate":0,"contacts":[],"after":100,"weight":1,"scores":[[0,1.0000000000000036,0.75],[0,0,0,0,0,0,-1,0,-1,0,0]]},{"before":100,"length":4,"region_length":4,"surface":-1,"context":false,"coordinate":-4,"contacts":[],"after":-1,"weight":0,"scores":[[4,1.0000000000000036,0.75],[-1,0,0,0,0,0,-1,0,-1,0,0]]}],"error":"","fixture_restored":true,"source_reset":true,"source_position_unchanged":false,"scores":[[4,1.0000000000000036,0.75],[-1,0,0,0,0,0,-1,0,-1,0,0]]}
+
+ =======================>     TIMING STATISTICS     <=======================
+
+ Total time for initialization     = 7.0429e-02 seconds
+   Reading cross sections          = 1.1332e-03 seconds
+ Total time in simulation          = 0.0000e+00 seconds
+   Time in transport only          = 0.0000e+00 seconds
+   Time in active batches          = 0.0000e+00 seconds
+   Time accumulating tallies       = 0.0000e+00 seconds
+   Time writing statepoints        = 0.0000e+00 seconds
+ Total time for finalization       = 8.1000e-06 seconds
+ Total time elapsed                = 7.0432e-02 seconds
+ Calculation Rate (active)         = -nan particles/second
+
+ ============================>     RESULTS     <============================
+
+ Leakage Fraction           = -nan
+

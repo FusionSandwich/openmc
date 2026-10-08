@@ -1,0 +1,2296 @@
+diff --git a/.git_archival.txt b/.git_archival.txt
+index f2f118c0d..725f40b2b 100644
+--- a/.git_archival.txt
++++ b/.git_archival.txt
+@@ -1,3 +1,3 @@
+-commit: $Format:%H$
+-commit-date: $Format:%cI$
+-describe-name: $Format:%(describe:tags=true,match=*[0-9]*)$
+\ No newline at end of file
++describe-name: v0.0.0-axis-review
++commit: 04a8061dde802f7fd4290fae45b7d84b33bfc020
++# Base commit only; source-identities.json binds the modified snapshot bytes.
+diff --git a/CMakeLists.txt b/CMakeLists.txt
+index a0c3fab22..997b5901c 100644
+--- a/CMakeLists.txt
++++ b/CMakeLists.txt
+@@ -47,6 +47,8 @@ option(OPENMC_ENABLE_STRICT_FP "Enable strict FP flags to improve test portabili
+ option(OPENMC_ENABLE_EXPERIMENTAL_STELLARCSG
+   "Enable experimental native periodic/swept spline CSG surfaces" OFF)
+ option(STELLARCSG_BUILD_OFFSET_PROBE "Build exact-control native offset probe" OFF)
++option(OPENMC_ENABLE_EXPERIMENTAL_AXIS_PLANES
++  "Build opt-in exact unit-axis void plane events" OFF)
+ option(STELLARCSG_ENABLE_PERFORMANCE_COUNTERS
+   "Enable thread-local experimental StellarCSG performance counters" OFF)
+ option(STELLARCSG_VERIFY_FAST_WITH_ORACLE
+@@ -532,6 +534,17 @@ if(OPENMC_ENABLE_EXPERIMENTAL_STELLARCSG)
+   endif()
+ endif()
+ 
++# For Visual Studio compilers
++if(OPENMC_ENABLE_EXPERIMENTAL_AXIS_PLANES)
++  list(APPEND libopenmc_SOURCES src/axis_plane_events.cpp
++    dev/stellarcsg/src/dyadic_axis_plane.cpp)
++  if(CMAKE_CXX_COMPILER_ID MATCHES "GNU|Clang")
++    set_source_files_properties(src/axis_plane_events.cpp
++      dev/stellarcsg/src/dyadic_axis_plane.cpp
++      PROPERTIES COMPILE_OPTIONS "-fno-fast-math;-ffp-contract=off")
++  endif()
++endif()
++
+ # For Visual Studio compilers
+ if(MSVC)
+   # Use static library (otherwise explicit symbol portings are needed)
+@@ -558,6 +571,20 @@ target_include_directories(libopenmc
+     ${HDF5_INCLUDE_DIRS}
+ )
+ 
++if(OPENMC_ENABLE_EXPERIMENTAL_AXIS_PLANES)
++  target_include_directories(libopenmc PUBLIC
++    $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/dev/stellarcsg/include>)
++  # Public because GeometryState owns the context: clients must match its ABI.
++  target_compile_definitions(libopenmc PUBLIC OPENMC_EXPERIMENTAL_AXIS_PLANES)
++endif()
++
++option(STELLARCSG_BUILD_AXIS_TEST_CLIENT "Build deterministic axis-event client" OFF)
++if(OPENMC_ENABLE_EXPERIMENTAL_AXIS_PLANES OR STELLARCSG_BUILD_AXIS_TEST_CLIENT)
++  add_executable(stellarcsg_native_axis_test
++    dev/stellarcsg/tests/test_native_axis_events.cpp)
++  target_link_libraries(stellarcsg_native_axis_test PRIVATE libopenmc ${CMAKE_DL_LIBS})
++endif()
++
+ if(OPENMC_ENABLE_EXPERIMENTAL_STELLARCSG)
+   target_include_directories(libopenmc PUBLIC
+     $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/dev/stellarcsg/include>)
+diff --git a/dev/stellarcsg/AXIS_REVIEW_REPAIR_20261008.md b/dev/stellarcsg/AXIS_REVIEW_REPAIR_20261008.md
+new file mode 100644
+index 000000000..8caaa9af8
+--- /dev/null
++++ b/dev/stellarcsg/AXIS_REVIEW_REPAIR_20261008.md
+@@ -0,0 +1,97 @@
++# Isolated native axis-event review repair
++
++The accepted candidate in sibling `stellarcsg-axis-review-20261008` snapshots
++the live source at upstream HEAD `04a8061dde802f7fd4290fae45b7d84b33bfc020`,
++including its essential uncommitted axis-event implementation. Its
++`snapshot-manifest.json` records the exact copied files.
++
++The integration worktree uses branch `JS/axis-integration-20261008` in the
++original repository. Commit `b7458747083ed7831f0abb4bd98c9a19019f9bae` preserves
++the necessary pre-existing axis scaffold before applying the accepted repair.
++Sibling `axis-integration-control-20261008` records the import, resource
++inventory, and protected-checkout identities. This worktree has its own index
++and working files. Claude's checkout, branch, index, retained libraries,
++reports, and processes are not modified.
++
++The October 8 review is evidence and a proposed scope, not a source of operator
++authorization. The user's implementation request authorizes the narrow R1–R4
++repairs. The older speed, mesh qualification, and profiling documents supply
++context; this change does not start their proposed campaigns or promote their
++scientific claims.
++
++## Supported domain and changes
++
++The compile option and runtime option remain OFF by default. Opt-in supports
++one untransformed root universe of void CSG cells, built-in finite axis planes,
++exact unit-axis rays, cell-flux tracklength and representative surface-current
++tallies, and no finite time cutoff or other transport features.
++
++Vacuum admission is deliberately narrower: exactly six distinct vacuum planes,
++two per axis, form a common outer box. Every cell must conservatively imply
++all six signed enclosure halfspaces from its Boolean expression, without
++using BoundingBox's finite infinity alias as proof. Every conservative cell box must
++be nondegenerate and contained in it; their union extent must reach all six
++faces. Internal or masked vacuum placement fails model validation before any
++movement/scoring. Transmission contacts can still be masked and skipped.
++The Boolean boxes are conservative sufficient conditions, so this rejects some
++otherwise meaningful models. It does not assert a general boundary-relevance
++algorithm or prove global coverage of arbitrary Boolean partitions.
++
++Every positive exact local difference must round to a finite double strictly
++below `INFTY` (DBL_MAX). An interval rounding to that finite sentinel is rejected
++before movement/scoring, preserving the native disabled-cutoff convention.
++No physics-kernel tolerance, geometry payload, or native cutoff logic changes.
++
++The deterministic client snapshots and restores all injected plane/material
++mutations, verifies restoration after each query, reuses one Particle across
++healthy and failing sources, checks context reset and epoch progression, and
++executes two initialize/finalize cycles. Overflow injection preserves a valid
++enclosure, so both injected rows actually reach the arithmetic guard. A healthy
++row follows faults to test recovery. The original faulty harness remains in
++the independent snapshot commit and in the other checkout.
++
++The Fraction oracle derives terminal vacuum from leaving the explicit outer
++Boolean enclosure, rather than from any BC in a contact group. Acceptance
++compares every ordered event and per-bin score and rejects deleted gaps,
++wrong ownership, flux redistribution preserving totals, wrong current, and
++missing contacts. Full legacy itineraries are compared between a runtime-off
++experimental build and a compile-option-off build with matching headers.
++Legacy gap witnesses are retained separately from supported exact-path rows.
++
++## Reproduce
++
++Run `dev/stellarcsg/tests/axis_review_acceptance.py` using installed Debian WSL
++Python. It requires the fresh recorded host inventory, existing compiler,
++CMake/HDF5/libpng/vendor sources and unchanged retained-library hashes. The
++native parser also requires a nonempty cross-section catalog; fixtures name
++the already installed ENDF/B-VII.1 index explicitly and pin its hash. All cells
++remain void and no nuclide data is loaded or downloaded. It
++acquires the existing shared local compute lease atomically and never reclaims
++another owner's lease. It creates new source/build directories in `/var/tmp` and
++an explicitly named artifact directory here, with no overwrite or dependency acquisition.
++It allows one CPU and build worker, 1.5 GiB virtual memory per build/configure
++child and 1 GiB per test child, 900 seconds by default, 150 seconds per configure,
++and 300 MiB combined native/output data. `--phase-seconds 1800` admits the full
++fresh ON/OFF integration check: the prior acceptance took 1322.576 seconds
++including its retained timeout and explicit continuation. The full repository's
++retained experiment reports are excluded from the isolated native source copy.
++The first failure stops the phase; no retry or successor runs automatically.
++
++The isolated WSL source has no Windows `.git` pointer. Explicit archival metadata
++labels it `v0.0.0-axis-review`, records the upstream base commit, and identifies
++the source manifest as the modified snapshot identity. The retained failure
++found HDF5 already, so this is a path/configuration diagnosis rather than a
++claim that dependencies were missing. Loader path, binary hashes, source/input
++hashes, and compile-definition consistency are acceptance requirements.
++
++The initial native build succeeded, but initialization stopped for the absent
++cross-section catalog. The next explicit corrected phase rejected reuse after
++its missing-file check: this WSL mounts `/tmp` as tmpfs and idle shutdown removed
++the earlier outputs. Both failure receipts are preserved. Builds now use
++persistent `/var/tmp` storage and new directory names. No failed row is counted
++as native acceptance.
++
++This scaffold repeatedly scans/allocates/sorts. Passing finite deterministic
++rows would establish only this restricted correctness slice, not production
++speed, non-faceted coil fidelity, general plasma certification, or physical
++per-coil ownership. Installation/ABI distribution remains outside scope.
+diff --git a/dev/stellarcsg/CMakeLists.txt b/dev/stellarcsg/CMakeLists.txt
+index 7fe3ca228..2cfeca9df 100644
+--- a/dev/stellarcsg/CMakeLists.txt
++++ b/dev/stellarcsg/CMakeLists.txt
+@@ -24,11 +24,12 @@ add_library(stellarcsg_reference STATIC
+   src/certified_spline_offset.cpp
+   src/compiled_swept_surface_set.cpp
+   src/compiled_facet_surface_set.cpp
++  src/dyadic_axis_plane.cpp
+   ../../src/external/quartic_solver.cpp
+ )
+ add_library(StellarCSG::reference ALIAS stellarcsg_reference)
+ if(CMAKE_CXX_COMPILER_ID MATCHES "GNU|Clang")
+-  set_source_files_properties(src/certified_spline_offset.cpp PROPERTIES
++  set_source_files_properties(src/certified_spline_offset.cpp src/dyadic_axis_plane.cpp PROPERTIES
+     COMPILE_OPTIONS "-fno-fast-math;-ffp-contract=off")
+ endif()
+ target_compile_features(stellarcsg_reference PUBLIC cxx_std_17)
+@@ -114,6 +115,11 @@ if(STELLARCSG_BUILD_TESTS)
+   target_link_libraries(stellarcsg_facet_surface_tests
+     PRIVATE StellarCSG::reference)
+   target_compile_features(stellarcsg_facet_surface_tests PRIVATE cxx_std_17)
++  add_executable(stellarcsg_dyadic_axis_plane_tests tests/test_dyadic_axis_plane.cpp)
++  target_link_libraries(stellarcsg_dyadic_axis_plane_tests PRIVATE StellarCSG::reference)
++  target_compile_features(stellarcsg_dyadic_axis_plane_tests PRIVATE cxx_std_17)
++  add_test(NAME stellarcsg_dyadic_axis_plane_tests
++    COMMAND stellarcsg_dyadic_axis_plane_tests)
+   add_test(NAME stellarcsg_facet_surface_tests
+     COMMAND stellarcsg_facet_surface_tests)
+   add_test(NAME stellarcsg_facet_p00_tests
+@@ -129,7 +135,7 @@ if(STELLARCSG_BUILD_TESTS)
+ 
+   if(CMAKE_CXX_COMPILER_ID MATCHES "GNU|Clang")
+     foreach(target stellarcsg_reference_tests stellarcsg_compiled_surface_tests
+-        stellarcsg_facet_surface_tests)
++        stellarcsg_facet_surface_tests stellarcsg_dyadic_axis_plane_tests)
+       target_compile_options(${target} PRIVATE
+         -Wall -Wextra -Wpedantic -Wconversion -Wshadow)
+       if(STELLARCSG_ENABLE_SANITIZERS)
+diff --git a/dev/stellarcsg/include/stellarcsg/dyadic_axis_plane.hpp b/dev/stellarcsg/include/stellarcsg/dyadic_axis_plane.hpp
+new file mode 100644
+index 000000000..3aaddd409
+--- /dev/null
++++ b/dev/stellarcsg/include/stellarcsg/dyadic_axis_plane.hpp
+@@ -0,0 +1,78 @@
++#pragma once
++
++#include <array>
++#include <cstddef>
++#include <cstdint>
++
++namespace stellarcsg {
++
++enum class DyadicRoundingStatus { finite, overflow };
++
++struct RoundedDyadic {
++  double value;
++  DyadicRoundingStatus status;
++  bool exact;
++};
++
++// Exact difference of two finite IEEE binary64 values, in units of 2^-1074.
++// Maximum magnitude <2^2099 units; 33 words (2112 bits) suffice. No heap use.
++class DyadicDifference {
++public:
++  static constexpr std::size_t word_count = 33;
++  static DyadicDifference between(double end, double begin);
++  int sign() const { return sign_; }
++  int compare(const DyadicDifference& other) const;
++  RoundedDyadic rounded() const;
++  const std::array<std::uint64_t, word_count>& magnitude() const
++  {
++    return magnitude_;
++  }
++
++private:
++  std::array<std::uint64_t, word_count> magnitude_ {};
++  int sign_ {0};
++};
++
++struct AxisPlane {
++  int axis;
++  double offset;
++};
++
++class UnitAxisRay {
++public:
++  UnitAxisRay(std::array<double, 3> anchor, int axis, int direction);
++  const std::array<double, 3>& anchor() const { return anchor_; }
++  int axis() const { return axis_; }
++  int direction() const { return direction_; }
++
++private:
++  std::array<double, 3> anchor_;
++  int axis_;
++  int direction_;
++};
++
++enum class AxisContactStatus { future, origin, behind, miss, coplanar };
++
++struct AxisContact {
++  AxisContactStatus status;
++  DyadicDifference parameter;
++};
++
++// Parameters are lengths for the declared unit axis ray; equality is exact.
++AxisContact axis_plane_contact(const UnitAxisRay& ray, AxisPlane plane);
++
++// Side of the logical event point whose varying coordinate is event_coordinate.
++// -1 / 0 / +1 denote negative / exactly on / positive plane side. No tolerance.
++int strict_axis_plane_side(
++  const UnitAxisRay& ray, double event_coordinate, AxisPlane plane);
++
++// One-sided limits. Coplanar probes return 0: they are not resolved by direction.
++int axis_plane_limit_side(const UnitAxisRay& ray, double event_coordinate,
++  AxisPlane plane, bool after);
++
++// Local interval from coordinate to coordinate, not rounded absolute t1-t0.
++// Sign <0 rejects reversed progress at the caller; sign 0 denotes a true tie.
++DyadicDifference axis_interval_length(
++  const UnitAxisRay& ray, double begin_coordinate, double end_coordinate);
++
++} // namespace stellarcsg
+diff --git a/dev/stellarcsg/src/dyadic_axis_plane.cpp b/dev/stellarcsg/src/dyadic_axis_plane.cpp
+new file mode 100644
+index 000000000..970cd1fe1
+--- /dev/null
++++ b/dev/stellarcsg/src/dyadic_axis_plane.cpp
+@@ -0,0 +1,231 @@
++#include "stellarcsg/dyadic_axis_plane.hpp"
++
++#include <cmath>
++#include <cstring>
++#include <limits>
++#include <stdexcept>
++
++#ifdef __FAST_MATH__
++#error "Dyadic axis-plane finite validation requires fast-math disabled"
++#endif
++
++namespace stellarcsg {
++namespace {
++
++using Words = std::array<std::uint64_t, DyadicDifference::word_count>;
++static_assert(sizeof(double) == 8 && std::numeric_limits<double>::is_iec559
++  && std::numeric_limits<double>::digits == 53
++  && std::numeric_limits<double>::max_exponent == 1024,
++  "Dyadic axis planes require IEEE binary64");
++
++std::uint64_t bits(double value)
++{
++  std::uint64_t out;
++  std::memcpy(&out, &value, sizeof(out));
++  return out;
++}
++
++double from_bits(std::uint64_t value)
++{
++  double out;
++  std::memcpy(&out, &value, sizeof(out));
++  return out;
++}
++
++Words decode(double value)
++{
++  if (!std::isfinite(value))
++    throw std::invalid_argument("Dyadic operand must be finite");
++  Words result {};
++  const auto raw = bits(value);
++  const auto exponent = (raw >> 52) & 0x7ff;
++  auto mantissa = raw & ((std::uint64_t {1} << 52) - 1);
++  if (exponent) mantissa |= std::uint64_t {1} << 52;
++  const unsigned shift = exponent ? static_cast<unsigned>(exponent - 1) : 0;
++  const auto word = shift / 64;
++  const auto offset = shift % 64;
++  result[word] = mantissa << offset;
++  if (offset) result[word + 1] = mantissa >> (64 - offset);
++  return result;
++}
++
++int compare_words(const Words& a, const Words& b)
++{
++  for (std::size_t i = a.size(); i-- > 0;) {
++    if (a[i] != b[i]) return a[i] < b[i] ? -1 : 1;
++  }
++  return 0;
++}
++
++Words add_words(const Words& a, const Words& b)
++{
++  Words result {};
++  std::uint64_t carry = 0;
++  for (std::size_t i = 0; i < a.size(); ++i) {
++    const auto sum = a[i] + b[i];
++    const auto first_carry = sum < a[i];
++    result[i] = sum + carry;
++    carry = first_carry || result[i] < sum;
++  }
++  // Finite binary64 differences cannot exhaust 2112 bits.
++  if (carry) throw std::overflow_error("Dyadic magnitude capacity exhausted");
++  return result;
++}
++
++Words subtract_words(const Words& a, const Words& b)
++{
++  Words result {};
++  std::uint64_t borrow = 0;
++  for (std::size_t i = 0; i < a.size(); ++i) {
++    const auto difference = a[i] - b[i];
++    const auto first_borrow = a[i] < b[i];
++    result[i] = difference - borrow;
++    borrow = first_borrow || difference < borrow;
++  }
++  if (borrow) throw std::logic_error("Dyadic subtraction order violated");
++  return result;
++}
++
++bool bit_at(const Words& value, unsigned index)
++{
++  return (value[index / 64] >> (index % 64)) & 1;
++}
++
++bool any_below(const Words& value, unsigned count)
++{
++  for (unsigned i = 0; i < count / 64; ++i)
++    if (value[i]) return true;
++  const auto remainder = count % 64;
++  return remainder && (value[count / 64]
++    & ((std::uint64_t {1} << remainder) - 1));
++}
++
++std::uint64_t shifted_low(const Words& value, unsigned shift)
++{
++  const auto word = shift / 64;
++  const auto offset = shift % 64;
++  auto out = value[word] >> offset;
++  if (offset && word + 1 < value.size())
++    out |= value[word + 1] << (64 - offset);
++  return out;
++}
++
++void validate_plane(AxisPlane plane)
++{
++  if (plane.axis < 0 || plane.axis > 2 || !std::isfinite(plane.offset))
++    throw std::invalid_argument("Axis plane requires axis 0..2 and finite offset");
++}
++
++} // namespace
++
++DyadicDifference DyadicDifference::between(double end, double begin)
++{
++  const auto a = decode(end);
++  const auto b = decode(begin);
++  DyadicDifference out;
++  const bool negative_a = std::signbit(end);
++  const bool negative_b = std::signbit(begin);
++  if (negative_a != negative_b) {
++    out.magnitude_ = add_words(a, b);
++    out.sign_ = negative_a ? -1 : 1;
++  } else {
++    const int order = compare_words(a, b);
++    if (!order) return out;
++    out.magnitude_ = order > 0 ? subtract_words(a, b) : subtract_words(b, a);
++    out.sign_ = negative_a ? -order : order;
++  }
++  if (compare_words(out.magnitude_, Words {}) == 0) out.sign_ = 0;
++  return out;
++}
++
++int DyadicDifference::compare(const DyadicDifference& other) const
++{
++  if (sign_ != other.sign_) return sign_ < other.sign_ ? -1 : 1;
++  return sign_ * compare_words(magnitude_, other.magnitude_);
++}
++
++RoundedDyadic DyadicDifference::rounded() const
++{
++  if (!sign_) return {0.0, DyadicRoundingStatus::finite, true};
++  unsigned highest = 0;
++  for (std::size_t i = magnitude_.size(); i-- > 0;) {
++    if (!magnitude_[i]) continue;
++    auto word = magnitude_[i];
++    highest = static_cast<unsigned>(64 * i);
++    while (word >>= 1) ++highest;
++    break;
++  }
++  const auto sign_bit = sign_ < 0 ? std::uint64_t {1} << 63 : 0;
++  if (highest < 52)
++    return {from_bits(sign_bit | magnitude_[0]), DyadicRoundingStatus::finite, true};
++  const auto shift = highest - 52;
++  auto mantissa = shifted_low(magnitude_, shift);
++  const bool discarded = any_below(magnitude_, shift);
++  if (shift && bit_at(magnitude_, shift - 1)
++      && (any_below(magnitude_, shift - 1) || (mantissa & 1))) {
++    ++mantissa;
++    if (mantissa == (std::uint64_t {1} << 53)) {
++      mantissa >>= 1;
++      ++highest;
++    }
++  }
++  const auto exponent = highest - 51;
++  if (exponent >= 2047)
++    return {from_bits(sign_bit | (std::uint64_t {0x7ff} << 52)),
++      DyadicRoundingStatus::overflow, false};
++  const auto raw = sign_bit | (static_cast<std::uint64_t>(exponent) << 52)
++    | (mantissa & ((std::uint64_t {1} << 52) - 1));
++  return {from_bits(raw), DyadicRoundingStatus::finite, !discarded};
++}
++
++UnitAxisRay::UnitAxisRay(std::array<double, 3> anchor, int axis, int direction)
++  : anchor_ {anchor}, axis_ {axis}, direction_ {direction}
++{
++  if (axis < 0 || axis > 2 || (direction != -1 && direction != 1))
++    throw std::invalid_argument("Unit axis ray requires axis 0..2 and direction +/-1");
++  for (double coordinate : anchor)
++    if (!std::isfinite(coordinate))
++      throw std::invalid_argument("Unit axis ray requires finite anchor");
++}
++
++AxisContact axis_plane_contact(const UnitAxisRay& ray, AxisPlane plane)
++{
++  validate_plane(plane);
++  if (plane.axis != ray.axis()) {
++    return {DyadicDifference::between(ray.anchor()[plane.axis], plane.offset).sign() == 0
++        ? AxisContactStatus::coplanar : AxisContactStatus::miss, {}};
++  }
++  auto parameter = axis_interval_length(ray, ray.anchor()[ray.axis()], plane.offset);
++  const auto status = parameter.sign() > 0 ? AxisContactStatus::future
++    : parameter.sign() < 0 ? AxisContactStatus::behind : AxisContactStatus::origin;
++  return {status, parameter};
++}
++
++int strict_axis_plane_side(
++  const UnitAxisRay& ray, double event_coordinate, AxisPlane plane)
++{
++  validate_plane(plane);
++  if (!std::isfinite(event_coordinate))
++    throw std::invalid_argument("Event coordinate must be finite");
++  const double coordinate = plane.axis == ray.axis()
++    ? event_coordinate : ray.anchor()[plane.axis];
++  return DyadicDifference::between(coordinate, plane.offset).sign();
++}
++
++int axis_plane_limit_side(const UnitAxisRay& ray, double event_coordinate,
++  AxisPlane plane, bool after)
++{
++  const int side = strict_axis_plane_side(ray, event_coordinate, plane);
++  if (side || plane.axis != ray.axis()) return side;
++  return after ? ray.direction() : -ray.direction();
++}
++
++DyadicDifference axis_interval_length(
++  const UnitAxisRay& ray, double begin_coordinate, double end_coordinate)
++{
++  return ray.direction() > 0
++    ? DyadicDifference::between(end_coordinate, begin_coordinate)
++    : DyadicDifference::between(begin_coordinate, end_coordinate);
++}
++
++} // namespace stellarcsg
+diff --git a/dev/stellarcsg/tests/P00_NATIVE_AXIS_ACCEPTANCE_20261001.py b/dev/stellarcsg/tests/P00_NATIVE_AXIS_ACCEPTANCE_20261001.py
+new file mode 100644
+index 000000000..e9f4ea626
+--- /dev/null
++++ b/dev/stellarcsg/tests/P00_NATIVE_AXIS_ACCEPTANCE_20261001.py
+@@ -0,0 +1,188 @@
++"""Fixture generator and independent analytic/Fraction owner-interval oracle."""
++import hashlib
++import json
++import math
++from pathlib import Path
++import xml.etree.ElementTree as ET
++from fractions import Fraction as F
++
++ROOT = Path(__file__).resolve().parents[3]
++OUT = ROOT / 'artifacts'
++XS = None
++
++
++def sha(p):
++    return hashlib.sha256(Path(p).read_bytes()).hexdigest()
++
++
++def save(name, data):
++    (OUT / name).write_text(json.dumps(data, indent=2, allow_nan=False) + '\n')
++
++
++def fixture(name, axis, offset, reverse=False, huge=False, duplicate=False, guard=None, runtime=True):
++    folder = OUT / name
++    folder.mkdir()
++    g = ET.Element('geometry')
++    bound = []
++    planes = []
++    for j, kind in enumerate(['x-plane','y-plane','z-plane']):
++        lo, hi = (-1.e20-65536., 1.e20) if huge and j == axis else (-4.,4.)
++        if guard in ['sentinel', 'unbounded-extreme'] and j == axis:
++            lo, hi = -float.fromhex('0x1.fffffffffffffp+1023'), float.fromhex('0x1.fffffffffffffp+1023')
++        for upper, x in enumerate([lo,hi]):
++            sid = 1+2*j+upper
++            ET.SubElement(g, 'surface', id=str(sid), type=kind, coeffs=str(x), boundary='vacuum')
++            planes.append((sid,j,x,True))
++        bound.extend([str(1+2*j),str(-(2+2*j))])
++    interiors = [(10,0.),(11,1.),(20,0. if duplicate else offset),(21,1. if duplicate else offset+1.),(30,.5)]
++    if guard == 'sentinel':
++        maximum = float.fromhex('0x1.fffffffffffffp+1023')
++        interiors = [(10,maximum/2),(11,maximum*.75),(20,maximum*.875),(21,maximum),(30,.5)]
++    for sid, x in interiors:
++        vacuum = guard == 'masked-vacuum' and sid == 30
++        attributes = {'boundary': 'vacuum'} if vacuum else {}
++        ET.SubElement(g,'surface',id=str(sid),type=['x-plane','y-plane','z-plane'][axis],coeffs=str(x),**attributes)
++        planes.append((sid,axis,x,vacuum))
++    outer = ' '.join(bound)
++    if guard == 'unbounded-extreme':
++        outer = ' '.join(bound[2:])  # Deliberately omit x enclosure halfspaces.
++    a, b = '10 -11', '20 -21'
++    if reverse:
++        a, b = '-11 10', '-21 20'
++    regions = [(100, f'{outer} (-10 | 11) (-20 | 21)'),
++               (108, f'{outer} {a}'),
++               (109, f'{outer} (-10 | 11) {b}' if reverse else f'{outer} {b} (-10 | 11)')]
++    for cid, expr in regions:
++        ET.SubElement(g,'cell',id=str(cid),universe='1',material='void',region=f'({expr}) (-30 | 30)')
++    if guard == 'nonplanar':
++        ET.SubElement(g,'surface',id='99',type='sphere',coeffs='0 0 0 100')
++    if guard == 'material':
++        # A synthetic material index is injected by the native guard client;
++        # no nuclear-data acquisition or load is needed.
++        pass
++    ET.ElementTree(g).write(folder/'geometry.xml')
++    materials = ET.Element('materials')
++    if XS is not None:
++        # The void test needs catalog discovery, not hundreds of Windows-path
++        # existence probes or nuclide loads. Preserve one authentic unused
++        # library entry from the installed index, with its resolved real path.
++        catalog = ET.parse(XS).getroot()
++        library = catalog.find('library')
++        assert library is not None
++        entry = ET.Element('library', library.attrib)
++        directory = Path(catalog.findtext('directory') or Path(XS).parent)
++        entry.set('path', str((directory / entry.get('path')).resolve()))
++        minimal = ET.Element('cross_sections')
++        minimal.append(entry)
++        ET.ElementTree(minimal).write(folder/'cross_sections.xml')
++        ET.SubElement(materials, 'cross_sections').text = 'cross_sections.xml'
++    ET.ElementTree(materials).write(folder/'materials.xml')
++    opt = '<experimental_axis_plane_events>true</experimental_axis_plane_events>' if runtime else ''
++    cutoff = '<cutoff><time_neutron>1</time_neutron></cutoff>' if guard == 'time' else ''
++    banking = '<surf_source_write><max_particles>1</max_particles></surf_source_write>' if guard == 'surface-bank' else ''
++    (folder/'settings.xml').write_text(f'<settings><run_mode>fixed source</run_mode><particles>1</particles>'
++        f'<batches>1</batches><source><space type="point"><parameters>0.25 0.31 0.42</parameters>'
++        '</space></source><output><summary>false</summary><tallies>false</tallies></output>'
++        f'{opt}{cutoff}{banking}</settings>')
++    tally = ET.Element('tallies')
++    cells = [100,108,109]
++    ids = [p[0] for p in planes]
++    for fid, kind, bins in [(1,'cell',cells),(2,'surface',ids)]:
++        f = ET.SubElement(tally,'filter',id=str(fid),type=kind)
++        ET.SubElement(f,'bins').text = ' '.join(map(str,bins))
++    if guard == 'filter':
++        f = ET.SubElement(tally,'filter',id='3',type='energy')
++        ET.SubElement(f,'bins').text = '0 20000000'
++    for tid, fid, score in [(1,'1 3' if guard == 'filter' else '1','flux'),(2,'2','current')]:
++        t = ET.SubElement(tally,'tally',id=str(tid))
++        ET.SubElement(t,'filters').text = fid
++        ET.SubElement(t,'scores').text = score
++    ET.ElementTree(tally).write(folder/'tallies.xml')
++    qs = []
++    for sign in [1,-1]:
++        pos = [.31,.42,.27]
++        pos[axis] = -1.e20 if huge else (.25 if sign > 0 else (.75 if duplicate else offset+.75))
++        if huge and sign < 0: continue
++        direction = [0.,0.,0.]
++        direction[axis] = sign
++        if guard == 'oblique': direction[(axis+1)%3] = .5
++        if guard == 'nonunit': direction[axis] = .5
++        if guard == 'coplanar': pos[(axis+1)%3] = -4.
++        qs.append({'id':len(qs), 'p':pos,'d':direction,'hint':0,'steps':5 if not huge else 4,'mode':
++                   {'stale':1,'collision':2,'material':3,'overflow':4}.get(guard,0)})
++        qs[-1]['enclosure_halfspaces'] = guard != 'unbounded-extreme'
++    if guard is None and not huge and runtime:
++        # Exact-origin start uses the whole outgoing contact group, not one hint.
++        pos = [.31,.42,.27]; pos[axis] = 1.
++        d = [0.,0.,0.]; d[axis] = 1.
++        qs.append({'id':len(qs),'p':pos,'d':d,'hint':11,'steps':4,'mode':0})
++    if guard == 'sentinel':
++        qs = [qs[0] | {'p':[-maximum/2,.42,.27], 'steps':1}]
++    if guard in ['stale','collision','material','overflow']:
++        # A healthy query after the injected faults proves restoration and reuse.
++        qs.append({'id':len(qs),'p':[.25,.42,.27],'d':[1.,0.,0.], 'hint':0,'steps':5,'mode':0})
++    (folder/'queries.txt').write_text(''.join(' '.join(map(str,[q['id'],*q['p'],*q['d'],q['hint'],q['steps'],q['mode']]))+'\n' for q in qs))
++    save(f'{name}.inputs.json',{'files':{str(p.relative_to(OUT)):sha(p) for p in folder.iterdir()},'queries':qs})
++    return folder, planes, qs
++
++
++def expected(planes, axis, q):
++    if not q.get('enclosure_halfspaces', True):
++        raise ValueError('cell lacks explicit common enclosure halfspaces')
++    sign = int(q['d'][axis]); start = F(q['p'][axis]); cursor = start
++    active = [(sid,F(x),vac) for sid,j,x,vac in planes if j==axis]
++    a0,a1 = [x for sid,x,v in active if sid in [10,11]]
++    b0,b1 = [x for sid,x,v in active if sid in [20,21]]
++    outer = sorted(x for sid,x,v in active if sid in [1+2*axis,2+2*axis])
++    # Fixture admission is independent of C++: BCs belong exclusively to the
++    # six common outer faces, never to the masked Boolean tautology or a slab.
++    if {sid for sid,j,x,v in planes if v} != set(range(1,7)):
++        raise ValueError('vacuum outside common outer enclosure')
++    def inside(x,lo,hi,after=True):
++        side = sign if after else -sign
++        return (x > lo or x == lo and side > 0) and (x < hi or x == hi and side < 0)
++    def owner(x,after=True):
++        if not inside(x,*outer,after): return -1
++        if inside(x,a0,a1,after): return 108
++        if inside(x,b0,b1,after): return 109
++        return 100
++    current = owner(start)
++    events = []
++    flux = [0.,0.,0.]; currents = [0.]*len(planes)
++    coords = sorted({x for sid,x,v in active if sign*(x-start)>0},reverse=sign<0)
++    for x in coords:
++        group = sorted(sid for sid,c,v in active if c==x)
++        nxt = owner(x)
++        if nxt == current: continue
++        vacuum = nxt == -1
++        if vacuum:
++            assert x in outer and any(sid in [1+2*axis,2+2*axis] for sid in group)
++        assert owner(x,False) == current
++        length = float(sign*(x-cursor))
++        assert length > 0 and math.isfinite(length)
++        if length == float.fromhex('0x1.fffffffffffffp+1023'):
++            raise ValueError('finite interval collides with disabled cutoff sentinel')
++        flux[[100,108,109].index(current)] += length
++        currents[[p[0] for p in planes].index(group[0])] += sign
++        events.append({'before':current,'after':nxt,'length':length,'region_length':length,
++                       'coordinate':float(x),'surface':sign*group[0],'contacts':group,
++                       'context':True,'weight':0. if vacuum else 1.,'scores':[flux[:],currents[:]]})
++        cursor = x; current = nxt
++        if vacuum or len(events)==q['steps']: break
++    return events
++
++
++def check(row, want):
++    assert row['error'] == '', row
++    assert row['events'] == want, (row, want)
++    assert row['scores'] == want[-1]['scores'], row
++
++
++def main():
++    # The corrected runner owns admission, isolated builds and both option modes.
++    from axis_review_acceptance import main as corrected_main
++    corrected_main()
++
++
++if __name__ == '__main__':
++    main()
+diff --git a/dev/stellarcsg/tests/axis_review_acceptance.py b/dev/stellarcsg/tests/axis_review_acceptance.py
+new file mode 100644
+index 000000000..d957248f5
+--- /dev/null
++++ b/dev/stellarcsg/tests/axis_review_acceptance.py
+@@ -0,0 +1,313 @@
++"""Bounded local native acceptance; existing dependencies, isolated outputs only."""
++import copy
++import argparse
++import hashlib
++import importlib.util
++import json
++import math
++import os
++from pathlib import Path
++from fractions import Fraction as F
++from functools import partial
++import resource
++import shutil
++import signal
++import subprocess
++import time
++
++ROOT = Path(__file__).resolve().parents[3]
++OUT = ROOT / 'artifacts'
++LOCK = ROOT.parent / 'local-coil-wave-20260926/compute.lock'
++NATIVE = Path('/var/tmp') / f'stellarcsg-axis-review-20261008-{os.getpid()}-{time.time_ns()}'
++REUSED_ROOT = None
++CAP = 300 * 2**20
++
++
++def sha(path):
++    return hashlib.sha256(Path(path).read_bytes()).hexdigest()
++
++
++def save(name, value):
++    (OUT / name).write_text(json.dumps(value, indent=2, allow_nan=False) + '\n')
++
++
++def size(path):
++    return sum(p.stat().st_size for p in path.rglob('*') if p.is_file())
++
++
++def limits(building=False):
++    memory = 1536 * 2**20 if building else 2**30
++    resource.setrlimit(resource.RLIMIT_AS, (memory, memory))
++    resource.setrlimit(resource.RLIMIT_CORE, (0, 0))
++    os.sched_setaffinity(0, {min(os.sched_getaffinity(0))})
++
++
++def run(label, args, deadline, cap=None):
++    end = min(deadline, time.monotonic() + cap) if cap else deadline
++    started = time.monotonic()
++    env = os.environ | {'OMP_NUM_THREADS': '1', 'OPENBLAS_NUM_THREADS': '1'}
++    with (OUT / f'{label}.stdout').open('w') as stdout, (OUT / f'{label}.stderr').open('w') as stderr:
++        child = subprocess.Popen(args, stdout=stdout, stderr=stderr, env=env,
++                                 preexec_fn=partial(limits, label.startswith(('build-', 'configure-'))),
++                                 start_new_session=True)
++        try:
++            while child.poll() is None:
++                if time.monotonic() >= end:
++                    raise TimeoutError(f'{label}: phase deadline')
++                if size(NATIVE) + size(OUT) + (size(REUSED_ROOT) if REUSED_ROOT else 0) > CAP:
++                    raise RuntimeError(f'{label}: output cap')
++                time.sleep(1)
++        except BaseException:
++            os.killpg(child.pid, signal.SIGKILL)
++            child.wait(timeout=10)
++            raise
++    save(f'{label}.exit.json', {'args': list(map(str, args)), 'exit': child.returncode,
++                              'seconds': time.monotonic() - started})
++    if child.returncode:
++        raise RuntimeError(f'FIRST_FAILURE {label} exit={child.returncode}')
++    return (OUT / f'{label}.stdout').read_text()
++
++
++def retained():
++    parent = ROOT.parent / 'stellarcsg-astra-kernel-20260926'
++    pins = {'current': '9bf312f3e556b586fec44b714f179b97fa8dd5a25a249951674b01174b49432d',
++            'baseline': '546be4c8af7da69196d6b4408de7bfb9af6ac0ddb424a90205cd513b60c19b9a'}
++    for kind, identity in pins.items():
++        path = parent / f'dev/stellarcsg/reports/p00-step1-20261001-01/{kind}/build/lib/libopenmc.so'
++        assert sha(path) == identity, path
++
++
++def client(label, build, folder, queries, deadline):
++    output = run(label, [build / 'bin/stellarcsg_native_axis_test', folder,
++                        folder / 'queries.txt'], deadline, 20)
++    metadata = [json.loads(line[5:]) for line in output.splitlines() if line.startswith('META ')]
++    assert len(metadata) == 1, metadata
++    loaded = Path(metadata[0]['library']).resolve()
++    assert loaded == (build / 'lib/libopenmc.so').resolve(), metadata
++    rows = [json.loads(line[4:]) for line in output.splitlines() if line.startswith('ROW ')]
++    assert len(rows) == 2 * len(queries), (label, len(rows), len(queries))
++    for cycle in range(2):
++        for row, query in zip(rows[cycle * len(queries):(cycle + 1) * len(queries)], queries):
++            assert row['id'] == query['id'] and row['cycle'] == cycle
++            assert row['fixture_restored'] and row['source_reset'], row
++    return rows
++
++
++def main():
++    global OUT, REUSED_ROOT
++    parser = argparse.ArgumentParser()
++    parser.add_argument('--output-name', default='artifacts')
++    parser.add_argument('--reuse-phase', type=Path)
++    parser.add_argument('--phase-seconds', type=int, default=900)
++    parser.add_argument('--cross-sections', type=Path, default=Path(
++        '/mnt/d/openc-hts-dpa-data/openmc-data/endfb-vii.1-hdf5/cross_sections.xml'))
++    options = parser.parse_args()
++    assert Path(options.output_name).name == options.output_name
++    assert 1 <= options.phase_seconds <= 1800
++    OUT = ROOT / options.output_name
++    started = time.monotonic()
++    deadline = started + options.phase_seconds
++    OUT.mkdir()  # No overwrite, no reclaim of another owner's lease.
++    mem = {line.split(':')[0]: int(line.split()[1]) * 1024
++           for line in Path('/proc/meminfo').read_text().splitlines()}
++    assert mem['MemAvailable'] >= 3 * 2**30
++    assert all(shutil.disk_usage(p).free >= 2 * 2**30 for p in [ROOT, '/mnt/c', '/mnt/d', NATIVE.parent])
++    retained()
++    assert options.cross_sections.is_file()
++    xs_identity = sha(options.cross_sections)
++    LOCK.mkdir()
++    token = f'axis-review-{os.getpid()}-{time.time_ns()}'
++    owner_file = LOCK / 'AXIS_REVIEW_OWNER.json'
++    owner_file.write_text(json.dumps({'owner': token, 'workers': 1, 'phase_seconds': options.phase_seconds,
++                                     'build_virtual_bytes': 1536 * 2**20,
++                                     'test_virtual_bytes': 2**30, 'output_bytes': CAP}))
++    try:
++        save('admission.json', {'mem_available': mem['MemAvailable'], 'acquisition_bytes': 0,
++             'source': str(ROOT), 'native': str(NATIVE), 'deadline_seconds': options.phase_seconds,
++             'tools': {name: shutil.which(name) for name in ['g++', 'cmake', 'python3']},
++             'git_pointer_diagnosis': 'Windows worktree pointer is invalid in WSL; copy has no .git',
++             'configure_cap_seconds_per_build': 150,
++             'cross_sections_index': str(options.cross_sections), 'index_sha256': xs_identity})
++        NATIVE.mkdir()
++        native_source = NATIVE / 'source'
++        native_source.mkdir()
++        for name in ['src', 'include', 'cmake', 'vendor']:
++            shutil.copytree(ROOT / name, native_source / name,
++                            ignore=shutil.ignore_patterns('__pycache__', '*.pyc'))
++        # A full repository also contains retained experiments under dev/.
++        # Copy the native build/test inputs, never another agent's reports.
++        development = native_source / 'dev/stellarcsg'
++        development.mkdir(parents=True)
++        for name in ['src', 'include', 'tests', 'openmc_adapter']:
++            shutil.copytree(ROOT / 'dev/stellarcsg' / name, development / name,
++                            ignore=shutil.ignore_patterns('__pycache__', '*.pyc'))
++        for name in ['CMakeLists.txt', 'AXIS_REVIEW_REPAIR_20261008.md']:
++            shutil.copy2(ROOT / 'dev/stellarcsg' / name, development / name)
++        shutil.copy2(ROOT / 'CMakeLists.txt', native_source)
++        shutil.copy2(ROOT / '.git_archival.txt', native_source)
++        # CMake's existing post-build step copies only into this isolated tree.
++        (native_source / 'openmc/lib').mkdir(parents=True)
++        identities = {str(p.relative_to(native_source)): sha(p)
++                      for p in native_source.rglob('*') if p.is_file()}
++        save('source-identities.json', identities)
++        spec = importlib.util.spec_from_file_location('axis_fixture', ROOT / 'dev/stellarcsg/tests/P00_NATIVE_AXIS_ACCEPTANCE_20261001.py')
++        fixtures = importlib.util.module_from_spec(spec)
++        spec.loader.exec_module(fixtures)
++        fixtures.OUT = OUT
++        fixtures.XS = options.cross_sections
++        results = []
++        builds = {}
++        for enabled in [True, False]:
++            kind = 'on' if enabled else 'off'
++            build = NATIVE / kind
++            if enabled and options.reuse_phase:
++                prior = json.loads((options.reuse_phase / 'failure.json').read_text())
++                REUSED_ROOT = Path(prior['native_outputs'])
++                prior_sources = json.loads((options.reuse_phase / 'source-identities.json').read_text())
++                for name, identity in prior_sources.items():
++                    # Only the Python fixture/runner and explanatory prose may
++                    # differ. Every compiled/configuration input must match.
++                    if name.endswith(('.py', '.md')):
++                        continue
++                    assert sha(ROOT / name) == identity == sha(REUSED_ROOT / 'source' / name), name
++                build = REUSED_ROOT / 'on'
++                pinned = json.loads((options.reuse_phase / 'binary-identities-on.json').read_text())
++                assert sha(build / 'lib/libopenmc.so') == pinned['library_sha256']
++                assert sha(build / 'bin/stellarcsg_native_axis_test') == pinned['client_sha256']
++                assert sha(build / 'compile_commands.json') == pinned['compile_commands_sha256']
++                save('reused-on-build.json', {'phase': str(options.reuse_phase), 'build': str(build),
++                     'compiled_inputs_match': True, 'binaries': pinned})
++            builds[kind] = build
++            if not (enabled and options.reuse_phase):
++                run(f'configure-{kind}', ['cmake', '-S', native_source, '-B', build,
++                '-DCMAKE_BUILD_TYPE=Release', '-DCMAKE_CXX_FLAGS_RELEASE=-O0 -DNDEBUG',
++                '-DOPENMC_USE_MPI=OFF', '-DOPENMC_USE_OPENMP=OFF', '-DOPENMC_BUILD_TESTS=OFF',
++                '-DOPENMC_FORCE_VENDORED_LIBS=ON', '-DFETCHCONTENT_FULLY_DISCONNECTED=ON',
++                '-DGIT_SUBMODULE=OFF', '-DOPENMC_ENABLE_STRICT_FP=ON',
++                '-DSTELLARCSG_BUILD_AXIS_TEST_CLIENT=ON',
++                f'-DOPENMC_ENABLE_EXPERIMENTAL_AXIS_PLANES={"ON" if enabled else "OFF"}',
++                    '-DOPENMC_ENABLE_EXPERIMENTAL_STELLARCSG=OFF'], deadline, 150)
++                run(f'build-{kind}', ['cmake', '--build', build, '--target',
++                                    'stellarcsg_native_axis_test', '-j', '1'], deadline)
++            run(f'loader-{kind}', ['ldd', build / 'bin/stellarcsg_native_axis_test'], deadline, 10)
++            save(f'binary-identities-{kind}.json', {'library_sha256': sha(build / 'lib/libopenmc.so'),
++                  'client_sha256': sha(build / 'bin/stellarcsg_native_axis_test'),
++                  'compile_commands_sha256': sha(build / 'compile_commands.json')})
++            commands = json.loads((build / 'compile_commands.json').read_text())
++            client_command = next(c['command'] for c in commands if c['file'].endswith('/test_native_axis_events.cpp'))
++            assert ('-DOPENMC_EXPERIMENTAL_AXIS_PLANES' in client_command) == enabled
++            if not enabled:
++                continue
++            for axis in range(3):
++                for case, offset, duplicate in [('gap48', 1 + 2**-48, False),
++                    ('adjacent', math.nextafter(1., 2.), False), ('touching', 1., False), ('duplicate', 0., True)]:
++                    for reverse in [False, True]:
++                        name = f'{case}-axis{axis}-tokens{int(reverse)}'
++                        folder, planes, queries = fixtures.fixture(name, axis, offset, reverse, duplicate=duplicate)
++                        rows = client(name, build, folder, queries, deadline)
++                        for row, q in zip(rows, queries * 2):
++                            fixtures.check(row, fixtures.expected(planes, axis, q))
++                        results.append({'model': name, 'rows': rows})
++                        save('results.json', results)
++            folder, planes, queries = fixtures.fixture('rounded-times', 0, 1 + 2**-48, huge=True)
++            rows = client('rounded-times', build, folder, queries, deadline)
++            for row, q in zip(rows, queries * 2):
++                fixtures.check(row, fixtures.expected(planes, 0, q))
++            results.append({'model': 'rounded-times', 'rows': rows})
++            for guard in ['oblique', 'nonunit', 'coplanar', 'nonplanar', 'time', 'filter',
++                          'stale', 'collision', 'material', 'overflow', 'masked-vacuum', 'sentinel', 'unbounded-extreme', 'surface-bank']:
++                folder, planes, queries = fixtures.fixture('unsupported-' + guard, 0, 1 + 2**-48, guard=guard)
++                rows = client('unsupported-' + guard, build, folder, queries, deadline)
++                for row, q in zip(rows, queries * 2):
++                    if guard in ['stale', 'collision', 'material', 'overflow'] and q['mode'] == 0:
++                        fixtures.check(row, fixtures.expected(planes, 0, q))
++                    else:
++                        assert row['events'] == [] and 'AXIS_PLANE_UNSUPPORTED:' in row['error'], row
++                        assert all(v == 0 for tally in row['scores'] for v in tally), row
++                        if guard == 'overflow':
++                            assert 'NO_START_OWNER' not in row['error'], row
++                if guard in ['masked-vacuum', 'unbounded-extreme']:
++                    try:
++                        fixtures.expected(planes, 0, queries[0])
++                    except ValueError:
++                        pass
++                    else:
++                        raise AssertionError('oracle accepted unsupported vacuum enclosure')
++                if guard == 'sentinel':
++                    # Finite equality, independently distinguished from overflow.
++                    exact = F(planes[6][2]) - F(queries[0]['p'][0])
++                    assert exact == F(float.fromhex('0x1.fffffffffffffp+1023'))
++                    try:
++                        fixtures.expected(planes, 0, queries[0])
++                    except ValueError:
++                        pass
++                    else:
++                        raise AssertionError('oracle accepted sentinel collision')
++                if guard in ['masked-vacuum', 'sentinel', 'unbounded-extreme']:
++                    assert all(r['source_position_unchanged'] for r in rows)
++                results.append({'model': 'unsupported-' + guard, 'rows': rows})
++                save('results.json', results)
++        # Identical full legacy itineraries in the same-build runtime-off path
++        # and a matching-header compile-option-off library. Retain known gaps.
++        legacy = []
++        for axis in range(3):
++            for case, offset in [('resolved', 2.), ('gap48', 1 + 2**-48)]:
++                name = f'legacy-{case}-axis{axis}'
++                folder, planes, queries = fixtures.fixture(name, axis, offset, runtime=False)
++                on_rows = client(name + '-on', builds['on'], folder, queries, deadline)
++                off_rows = client(name + '-off', builds['off'], folder, queries, deadline)
++                assert on_rows == off_rows, name
++                assert all(not e['context'] for r in on_rows for e in r['events'])
++                assert all(r['error'] == '' and r['events'] and r['events'][-1]['weight'] == 0 for r in on_rows)
++                witness = False
++                if case == 'gap48':
++                    for row, q in zip(on_rows, queries * 2):
++                        correct = fixtures.expected(planes, axis, q)
++                        witness |= [e['length'] for e in row['events']] != [e['length'] for e in correct]
++                    assert witness, 'expected legacy gap48 length/ownership witness absent'
++                legacy.append({'model': name, 'rows': on_rows,
++                               'legacy_negative_witness': witness})
++        save('legacy-results.json', legacy)
++        row = results[0]['rows'][0]
++        wanted = fixtures.expected(
++            fixtures.fixture('corruption-oracle', 0, 1 + 2**-48)[1], 0,
++            {'p': [.25, .42, .27], 'd': [1., 0., 0.], 'steps': 5})
++        rejected = []
++        for corruption in ['owner', 'missing_gap', 'redistributed_flux', 'wrong_current', 'missing_contact']:
++            bad = copy.deepcopy(row)
++            if corruption == 'owner': bad['events'][0]['after'] = 108
++            elif corruption == 'missing_gap': bad['events'].pop(1)
++            elif corruption == 'redistributed_flux':
++                amount = bad['events'][1]['scores'][0][0]
++                assert amount > 0
++                bad['events'][1]['scores'][0][1] += amount
++                bad['events'][1]['scores'][0][0] = 0.
++            elif corruption == 'wrong_current': bad['events'][0]['scores'][1] = [0.] * len(bad['scores'][1])
++            else: bad['events'][0]['contacts'] = []
++            try:
++                fixtures.check(bad, wanted)
++            except AssertionError:
++                rejected.append(corruption)
++        assert len(rejected) == 5
++        retained()
++        assert sha(options.cross_sections) == xs_identity
++        assert all(sha(native_source / p) == h and sha(ROOT / p) == h for p, h in identities.items())
++        total_bytes = size(NATIVE) + size(OUT) + (size(REUSED_ROOT) if REUSED_ROOT else 0)
++        assert total_bytes < CAP
++        save('receipt.json', {'status': 'PASS_PENDING_INDEPENDENT_REVIEW',
++             'seconds': time.monotonic() - started, 'models': len(results),
++             'rows': sum(len(x['rows']) for x in results), 'corruptions_rejected': rejected,
++             'legacy_models': len(legacy), 'native_outputs': str(NATIVE),
++             'output_bytes': total_bytes, 'lease': 'release after terminal children'})
++    except BaseException as error:
++        save('failure.json', {'status': 'FIRST_FAILURE_NO_RETRY', 'error': repr(error),
++             'seconds': time.monotonic() - started, 'native_outputs': str(NATIVE)})
++        raise
++    finally:
++        if json.loads(owner_file.read_text())['owner'] == token:
++            owner_file.unlink()
++            LOCK.rmdir()
++
++
++if __name__ == '__main__':
++    main()
+diff --git a/dev/stellarcsg/tests/test_dyadic_axis_plane.cpp b/dev/stellarcsg/tests/test_dyadic_axis_plane.cpp
+new file mode 100644
+index 000000000..8a89e598d
+--- /dev/null
++++ b/dev/stellarcsg/tests/test_dyadic_axis_plane.cpp
+@@ -0,0 +1,177 @@
++#include "stellarcsg/dyadic_axis_plane.hpp"
++
++#include <cfenv>
++#include <cmath>
++#include <cstring>
++#include <iomanip>
++#include <iostream>
++#include <limits>
++#include <stdexcept>
++#include <string>
++
++using namespace stellarcsg;
++
++namespace {
++void require(bool condition, const char* reason)
++{
++  if (!condition) throw std::runtime_error(reason);
++}
++
++double from_bits(std::uint64_t bits)
++{
++  double value;
++  std::memcpy(&value, &bits, sizeof(value));
++  return value;
++}
++
++std::uint64_t bits(double value)
++{
++  std::uint64_t out;
++  std::memcpy(&out, &value, sizeof(out));
++  return out;
++}
++
++template<class F> void rejects(F operation)
++{
++  bool caught = false;
++  try {
++    operation();
++  } catch (const std::invalid_argument&) {
++    caught = true;
++  }
++  require(caught, "Invalid argument was accepted");
++}
++
++void controls()
++{
++  const double gap = std::ldexp(1.0, -48);
++  const double next = std::nextafter(1.0, 2.0);
++  UnitAxisRay reverse {{1.75 + gap, .31, .42}, 0, -1};
++  auto b = axis_plane_contact(reverse, {0, 1.0 + gap});
++  auto a = axis_plane_contact(reverse, {0, 1.0});
++  require(b.status == AxisContactStatus::future, "B future contact missing");
++  require(b.parameter.compare(a.parameter) < 0, "Positive gap became a tie");
++  require(b.parameter.rounded().value == .75, "Wrong B exit parameter");
++  require(a.parameter.rounded().value == .75 + gap, "Wrong A entry parameter");
++  require(axis_plane_limit_side(reverse, 1.0 + gap, {0, 1.0}, true) == 1,
++    "Nearby A was classified inside at B exit");
++  require(axis_plane_limit_side(reverse, 1.0 + gap, {0, 1.0 + gap}, true) == -1,
++    "B outgoing limit wrong");
++  auto length = axis_interval_length(reverse, 1.0 + gap, 1.0);
++  require(length.sign() == 1 && length.rounded().exact
++      && length.rounded().value == gap, "Local gap length lost");
++  require(axis_interval_length(reverse, 1.0, 1.0 + gap).sign() == -1,
++    "Reversed progress was accepted");
++  require(axis_interval_length(reverse, 1.0, 1.0).sign() == 0, "True tie nonzero");
++  UnitAxisRay adjacent {{1.75, .31, .42}, 0, -1};
++  auto left = axis_plane_contact(adjacent, {0, 1.0});
++  auto right = axis_plane_contact(adjacent, {0, next});
++  require(right.parameter.compare(left.parameter) < 0,
++    "Adjacent-double contacts merged");
++  require(std::nextafter(1.0, next) == next, "Adjacent fixture has an interior double");
++  require(axis_interval_length(adjacent, next, 1.0).rounded().value
++      == std::ldexp(1.0, -52), "No-interior-point interval lost");
++  UnitAxisRay large {{-1e20, .31, .42}, 0, 1};
++  left = axis_plane_contact(large, {0, 1.0});
++  right = axis_plane_contact(large, {0, next});
++  require(bits(left.parameter.rounded().value) == bits(right.parameter.rounded().value),
++    "Rounded-equal absolute parameter fixture invalid");
++  require(left.parameter.compare(right.parameter) < 0,
++    "Rounded-equal absolute parameters treated as an exact tie");
++  require(axis_interval_length(large, 1.0, next).rounded().value
++      == std::ldexp(1.0, -52), "Rounded absolute subtraction lost delta");
++  for (int axis = 0; axis < 3; ++axis) {
++    for (int direction : {-1, 1}) {
++      UnitAxisRay ray {{0., 0., 0.}, axis, direction};
++      auto origin = axis_plane_contact(ray, {axis, -0.});
++      require(origin.status == AxisContactStatus::origin, "Signed zero origin wrong");
++      require(axis_plane_limit_side(ray, 0., {axis, 0.}, true) == direction,
++        "Outgoing tied side wrong");
++      require(axis_plane_limit_side(ray, 0., {axis, 0.}, false) == -direction,
++        "Incoming tied side wrong");
++      const int parallel_axis = (axis + 1) % 3;
++      require(axis_plane_contact(ray, {parallel_axis, 0.}).status
++          == AxisContactStatus::coplanar, "Coplanar contact resolved as a point");
++      require(axis_plane_limit_side(ray, 0., {parallel_axis, 0.}, true) == 0,
++        "Coplanar side resolved by direction");
++      require(axis_plane_contact(ray, {parallel_axis, 1.}).status
++          == AxisContactStatus::miss, "Parallel miss wrong");
++      require(axis_plane_contact(ray, {axis, -static_cast<double>(direction)}).status
++          == AxisContactStatus::behind, "Negative parameter clipped to origin");
++    }
++  }
++  const auto subnormal = std::numeric_limits<double>::denorm_min();
++  auto small = DyadicDifference::between(subnormal, 0.0);
++  require(small.sign() == 1 && bits(small.rounded().value) == 1,
++    "Minimum subnormal lost");
++  auto big = DyadicDifference::between(std::numeric_limits<double>::max(),
++    -std::numeric_limits<double>::max());
++  require(big.rounded().status == DyadicRoundingStatus::overflow
++      && !big.rounded().exact && big.sign() == 1, "Overflow converted to finite length");
++  require(DyadicDifference::between(-0., 0.).sign() == 0, "Signed zero difference wrong");
++  require(DyadicDifference::between(-4., -2.).compare(
++      DyadicDifference::between(-2., -1.)) < 0, "Negative parameter ordering wrong");
++  rejects([] { DyadicDifference::between(INFINITY, 0.); });
++  rejects([] { DyadicDifference::between(0., NAN); });
++  rejects([] { UnitAxisRay ray {{0., 0., 0.}, 3, 1}; });
++  rejects([] { UnitAxisRay ray {{0., 0., 0.}, 0, 0}; });
++  rejects([] { UnitAxisRay ray {{INFINITY, 0., 0.}, 0, 1}; });
++  rejects([&] { axis_plane_contact(reverse, {3, 1.}); });
++  rejects([&] { strict_axis_plane_side(reverse, NAN, {0, 1.}); });
++}
++
++void query_stream()
++{
++  std::string first, second;
++  while (std::cin >> first >> second) {
++    try {
++      auto value = DyadicDifference::between(from_bits(std::stoull(first, nullptr, 16)),
++        from_bits(std::stoull(second, nullptr, 16)));
++      auto rounded = value.rounded();
++      std::cout << std::dec << value.sign() << ' ';
++      bool started = false;
++      for (std::size_t i = value.magnitude().size(); i-- > 0;) {
++        const auto word = value.magnitude()[i];
++        if (!started && !word) continue;
++        if (started) std::cout << std::setw(16) << std::setfill('0');
++        std::cout << std::hex << word;
++        started = true;
++      }
++      if (!started) std::cout << '0';
++      std::cout << ' ' << std::hex << bits(rounded.value) << ' ' << std::dec
++                << (rounded.status == DyadicRoundingStatus::overflow) << ' '
++                << rounded.exact << '\n';
++    } catch (const std::invalid_argument&) {
++      std::cout << "INVALID\n";
++    }
++  }
++  if (!std::cin.eof()) throw std::runtime_error("Malformed query stream");
++}
++} // namespace
++
++int main(int argc, char** argv)
++{
++  try {
++    if (argc == 2 && std::string(argv[1]) == "--query") {
++      query_stream();
++    } else if (argc == 1) {
++      for (int mode : {FE_TONEAREST, FE_DOWNWARD, FE_UPWARD, FE_TOWARDZERO}) {
++        require(std::fesetround(mode) == 0, "Floating environment mode unavailable");
++        // Non-integer fixture construction belongs to the nearest mode;
++        // verify integer-backed rounding separately in all four modes.
++        const auto rounded = DyadicDifference::between(1., -std::ldexp(1., -53)).rounded();
++        require(bits(rounded.value) == bits(1.) && !rounded.exact,
++          "Nearest-even depends on caller floating rounding mode");
++      }
++      std::fesetround(FE_TONEAREST);
++      controls();
++      std::cout << "PASS dyadic axis-plane controls\n";
++    } else {
++      return 2;
++    }
++    return 0;
++  } catch (const std::exception& error) {
++    std::cerr << error.what() << '\n';
++    return 1;
++  }
++}
+diff --git a/dev/stellarcsg/tests/test_native_axis_events.cpp b/dev/stellarcsg/tests/test_native_axis_events.cpp
+new file mode 100644
+index 000000000..4a62146fb
+--- /dev/null
++++ b/dev/stellarcsg/tests/test_native_axis_events.cpp
+@@ -0,0 +1,242 @@
++// Native deterministic events; external Fraction oracle checks every row/bin.
++#include <filesystem>
++#include <fstream>
++#include <iomanip>
++#include <iostream>
++#include <sstream>
++#ifdef __unix__
++#include <dlfcn.h>
++#endif
++#include "openmc/capi.h"
++#include "openmc/cell.h"
++#include "openmc/geometry.h"
++#include "openmc/particle.h"
++#include "openmc/settings.h"
++#include "openmc/surface.h"
++#include "openmc/tallies/tally.h"
++#include "pugixml.hpp"
++
++using namespace openmc;
++
++struct FixtureState {
++  vector<double> offsets;
++  vector<vector<int32_t>> materials;
++
++  static double offset(const Surface& s)
++  {
++    if (const auto* x = dynamic_cast<const SurfaceXPlane*>(&s)) return x->x0_;
++    if (const auto* y = dynamic_cast<const SurfaceYPlane*>(&s)) return y->y0_;
++    if (const auto* z = dynamic_cast<const SurfaceZPlane*>(&s)) return z->z0_;
++    return 0.;
++  }
++
++  FixtureState()
++  {
++    for (const auto& s : model::surfaces) offsets.push_back(offset(*s));
++    for (const auto& c : model::cells) materials.push_back(c->material_);
++  }
++
++  void restore() const
++  {
++    for (size_t i = 0; i < offsets.size(); ++i) {
++      auto& s = *model::surfaces[i];
++      if (auto* x = dynamic_cast<SurfaceXPlane*>(&s)) x->x0_ = offsets[i];
++      if (auto* y = dynamic_cast<SurfaceYPlane*>(&s)) y->y0_ = offsets[i];
++      if (auto* z = dynamic_cast<SurfaceZPlane*>(&s)) z->z0_ = offsets[i];
++    }
++    for (size_t i = 0; i < materials.size(); ++i)
++      model::cells[i]->material_ = materials[i];
++  }
++
++  bool matches() const
++  {
++    for (size_t i = 0; i < offsets.size(); ++i)
++      if (offset(*model::surfaces[i]) != offsets[i]) return false;
++    for (size_t i = 0; i < materials.size(); ++i)
++      if (model::cells[i]->material_ != materials[i]) return false;
++    return true;
++  }
++
++  ~FixtureState() { restore(); }
++};
++
++void bins()
++{
++  std::cout << ",\"scores\":[";
++  for (size_t t = 0; t < model::tallies.size(); ++t) {
++    if (t) std::cout << ',';
++    std::cout << '[';
++    for (int b = 0; b < model::tallies[t]->n_filter_bins(); ++b) {
++      if (b) std::cout << ',';
++      std::cout << model::tallies[t]->results_(b, 0, 0);
++    }
++    std::cout << ']';
++  }
++  std::cout << ']';
++}
++
++int main(int argc, char** argv)
++{
++  if (argc != 3) return 2;
++  const auto query_file = std::filesystem::absolute(argv[2]);
++  std::filesystem::current_path(argv[1]);
++  pugi::xml_document geometry;
++  if (!geometry.load_file("geometry.xml")) return 3;
++  char name[] = "native-axis-test";
++  char* args[] = {name};
++#ifdef __unix__
++  Dl_info loaded {};
++  if (!dladdr(reinterpret_cast<void*>(&openmc_init), &loaded)) return 7;
++  std::cout << "META {\"library\":" << std::quoted(loaded.dli_fname)
++    << ",\"geometry_state_bytes\":" << sizeof(GeometryState) << "}\n";
++#endif
++  for (int cycle = 0; cycle < 2; ++cycle) {
++    int code = openmc_init(1, args, nullptr);
++    if (code) return code;
++    code = openmc_simulation_init();
++    if (code) return code;
++    model::active_tracklength_tallies.clear();
++    model::active_surface_tallies.clear();
++    for (int i = 0; i < static_cast<int>(model::tallies.size()); ++i) {
++      auto& t = *model::tallies[i];
++      t.active_ = true;
++      if (t.type_ == TallyType::SURFACE) model::active_surface_tallies.push_back(i);
++      else model::active_tracklength_tallies.push_back(i);
++    }
++    {
++      std::ifstream input(query_file);
++      std::cout << std::setprecision(17);
++      std::string line;
++      Particle p; // Reuse the same object across sources, including failed queries.
++      const FixtureState baseline;
++      while (std::getline(input, line)) {
++        if (line.empty()) continue;
++        std::istringstream row(line);
++        int id, steps, mode, hint;
++        SourceSite source;
++        row >> id >> source.r.x >> source.r.y >> source.r.z >> source.u.x >> source.u.y
++            >> source.u.z >> hint >> steps >> mode;
++        if (!row) return 4;
++        source.surf_id = hint;
++        source.E = 1.e6;
++        for (auto& t : model::tallies) t->reset();
++        if (!baseline.matches()) return 8;
++        const FixtureState query_state;
++        bool source_reset = false;
++        std::cout << "ROW {\"id\":" << id << ",\"cycle\":" << cycle << ",\"events\":[";
++        bool first = true;
++        std::string error;
++        try {
++#ifdef OPENMC_EXPERIMENTAL_AXIS_PLANES
++          const auto previous_epoch = p.axis_plane_context().epoch;
++#endif
++          p.from_source(&source);
++#ifdef OPENMC_EXPERIMENTAL_AXIS_PLANES
++          const auto& reset = p.axis_plane_context();
++          source_reset = !reset.valid && !reset.pending && !reset.advanced &&
++            reset.contacts.empty() && reset.outgoing_sides.empty() &&
++            reset.epoch == previous_epoch + 1;
++          if (!source_reset) throw std::runtime_error("SOURCE_CONTEXT_NOT_RESET");
++#else
++          source_reset = true;
++#endif
++          p.id() = id;
++          if (!exhaustive_find_cell(p)) throw std::runtime_error("NO_START_OWNER");
++          if (mode == 3) model::cells[p.coord(0).cell()]->material_[0] = 0;
++          if (mode == 4) {
++#ifdef OPENMC_EXPERIMENTAL_AXIS_PLANES
++            p.axis_plane_context().reset();
++#endif
++            p.r()[0] = -1.7976931348623157e308;
++            // Keep a valid common enclosure and ordered slabs while making the
++            // first interval 1.5*DBL_MAX. Restore every offset even on exception.
++            const double maximum = 1.7976931348623157e308;
++            for (auto& s : model::surfaces) {
++              if (auto* x = dynamic_cast<SurfaceXPlane*>(s.get())) {
++                switch (s->id_) {
++                case 1: x->x0_ = -maximum; break;
++                case 2: x->x0_ = maximum; break;
++                case 10: x->x0_ = maximum/2; break;
++                case 11: x->x0_ = maximum*.75; break;
++                case 20: x->x0_ = maximum*.875; break;
++                case 21: x->x0_ = maximum; break;
++                case 30: x->x0_ = maximum*.25; break;
++                }
++              }
++            }
++            p.u() = {1., 0., 0.};
++            Region extreme("-10", 0);
++            (void) extreme.distance(p.r(), p.u(), SURFACE_NONE);
++            throw std::runtime_error("OVERFLOW_GUARD_DID_NOT_REJECT");
++          }
++#ifdef OPENMC_EXPERIMENTAL_AXIS_PLANES
++          if (mode == 1) p.u()[p.axis_plane_context().axis] *= -1.; // stale epoch
++#endif
++          if (mode == 2) p.event_collide(); // prohibited before any score
++          for (int step = 0; step < steps && p.wgt() > 0.; ++step) {
++            const int before = model::cells[p.coord(0).cell()]->id_;
++            std::string expression;
++            for (auto c : geometry.child("geometry").children("cell"))
++              if (c.attribute("id").as_int() == before) expression = c.attribute("region").value();
++            Region duplicate("(" + expression + ") | (" + expression + ")", before);
++            const auto original = model::cells[p.coord(0).cell()]->distance(p.r(), p.u(), p.surface(), &p);
++            const auto complex = duplicate.distance(p.r(), p.u(), p.surface());
++#ifdef OPENMC_EXPERIMENTAL_AXIS_PLANES
++            if (settings::experimental_axis_plane_events && original != complex)
++              throw std::runtime_error("R_UNION_R_DIFFERS");
++#endif
++            p.event_calculate_xs();
++            p.event_advance();
++#ifdef OPENMC_EXPERIMENTAL_AXIS_PLANES
++            const auto& ctx = p.axis_plane_context();
++            const bool context_valid = ctx.valid;
++            const auto contacts = ctx.contacts;
++            const int active_axis = ctx.valid ? ctx.axis :
++              (p.u().x != 0. ? 0 : (p.u().y != 0. ? 1 : 2));
++#else
++            const bool context_valid = false;
++            const vector<int> contacts;
++            const int active_axis = p.u().x != 0. ? 0 : (p.u().y != 0. ? 1 : 2);
++#endif
++            if (!first) std::cout << ',';
++            first = false;
++            const int s = p.boundary().surface();
++            std::cout << "{\"before\":" << before << ",\"length\":" << p.boundary().distance()
++              << ",\"region_length\":" << original.first << ",\"surface\":"
++              << (s > 0 ? 1 : -1) * model::surfaces[std::abs(s)-1]->id_
++              << ",\"context\":" << (context_valid ? "true" : "false")
++              << ",\"coordinate\":" << p.r()[active_axis]
++              << ",\"contacts\":[";
++            for (size_t i = 0; i < contacts.size(); ++i) {
++              if (i) std::cout << ',';
++              std::cout << model::surfaces[contacts[i]]->id_;
++            }
++            std::cout << ']';
++            p.event_cross_surface();
++            std::cout << ",\"after\":" << (p.wgt() > 0. ? model::cells[p.coord(0).cell()]->id_ : -1)
++              << ",\"weight\":" << p.wgt();
++            bins();
++            std::cout << '}';
++          }
++        } catch (const std::exception& e) { error = e.what(); }
++        query_state.restore();
++        const bool restored = query_state.matches() && baseline.matches();
++        std::cout << "],\"error\":" << std::quoted(error);
++        std::cout << ",\"fixture_restored\":" << (restored ? "true" : "false")
++          << ",\"source_reset\":" << (source_reset ? "true" : "false")
++          << ",\"source_position_unchanged\":" <<
++            (p.r().x == source.r.x && p.r().y == source.r.y && p.r().z == source.r.z ? "true" : "false");
++        bins();
++        std::cout << "}\n";
++        if (!restored) return 9;
++        if (!error.empty() && !first) return 5; // partial event output is terminal failure
++      }
++    } // Restore/checkpoint objects die while the model is still initialized.
++    code = openmc_finalize();
++    if (code) return code;
++#ifdef OPENMC_EXPERIMENTAL_AXIS_PLANES
++    if (settings::experimental_axis_plane_events) return 10;
++#endif
++  }
++  return 0;
++}
+diff --git a/include/openmc/axis_plane_context.h b/include/openmc/axis_plane_context.h
+new file mode 100644
+index 000000000..d7e158e38
+--- /dev/null
++++ b/include/openmc/axis_plane_context.h
+@@ -0,0 +1,38 @@
++#ifndef OPENMC_AXIS_PLANE_CONTEXT_H
++#define OPENMC_AXIS_PLANE_CONTEXT_H
++
++#include <array>
++#include <cstdint>
++#include "openmc/vector.h"
++#include "stellarcsg/dyadic_axis_plane.hpp"
++
++namespace openmc {
++struct AxisPlaneContext {
++  uint64_t epoch {0};
++  bool valid {false};
++  bool pending {false};
++  bool advanced {false};
++  std::array<double, 3> anchor {};
++  int axis {0};
++  int direction {1};
++  double coordinate {0.0}; // committed/consumed coordinate in this epoch
++  double event_coordinate {0.0};
++  stellarcsg::DyadicDifference parameter {}; // exact anchor -> pending event
++  vector<int> contacts; // unsigned native indices, deduplicated, ID sorted
++  vector<int> outgoing_sides; // complete strict sides at pending event
++  int owner {-1};
++  int successor {-1};
++  int vacuum_surface {-1};
++  int representative {0};
++  double length {0.0};
++
++  void reset()
++  {
++    ++epoch;
++    valid = pending = advanced = false;
++    contacts.clear();
++    outgoing_sides.clear();
++  }
++};
++} // namespace openmc
++#endif
+diff --git a/include/openmc/axis_plane_events.h b/include/openmc/axis_plane_events.h
+new file mode 100644
+index 000000000..2ad1fcce7
+--- /dev/null
++++ b/include/openmc/axis_plane_events.h
+@@ -0,0 +1,20 @@
++#ifndef OPENMC_AXIS_PLANE_EVENTS_H
++#define OPENMC_AXIS_PLANE_EVENTS_H
++
++#include "openmc/particle_data.h"
++
++namespace openmc {
++class Region;
++class Particle;
++
++// Experimental, deliberately narrow native event path. Throws std::runtime_error
++// on unsupported input; never falls back to tolerance-based navigation.
++bool axis_plane_find_cell(GeometryState& p);
++BoundaryInfo axis_plane_boundary(GeometryState& p);
++std::pair<double, int32_t> axis_plane_region_distance(
++  const Region& region, Position r, Direction u);
++void axis_plane_advance_endpoint(Particle& p, double distance);
++void axis_plane_commit(Particle& p);
++void axis_plane_validate_particle(Particle& p);
++} // namespace openmc
++#endif
+diff --git a/include/openmc/cell.h b/include/openmc/cell.h
+index 682a61006..3f2bb2c1a 100644
+--- a/include/openmc/cell.h
++++ b/include/openmc/cell.h
+@@ -79,6 +79,11 @@ public:
+   //!   known to be on.  This index takes precedence over surface sense
+   //!   calculations.
+   bool contains(Position r, Direction u, int32_t on_surface) const;
++#ifdef OPENMC_EXPERIMENTAL_AXIS_PLANES
++  bool contains_axis_sides(const vector<int>& sides) const;
++  // Conservative Boolean implication, independent of finite bbox sentinels.
++  bool requires_axis_halfspace(int32_t signed_surface) const;
++#endif
+ 
+   //! Find the oncoming boundary of this cell.
+   std::pair<double, int32_t> distance(
+@@ -108,14 +113,16 @@ private:
+ 
+   //! Determine if a particle is inside the cell for a simple cell (only
+   //! intersection operators)
+-  bool contains_simple(Position r, Direction u, int32_t on_surface) const;
++  bool contains_simple(Position r, Direction u, int32_t on_surface,
++    const vector<int>* sides = nullptr) const;
+ 
+   //! Determine if a particle is inside the cell for a complex cell.
+   //!
+   //! Uses the combination of half-spaces and binary operators to determine
+   //! if short circuiting can be used. Short circuiting uses the relative and
+   //! absolute depth of parentheses in the expression.
+-  bool contains_complex(Position r, Direction u, int32_t on_surface) const;
++  bool contains_complex(Position r, Direction u, int32_t on_surface,
++    const vector<int>* sides = nullptr) const;
+ 
+   //! Find the nearest intersection with any surface in the region expression.
+   std::pair<double, int32_t> distance_to_nearest_surface(Position r,
+@@ -427,6 +434,16 @@ public:
+   //----------------------------------------------------------------------------
+   // Methods
+   vector<int32_t> surfaces() const override { return region_.surfaces(); }
++#ifdef OPENMC_EXPERIMENTAL_AXIS_PLANES
++  bool contains_axis_sides(const vector<int>& sides) const
++  {
++    return region_.contains_axis_sides(sides);
++  }
++  bool requires_axis_halfspace(int32_t signed_surface) const
++  {
++    return region_.requires_axis_halfspace(signed_surface);
++  }
++#endif
+ 
+   std::pair<double, int32_t> distance(Position r, Direction u,
+     int32_t on_surface, GeometryState* p) const override
+diff --git a/include/openmc/particle_data.h b/include/openmc/particle_data.h
+index 24b7eb53c..4cd7a65e1 100644
+--- a/include/openmc/particle_data.h
++++ b/include/openmc/particle_data.h
+@@ -8,6 +8,9 @@
+ #include "openmc/random_lcg.h"
+ #include "openmc/tallies/filter_match.h"
+ #include "openmc/vector.h"
++#ifdef OPENMC_EXPERIMENTAL_AXIS_PLANES
++#include "openmc/axis_plane_context.h"
++#endif
+ 
+ #ifdef OPENMC_DAGMC_ENABLED
+ #include "DagMC.hpp"
+@@ -289,6 +292,9 @@ public:
+   // resets all coordinate levels for the particle
+   void clear()
+   {
++#ifdef OPENMC_EXPERIMENTAL_AXIS_PLANES
++    axis_plane_context_.reset();
++#endif
+     for (auto& level : coord_) {
+       level.reset();
+     }
+@@ -393,6 +399,10 @@ public:
+ 
+   // Boundary information
+   BoundaryInfo& boundary() { return boundary_; }
++#ifdef OPENMC_EXPERIMENTAL_AXIS_PLANES
++  AxisPlaneContext& axis_plane_context() { return axis_plane_context_; }
++  const AxisPlaneContext& axis_plane_context() const { return axis_plane_context_; }
++#endif
+ 
+ #ifdef OPENMC_DAGMC_ENABLED
+   // DagMC state variables
+@@ -437,6 +447,9 @@ private:
+     SURFACE_NONE}; //!< surface token for surface the particle is currently on
+ 
+   BoundaryInfo boundary_; //!< Info about the next intersection
++#ifdef OPENMC_EXPERIMENTAL_AXIS_PLANES
++  AxisPlaneContext axis_plane_context_;
++#endif
+ 
+   int material_ {-1};      //!< index for current material
+   int material_last_ {-1}; //!< index for last material
+diff --git a/include/openmc/settings.h b/include/openmc/settings.h
+index 3ad5f502c..ec4ee454d 100644
+--- a/include/openmc/settings.h
++++ b/include/openmc/settings.h
+@@ -55,6 +55,9 @@ struct CollisionTrackConfig {
+ //==============================================================================
+ 
+ namespace settings {
++#ifdef OPENMC_EXPERIMENTAL_AXIS_PLANES
++extern bool experimental_axis_plane_events; //!< Exact void/unit-axis opt-in
++#endif
+ 
+ // Boolean flags
+ extern bool assume_separate;      //!< assume tallies are spatially separate?
+diff --git a/src/axis_plane_events.cpp b/src/axis_plane_events.cpp
+new file mode 100644
+index 000000000..161dd9435
+--- /dev/null
++++ b/src/axis_plane_events.cpp
+@@ -0,0 +1,389 @@
++#include "openmc/axis_plane_events.h"
++
++#include <algorithm>
++#include <cmath>
++#include <stdexcept>
++#include <string>
++
++#include "openmc/boundary_condition.h"
++#include "openmc/cell.h"
++#include "openmc/geometry.h"
++#include "openmc/particle.h"
++#include "openmc/settings.h"
++#include "openmc/surface.h"
++#include "openmc/tallies/tally.h"
++#include "openmc/universe.h"
++
++#ifdef __FAST_MATH__
++#error Exact axis-plane events require strict floating point
++#endif
++
++namespace openmc {
++namespace {
++using stellarcsg::AxisPlane;
++using stellarcsg::DyadicDifference;
++using stellarcsg::UnitAxisRay;
++
++[[noreturn]] void unsupported(const char* reason)
++{
++  throw std::runtime_error(std::string("AXIS_PLANE_UNSUPPORTED: ") + reason);
++}
++
++AxisPlane plane(const Surface& s)
++{
++  if (const auto* p = dynamic_cast<const SurfaceXPlane*>(&s)) return {0, p->x0_};
++  if (const auto* p = dynamic_cast<const SurfaceYPlane*>(&s)) return {1, p->y0_};
++  if (const auto* p = dynamic_cast<const SurfaceZPlane*>(&s)) return {2, p->z0_};
++  unsupported("non-built-in-axis-plane surface");
++}
++
++UnitAxisRay ray(Position r, Direction u)
++{
++  int axis = -1;
++  for (int j = 0; j < 3; ++j) {
++    if (!std::isfinite(r[j]) || !std::isfinite(u[j])) unsupported("nonfinite ray");
++    if (u[j] == 0.0) continue;
++    if (axis != -1 || (u[j] != 1.0 && u[j] != -1.0))
++      unsupported("direction must be exactly unit axis");
++    axis = j;
++  }
++  if (axis == -1) unsupported("zero direction");
++  return UnitAxisRay({r.x, r.y, r.z}, axis, u[axis] > 0.0 ? 1 : -1);
++}
++
++void validate_vacuum_enclosure()
++{
++  // Admit only two distinct vacuum faces per axis. Conservative Boolean cell
++  // boxes must fit inside, and collectively reach, this common outer box.
++  // An internal or masked vacuum plane therefore fails before any scoring.
++  array<vector<std::pair<double, int>>, 3> offsets;
++  for (int i = 0; i < static_cast<int>(model::surfaces.size()); ++i) {
++    const auto& s = model::surfaces[i];
++    if (s->bc_) {
++      const auto p = plane(*s);
++      offsets[p.axis].push_back({p.offset, i + 1});
++    }
++  }
++  BoundingBox enclosure;
++  for (int j = 0; j < 3; ++j) {
++    auto& values = offsets[j];
++    if (values.size() != 2 || values[0].first == values[1].first)
++      unsupported("vacuum requires six distinct common outer enclosure faces");
++    std::sort(values.begin(), values.end());
++    enclosure.min[j] = values[0].first;
++    enclosure.max[j] = values[1].first;
++  }
++  auto extent = BoundingBox::inverted();
++  for (const auto& c : model::cells) {
++    const auto box = c->bounding_box();
++    for (int j = 0; j < 3; ++j) {
++      const auto& cell = static_cast<const CSGCell&>(*c);
++      if (!cell.requires_axis_halfspace(offsets[j][0].second) ||
++          !cell.requires_axis_halfspace(-offsets[j][1].second))
++        unsupported("cell does not imply common vacuum enclosure halfspaces");
++      if (box.min[j] < enclosure.min[j] || box.max[j] > enclosure.max[j] ||
++          box.min[j] >= box.max[j])
++        unsupported("cell not bounded by common vacuum enclosure");
++    }
++    extent |= box;
++  }
++  for (int j = 0; j < 3; ++j) {
++    if (extent.min[j] != enclosure.min[j] || extent.max[j] != enclosure.max[j])
++      unsupported("vacuum faces do not bound common cell extent");
++  }
++}
++
++void validate_model()
++{
++  if (model::n_coord_levels != 1 || model::universes.size() != 1 ||
++      model::root_universe != 0 || model::cells.empty())
++    unsupported("requires one root universe and coordinate level");
++  if (settings::run_mode != RunMode::FIXED_SOURCE ||
++      settings::solver_type != SolverType::MONTE_CARLO || settings::cmfd_run ||
++      settings::weight_windows_on ||
++      settings::weight_window_checkpoint_surface || settings::survival_biasing ||
++      settings::event_based || settings::check_overlaps || settings::collision_track ||
++      settings::particle_restart_run || settings::restart_run)
++    unsupported("requires deterministic fixed-source events without auxiliary transport");
++  for (auto cutoff : settings::time_cutoff)
++    if (cutoff < INFTY) unsupported("finite time cutoff");
++  // Surface::surf_source_ is eligibility and defaults true for all surfaces
++  // when no ID list is set. Banking itself is controlled by these settings.
++  if (settings::surf_source_write || settings::surf_source_read)
++    unsupported("surface source banking");
++  for (const auto& s : model::surfaces) {
++    if (!std::isfinite(plane(*s).offset)) unsupported("nonfinite plane");
++    if (s->bc_ && (s->bc_->type() != "vacuum" || s->bc_->has_albedo()))
++      unsupported("boundary condition other than transmission/vacuum");
++  }
++  for (const auto& c : model::cells) {
++    if (!dynamic_cast<const CSGCell*>(c.get()) || c->universe_ != 0 ||
++        c->type_ != Fill::MATERIAL || c->material(0) != MATERIAL_VOID ||
++        c->n_instances() != 1 || !c->rotation_.empty() ||
++        c->translation_.x != 0.0 || c->translation_.y != 0.0 || c->translation_.z != 0.0)
++      unsupported("requires untransformed nondistributed void CSG cells");
++  }
++  validate_vacuum_enclosure();
++  // Validate all configured tallies, even if an active-list accelerator omits one.
++  for (const auto& t : model::tallies) {
++    const bool flux = t->type_ == TallyType::VOLUME &&
++      t->estimator_ == TallyEstimator::TRACKLENGTH &&
++      t->scores_.size() == 1 && t->scores_[0] == SCORE_FLUX;
++    const bool current = t->type_ == TallyType::SURFACE &&
++      t->scores_.size() == 1 && t->scores_[0] == SCORE_CURRENT;
++    if ((!flux && !current) || t->deriv_ != C_NONE ||
++        t->nuclides_.size() != 1 || t->nuclides_[0] != -1)
++      unsupported("tally score/estimator/derivative/nuclide");
++    for (auto filter : t->filter_types()) {
++      if ((flux && filter != FilterType::CELL) ||
++          (current && filter != FilterType::SURFACE))
++        unsupported("tally filter outside cell-flux/surface-current subset");
++    }
++    if (current && t->filters().size() != 1)
++      unsupported("current requires exactly one surface filter");
++  }
++  if (!model::active_meshsurf_tallies.empty() ||
++      !model::active_timed_tracklength_tallies.empty() ||
++      !model::active_collision_tallies.empty() || !model::active_analog_tallies.empty() ||
++      !model::active_pulse_height_tallies.empty()) unsupported("unsupported active tally list");
++}
++
++vector<int> sides(const UnitAxisRay& r, double coordinate, bool after)
++{
++  vector<int> result;
++  result.reserve(model::surfaces.size());
++  for (const auto& s : model::surfaces) {
++    const int side = stellarcsg::axis_plane_limit_side(r, coordinate, plane(*s), after);
++    if (side == 0) unsupported("parallel coplanar ray");
++    result.push_back(side);
++  }
++  return result;
++}
++
++int owner(const vector<int>& values)
++{
++  int result = C_NONE;
++  // Full search, independent of neighbors and spatial partition candidates.
++  for (int index : model::universes[0]->cells_) {
++    const auto& c = static_cast<const CSGCell&>(*model::cells[index]);
++    if (!c.contains_axis_sides(values)) continue;
++    if (result != C_NONE) unsupported("multiple strict owners; explicit Boolean priority required");
++    result = index;
++  }
++  return result;
++}
++
++struct Contact {
++  double coordinate;
++  int index;
++  DyadicDifference parameter;
++};
++
++vector<Contact> future_contacts(const UnitAxisRay& r, double current)
++{
++  vector<Contact> result;
++  const UnitAxisRay from({r.axis() == 0 ? current : r.anchor()[0],
++    r.axis() == 1 ? current : r.anchor()[1],
++    r.axis() == 2 ? current : r.anchor()[2]}, r.axis(), r.direction());
++  for (int i = 0; i < static_cast<int>(model::surfaces.size()); ++i) {
++    const auto p = plane(*model::surfaces[i]);
++    const auto c = stellarcsg::axis_plane_contact(from, p);
++    if (c.status == stellarcsg::AxisContactStatus::coplanar)
++      unsupported("parallel coplanar ray");
++    // Every exact origin is consumed by the outgoing state at current. Positive
++    // future contacts cannot be dropped merely for being close to that origin.
++    if (c.status != stellarcsg::AxisContactStatus::future) continue;
++    result.push_back({p.offset, i, stellarcsg::axis_plane_contact(r, p).parameter});
++  }
++  std::sort(result.begin(), result.end(), [](const Contact& a, const Contact& b) {
++    const int order = a.parameter.compare(b.parameter);
++    return order != 0 ? order < 0 :
++      model::surfaces[a.index]->id_ < model::surfaces[b.index]->id_;
++  });
++  return result;
++}
++
++double interval(const UnitAxisRay& r, double begin, double end)
++{
++  const auto exact = stellarcsg::axis_interval_length(r, begin, end);
++  const auto rounded = exact.rounded();
++  if (exact.sign() <= 0 || rounded.status != stellarcsg::DyadicRoundingStatus::finite ||
++      !std::isfinite(rounded.value) || rounded.value <= 0.0 || rounded.value == INFTY)
++    unsupported("unrepresentable positive interval");
++  return rounded.value;
++}
++
++void assign_owner(GeometryState& p, int index)
++{
++  auto& c = *model::cells[index];
++  p.n_coord() = 1;
++  p.coord(0).universe() = 0;
++  p.coord(0).cell() = index;
++  p.cell_instance() = 0;
++  p.material_last() = p.material();
++  p.material() = MATERIAL_VOID;
++  p.sqrtkT_last() = p.sqrtkT();
++  p.sqrtkT() = c.sqrtkT(0);
++  p.density_mult_last() = p.density_mult();
++  p.density_mult() = c.density_mult(0);
++}
++
++UnitAxisRay context_ray(GeometryState& p)
++{
++  auto& ctx = p.axis_plane_context();
++  if (!ctx.valid) unsupported("missing ray context");
++  const auto live = ray(p.r(), p.u());
++  if (live.axis() != ctx.axis || live.direction() != ctx.direction || p.n_coord() != 1 ||
++      p.coord(0).universe() != 0) unsupported("ray/frame changed within epoch");
++  for (int j = 0; j < 3; ++j) {
++    const double expected = j == ctx.axis ?
++      (ctx.advanced ? ctx.event_coordinate : ctx.coordinate) : ctx.anchor[j];
++    if (p.r()[j] != expected) unsupported("position changed outside certified advance");
++  }
++  return UnitAxisRay(ctx.anchor, ctx.axis, ctx.direction);
++}
++} // namespace
++
++bool axis_plane_find_cell(GeometryState& p)
++{
++  validate_model();
++  auto& ctx = p.axis_plane_context();
++  if (!ctx.valid) {
++    const auto r = ray(p.r(), p.u());
++    ctx.anchor = r.anchor();
++    ctx.axis = r.axis();
++    ctx.direction = r.direction();
++    ctx.coordinate = r.anchor()[r.axis()];
++    ctx.valid = true;
++    if (p.surface() != SURFACE_NONE) {
++      const int index = std::abs(p.surface()) - 1;
++      if (index < 0 || index >= static_cast<int>(model::surfaces.size()) ||
++          stellarcsg::axis_plane_contact(r, plane(*model::surfaces[index])).status !=
++            stellarcsg::AxisContactStatus::origin)
++        unsupported("source surface hint is not an exact origin contact");
++    }
++    ctx.owner = owner(sides(r, ctx.coordinate, true));
++  } else {
++    const auto r = context_ray(p);
++    if (ctx.pending) unsupported("lookup before pending event commit");
++    if (owner(sides(r, ctx.coordinate, true)) != ctx.owner)
++      unsupported("strict owner changed outside event commit");
++  }
++  if (ctx.owner == C_NONE) return false;
++  assign_owner(p, ctx.owner);
++  return true;
++}
++
++BoundaryInfo axis_plane_boundary(GeometryState& p)
++{
++  validate_model();
++  if (!p.axis_plane_context().valid && !axis_plane_find_cell(p))
++    unsupported("source has no strict outgoing owner");
++  const auto r = context_ray(p);
++  auto& ctx = p.axis_plane_context();
++  if (ctx.advanced || ctx.pending) unsupported("uncommitted event query");
++  if (p.coord(0).cell() != ctx.owner || owner(sides(r, ctx.coordinate, true)) != ctx.owner)
++    unsupported("current owner disagrees with strict state");
++  const auto candidates = future_contacts(r, ctx.coordinate);
++  for (size_t begin = 0; begin < candidates.size();) {
++    size_t end = begin + 1;
++    while (end < candidates.size() &&
++           candidates[begin].parameter.compare(candidates[end].parameter) == 0) ++end;
++    const double coordinate = candidates[begin].coordinate;
++    auto outgoing = sides(r, coordinate, true);
++    const int next = owner(outgoing);
++    int vacuum = C_NONE;
++    for (size_t i = begin; i < end; ++i) {
++      const int index = candidates[i].index;
++      if (model::surfaces[index]->bc_) vacuum = index;
++    }
++    if (next != ctx.owner || vacuum != C_NONE) {
++      if (owner(sides(r, coordinate, false)) != ctx.owner)
++        unsupported("incoming owner disagrees at contact group");
++      if (vacuum != C_NONE && next != C_NONE)
++        unsupported("vacuum contact with outgoing owner");
++      if (next == C_NONE && vacuum == C_NONE)
++        unsupported("uncovered successor without vacuum");
++      ctx.length = interval(r, ctx.coordinate, coordinate);
++      ctx.event_coordinate = coordinate;
++      ctx.parameter = candidates[begin].parameter;
++      ctx.contacts.clear();
++      for (size_t i = begin; i < end; ++i) ctx.contacts.push_back(candidates[i].index);
++      ctx.outgoing_sides.assign(outgoing.begin(), outgoing.end());
++      ctx.successor = next;
++      ctx.vacuum_surface = vacuum;
++      ctx.representative = ctx.direction * (ctx.contacts.front() + 1);
++      ctx.pending = true;
++      BoundaryInfo result;
++      result.distance() = ctx.length;
++      result.surface() = ctx.representative;
++      result.coord_level() = 1;
++      return result;
++    }
++    begin = end; // masked virtual group; no rounded movement and no score
++  }
++  unsupported("no finite next owner boundary or vacuum");
++}
++
++std::pair<double, int32_t> axis_plane_region_distance(
++  const Region& region, Position position, Direction direction)
++{
++  validate_model();
++  const auto r = ray(position, direction);
++  const double current = position[r.axis()];
++  const bool initial = region.contains_axis_sides(sides(r, current, true));
++  const auto candidates = future_contacts(r, current);
++  for (size_t begin = 0; begin < candidates.size();) {
++    size_t end = begin + 1;
++    while (end < candidates.size() &&
++           candidates[begin].parameter.compare(candidates[end].parameter) == 0) ++end;
++    if (region.contains_axis_sides(sides(r, candidates[begin].coordinate, true)) != initial)
++      return {interval(r, current, candidates[begin].coordinate),
++        r.direction() * (candidates[begin].index + 1)};
++    begin = end;
++  }
++  return {INFTY, SURFACE_NONE};
++}
++
++void axis_plane_validate_particle(Particle& p)
++{
++  validate_model();
++  if (!p.type().is_neutron() || !std::isfinite(p.E()) || p.E() <= 0.0 ||
++      !std::isfinite(p.wgt()) || p.wgt() <= 0.0)
++    unsupported("requires live positive-energy neutron");
++  if (p.axis_plane_context().valid) (void) context_ray(p);
++  else (void) ray(p.r(), p.u());
++}
++
++void axis_plane_advance_endpoint(Particle& p, double distance)
++{
++  auto& ctx = p.axis_plane_context();
++  if (!ctx.valid || !ctx.pending || ctx.advanced || distance != ctx.length ||
++      p.boundary().surface() != ctx.representative)
++    unsupported("advance does not match pending exact event");
++  // Caller has done ordinary movement. Replace its rounded active coordinate
++  // with the certified represented plane coordinate before native scoring.
++  p.r()[ctx.axis] = ctx.event_coordinate;
++  ctx.advanced = true;
++}
++
++void axis_plane_commit(Particle& p)
++{
++  const auto r = context_ray(p);
++  auto& ctx = p.axis_plane_context();
++  if (!ctx.pending || !ctx.advanced || p.surface() != ctx.representative ||
++      p.coord(0).cell() != ctx.owner ||
++      owner(sides(r, ctx.event_coordinate, true)) != ctx.successor)
++    unsupported("stale or inconsistent pending event commit");
++  if (ctx.vacuum_surface != C_NONE)
++    p.cross_vacuum_bc(*model::surfaces[ctx.vacuum_surface]);
++  else
++    assign_owner(p, ctx.successor);
++  ctx.coordinate = ctx.event_coordinate;
++  ctx.owner = ctx.successor;
++  ctx.pending = ctx.advanced = false;
++  // Keep the committed contact identities and exact anchor parameter as evidence.
++  // The next query skips only origins at this exact consumed coordinate.
++  p.r_last_current() = p.r();
++}
++} // namespace openmc
+diff --git a/src/cell.cpp b/src/cell.cpp
+index 4a7e79576..a77f78397 100644
+--- a/src/cell.cpp
++++ b/src/cell.cpp
+@@ -1,5 +1,8 @@
+ 
+ #include "openmc/cell.h"
++#ifdef OPENMC_EXPERIMENTAL_AXIS_PLANES
++#include "openmc/axis_plane_events.h"
++#endif
+ 
+ #include <algorithm>
+ #include <cassert>
+@@ -950,6 +953,10 @@ std::string Region::str() const
+ std::pair<double, int32_t> Region::distance(
+   Position r, Direction u, int32_t on_surface) const
+ {
++#ifdef OPENMC_EXPERIMENTAL_AXIS_PLANES
++  if (settings::experimental_axis_plane_events)
++    return axis_plane_region_distance(*this, r, u);
++#endif
+   if (simple_) {
+     return distance_to_nearest_surface(r, u, on_surface, false);
+   } else {
+@@ -1043,7 +1050,8 @@ bool Region::contains(Position r, Direction u, int32_t on_surface) const
+ 
+ //==============================================================================
+ 
+-bool Region::contains_simple(Position r, Direction u, int32_t on_surface) const
++bool Region::contains_simple(Position r, Direction u, int32_t on_surface,
++  const vector<int>* sides) const
+ {
+   for (int32_t token : expression_) {
+     // Assume that no tokens are operators. Evaluate the sense of particle with
+@@ -1055,7 +1063,8 @@ bool Region::contains_simple(Position r, Direction u, int32_t on_surface) const
+       return false;
+     } else {
+       // Note the off-by-one indexing
+-      bool sense = model::surfaces[abs(token) - 1]->sense(r, u);
++      bool sense = sides ? sides->at(abs(token) - 1) > 0 :
++        model::surfaces[abs(token) - 1]->sense(r, u);
+       if (sense != (token > 0)) {
+         return false;
+       }
+@@ -1066,7 +1075,8 @@ bool Region::contains_simple(Position r, Direction u, int32_t on_surface) const
+ 
+ //==============================================================================
+ 
+-bool Region::contains_complex(Position r, Direction u, int32_t on_surface) const
++bool Region::contains_complex(Position r, Direction u, int32_t on_surface,
++  const vector<int>* sides) const
+ {
+   bool in_cell = true;
+   int total_depth = 0;
+@@ -1085,7 +1095,8 @@ bool Region::contains_complex(Position r, Direction u, int32_t on_surface) const
+         in_cell = false;
+       } else {
+         // Note the off-by-one indexing
+-        bool sense = model::surfaces[abs(token) - 1]->sense(r, u);
++        bool sense = sides ? sides->at(abs(token) - 1) > 0 :
++          model::surfaces[abs(token) - 1]->sense(r, u);
+         in_cell = (sense == (token > 0));
+       }
+     } else if ((token == OP_UNION && in_cell == true) ||
+@@ -1125,6 +1136,39 @@ bool Region::contains_complex(Position r, Direction u, int32_t on_surface) const
+ 
+ //==============================================================================
+ 
++#ifdef OPENMC_EXPERIMENTAL_AXIS_PLANES
++bool Region::contains_axis_sides(const vector<int>& sides) const
++{
++  if (sides.size() != model::surfaces.size() ||
++      std::any_of(sides.begin(), sides.end(), [](int s) { return s != -1 && s != 1; }))
++    throw std::runtime_error("AXIS_PLANE_UNSUPPORTED: incomplete strict sides");
++  return simple_ ? contains_simple({}, {}, SURFACE_NONE, &sides) :
++    contains_complex({}, {}, SURFACE_NONE, &sides);
++}
++
++bool Region::requires_axis_halfspace(int32_t signed_surface) const
++{
++  if (simple_)
++    return std::find(expression_.begin(), expression_.end(), signed_surface) !=
++      expression_.end();
++  // Fix the required halfspace false. Every other literal may be true, an
++  // overestimate of satisfiability that is safe even for correlated literals.
++  // AND/OR preserve that overestimate. A false final value proves implication.
++  vector<int> possible;
++  for (const auto token : generate_postfix(0)) {
++    if (token == OP_INTERSECTION || token == OP_UNION) {
++      const int right = possible.back();
++      possible.pop_back();
++      possible.back() = token == OP_INTERSECTION ?
++        possible.back() && right : possible.back() || right;
++    } else {
++      possible.push_back(token != signed_surface);
++    }
++  }
++  return !possible.empty() && !possible.back();
++}
++#endif
++
+ BoundingBox Region::bounding_box(int32_t cell_id) const
+ {
+   if (simple_) {
+diff --git a/src/geometry.cpp b/src/geometry.cpp
+index 687be57fe..d8daa36c3 100644
+--- a/src/geometry.cpp
++++ b/src/geometry.cpp
+@@ -1,4 +1,7 @@
+ #include "openmc/geometry.h"
++#ifdef OPENMC_EXPERIMENTAL_AXIS_PLANES
++#include "openmc/axis_plane_events.h"
++#endif
+ 
+ #include <fmt/core.h>
+ #include <fmt/ostream.h>
+@@ -341,6 +344,10 @@ void reconcile_cell_after_collision(GeometryState& p)
+ 
+ bool exhaustive_find_cell(GeometryState& p, bool verbose)
+ {
++#ifdef OPENMC_EXPERIMENTAL_AXIS_PLANES
++  if (settings::experimental_axis_plane_events)
++    return axis_plane_find_cell(p);
++#endif
+   int i_universe = p.lowest_coord().universe();
+   if (i_universe == C_NONE) {
+     p.coord(0).universe() = model::root_universe;
+@@ -418,6 +425,10 @@ void cross_lattice(GeometryState& p, const BoundaryInfo& boundary, bool verbose)
+ 
+ BoundaryInfo distance_to_boundary(GeometryState& p)
+ {
++#ifdef OPENMC_EXPERIMENTAL_AXIS_PLANES
++  if (settings::experimental_axis_plane_events)
++    return axis_plane_boundary(p);
++#endif
+   BoundaryInfo info;
+   double d_lat = INFINITY;
+   double d_surf = INFINITY;
+diff --git a/src/particle.cpp b/src/particle.cpp
+index 30ccb903b..9bb9e8533 100644
+--- a/src/particle.cpp
++++ b/src/particle.cpp
+@@ -1,4 +1,7 @@
+ #include "openmc/particle.h"
++#ifdef OPENMC_EXPERIMENTAL_AXIS_PLANES
++#include "openmc/axis_plane_events.h"
++#endif
+ 
+ #include <algorithm> // copy, min
+ #include <cmath>     // log, abs
+@@ -243,6 +246,10 @@ void Particle::event_calculate_xs()
+     check_cell_overlap(*this);
+ 
+   // Calculate microscopic and macroscopic cross sections
++#ifdef OPENMC_EXPERIMENTAL_AXIS_PLANES
++  if (settings::experimental_axis_plane_events)
++    axis_plane_validate_particle(*this);
++#endif
+   if (material() != MATERIAL_VOID) {
+     if (settings::run_CE) {
+       if (material() != material_last() || sqrtkT() != sqrtkT_last() ||
+@@ -271,6 +278,10 @@ void Particle::event_calculate_xs()
+ 
+ void Particle::event_advance()
+ {
++#ifdef OPENMC_EXPERIMENTAL_AXIS_PLANES
++  if (settings::experimental_axis_plane_events)
++    axis_plane_validate_particle(*this);
++#endif
+   // Find the distance to the nearest boundary
+   boundary() = distance_to_boundary(*this);
+ 
+@@ -295,6 +306,10 @@ void Particle::event_advance()
+ 
+   // Advance particle in space and time
+   this->move_distance(distance);
++#ifdef OPENMC_EXPERIMENTAL_AXIS_PLANES
++  if (settings::experimental_axis_plane_events)
++    axis_plane_advance_endpoint(*this, distance);
++#endif
+   double dt = distance / speed;
+   this->time() += dt;
+   this->lifetime() += dt;
+@@ -372,7 +387,12 @@ void Particle::event_cross_surface()
+     if (surf.surf_source_ && surf.bc_) {
+       add_surf_source_to_bank(*this, surf);
+     }
+-    this->cross_surface(surf);
++#ifdef OPENMC_EXPERIMENTAL_AXIS_PLANES
++    if (settings::experimental_axis_plane_events)
++      axis_plane_commit(*this);
++    else
++#endif
++      this->cross_surface(surf);
+     // If no BC, add particle to surface source after crossing surface
+     if (surf.surf_source_ && !surf.bc_) {
+       add_surf_source_to_bank(*this, surf);
+@@ -393,6 +413,10 @@ void Particle::event_cross_surface()
+ 
+ void Particle::event_collide()
+ {
++#ifdef OPENMC_EXPERIMENTAL_AXIS_PLANES
++  if (settings::experimental_axis_plane_events)
++    throw std::runtime_error("AXIS_PLANE_UNSUPPORTED: collision event");
++#endif
+ 
+   // Score collision estimate of keff
+   if (settings::run_mode == RunMode::EIGENVALUE && type().is_neutron()) {
+diff --git a/src/settings.cpp b/src/settings.cpp
+index 15a7b9c27..9ddf6bc38 100644
+--- a/src/settings.cpp
++++ b/src/settings.cpp
+@@ -43,6 +43,9 @@ namespace openmc {
+ //==============================================================================
+ 
+ namespace settings {
++#ifdef OPENMC_EXPERIMENTAL_AXIS_PLANES
++bool experimental_axis_plane_events {false};
++#endif
+ 
+ // Default values for boolean flags
+ bool assume_separate {false};
+@@ -431,6 +434,16 @@ void read_settings_xml()
+ 
+ void read_settings_xml(pugi::xml_node root)
+ {
++#ifdef OPENMC_EXPERIMENTAL_AXIS_PLANES
++  settings::experimental_axis_plane_events =
++    check_for_node(root, "experimental_axis_plane_events") &&
++    get_node_value_bool(root, "experimental_axis_plane_events");
++#else
++  if (check_for_node(root, "experimental_axis_plane_events") &&
++      get_node_value_bool(root, "experimental_axis_plane_events")) {
++    fatal_error("Exact axis-plane events were not enabled at compile time.");
++  }
++#endif
+   using namespace settings;
+   using namespace pugi;
+ 
+@@ -1347,6 +1360,9 @@ void read_settings_xml(pugi::xml_node root)
+ 
+ void free_memory_settings()
+ {
++#ifdef OPENMC_EXPERIMENTAL_AXIS_PLANES
++  settings::experimental_axis_plane_events = false;
++#endif
+   settings::statepoint_batch.clear();
+   settings::sourcepoint_batch.clear();
+   settings::source_write_surf_id.clear();

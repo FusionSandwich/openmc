@@ -1,0 +1,13 @@
+{
+  "args": [
+    "cmake",
+    "--build",
+    "/var/tmp/stellarcsg-axis-review-20261008-271-1791485152067081400/off",
+    "--target",
+    "stellarcsg_native_axis_test",
+    "-j",
+    "1"
+  ],
+  "exit": 0,
+  "seconds": 149.88947542
+}

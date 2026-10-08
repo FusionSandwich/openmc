@@ -1,0 +1,17 @@
+{
+  "status": "PASS_PENDING_INDEPENDENT_REVIEW",
+  "seconds": 420.519632388,
+  "models": 39,
+  "rows": 208,
+  "corruptions_rejected": [
+    "owner",
+    "missing_gap",
+    "redistributed_flux",
+    "wrong_current",
+    "missing_contact"
+  ],
+  "legacy_models": 6,
+  "native_outputs": "/var/tmp/stellarcsg-axis-review-20261008-271-1791485152067081400",
+  "output_bytes": 141355169,
+  "lease": "release after terminal children"
+}

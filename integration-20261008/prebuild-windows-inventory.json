@@ -1,0 +1,153 @@
+{
+  "time_utc": "2026-10-08T18:45:33.9733897Z",
+  "memory": {
+    "TotalVisibleMemorySize": 33457440,
+    "FreePhysicalMemory": 8997460
+  },
+  "drives": [
+    {
+      "Name": "C",
+      "Root": "C:\\",
+      "Used": 895759761408,
+      "Free": 103206006784
+    },
+    {
+      "Name": "D",
+      "Root": "D:\\",
+      "Used": 1920053923840,
+      "Free": 80343867392
+    },
+    {
+      "Name": "G",
+      "Root": "G:\\",
+      "Used": 900920061952,
+      "Free": 98045706240
+    },
+    {
+      "Name": "Temp",
+      "Root": "D:\\openc-hts-dpa-data\\tmp\\",
+      "Used": 1920053923840,
+      "Free": 80343867392
+    }
+  ],
+  "processes": [
+    {
+      "Name": "ChatGPT",
+      "Id": 35048,
+      "CPU": 4737.71875,
+      "WorkingSet64": 1880223744
+    },
+    {
+      "Name": "codex",
+      "Id": 11848,
+      "CPU": 2449.046875,
+      "WorkingSet64": 1655193600
+    },
+    {
+      "Name": "Memory Compression",
+      "Id": 3368,
+      "CPU": null,
+      "WorkingSet64": 908136448
+    },
+    {
+      "Name": "chrome",
+      "Id": 3068,
+      "CPU": 1511.453125,
+      "WorkingSet64": 808202240
+    },
+    {
+      "Name": "chrome",
+      "Id": 65172,
+      "CPU": 139.609375,
+      "WorkingSet64": 773824512
+    },
+    {
+      "Name": "MsMpEng",
+      "Id": 5668,
+      "CPU": null,
+      "WorkingSet64": 726269952
+    },
+    {
+      "Name": "GoogleDriveFS",
+      "Id": 19264,
+      "CPU": 6572.828125,
+      "WorkingSet64": 585703424
+    },
+    {
+      "Name": "ChatGPT",
+      "Id": 21180,
+      "CPU": 488.75,
+      "WorkingSet64": 538349568
+    },
+    {
+      "Name": "chrome",
+      "Id": 20788,
+      "CPU": 4408.21875,
+      "WorkingSet64": 521449472
+    },
+    {
+      "Name": "chrome",
+      "Id": 62804,
+      "CPU": 33.125,
+      "WorkingSet64": 500744192
+    },
+    {
+      "Name": "explorer",
+      "Id": 14560,
+      "CPU": 10226.984375,
+      "WorkingSet64": 466440192
+    },
+    {
+      "Name": "chrome",
+      "Id": 27016,
+      "CPU": 136.234375,
+      "WorkingSet64": 445415424
+    }
+  ],
+  "executables": [
+    {
+      "Name": "python.exe",
+      "Source": "C:\\Users\\joshu\\AppData\\Local\\Programs\\Python\\Python312\\python.exe"
+    },
+    {
+      "Name": "py.exe",
+      "Source": "C:\\Windows\\py.exe"
+    },
+    {
+      "Name": "cmake.exe",
+      "Source": "C:\\Users\\joshu\\AppData\\Local\\Microsoft\\WinGet\\Packages\\Kitware.CMake_Microsoft.Winget.Source_8wekyb3d8bbwe\\cmake-4.4.0-windows-x86_64\\bin\\cmake.exe"
+    },
+    {
+      "Name": "wsl.exe",
+      "Source": "C:\\Windows\\system32\\wsl.exe"
+    },
+    {
+      "Name": "git.exe",
+      "Source": "C:\\Program Files\\Git\\cmd\\git.exe"
+    }
+  ],
+  "python_versions": [
+    " -V:3.12 *        C:\\Users\\joshu\\AppData\\Local\\Programs\\Python\\Python312\\python.exe",
+    " -V:3.11          D:\\openc-hts-dpa-data\\mlip-local\\Python311\\python.exe",
+    " -V:3.9           C:\\Users\\joshu\\AppData\\Local\\Programs\\Python\\Python39\\python.exe"
+  ],
+  "caches": [
+    {
+      "FullName": "C:\\Users\\joshu\\AppData\\Local\\pip\\cache"
+    },
+    {
+      "FullName": "C:\\Users\\joshu\\.cache"
+    }
+  ],
+  "acquisition_bytes": 0,
+  "existing_capabilities": "Debian GNU14, CMake3.31.6, Python3.13.5, HDF5 1.14.5, libpng1.6.48 and local vendor sources suffice",
+  "rollback": "Retain new integration branch/worktree and receipts; never reset or edit Claude checkout",
+  "source": "Existing original repository HEAD plus hash-frozen uncommitted axis scaffold and accepted patch",
+  "build_limits": {
+    "test_virtual_bytes": 1073741824,
+    "output_bytes": 314572800,
+    "seconds": 1800,
+    "build_virtual_bytes": 1610612736,
+    "workers": 1
+  }
+}

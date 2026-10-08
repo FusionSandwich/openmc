@@ -1,0 +1,19 @@
+{
+  "time_utc": "2026-10-08T18:48:19.180148+00:00",
+  "owner": {
+    "owner": "axis-review-271-1791485152258536000",
+    "workers": 1,
+    "phase_seconds": 1800,
+    "build_virtual_bytes": 1610612736,
+    "test_virtual_bytes": 1073741824,
+    "output_bytes": 314572800
+  },
+  "children": [
+    {
+      "pid": 421,
+      "max_address_space": "Max address space         1610612736           1610612736           bytes     ",
+      "affinity": "Cpus_allowed_list:\t0",
+      "command": "cmake --build /var/tmp/stellarcsg-axis-review-20261008-271-1791485152067081400/on --target stellarcsg_native_axis_test -j 1 "
+    }
+  ]
+}

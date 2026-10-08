@@ -1,0 +1,22 @@
+{
+  "purpose": "Integrate accepted patch on a real branch of the original repository without touching Claude checkout",
+  "new_branch": "JS/axis-integration-20261008",
+  "new_worktree": "C:\\Users\\joshu\\OneDrive\\Documents\\ChatGPT\\StellarCGS\\stellarcsg-axis-integration-20261008",
+  "base": "04a8061dde802f7fd4290fae45b7d84b33bfc020",
+  "source_snapshot_files": 1218,
+  "acquisition_bytes": 0,
+  "existing_capabilities_sufficient": true,
+  "software_acquisition_needed": false,
+  "target_drive": "C:; /var/tmp on installed Debian WSL",
+  "data_drive": "D: read only",
+  "planned_checkout_bytes_upper_bound": 125000000,
+  "native_output_cap_bytes": 314572800,
+  "phase_cap_seconds": 1800,
+  "reason_for_cap": "Previous completed acceptance required 1322.576 seconds across a 900-second timeout and explicit continuation",
+  "workers": 1,
+  "build_virtual_bytes": 1610612736,
+  "test_virtual_bytes": 1073741824,
+  "shared_compute_lease": "C:\\Users\\joshu\\OneDrive\\Documents\\ChatGPT\\StellarCGS\\local-coil-wave-20260926\\compute.lock",
+  "on_existing_lease": "defer; no polling, reclamation or process intervention",
+  "rollback": "Retain own branch, worktree and receipts; no reset, clean, checkout, commit or index mutation in Claude worktree"
+}
