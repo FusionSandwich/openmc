@@ -1,0 +1,176 @@
+{
+  "source_sha256": "e86ad2347aec578dfffd84d5ffe7e333bbc8e898787e7db3fd3280b13f9cd3fb",
+  "independent_reviewer": "patch_review / GPT-6.1 Sol",
+  "counterexamples": [
+    {
+      "id": "HIGH_MODE_MISSED_CROSSING",
+      "scope": "Algorithm stress profile with higher poloidal mode, outside the frozen low-mode benchmark; positive radial chart still valid. Missing crossing, not a claimed global first-root oracle.",
+      "m": [
+        0,
+        2048,
+        1
+      ],
+      "stored_n": [
+        0,
+        3,
+        -6
+      ],
+      "cos_coefficients_m": [
+        0.8,
+        0.12,
+        0.0
+      ],
+      "sin_coefficients_m": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "origin_m": [
+        5.8,
+        0.0,
+        -1.0
+      ],
+      "direction": [
+        0.0,
+        0.0,
+        1.0
+      ],
+      "ceiling_m": 2,
+      "samples": 257,
+      "reference_bracket_m": [
+        0.5499447567076949,
+        0.549946756707695
+      ],
+      "reference_bracket_field_m": [
+        4.413035226991102e-05,
+        -4.3684559961509883e-05
+      ],
+      "isolated_crossing_m": 0.5499457567076561,
+      "nearest_returned_candidate_separation_m": 0.0030895558973312864,
+      "returned_candidate_count": 78,
+      "query_result": {
+        "disposition": "UNRESOLVED",
+        "candidates_m": [
+          0.5467571826802974,
+          0.5468562008103248,
+          0.5658534238630798,
+          0.5662667577896572,
+          0.5815424170421402,
+          0.5820830652737599,
+          0.5939247634148366,
+          0.594542769022493,
+          0.6091963529640462,
+          0.6098930529950415,
+          0.6182527256546512,
+          0.625008904855887,
+          0.6361357790239636,
+          0.6369421614662563,
+          0.6478948023585469,
+          0.6487407769584689,
+          0.6595295289402126,
+          0.660410867447755,
+          0.6710451065075774,
+          0.6719582423588385,
+          0.6796066328514779,
+          0.6805415885867505,
+          0.6909257473595332,
+          0.6918874267667185,
+          0.7021392695532517,
+          0.7031252776489934,
+          0.710482945288148,
+          0.7114858008117803,
+          0.7351926139468967,
+          0.7389615307508057,
+          0.756783046269383,
+          0.773867696152285,
+          0.7780565468522184,
+          0.8516404242149203,
+          0.890746640069711,
+          0.9143710089161908,
+          0.9453114099935057,
+          0.9686888246516814,
+          0.9920231650140374,
+          1.0079768349859626,
+          1.0313111753483186,
+          1.0546885900064944,
+          1.085628991083809,
+          1.109253359930289,
+          1.1483595757850797,
+          1.2219434531477817,
+          1.226132303847715,
+          1.243216953730617,
+          1.2610384692491943,
+          1.2648073860531033,
+          1.2885141991882199,
+          1.289517054711852,
+          1.2968747223510066,
+          1.2978607304467482,
+          1.3081125732332812,
+          1.3090742526404668,
+          1.3194584114132495,
+          1.3203933671485222,
+          1.3280417576411614,
+          1.3289548934924227,
+          1.339589132552245,
+          1.3404704710597874,
+          1.3512592230415312,
+          1.3521051976414529,
+          1.3630578385337437,
+          1.3638642209760363,
+          1.3749910951441129,
+          1.3817472743453487,
+          1.3901069470049585,
+          1.3908036470359537,
+          1.4054572309775069,
+          1.4060752365851634,
+          1.4179169347262401,
+          1.4184575829578598,
+          1.4337332422103428,
+          1.43414657613692,
+          1.4531437991896752,
+          1.4532428173197025
+        ],
+        "candidate_distance_m": 0.5467571826802974,
+        "counters": {
+          "field_jet_points": 2381,
+          "stationary_candidates": 124,
+          "scalar_refinements": 202
+        },
+        "unsupported": null,
+        "unsupported_intervals": []
+      }
+    },
+    {
+      "id": "SINGULAR_GRID_ABORTS_SEARCH",
+      "scope": "Remaining unsupported vector-grid behavior; exact circular first crossing known analytically.",
+      "origin_m": [
+        7.0,
+        0.0,
+        0.0
+      ],
+      "direction": [
+        -1.0,
+        0.0,
+        0.0
+      ],
+      "ceiling_m": 4,
+      "samples": 257,
+      "exact_first_crossing_m": 1.2,
+      "singular_sample_m": 2.0,
+      "query_result": {
+        "disposition": "UNRESOLVED",
+        "candidates_m": [],
+        "candidate_distance_m": null,
+        "counters": {
+          "field_jet_points": 257,
+          "stationary_candidates": 0,
+          "scalar_refinements": 0
+        },
+        "unsupported": "radial chart derivative singularity",
+        "unsupported_intervals": []
+      },
+      "profile_invocation": "DirectFourier(circular=True)",
+      "constant_tube_radius_m": 0.8
+    }
+  ]
+}

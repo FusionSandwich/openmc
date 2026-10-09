@@ -1,0 +1,24 @@
+{
+  "created_utc": "2026-10-09T21:34:01.149040+00:00",
+  "formatter": "existing local black, no acquisition",
+  "scientific_logic_changed": false,
+  "ast_equality": "PASS",
+  "files": {
+    "direct_algebraic.py": {
+      "frozen_run002_sha256": "e86ad2347aec578dfffd84d5ffe7e333bbc8e898787e7db3fd3280b13f9cd3fb",
+      "formatted_live_sha256": "6aa4ff7d7e4a867e1796674e6be22c8e66ed2e9cb2d81cd1fac4c6f69a71db67",
+      "identical_python_ast_sha256": "d15ed09af90d59011d2960da7a95eb066787a28675780584f0373455008d4660"
+    },
+    "test_direct_algebraic.py": {
+      "frozen_run002_sha256": "1d626e42a8fd72fd65dceeaa2540047d7c98e06bc67911bfbd4acb844ad328b9",
+      "formatted_live_sha256": "b1226c146b2e1e79e699e6ca29a3766fbd541885aa55039ba016dc8d32802cd7",
+      "identical_python_ast_sha256": "c40534a055ba9e85ad0013a61ebee6c09f8e17fb351d548535980c962ed41bfe"
+    },
+    "run_direct_trials.py": {
+      "frozen_run002_sha256": "db6bb144109fec5da551bbff7ec6c36c6211b0c2bb3ae45bc13b2cf1df7b4e83",
+      "formatted_live_sha256": "720bb09322f2c12a26f022b70b9fc1a0c1d047dd102e1df1bf508a7da9d8748f",
+      "identical_python_ast_sha256": "3df571275998e9b87b6d0b3263dd50e5808a1a6f16fa2d115fe5ee46788c488b"
+    }
+  },
+  "log": "reformatted tools\\fourier_torus_prototype\\experiments\\test_direct_algebraic.py\nreformatted tools\\fourier_torus_prototype\\experiments\\direct_algebraic.py\nreformatted tools\\fourier_torus_prototype\\experiments\\run_direct_trials.py\n\nAll done! \\u2728 \\U0001f370 \\u2728\n3 files reformatted.\n"
+}

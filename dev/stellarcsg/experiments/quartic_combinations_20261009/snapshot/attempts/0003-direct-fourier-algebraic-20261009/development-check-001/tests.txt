@@ -1,0 +1,25 @@
+test_direct_algebraic (unittest.loader._FailedTest.test_direct_algebraic) ... ERROR
+
+======================================================================
+ERROR: test_direct_algebraic (unittest.loader._FailedTest.test_direct_algebraic)
+----------------------------------------------------------------------
+ImportError: Failed to import test module: test_direct_algebraic
+Traceback (most recent call last):
+  File "C:\Users\joshu\AppData\Local\Programs\Python\Python312\Lib\unittest\loader.py", line 396, in _find_test_path
+    module = self._get_module_from_name(name)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\joshu\AppData\Local\Programs\Python\Python312\Lib\unittest\loader.py", line 339, in _get_module_from_name
+    __import__(name)
+  File "C:\Users\joshu\OneDrive\Documents\ChatGPT\StellarCGS\stellarcsg-fourier-torus-prototype-20261009\tools\fourier_torus_prototype\experiments\test_direct_algebraic.py", line 5, in <module>
+    from direct_algebraic import (DirectFourier, IncumbentBicubic, LocalQuartic,
+  File "C:\Users\joshu\OneDrive\Documents\ChatGPT\StellarCGS\stellarcsg-fourier-torus-prototype-20261009\tools\fourier_torus_prototype\experiments\direct_algebraic.py", line 14, in <module>
+    from patch_methods import MONOMIALS, polynomial_design, polynomial_ray
+  File "C:\Users\joshu\OneDrive\Documents\ChatGPT\StellarCGS\stellarcsg-fourier-torus-prototype-20261009\tools\fourier_torus_prototype\experiments\patch_methods.py", line 15, in <module>
+    from fourier_torus import VmecBoundary, torus_ray_candidates
+ModuleNotFoundError: No module named 'fourier_torus'
+
+
+----------------------------------------------------------------------
+Ran 1 test in 0.000s
+
+FAILED (errors=1)

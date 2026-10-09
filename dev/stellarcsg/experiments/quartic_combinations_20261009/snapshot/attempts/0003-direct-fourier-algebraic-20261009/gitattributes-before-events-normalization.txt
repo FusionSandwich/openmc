@@ -1,0 +1,5 @@
+*.py text eol=lf
+*.md text eol=lf
+.gitattributes text eol=lf
+METHOD_EVENTS.jsonl -text whitespace=cr-at-eol
+attempts/** -text whitespace=cr-at-eol,-blank-at-eol,-blank-at-eof

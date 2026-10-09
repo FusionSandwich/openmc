@@ -1,0 +1,77 @@
+{
+  "created_utc": "2026-10-09T22:05:19.279970+00:00",
+  "status": "PASS_SCOPED_REFERENCE",
+  "source_commit": "9399a879926cb09658709ff030d0317e9e96b7e5",
+  "snapshot_files": 93,
+  "snapshot_hashes_valid": true,
+  "retained_run_source_binding": true,
+  "formatted_source_ast_equivalent": {
+    "fourier_torus.py": true,
+    "test_fourier_torus.py": true,
+    "patch_methods.py": true,
+    "test_patch_methods.py": true,
+    "direct_algebraic.py": true,
+    "test_direct_algebraic.py": true,
+    "run_direct_trials.py": true
+  },
+  "retained_output_hashes_valid": true,
+  "runtime": {
+    "executable": "C:\\Users\\joshu\\AppData\\Local\\Programs\\Python\\Python312\\python.exe",
+    "python": "3.12.10",
+    "numpy": "2.5.1",
+    "scipy": "1.18.0"
+  },
+  "tests": {
+    "run": 59,
+    "failures": 0,
+    "errors": 0
+  },
+  "counterexamples": [
+    {
+      "id": "HIGH_MODE_MISSED_CROSSING",
+      "reproduced": true,
+      "bracket_field_m": [
+        4.413035226991102e-05,
+        -4.3684559961509883e-05
+      ],
+      "missed_crossing_separation_m": 0.0030895558973312864,
+      "candidate_count": 78,
+      "disposition": "UNRESOLVED"
+    },
+    {
+      "id": "SINGULAR_GRID_ABORTS_SEARCH",
+      "reproduced": true,
+      "disposition": "UNRESOLVED",
+      "candidates_m": [],
+      "candidate_distance_m": null,
+      "counters": {
+        "field_jet_points": 257,
+        "stationary_candidates": 0,
+        "scalar_refinements": 0
+      },
+      "unsupported": "radial chart derivative singularity",
+      "unsupported_intervals": []
+    },
+    {
+      "id": "ANGULAR_TRIM_ADMITS_EXTRAPOLATED_QUARTIC_SHEET",
+      "reproduced": true,
+      "exact_polynomial_root_count": 1,
+      "matched_root_interval": [
+        "25082716075/34359738368",
+        "1567669755/2147483648"
+      ],
+      "target_field_at_interval_midpoint_m": 0.7842033643811112,
+      "disposition": "UNRESOLVED"
+    }
+  ],
+  "new_source_sha256": {
+    "quartic_oracle.py": "8b0993589cfa43c57f504e6e0cc2ccc79750175dbb507a65dfb046d05a8e0c49",
+    "test_quartic_oracle.py": "d23f97a2422051d5f61006f1c95bbf37b91e3bbcb184dd28d5933ad759a10dd9",
+    "replay.py": "b58902ae8d206ce03ccc2688e53478ca27d68029db7df5e0cb56d4cc7c08dcbf"
+  },
+  "native_build": false,
+  "transport": false,
+  "real_vmec": false,
+  "physical_fidelity_acceptance": false,
+  "native_speed_acceptance": false
+}

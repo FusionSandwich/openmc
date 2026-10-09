@@ -22,3 +22,14 @@ the distinct candidate-combination experiment under
 
 No claim is made that either Fourier torus proposal is implemented, globally
 correct or faster merely because this packet has been prepared.
+
+## Follow-up review
+
+The prototype chat subsequently added curvature-fit torus patches, constant-
+weight torus sums, hybrid joins, direct Fourier fields and full local quartics.
+The parent chat's read-only review and isolated replay are in
+[the quartic combination review](../../experiments/quartic_combinations_20261009/README.md).
+This preserves the original packet as its dated proposal and evidence snapshot.
+Constant-weight sums of polynomial torus equations remain quartic; the new
+review explicitly corrects the earlier conversational degree claim. Native
+speed and real VMEC fidelity remain unqualified.

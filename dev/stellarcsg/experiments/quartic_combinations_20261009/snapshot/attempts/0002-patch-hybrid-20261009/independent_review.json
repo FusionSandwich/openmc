@@ -1,0 +1,43 @@
+{
+  "time_utc": "2026-10-09T21:17:15.876114+00:00",
+  "reviewer_model": "gpt-6.1-sol",
+  "role": "independent adversarial reviewer",
+  "verdict": "ACCEPT_SCOPED_REPRODUCIBLE_SYNTHETIC_EXPERIMENTS",
+  "reviewed_source_hashes": {
+    "fourier_torus.py": "fa0559134dd60b0390617a799a339ad05ad23e1f523c86ea9b92373ff2812210",
+    "test_fourier_torus.py": "ece3351a22dbb53992996d40d26c40f9a50c725cac9b1f2151d39a3f6a1f44ee",
+    "patch_methods.py": "88623c61a52a997a5770427a38ab9b2eb068c8923db8a43176488b77264fed3e",
+    "test_patch_methods.py": "7483e985c4fd556b32577450ee9b3accbca6f006b51614a46ac1ae796efd292c",
+    "run_patch_trials.py": "032bbff8458c70eaa2e65f78bb22d5fb97330faceff164ec57df8d3224565479"
+  },
+  "acceptance_scope": "accuracy of reported scope and provenance; no general geometry, first-root, physical fidelity, or speed acceptance",
+  "findings": [
+    {
+      "severity": "known-limitation",
+      "description": "Sampled spline search misses the saved even contact; UNRESOLVED behavior is correct",
+      "evidence": "independent_counterexamples.json"
+    },
+    {
+      "severity": "scope",
+      "description": "Atlas deviations are sampled distance to full fitted torus and projected-neighbor gaps, not trimmed coverage or closed-volume proof"
+    },
+    {
+      "severity": "wording-fixed",
+      "description": "Removed sufficient-fidelity phrasing because no physical tolerance is specified"
+    }
+  ],
+  "checked": [
+    "five frozen source hashes",
+    "input manifests and snapshots",
+    "prior original files and saved snapshot copies",
+    "evidence hashes",
+    "curvature and normal sign conventions in narrow convex/saddle controls",
+    "circular torus polynomial degree<=4 and restricted rank<=14",
+    "nonzero fit through weight sum one",
+    "hybrid periodic C1 and same-parameter position bound",
+    "all 624 profile query rows UNRESOLVED",
+    "raw cost/counter summaries match ledger",
+    "frozen test log:20 tests,0 failures,0 errors"
+  ],
+  "execution": "no broad rerun; narrow independent curvature/tangent calculations only"
+}

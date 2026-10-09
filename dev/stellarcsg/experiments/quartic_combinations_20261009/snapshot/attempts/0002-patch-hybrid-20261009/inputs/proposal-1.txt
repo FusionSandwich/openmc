@@ -1,0 +1,301 @@
+**Yes—a version of your idea could work with the Fourier representation and preserve much of the computational advantage of toroidal CSG. But it needs to be formulated as a geometric approximation or fitting problem, not as a direct replacement of Fourier cosine functions with whole tori.**
+
+The promising interpretation is:
+
+> **Use the VMEC Fourier surface to construct a compact collection of toroidal surface pieces, then track particles against those pieces using quartic intersection equations.**
+
+There is published work on approximating general curved surfaces with **osculating toroidal patches**—pieces of tori fitted to the local position and curvature of a surface. That gives your idea a concrete mathematical starting point. It does **not**, by itself, establish near-native OpenMC speed or a complete, watertight CSG representation. [radar.inria.fr](https://radar.inria.fr/report/2011/cad/uid17.html?utm_source=chatgpt.com)
+
+## 1. What works in your reasoning—and what needs changing
+
+Your central idea is to choose building blocks whose intersections are already inexpensive, rather than choosing a geometry representation first and struggling with its intersections afterward. That directly addresses your performance objective.
+
+There are two distinctions to make.
+
+### VMEC already supplies a Fourier representation
+
+For the usual VMEC input/output representation, the surface is already encoded through Fourier coefficients. We generally do not need to sample the surface and take another Fourier transform merely to recover them. SIMSOPT, for example, can initialize its `SurfaceRZFourier` representation directly from a VMEC output file. [Simsopt Documentation](https://simsopt.readthedocs.io/v1.10.0/example_vmec.html?utm_source=chatgpt.com)
+
+The proposed conversion would therefore be
+
+\[
+\boxed{
+\text{VMEC Fourier coefficients}
+\;\longrightarrow\;
+\text{fitted toroidal primitives}
+}
+\]
+
+rather than “geometry → Fourier transform → one torus per frequency.”
+
+### A Fourier mode is not an individual torus
+
+A Fourier mode changes the surface coordinates or radius. It is not generally the boundary of a separate solid.
+
+For example, consider this illustrative geometry—not an equilibrium calculation:
+
+\[
+R(\theta,\phi)
+=
+R_0+\big[a+\epsilon\cos(N_{\rm fp}\phi)\big]\cos\theta,
+\]
+
+\[
+Z(\theta,\phi)
+=
+\big[a+\epsilon\cos(N_{\rm fp}\phi)\big]\sin\theta.
+\]
+
+This is a toroidal tube whose thickness increases and decreases around the machine. The modulation is simple, but the resulting surface is not an ordinary constant-radius torus.
+
+Also, **combining any number of complete tori that all share the machine’s symmetry axis cannot produce a non-axisymmetric stellarator**: rotating the combination about that axis would leave it unchanged. We would need displaced or tilted primitives, locally trimmed pieces, or a different combining operation.
+
+So the useful question becomes: **what exactly does “combine the tori” mean?**
+
+## 2. Three ways to combine tori have very different consequences
+
+### A. Combine their solids using ordinary CSG
+
+This means unions, intersections, and differences:
+
+\[
+\Omega_{\rm approx}
+=
+(T_1\cup T_2\cup\cdots)\setminus(T_a\cup T_b\cup\cdots),
+\]
+
+where each \(T_i\) denotes a solid torus, possibly clipped to a smaller region.
+
+This is the interpretation most compatible with existing CSG. OpenMC represents regions through Boolean combinations of surface half-spaces. Its torus intersections reduce to quartic equations. [OpenMC Documentation](https://docs.openmc.org/en/stable/usersguide/geometry.html?utm_source=chatgpt.com)
+
+**The advantage:** the individual intersection problems remain torus intersection problems.
+
+**The limitation:** Boolean operations select pieces of the original boundaries; they do not smoothly average or deform those boundaries. Consequently, a generic smooth VMEC surface will not be represented exactly by a small finite Boolean combination of ordinary tori.
+
+That does not rule out an accurate approximation. It means we must determine how many pieces are required and whether their joins introduce unacceptable geometric errors.
+
+There is also an important tracking detail: a ray intersection with one torus may lie **inside another overlapping torus**. It is then not an exterior boundary of the union. Taking the smallest positive root over all components is therefore not enough; the Boolean region must determine which intersections are genuine boundary events.
+
+### B. Add the torus equations, as one would add basis functions
+
+This is closer to your Fourier analogy—and it has an interesting mathematical property.
+
+For a circular ring torus centred at the origin,
+
+\[
+P(x,y,z)
+=
+\left(x^2+y^2+z^2+R_0^2-a^2\right)^2
+-
+4R_0^2(x^2+y^2).
+\]
+
+Its surface is \(P=0\). This is the circular-section specialization of the polynomial torus formulation used for ray intersections. [OpenMC Documentation](https://docs.openmc.org/en/stable/methods/geometry.html)
+
+Suppose we construct translated and rotated torus polynomials \(P_i\), and form
+
+\[
+F(x,y,z)=\sum_{i=1}^{K}w_iP_i(x,y,z),
+\]
+
+with constant weights \(w_i\).
+
+**The sum is still a polynomial of degree at most four.** Substituting a straight ray,
+
+\[
+\mathbf{x}(t)=\mathbf{p}+t\mathbf{d},
+\]
+
+therefore still gives a quartic equation.
+
+That is a potentially useful result: we could fit using several torus-shaped polynomial functions and then compile their sum into **one quartic surface**, rather than evaluate every contributing torus during tracking.
+
+However, there is a strict limitation:
+
+> Adding more constant-weight torus polynomials does not provide indefinitely increasing shape complexity, as adding Fourier frequencies does.
+
+A general polynomial of total degree at most four in three variables has only 35 monomials. The particular torus-polynomial family can be more restricted still. Increasing \(K\) cannot escape that finite-dimensional space.
+
+Another way to see the limitation is that a nondegenerate quartic ray equation has at most four distinct roots. An arbitrary complicated boundary can intersect a line more often than that.
+
+**My assessment:** this could be useful as a **local quartic fitting method**, but it is not a general, progressively complete “Fourier series of tori.” It would also require support for the resulting quartic surface, which need not remain an ordinary torus.
+
+### C. Smoothly blend torus distances, radii, or parameterizations
+
+We could instead add nonlinear functions derived from tori, or add their parameterized coordinates. That can produce a richer family of shapes.
+
+But now the intersections of the combined surface are generally **not** the intersections of its constituent tori. We must solve for the new blended surface.
+
+For example, knowing where two functions individually vanish does not tell us where their sum vanishes:
+
+\[
+f(t)=0,\quad g(t)=0
+\qquad\not\Rightarrow\qquad
+\text{roots of }f(t)+g(t)=0.
+\]
+
+This route may recreate the original problem: a compact and smooth representation whose particle intersections are expensive.
+
+**For your speed objective, I would prioritize Boolean combinations of toroidal pieces or locally compiled quartics—not an unrestricted smooth blend.**
+
+## 3. Would moving into another “phase space” solve the difficulty?
+
+A change of coordinates can simplify the surface, but it must also be applied to the particle trajectory.
+
+Suppose a mapping \(\Phi\) turns a simple reference torus into the stellarator:
+
+\[
+\mathbf{x}=\Phi(\mathbf{u}).
+\]
+
+A straight particle path in physical space becomes
+
+\[
+\mathbf{u}(t)=\Phi^{-1}(\mathbf{p}+t\mathbf{d}).
+\]
+
+For a general nonlinear mapping, this path is curved in the transformed coordinates.
+
+We would therefore have exchanged
+
+> straight ray intersecting a complicated surface
+
+for
+
+> curved trajectory intersecting a simple torus.
+
+That can still be useful, but it does not automatically retain the ordinary torus quartic solve.
+
+Rigid and affine transformations preserve straight lines; a general transformation that “untwists” a stellarator does not. **The representation must simplify the surface without making the trajectory equally difficult.**
+
+## 4. The Fourier–torus combination I would actually investigate
+
+I would formulate it as a **Fourier-guided toroidal-patch compiler**.
+
+The Fourier representation would be used during geometry preparation. The compiled toroidal pieces would be used during particle tracking.
+
+### Geometry preparation: fit the actual surface, not each Fourier mode
+
+Starting from the VMEC surface, evaluate its positions, tangent directions, normals, and local curvatures. Then fit small surface regions with appropriately positioned torus patches.
+
+This is the rationale behind an *osculating torus*: it is chosen to match the local surface geometry, including curvature, rather than merely pass through several sampled points. Published torus-patch methods use principal curvatures and principal directions for this construction. [radar.inria.fr](https://radar.inria.fr/report/2011/cad/uid17.html?utm_source=chatgpt.com)
+
+The important distinction from fitting a coil centreline with circular arcs is that this would fit a **two-dimensional plasma surface patch**, accounting for curvature in both surface directions.
+
+The process would be:
+
+\[
+\boxed{
+\text{Fourier surface}
+\rightarrow
+\text{local surface geometry}
+\rightarrow
+\text{toroidal patches}
+\rightarrow
+\text{bounded, trackable representation}
+}
+\]
+
+The fitting objective should not be “use the fewest coefficients.” It should be:
+
+\[
+\boxed{
+\text{minimize tracking cost}
+\quad\text{subject to specified geometry-error and topology constraints}.
+}
+\]
+
+### Particle tracking: retain simple equations
+
+For a candidate torus patch, transform the ray into its local frame, solve the torus quartic, and retain only roots that belong to the valid patch.
+
+A spatial hierarchy could reject patches the ray cannot encounter. The aim would be to solve only a few quartics per query, without reevaluating the full Fourier surface.
+
+OpenMC’s built-in torus surface types are axis-aligned in their local coordinates, while filled universes support rotations and translations. A native-CSG prototype could exploit those facilities where the decomposition permits; a more general patch implementation may require a dedicated local-coordinate adapter. [OpenMC Documentation](https://docs.openmc.org/en/stable/io_formats/geometry.html?utm_source=chatgpt.com)
+
+### The difficult part: patches do not automatically form a solid
+
+**A collection of well-fitted torus patches is not yet a watertight CSG volume.**
+
+We would still need a construction that specifies which side is inside, how adjacent patches meet, which roots belong to each patch, and how artificial clipping boundaries disappear from the intended physical boundary.
+
+There are two materially different implementation routes:
+
+| Route | What particles track | Main trade-off |
+|---|---|---|
+| **Explicit approximate geometry** | A closed solid made from toroidal pieces | Retains simple intersections, but changes the represented geometry within a controlled tolerance |
+| **Tori as accelerators for the original Fourier surface** | The original Fourier geometry, with tori providing bounds and initial guesses | Preserves the original surface, but still needs a reliable final Fourier intersection solve |
+
+For your stated goal, I would test the **explicit approximation route first**. Otherwise, an expensive general-surface fallback could dominate the runtime and eliminate the expected benefit.
+
+### Relevant published precedents
+
+These are closer to your idea than ordinary stellarator Fourier parameterizations:
+
+| Work | Relevant contribution |
+|---|---|
+| **Liu et al. (2009), “A torus patch approximation approach for point projection on surfaces.”** DOI: `10.1016/j.cagd.2009.01.004` | Local torus-patch approximation for geometric calculations. [ACM Digital Library](https://dl.acm.org/doi/abs/10.1016/j.cagd.2009.01.004?utm_source=chatgpt.com) |
+| **Park et al. (2020), “Surface–Surface-Intersection Computation Using a Bounding Volume Hierarchy with Osculating Toroidal Patches in the Leaf Nodes.”** DOI: `10.1016/j.cad.2020.102866` | Uses tightly fitting toroidal patches and a bounding hierarchy to accelerate freeform-surface intersection calculations. [ScienceDirect](https://www.sciencedirect.com/science/article/pii/S0010448520300592?utm_source=chatgpt.com) |
+| **Son, Kim and Elber (2021), “Precise Hausdorff distance computation for freeform surfaces based on computations with osculating toroidal patches.”** | Uses toroidal patches in accurate surface-distance calculations, including issues across composite-surface boundaries. [sanghyun.phd.sh](https://sanghyun.phd.sh/publications/14529-precise-hausdorff-distance-computation-for-freeform-surfaces-based-on-computations-with-osculating-toroidal-patches) |
+
+These establish relevant geometric techniques. **They do not establish a VMEC-to-CSG conversion with near-native Monte Carlo throughput.** Applying and qualifying them for StellarCSG remains a research task.
+
+## 5. What determines whether it can approach traditional CSG speed?
+
+The decisive quantity is not just the total number of torus pieces. It is the work required for each particle query.
+
+A useful approximate cost model is
+
+\[
+T_{\rm query}
+\approx
+T_{\rm search}
++
+k\,T_{\rm quartic}
++
+T_{\rm trimming}
++
+T_{\rm region\ logic}
++
+T_{\rm fallback},
+\]
+
+where \(k\) is the number of candidate patches actually requiring root solves.
+
+Even with individually inexpensive primitives, a method that tests many overlapping tori on every query will not behave like a single native torus. Conversely, a decomposition containing many pieces might still be competitive if most queries quickly identify only one or two relevant pieces. Those are performance hypotheses to measure, not established results.
+
+There is also a reason to keep geometry accuracy and intersection accuracy separate. For a small local normal displacement \(\delta_n\), the first-order ray-distance change at a transverse crossing is approximately
+
+\[
+\delta t
+\approx
+\frac{\delta_n}{|\mathbf n\cdot\mathbf d|},
+\]
+
+for unit normal \(\mathbf n\) and ray direction \(\mathbf d\).
+
+Near grazing incidence, the denominator becomes small. A small surface error can therefore produce a much larger ray-distance error, or change whether a contact occurs at all. At tangency, this first-order estimate ceases to be reliable.
+
+That is why a visually excellent torus fit is not sufficient for transport qualification.
+
+### The deciding experiment
+
+I would begin with **one VMEC field period and an error-versus-tracking-cost study**, rather than a complete reactor model.
+
+Use a circular torus as the exact recovery control, a deliberately non-axisymmetric test surface, and the real plasma boundary. For increasing patch counts, measure:
+
+- **Geometry:** maximum surface deviation, normal error, closed-volume consistency, and patch-seam behaviour.
+- **Tracking correctness:** first intersections, misses, tangencies, closely spaced crossings, and agreement between classification and distance.
+- **Performance:** candidate patches per ray, quartic solves, trimming and fallback costs, followed by complete OpenMC throughput.
+
+The method would be promising only if the required geometry fidelity is achieved while keeping the **per-query work** close to the native-CSG controls.
+
+## 6. How this relates to your previous torus experiment
+
+I rechecked the relevant September 26 repository synthesis. It records an earlier **torus-arc fitting and quartic candidate prototype**, but reports that all 160 queries were blocked in each of its strict and stress banks. It also records position-continuous rather than the intended tangent-continuous joins, and missing continuous-fidelity and complete root/ownership proofs. Those are recorded historical findings, not tests I reran here. 
+
+Therefore, this should not be presented as a completely untouched direction. The potentially distinct experiment is:
+
+> **Fit two-dimensional toroidal patches directly to the Fourier plasma surface, with explicit trimming, closed-solid construction, and first-hit correctness—not merely a chain of torus arcs around a centreline.**
+
+**My conclusion:** your idea has a viable mathematical interpretation, and it is more directly aligned with your speed requirement than merely replacing splines with Fourier evaluation. The strongest version is **Fourier for defining and fitting the geometry; toroidal pieces for tracking it**. What is not justified is expecting a direct Fourier-like transform into a few whole tori whose analytical intersections automatically reconstruct those of an arbitrary stellarator.

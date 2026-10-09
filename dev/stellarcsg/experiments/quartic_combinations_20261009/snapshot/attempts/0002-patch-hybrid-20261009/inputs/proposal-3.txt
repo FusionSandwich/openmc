@@ -1,0 +1,176 @@
+**Yes—a hybrid of toroidal patches and localized spline joins is a credible approach. Having two intersection methods does not inherently make it slower.** It could be substantially faster than an all-spline representation **provided that the toroidal pieces are already accurate over most of the surface, and most particle queries avoid expensive spline calculations.**
+
+The important qualification is that **splines can improve the joins without correcting errors elsewhere on the toroidal pieces**. Smoothness, geometric accuracy, and tracking speed must be checked separately.
+
+## 1. How I would combine them
+
+I would use **pieces of torus surfaces**, rather than complete overlapping tori, and reserve splines for transition regions and places that a torus cannot approximate adequately.
+
+The resulting boundary would alternate between:
+
+\[
+\text{torus patch}
+\;\longleftrightarrow\;
+\text{spline transition}
+\;\longleftrightarrow\;
+\text{torus patch}.
+\]
+
+During geometry preparation, the VMEC Fourier surface would supply the target coordinates, normals, and curvature. The compiler would fit the toroidal regions and spline transitions together.
+
+During particle tracking, the Fourier representation would no longer need to be evaluated for ordinary queries. Each candidate patch would retain its own intersection routine:
+
+| Part of the boundary | Representation used during tracking |
+|---|---|
+| Region adequately approximated by a torus | Torus equation and quartic intersection solver |
+| Transition between toroidal regions | Local spline patch |
+| Region poorly approximated by any sufficiently large torus patch | Spline patch or another suitable primitive |
+
+OpenMC already uses specialized intersection calculations for different surface types, including a quartic solver for tori. Mixed analytic and spline surface representations also exist in CAD systems; Open CASCADE’s surface interface distinguishes tori, Bézier surfaces, and B-spline surfaces. The coexistence of those types is therefore not itself the unusual or difficult part. [OpenMC Documentation](https://docs.openmc.org/en/stable/methods/geometry.html)
+
+**The difficult part is constructing a closed, accurate surface and finding its first intersection efficiently.**
+
+## 2. There are two very different meanings of “stitching”
+
+### Local transition patches: the version I would test
+
+Here, the interiors of the torus patches remain genuinely toroidal. Only a limited region between them becomes a spline.
+
+A particle encountering the interior of a torus patch can still use the ordinary torus intersection calculation. It does not need to evaluate the neighbouring spline unless that spline could contain an earlier intersection.
+
+This preserves the reason for using tori in the first place.
+
+### Spline deformation of every torus: a different, less direct speed strategy
+
+Suppose instead that we smoothly vary each torus’s radius, position, or orientation using splines throughout its extent. The resulting surface is generally no longer an ordinary torus.
+
+For example,
+
+\[
+R_{\mathrm{major}}=R_{\mathrm{major}}(u),\qquad
+r_{\mathrm{minor}}=r_{\mathrm{minor}}(u)
+\]
+
+describes a more general shape than a torus with constant parameters. Its ray-intersection equation is not automatically the ordinary quartic.
+
+That approach might improve accuracy, but it can surrender the cheap intersection routine we intended to preserve.
+
+**The proposed speed advantage depends on leaving substantial regions exactly toroidal in the compiled approximation—not merely describing a spline surface as a collection of deformed tori.**
+
+## 3. Would it achieve spline-like accuracy?
+
+**Potentially, but stitching alone is insufficient.**
+
+Consider a hypothetical torus patch whose centre is 3 mm away from the target VMEC surface. Adding perfectly smooth spline joins at its edges does not remove that 3 mm error.
+
+Therefore, the compiler needs two independent acceptance tests:
+
+**First, each retained torus patch must already satisfy the geometric tolerance over its entire interior.** Where it does not, the compiler must shrink the patch, choose a better primitive, or use a spline there.
+
+**Second, the transition must satisfy that same tolerance while joining its neighbours correctly.** A smooth bridge that bulges away from the VMEC surface is not an accurate bridge.
+
+For a smooth plasma boundary, I would require watertight positional joins and aim for matching tangent planes—called **\(G^1\) continuity**. Curvature continuity, \(G^2\), is a stronger condition and should be required only where its benefit justifies the added fitting complexity. Open CASCADE explicitly distinguishes these continuity levels. [OCCT3D](https://dev.opencascade.org/doc/occt-7.6.0/overview/html/occt_user_guides__modeling_data.html?utm_source=chatgpt.com)
+
+One further trade-off matters: **making spline strips arbitrarily narrow is not necessarily beneficial.** If two neighbouring torus patches have substantially different normals, forcing the transition into a very narrow strip concentrates the change of direction. That can create high curvature, compromise accuracy, and make intersection calculations harder.
+
+The best transition width would have to balance accuracy, smoothness, and query cost.
+
+## 4. Does using two methods add too much overhead?
+
+**It does not require running both methods on every query.**
+
+I would put both patch types into **one spatial search structure**. A ray would first encounter inexpensive bounding tests; only plausible candidate patches would invoke their specialized intersection routines.
+
+This is the same general organization used in accelerated ray tracing: a common primitive interface and a spatial hierarchy reduce the number of expensive shape-intersection calls. The hierarchy’s effectiveness depends on both traversal cost and the cost of intersecting the candidate primitives. [pbr-book.org](https://www.pbr-book.org/4ed/Primitives_and_Intersection_Acceleration?utm_source=chatgpt.com)
+
+The design to avoid would be:
+
+> Run the entire torus search, then run the entire spline search, then compare their answers.
+
+That could duplicate substantial work.
+
+A better design is:
+
+> Search once, identify relevant patches, and use the appropriate solver for each candidate.
+
+However, finding a torus hit does not automatically let us stop. The algorithm must still exclude any spline patch that could contain a closer hit. Consequently, **the percentage of final hits on splines is not the same as the percentage of queries that incur spline cost**.
+
+Tight bounds around the transition patches are important for precisely this reason.
+
+### “Fewer splines” is not quite the right performance metric
+
+B-splines have local support. For example, evaluating a tensor-product bicubic spline within a knot span involves at most \(4\times4\) local basis contributions—not every coefficient in the entire surface. Reducing the total number of spline coefficients therefore does not necessarily reduce each evaluation proportionally. [SciPy Documentation](https://docs.scipy.org/doc/scipy/reference/generated/scipy.interpolate.BSpline.html?utm_source=chatgpt.com)
+
+The more useful target is:
+
+> **Reduce the number and difficulty of spline-intersection problems actually solved per particle query.**
+
+This distinction matters for your existing approach. The expensive part may be root search, repeated evaluations, conservative exclusion, or fallback handling—not the basic spline evaluation itself.
+
+## 5. How much speedup could the hybrid provide?
+
+A simple cost model helps separate “faster than all-spline” from “nearly native CSG.”
+
+Suppose, in an idealized case, each query needs one main patch solve:
+
+\[
+C_{\mathrm{hybrid}}
+\approx
+(1-p)C_{\mathrm{torus}}
++
+pC_{\mathrm{spline}}
++
+H,
+\]
+
+where \(p\) is the fraction routed to the spline solver and \(H\) is additional search, trimming, and seam-handling overhead.
+
+**Illustrative assumptions—not measurements of your code:** suppose a spline query costs ten times a torus query, and the additional overhead is 10% of a torus query.
+
+Then:
+
+| Queries requiring the spline solver | Hybrid cost relative to a torus query | Speedup over the assumed all-spline cost |
+|---:|---:|---:|
+| 1% | 1.19× | 8.4× |
+| 5% | 1.55× | 6.5× |
+| 20% | 2.90× | 3.4× |
+
+This illustrates an important possibility:
+
+**The hybrid could be much faster than an all-spline model while still falling short of nearly native-CSG speed.**
+
+Under those particular assumptions, reaching 80% of the torus control’s query throughput would require the expensive spline route on no more than about **1.7% of queries**. That is not a universal limit; it changes with the measured spline cost and overhead.
+
+Real queries may test several patches, including patches ultimately rejected. Those additional tests need to be counted. Full OpenMC throughput also includes work beyond geometry, so a geometry-query speedup is not automatically an equal histories-per-second speedup.
+
+## 6. What could make the hybrid slower?
+
+The largest risks are not the existence of two routines. They are these three structural problems.
+
+**Too many small torus patches.** If the target surface cannot be fitted accurately with reasonably large pieces, each ray may need many bounding, quartic, and trimming tests. Replacing one efficiently handled spline region with numerous analytic pieces can lose rather than gain.
+
+**Expensive joins that are encountered frequently.** A small spline area can still produce many candidate tests, especially with loose bounding volumes or unfavourable ray directions. Near-tangent and degenerate intersections are recognized difficulties in reliable trimmed-surface intersection algorithms; they cannot safely be handled by accepting the first numerically plausible root. [ScienceDirect](https://www.sciencedirect.com/science/article/pii/S0167839616300875?utm_source=chatgpt.com)
+
+**Inconsistent geometry definitions.** The inside/outside classifier, distance routine, and normal routine must all describe the *same hybrid surface*. Using the original Fourier geometry for classification but the approximate torus–spline geometry for intersections would create disagreements near their boundaries.
+
+There is also an integration distinction: **a collection of trimmed torus and spline faces is not automatically an ordinary CSG region**. It needs a closed-surface and ownership construction. OpenMC’s CSG model expects surfaces with consistent positive and negative sides; assembling patches must preserve that contract. [OpenMC Documentation](https://docs.openmc.org/en/stable/methods/geometry.html)
+
+For your project, I would aim to expose the assembled boundary through one OpenMC-facing geometry interface, while allowing its internal patches to use different solvers. That is a proposed architecture, not a claim that the required implementation is already complete.
+
+## 7. What I would test first
+
+I would test **one field period of the plasma boundary**, before extending the method to coils or a full blanket.
+
+The comparison should use the same VMEC reference and the same preselected geometry tolerance:
+
+| Candidate | What it tests |
+|---|---|
+| Existing all-spline representation | Current accuracy and performance baseline |
+| Torus patches without smooth transition strips | How much of the boundary can genuinely be represented cheaply |
+| Torus patches with localized spline transitions | Whether improved joins justify their additional runtime cost |
+
+The decisive measurements would be geometry error, seam correctness, candidate patches per query, actual spline-solver calls, fallback time, and total query time. The ray set should include misses, grazing contacts, seam crossings, and representative transport directions—not only easy normal-incidence hits.
+
+There is relevant precedent for using tightly fitting toroidal patches within spatial hierarchies to accelerate freeform-surface calculations. That supports investigating the geometric building blocks, but the published work does not establish the performance of this particular stitched hybrid in OpenMC. [Sanghyun Son](https://sanghyun.phd.sh/publications/14528-surface-surface-intersection-computation-using-a-bounding-volume-hierarchy-with-osculating-toroidal-patches-in-the-leaf-nodes)
+
+**My assessment:** this is worth testing, and it is a more plausible way to retain torus-intersection speed than smoothly deforming every torus. The condition for success is not simply “mostly tori, few splines.” It is **accurate torus interiors, correctly joined local spline regions, and very little expensive spline work per particle query**. The presence of two methods is manageable; the number and difficulty of the queries they generate will determine whether the hybrid is faster.
