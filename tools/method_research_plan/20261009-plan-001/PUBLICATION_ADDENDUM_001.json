@@ -1,0 +1,10 @@
+{
+  "created_utc": "2026-10-09T22:48:00.356224+00:00",
+  "scope": "Publication body newline normalization only; original captured draft retained unchanged",
+  "source_file": "PR_BODY_WITH_PLAN.md",
+  "source_sha256": "220153d6d66617a291289b6937804b9288f6b6e1ab88fa7501f3c021b442ea19",
+  "publication_file": "PR_BODY_PUBLICATION_LF.md",
+  "publication_sha256": "5f06fd25445b1c19f5b5e794968523d0595f90abd1e6ff055ad8b6bf9ce84dd2",
+  "unchanged_plan_manifest_sha256": "ddcd7d5785487f0e5bd5c79d4792211d6924b58037d2dff74be863debc7d2b6c",
+  "scientific_execution": false
+}
