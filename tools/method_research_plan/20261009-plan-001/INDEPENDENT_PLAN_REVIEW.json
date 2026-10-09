@@ -1,0 +1,169 @@
+{
+  "created_utc": "2026-10-09T22:45:42.103029+00:00",
+  "reviewer": "Independent adversarial Sol /root/patch_review",
+  "verdict": "ACCEPT_SCOPED_RECOMMENDATION_AND_RECORD",
+  "context": {
+    "task": "Challenge next-method combinations and priorities using the accepted81-entry historical audit; review prospective recording without scientific execution.",
+    "source_catalog_sha256": "5f612261467a6b04949522b81dfb51f575d4d6192e693e88274f736fa35848fb",
+    "source_catalog_commit": "918161c09f24fc7fb14477e5f202ea89d2c67175",
+    "reviewed_files_sha256": {
+      "RECOMMENDATIONS.md": "ca472e444f0c5276008112d4d9aa49acd3f7892891efc2df17943458fcf9f823",
+      "EXPERIMENT_REGISTRY.json": "ed1b47412fc08297edbc1dda1cd3f900013b1203356fed712e7900727221dff4",
+      "REGISTRY_CORRECTIONS.json": "17219f30b74e2e29ed5f7ffcefae0ed053d2c09078de52ef881406f509dbe0a6",
+      "EXPERIMENT_REGISTRY_REVISION_001.json": "3236d45c85ba318721ec24857609c40830349eef725c554ed16c315d56dfcd1f",
+      "EVENTS.jsonl": "512fb0bb42c2ccf8114f6439f3f2db2b43e9e08866418f70aa9340717154bbf8"
+    },
+    "proposals_reviewed": [
+      "NEXT-G01",
+      "NEXT-P01",
+      "NEXT-P02",
+      "NEXT-P03",
+      "NEXT-C01",
+      "NEXT-C02",
+      "NEXT-C03"
+    ],
+    "acceptance_scope": "Recommendation/record accuracy and defensible engineering sequencing only. No new mathematical proof, physical fidelity, actual-surface root completeness, native integration, performance or probability-of-success acceptance."
+  },
+  "summary": {
+    "blocking_findings_remaining": 0,
+    "all_seven_proposals_status": "PROPOSED_NOT_RUN",
+    "assessment": "The proposed sequence uses the closest existing implementation evidence while retaining target admission, complete-event and ownership gates. It does not presume the incumbent spline is physical ground truth, transfer represented-P00 timing to repaired CAD, or treat accepted polynomial/scheduler references as a complete physical tracker.",
+    "recommended_sequence": "Freeze target contracts and shared witnesses; small spline-exclusion and represented-facet event experiments first. Establish actual-source Fourier reconstruction alongside spline work. Follow with the bounded ruled-face reference and common-target quartic/torus ablation. Keep the constant-metric offset lane optional and restricted.",
+    "execution_in_this_review": "None. File reads, byte/hash/link/metadata consistency checks only; no scientific tests, builds, simulations, acquisition, SSH or process interventions."
+  },
+  "detailed_findings": [
+    {
+      "priority": "P1",
+      "status": "ADDRESSED_AS_FUTURE_GATE",
+      "title": "Geometry/input admission is coequal with complete events",
+      "proposals": [
+        "NEXT-G01",
+        "NEXT-P01",
+        "NEXT-P02",
+        "NEXT-C01",
+        "NEXT-C02"
+      ],
+      "detail": "Actual VMEC coefficients/modes and coil CAD/sections/frames must be bound before target claims. The independent source reference begins alongside spline optimization; represented-solid correctness alone cannot qualify the physical target.",
+      "supporting_evidence": [
+        "M04",
+        "M14",
+        "I03",
+        "H08",
+        "R01"
+      ],
+      "final_document_lines": [
+        19,
+        29
+      ]
+    },
+    {
+      "priority": "P1",
+      "status": "ADDRESSED_AS_FUTURE_GATE",
+      "title": "Q01 and Q02 do not already compose into an irrational-root event tracker",
+      "proposals": [
+        "NEXT-G01",
+        "NEXT-P03",
+        "NEXT-C02"
+      ],
+      "detail": "Q02 returns nonpoint isolating intervals for some complete polynomial results. Q01 scalar composition keeps them UNRESOLVED. Plan explicitly requires separately reviewed interval ordering/refinement, unknown-prefix retention, ties/owners and rounding; midpoint substitution is forbidden.",
+      "supporting_evidence": [
+        "Q01",
+        "Q02"
+      ],
+      "final_document_line": 35
+    },
+    {
+      "priority": "P1",
+      "status": "ADDRESSED_AS_FUTURE_GATE",
+      "title": "Ruled rational cubic faces need a degree-six reference",
+      "proposal": "NEXT-C02",
+      "detail": "Q02 is limited to degree<=4. M17 degree<=6 applies to its admitted ruled rational cubic family after positive-denominator clearing. Six crossings may reverse parameter-versus-ray ordering, and endcaps/incident-face/one-sided membership must be retained. Crease normals alone need not determine whole-solid native sense.",
+      "source_evidence": "Accepted audit source_snapshots/9b48f90a94996393353a5b463be06122f45aef58f84238410a24b629d135a785.md:68-72",
+      "final_document_lines": [
+        85,
+        87
+      ]
+    },
+    {
+      "priority": "P1",
+      "status": "ADDRESSED_AS_FUTURE_GATE",
+      "title": "Candidate fits require conservative actual-surface authority",
+      "proposal": "NEXT-P03",
+      "detail": "Cartesian admission and actual-target refinement alone do not prove every preceding prefix empty. Plan retains coverage/seam uncertainty, coefficient and ray-substitution uncertainty, grazing error, polynomial-miss/actual-hit controls, and the admitted extra quartic sheet. Old attempt0002/0003 fit errors used different targets and cannot rank their families.",
+      "supporting_evidence": [
+        "M09",
+        "FT-003",
+        "FT-007",
+        "FT-008",
+        "Q02"
+      ]
+    },
+    {
+      "priority": "P2",
+      "status": "RESOLVED_IN_FINAL_RECORD",
+      "title": "Saved timing and bitwise results are narrower than new optimization hypotheses",
+      "proposals": [
+        "NEXT-P01",
+        "NEXT-P02",
+        "NEXT-C01",
+        "NEXT-C03"
+      ],
+      "detail": "3.3x is synthetic total Python candidate-search motivation, not isolated evaluator or native gain. v5 bitwise checks are not an exclusion certificate; v3 remains individually UNDECIDED. Complete unknown/exception/fallback cost and robust timing are retained. Prefix/cache gains with differing denominators are not multiplied.",
+      "supporting_evidence": [
+        "L05",
+        "L06",
+        "L08",
+        "L11",
+        "L13",
+        "L14",
+        "L15",
+        "FT-007",
+        "M11",
+        "M12"
+      ]
+    },
+    {
+      "priority": "P2",
+      "status": "RESOLVED_WITH_PRESERVED_CORRECTION",
+      "title": "M22 failed-sense probe lacks an input-bound witness",
+      "proposal": "NEXT-P01",
+      "detail": "The retained report records failed sense despite eleven agreeing distances, but not the exact point/direction. Final recommendations and clarified registry require diagnostic input recovery before freezing a regression. Initial registry bytes are preserved; correction/revision and an appended clarification event record the distinction.",
+      "source_evidence": "Accepted audit source_snapshots/90fa80d698137a49024982bdc255f9b29ed3d2e85cd531c156ab5ab527edc221.md:11-13",
+      "correction_record": "REGISTRY_CORRECTIONS.json",
+      "initial_registry_unchanged_sha256": "ed1b47412fc08297edbc1dda1cd3f900013b1203356fed712e7900727221dff4"
+    }
+  ],
+  "record_checks": {
+    "accepted_catalog_hash_and_bound_git_blob_match": true,
+    "proposal_count": 7,
+    "all_results_null_and_input_binding_pending": true,
+    "proposal_evidence_status_and_anchor_checks": 46,
+    "recommendation_local_links_checked": 5,
+    "initial_registry_hash_unchanged_since_first_review": true,
+    "revision_changes_only_M22_wording_plus_provenance_metadata": true,
+    "initial_registration_events_match_registry": 7,
+    "clarification_events": 1,
+    "initial_seven_event_lines_sha256": "6e00f4dcba9bbe35f1a4d2d6caecd4222d92c5395f9daf34bdc89a361da10483",
+    "future_recording": "Fresh exclusively created attempt/run paths; source/input/bank/protocol hashes, raw output/stderr/exit/denominators, all negatives and dispositions, appended terminal/review events; retries and changed protocols get new run identities.",
+    "mismatches": []
+  },
+  "remaining_limitations": [
+    "The ranking is engineering judgment from retained implementation evidence, not a demonstrated fastest method or a probability estimate.",
+    "Actual-source geometry, fidelity budgets, per-execution frozen inputs and complete-query oracles remain prerequisites to be established, not results of this plan.",
+    "No interval-valued event scheduler or separately admitted degree-six reference was implemented or accepted here.",
+    "Rectangular face representation must be bound to the actual pack and its native directional sense/material/score semantics; general twist laws and unsupported denominators are not admitted by analogy.",
+    "The restricted M11 scalar reference retains nine normal/projection gaps and miss-only imported rows; it is not a physical rectangular fallback.",
+    "Different solids/source banks and same-defect bitwise matches cannot establish physical equivalence or transfer performance acceptance.",
+    "Future append-only recording is a prescribed convention, not proof that future executors will preserve every artifact. No resource acquisition/build/remote authorization follows from this plan.",
+    "External primary-source links provide context; this review challenges decisive retained local records and does not perform a new literature or current-runtime audit."
+  ],
+  "criteria": {
+    "purpose_scope": "PASS prospective research and recording only.",
+    "correctness": "PASS record/evidence consistency; unresolved scientific obligations explicitly retained.",
+    "physics": "NOT_ACCEPTED; actual target and native owner/material/scoring gates remain.",
+    "performance": "NO_NEW_ACCEPTANCE; finite historical numbers remain scoped.",
+    "documentation_design": "PASS stable IDs, preserved initial registry, explicit correction/revision and append-only events.",
+    "dependencies_resources": "No acquisition, builds, environments, remote launches or scientific execution."
+  },
+  "mutations": "Only this new INDEPENDENT_PLAN_REVIEW.json created. Recommendations, registries, correction/events, accepted audit, scientific sources and results were not modified by the reviewer."
+}
