@@ -1,0 +1,24 @@
+{
+  "created_utc": "2026-10-09T21:32:08.687771+00:00",
+  "existing_run_rejected": true,
+  "exit_code": 1,
+  "exception": "FileExistsError",
+  "run002_files_unchanged": 12,
+  "run001_files_unchanged": 12,
+  "prior_artifacts_unchanged": 34,
+  "status": "PASS",
+  "run002_hashes": {
+    "direct_fourier_results.json": "876917c1d1c0d1e120ddb9e40233c35412eebfaa15f822173ce56566038a126a",
+    "local_quartic_results.json": "ef4370c079b2bf99c2635dec85c46a3f86fa6e62d9442db4b2bcf4b1f6c2cccb",
+    "rays.json": "fcf08b04b8961f5455d2dd767d1bdc4c90d9d4cfebf2081c74f6362c90b4cbdf",
+    "receipt.json": "3d819278f22c27a29ba3514057fdb8e2c476d1f85d0e213ac58d3fff3c949e0d",
+    "tests.txt": "e643441e7c2458d3f4792ea35e3551df22dfa2e8005f8b734329aa6525643640",
+    "source/direct_algebraic.py": "e86ad2347aec578dfffd84d5ffe7e333bbc8e898787e7db3fd3280b13f9cd3fb",
+    "source/fourier_torus.py": "fa0559134dd60b0390617a799a339ad05ad23e1f523c86ea9b92373ff2812210",
+    "source/patch_methods.py": "88623c61a52a997a5770427a38ab9b2eb068c8923db8a43176488b77264fed3e",
+    "source/run_direct_trials.py": "db6bb144109fec5da551bbff7ec6c36c6211b0c2bb3ae45bc13b2cf1df7b4e83",
+    "source/test_direct_algebraic.py": "1d626e42a8fd72fd65dceeaa2540047d7c98e06bc67911bfbd4acb844ad328b9",
+    "source/test_fourier_torus.py": "ece3351a22dbb53992996d40d26c40f9a50c725cac9b1f2151d39a3f6a1f44ee",
+    "source/test_patch_methods.py": "7483e985c4fd556b32577450ee9b3accbca6f006b51614a46ac1ae796efd292c"
+  }
+}

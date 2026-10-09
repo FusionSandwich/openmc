@@ -186,3 +186,147 @@ The [final publication manifest](attempts/0002-patch-hybrid-20261009/publication
 records the saved working-file hashes. The earlier preflight manifest is
 retained; its Git attribute hash predates the final whitespace settings used
 to preserve snapshot bytes during publication. No experimental output changed.
+
+## Attempt 0003 — third idea set: direct Fourier and general local quartics
+
+The [third-set proposal](attempts/0003-direct-fourier-algebraic-20261009/inputs/proposal-3rd-set.txt)
+is preserved with its input identity. It correctly points toward comparisons
+beyond the already-existing quasi-polar radial spline chart. The local
+repository source confirms that chart and its bicubic evaluator; a bounded
+source search did not establish the absence of a Fourier kernel on every
+other branch. Historical performance figures in the proposal are attributed
+claims, not independently rerun measurements here. Swept-coil development is
+separate and was not modified or restarted.
+
+| ID | New method | Result and scope |
+|---|---|---|
+| FT-007 | Direct finite radial Fourier field, analytic gradient, and diagnostic stationary-point ray search; matched with the actual frozen repository bicubic radius evaluator | Exact construction for this three-mode synthetic radial target. Candidate retention corrected after an unsupported later chart interval discarded an earlier candidate. Python costs measured; general first-root completeness remains unresolved. |
+| FT-008 | Local full 35-coefficient implicit quartics, signed normal-offset fit constraints, degree-four ray substitution and angular trimming | Refinement reduces measured fitting errors, but seams remain. This is a distinct polynomial family from FT-004's rank-14 torus sums; no closed solid or topology certificate. |
+
+### Preserved development and runs
+
+[Development check 001](attempts/0003-direct-fourier-algebraic-20261009/development-check-001/status.json)
+retains two NumPy 2.5 scalar-conversion errors in test assertions and their
+original source. The assertions were corrected without changing the geometry.
+[Run 001](attempts/0003-direct-fourier-algebraic-20261009/run-001/receipt.json)
+passes 28 controls but loses the known-radial-12 candidate when a later
+derivative refinement reaches a tube-axis singularity: one of 24 known radial
+rays has no direct candidate. Its entire output and source remain immutable.
+
+[Run 002](attempts/0003-direct-fourier-algebraic-20261009/run-002/receipt.json)
+passes **29 controls**. Scalar unsupported intervals are retained separately
+without discarding earlier candidates; all queries remain UNRESOLVED. Input
+hashes are checked against expected manifest identities before and after the
+run, and source hashes bind frozen source with a live-source equality check.
+The [preservation audit](attempts/0003-direct-fourier-algebraic-20261009/preservation_audit.json)
+confirms all 34 earlier attempt/original artifacts and all 12 run-001 files are
+unchanged. Reusing run 002 is rejected before output writes; its 12 files are
+unchanged too. Earlier ledger/events are frozen as inputs before new entries.
+
+### FT-007: represented surface, accuracy and costs
+
+This target is `rho(theta,phi) = 0.8 + 0.12*cos(2*theta-3*phi)
++ 0.025*sin(theta+6*phi)` about the constant major-radius-5 m axis. Stored
+physical n modes are `[0,3,-6]`, used once. Coefficient bounds give positive
+radius `[0.655,0.945]` m and `R>0` on the represented surface. Geometric theta
+is known by construction; raw VMEC parameter theta cannot generally be
+substituted into this chart without reparameterization. No real WOUT was used.
+The classifier, gradient, normals and ray candidates evaluate the same model.
+
+The comparator loads a byte-preserved copy of the repository's
+`samples_to_periodic_coefficients` and `sample_periodic_bicubic` functions.
+Both methods use the same constant-axis Cartesian wrapper and candidate search.
+This compares the incumbent **radius evaluator**, not its whole moving-axis
+compiler, native C++ tracker, accelerators or OpenMC histories.
+
+| Model | Maximum sampled same-parameter error (4,745 points) | Maximum sampled normal error | Maximum first-candidate error on 24 known radial rays | Median 76-ray Python diagnostic cost (3 repeats) |
+|---|---:|---:|---:|---:|
+| Direct Fourier | 0 by construction | 1.71e-6 deg floating acos floor | 8.88e-16 m | 0.2629 s |
+| Incumbent bicubic 8 x 12 | 3.466 mm | 1.019 deg | 3.276 mm | 0.8790 s |
+| Incumbent bicubic 16 x 24 | 0.1452 mm | 0.09181 deg | 0.1128 mm | 0.8587 s |
+| Incumbent bicubic 32 x 48 | 0.008117 mm | 0.01061 deg | 0.006464 mm | 0.8831 s |
+
+All 24 known radial candidates are present in run 002 for each model. The
+other 52 rays reuse the earlier bank against this *different* target and have
+no qualified general first-root oracle. There are 304 stored query rows, all
+UNRESOLVED. Unsupported chart intervals occur on 18/17/18/17 rays respectively;
+empty searches are not accepted misses. Stationary splitting recovers the
+old exact circular tangent at `t=1.234` m, but finite sampling can still miss
+oscillatory crossings and multiple stationary points in one interval.
+
+The ~3.3x Python candidate-cost observation is specific to three low modes,
+this NumPy implementation, this unqualified search and these approximated
+comparators. It includes classifier/gradient/refinement work but not BVH or
+cell tracking. Rotated model ordering, three raw times, vector and scalar
+field/gradient costs and evaluation counters are saved. Single-process timing
+noise and different represented geometric errors remain. No native-throughput
+or transport speed conclusion follows. The proposal's 80%-native throughput
+(or time ratio <=1.25) goal is recorded as **UNMEASURED**, not adopted as a pass.
+
+### FT-008: full local quartics
+
+Each local polynomial has all 35 Cartesian monomials of degree <=4 in a
+normalized tangent frame. Samples on the target and at +/-0.04 local-scale
+normal offsets have nonzero signed labels, preventing a vacuous zero fit.
+These labels are not a certified signed-distance field. Every fitted design
+has observed rank 35; the worst condition grows from 4.49e5 to 2.54e6 with
+refinement, a numerical stability obligation for future work.
+
+| One-period atlas | Holdout samples | Maximum sampled normal-line displacement | Maximum normal error | Maximum sampled interior midpoint seam gap |
+|---|---:|---:|---:|---:|
+| 8 x 12 (96 patches) | 864 | 0.3056 mm | 0.5272 deg | 0.2045 mm (172 seams) |
+| 16 x 24 (384 patches) | 3,456 | 0.01187 mm | 0.04748 deg | 0.01271 mm (728 seams) |
+
+No sampled projection or offset-sign failures occurred, nor multiple roots
+inside the admitted normal-line window in these samples. Twelve trimmed
+local normal-ray controls per atlas have candidates near the target contact;
+they remain UNRESOLVED. The nearest polynomial zero on a target-normal line
+is the measurement, not a whole-domain or two-way Hausdorff bound. Only
+interior seam midpoints were assessed; periodic seams, edge continuity,
+spurious sheets beyond the sampled window, closed-solid ownership and complete
+first roots are open. No BVH or query-speed comparison for this atlas exists.
+This target differs from attempt 0002, so its errors cannot be used as a
+matched ranking against the earlier torus-patch numbers.
+
+### Next acceptance obligations
+
+Preserve these runs and negative evidence. A next attempt needs validated
+VMEC-to-radial reparameterization, a predeclared physical tolerance, complete
+root isolation including grazing cases, patch coverage/seams and ownership,
+then matched native queries and full histories. Existing torus-arc/Bezier and
+coil attempts stay indexed; none was silently repeated or overwritten.
+
+### Independent counterexamples retained
+
+The [independent counterexample record](attempts/0003-direct-fourier-algebraic-20261009/independent_counterexamples.json)
+preserves two remaining limits in run 002's algorithm. First, a positive
+radial chart with poloidal mode 2048 has a sign-changing crossing near
+`t=0.5499457567` m that is absent from 78 returned candidates; the closest
+candidate is about 3.09 mm away. This is an algorithm stress case beyond the
+three-mode benchmark, not a new fidelity result or complete first-root oracle.
+Second, the exact circular ray from `(7,0,0)` along `(-1,0,0)` has first crossing
+1.2 m, but a sampled tube-axis singularity at 2 m aborts the vector grid and
+returns no candidate. The retention correction covers scalar refinement
+failures; it does not resolve singular sample grids. Both results remain
+UNRESOLVED and are preserved as negative evidence, not accepted misses.
+
+The [quartic counterexample](attempts/0003-direct-fourier-algebraic-20261009/quartic_counterexample.json)
+also preserves an angularly admitted extrapolated sheet. For the first
+96-patch fit, an outward ray admits a polynomial root at about 0.730003 m
+whose target field is 0.7842 m. Its point is about 0.7800 m from the patch
+center, beyond the 0.1012 m holdout normal-line window. Angular trims alone
+do not restrict roots to the fitted spatial neighborhood or eliminate extra
+sheets. The result is correctly UNRESOLVED.
+
+After run 002, the three new live sources were formatted with already-local
+Black. The [formatting record](attempts/0003-direct-fourier-algebraic-20261009/formatting_manifest.json)
+binds before/frozen and after/live hashes and verifies identical Python ASTs
+for all three files. No experimental source snapshot or result was changed;
+run-002 source hashes identify the exact executed bytes.
+
+The [independent Sol review](attempts/0003-direct-fourier-algebraic-20261009/independent_review.json)
+accepts attempt 0003 as reproducible synthetic experiments, after challenging
+these failure cases and independently checking source, input, output and
+preservation identities. It does not accept production geometry, general
+first intersections, physical fidelity or native speed. Full helper API
+validation and numpydoc expansion remain a minor future integration item.

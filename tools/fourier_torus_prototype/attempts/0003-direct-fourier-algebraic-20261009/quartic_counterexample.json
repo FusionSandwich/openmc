@@ -1,0 +1,37 @@
+{
+  "created_utc": "2026-10-09T21:34:42.955296+00:00",
+  "id": "ANGULAR_TRIM_ADMITS_EXTRAPOLATED_QUARTIC_SHEET",
+  "atlas": "run-002/local_quartic_results.json",
+  "patch_index": [
+    0,
+    0
+  ],
+  "origin_m": [
+    5.874896960235203,
+    0.5116777394816608,
+    0.3776994223769495
+  ],
+  "direction": [
+    0.8746198133331184,
+    0.030336440125198778,
+    0.4838593623416534
+  ],
+  "ceiling_m": 20,
+  "result": {
+    "disposition": "UNRESOLVED",
+    "candidates_m": [
+      0.730003116072443
+    ]
+  },
+  "candidate_point_m": [
+    6.513372149347078,
+    0.533823435303601,
+    0.7309182646271817
+  ],
+  "algebraic_residual": -5.551115123125783e-16,
+  "target_field_m": 0.7842033643394468,
+  "distance_from_patch_center_m": 0.7800031160724437,
+  "holdout_normal_line_window_m": 0.1012290966156711,
+  "source_sha256": "e86ad2347aec578dfffd84d5ffe7e333bbc8e898787e7db3fd3280b13f9cd3fb",
+  "scope": "Angular trim does not restrict extrapolation to a fitted Cartesian neighborhood; no root is promoted to HIT."
+}

@@ -1,0 +1,6305 @@
+{
+  "target": {
+    "major_radius_m": 5,
+    "m": [
+      0,
+      2,
+      1
+    ],
+    "stored_n": [
+      0,
+      3,
+      -6
+    ],
+    "cos_coefficients_m": [
+      0.8,
+      0.12,
+      0.0
+    ],
+    "sin_coefficients_m": [
+      0.0,
+      0.0,
+      0.025
+    ],
+    "positive_radius_bound_m": [
+      0.655,
+      0.945
+    ],
+    "geometric_theta_not_raw_vmec_theta": true
+  },
+  "construction": [
+    {
+      "model": "incumbent_bicubic_8x12",
+      "construction_seconds": 0.000743200012948364,
+      "radius_coefficient_bytes": 768
+    },
+    {
+      "model": "incumbent_bicubic_16x24",
+      "construction_seconds": 0.0007288999622687697,
+      "radius_coefficient_bytes": 3072
+    },
+    {
+      "model": "incumbent_bicubic_32x48",
+      "construction_seconds": 0.0009685999830253422,
+      "radius_coefficient_bytes": 12288
+    }
+  ],
+  "fidelity": [
+    {
+      "model": "direct_fourier",
+      "sample_count": 4745,
+      "max_same_parameter_error_m": 0.0,
+      "rms_same_parameter_error_m": 0.0,
+      "max_normal_error_deg": 1.7075472925031877e-06,
+      "certified_fidelity": false
+    },
+    {
+      "model": "incumbent_bicubic_8x12",
+      "sample_count": 4745,
+      "max_same_parameter_error_m": 0.003465922962985648,
+      "rms_same_parameter_error_m": 0.001617985790063662,
+      "max_normal_error_deg": 1.01878371097038,
+      "certified_fidelity": false
+    },
+    {
+      "model": "incumbent_bicubic_16x24",
+      "sample_count": 4745,
+      "max_same_parameter_error_m": 0.00014519255550382338,
+      "rms_same_parameter_error_m": 6.454108029773484e-05,
+      "max_normal_error_deg": 0.09180519864940527,
+      "certified_fidelity": false
+    },
+    {
+      "model": "incumbent_bicubic_32x48",
+      "sample_count": 4745,
+      "max_same_parameter_error_m": 8.11705304166476e-06,
+      "rms_same_parameter_error_m": 3.541106654011365e-06,
+      "max_normal_error_deg": 0.010614577225763467,
+      "certified_fidelity": false
+    }
+  ],
+  "evaluation_cost": {
+    "models": {
+      "direct_fourier": {
+        "batch_4096_seconds": [
+          0.0014678000006824732,
+          0.0014412999735213816,
+          0.0015275999903678894
+        ],
+        "scalar_128_seconds": [
+          0.007814400014467537,
+          0.007785600028000772,
+          0.007697099994402379
+        ],
+        "batch_checksum": -12.771614631241974
+      },
+      "incumbent_bicubic_8x12": {
+        "batch_4096_seconds": [
+          0.003207899979315698,
+          0.0033383999834768474,
+          0.0032804000074975193
+        ],
+        "scalar_128_seconds": [
+          0.033399100007954985,
+          0.03274809999857098,
+          0.03202779998537153
+        ],
+        "batch_checksum": -13.132643476655682
+      },
+      "incumbent_bicubic_16x24": {
+        "batch_4096_seconds": [
+          0.003446600050665438,
+          0.0035413000150583684,
+          0.003133399994112551
+        ],
+        "scalar_128_seconds": [
+          0.03324899997096509,
+          0.032517399988137186,
+          0.03227059997152537
+        ],
+        "batch_checksum": -12.800835227499265
+      },
+      "incumbent_bicubic_32x48": {
+        "batch_4096_seconds": [
+          0.003241600003093481,
+          0.0033173999981954694,
+          0.00314400001661852
+        ],
+        "scalar_128_seconds": [
+          0.03318979998584837,
+          0.032379399985075,
+          0.03413649997673929
+        ],
+        "batch_checksum": -12.770976194948236
+      }
+    },
+    "repeats": 3,
+    "same_cartesian_points": true,
+    "includes_field_and_gradient": true,
+    "not_native_query_or_transport_throughput": true,
+    "points_sha256": "05e9e608bb1db2acdf22ea8b3e8bbbf154fce98bb3c740d8ea6c2a95e40e55d2"
+  },
+  "diagnostic_query_bank_seconds": {
+    "direct_fourier": [
+      0.2645233999937773,
+      0.2608347000204958,
+      0.26286340004298836
+    ],
+    "incumbent_bicubic_8x12": [
+      0.885757600015495,
+      0.8789883999852464,
+      0.8576175000052899
+    ],
+    "incumbent_bicubic_16x24": [
+      0.865604099992197,
+      0.85872289998224,
+      0.8476694000419229
+    ],
+    "incumbent_bicubic_32x48": [
+      0.8831439000205137,
+      0.8663269000244327,
+      0.9234203999512829
+    ]
+  },
+  "query_count_per_model": 76,
+  "repeats": 3,
+  "query_rows": [
+    {
+      "model": "direct_fourier",
+      "ray_id": "general-00",
+      "reference_first_distance_m": null,
+      "candidate_error_vs_target_m": null,
+      "disposition": "UNRESOLVED",
+      "candidates_m": [
+        1.7788601919737388,
+        2.945148331353156
+      ],
+      "candidate_distance_m": 1.7788601919737388,
+      "counters": {
+        "field_jet_points": 280,
+        "stationary_candidates": 1,
+        "scalar_refinements": 3
+      },
+      "unsupported": null,
+      "unsupported_intervals": []
+    },
+    {
+      "model": "direct_fourier",
+      "ray_id": "general-01",
+      "reference_first_distance_m": null,
+      "candidate_error_vs_target_m": null,
+      "disposition": "UNRESOLVED",
+      "candidates_m": [
+        5.863308969267188,
+        7.912327851907454
+      ],
+      "candidate_distance_m": 5.863308969267188,
+      "counters": {
+        "field_jet_points": 276,
+        "stationary_candidates": 1,
+        "scalar_refinements": 3
+      },
+      "unsupported": null,
+      "unsupported_intervals": []
+    },
+    {
+      "model": "direct_fourier",
+      "ray_id": "general-02",
+      "reference_first_distance_m": null,
+      "candidate_error_vs_target_m": null,
+      "disposition": "UNRESOLVED",
+      "candidates_m": [
+        11.405171268400391,
+        13.006053926954223
+      ],
+      "candidate_distance_m": 11.405171268400391,
+      "counters": {
+        "field_jet_points": 293,
+        "stationary_candidates": 3,
+        "scalar_refinements": 5
+      },
+      "unsupported": null,
+      "unsupported_intervals": []
+    },
+    {
+      "model": "direct_fourier",
+      "ray_id": "general-03",
+      "reference_first_distance_m": null,
+      "candidate_error_vs_target_m": null,
+      "disposition": "UNRESOLVED",
+      "candidates_m": [
+        5.89018062227408,
+        7.445534146787378
+      ],
+      "candidate_distance_m": 5.89018062227408,
+      "counters": {
+        "field_jet_points": 278,
+        "stationary_candidates": 1,
+        "scalar_refinements": 3
+      },
+      "unsupported": null,
+      "unsupported_intervals": []
+    },
+    {
+      "model": "direct_fourier",
+      "ray_id": "general-04",
+      "reference_first_distance_m": null,
+      "candidate_error_vs_target_m": null,
+      "disposition": "UNRESOLVED",
+      "candidates_m": [
+        4.258570336090809,
+        6.276764505011314
+      ],
+      "candidate_distance_m": 4.258570336090809,
+      "counters": {
+        "field_jet_points": 278,
+        "stationary_candidates": 1,
+        "scalar_refinements": 3
+      },
+      "unsupported": null,
+      "unsupported_intervals": []
+    },
+    {
+      "model": "direct_fourier",
+      "ray_id": "general-05",
+      "reference_first_distance_m": null,
+      "candidate_error_vs_target_m": null,
+      "disposition": "UNRESOLVED",
+      "candidates_m": [
+        5.696136540602174,
+        6.330222668735704
+      ],
+      "candidate_distance_m": 5.696136540602174,
+      "counters": {
+        "field_jet_points": 278,
+        "stationary_candidates": 1,
+        "scalar_refinements": 3
+      },
+      "unsupported": null,
+      "unsupported_intervals": []
+    },
+    {
+      "model": "direct_fourier",
+      "ray_id": "general-06",
+      "reference_first_distance_m": null,
+      "candidate_error_vs_target_m": null,
+      "disposition": "UNRESOLVED",
+      "candidates_m": [
+        9.698964254345679,
+        10.734052327690774
+      ],
+      "candidate_distance_m": 9.698964254345679,
+      "counters": {
+        "field_jet_points": 316,
+        "stationary_candidates": 5,
+        "scalar_refinements": 7
+      },
+      "unsupported": null,
+      "unsupported_intervals": []
+    },
+    {
+      "model": "direct_fourier",
+      "ray_id": "general-07",
+      "reference_first_distance_m": null,
+      "candidate_error_vs_target_m": null,
+      "disposition": "UNRESOLVED",
+      "candidates_m": [],
+      "candidate_distance_m": null,
+      "counters": {
+        "field_jet_points": 289,
+        "stationary_candidates": 4,
+        "scalar_refinements": 4
+      },
+      "unsupported": null,
+      "unsupported_intervals": []
+    },
+    {
+      "model": "direct_fourier",
+      "ray_id": "general-08",
+      "reference_first_distance_m": null,
+      "candidate_error_vs_target_m": null,
+      "disposition": "UNRESOLVED",
+      "candidates_m": [
+        10.155609843115922,
+        10.356216675675848
+      ],
+      "candidate_distance_m": 10.155609843115922,
+      "counters": {
+        "field_jet_points": 296,
+        "stationary_candidates": 3,
+        "scalar_refinements": 5
+      },
+      "unsupported": null,
+      "unsupported_intervals": []
+    },
+    {
+      "model": "direct_fourier",
+      "ray_id": "general-09",
+      "reference_first_distance_m": null,
+      "candidate_error_vs_target_m": null,
+      "disposition": "UNRESOLVED",
+      "candidates_m": [
+        0.8849782157035712,
+        2.888305244282963
+      ],
+      "candidate_distance_m": 0.8849782157035712,
+      "counters": {
+        "field_jet_points": 295,
+        "stationary_candidates": 3,
+        "scalar_refinements": 5
+      },
+      "unsupported": null,
+      "unsupported_intervals": []
+    },
+    {
+      "model": "direct_fourier",
+      "ray_id": "general-10",
+      "reference_first_distance_m": null,
+      "candidate_error_vs_target_m": null,
+      "disposition": "UNRESOLVED",
+      "candidates_m": [
+        5.4325702936859335,
+        5.962678778980412
+      ],
+      "candidate_distance_m": 5.4325702936859335,
+      "counters": {
+        "field_jet_points": 280,
+        "stationary_candidates": 1,
+        "scalar_refinements": 3
+      },
+      "unsupported": null,
+      "unsupported_intervals": []
+    },
+    {
+      "model": "direct_fourier",
+      "ray_id": "general-11",
+      "reference_first_distance_m": null,
+      "candidate_error_vs_target_m": null,
+      "disposition": "UNRESOLVED",
+      "candidates_m": [
+        7.47389440111379,
+        7.711418131179427
+      ],
+      "candidate_distance_m": 7.47389440111379,
+      "counters": {
+        "field_jet_points": 280,
+        "stationary_candidates": 1,
+        "scalar_refinements": 3
+      },
+      "unsupported": null,
+      "unsupported_intervals": []
+    },
+    {
+      "model": "direct_fourier",
+      "ray_id": "general-12",
+      "reference_first_distance_m": null,
+      "candidate_error_vs_target_m": null,
+      "disposition": "UNRESOLVED",
+      "candidates_m": [
+        9.27491346083463,
+        10.330021075721064
+      ],
+      "candidate_distance_m": 9.27491346083463,
+      "counters": {
+        "field_jet_points": 278,
+        "stationary_candidates": 1,
+        "scalar_refinements": 3
+      },
+      "unsupported": null,
+      "unsupported_intervals": []
+    },
+    {
+      "model": "direct_fourier",
+      "ray_id": "general-13",
+      "reference_first_distance_m": null,
+      "candidate_error_vs_target_m": null,
+      "disposition": "UNRESOLVED",
+      "candidates_m": [
+        8.527765472760171,
+        9.39010838929082
+      ],
+      "candidate_distance_m": 8.527765472760171,
+      "counters": {
+        "field_jet_points": 278,
+        "stationary_candidates": 1,
+        "scalar_refinements": 3
+      },
+      "unsupported": null,
+      "unsupported_intervals": []
+    },
+    {
+      "model": "direct_fourier",
+      "ray_id": "general-14",
+      "reference_first_distance_m": null,
+      "candidate_error_vs_target_m": null,
+      "disposition": "UNRESOLVED",
+      "candidates_m": [
+        4.168928939362785,
+        5.4730411994402886
+      ],
+      "candidate_distance_m": 4.168928939362785,
+      "counters": {
+        "field_jet_points": 279,
+        "stationary_candidates": 1,
+        "scalar_refinements": 3
+      },
+      "unsupported": null,
+      "unsupported_intervals": []
+    },
+    {
+      "model": "direct_fourier",
+      "ray_id": "general-15",
+      "reference_first_distance_m": null,
+      "candidate_error_vs_target_m": null,
+      "disposition": "UNRESOLVED",
+      "candidates_m": [
+        7.763830889432251,
+        7.811377699175423
+      ],
+      "candidate_distance_m": 7.763830889432251,
+      "counters": {
+        "field_jet_points": 292,
+        "stationary_candidates": 2,
+        "scalar_refinements": 4
+      },
+      "unsupported": null,
+      "unsupported_intervals": []
+    },
+    {
+      "model": "direct_fourier",
+      "ray_id": "general-16",
+      "reference_first_distance_m": null,
+      "candidate_error_vs_target_m": null,
+      "disposition": "UNRESOLVED",
+      "candidates_m": [
+        8.129871752566377,
+        8.789421164714911
+      ],
+      "candidate_distance_m": 8.129871752566377,
+      "counters": {
+        "field_jet_points": 278,
+        "stationary_candidates": 1,
+        "scalar_refinements": 3
+      },
+      "unsupported": null,
+      "unsupported_intervals": []
+    },
+    {
+      "model": "direct_fourier",
+      "ray_id": "general-17",
+      "reference_first_distance_m": null,
+      "candidate_error_vs_target_m": null,
+      "disposition": "UNRESOLVED",
+      "candidates_m": [
+        7.2851828181425375,
+        9.272350004535637
+      ],
+      "candidate_distance_m": 7.2851828181425375,
+      "counters": {
+        "field_jet_points": 278,
+        "stationary_candidates": 1,
+        "scalar_refinements": 3
+      },
+      "unsupported": null,
+      "unsupported_intervals": []
+    },
+    {
+      "model": "direct_fourier",
+      "ray_id": "general-18",
+      "reference_first_distance_m": null,
+      "candidate_error_vs_target_m": null,
+      "disposition": "UNRESOLVED",
+      "candidates_m": [
+        0.045283850007057126
+      ],
+      "candidate_distance_m": 0.045283850007057126,
+      "counters": {
+        "field_jet_points": 279,
+        "stationary_candidates": 2,
+        "scalar_refinements": 3
+      },
+      "unsupported": null,
+      "unsupported_intervals": []
+    },
+    {
+      "model": "direct_fourier",
+      "ray_id": "general-19",
+      "reference_first_distance_m": null,
+      "candidate_error_vs_target_m": null,
+      "disposition": "UNRESOLVED",
+      "candidates_m": [
+        8.984712514237122,
+        10.91796804695668
+      ],
+      "candidate_distance_m": 8.984712514237122,
+      "counters": {
+        "field_jet_points": 291,
+        "stationary_candidates": 3,
+        "scalar_refinements": 5
+      },
+      "unsupported": null,
+      "unsupported_intervals": []
+    },
+    {
+      "model": "direct_fourier",
+      "ray_id": "general-20",
+      "reference_first_distance_m": null,
+      "candidate_error_vs_target_m": null,
+      "disposition": "UNRESOLVED",
+      "candidates_m": [
+        4.068904998392844,
+        5.445443659702206
+      ],
+      "candidate_distance_m": 4.068904998392844,
+      "counters": {
+        "field_jet_points": 277,
+        "stationary_candidates": 1,
+        "scalar_refinements": 3
+      },
+      "unsupported": null,
+      "unsupported_intervals": []
+    },
+    {
+      "model": "direct_fourier",
+      "ray_id": "general-21",
+      "reference_first_distance_m": null,
+      "candidate_error_vs_target_m": null,
+      "disposition": "UNRESOLVED",
+      "candidates_m": [
+        1.1093084970616744
+      ],
+      "candidate_distance_m": 1.1093084970616744,
+      "counters": {
+        "field_jet_points": 263,
+        "stationary_candidates": 0,
+        "scalar_refinements": 1
+      },
+      "unsupported": null,
+      "unsupported_intervals": []
+    },
+    {
+      "model": "direct_fourier",
+      "ray_id": "general-22",
+      "reference_first_distance_m": null,
+      "candidate_error_vs_target_m": null,
+      "disposition": "UNRESOLVED",
+      "candidates_m": [
+        8.367714755857873,
+        8.789334130317659
+      ],
+      "candidate_distance_m": 8.367714755857873,
+      "counters": {
+        "field_jet_points": 279,
+        "stationary_candidates": 1,
+        "scalar_refinements": 3
+      },
+      "unsupported": null,
+      "unsupported_intervals": []
+    },
+    {
+      "model": "direct_fourier",
+      "ray_id": "general-23",
+      "reference_first_distance_m": null,
+      "candidate_error_vs_target_m": null,
+      "disposition": "UNRESOLVED",
+      "candidates_m": [
+        0.530550241087765,
+        1.3425829808406897,
+        9.876984519455894,
+        10.777900941816393
+      ],
+      "candidate_distance_m": 0.530550241087765,
+      "counters": {
+        "field_jet_points": 306,
+        "stationary_candidates": 3,
+        "scalar_refinements": 7
+      },
+      "unsupported": null,
+      "unsupported_intervals": []
+    },
+    {
+      "model": "direct_fourier",
+      "ray_id": "general-24",
+      "reference_first_distance_m": null,
+      "candidate_error_vs_target_m": null,
+      "disposition": "UNRESOLVED",
+      "candidates_m": [
+        2.7882075456409225,
+        3.955449704179131
+      ],
+      "candidate_distance_m": 2.7882075456409225,
+      "counters": {
+        "field_jet_points": 277,
+        "stationary_candidates": 1,
+        "scalar_refinements": 3
+      },
+      "unsupported": null,
+      "unsupported_intervals": []
+    },
+    {
+      "model": "direct_fourier",
+      "ray_id": "general-25",
+      "reference_first_distance_m": null,
+      "candidate_error_vs_target_m": null,
+      "disposition": "UNRESOLVED",
+      "candidates_m": [
+        6.634167434869623,
+        7.473749076582329
+      ],
+      "candidate_distance_m": 6.634167434869623,
+      "counters": {
+        "field_jet_points": 280,
+        "stationary_candidates": 1,
+        "scalar_refinements": 3
+      },
+      "unsupported": null,
+      "unsupported_intervals": []
+    },
+    {
+      "model": "direct_fourier",
+      "ray_id": "general-26",
+      "reference_first_distance_m": null,
+      "candidate_error_vs_target_m": null,
+      "disposition": "UNRESOLVED",
+      "candidates_m": [
+        1.6822247510373003,
+        3.640000348413009
+      ],
+      "candidate_distance_m": 1.6822247510373003,
+      "counters": {
+        "field_jet_points": 293,
+        "stationary_candidates": 3,
+        "scalar_refinements": 5
+      },
+      "unsupported": null,
+      "unsupported_intervals": []
+    },
+    {
+      "model": "direct_fourier",
+      "ray_id": "general-27",
+      "reference_first_distance_m": null,
+      "candidate_error_vs_target_m": null,
+      "disposition": "UNRESOLVED",
+      "candidates_m": [
+        11.033361674804638,
+        12.084897284519723
+      ],
+      "candidate_distance_m": 11.033361674804638,
+      "counters": {
+        "field_jet_points": 278,
+        "stationary_candidates": 1,
+        "scalar_refinements": 3
+      },
+      "unsupported": null,
+      "unsupported_intervals": []
+    },
+    {
+      "model": "direct_fourier",
+      "ray_id": "general-28",
+      "reference_first_distance_m": null,
+      "candidate_error_vs_target_m": null,
+      "disposition": "UNRESOLVED",
+      "candidates_m": [],
+      "candidate_distance_m": null,
+      "counters": {
+        "field_jet_points": 272,
+        "stationary_candidates": 2,
+        "scalar_refinements": 2
+      },
+      "unsupported": null,
+      "unsupported_intervals": []
+    },
+    {
+      "model": "direct_fourier",
+      "ray_id": "general-29",
+      "reference_first_distance_m": null,
+      "candidate_error_vs_target_m": null,
+      "disposition": "UNRESOLVED",
+      "candidates_m": [
+        4.493594657307029,
+        5.958804865530413
+      ],
+      "candidate_distance_m": 4.493594657307029,
+      "counters": {
+        "field_jet_points": 277,
+        "stationary_candidates": 1,
+        "scalar_refinements": 3
+      },
+      "unsupported": null,
+      "unsupported_intervals": []
+    },
+    {
+      "model": "direct_fourier",
+      "ray_id": "general-30",
+      "reference_first_distance_m": null,
+      "candidate_error_vs_target_m": null,
+      "disposition": "UNRESOLVED",
+      "candidates_m": [],
+      "candidate_distance_m": null,
+      "counters": {
+        "field_jet_points": 287,
+        "stationary_candidates": 3,
+        "scalar_refinements": 3
+      },
+      "unsupported": null,
+      "unsupported_intervals": []
+    },
+    {
+      "model": "direct_fourier",
+      "ray_id": "general-31",
+      "reference_first_distance_m": null,
+      "candidate_error_vs_target_m": null,
+      "disposition": "UNRESOLVED",
+      "candidates_m": [
+        2.9746347065782595,
+        5.289869725534334,
+        10.384974375813963,
+        12.353473084094555
+      ],
+      "candidate_distance_m": 2.9746347065782595,
+      "counters": {
+        "field_jet_points": 304,
+        "stationary_candidates": 3,
+        "scalar_refinements": 7
+      },
+      "unsupported": null,
+      "unsupported_intervals": []
+    },
+    {
+      "model": "direct_fourier",
+      "ray_id": "radial-00",
+      "reference_first_distance_m": null,
+      "candidate_error_vs_target_m": null,
+      "disposition": "UNRESOLVED",
+      "candidates_m": [
+        3.9800000000000004,
+        5.82
+      ],
+      "candidate_distance_m": 3.9800000000000004,
+      "counters": {
+        "field_jet_points": 302,
+        "stationary_candidates": 0,
+        "scalar_refinements": 3
+      },
+      "unsupported": "some chart intervals unsupported",
+      "unsupported_intervals": [
+        {
+          "lo_m": 4.84375,
+          "hi_m": 4.921875,
+          "reason": "radial chart derivative singularity"
+        }
+      ]
+    },
+    {
+      "model": "direct_fourier",
+      "ray_id": "radial-01",
+      "reference_first_distance_m": null,
+      "candidate_error_vs_target_m": null,
+      "disposition": "UNRESOLVED",
+      "candidates_m": [
+        4.071755657645852,
+        5.763599681413475
+      ],
+      "candidate_distance_m": 4.071755657645852,
+      "counters": {
+        "field_jet_points": 302,
+        "stationary_candidates": 0,
+        "scalar_refinements": 3
+      },
+      "unsupported": "some chart intervals unsupported",
+      "unsupported_intervals": [
+        {
+          "lo_m": 4.84375,
+          "hi_m": 4.921875,
+          "reason": "radial chart derivative singularity"
+        }
+      ]
+    },
+    {
+      "model": "direct_fourier",
+      "ray_id": "radial-02",
+      "reference_first_distance_m": null,
+      "candidate_error_vs_target_m": null,
+      "disposition": "UNRESOLVED",
+      "candidates_m": [
+        4.159852813742386,
+        5.590147186257615
+      ],
+      "candidate_distance_m": 4.159852813742386,
+      "counters": {
+        "field_jet_points": 302,
+        "stationary_candidates": 0,
+        "scalar_refinements": 3
+      },
+      "unsupported": "some chart intervals unsupported",
+      "unsupported_intervals": [
+        {
+          "lo_m": 4.84375,
+          "hi_m": 4.921875,
+          "reason": "radial chart derivative singularity"
+        }
+      ]
+    },
+    {
+      "model": "direct_fourier",
+      "ray_id": "radial-03",
+      "reference_first_distance_m": null,
+      "candidate_error_vs_target_m": null,
+      "disposition": "UNRESOLVED",
+      "candidates_m": [
+        4.228543213431018,
+        5.606812125628309
+      ],
+      "candidate_distance_m": 4.228543213431018,
+      "counters": {
+        "field_jet_points": 302,
+        "stationary_candidates": 0,
+        "scalar_refinements": 3
+      },
+      "unsupported": "some chart intervals unsupported",
+      "unsupported_intervals": [
+        {
+          "lo_m": 4.84375,
+          "hi_m": 4.921875,
+          "reason": "radial chart derivative singularity"
+        }
+      ]
+    },
+    {
+      "model": "direct_fourier",
+      "ray_id": "radial-04",
+      "reference_first_distance_m": null,
+      "candidate_error_vs_target_m": null,
+      "disposition": "UNRESOLVED",
+      "candidates_m": [
+        4.1000000000000005,
+        5.7
+      ],
+      "candidate_distance_m": 4.1000000000000005,
+      "counters": {
+        "field_jet_points": 302,
+        "stationary_candidates": 0,
+        "scalar_refinements": 3
+      },
+      "unsupported": "some chart intervals unsupported",
+      "unsupported_intervals": [
+        {
+          "lo_m": 4.84375,
+          "hi_m": 4.921875,
+          "reason": "radial chart derivative singularity"
+        }
+      ]
+    },
+    {
+      "model": "direct_fourier",
+      "ray_id": "radial-05",
+      "reference_first_distance_m": null,
+      "candidate_error_vs_target_m": null,
+      "disposition": "UNRESOLVED",
+      "candidates_m": [
+        3.9714567865689823,
+        5.793187874371691
+      ],
+      "candidate_distance_m": 3.9714567865689823,
+      "counters": {
+        "field_jet_points": 302,
+        "stationary_candidates": 0,
+        "scalar_refinements": 3
+      },
+      "unsupported": "some chart intervals unsupported",
+      "unsupported_intervals": [
+        {
+          "lo_m": 4.84375,
+          "hi_m": 4.921875,
+          "reason": "radial chart derivative singularity"
+        }
+      ]
+    },
+    {
+      "model": "direct_fourier",
+      "ray_id": "radial-06",
+      "reference_first_distance_m": null,
+      "candidate_error_vs_target_m": null,
+      "disposition": "UNRESOLVED",
+      "candidates_m": [
+        4.040147186257615,
+        5.809852813742387
+      ],
+      "candidate_distance_m": 4.040147186257615,
+      "counters": {
+        "field_jet_points": 302,
+        "stationary_candidates": 0,
+        "scalar_refinements": 3
+      },
+      "unsupported": "some chart intervals unsupported",
+      "unsupported_intervals": [
+        {
+          "lo_m": 4.84375,
+          "hi_m": 4.921875,
+          "reason": "radial chart derivative singularity"
+        }
+      ]
+    },
+    {
+      "model": "direct_fourier",
+      "ray_id": "radial-07",
+      "reference_first_distance_m": null,
+      "candidate_error_vs_target_m": null,
+      "disposition": "UNRESOLVED",
+      "candidates_m": [
+        4.128244342354147,
+        5.636400318586526
+      ],
+      "candidate_distance_m": 4.128244342354147,
+      "counters": {
+        "field_jet_points": 302,
+        "stationary_candidates": 0,
+        "scalar_refinements": 3
+      },
+      "unsupported": "some chart intervals unsupported",
+      "unsupported_intervals": [
+        {
+          "lo_m": 4.84375,
+          "hi_m": 4.921875,
+          "reason": "radial chart derivative singularity"
+        }
+      ]
+    },
+    {
+      "model": "direct_fourier",
+      "ray_id": "radial-08",
+      "reference_first_distance_m": null,
+      "candidate_error_vs_target_m": null,
+      "disposition": "UNRESOLVED",
+      "candidates_m": [
+        4.220000000000001,
+        5.58
+      ],
+      "candidate_distance_m": 4.220000000000001,
+      "counters": {
+        "field_jet_points": 302,
+        "stationary_candidates": 0,
+        "scalar_refinements": 3
+      },
+      "unsupported": "some chart intervals unsupported",
+      "unsupported_intervals": [
+        {
+          "lo_m": 4.84375,
+          "hi_m": 4.921875,
+          "reason": "radial chart derivative singularity"
+        }
+      ]
+    },
+    {
+      "model": "direct_fourier",
+      "ray_id": "radial-09",
+      "reference_first_distance_m": null,
+      "candidate_error_vs_target_m": null,
+      "disposition": "UNRESOLVED",
+      "candidates_m": [
+        4.163599681413475,
+        5.6717556576458525
+      ],
+      "candidate_distance_m": 4.163599681413475,
+      "counters": {
+        "field_jet_points": 302,
+        "stationary_candidates": 0,
+        "scalar_refinements": 3
+      },
+      "unsupported": "some chart intervals unsupported",
+      "unsupported_intervals": [
+        {
+          "lo_m": 4.84375,
+          "hi_m": 4.921875,
+          "reason": "radial chart derivative singularity"
+        }
+      ]
+    },
+    {
+      "model": "direct_fourier",
+      "ray_id": "radial-10",
+      "reference_first_distance_m": null,
+      "candidate_error_vs_target_m": null,
+      "disposition": "UNRESOLVED",
+      "candidates_m": [
+        3.9901471862576146,
+        5.759852813742386
+      ],
+      "candidate_distance_m": 3.9901471862576146,
+      "counters": {
+        "field_jet_points": 302,
+        "stationary_candidates": 0,
+        "scalar_refinements": 3
+      },
+      "unsupported": "some chart intervals unsupported",
+      "unsupported_intervals": [
+        {
+          "lo_m": 4.84375,
+          "hi_m": 4.921875,
+          "reason": "radial chart derivative singularity"
+        }
+      ]
+    },
+    {
+      "model": "direct_fourier",
+      "ray_id": "radial-11",
+      "reference_first_distance_m": null,
+      "candidate_error_vs_target_m": null,
+      "disposition": "UNRESOLVED",
+      "candidates_m": [
+        4.006812125628309,
+        5.828543213431018
+      ],
+      "candidate_distance_m": 4.006812125628309,
+      "counters": {
+        "field_jet_points": 301,
+        "stationary_candidates": 0,
+        "scalar_refinements": 3
+      },
+      "unsupported": "some chart intervals unsupported",
+      "unsupported_intervals": [
+        {
+          "lo_m": 4.84375,
+          "hi_m": 4.921875,
+          "reason": "radial chart derivative singularity"
+        }
+      ]
+    },
+    {
+      "model": "direct_fourier",
+      "ray_id": "radial-12",
+      "reference_first_distance_m": null,
+      "candidate_error_vs_target_m": null,
+      "disposition": "UNRESOLVED",
+      "candidates_m": [
+        4.1000000000000005,
+        5.7
+      ],
+      "candidate_distance_m": 4.1000000000000005,
+      "counters": {
+        "field_jet_points": 302,
+        "stationary_candidates": 0,
+        "scalar_refinements": 3
+      },
+      "unsupported": "some chart intervals unsupported",
+      "unsupported_intervals": [
+        {
+          "lo_m": 4.84375,
+          "hi_m": 4.921875,
+          "reason": "radial chart derivative singularity"
+        }
+      ]
+    },
+    {
+      "model": "direct_fourier",
+      "ray_id": "radial-13",
+      "reference_first_distance_m": null,
+      "candidate_error_vs_target_m": null,
+      "disposition": "UNRESOLVED",
+      "candidates_m": [
+        4.193187874371691,
+        5.571456786568983
+      ],
+      "candidate_distance_m": 4.193187874371691,
+      "counters": {
+        "field_jet_points": 302,
+        "stationary_candidates": 0,
+        "scalar_refinements": 3
+      },
+      "unsupported": "some chart intervals unsupported",
+      "unsupported_intervals": [
+        {
+          "lo_m": 4.84375,
+          "hi_m": 4.921875,
+          "reason": "radial chart derivative singularity"
+        }
+      ]
+    },
+    {
+      "model": "direct_fourier",
+      "ray_id": "radial-14",
+      "reference_first_distance_m": null,
+      "candidate_error_vs_target_m": null,
+      "disposition": "UNRESOLVED",
+      "candidates_m": [
+        4.209852813742386,
+        5.6401471862576145
+      ],
+      "candidate_distance_m": 4.209852813742386,
+      "counters": {
+        "field_jet_points": 301,
+        "stationary_candidates": 0,
+        "scalar_refinements": 3
+      },
+      "unsupported": "some chart intervals unsupported",
+      "unsupported_intervals": [
+        {
+          "lo_m": 4.84375,
+          "hi_m": 4.921875,
+          "reason": "radial chart derivative singularity"
+        }
+      ]
+    },
+    {
+      "model": "direct_fourier",
+      "ray_id": "radial-15",
+      "reference_first_distance_m": null,
+      "candidate_error_vs_target_m": null,
+      "disposition": "UNRESOLVED",
+      "candidates_m": [
+        4.036400318586526,
+        5.728244342354147
+      ],
+      "candidate_distance_m": 4.036400318586526,
+      "counters": {
+        "field_jet_points": 302,
+        "stationary_candidates": 0,
+        "scalar_refinements": 3
+      },
+      "unsupported": "some chart intervals unsupported",
+      "unsupported_intervals": [
+        {
+          "lo_m": 4.84375,
+          "hi_m": 4.921875,
+          "reason": "radial chart derivative singularity"
+        }
+      ]
+    },
+    {
+      "model": "direct_fourier",
+      "ray_id": "miss-z",
+      "reference_first_distance_m": null,
+      "candidate_error_vs_target_m": null,
+      "disposition": "UNRESOLVED",
+      "candidates_m": [],
+      "candidate_distance_m": null,
+      "counters": {
+        "field_jet_points": 257,
+        "stationary_candidates": 0,
+        "scalar_refinements": 0
+      },
+      "unsupported": "radial chart derivative singularity",
+      "unsupported_intervals": []
+    },
+    {
+      "model": "direct_fourier",
+      "ray_id": "grazing",
+      "reference_first_distance_m": null,
+      "candidate_error_vs_target_m": null,
+      "disposition": "UNRESOLVED",
+      "candidates_m": [
+        1.9999999999999984,
+        2.0328574397414942
+      ],
+      "candidate_distance_m": 1.9999999999999984,
+      "counters": {
+        "field_jet_points": 283,
+        "stationary_candidates": 1,
+        "scalar_refinements": 3
+      },
+      "unsupported": null,
+      "unsupported_intervals": []
+    },
+    {
+      "model": "direct_fourier",
+      "ray_id": "thin-chord",
+      "reference_first_distance_m": null,
+      "candidate_error_vs_target_m": null,
+      "disposition": "UNRESOLVED",
+      "candidates_m": [],
+      "candidate_distance_m": null,
+      "counters": {
+        "field_jet_points": 264,
+        "stationary_candidates": 1,
+        "scalar_refinements": 1
+      },
+      "unsupported": null,
+      "unsupported_intervals": []
+    },
+    {
+      "model": "direct_fourier",
+      "ray_id": "coincident-control",
+      "reference_first_distance_m": null,
+      "candidate_error_vs_target_m": null,
+      "disposition": "UNRESOLVED",
+      "candidates_m": [],
+      "candidate_distance_m": null,
+      "counters": {
+        "field_jet_points": 260,
+        "stationary_candidates": 0,
+        "scalar_refinements": 1
+      },
+      "unsupported": null,
+      "unsupported_intervals": []
+    },
+    {
+      "model": "direct_fourier",
+      "ray_id": "known-radial-00",
+      "reference_first_distance_m": 1.0670827880293374,
+      "candidate_error_vs_target_m": 4.440892098500626e-16,
+      "disposition": "UNRESOLVED",
+      "candidates_m": [
+        1.0670827880293379,
+        2.9067828505241295
+      ],
+      "candidate_distance_m": 1.0670827880293379,
+      "counters": {
+        "field_jet_points": 345,
+        "stationary_candidates": 3,
+        "scalar_refinements": 5
+      },
+      "unsupported": null,
+      "unsupported_intervals": []
+    },
+    {
+      "model": "direct_fourier",
+      "ray_id": "known-radial-01",
+      "reference_first_distance_m": 1.191978520900117,
+      "candidate_error_vs_target_m": 2.220446049250313e-16,
+      "disposition": "UNRESOLVED",
+      "candidates_m": [
+        1.1919785209001168,
+        2.8424311812960283
+      ],
+      "candidate_distance_m": 1.1919785209001168,
+      "counters": {
+        "field_jet_points": 347,
+        "stationary_candidates": 3,
+        "scalar_refinements": 5
+      },
+      "unsupported": null,
+      "unsupported_intervals": []
+    },
+    {
+      "model": "direct_fourier",
+      "ray_id": "known-radial-02",
+      "reference_first_distance_m": 1.3287649888487794,
+      "candidate_error_vs_target_m": 2.220446049250313e-16,
+      "disposition": "UNRESOLVED",
+      "candidates_m": [
+        1.3287649888487796,
+        2.7151811451270906
+      ],
+      "candidate_distance_m": 1.3287649888487796,
+      "counters": {
+        "field_jet_points": 351,
+        "stationary_candidates": 3,
+        "scalar_refinements": 5
+      },
+      "unsupported": null,
+      "unsupported_intervals": []
+    },
+    {
+      "model": "direct_fourier",
+      "ray_id": "known-radial-03",
+      "reference_first_distance_m": 1.2746751420128388,
+      "candidate_error_vs_target_m": 4.440892098500626e-16,
+      "disposition": "UNRESOLVED",
+      "candidates_m": [
+        1.2746751420128384,
+        2.7136633486541797
+      ],
+      "candidate_distance_m": 1.2746751420128384,
+      "counters": {
+        "field_jet_points": 306,
+        "stationary_candidates": 1,
+        "scalar_refinements": 3
+      },
+      "unsupported": null,
+      "unsupported_intervals": []
+    },
+    {
+      "model": "direct_fourier",
+      "ray_id": "known-radial-04",
+      "reference_first_distance_m": 1.1098897090485367,
+      "candidate_error_vs_target_m": 2.220446049250313e-16,
+      "disposition": "UNRESOLVED",
+      "candidates_m": [
+        1.109889709048537,
+        2.8401277155555604
+      ],
+      "candidate_distance_m": 1.109889709048537,
+      "counters": {
+        "field_jet_points": 305,
+        "stationary_candidates": 1,
+        "scalar_refinements": 3
+      },
+      "unsupported": null,
+      "unsupported_intervals": []
+    },
+    {
+      "model": "direct_fourier",
+      "ray_id": "known-radial-05",
+      "reference_first_distance_m": 1.0786803390712252,
+      "candidate_error_vs_target_m": 2.220446049250313e-16,
+      "disposition": "UNRESOLVED",
+      "candidates_m": [
+        1.0786803390712254,
+        2.9071082853902914
+      ],
+      "candidate_distance_m": 1.0786803390712254,
+      "counters": {
+        "field_jet_points": 305,
+        "stationary_candidates": 1,
+        "scalar_refinements": 3
+      },
+      "unsupported": null,
+      "unsupported_intervals": []
+    },
+    {
+      "model": "direct_fourier",
+      "ray_id": "known-radial-06",
+      "reference_first_distance_m": 1.227310613363969,
+      "candidate_error_vs_target_m": 2.220446049250313e-16,
+      "disposition": "UNRESOLVED",
+      "candidates_m": [
+        1.2273106133639688,
+        2.815315612739006
+      ],
+      "candidate_distance_m": 1.2273106133639688,
+      "counters": {
+        "field_jet_points": 296,
+        "stationary_candidates": 1,
+        "scalar_refinements": 3
+      },
+      "unsupported": null,
+      "unsupported_intervals": []
+    },
+    {
+      "model": "direct_fourier",
+      "ray_id": "known-radial-07",
+      "reference_first_distance_m": 1.335456674672828,
+      "candidate_error_vs_target_m": 0.0,
+      "disposition": "UNRESOLVED",
+      "candidates_m": [
+        1.335456674672828,
+        2.700819659138248
+      ],
+      "candidate_distance_m": 1.335456674672828,
+      "counters": {
+        "field_jet_points": 303,
+        "stationary_candidates": 1,
+        "scalar_refinements": 3
+      },
+      "unsupported": null,
+      "unsupported_intervals": []
+    },
+    {
+      "model": "direct_fourier",
+      "ray_id": "known-radial-08",
+      "reference_first_distance_m": 1.242806921019199,
+      "candidate_error_vs_target_m": 4.440892098500626e-16,
+      "disposition": "UNRESOLVED",
+      "candidates_m": [
+        1.2428069210191994,
+        2.7333448650314316
+      ],
+      "candidate_distance_m": 1.2428069210191994,
+      "counters": {
+        "field_jet_points": 298,
+        "stationary_candidates": 1,
+        "scalar_refinements": 3
+      },
+      "unsupported": null,
+      "unsupported_intervals": []
+    },
+    {
+      "model": "direct_fourier",
+      "ray_id": "known-radial-09",
+      "reference_first_distance_m": 1.0867018181711083,
+      "candidate_error_vs_target_m": 0.0,
+      "disposition": "UNRESOLVED",
+      "candidates_m": [
+        1.0867018181711083,
+        2.8646771040942633
+      ],
+      "candidate_distance_m": 1.0867018181711083,
+      "counters": {
+        "field_jet_points": 304,
+        "stationary_candidates": 1,
+        "scalar_refinements": 3
+      },
+      "unsupported": null,
+      "unsupported_intervals": []
+    },
+    {
+      "model": "direct_fourier",
+      "ray_id": "known-radial-10",
+      "reference_first_distance_m": 1.09854562451519,
+      "candidate_error_vs_target_m": 8.881784197001252e-16,
+      "disposition": "UNRESOLVED",
+      "candidates_m": [
+        1.0985456245151908,
+        2.900134467611916
+      ],
+      "candidate_distance_m": 1.0985456245151908,
+      "counters": {
+        "field_jet_points": 303,
+        "stationary_candidates": 1,
+        "scalar_refinements": 3
+      },
+      "unsupported": null,
+      "unsupported_intervals": []
+    },
+    {
+      "model": "direct_fourier",
+      "ray_id": "known-radial-11",
+      "reference_first_distance_m": 1.2607815326599892,
+      "candidate_error_vs_target_m": 2.220446049250313e-16,
+      "disposition": "UNRESOLVED",
+      "candidates_m": [
+        1.260781532659989,
+        2.7871563104840678
+      ],
+      "candidate_distance_m": 1.260781532659989,
+      "counters": {
+        "field_jet_points": 299,
+        "stationary_candidates": 1,
+        "scalar_refinements": 3
+      },
+      "unsupported": null,
+      "unsupported_intervals": []
+    },
+    {
+      "model": "direct_fourier",
+      "ray_id": "known-radial-12",
+      "reference_first_distance_m": 1.3329172119706623,
+      "candidate_error_vs_target_m": 2.220446049250313e-16,
+      "disposition": "UNRESOLVED",
+      "candidates_m": [
+        1.3329172119706625,
+        2.6932171494758714
+      ],
+      "candidate_distance_m": 1.3329172119706625,
+      "counters": {
+        "field_jet_points": 308,
+        "stationary_candidates": 0,
+        "scalar_refinements": 3
+      },
+      "unsupported": "some chart intervals unsupported",
+      "unsupported_intervals": [
+        {
+          "lo_m": 1.953125,
+          "hi_m": 2.03125,
+          "reason": "radial chart derivative singularity"
+        }
+      ]
+    },
+    {
+      "model": "direct_fourier",
+      "ray_id": "known-radial-13",
+      "reference_first_distance_m": 1.2080214790998829,
+      "candidate_error_vs_target_m": 0.0,
+      "disposition": "UNRESOLVED",
+      "candidates_m": [
+        1.2080214790998829,
+        2.7575688187039717
+      ],
+      "candidate_distance_m": 1.2080214790998829,
+      "counters": {
+        "field_jet_points": 304,
+        "stationary_candidates": 1,
+        "scalar_refinements": 3
+      },
+      "unsupported": null,
+      "unsupported_intervals": []
+    },
+    {
+      "model": "direct_fourier",
+      "ray_id": "known-radial-14",
+      "reference_first_distance_m": 1.0712350111512208,
+      "candidate_error_vs_target_m": 4.440892098500626e-16,
+      "disposition": "UNRESOLVED",
+      "candidates_m": [
+        1.0712350111512212,
+        2.8848188548729095
+      ],
+      "candidate_distance_m": 1.0712350111512212,
+      "counters": {
+        "field_jet_points": 305,
+        "stationary_candidates": 1,
+        "scalar_refinements": 3
+      },
+      "unsupported": null,
+      "unsupported_intervals": []
+    },
+    {
+      "model": "direct_fourier",
+      "ray_id": "known-radial-15",
+      "reference_first_distance_m": 1.1253248579871613,
+      "candidate_error_vs_target_m": 2.220446049250313e-16,
+      "disposition": "UNRESOLVED",
+      "candidates_m": [
+        1.125324857987161,
+        2.88633665134582
+      ],
+      "candidate_distance_m": 1.125324857987161,
+      "counters": {
+        "field_jet_points": 301,
+        "stationary_candidates": 1,
+        "scalar_refinements": 3
+      },
+      "unsupported": null,
+      "unsupported_intervals": []
+    },
+    {
+      "model": "direct_fourier",
+      "ray_id": "known-radial-16",
+      "reference_first_distance_m": 1.290110290951463,
+      "candidate_error_vs_target_m": 2.220446049250313e-16,
+      "disposition": "UNRESOLVED",
+      "candidates_m": [
+        1.2901102909514632,
+        2.759872284444439
+      ],
+      "candidate_distance_m": 1.2901102909514632,
+      "counters": {
+        "field_jet_points": 303,
+        "stationary_candidates": 1,
+        "scalar_refinements": 3
+      },
+      "unsupported": null,
+      "unsupported_intervals": []
+    },
+    {
+      "model": "direct_fourier",
+      "ray_id": "known-radial-17",
+      "reference_first_distance_m": 1.3213196609287747,
+      "candidate_error_vs_target_m": 0.0,
+      "disposition": "UNRESOLVED",
+      "candidates_m": [
+        1.3213196609287747,
+        2.6928917146097087
+      ],
+      "candidate_distance_m": 1.3213196609287747,
+      "counters": {
+        "field_jet_points": 300,
+        "stationary_candidates": 1,
+        "scalar_refinements": 3
+      },
+      "unsupported": null,
+      "unsupported_intervals": []
+    },
+    {
+      "model": "direct_fourier",
+      "ray_id": "known-radial-18",
+      "reference_first_distance_m": 1.1726893866360308,
+      "candidate_error_vs_target_m": 2.220446049250313e-16,
+      "disposition": "UNRESOLVED",
+      "candidates_m": [
+        1.172689386636031,
+        2.784684387260994
+      ],
+      "candidate_distance_m": 1.172689386636031,
+      "counters": {
+        "field_jet_points": 299,
+        "stationary_candidates": 1,
+        "scalar_refinements": 3
+      },
+      "unsupported": null,
+      "unsupported_intervals": []
+    },
+    {
+      "model": "direct_fourier",
+      "ray_id": "known-radial-19",
+      "reference_first_distance_m": 1.064543325327172,
+      "candidate_error_vs_target_m": 2.220446049250313e-16,
+      "disposition": "UNRESOLVED",
+      "candidates_m": [
+        1.0645433253271719,
+        2.899180340861752
+      ],
+      "candidate_distance_m": 1.0645433253271719,
+      "counters": {
+        "field_jet_points": 301,
+        "stationary_candidates": 1,
+        "scalar_refinements": 3
+      },
+      "unsupported": null,
+      "unsupported_intervals": []
+    },
+    {
+      "model": "direct_fourier",
+      "ray_id": "known-radial-20",
+      "reference_first_distance_m": 1.1571930789808005,
+      "candidate_error_vs_target_m": 4.440892098500626e-16,
+      "disposition": "UNRESOLVED",
+      "candidates_m": [
+        1.157193078980801,
+        2.8666551349685685
+      ],
+      "candidate_distance_m": 1.157193078980801,
+      "counters": {
+        "field_jet_points": 303,
+        "stationary_candidates": 1,
+        "scalar_refinements": 3
+      },
+      "unsupported": null,
+      "unsupported_intervals": []
+    },
+    {
+      "model": "direct_fourier",
+      "ray_id": "known-radial-21",
+      "reference_first_distance_m": 1.3132981818288916,
+      "candidate_error_vs_target_m": 2.220446049250313e-16,
+      "disposition": "UNRESOLVED",
+      "candidates_m": [
+        1.3132981818288918,
+        2.735322895905737
+      ],
+      "candidate_distance_m": 1.3132981818288918,
+      "counters": {
+        "field_jet_points": 341,
+        "stationary_candidates": 3,
+        "scalar_refinements": 5
+      },
+      "unsupported": null,
+      "unsupported_intervals": []
+    },
+    {
+      "model": "direct_fourier",
+      "ray_id": "known-radial-22",
+      "reference_first_distance_m": 1.30145437548481,
+      "candidate_error_vs_target_m": 4.440892098500626e-16,
+      "disposition": "UNRESOLVED",
+      "candidates_m": [
+        1.3014543754848096,
+        2.699865532388084
+      ],
+      "candidate_distance_m": 1.3014543754848096,
+      "counters": {
+        "field_jet_points": 342,
+        "stationary_candidates": 3,
+        "scalar_refinements": 5
+      },
+      "unsupported": null,
+      "unsupported_intervals": []
+    },
+    {
+      "model": "direct_fourier",
+      "ray_id": "known-radial-23",
+      "reference_first_distance_m": 1.139218467340011,
+      "candidate_error_vs_target_m": 4.440892098500626e-16,
+      "disposition": "UNRESOLVED",
+      "candidates_m": [
+        1.1392184673400114,
+        2.812843689515932
+      ],
+      "candidate_distance_m": 1.1392184673400114,
+      "counters": {
+        "field_jet_points": 346,
+        "stationary_candidates": 3,
+        "scalar_refinements": 5
+      },
+      "unsupported": null,
+      "unsupported_intervals": []
+    },
+    {
+      "model": "incumbent_bicubic_8x12",
+      "ray_id": "general-00",
+      "reference_first_distance_m": null,
+      "candidate_error_vs_target_m": null,
+      "disposition": "UNRESOLVED",
+      "candidates_m": [
+        1.7801954025598778,
+        2.9451618158307
+      ],
+      "candidate_distance_m": 1.7801954025598778,
+      "counters": {
+        "field_jet_points": 280,
+        "stationary_candidates": 1,
+        "scalar_refinements": 3
+      },
+      "unsupported": null,
+      "unsupported_intervals": []
+    },
+    {
+      "model": "incumbent_bicubic_8x12",
+      "ray_id": "general-01",
+      "reference_first_distance_m": null,
+      "candidate_error_vs_target_m": null,
+      "disposition": "UNRESOLVED",
+      "candidates_m": [
+        5.856264760951246,
+        7.911683402216256
+      ],
+      "candidate_distance_m": 5.856264760951246,
+      "counters": {
+        "field_jet_points": 277,
+        "stationary_candidates": 1,
+        "scalar_refinements": 3
+      },
+      "unsupported": null,
+      "unsupported_intervals": []
+    },
+    {
+      "model": "incumbent_bicubic_8x12",
+      "ray_id": "general-02",
+      "reference_first_distance_m": null,
+      "candidate_error_vs_target_m": null,
+      "disposition": "UNRESOLVED",
+      "candidates_m": [
+        11.407019256882137,
+        13.006603892768576
+      ],
+      "candidate_distance_m": 11.407019256882137,
+      "counters": {
+        "field_jet_points": 293,
+        "stationary_candidates": 3,
+        "scalar_refinements": 5
+      },
+      "unsupported": null,
+      "unsupported_intervals": []
+    },
+    {
+      "model": "incumbent_bicubic_8x12",
+      "ray_id": "general-03",
+      "reference_first_distance_m": null,
+      "candidate_error_vs_target_m": null,
+      "disposition": "UNRESOLVED",
+      "candidates_m": [
+        5.887545667019427,
+        7.443213150455381
+      ],
+      "candidate_distance_m": 5.887545667019427,
+      "counters": {
+        "field_jet_points": 277,
+        "stationary_candidates": 1,
+        "scalar_refinements": 3
+      },
+      "unsupported": null,
+      "unsupported_intervals": []
+    },
+    {
+      "model": "incumbent_bicubic_8x12",
+      "ray_id": "general-04",
+      "reference_first_distance_m": null,
+      "candidate_error_vs_target_m": null,
+      "disposition": "UNRESOLVED",
+      "candidates_m": [
+        4.254885023107837,
+        6.272385390091908
+      ],
+      "candidate_distance_m": 4.254885023107837,
+      "counters": {
+        "field_jet_points": 278,
+        "stationary_candidates": 1,
+        "scalar_refinements": 3
+      },
+      "unsupported": null,
+      "unsupported_intervals": []
+    },
+    {
+      "model": "incumbent_bicubic_8x12",
+      "ray_id": "general-05",
+      "reference_first_distance_m": null,
+      "candidate_error_vs_target_m": null,
+      "disposition": "UNRESOLVED",
+      "candidates_m": [
+        5.692272508271483,
+        6.32474260724657
+      ],
+      "candidate_distance_m": 5.692272508271483,
+      "counters": {
+        "field_jet_points": 278,
+        "stationary_candidates": 1,
+        "scalar_refinements": 3
+      },
+      "unsupported": null,
+      "unsupported_intervals": []
+    },
+    {
+      "model": "incumbent_bicubic_8x12",
+      "ray_id": "general-06",
+      "reference_first_distance_m": null,
+      "candidate_error_vs_target_m": null,
+      "disposition": "UNRESOLVED",
+      "candidates_m": [
+        9.698330708163335,
+        10.734283716200931
+      ],
+      "candidate_distance_m": 9.698330708163335,
+      "counters": {
+        "field_jet_points": 315,
+        "stationary_candidates": 5,
+        "scalar_refinements": 7
+      },
+      "unsupported": null,
+      "unsupported_intervals": []
+    },
+    {
+      "model": "incumbent_bicubic_8x12",
+      "ray_id": "general-07",
+      "reference_first_distance_m": null,
+      "candidate_error_vs_target_m": null,
+      "disposition": "UNRESOLVED",
+      "candidates_m": [],
+      "candidate_distance_m": null,
+      "counters": {
+        "field_jet_points": 289,
+        "stationary_candidates": 4,
+        "scalar_refinements": 4
+      },
+      "unsupported": null,
+      "unsupported_intervals": []
+    },
+    {
+      "model": "incumbent_bicubic_8x12",
+      "ray_id": "general-08",
+      "reference_first_distance_m": null,
+      "candidate_error_vs_target_m": null,
+      "disposition": "UNRESOLVED",
+      "candidates_m": [
+        10.145887264447468,
+        10.347660296751375
+      ],
+      "candidate_distance_m": 10.145887264447468,
+      "counters": {
+        "field_jet_points": 297,
+        "stationary_candidates": 3,
+        "scalar_refinements": 5
+      },
+      "unsupported": null,
+      "unsupported_intervals": []
+    },
+    {
+      "model": "incumbent_bicubic_8x12",
+      "ray_id": "general-09",
+      "reference_first_distance_m": null,
+      "candidate_error_vs_target_m": null,
+      "disposition": "UNRESOLVED",
+      "candidates_m": [
+        0.8862554869189998,
+        2.8868997240147536
+      ],
+      "candidate_distance_m": 0.8862554869189998,
+      "counters": {
+        "field_jet_points": 297,
+        "stationary_candidates": 3,
+        "scalar_refinements": 5
+      },
+      "unsupported": null,
+      "unsupported_intervals": []
+    },
+    {
+      "model": "incumbent_bicubic_8x12",
+      "ray_id": "general-10",
+      "reference_first_distance_m": null,
+      "candidate_error_vs_target_m": null,
+      "disposition": "UNRESOLVED",
+      "candidates_m": [
+        5.420104572952882,
+        5.958304234882828
+      ],
+      "candidate_distance_m": 5.420104572952882,
+      "counters": {
+        "field_jet_points": 280,
+        "stationary_candidates": 1,
+        "scalar_refinements": 3
+      },
+      "unsupported": null,
+      "unsupported_intervals": []
+    },
+    {
+      "model": "incumbent_bicubic_8x12",
+      "ray_id": "general-11",
+      "reference_first_distance_m": null,
+      "candidate_error_vs_target_m": null,
+      "disposition": "UNRESOLVED",
+      "candidates_m": [
+        7.490802091239473,
+        7.672988791245472
+      ],
+      "candidate_distance_m": 7.490802091239473,
+      "counters": {
+        "field_jet_points": 280,
+        "stationary_candidates": 1,
+        "scalar_refinements": 3
+      },
+      "unsupported": null,
+      "unsupported_intervals": []
+    },
+    {
+      "model": "incumbent_bicubic_8x12",
+      "ray_id": "general-12",
+      "reference_first_distance_m": null,
+      "candidate_error_vs_target_m": null,
+      "disposition": "UNRESOLVED",
+      "candidates_m": [
+        9.278059481736712,
+        10.332208497560838
+      ],
+      "candidate_distance_m": 9.278059481736712,
+      "counters": {
+        "field_jet_points": 277,
+        "stationary_candidates": 1,
+        "scalar_refinements": 3
+      },
+      "unsupported": null,
+      "unsupported_intervals": []
+    },
+    {
+      "model": "incumbent_bicubic_8x12",
+      "ray_id": "general-13",
+      "reference_first_distance_m": null,
+      "candidate_error_vs_target_m": null,
+      "disposition": "UNRESOLVED",
+      "candidates_m": [
+        8.531374490592944,
+        9.392284383098103
+      ],
+      "candidate_distance_m": 8.531374490592944,
+      "counters": {
+        "field_jet_points": 279,
+        "stationary_candidates": 1,
+        "scalar_refinements": 3
+      },
+      "unsupported": null,
+      "unsupported_intervals": []
+    },
+    {
+      "model": "incumbent_bicubic_8x12",
+      "ray_id": "general-14",
+      "reference_first_distance_m": null,
+      "candidate_error_vs_target_m": null,
+      "disposition": "UNRESOLVED",
+      "candidates_m": [
+        4.148400163525337,
+        5.472598500363698
+      ],
+      "candidate_distance_m": 4.148400163525337,
+      "counters": {
+        "field_jet_points": 278,
+        "stationary_candidates": 1,
+        "scalar_refinements": 3
+      },
+      "unsupported": null,
+      "unsupported_intervals": []
+    },
+    {
+      "model": "incumbent_bicubic_8x12",
+      "ray_id": "general-15",
+      "reference_first_distance_m": null,
+      "candidate_error_vs_target_m": null,
+      "disposition": "UNRESOLVED",
+      "candidates_m": [
+        7.706153430629317,
+        7.8672901089031715
+      ],
+      "candidate_distance_m": 7.706153430629317,
+      "counters": {
+        "field_jet_points": 291,
+        "stationary_candidates": 2,
+        "scalar_refinements": 4
+      },
+      "unsupported": null,
+      "unsupported_intervals": []
+    },
+    {
+      "model": "incumbent_bicubic_8x12",
+      "ray_id": "general-16",
+      "reference_first_distance_m": null,
+      "candidate_error_vs_target_m": null,
+      "disposition": "UNRESOLVED",
+      "candidates_m": [
+        8.128785636462496,
+        8.784479417036419
+      ],
+      "candidate_distance_m": 8.128785636462496,
+      "counters": {
+        "field_jet_points": 278,
+        "stationary_candidates": 1,
+        "scalar_refinements": 3
+      },
+      "unsupported": null,
+      "unsupported_intervals": []
+    },
+    {
+      "model": "incumbent_bicubic_8x12",
+      "ray_id": "general-17",
+      "reference_first_distance_m": null,
+      "candidate_error_vs_target_m": null,
+      "disposition": "UNRESOLVED",
+      "candidates_m": [
+        7.287929060196216,
+        9.272551437344106
+      ],
+      "candidate_distance_m": 7.287929060196216,
+      "counters": {
+        "field_jet_points": 278,
+        "stationary_candidates": 1,
+        "scalar_refinements": 3
+      },
+      "unsupported": null,
+      "unsupported_intervals": []
+    },
+    {
+      "model": "incumbent_bicubic_8x12",
+      "ray_id": "general-18",
+      "reference_first_distance_m": null,
+      "candidate_error_vs_target_m": null,
+      "disposition": "UNRESOLVED",
+      "candidates_m": [
+        0.04602036687609594
+      ],
+      "candidate_distance_m": 0.04602036687609594,
+      "counters": {
+        "field_jet_points": 280,
+        "stationary_candidates": 2,
+        "scalar_refinements": 3
+      },
+      "unsupported": null,
+      "unsupported_intervals": []
+    },
+    {
+      "model": "incumbent_bicubic_8x12",
+      "ray_id": "general-19",
+      "reference_first_distance_m": null,
+      "candidate_error_vs_target_m": null,
+      "disposition": "UNRESOLVED",
+      "candidates_m": [
+        8.984260174637862,
+        10.91715328800535
+      ],
+      "candidate_distance_m": 8.984260174637862,
+      "counters": {
+        "field_jet_points": 292,
+        "stationary_candidates": 3,
+        "scalar_refinements": 5
+      },
+      "unsupported": null,
+      "unsupported_intervals": []
+    },
+    {
+      "model": "incumbent_bicubic_8x12",
+      "ray_id": "general-20",
+      "reference_first_distance_m": null,
+      "candidate_error_vs_target_m": null,
+      "disposition": "UNRESOLVED",
+      "candidates_m": [
+        4.069323075380827,
+        5.447814331996194
+      ],
+      "candidate_distance_m": 4.069323075380827,
+      "counters": {
+        "field_jet_points": 277,
+        "stationary_candidates": 1,
+        "scalar_refinements": 3
+      },
+      "unsupported": null,
+      "unsupported_intervals": []
+    },
+    {
+      "model": "incumbent_bicubic_8x12",
+      "ray_id": "general-21",
+      "reference_first_distance_m": null,
+      "candidate_error_vs_target_m": null,
+      "disposition": "UNRESOLVED",
+      "candidates_m": [
+        1.096696327976834
+      ],
+      "candidate_distance_m": 1.096696327976834,
+      "counters": {
+        "field_jet_points": 263,
+        "stationary_candidates": 0,
+        "scalar_refinements": 1
+      },
+      "unsupported": null,
+      "unsupported_intervals": []
+    },
+    {
+      "model": "incumbent_bicubic_8x12",
+      "ray_id": "general-22",
+      "reference_first_distance_m": null,
+      "candidate_error_vs_target_m": null,
+      "disposition": "UNRESOLVED",
+      "candidates_m": [
+        8.364581444047664,
+        8.793178044463415
+      ],
+      "candidate_distance_m": 8.364581444047664,
+      "counters": {
+        "field_jet_points": 280,
+        "stationary_candidates": 1,
+        "scalar_refinements": 3
+      },
+      "unsupported": null,
+      "unsupported_intervals": []
+    },
+    {
+      "model": "incumbent_bicubic_8x12",
+      "ray_id": "general-23",
+      "reference_first_distance_m": null,
+      "candidate_error_vs_target_m": null,
+      "disposition": "UNRESOLVED",
+      "candidates_m": [
+        0.5359425202570915,
+        1.3392105662954639,
+        9.879449004931185,
+        10.778271654203117
+      ],
+      "candidate_distance_m": 0.5359425202570915,
+      "counters": {
+        "field_jet_points": 306,
+        "stationary_candidates": 3,
+        "scalar_refinements": 7
+      },
+      "unsupported": null,
+      "unsupported_intervals": []
+    },
+    {
+      "model": "incumbent_bicubic_8x12",
+      "ray_id": "general-24",
+      "reference_first_distance_m": null,
+      "candidate_error_vs_target_m": null,
+      "disposition": "UNRESOLVED",
+      "candidates_m": [
+        2.788666626576885,
+        3.9560280582212735
+      ],
+      "candidate_distance_m": 2.788666626576885,
+      "counters": {
+        "field_jet_points": 276,
+        "stationary_candidates": 1,
+        "scalar_refinements": 3
+      },
+      "unsupported": null,
+      "unsupported_intervals": []
+    },
+    {
+      "model": "incumbent_bicubic_8x12",
+      "ray_id": "general-25",
+      "reference_first_distance_m": null,
+      "candidate_error_vs_target_m": null,
+      "disposition": "UNRESOLVED",
+      "candidates_m": [
+        6.635088279625773,
+        7.474997849752575
+      ],
+      "candidate_distance_m": 6.635088279625773,
+      "counters": {
+        "field_jet_points": 280,
+        "stationary_candidates": 1,
+        "scalar_refinements": 3
+      },
+      "unsupported": null,
+      "unsupported_intervals": []
+    },
+    {
+      "model": "incumbent_bicubic_8x12",
+      "ray_id": "general-26",
+      "reference_first_distance_m": null,
+      "candidate_error_vs_target_m": null,
+      "disposition": "UNRESOLVED",
+      "candidates_m": [
+        1.6782322395209512,
+        3.6391484407415255
+      ],
+      "candidate_distance_m": 1.6782322395209512,
+      "counters": {
+        "field_jet_points": 293,
+        "stationary_candidates": 3,
+        "scalar_refinements": 5
+      },
+      "unsupported": null,
+      "unsupported_intervals": []
+    },
+    {
+      "model": "incumbent_bicubic_8x12",
+      "ray_id": "general-27",
+      "reference_first_distance_m": null,
+      "candidate_error_vs_target_m": null,
+      "disposition": "UNRESOLVED",
+      "candidates_m": [
+        11.03295149431387,
+        12.083482596333413
+      ],
+      "candidate_distance_m": 11.03295149431387,
+      "counters": {
+        "field_jet_points": 278,
+        "stationary_candidates": 1,
+        "scalar_refinements": 3
+      },
+      "unsupported": null,
+      "unsupported_intervals": []
+    },
+    {
+      "model": "incumbent_bicubic_8x12",
+      "ray_id": "general-28",
+      "reference_first_distance_m": null,
+      "candidate_error_vs_target_m": null,
+      "disposition": "UNRESOLVED",
+      "candidates_m": [],
+      "candidate_distance_m": null,
+      "counters": {
+        "field_jet_points": 271,
+        "stationary_candidates": 2,
+        "scalar_refinements": 2
+      },
+      "unsupported": null,
+      "unsupported_intervals": []
+    },
+    {
+      "model": "incumbent_bicubic_8x12",
+      "ray_id": "general-29",
+      "reference_first_distance_m": null,
+      "candidate_error_vs_target_m": null,
+      "disposition": "UNRESOLVED",
+      "candidates_m": [
+        4.4930189919963315,
+        5.958676589270821
+      ],
+      "candidate_distance_m": 4.4930189919963315,
+      "counters": {
+        "field_jet_points": 277,
+        "stationary_candidates": 1,
+        "scalar_refinements": 3
+      },
+      "unsupported": null,
+      "unsupported_intervals": []
+    },
+    {
+      "model": "incumbent_bicubic_8x12",
+      "ray_id": "general-30",
+      "reference_first_distance_m": null,
+      "candidate_error_vs_target_m": null,
+      "disposition": "UNRESOLVED",
+      "candidates_m": [],
+      "candidate_distance_m": null,
+      "counters": {
+        "field_jet_points": 286,
+        "stationary_candidates": 3,
+        "scalar_refinements": 3
+      },
+      "unsupported": null,
+      "unsupported_intervals": []
+    },
+    {
+      "model": "incumbent_bicubic_8x12",
+      "ray_id": "general-31",
+      "reference_first_distance_m": null,
+      "candidate_error_vs_target_m": null,
+      "disposition": "UNRESOLVED",
+      "candidates_m": [
+        2.9774424169727243,
+        5.288897986217775,
+        10.380428536686482,
+        12.352545112743176
+      ],
+      "candidate_distance_m": 2.9774424169727243,
+      "counters": {
+        "field_jet_points": 304,
+        "stationary_candidates": 3,
+        "scalar_refinements": 7
+      },
+      "unsupported": null,
+      "unsupported_intervals": []
+    },
+    {
+      "model": "incumbent_bicubic_8x12",
+      "ray_id": "radial-00",
+      "reference_first_distance_m": null,
+      "candidate_error_vs_target_m": null,
+      "disposition": "UNRESOLVED",
+      "candidates_m": [
+        3.9800000000000004,
+        5.82
+      ],
+      "candidate_distance_m": 3.9800000000000004,
+      "counters": {
+        "field_jet_points": 301,
+        "stationary_candidates": 0,
+        "scalar_refinements": 3
+      },
+      "unsupported": "some chart intervals unsupported",
+      "unsupported_intervals": [
+        {
+          "lo_m": 4.84375,
+          "hi_m": 4.921875,
+          "reason": "radial chart derivative singularity"
+        }
+      ]
+    },
+    {
+      "model": "incumbent_bicubic_8x12",
+      "ray_id": "radial-01",
+      "reference_first_distance_m": null,
+      "candidate_error_vs_target_m": null,
+      "disposition": "UNRESOLVED",
+      "candidates_m": [
+        4.071738491683201,
+        5.763579106814883
+      ],
+      "candidate_distance_m": 4.071738491683201,
+      "counters": {
+        "field_jet_points": 302,
+        "stationary_candidates": 0,
+        "scalar_refinements": 3
+      },
+      "unsupported": "some chart intervals unsupported",
+      "unsupported_intervals": [
+        {
+          "lo_m": 4.84375,
+          "hi_m": 4.921875,
+          "reason": "radial chart derivative singularity"
+        }
+      ]
+    },
+    {
+      "model": "incumbent_bicubic_8x12",
+      "ray_id": "radial-02",
+      "reference_first_distance_m": null,
+      "candidate_error_vs_target_m": null,
+      "disposition": "UNRESOLVED",
+      "candidates_m": [
+        4.159936810472225,
+        5.59026672881017
+      ],
+      "candidate_distance_m": 4.159936810472225,
+      "counters": {
+        "field_jet_points": 302,
+        "stationary_candidates": 0,
+        "scalar_refinements": 3
+      },
+      "unsupported": "some chart intervals unsupported",
+      "unsupported_intervals": [
+        {
+          "lo_m": 4.84375,
+          "hi_m": 4.921875,
+          "reason": "radial chart derivative singularity"
+        }
+      ]
+    },
+    {
+      "model": "incumbent_bicubic_8x12",
+      "ray_id": "radial-03",
+      "reference_first_distance_m": null,
+      "candidate_error_vs_target_m": null,
+      "disposition": "UNRESOLVED",
+      "candidates_m": [
+        4.228509830146325,
+        5.606807768351759
+      ],
+      "candidate_distance_m": 4.228509830146325,
+      "counters": {
+        "field_jet_points": 302,
+        "stationary_candidates": 0,
+        "scalar_refinements": 3
+      },
+      "unsupported": "some chart intervals unsupported",
+      "unsupported_intervals": [
+        {
+          "lo_m": 4.84375,
+          "hi_m": 4.921875,
+          "reason": "radial chart derivative singularity"
+        }
+      ]
+    },
+    {
+      "model": "incumbent_bicubic_8x12",
+      "ray_id": "radial-04",
+      "reference_first_distance_m": null,
+      "candidate_error_vs_target_m": null,
+      "disposition": "UNRESOLVED",
+      "candidates_m": [
+        4.1000000000000005,
+        5.7
+      ],
+      "candidate_distance_m": 4.1000000000000005,
+      "counters": {
+        "field_jet_points": 301,
+        "stationary_candidates": 0,
+        "scalar_refinements": 3
+      },
+      "unsupported": "some chart intervals unsupported",
+      "unsupported_intervals": [
+        {
+          "lo_m": 4.84375,
+          "hi_m": 4.921875,
+          "reason": "radial chart derivative singularity"
+        }
+      ]
+    },
+    {
+      "model": "incumbent_bicubic_8x12",
+      "ray_id": "radial-05",
+      "reference_first_distance_m": null,
+      "candidate_error_vs_target_m": null,
+      "disposition": "UNRESOLVED",
+      "candidates_m": [
+        3.9714901698536753,
+        5.793192231648241
+      ],
+      "candidate_distance_m": 3.9714901698536753,
+      "counters": {
+        "field_jet_points": 302,
+        "stationary_candidates": 0,
+        "scalar_refinements": 3
+      },
+      "unsupported": "some chart intervals unsupported",
+      "unsupported_intervals": [
+        {
+          "lo_m": 4.84375,
+          "hi_m": 4.921875,
+          "reason": "radial chart derivative singularity"
+        }
+      ]
+    },
+    {
+      "model": "incumbent_bicubic_8x12",
+      "ray_id": "radial-06",
+      "reference_first_distance_m": null,
+      "candidate_error_vs_target_m": null,
+      "disposition": "UNRESOLVED",
+      "candidates_m": [
+        4.040063189527775,
+        5.809733271189831
+      ],
+      "candidate_distance_m": 4.040063189527775,
+      "counters": {
+        "field_jet_points": 302,
+        "stationary_candidates": 0,
+        "scalar_refinements": 3
+      },
+      "unsupported": "some chart intervals unsupported",
+      "unsupported_intervals": [
+        {
+          "lo_m": 4.84375,
+          "hi_m": 4.921875,
+          "reason": "radial chart derivative singularity"
+        }
+      ]
+    },
+    {
+      "model": "incumbent_bicubic_8x12",
+      "ray_id": "radial-07",
+      "reference_first_distance_m": null,
+      "candidate_error_vs_target_m": null,
+      "disposition": "UNRESOLVED",
+      "candidates_m": [
+        4.128261508316799,
+        5.636420893185118
+      ],
+      "candidate_distance_m": 4.128261508316799,
+      "counters": {
+        "field_jet_points": 302,
+        "stationary_candidates": 0,
+        "scalar_refinements": 3
+      },
+      "unsupported": "some chart intervals unsupported",
+      "unsupported_intervals": [
+        {
+          "lo_m": 4.84375,
+          "hi_m": 4.921875,
+          "reason": "radial chart derivative singularity"
+        }
+      ]
+    },
+    {
+      "model": "incumbent_bicubic_8x12",
+      "ray_id": "radial-08",
+      "reference_first_distance_m": null,
+      "candidate_error_vs_target_m": null,
+      "disposition": "UNRESOLVED",
+      "candidates_m": [
+        4.220000000000001,
+        5.58
+      ],
+      "candidate_distance_m": 4.220000000000001,
+      "counters": {
+        "field_jet_points": 302,
+        "stationary_candidates": 0,
+        "scalar_refinements": 3
+      },
+      "unsupported": "some chart intervals unsupported",
+      "unsupported_intervals": [
+        {
+          "lo_m": 4.84375,
+          "hi_m": 4.921875,
+          "reason": "radial chart derivative singularity"
+        }
+      ]
+    },
+    {
+      "model": "incumbent_bicubic_8x12",
+      "ray_id": "radial-09",
+      "reference_first_distance_m": null,
+      "candidate_error_vs_target_m": null,
+      "disposition": "UNRESOLVED",
+      "candidates_m": [
+        4.163579106814883,
+        5.671738491683201
+      ],
+      "candidate_distance_m": 4.163579106814883,
+      "counters": {
+        "field_jet_points": 302,
+        "stationary_candidates": 0,
+        "scalar_refinements": 3
+      },
+      "unsupported": "some chart intervals unsupported",
+      "unsupported_intervals": [
+        {
+          "lo_m": 4.84375,
+          "hi_m": 4.921875,
+          "reason": "radial chart derivative singularity"
+        }
+      ]
+    },
+    {
+      "model": "incumbent_bicubic_8x12",
+      "ray_id": "radial-10",
+      "reference_first_distance_m": null,
+      "candidate_error_vs_target_m": null,
+      "disposition": "UNRESOLVED",
+      "candidates_m": [
+        3.99026672881017,
+        5.759936810472225
+      ],
+      "candidate_distance_m": 3.99026672881017,
+      "counters": {
+        "field_jet_points": 302,
+        "stationary_candidates": 0,
+        "scalar_refinements": 3
+      },
+      "unsupported": "some chart intervals unsupported",
+      "unsupported_intervals": [
+        {
+          "lo_m": 4.84375,
+          "hi_m": 4.921875,
+          "reason": "radial chart derivative singularity"
+        }
+      ]
+    },
+    {
+      "model": "incumbent_bicubic_8x12",
+      "ray_id": "radial-11",
+      "reference_first_distance_m": null,
+      "candidate_error_vs_target_m": null,
+      "disposition": "UNRESOLVED",
+      "candidates_m": [
+        4.0068077683517584,
+        5.828509830146325
+      ],
+      "candidate_distance_m": 4.0068077683517584,
+      "counters": {
+        "field_jet_points": 302,
+        "stationary_candidates": 0,
+        "scalar_refinements": 3
+      },
+      "unsupported": "some chart intervals unsupported",
+      "unsupported_intervals": [
+        {
+          "lo_m": 4.84375,
+          "hi_m": 4.921875,
+          "reason": "radial chart derivative singularity"
+        }
+      ]
+    },
+    {
+      "model": "incumbent_bicubic_8x12",
+      "ray_id": "radial-12",
+      "reference_first_distance_m": null,
+      "candidate_error_vs_target_m": null,
+      "disposition": "UNRESOLVED",
+      "candidates_m": [
+        4.1000000000000005,
+        5.7
+      ],
+      "candidate_distance_m": 4.1000000000000005,
+      "counters": {
+        "field_jet_points": 302,
+        "stationary_candidates": 0,
+        "scalar_refinements": 3
+      },
+      "unsupported": "some chart intervals unsupported",
+      "unsupported_intervals": [
+        {
+          "lo_m": 4.84375,
+          "hi_m": 4.921875,
+          "reason": "radial chart derivative singularity"
+        }
+      ]
+    },
+    {
+      "model": "incumbent_bicubic_8x12",
+      "ray_id": "radial-13",
+      "reference_first_distance_m": null,
+      "candidate_error_vs_target_m": null,
+      "disposition": "UNRESOLVED",
+      "candidates_m": [
+        4.193192231648241,
+        5.571490169853676
+      ],
+      "candidate_distance_m": 4.193192231648241,
+      "counters": {
+        "field_jet_points": 302,
+        "stationary_candidates": 0,
+        "scalar_refinements": 3
+      },
+      "unsupported": "some chart intervals unsupported",
+      "unsupported_intervals": [
+        {
+          "lo_m": 4.84375,
+          "hi_m": 4.921875,
+          "reason": "radial chart derivative singularity"
+        }
+      ]
+    },
+    {
+      "model": "incumbent_bicubic_8x12",
+      "ray_id": "radial-14",
+      "reference_first_distance_m": null,
+      "candidate_error_vs_target_m": null,
+      "disposition": "UNRESOLVED",
+      "candidates_m": [
+        4.2097332711898305,
+        5.640063189527775
+      ],
+      "candidate_distance_m": 4.2097332711898305,
+      "counters": {
+        "field_jet_points": 302,
+        "stationary_candidates": 0,
+        "scalar_refinements": 3
+      },
+      "unsupported": "some chart intervals unsupported",
+      "unsupported_intervals": [
+        {
+          "lo_m": 4.84375,
+          "hi_m": 4.921875,
+          "reason": "radial chart derivative singularity"
+        }
+      ]
+    },
+    {
+      "model": "incumbent_bicubic_8x12",
+      "ray_id": "radial-15",
+      "reference_first_distance_m": null,
+      "candidate_error_vs_target_m": null,
+      "disposition": "UNRESOLVED",
+      "candidates_m": [
+        4.0364208931851175,
+        5.728261508316798
+      ],
+      "candidate_distance_m": 4.0364208931851175,
+      "counters": {
+        "field_jet_points": 302,
+        "stationary_candidates": 0,
+        "scalar_refinements": 3
+      },
+      "unsupported": "some chart intervals unsupported",
+      "unsupported_intervals": [
+        {
+          "lo_m": 4.84375,
+          "hi_m": 4.921875,
+          "reason": "radial chart derivative singularity"
+        }
+      ]
+    },
+    {
+      "model": "incumbent_bicubic_8x12",
+      "ray_id": "miss-z",
+      "reference_first_distance_m": null,
+      "candidate_error_vs_target_m": null,
+      "disposition": "UNRESOLVED",
+      "candidates_m": [],
+      "candidate_distance_m": null,
+      "counters": {
+        "field_jet_points": 257,
+        "stationary_candidates": 0,
+        "scalar_refinements": 0
+      },
+      "unsupported": "radial chart derivative singularity",
+      "unsupported_intervals": []
+    },
+    {
+      "model": "incumbent_bicubic_8x12",
+      "ray_id": "grazing",
+      "reference_first_distance_m": null,
+      "candidate_error_vs_target_m": null,
+      "disposition": "UNRESOLVED",
+      "candidates_m": [
+        2.0000000000000067,
+        2.0306892681402977
+      ],
+      "candidate_distance_m": 2.0000000000000067,
+      "counters": {
+        "field_jet_points": 284,
+        "stationary_candidates": 1,
+        "scalar_refinements": 3
+      },
+      "unsupported": null,
+      "unsupported_intervals": []
+    },
+    {
+      "model": "incumbent_bicubic_8x12",
+      "ray_id": "thin-chord",
+      "reference_first_distance_m": null,
+      "candidate_error_vs_target_m": null,
+      "disposition": "UNRESOLVED",
+      "candidates_m": [],
+      "candidate_distance_m": null,
+      "counters": {
+        "field_jet_points": 266,
+        "stationary_candidates": 1,
+        "scalar_refinements": 1
+      },
+      "unsupported": null,
+      "unsupported_intervals": []
+    },
+    {
+      "model": "incumbent_bicubic_8x12",
+      "ray_id": "coincident-control",
+      "reference_first_distance_m": null,
+      "candidate_error_vs_target_m": null,
+      "disposition": "UNRESOLVED",
+      "candidates_m": [],
+      "candidate_distance_m": null,
+      "counters": {
+        "field_jet_points": 257,
+        "stationary_candidates": 0,
+        "scalar_refinements": 0
+      },
+      "unsupported": null,
+      "unsupported_intervals": []
+    },
+    {
+      "model": "incumbent_bicubic_8x12",
+      "ray_id": "known-radial-00",
+      "reference_first_distance_m": 1.0670827880293374,
+      "candidate_error_vs_target_m": 0.0009848222175481425,
+      "disposition": "UNRESOLVED",
+      "candidates_m": [
+        1.0680676102468856,
+        2.9059429654937134
+      ],
+      "candidate_distance_m": 1.0680676102468856,
+      "counters": {
+        "field_jet_points": 344,
+        "stationary_candidates": 3,
+        "scalar_refinements": 5
+      },
+      "unsupported": null,
+      "unsupported_intervals": []
+    },
+    {
+      "model": "incumbent_bicubic_8x12",
+      "ray_id": "known-radial-01",
+      "reference_first_distance_m": 1.191978520900117,
+      "candidate_error_vs_target_m": 0.0006478755947119108,
+      "disposition": "UNRESOLVED",
+      "candidates_m": [
+        1.192626396494829,
+        2.841700631628598
+      ],
+      "candidate_distance_m": 1.192626396494829,
+      "counters": {
+        "field_jet_points": 344,
+        "stationary_candidates": 3,
+        "scalar_refinements": 5
+      },
+      "unsupported": null,
+      "unsupported_intervals": []
+    },
+    {
+      "model": "incumbent_bicubic_8x12",
+      "ray_id": "known-radial-02",
+      "reference_first_distance_m": 1.3287649888487794,
+      "candidate_error_vs_target_m": 0.00046084091833553664,
+      "disposition": "UNRESOLVED",
+      "candidates_m": [
+        1.3283041479304438,
+        2.7154518144891266
+      ],
+      "candidate_distance_m": 1.3283041479304438,
+      "counters": {
+        "field_jet_points": 357,
+        "stationary_candidates": 3,
+        "scalar_refinements": 5
+      },
+      "unsupported": null,
+      "unsupported_intervals": []
+    },
+    {
+      "model": "incumbent_bicubic_8x12",
+      "ray_id": "known-radial-03",
+      "reference_first_distance_m": 1.2746751420128388,
+      "candidate_error_vs_target_m": 0.00021369426328177177,
+      "disposition": "UNRESOLVED",
+      "candidates_m": [
+        1.2748888362761206,
+        2.713483190353214
+      ],
+      "candidate_distance_m": 1.2748888362761206,
+      "counters": {
+        "field_jet_points": 291,
+        "stationary_candidates": 1,
+        "scalar_refinements": 3
+      },
+      "unsupported": null,
+      "unsupported_intervals": []
+    },
+    {
+      "model": "incumbent_bicubic_8x12",
+      "ray_id": "known-radial-04",
+      "reference_first_distance_m": 1.1098897090485367,
+      "candidate_error_vs_target_m": 0.0019452560107555694,
+      "disposition": "UNRESOLVED",
+      "candidates_m": [
+        1.1118349650592922,
+        2.838426198684232
+      ],
+      "candidate_distance_m": 1.1118349650592922,
+      "counters": {
+        "field_jet_points": 300,
+        "stationary_candidates": 1,
+        "scalar_refinements": 3
+      },
+      "unsupported": null,
+      "unsupported_intervals": []
+    },
+    {
+      "model": "incumbent_bicubic_8x12",
+      "ray_id": "known-radial-05",
+      "reference_first_distance_m": 1.0786803390712252,
+      "candidate_error_vs_target_m": 0.0012539620112397287,
+      "disposition": "UNRESOLVED",
+      "candidates_m": [
+        1.079934301082465,
+        2.90582032153934
+      ],
+      "candidate_distance_m": 1.079934301082465,
+      "counters": {
+        "field_jet_points": 304,
+        "stationary_candidates": 1,
+        "scalar_refinements": 3
+      },
+      "unsupported": null,
+      "unsupported_intervals": []
+    },
+    {
+      "model": "incumbent_bicubic_8x12",
+      "ray_id": "known-radial-06",
+      "reference_first_distance_m": 1.227310613363969,
+      "candidate_error_vs_target_m": 0.0012424590068926822,
+      "disposition": "UNRESOLVED",
+      "candidates_m": [
+        1.2260681543570764,
+        2.816407082981763
+      ],
+      "candidate_distance_m": 1.2260681543570764,
+      "counters": {
+        "field_jet_points": 293,
+        "stationary_candidates": 1,
+        "scalar_refinements": 3
+      },
+      "unsupported": null,
+      "unsupported_intervals": []
+    },
+    {
+      "model": "incumbent_bicubic_8x12",
+      "ray_id": "known-radial-07",
+      "reference_first_distance_m": 1.335456674672828,
+      "candidate_error_vs_target_m": 0.003275715033023374,
+      "disposition": "UNRESOLVED",
+      "candidates_m": [
+        1.3321809596398047,
+        2.7040606057658763
+      ],
+      "candidate_distance_m": 1.3321809596398047,
+      "counters": {
+        "field_jet_points": 301,
+        "stationary_candidates": 1,
+        "scalar_refinements": 3
+      },
+      "unsupported": null,
+      "unsupported_intervals": []
+    },
+    {
+      "model": "incumbent_bicubic_8x12",
+      "ray_id": "known-radial-08",
+      "reference_first_distance_m": 1.242806921019199,
+      "candidate_error_vs_target_m": 0.0014208756800608846,
+      "disposition": "UNRESOLVED",
+      "candidates_m": [
+        1.241386045339138,
+        2.7348447889320484
+      ],
+      "candidate_distance_m": 1.241386045339138,
+      "counters": {
+        "field_jet_points": 301,
+        "stationary_candidates": 1,
+        "scalar_refinements": 3
+      },
+      "unsupported": null,
+      "unsupported_intervals": []
+    },
+    {
+      "model": "incumbent_bicubic_8x12",
+      "ray_id": "known-radial-09",
+      "reference_first_distance_m": 1.0867018181711083,
+      "candidate_error_vs_target_m": 0.0014762827896319664,
+      "disposition": "UNRESOLVED",
+      "candidates_m": [
+        1.0881781009607403,
+        2.863235717569023
+      ],
+      "candidate_distance_m": 1.0881781009607403,
+      "counters": {
+        "field_jet_points": 301,
+        "stationary_candidates": 1,
+        "scalar_refinements": 3
+      },
+      "unsupported": null,
+      "unsupported_intervals": []
+    },
+    {
+      "model": "incumbent_bicubic_8x12",
+      "ray_id": "known-radial-10",
+      "reference_first_distance_m": 1.09854562451519,
+      "candidate_error_vs_target_m": 0.002829912160215331,
+      "disposition": "UNRESOLVED",
+      "candidates_m": [
+        1.1013755366754052,
+        2.8973440454347945
+      ],
+      "candidate_distance_m": 1.1013755366754052,
+      "counters": {
+        "field_jet_points": 304,
+        "stationary_candidates": 1,
+        "scalar_refinements": 3
+      },
+      "unsupported": null,
+      "unsupported_intervals": []
+    },
+    {
+      "model": "incumbent_bicubic_8x12",
+      "ray_id": "known-radial-11",
+      "reference_first_distance_m": 1.2607815326599892,
+      "candidate_error_vs_target_m": 0.0007488732623324168,
+      "disposition": "UNRESOLVED",
+      "candidates_m": [
+        1.2615304059223216,
+        2.7863533835315466
+      ],
+      "candidate_distance_m": 1.2615304059223216,
+      "counters": {
+        "field_jet_points": 306,
+        "stationary_candidates": 1,
+        "scalar_refinements": 3
+      },
+      "unsupported": null,
+      "unsupported_intervals": []
+    },
+    {
+      "model": "incumbent_bicubic_8x12",
+      "ray_id": "known-radial-12",
+      "reference_first_distance_m": 1.3329172119706623,
+      "candidate_error_vs_target_m": 0.0009848222175479204,
+      "disposition": "UNRESOLVED",
+      "candidates_m": [
+        1.3319323897531143,
+        2.694057034506287
+      ],
+      "candidate_distance_m": 1.3319323897531143,
+      "counters": {
+        "field_jet_points": 301,
+        "stationary_candidates": 1,
+        "scalar_refinements": 3
+      },
+      "unsupported": null,
+      "unsupported_intervals": []
+    },
+    {
+      "model": "incumbent_bicubic_8x12",
+      "ray_id": "known-radial-13",
+      "reference_first_distance_m": 1.2080214790998829,
+      "candidate_error_vs_target_m": 0.0006478755947119108,
+      "disposition": "UNRESOLVED",
+      "candidates_m": [
+        1.207373603505171,
+        2.7582993683714014
+      ],
+      "candidate_distance_m": 1.207373603505171,
+      "counters": {
+        "field_jet_points": 305,
+        "stationary_candidates": 1,
+        "scalar_refinements": 3
+      },
+      "unsupported": null,
+      "unsupported_intervals": []
+    },
+    {
+      "model": "incumbent_bicubic_8x12",
+      "ray_id": "known-radial-14",
+      "reference_first_distance_m": 1.0712350111512208,
+      "candidate_error_vs_target_m": 0.0004608409183362028,
+      "disposition": "UNRESOLVED",
+      "candidates_m": [
+        1.071695852069557,
+        2.884548185510873
+      ],
+      "candidate_distance_m": 1.071695852069557,
+      "counters": {
+        "field_jet_points": 293,
+        "stationary_candidates": 1,
+        "scalar_refinements": 3
+      },
+      "unsupported": null,
+      "unsupported_intervals": []
+    },
+    {
+      "model": "incumbent_bicubic_8x12",
+      "ray_id": "known-radial-15",
+      "reference_first_distance_m": 1.1253248579871613,
+      "candidate_error_vs_target_m": 0.0002136942632824379,
+      "disposition": "UNRESOLVED",
+      "candidates_m": [
+        1.1251111637238789,
+        2.886516809646786
+      ],
+      "candidate_distance_m": 1.1251111637238789,
+      "counters": {
+        "field_jet_points": 302,
+        "stationary_candidates": 1,
+        "scalar_refinements": 3
+      },
+      "unsupported": null,
+      "unsupported_intervals": []
+    },
+    {
+      "model": "incumbent_bicubic_8x12",
+      "ray_id": "known-radial-16",
+      "reference_first_distance_m": 1.290110290951463,
+      "candidate_error_vs_target_m": 0.0019452560107551253,
+      "disposition": "UNRESOLVED",
+      "candidates_m": [
+        1.2881650349407079,
+        2.7615738013157682
+      ],
+      "candidate_distance_m": 1.2881650349407079,
+      "counters": {
+        "field_jet_points": 307,
+        "stationary_candidates": 1,
+        "scalar_refinements": 3
+      },
+      "unsupported": null,
+      "unsupported_intervals": []
+    },
+    {
+      "model": "incumbent_bicubic_8x12",
+      "ray_id": "known-radial-17",
+      "reference_first_distance_m": 1.3213196609287747,
+      "candidate_error_vs_target_m": 0.0012539620112397287,
+      "disposition": "UNRESOLVED",
+      "candidates_m": [
+        1.320065698917535,
+        2.69417967846066
+      ],
+      "candidate_distance_m": 1.320065698917535,
+      "counters": {
+        "field_jet_points": 303,
+        "stationary_candidates": 1,
+        "scalar_refinements": 3
+      },
+      "unsupported": null,
+      "unsupported_intervals": []
+    },
+    {
+      "model": "incumbent_bicubic_8x12",
+      "ray_id": "known-radial-18",
+      "reference_first_distance_m": 1.1726893866360308,
+      "candidate_error_vs_target_m": 0.0012424590068924601,
+      "disposition": "UNRESOLVED",
+      "candidates_m": [
+        1.1739318456429233,
+        2.783592917018237
+      ],
+      "candidate_distance_m": 1.1739318456429233,
+      "counters": {
+        "field_jet_points": 295,
+        "stationary_candidates": 1,
+        "scalar_refinements": 3
+      },
+      "unsupported": null,
+      "unsupported_intervals": []
+    },
+    {
+      "model": "incumbent_bicubic_8x12",
+      "ray_id": "known-radial-19",
+      "reference_first_distance_m": 1.064543325327172,
+      "candidate_error_vs_target_m": 0.00327571503302293,
+      "disposition": "UNRESOLVED",
+      "candidates_m": [
+        1.067819040360195,
+        2.8959393942341243
+      ],
+      "candidate_distance_m": 1.067819040360195,
+      "counters": {
+        "field_jet_points": 308,
+        "stationary_candidates": 1,
+        "scalar_refinements": 3
+      },
+      "unsupported": null,
+      "unsupported_intervals": []
+    },
+    {
+      "model": "incumbent_bicubic_8x12",
+      "ray_id": "known-radial-20",
+      "reference_first_distance_m": 1.1571930789808005,
+      "candidate_error_vs_target_m": 0.0014208756800615507,
+      "disposition": "UNRESOLVED",
+      "candidates_m": [
+        1.158613954660862,
+        2.8651552110679517
+      ],
+      "candidate_distance_m": 1.158613954660862,
+      "counters": {
+        "field_jet_points": 301,
+        "stationary_candidates": 1,
+        "scalar_refinements": 3
+      },
+      "unsupported": null,
+      "unsupported_intervals": []
+    },
+    {
+      "model": "incumbent_bicubic_8x12",
+      "ray_id": "known-radial-21",
+      "reference_first_distance_m": 1.3132981818288916,
+      "candidate_error_vs_target_m": 0.0014762827896315223,
+      "disposition": "UNRESOLVED",
+      "candidates_m": [
+        1.31182189903926,
+        2.7367642824309777
+      ],
+      "candidate_distance_m": 1.31182189903926,
+      "counters": {
+        "field_jet_points": 352,
+        "stationary_candidates": 3,
+        "scalar_refinements": 5
+      },
+      "unsupported": null,
+      "unsupported_intervals": []
+    },
+    {
+      "model": "incumbent_bicubic_8x12",
+      "ray_id": "known-radial-22",
+      "reference_first_distance_m": 1.30145437548481,
+      "candidate_error_vs_target_m": 0.002829912160214665,
+      "disposition": "UNRESOLVED",
+      "candidates_m": [
+        1.2986244633245954,
+        2.702655954565205
+      ],
+      "candidate_distance_m": 1.2986244633245954,
+      "counters": {
+        "field_jet_points": 347,
+        "stationary_candidates": 3,
+        "scalar_refinements": 5
+      },
+      "unsupported": null,
+      "unsupported_intervals": []
+    },
+    {
+      "model": "incumbent_bicubic_8x12",
+      "ray_id": "known-radial-23",
+      "reference_first_distance_m": 1.139218467340011,
+      "candidate_error_vs_target_m": 0.0007488732623319727,
+      "disposition": "UNRESOLVED",
+      "candidates_m": [
+        1.138469594077679,
+        2.8136466164684535
+      ],
+      "candidate_distance_m": 1.138469594077679,
+      "counters": {
+        "field_jet_points": 353,
+        "stationary_candidates": 3,
+        "scalar_refinements": 5
+      },
+      "unsupported": null,
+      "unsupported_intervals": []
+    },
+    {
+      "model": "incumbent_bicubic_16x24",
+      "ray_id": "general-00",
+      "reference_first_distance_m": null,
+      "candidate_error_vs_target_m": null,
+      "disposition": "UNRESOLVED",
+      "candidates_m": [
+        1.7789421362655984,
+        2.9451471196901093
+      ],
+      "candidate_distance_m": 1.7789421362655984,
+      "counters": {
+        "field_jet_points": 280,
+        "stationary_candidates": 1,
+        "scalar_refinements": 3
+      },
+      "unsupported": null,
+      "unsupported_intervals": []
+    },
+    {
+      "model": "incumbent_bicubic_16x24",
+      "ray_id": "general-01",
+      "reference_first_distance_m": null,
+      "candidate_error_vs_target_m": null,
+      "disposition": "UNRESOLVED",
+      "candidates_m": [
+        5.863229751505041,
+        7.912355686611481
+      ],
+      "candidate_distance_m": 5.863229751505041,
+      "counters": {
+        "field_jet_points": 276,
+        "stationary_candidates": 1,
+        "scalar_refinements": 3
+      },
+      "unsupported": null,
+      "unsupported_intervals": []
+    },
+    {
+      "model": "incumbent_bicubic_16x24",
+      "ray_id": "general-02",
+      "reference_first_distance_m": null,
+      "candidate_error_vs_target_m": null,
+      "disposition": "UNRESOLVED",
+      "candidates_m": [
+        11.405296957441658,
+        13.00597888745757
+      ],
+      "candidate_distance_m": 11.405296957441658,
+      "counters": {
+        "field_jet_points": 293,
+        "stationary_candidates": 3,
+        "scalar_refinements": 5
+      },
+      "unsupported": null,
+      "unsupported_intervals": []
+    },
+    {
+      "model": "incumbent_bicubic_16x24",
+      "ray_id": "general-03",
+      "reference_first_distance_m": null,
+      "candidate_error_vs_target_m": null,
+      "disposition": "UNRESOLVED",
+      "candidates_m": [
+        5.890154492361723,
+        7.445507597049218
+      ],
+      "candidate_distance_m": 5.890154492361723,
+      "counters": {
+        "field_jet_points": 278,
+        "stationary_candidates": 1,
+        "scalar_refinements": 3
+      },
+      "unsupported": null,
+      "unsupported_intervals": []
+    },
+    {
+      "model": "incumbent_bicubic_16x24",
+      "ray_id": "general-04",
+      "reference_first_distance_m": null,
+      "candidate_error_vs_target_m": null,
+      "disposition": "UNRESOLVED",
+      "candidates_m": [
+        4.258436089139348,
+        6.276764858377331
+      ],
+      "candidate_distance_m": 4.258436089139348,
+      "counters": {
+        "field_jet_points": 278,
+        "stationary_candidates": 1,
+        "scalar_refinements": 3
+      },
+      "unsupported": null,
+      "unsupported_intervals": []
+    },
+    {
+      "model": "incumbent_bicubic_16x24",
+      "ray_id": "general-05",
+      "reference_first_distance_m": null,
+      "candidate_error_vs_target_m": null,
+      "disposition": "UNRESOLVED",
+      "candidates_m": [
+        5.696136477036551,
+        6.330066518675733
+      ],
+      "candidate_distance_m": 5.696136477036551,
+      "counters": {
+        "field_jet_points": 277,
+        "stationary_candidates": 1,
+        "scalar_refinements": 3
+      },
+      "unsupported": null,
+      "unsupported_intervals": []
+    },
+    {
+      "model": "incumbent_bicubic_16x24",
+      "ray_id": "general-06",
+      "reference_first_distance_m": null,
+      "candidate_error_vs_target_m": null,
+      "disposition": "UNRESOLVED",
+      "candidates_m": [
+        9.698899935954806,
+        10.734010429272459
+      ],
+      "candidate_distance_m": 9.698899935954806,
+      "counters": {
+        "field_jet_points": 315,
+        "stationary_candidates": 5,
+        "scalar_refinements": 7
+      },
+      "unsupported": null,
+      "unsupported_intervals": []
+    },
+    {
+      "model": "incumbent_bicubic_16x24",
+      "ray_id": "general-07",
+      "reference_first_distance_m": null,
+      "candidate_error_vs_target_m": null,
+      "disposition": "UNRESOLVED",
+      "candidates_m": [],
+      "candidate_distance_m": null,
+      "counters": {
+        "field_jet_points": 289,
+        "stationary_candidates": 4,
+        "scalar_refinements": 4
+      },
+      "unsupported": null,
+      "unsupported_intervals": []
+    },
+    {
+      "model": "incumbent_bicubic_16x24",
+      "ray_id": "general-08",
+      "reference_first_distance_m": null,
+      "candidate_error_vs_target_m": null,
+      "disposition": "UNRESOLVED",
+      "candidates_m": [
+        10.155233980234845,
+        10.355838357906459
+      ],
+      "candidate_distance_m": 10.155233980234845,
+      "counters": {
+        "field_jet_points": 296,
+        "stationary_candidates": 3,
+        "scalar_refinements": 5
+      },
+      "unsupported": null,
+      "unsupported_intervals": []
+    },
+    {
+      "model": "incumbent_bicubic_16x24",
+      "ray_id": "general-09",
+      "reference_first_distance_m": null,
+      "candidate_error_vs_target_m": null,
+      "disposition": "UNRESOLVED",
+      "candidates_m": [
+        0.8851283302960334,
+        2.888199720420089
+      ],
+      "candidate_distance_m": 0.8851283302960334,
+      "counters": {
+        "field_jet_points": 296,
+        "stationary_candidates": 3,
+        "scalar_refinements": 5
+      },
+      "unsupported": null,
+      "unsupported_intervals": []
+    },
+    {
+      "model": "incumbent_bicubic_16x24",
+      "ray_id": "general-10",
+      "reference_first_distance_m": null,
+      "candidate_error_vs_target_m": null,
+      "disposition": "UNRESOLVED",
+      "candidates_m": [
+        5.431797173576315,
+        5.963081740913847
+      ],
+      "candidate_distance_m": 5.431797173576315,
+      "counters": {
+        "field_jet_points": 280,
+        "stationary_candidates": 1,
+        "scalar_refinements": 3
+      },
+      "unsupported": null,
+      "unsupported_intervals": []
+    },
+    {
+      "model": "incumbent_bicubic_16x24",
+      "ray_id": "general-11",
+      "reference_first_distance_m": null,
+      "candidate_error_vs_target_m": null,
+      "disposition": "UNRESOLVED",
+      "candidates_m": [
+        7.475131368665446,
+        7.711218768148302
+      ],
+      "candidate_distance_m": 7.475131368665446,
+      "counters": {
+        "field_jet_points": 279,
+        "stationary_candidates": 1,
+        "scalar_refinements": 3
+      },
+      "unsupported": null,
+      "unsupported_intervals": []
+    },
+    {
+      "model": "incumbent_bicubic_16x24",
+      "ray_id": "general-12",
+      "reference_first_distance_m": null,
+      "candidate_error_vs_target_m": null,
+      "disposition": "UNRESOLVED",
+      "candidates_m": [
+        9.275115172392692,
+        10.330161152719691
+      ],
+      "candidate_distance_m": 9.275115172392692,
+      "counters": {
+        "field_jet_points": 277,
+        "stationary_candidates": 1,
+        "scalar_refinements": 3
+      },
+      "unsupported": null,
+      "unsupported_intervals": []
+    },
+    {
+      "model": "incumbent_bicubic_16x24",
+      "ray_id": "general-13",
+      "reference_first_distance_m": null,
+      "candidate_error_vs_target_m": null,
+      "disposition": "UNRESOLVED",
+      "candidates_m": [
+        8.527974405294856,
+        9.390132503886171
+      ],
+      "candidate_distance_m": 8.527974405294856,
+      "counters": {
+        "field_jet_points": 278,
+        "stationary_candidates": 1,
+        "scalar_refinements": 3
+      },
+      "unsupported": null,
+      "unsupported_intervals": []
+    },
+    {
+      "model": "incumbent_bicubic_16x24",
+      "ray_id": "general-14",
+      "reference_first_distance_m": null,
+      "candidate_error_vs_target_m": null,
+      "disposition": "UNRESOLVED",
+      "candidates_m": [
+        4.168627718250821,
+        5.473367884584646
+      ],
+      "candidate_distance_m": 4.168627718250821,
+      "counters": {
+        "field_jet_points": 279,
+        "stationary_candidates": 1,
+        "scalar_refinements": 3
+      },
+      "unsupported": null,
+      "unsupported_intervals": []
+    },
+    {
+      "model": "incumbent_bicubic_16x24",
+      "ray_id": "general-15",
+      "reference_first_distance_m": null,
+      "candidate_error_vs_target_m": null,
+      "disposition": "UNRESOLVED",
+      "candidates_m": [
+        7.764123017579902,
+        7.812505067183564
+      ],
+      "candidate_distance_m": 7.764123017579902,
+      "counters": {
+        "field_jet_points": 290,
+        "stationary_candidates": 2,
+        "scalar_refinements": 4
+      },
+      "unsupported": null,
+      "unsupported_intervals": []
+    },
+    {
+      "model": "incumbent_bicubic_16x24",
+      "ray_id": "general-16",
+      "reference_first_distance_m": null,
+      "candidate_error_vs_target_m": null,
+      "disposition": "UNRESOLVED",
+      "candidates_m": [
+        8.129823534905775,
+        8.789082177154063
+      ],
+      "candidate_distance_m": 8.129823534905775,
+      "counters": {
+        "field_jet_points": 278,
+        "stationary_candidates": 1,
+        "scalar_refinements": 3
+      },
+      "unsupported": null,
+      "unsupported_intervals": []
+    },
+    {
+      "model": "incumbent_bicubic_16x24",
+      "ray_id": "general-17",
+      "reference_first_distance_m": null,
+      "candidate_error_vs_target_m": null,
+      "disposition": "UNRESOLVED",
+      "candidates_m": [
+        7.2852033385003585,
+        9.272279406480674
+      ],
+      "candidate_distance_m": 7.2852033385003585,
+      "counters": {
+        "field_jet_points": 277,
+        "stationary_candidates": 1,
+        "scalar_refinements": 3
+      },
+      "unsupported": null,
+      "unsupported_intervals": []
+    },
+    {
+      "model": "incumbent_bicubic_16x24",
+      "ray_id": "general-18",
+      "reference_first_distance_m": null,
+      "candidate_error_vs_target_m": null,
+      "disposition": "UNRESOLVED",
+      "candidates_m": [
+        0.04547698132343984
+      ],
+      "candidate_distance_m": 0.04547698132343984,
+      "counters": {
+        "field_jet_points": 280,
+        "stationary_candidates": 2,
+        "scalar_refinements": 3
+      },
+      "unsupported": null,
+      "unsupported_intervals": []
+    },
+    {
+      "model": "incumbent_bicubic_16x24",
+      "ray_id": "general-19",
+      "reference_first_distance_m": null,
+      "candidate_error_vs_target_m": null,
+      "disposition": "UNRESOLVED",
+      "candidates_m": [
+        8.984713246636405,
+        10.917929611393097
+      ],
+      "candidate_distance_m": 8.984713246636405,
+      "counters": {
+        "field_jet_points": 293,
+        "stationary_candidates": 3,
+        "scalar_refinements": 5
+      },
+      "unsupported": null,
+      "unsupported_intervals": []
+    },
+    {
+      "model": "incumbent_bicubic_16x24",
+      "ray_id": "general-20",
+      "reference_first_distance_m": null,
+      "candidate_error_vs_target_m": null,
+      "disposition": "UNRESOLVED",
+      "candidates_m": [
+        4.0690351856264835,
+        5.44564620106721
+      ],
+      "candidate_distance_m": 4.0690351856264835,
+      "counters": {
+        "field_jet_points": 277,
+        "stationary_candidates": 1,
+        "scalar_refinements": 3
+      },
+      "unsupported": null,
+      "unsupported_intervals": []
+    },
+    {
+      "model": "incumbent_bicubic_16x24",
+      "ray_id": "general-21",
+      "reference_first_distance_m": null,
+      "candidate_error_vs_target_m": null,
+      "disposition": "UNRESOLVED",
+      "candidates_m": [
+        1.1093661447703986
+      ],
+      "candidate_distance_m": 1.1093661447703986,
+      "counters": {
+        "field_jet_points": 263,
+        "stationary_candidates": 0,
+        "scalar_refinements": 1
+      },
+      "unsupported": null,
+      "unsupported_intervals": []
+    },
+    {
+      "model": "incumbent_bicubic_16x24",
+      "ray_id": "general-22",
+      "reference_first_distance_m": null,
+      "candidate_error_vs_target_m": null,
+      "disposition": "UNRESOLVED",
+      "candidates_m": [
+        8.367442023496864,
+        8.78920729644521
+      ],
+      "candidate_distance_m": 8.367442023496864,
+      "counters": {
+        "field_jet_points": 279,
+        "stationary_candidates": 1,
+        "scalar_refinements": 3
+      },
+      "unsupported": null,
+      "unsupported_intervals": []
+    },
+    {
+      "model": "incumbent_bicubic_16x24",
+      "ray_id": "general-23",
+      "reference_first_distance_m": null,
+      "candidate_error_vs_target_m": null,
+      "disposition": "UNRESOLVED",
+      "candidates_m": [
+        0.5306098389494179,
+        1.3425977566111003,
+        9.877155638383966,
+        10.77793247324681
+      ],
+      "candidate_distance_m": 0.5306098389494179,
+      "counters": {
+        "field_jet_points": 306,
+        "stationary_candidates": 3,
+        "scalar_refinements": 7
+      },
+      "unsupported": null,
+      "unsupported_intervals": []
+    },
+    {
+      "model": "incumbent_bicubic_16x24",
+      "ray_id": "general-24",
+      "reference_first_distance_m": null,
+      "candidate_error_vs_target_m": null,
+      "disposition": "UNRESOLVED",
+      "candidates_m": [
+        2.788178527146484,
+        3.9554026420424564
+      ],
+      "candidate_distance_m": 2.788178527146484,
+      "counters": {
+        "field_jet_points": 276,
+        "stationary_candidates": 1,
+        "scalar_refinements": 3
+      },
+      "unsupported": null,
+      "unsupported_intervals": []
+    },
+    {
+      "model": "incumbent_bicubic_16x24",
+      "ray_id": "general-25",
+      "reference_first_distance_m": null,
+      "candidate_error_vs_target_m": null,
+      "disposition": "UNRESOLVED",
+      "candidates_m": [
+        6.6341278977164935,
+        7.4738072267892
+      ],
+      "candidate_distance_m": 6.6341278977164935,
+      "counters": {
+        "field_jet_points": 280,
+        "stationary_candidates": 1,
+        "scalar_refinements": 3
+      },
+      "unsupported": null,
+      "unsupported_intervals": []
+    },
+    {
+      "model": "incumbent_bicubic_16x24",
+      "ray_id": "general-26",
+      "reference_first_distance_m": null,
+      "candidate_error_vs_target_m": null,
+      "disposition": "UNRESOLVED",
+      "candidates_m": [
+        1.6821856873755212,
+        3.6399109901321327
+      ],
+      "candidate_distance_m": 1.6821856873755212,
+      "counters": {
+        "field_jet_points": 293,
+        "stationary_candidates": 3,
+        "scalar_refinements": 5
+      },
+      "unsupported": null,
+      "unsupported_intervals": []
+    },
+    {
+      "model": "incumbent_bicubic_16x24",
+      "ray_id": "general-27",
+      "reference_first_distance_m": null,
+      "candidate_error_vs_target_m": null,
+      "disposition": "UNRESOLVED",
+      "candidates_m": [
+        11.033278173993411,
+        12.084788591844145
+      ],
+      "candidate_distance_m": 11.033278173993411,
+      "counters": {
+        "field_jet_points": 278,
+        "stationary_candidates": 1,
+        "scalar_refinements": 3
+      },
+      "unsupported": null,
+      "unsupported_intervals": []
+    },
+    {
+      "model": "incumbent_bicubic_16x24",
+      "ray_id": "general-28",
+      "reference_first_distance_m": null,
+      "candidate_error_vs_target_m": null,
+      "disposition": "UNRESOLVED",
+      "candidates_m": [],
+      "candidate_distance_m": null,
+      "counters": {
+        "field_jet_points": 271,
+        "stationary_candidates": 2,
+        "scalar_refinements": 2
+      },
+      "unsupported": null,
+      "unsupported_intervals": []
+    },
+    {
+      "model": "incumbent_bicubic_16x24",
+      "ray_id": "general-29",
+      "reference_first_distance_m": null,
+      "candidate_error_vs_target_m": null,
+      "disposition": "UNRESOLVED",
+      "candidates_m": [
+        4.4935513425832125,
+        5.958802283870365
+      ],
+      "candidate_distance_m": 4.4935513425832125,
+      "counters": {
+        "field_jet_points": 277,
+        "stationary_candidates": 1,
+        "scalar_refinements": 3
+      },
+      "unsupported": null,
+      "unsupported_intervals": []
+    },
+    {
+      "model": "incumbent_bicubic_16x24",
+      "ray_id": "general-30",
+      "reference_first_distance_m": null,
+      "candidate_error_vs_target_m": null,
+      "disposition": "UNRESOLVED",
+      "candidates_m": [],
+      "candidate_distance_m": null,
+      "counters": {
+        "field_jet_points": 287,
+        "stationary_candidates": 3,
+        "scalar_refinements": 3
+      },
+      "unsupported": null,
+      "unsupported_intervals": []
+    },
+    {
+      "model": "incumbent_bicubic_16x24",
+      "ray_id": "general-31",
+      "reference_first_distance_m": null,
+      "candidate_error_vs_target_m": null,
+      "disposition": "UNRESOLVED",
+      "candidates_m": [
+        2.9746370127410966,
+        5.289763741624892,
+        10.384929923912923,
+        12.353513434155067
+      ],
+      "candidate_distance_m": 2.9746370127410966,
+      "counters": {
+        "field_jet_points": 304,
+        "stationary_candidates": 3,
+        "scalar_refinements": 7
+      },
+      "unsupported": null,
+      "unsupported_intervals": []
+    },
+    {
+      "model": "incumbent_bicubic_16x24",
+      "ray_id": "radial-00",
+      "reference_first_distance_m": null,
+      "candidate_error_vs_target_m": null,
+      "disposition": "UNRESOLVED",
+      "candidates_m": [
+        3.9800000000000004,
+        5.82
+      ],
+      "candidate_distance_m": 3.9800000000000004,
+      "counters": {
+        "field_jet_points": 302,
+        "stationary_candidates": 0,
+        "scalar_refinements": 3
+      },
+      "unsupported": "some chart intervals unsupported",
+      "unsupported_intervals": [
+        {
+          "lo_m": 4.84375,
+          "hi_m": 4.921875,
+          "reason": "radial chart derivative singularity"
+        }
+      ]
+    },
+    {
+      "model": "incumbent_bicubic_16x24",
+      "ray_id": "radial-01",
+      "reference_first_distance_m": null,
+      "candidate_error_vs_target_m": null,
+      "disposition": "UNRESOLVED",
+      "candidates_m": [
+        4.071752526414062,
+        5.763595407265534
+      ],
+      "candidate_distance_m": 4.071752526414062,
+      "counters": {
+        "field_jet_points": 302,
+        "stationary_candidates": 0,
+        "scalar_refinements": 3
+      },
+      "unsupported": "some chart intervals unsupported",
+      "unsupported_intervals": [
+        {
+          "lo_m": 4.84375,
+          "hi_m": 4.921875,
+          "reason": "radial chart derivative singularity"
+        }
+      ]
+    },
+    {
+      "model": "incumbent_bicubic_16x24",
+      "ray_id": "radial-02",
+      "reference_first_distance_m": null,
+      "candidate_error_vs_target_m": null,
+      "disposition": "UNRESOLVED",
+      "candidates_m": [
+        4.159852813742386,
+        5.590147186257615
+      ],
+      "candidate_distance_m": 4.159852813742386,
+      "counters": {
+        "field_jet_points": 302,
+        "stationary_candidates": 0,
+        "scalar_refinements": 3
+      },
+      "unsupported": "some chart intervals unsupported",
+      "unsupported_intervals": [
+        {
+          "lo_m": 4.84375,
+          "hi_m": 4.921875,
+          "reason": "radial chart derivative singularity"
+        }
+      ]
+    },
+    {
+      "model": "incumbent_bicubic_16x24",
+      "ray_id": "radial-03",
+      "reference_first_distance_m": null,
+      "candidate_error_vs_target_m": null,
+      "disposition": "UNRESOLVED",
+      "candidates_m": [
+        4.228538131119316,
+        5.606809802560279
+      ],
+      "candidate_distance_m": 4.228538131119316,
+      "counters": {
+        "field_jet_points": 301,
+        "stationary_candidates": 0,
+        "scalar_refinements": 3
+      },
+      "unsupported": "some chart intervals unsupported",
+      "unsupported_intervals": [
+        {
+          "lo_m": 4.84375,
+          "hi_m": 4.921875,
+          "reason": "radial chart derivative singularity"
+        }
+      ]
+    },
+    {
+      "model": "incumbent_bicubic_16x24",
+      "ray_id": "radial-04",
+      "reference_first_distance_m": null,
+      "candidate_error_vs_target_m": null,
+      "disposition": "UNRESOLVED",
+      "candidates_m": [
+        4.1000000000000005,
+        5.7
+      ],
+      "candidate_distance_m": 4.1000000000000005,
+      "counters": {
+        "field_jet_points": 301,
+        "stationary_candidates": 0,
+        "scalar_refinements": 3
+      },
+      "unsupported": "some chart intervals unsupported",
+      "unsupported_intervals": [
+        {
+          "lo_m": 4.84375,
+          "hi_m": 4.921875,
+          "reason": "radial chart derivative singularity"
+        }
+      ]
+    },
+    {
+      "model": "incumbent_bicubic_16x24",
+      "ray_id": "radial-05",
+      "reference_first_distance_m": null,
+      "candidate_error_vs_target_m": null,
+      "disposition": "UNRESOLVED",
+      "candidates_m": [
+        3.971461868880684,
+        5.7931901974397215
+      ],
+      "candidate_distance_m": 3.971461868880684,
+      "counters": {
+        "field_jet_points": 302,
+        "stationary_candidates": 0,
+        "scalar_refinements": 3
+      },
+      "unsupported": "some chart intervals unsupported",
+      "unsupported_intervals": [
+        {
+          "lo_m": 4.84375,
+          "hi_m": 4.921875,
+          "reason": "radial chart derivative singularity"
+        }
+      ]
+    },
+    {
+      "model": "incumbent_bicubic_16x24",
+      "ray_id": "radial-06",
+      "reference_first_distance_m": null,
+      "candidate_error_vs_target_m": null,
+      "disposition": "UNRESOLVED",
+      "candidates_m": [
+        4.040147186257615,
+        5.809852813742387
+      ],
+      "candidate_distance_m": 4.040147186257615,
+      "counters": {
+        "field_jet_points": 301,
+        "stationary_candidates": 0,
+        "scalar_refinements": 3
+      },
+      "unsupported": "some chart intervals unsupported",
+      "unsupported_intervals": [
+        {
+          "lo_m": 4.84375,
+          "hi_m": 4.921875,
+          "reason": "radial chart derivative singularity"
+        }
+      ]
+    },
+    {
+      "model": "incumbent_bicubic_16x24",
+      "ray_id": "radial-07",
+      "reference_first_distance_m": null,
+      "candidate_error_vs_target_m": null,
+      "disposition": "UNRESOLVED",
+      "candidates_m": [
+        4.1282474735859385,
+        5.6364045927344675
+      ],
+      "candidate_distance_m": 4.1282474735859385,
+      "counters": {
+        "field_jet_points": 302,
+        "stationary_candidates": 0,
+        "scalar_refinements": 3
+      },
+      "unsupported": "some chart intervals unsupported",
+      "unsupported_intervals": [
+        {
+          "lo_m": 4.84375,
+          "hi_m": 4.921875,
+          "reason": "radial chart derivative singularity"
+        }
+      ]
+    },
+    {
+      "model": "incumbent_bicubic_16x24",
+      "ray_id": "radial-08",
+      "reference_first_distance_m": null,
+      "candidate_error_vs_target_m": null,
+      "disposition": "UNRESOLVED",
+      "candidates_m": [
+        4.220000000000001,
+        5.58
+      ],
+      "candidate_distance_m": 4.220000000000001,
+      "counters": {
+        "field_jet_points": 302,
+        "stationary_candidates": 0,
+        "scalar_refinements": 3
+      },
+      "unsupported": "some chart intervals unsupported",
+      "unsupported_intervals": [
+        {
+          "lo_m": 4.84375,
+          "hi_m": 4.921875,
+          "reason": "radial chart derivative singularity"
+        }
+      ]
+    },
+    {
+      "model": "incumbent_bicubic_16x24",
+      "ray_id": "radial-09",
+      "reference_first_distance_m": null,
+      "candidate_error_vs_target_m": null,
+      "disposition": "UNRESOLVED",
+      "candidates_m": [
+        4.163595407265533,
+        5.671752526414061
+      ],
+      "candidate_distance_m": 4.163595407265533,
+      "counters": {
+        "field_jet_points": 302,
+        "stationary_candidates": 0,
+        "scalar_refinements": 3
+      },
+      "unsupported": "some chart intervals unsupported",
+      "unsupported_intervals": [
+        {
+          "lo_m": 4.84375,
+          "hi_m": 4.921875,
+          "reason": "radial chart derivative singularity"
+        }
+      ]
+    },
+    {
+      "model": "incumbent_bicubic_16x24",
+      "ray_id": "radial-10",
+      "reference_first_distance_m": null,
+      "candidate_error_vs_target_m": null,
+      "disposition": "UNRESOLVED",
+      "candidates_m": [
+        3.990147186257615,
+        5.759852813742386
+      ],
+      "candidate_distance_m": 3.990147186257615,
+      "counters": {
+        "field_jet_points": 302,
+        "stationary_candidates": 0,
+        "scalar_refinements": 3
+      },
+      "unsupported": "some chart intervals unsupported",
+      "unsupported_intervals": [
+        {
+          "lo_m": 4.84375,
+          "hi_m": 4.921875,
+          "reason": "radial chart derivative singularity"
+        }
+      ]
+    },
+    {
+      "model": "incumbent_bicubic_16x24",
+      "ray_id": "radial-11",
+      "reference_first_distance_m": null,
+      "candidate_error_vs_target_m": null,
+      "disposition": "UNRESOLVED",
+      "candidates_m": [
+        4.006809802560278,
+        5.828538131119316
+      ],
+      "candidate_distance_m": 4.006809802560278,
+      "counters": {
+        "field_jet_points": 302,
+        "stationary_candidates": 0,
+        "scalar_refinements": 3
+      },
+      "unsupported": "some chart intervals unsupported",
+      "unsupported_intervals": [
+        {
+          "lo_m": 4.84375,
+          "hi_m": 4.921875,
+          "reason": "radial chart derivative singularity"
+        }
+      ]
+    },
+    {
+      "model": "incumbent_bicubic_16x24",
+      "ray_id": "radial-12",
+      "reference_first_distance_m": null,
+      "candidate_error_vs_target_m": null,
+      "disposition": "UNRESOLVED",
+      "candidates_m": [
+        4.1000000000000005,
+        5.7
+      ],
+      "candidate_distance_m": 4.1000000000000005,
+      "counters": {
+        "field_jet_points": 302,
+        "stationary_candidates": 0,
+        "scalar_refinements": 3
+      },
+      "unsupported": "some chart intervals unsupported",
+      "unsupported_intervals": [
+        {
+          "lo_m": 4.84375,
+          "hi_m": 4.921875,
+          "reason": "radial chart derivative singularity"
+        }
+      ]
+    },
+    {
+      "model": "incumbent_bicubic_16x24",
+      "ray_id": "radial-13",
+      "reference_first_distance_m": null,
+      "candidate_error_vs_target_m": null,
+      "disposition": "UNRESOLVED",
+      "candidates_m": [
+        4.193190197439721,
+        5.571461868880685
+      ],
+      "candidate_distance_m": 4.193190197439721,
+      "counters": {
+        "field_jet_points": 302,
+        "stationary_candidates": 0,
+        "scalar_refinements": 3
+      },
+      "unsupported": "some chart intervals unsupported",
+      "unsupported_intervals": [
+        {
+          "lo_m": 4.84375,
+          "hi_m": 4.921875,
+          "reason": "radial chart derivative singularity"
+        }
+      ]
+    },
+    {
+      "model": "incumbent_bicubic_16x24",
+      "ray_id": "radial-14",
+      "reference_first_distance_m": null,
+      "candidate_error_vs_target_m": null,
+      "disposition": "UNRESOLVED",
+      "candidates_m": [
+        4.209852813742386,
+        5.6401471862576145
+      ],
+      "candidate_distance_m": 4.209852813742386,
+      "counters": {
+        "field_jet_points": 302,
+        "stationary_candidates": 0,
+        "scalar_refinements": 3
+      },
+      "unsupported": "some chart intervals unsupported",
+      "unsupported_intervals": [
+        {
+          "lo_m": 4.84375,
+          "hi_m": 4.921875,
+          "reason": "radial chart derivative singularity"
+        }
+      ]
+    },
+    {
+      "model": "incumbent_bicubic_16x24",
+      "ray_id": "radial-15",
+      "reference_first_distance_m": null,
+      "candidate_error_vs_target_m": null,
+      "disposition": "UNRESOLVED",
+      "candidates_m": [
+        4.036404592734467,
+        5.728247473585938
+      ],
+      "candidate_distance_m": 4.036404592734467,
+      "counters": {
+        "field_jet_points": 302,
+        "stationary_candidates": 0,
+        "scalar_refinements": 3
+      },
+      "unsupported": "some chart intervals unsupported",
+      "unsupported_intervals": [
+        {
+          "lo_m": 4.84375,
+          "hi_m": 4.921875,
+          "reason": "radial chart derivative singularity"
+        }
+      ]
+    },
+    {
+      "model": "incumbent_bicubic_16x24",
+      "ray_id": "miss-z",
+      "reference_first_distance_m": null,
+      "candidate_error_vs_target_m": null,
+      "disposition": "UNRESOLVED",
+      "candidates_m": [],
+      "candidate_distance_m": null,
+      "counters": {
+        "field_jet_points": 257,
+        "stationary_candidates": 0,
+        "scalar_refinements": 0
+      },
+      "unsupported": "radial chart derivative singularity",
+      "unsupported_intervals": []
+    },
+    {
+      "model": "incumbent_bicubic_16x24",
+      "ray_id": "grazing",
+      "reference_first_distance_m": null,
+      "candidate_error_vs_target_m": null,
+      "disposition": "UNRESOLVED",
+      "candidates_m": [
+        2.000000000000001,
+        2.0323693453143443
+      ],
+      "candidate_distance_m": 2.000000000000001,
+      "counters": {
+        "field_jet_points": 283,
+        "stationary_candidates": 1,
+        "scalar_refinements": 3
+      },
+      "unsupported": null,
+      "unsupported_intervals": []
+    },
+    {
+      "model": "incumbent_bicubic_16x24",
+      "ray_id": "thin-chord",
+      "reference_first_distance_m": null,
+      "candidate_error_vs_target_m": null,
+      "disposition": "UNRESOLVED",
+      "candidates_m": [],
+      "candidate_distance_m": null,
+      "counters": {
+        "field_jet_points": 265,
+        "stationary_candidates": 1,
+        "scalar_refinements": 1
+      },
+      "unsupported": null,
+      "unsupported_intervals": []
+    },
+    {
+      "model": "incumbent_bicubic_16x24",
+      "ray_id": "coincident-control",
+      "reference_first_distance_m": null,
+      "candidate_error_vs_target_m": null,
+      "disposition": "UNRESOLVED",
+      "candidates_m": [],
+      "candidate_distance_m": null,
+      "counters": {
+        "field_jet_points": 257,
+        "stationary_candidates": 0,
+        "scalar_refinements": 0
+      },
+      "unsupported": null,
+      "unsupported_intervals": []
+    },
+    {
+      "model": "incumbent_bicubic_16x24",
+      "ray_id": "known-radial-00",
+      "reference_first_distance_m": 1.0670827880293374,
+      "candidate_error_vs_target_m": 0.00010818068807982861,
+      "disposition": "UNRESOLVED",
+      "candidates_m": [
+        1.0671909687174173,
+        2.906677091529684
+      ],
+      "candidate_distance_m": 1.0671909687174173,
+      "counters": {
+        "field_jet_points": 341,
+        "stationary_candidates": 3,
+        "scalar_refinements": 5
+      },
+      "unsupported": null,
+      "unsupported_intervals": []
+    },
+    {
+      "model": "incumbent_bicubic_16x24",
+      "ray_id": "known-radial-01",
+      "reference_first_distance_m": 1.191978520900117,
+      "candidate_error_vs_target_m": 1.5297011024539842e-06,
+      "disposition": "UNRESOLVED",
+      "candidates_m": [
+        1.1919769911990146,
+        2.842428663032919
+      ],
+      "candidate_distance_m": 1.1919769911990146,
+      "counters": {
+        "field_jet_points": 337,
+        "stationary_candidates": 3,
+        "scalar_refinements": 5
+      },
+      "unsupported": null,
+      "unsupported_intervals": []
+    },
+    {
+      "model": "incumbent_bicubic_16x24",
+      "ray_id": "known-radial-02",
+      "reference_first_distance_m": 1.3287649888487794,
+      "candidate_error_vs_target_m": 8.839178898556455e-05,
+      "disposition": "UNRESOLVED",
+      "candidates_m": [
+        1.3286765970597938,
+        2.7152645287881065
+      ],
+      "candidate_distance_m": 1.3286765970597938,
+      "counters": {
+        "field_jet_points": 345,
+        "stationary_candidates": 3,
+        "scalar_refinements": 5
+      },
+      "unsupported": null,
+      "unsupported_intervals": []
+    },
+    {
+      "model": "incumbent_bicubic_16x24",
+      "ray_id": "known-radial-03",
+      "reference_first_distance_m": 1.2746751420128388,
+      "candidate_error_vs_target_m": 5.134614253976544e-05,
+      "disposition": "UNRESOLVED",
+      "candidates_m": [
+        1.274623795870299,
+        2.7137174960629045
+      ],
+      "candidate_distance_m": 1.274623795870299,
+      "counters": {
+        "field_jet_points": 297,
+        "stationary_candidates": 1,
+        "scalar_refinements": 3
+      },
+      "unsupported": null,
+      "unsupported_intervals": []
+    },
+    {
+      "model": "incumbent_bicubic_16x24",
+      "ray_id": "known-radial-04",
+      "reference_first_distance_m": 1.1098897090485367,
+      "candidate_error_vs_target_m": 2.131770362900909e-06,
+      "disposition": "UNRESOLVED",
+      "candidates_m": [
+        1.1098918408188996,
+        2.8401298119379685
+      ],
+      "candidate_distance_m": 1.1098918408188996,
+      "counters": {
+        "field_jet_points": 297,
+        "stationary_candidates": 1,
+        "scalar_refinements": 3
+      },
+      "unsupported": null,
+      "unsupported_intervals": []
+    },
+    {
+      "model": "incumbent_bicubic_16x24",
+      "ray_id": "known-radial-05",
+      "reference_first_distance_m": 1.0786803390712252,
+      "candidate_error_vs_target_m": 0.00011277324392344745,
+      "disposition": "UNRESOLVED",
+      "candidates_m": [
+        1.0787931123151486,
+        2.9069955827924754
+      ],
+      "candidate_distance_m": 1.0787931123151486,
+      "counters": {
+        "field_jet_points": 298,
+        "stationary_candidates": 1,
+        "scalar_refinements": 3
+      },
+      "unsupported": null,
+      "unsupported_intervals": []
+    },
+    {
+      "model": "incumbent_bicubic_16x24",
+      "ray_id": "known-radial-06",
+      "reference_first_distance_m": 1.227310613363969,
+      "candidate_error_vs_target_m": 3.5566276925136364e-05,
+      "disposition": "UNRESOLVED",
+      "candidates_m": [
+        1.227275047087044,
+        2.8153447957336666
+      ],
+      "candidate_distance_m": 1.227275047087044,
+      "counters": {
+        "field_jet_points": 299,
+        "stationary_candidates": 1,
+        "scalar_refinements": 3
+      },
+      "unsupported": null,
+      "unsupported_intervals": []
+    },
+    {
+      "model": "incumbent_bicubic_16x24",
+      "ray_id": "known-radial-07",
+      "reference_first_distance_m": 1.335456674672828,
+      "candidate_error_vs_target_m": 1.4850774565644542e-06,
+      "disposition": "UNRESOLVED",
+      "candidates_m": [
+        1.3354551895953715,
+        2.700819212668924
+      ],
+      "candidate_distance_m": 1.3354551895953715,
+      "counters": {
+        "field_jet_points": 304,
+        "stationary_candidates": 1,
+        "scalar_refinements": 3
+      },
+      "unsupported": null,
+      "unsupported_intervals": []
+    },
+    {
+      "model": "incumbent_bicubic_16x24",
+      "ray_id": "known-radial-08",
+      "reference_first_distance_m": 1.242806921019199,
+      "candidate_error_vs_target_m": 7.109366204316458e-05,
+      "disposition": "UNRESOLVED",
+      "candidates_m": [
+        1.2427358273571558,
+        2.7334208669127613
+      ],
+      "candidate_distance_m": 1.2427358273571558,
+      "counters": {
+        "field_jet_points": 297,
+        "stationary_candidates": 1,
+        "scalar_refinements": 3
+      },
+      "unsupported": null,
+      "unsupported_intervals": []
+    },
+    {
+      "model": "incumbent_bicubic_16x24",
+      "ray_id": "known-radial-09",
+      "reference_first_distance_m": 1.0867018181711083,
+      "candidate_error_vs_target_m": 0.00010164445372984332,
+      "disposition": "UNRESOLVED",
+      "candidates_m": [
+        1.0868034626248382,
+        2.8645816856987
+      ],
+      "candidate_distance_m": 1.0868034626248382,
+      "counters": {
+        "field_jet_points": 299,
+        "stationary_candidates": 1,
+        "scalar_refinements": 3
+      },
+      "unsupported": null,
+      "unsupported_intervals": []
+    },
+    {
+      "model": "incumbent_bicubic_16x24",
+      "ray_id": "known-radial-10",
+      "reference_first_distance_m": 1.09854562451519,
+      "candidate_error_vs_target_m": 3.155368166751771e-08,
+      "disposition": "UNRESOLVED",
+      "candidates_m": [
+        1.0985455929615082,
+        2.9001330026324816
+      ],
+      "candidate_distance_m": 1.0985455929615082,
+      "counters": {
+        "field_jet_points": 304,
+        "stationary_candidates": 1,
+        "scalar_refinements": 3
+      },
+      "unsupported": null,
+      "unsupported_intervals": []
+    },
+    {
+      "model": "incumbent_bicubic_16x24",
+      "ray_id": "known-radial-11",
+      "reference_first_distance_m": 1.2607815326599892,
+      "candidate_error_vs_target_m": 1.2231622863012603e-05,
+      "disposition": "UNRESOLVED",
+      "candidates_m": [
+        1.2607693010371261,
+        2.7871615301905415
+      ],
+      "candidate_distance_m": 1.2607693010371261,
+      "counters": {
+        "field_jet_points": 304,
+        "stationary_candidates": 1,
+        "scalar_refinements": 3
+      },
+      "unsupported": null,
+      "unsupported_intervals": []
+    },
+    {
+      "model": "incumbent_bicubic_16x24",
+      "ray_id": "known-radial-12",
+      "reference_first_distance_m": 1.3329172119706623,
+      "candidate_error_vs_target_m": 0.00010818068807938452,
+      "disposition": "UNRESOLVED",
+      "candidates_m": [
+        1.3328090312825829,
+        2.693322908470317
+      ],
+      "candidate_distance_m": 1.3328090312825829,
+      "counters": {
+        "field_jet_points": 304,
+        "stationary_candidates": 0,
+        "scalar_refinements": 3
+      },
+      "unsupported": "some chart intervals unsupported",
+      "unsupported_intervals": [
+        {
+          "lo_m": 1.953125,
+          "hi_m": 2.03125,
+          "reason": "radial chart derivative singularity"
+        }
+      ]
+    },
+    {
+      "model": "incumbent_bicubic_16x24",
+      "ray_id": "known-radial-13",
+      "reference_first_distance_m": 1.2080214790998829,
+      "candidate_error_vs_target_m": 1.529701102009895e-06,
+      "disposition": "UNRESOLVED",
+      "candidates_m": [
+        1.208023008800985,
+        2.757571336967081
+      ],
+      "candidate_distance_m": 1.208023008800985,
+      "counters": {
+        "field_jet_points": 297,
+        "stationary_candidates": 1,
+        "scalar_refinements": 3
+      },
+      "unsupported": null,
+      "unsupported_intervals": []
+    },
+    {
+      "model": "incumbent_bicubic_16x24",
+      "ray_id": "known-radial-14",
+      "reference_first_distance_m": 1.0712350111512208,
+      "candidate_error_vs_target_m": 8.839178898600863e-05,
+      "disposition": "UNRESOLVED",
+      "candidates_m": [
+        1.0713234029402068,
+        2.884735471211893
+      ],
+      "candidate_distance_m": 1.0713234029402068,
+      "counters": {
+        "field_jet_points": 301,
+        "stationary_candidates": 1,
+        "scalar_refinements": 3
+      },
+      "unsupported": null,
+      "unsupported_intervals": []
+    },
+    {
+      "model": "incumbent_bicubic_16x24",
+      "ray_id": "known-radial-15",
+      "reference_first_distance_m": 1.1253248579871613,
+      "candidate_error_vs_target_m": 5.1346142539099304e-05,
+      "disposition": "UNRESOLVED",
+      "candidates_m": [
+        1.1253762041297004,
+        2.886282503937096
+      ],
+      "candidate_distance_m": 1.1253762041297004,
+      "counters": {
+        "field_jet_points": 297,
+        "stationary_candidates": 1,
+        "scalar_refinements": 3
+      },
+      "unsupported": null,
+      "unsupported_intervals": []
+    },
+    {
+      "model": "incumbent_bicubic_16x24",
+      "ray_id": "known-radial-16",
+      "reference_first_distance_m": 1.290110290951463,
+      "candidate_error_vs_target_m": 2.1317703626788642e-06,
+      "disposition": "UNRESOLVED",
+      "candidates_m": [
+        1.2901081591811003,
+        2.759870188062031
+      ],
+      "candidate_distance_m": 1.2901081591811003,
+      "counters": {
+        "field_jet_points": 299,
+        "stationary_candidates": 1,
+        "scalar_refinements": 3
+      },
+      "unsupported": null,
+      "unsupported_intervals": []
+    },
+    {
+      "model": "incumbent_bicubic_16x24",
+      "ray_id": "known-radial-17",
+      "reference_first_distance_m": 1.3213196609287747,
+      "candidate_error_vs_target_m": 0.0001127732439236695,
+      "disposition": "UNRESOLVED",
+      "candidates_m": [
+        1.321206887684851,
+        2.6930044172075247
+      ],
+      "candidate_distance_m": 1.321206887684851,
+      "counters": {
+        "field_jet_points": 300,
+        "stationary_candidates": 1,
+        "scalar_refinements": 3
+      },
+      "unsupported": null,
+      "unsupported_intervals": []
+    },
+    {
+      "model": "incumbent_bicubic_16x24",
+      "ray_id": "known-radial-18",
+      "reference_first_distance_m": 1.1726893866360308,
+      "candidate_error_vs_target_m": 3.5566276925136364e-05,
+      "disposition": "UNRESOLVED",
+      "candidates_m": [
+        1.172724952912956,
+        2.7846552042663335
+      ],
+      "candidate_distance_m": 1.172724952912956,
+      "counters": {
+        "field_jet_points": 301,
+        "stationary_candidates": 1,
+        "scalar_refinements": 3
+      },
+      "unsupported": null,
+      "unsupported_intervals": []
+    },
+    {
+      "model": "incumbent_bicubic_16x24",
+      "ray_id": "known-radial-19",
+      "reference_first_distance_m": 1.064543325327172,
+      "candidate_error_vs_target_m": 1.485077456120365e-06,
+      "disposition": "UNRESOLVED",
+      "candidates_m": [
+        1.0645448104046282,
+        2.8991807873310766
+      ],
+      "candidate_distance_m": 1.0645448104046282,
+      "counters": {
+        "field_jet_points": 302,
+        "stationary_candidates": 1,
+        "scalar_refinements": 3
+      },
+      "unsupported": null,
+      "unsupported_intervals": []
+    },
+    {
+      "model": "incumbent_bicubic_16x24",
+      "ray_id": "known-radial-20",
+      "reference_first_distance_m": 1.1571930789808005,
+      "candidate_error_vs_target_m": 7.109366204383072e-05,
+      "disposition": "UNRESOLVED",
+      "candidates_m": [
+        1.1572641726428443,
+        2.8665791330872388
+      ],
+      "candidate_distance_m": 1.1572641726428443,
+      "counters": {
+        "field_jet_points": 308,
+        "stationary_candidates": 1,
+        "scalar_refinements": 3
+      },
+      "unsupported": null,
+      "unsupported_intervals": []
+    },
+    {
+      "model": "incumbent_bicubic_16x24",
+      "ray_id": "known-radial-21",
+      "reference_first_distance_m": 1.3132981818288916,
+      "candidate_error_vs_target_m": 0.00010164445372939923,
+      "disposition": "UNRESOLVED",
+      "candidates_m": [
+        1.3131965373751622,
+        2.735418314301301
+      ],
+      "candidate_distance_m": 1.3131965373751622,
+      "counters": {
+        "field_jet_points": 348,
+        "stationary_candidates": 3,
+        "scalar_refinements": 5
+      },
+      "unsupported": null,
+      "unsupported_intervals": []
+    },
+    {
+      "model": "incumbent_bicubic_16x24",
+      "ray_id": "known-radial-22",
+      "reference_first_distance_m": 1.30145437548481,
+      "candidate_error_vs_target_m": 3.155368188956231e-08,
+      "disposition": "UNRESOLVED",
+      "candidates_m": [
+        1.301454407038492,
+        2.6998669973675185
+      ],
+      "candidate_distance_m": 1.301454407038492,
+      "counters": {
+        "field_jet_points": 336,
+        "stationary_candidates": 3,
+        "scalar_refinements": 5
+      },
+      "unsupported": null,
+      "unsupported_intervals": []
+    },
+    {
+      "model": "incumbent_bicubic_16x24",
+      "ray_id": "known-radial-23",
+      "reference_first_distance_m": 1.139218467340011,
+      "candidate_error_vs_target_m": 1.2231622863234648e-05,
+      "disposition": "UNRESOLVED",
+      "candidates_m": [
+        1.1392306989628742,
+        2.8128384698094586
+      ],
+      "candidate_distance_m": 1.1392306989628742,
+      "counters": {
+        "field_jet_points": 341,
+        "stationary_candidates": 3,
+        "scalar_refinements": 5
+      },
+      "unsupported": null,
+      "unsupported_intervals": []
+    },
+    {
+      "model": "incumbent_bicubic_32x48",
+      "ray_id": "general-00",
+      "reference_first_distance_m": null,
+      "candidate_error_vs_target_m": null,
+      "disposition": "UNRESOLVED",
+      "candidates_m": [
+        1.778865148399249,
+        2.9451483147408912
+      ],
+      "candidate_distance_m": 1.778865148399249,
+      "counters": {
+        "field_jet_points": 280,
+        "stationary_candidates": 1,
+        "scalar_refinements": 3
+      },
+      "unsupported": null,
+      "unsupported_intervals": []
+    },
+    {
+      "model": "incumbent_bicubic_32x48",
+      "ray_id": "general-01",
+      "reference_first_distance_m": null,
+      "candidate_error_vs_target_m": null,
+      "disposition": "UNRESOLVED",
+      "candidates_m": [
+        5.86329486113125,
+        7.912335625735909
+      ],
+      "candidate_distance_m": 5.86329486113125,
+      "counters": {
+        "field_jet_points": 276,
+        "stationary_candidates": 1,
+        "scalar_refinements": 3
+      },
+      "unsupported": null,
+      "unsupported_intervals": []
+    },
+    {
+      "model": "incumbent_bicubic_32x48",
+      "ray_id": "general-02",
+      "reference_first_distance_m": null,
+      "candidate_error_vs_target_m": null,
+      "disposition": "UNRESOLVED",
+      "candidates_m": [
+        11.405175943711448,
+        13.00605444090741
+      ],
+      "candidate_distance_m": 11.405175943711448,
+      "counters": {
+        "field_jet_points": 293,
+        "stationary_candidates": 3,
+        "scalar_refinements": 5
+      },
+      "unsupported": null,
+      "unsupported_intervals": []
+    },
+    {
+      "model": "incumbent_bicubic_32x48",
+      "ray_id": "general-03",
+      "reference_first_distance_m": null,
+      "candidate_error_vs_target_m": null,
+      "disposition": "UNRESOLVED",
+      "candidates_m": [
+        5.890175751127372,
+        7.445529780031394
+      ],
+      "candidate_distance_m": 5.890175751127372,
+      "counters": {
+        "field_jet_points": 278,
+        "stationary_candidates": 1,
+        "scalar_refinements": 3
+      },
+      "unsupported": null,
+      "unsupported_intervals": []
+    },
+    {
+      "model": "incumbent_bicubic_32x48",
+      "ray_id": "general-04",
+      "reference_first_distance_m": null,
+      "candidate_error_vs_target_m": null,
+      "disposition": "UNRESOLVED",
+      "candidates_m": [
+        4.2585687194210005,
+        6.276764410569
+      ],
+      "candidate_distance_m": 4.2585687194210005,
+      "counters": {
+        "field_jet_points": 277,
+        "stationary_candidates": 1,
+        "scalar_refinements": 3
+      },
+      "unsupported": null,
+      "unsupported_intervals": []
+    },
+    {
+      "model": "incumbent_bicubic_32x48",
+      "ray_id": "general-05",
+      "reference_first_distance_m": null,
+      "candidate_error_vs_target_m": null,
+      "disposition": "UNRESOLVED",
+      "candidates_m": [
+        5.696131157321809,
+        6.330207234052287
+      ],
+      "candidate_distance_m": 5.696131157321809,
+      "counters": {
+        "field_jet_points": 278,
+        "stationary_candidates": 1,
+        "scalar_refinements": 3
+      },
+      "unsupported": null,
+      "unsupported_intervals": []
+    },
+    {
+      "model": "incumbent_bicubic_32x48",
+      "ray_id": "general-06",
+      "reference_first_distance_m": null,
+      "candidate_error_vs_target_m": null,
+      "disposition": "UNRESOLVED",
+      "candidates_m": [
+        9.698959997981039,
+        10.73404531709183
+      ],
+      "candidate_distance_m": 9.698959997981039,
+      "counters": {
+        "field_jet_points": 316,
+        "stationary_candidates": 5,
+        "scalar_refinements": 7
+      },
+      "unsupported": null,
+      "unsupported_intervals": []
+    },
+    {
+      "model": "incumbent_bicubic_32x48",
+      "ray_id": "general-07",
+      "reference_first_distance_m": null,
+      "candidate_error_vs_target_m": null,
+      "disposition": "UNRESOLVED",
+      "candidates_m": [],
+      "candidate_distance_m": null,
+      "counters": {
+        "field_jet_points": 288,
+        "stationary_candidates": 4,
+        "scalar_refinements": 4
+      },
+      "unsupported": null,
+      "unsupported_intervals": []
+    },
+    {
+      "model": "incumbent_bicubic_32x48",
+      "ray_id": "general-08",
+      "reference_first_distance_m": null,
+      "candidate_error_vs_target_m": null,
+      "disposition": "UNRESOLVED",
+      "candidates_m": [
+        10.155602434844011,
+        10.35620895475802
+      ],
+      "candidate_distance_m": 10.155602434844011,
+      "counters": {
+        "field_jet_points": 296,
+        "stationary_candidates": 3,
+        "scalar_refinements": 5
+      },
+      "unsupported": null,
+      "unsupported_intervals": []
+    },
+    {
+      "model": "incumbent_bicubic_32x48",
+      "ray_id": "general-09",
+      "reference_first_distance_m": null,
+      "candidate_error_vs_target_m": null,
+      "disposition": "UNRESOLVED",
+      "candidates_m": [
+        0.884980567918725,
+        2.8882987325201066
+      ],
+      "candidate_distance_m": 0.884980567918725,
+      "counters": {
+        "field_jet_points": 296,
+        "stationary_candidates": 3,
+        "scalar_refinements": 5
+      },
+      "unsupported": null,
+      "unsupported_intervals": []
+    },
+    {
+      "model": "incumbent_bicubic_32x48",
+      "ray_id": "general-10",
+      "reference_first_distance_m": null,
+      "candidate_error_vs_target_m": null,
+      "disposition": "UNRESOLVED",
+      "candidates_m": [
+        5.432542929948282,
+        5.962677140314056
+      ],
+      "candidate_distance_m": 5.432542929948282,
+      "counters": {
+        "field_jet_points": 280,
+        "stationary_candidates": 1,
+        "scalar_refinements": 3
+      },
+      "unsupported": null,
+      "unsupported_intervals": []
+    },
+    {
+      "model": "incumbent_bicubic_32x48",
+      "ray_id": "general-11",
+      "reference_first_distance_m": null,
+      "candidate_error_vs_target_m": null,
+      "disposition": "UNRESOLVED",
+      "candidates_m": [
+        7.4739493317137775,
+        7.711377805335077
+      ],
+      "candidate_distance_m": 7.4739493317137775,
+      "counters": {
+        "field_jet_points": 280,
+        "stationary_candidates": 1,
+        "scalar_refinements": 3
+      },
+      "unsupported": null,
+      "unsupported_intervals": []
+    },
+    {
+      "model": "incumbent_bicubic_32x48",
+      "ray_id": "general-12",
+      "reference_first_distance_m": null,
+      "candidate_error_vs_target_m": null,
+      "disposition": "UNRESOLVED",
+      "candidates_m": [
+        9.274919498933766,
+        10.330028800459397
+      ],
+      "candidate_distance_m": 9.274919498933766,
+      "counters": {
+        "field_jet_points": 278,
+        "stationary_candidates": 1,
+        "scalar_refinements": 3
+      },
+      "unsupported": null,
+      "unsupported_intervals": []
+    },
+    {
+      "model": "incumbent_bicubic_32x48",
+      "ray_id": "general-13",
+      "reference_first_distance_m": null,
+      "candidate_error_vs_target_m": null,
+      "disposition": "UNRESOLVED",
+      "candidates_m": [
+        8.527766205762147,
+        9.390109795578937
+      ],
+      "candidate_distance_m": 8.527766205762147,
+      "counters": {
+        "field_jet_points": 278,
+        "stationary_candidates": 1,
+        "scalar_refinements": 3
+      },
+      "unsupported": null,
+      "unsupported_intervals": []
+    },
+    {
+      "model": "incumbent_bicubic_32x48",
+      "ray_id": "general-14",
+      "reference_first_distance_m": null,
+      "candidate_error_vs_target_m": null,
+      "disposition": "UNRESOLVED",
+      "candidates_m": [
+        4.1688905145937465,
+        5.473042637199312
+      ],
+      "candidate_distance_m": 4.1688905145937465,
+      "counters": {
+        "field_jet_points": 278,
+        "stationary_candidates": 1,
+        "scalar_refinements": 3
+      },
+      "unsupported": null,
+      "unsupported_intervals": []
+    },
+    {
+      "model": "incumbent_bicubic_32x48",
+      "ray_id": "general-15",
+      "reference_first_distance_m": null,
+      "candidate_error_vs_target_m": null,
+      "disposition": "UNRESOLVED",
+      "candidates_m": [
+        7.7637888357945615,
+        7.811519241133799
+      ],
+      "candidate_distance_m": 7.7637888357945615,
+      "counters": {
+        "field_jet_points": 292,
+        "stationary_candidates": 2,
+        "scalar_refinements": 4
+      },
+      "unsupported": null,
+      "unsupported_intervals": []
+    },
+    {
+      "model": "incumbent_bicubic_32x48",
+      "ray_id": "general-16",
+      "reference_first_distance_m": null,
+      "candidate_error_vs_target_m": null,
+      "disposition": "UNRESOLVED",
+      "candidates_m": [
+        8.129871208887387,
+        8.78941982509429
+      ],
+      "candidate_distance_m": 8.129871208887387,
+      "counters": {
+        "field_jet_points": 278,
+        "stationary_candidates": 1,
+        "scalar_refinements": 3
+      },
+      "unsupported": null,
+      "unsupported_intervals": []
+    },
+    {
+      "model": "incumbent_bicubic_32x48",
+      "ray_id": "general-17",
+      "reference_first_distance_m": null,
+      "candidate_error_vs_target_m": null,
+      "disposition": "UNRESOLVED",
+      "candidates_m": [
+        7.285185054982325,
+        9.272347278934205
+      ],
+      "candidate_distance_m": 7.285185054982325,
+      "counters": {
+        "field_jet_points": 278,
+        "stationary_candidates": 1,
+        "scalar_refinements": 3
+      },
+      "unsupported": null,
+      "unsupported_intervals": []
+    },
+    {
+      "model": "incumbent_bicubic_32x48",
+      "ray_id": "general-18",
+      "reference_first_distance_m": null,
+      "candidate_error_vs_target_m": null,
+      "disposition": "UNRESOLVED",
+      "candidates_m": [
+        0.045288271594177594
+      ],
+      "candidate_distance_m": 0.045288271594177594,
+      "counters": {
+        "field_jet_points": 280,
+        "stationary_candidates": 2,
+        "scalar_refinements": 3
+      },
+      "unsupported": null,
+      "unsupported_intervals": []
+    },
+    {
+      "model": "incumbent_bicubic_32x48",
+      "ray_id": "general-19",
+      "reference_first_distance_m": null,
+      "candidate_error_vs_target_m": null,
+      "disposition": "UNRESOLVED",
+      "candidates_m": [
+        8.984715784521882,
+        10.917966369432563
+      ],
+      "candidate_distance_m": 8.984715784521882,
+      "counters": {
+        "field_jet_points": 292,
+        "stationary_candidates": 3,
+        "scalar_refinements": 5
+      },
+      "unsupported": null,
+      "unsupported_intervals": []
+    },
+    {
+      "model": "incumbent_bicubic_32x48",
+      "ray_id": "general-20",
+      "reference_first_distance_m": null,
+      "candidate_error_vs_target_m": null,
+      "disposition": "UNRESOLVED",
+      "candidates_m": [
+        4.068907140428255,
+        5.445445893699742
+      ],
+      "candidate_distance_m": 4.068907140428255,
+      "counters": {
+        "field_jet_points": 277,
+        "stationary_candidates": 1,
+        "scalar_refinements": 3
+      },
+      "unsupported": null,
+      "unsupported_intervals": []
+    },
+    {
+      "model": "incumbent_bicubic_32x48",
+      "ray_id": "general-21",
+      "reference_first_distance_m": null,
+      "candidate_error_vs_target_m": null,
+      "disposition": "UNRESOLVED",
+      "candidates_m": [
+        1.1093015969943045
+      ],
+      "candidate_distance_m": 1.1093015969943045,
+      "counters": {
+        "field_jet_points": 263,
+        "stationary_candidates": 0,
+        "scalar_refinements": 1
+      },
+      "unsupported": null,
+      "unsupported_intervals": []
+    },
+    {
+      "model": "incumbent_bicubic_32x48",
+      "ray_id": "general-22",
+      "reference_first_distance_m": null,
+      "candidate_error_vs_target_m": null,
+      "disposition": "UNRESOLVED",
+      "candidates_m": [
+        8.367682012085218,
+        8.789334279965844
+      ],
+      "candidate_distance_m": 8.367682012085218,
+      "counters": {
+        "field_jet_points": 279,
+        "stationary_candidates": 1,
+        "scalar_refinements": 3
+      },
+      "unsupported": null,
+      "unsupported_intervals": []
+    },
+    {
+      "model": "incumbent_bicubic_32x48",
+      "ray_id": "general-23",
+      "reference_first_distance_m": null,
+      "candidate_error_vs_target_m": null,
+      "disposition": "UNRESOLVED",
+      "candidates_m": [
+        0.5305604019584822,
+        1.3425827815352256,
+        9.876988045411183,
+        10.777903064989884
+      ],
+      "candidate_distance_m": 0.5305604019584822,
+      "counters": {
+        "field_jet_points": 306,
+        "stationary_candidates": 3,
+        "scalar_refinements": 7
+      },
+      "unsupported": null,
+      "unsupported_intervals": []
+    },
+    {
+      "model": "incumbent_bicubic_32x48",
+      "ray_id": "general-24",
+      "reference_first_distance_m": null,
+      "candidate_error_vs_target_m": null,
+      "disposition": "UNRESOLVED",
+      "candidates_m": [
+        2.788203100536498,
+        3.955449265289025
+      ],
+      "candidate_distance_m": 2.788203100536498,
+      "counters": {
+        "field_jet_points": 277,
+        "stationary_candidates": 1,
+        "scalar_refinements": 3
+      },
+      "unsupported": null,
+      "unsupported_intervals": []
+    },
+    {
+      "model": "incumbent_bicubic_32x48",
+      "ray_id": "general-25",
+      "reference_first_distance_m": null,
+      "candidate_error_vs_target_m": null,
+      "disposition": "UNRESOLVED",
+      "candidates_m": [
+        6.634165449170899,
+        7.473755588658822
+      ],
+      "candidate_distance_m": 6.634165449170899,
+      "counters": {
+        "field_jet_points": 280,
+        "stationary_candidates": 1,
+        "scalar_refinements": 3
+      },
+      "unsupported": null,
+      "unsupported_intervals": []
+    },
+    {
+      "model": "incumbent_bicubic_32x48",
+      "ray_id": "general-26",
+      "reference_first_distance_m": null,
+      "candidate_error_vs_target_m": null,
+      "disposition": "UNRESOLVED",
+      "candidates_m": [
+        1.6822195003110125,
+        3.639988478126566
+      ],
+      "candidate_distance_m": 1.6822195003110125,
+      "counters": {
+        "field_jet_points": 293,
+        "stationary_candidates": 3,
+        "scalar_refinements": 5
+      },
+      "unsupported": null,
+      "unsupported_intervals": []
+    },
+    {
+      "model": "incumbent_bicubic_32x48",
+      "ray_id": "general-27",
+      "reference_first_distance_m": null,
+      "candidate_error_vs_target_m": null,
+      "disposition": "UNRESOLVED",
+      "candidates_m": [
+        11.033357490521274,
+        12.084889083089822
+      ],
+      "candidate_distance_m": 11.033357490521274,
+      "counters": {
+        "field_jet_points": 278,
+        "stationary_candidates": 1,
+        "scalar_refinements": 3
+      },
+      "unsupported": null,
+      "unsupported_intervals": []
+    },
+    {
+      "model": "incumbent_bicubic_32x48",
+      "ray_id": "general-28",
+      "reference_first_distance_m": null,
+      "candidate_error_vs_target_m": null,
+      "disposition": "UNRESOLVED",
+      "candidates_m": [],
+      "candidate_distance_m": null,
+      "counters": {
+        "field_jet_points": 271,
+        "stationary_candidates": 2,
+        "scalar_refinements": 2
+      },
+      "unsupported": null,
+      "unsupported_intervals": []
+    },
+    {
+      "model": "incumbent_bicubic_32x48",
+      "ray_id": "general-29",
+      "reference_first_distance_m": null,
+      "candidate_error_vs_target_m": null,
+      "disposition": "UNRESOLVED",
+      "candidates_m": [
+        4.493589654210459,
+        5.9588059187136
+      ],
+      "candidate_distance_m": 4.493589654210459,
+      "counters": {
+        "field_jet_points": 277,
+        "stationary_candidates": 1,
+        "scalar_refinements": 3
+      },
+      "unsupported": null,
+      "unsupported_intervals": []
+    },
+    {
+      "model": "incumbent_bicubic_32x48",
+      "ray_id": "general-30",
+      "reference_first_distance_m": null,
+      "candidate_error_vs_target_m": null,
+      "disposition": "UNRESOLVED",
+      "candidates_m": [],
+      "candidate_distance_m": null,
+      "counters": {
+        "field_jet_points": 287,
+        "stationary_candidates": 3,
+        "scalar_refinements": 3
+      },
+      "unsupported": null,
+      "unsupported_intervals": []
+    },
+    {
+      "model": "incumbent_bicubic_32x48",
+      "ray_id": "general-31",
+      "reference_first_distance_m": null,
+      "candidate_error_vs_target_m": null,
+      "disposition": "UNRESOLVED",
+      "candidates_m": [
+        2.974638188767164,
+        5.289862737006951,
+        10.38496959795747,
+        12.353473536953397
+      ],
+      "candidate_distance_m": 2.974638188767164,
+      "counters": {
+        "field_jet_points": 304,
+        "stationary_candidates": 3,
+        "scalar_refinements": 7
+      },
+      "unsupported": null,
+      "unsupported_intervals": []
+    },
+    {
+      "model": "incumbent_bicubic_32x48",
+      "ray_id": "radial-00",
+      "reference_first_distance_m": null,
+      "candidate_error_vs_target_m": null,
+      "disposition": "UNRESOLVED",
+      "candidates_m": [
+        3.9800000000000004,
+        5.82
+      ],
+      "candidate_distance_m": 3.9800000000000004,
+      "counters": {
+        "field_jet_points": 302,
+        "stationary_candidates": 0,
+        "scalar_refinements": 3
+      },
+      "unsupported": "some chart intervals unsupported",
+      "unsupported_intervals": [
+        {
+          "lo_m": 4.84375,
+          "hi_m": 4.921875,
+          "reason": "radial chart derivative singularity"
+        }
+      ]
+    },
+    {
+      "model": "incumbent_bicubic_32x48",
+      "ray_id": "radial-01",
+      "reference_first_distance_m": null,
+      "candidate_error_vs_target_m": null,
+      "disposition": "UNRESOLVED",
+      "candidates_m": [
+        4.071755657645852,
+        5.763599681413475
+      ],
+      "candidate_distance_m": 4.071755657645852,
+      "counters": {
+        "field_jet_points": 302,
+        "stationary_candidates": 0,
+        "scalar_refinements": 3
+      },
+      "unsupported": "some chart intervals unsupported",
+      "unsupported_intervals": [
+        {
+          "lo_m": 4.84375,
+          "hi_m": 4.921875,
+          "reason": "radial chart derivative singularity"
+        }
+      ]
+    },
+    {
+      "model": "incumbent_bicubic_32x48",
+      "ray_id": "radial-02",
+      "reference_first_distance_m": null,
+      "candidate_error_vs_target_m": null,
+      "disposition": "UNRESOLVED",
+      "candidates_m": [
+        4.159852813742386,
+        5.590147186257614
+      ],
+      "candidate_distance_m": 4.159852813742386,
+      "counters": {
+        "field_jet_points": 302,
+        "stationary_candidates": 0,
+        "scalar_refinements": 3
+      },
+      "unsupported": "some chart intervals unsupported",
+      "unsupported_intervals": [
+        {
+          "lo_m": 4.84375,
+          "hi_m": 4.921875,
+          "reason": "radial chart derivative singularity"
+        }
+      ]
+    },
+    {
+      "model": "incumbent_bicubic_32x48",
+      "ray_id": "radial-03",
+      "reference_first_distance_m": null,
+      "candidate_error_vs_target_m": null,
+      "disposition": "UNRESOLVED",
+      "candidates_m": [
+        4.228543213431018,
+        5.606812125628309
+      ],
+      "candidate_distance_m": 4.228543213431018,
+      "counters": {
+        "field_jet_points": 302,
+        "stationary_candidates": 0,
+        "scalar_refinements": 3
+      },
+      "unsupported": "some chart intervals unsupported",
+      "unsupported_intervals": [
+        {
+          "lo_m": 4.84375,
+          "hi_m": 4.921875,
+          "reason": "radial chart derivative singularity"
+        }
+      ]
+    },
+    {
+      "model": "incumbent_bicubic_32x48",
+      "ray_id": "radial-04",
+      "reference_first_distance_m": null,
+      "candidate_error_vs_target_m": null,
+      "disposition": "UNRESOLVED",
+      "candidates_m": [
+        4.1000000000000005,
+        5.7
+      ],
+      "candidate_distance_m": 4.1000000000000005,
+      "counters": {
+        "field_jet_points": 301,
+        "stationary_candidates": 0,
+        "scalar_refinements": 3
+      },
+      "unsupported": "some chart intervals unsupported",
+      "unsupported_intervals": [
+        {
+          "lo_m": 4.84375,
+          "hi_m": 4.921875,
+          "reason": "radial chart derivative singularity"
+        }
+      ]
+    },
+    {
+      "model": "incumbent_bicubic_32x48",
+      "ray_id": "radial-05",
+      "reference_first_distance_m": null,
+      "candidate_error_vs_target_m": null,
+      "disposition": "UNRESOLVED",
+      "candidates_m": [
+        3.9714567865689823,
+        5.793187874371691
+      ],
+      "candidate_distance_m": 3.9714567865689823,
+      "counters": {
+        "field_jet_points": 301,
+        "stationary_candidates": 0,
+        "scalar_refinements": 3
+      },
+      "unsupported": "some chart intervals unsupported",
+      "unsupported_intervals": [
+        {
+          "lo_m": 4.84375,
+          "hi_m": 4.921875,
+          "reason": "radial chart derivative singularity"
+        }
+      ]
+    },
+    {
+      "model": "incumbent_bicubic_32x48",
+      "ray_id": "radial-06",
+      "reference_first_distance_m": null,
+      "candidate_error_vs_target_m": null,
+      "disposition": "UNRESOLVED",
+      "candidates_m": [
+        4.040147186257615,
+        5.809852813742387
+      ],
+      "candidate_distance_m": 4.040147186257615,
+      "counters": {
+        "field_jet_points": 301,
+        "stationary_candidates": 0,
+        "scalar_refinements": 3
+      },
+      "unsupported": "some chart intervals unsupported",
+      "unsupported_intervals": [
+        {
+          "lo_m": 4.84375,
+          "hi_m": 4.921875,
+          "reason": "radial chart derivative singularity"
+        }
+      ]
+    },
+    {
+      "model": "incumbent_bicubic_32x48",
+      "ray_id": "radial-07",
+      "reference_first_distance_m": null,
+      "candidate_error_vs_target_m": null,
+      "disposition": "UNRESOLVED",
+      "candidates_m": [
+        4.128244342354147,
+        5.636400318586526
+      ],
+      "candidate_distance_m": 4.128244342354147,
+      "counters": {
+        "field_jet_points": 302,
+        "stationary_candidates": 0,
+        "scalar_refinements": 3
+      },
+      "unsupported": "some chart intervals unsupported",
+      "unsupported_intervals": [
+        {
+          "lo_m": 4.84375,
+          "hi_m": 4.921875,
+          "reason": "radial chart derivative singularity"
+        }
+      ]
+    },
+    {
+      "model": "incumbent_bicubic_32x48",
+      "ray_id": "radial-08",
+      "reference_first_distance_m": null,
+      "candidate_error_vs_target_m": null,
+      "disposition": "UNRESOLVED",
+      "candidates_m": [
+        4.220000000000001,
+        5.58
+      ],
+      "candidate_distance_m": 4.220000000000001,
+      "counters": {
+        "field_jet_points": 302,
+        "stationary_candidates": 0,
+        "scalar_refinements": 3
+      },
+      "unsupported": "some chart intervals unsupported",
+      "unsupported_intervals": [
+        {
+          "lo_m": 4.84375,
+          "hi_m": 4.921875,
+          "reason": "radial chart derivative singularity"
+        }
+      ]
+    },
+    {
+      "model": "incumbent_bicubic_32x48",
+      "ray_id": "radial-09",
+      "reference_first_distance_m": null,
+      "candidate_error_vs_target_m": null,
+      "disposition": "UNRESOLVED",
+      "candidates_m": [
+        4.163599681413475,
+        5.6717556576458525
+      ],
+      "candidate_distance_m": 4.163599681413475,
+      "counters": {
+        "field_jet_points": 302,
+        "stationary_candidates": 0,
+        "scalar_refinements": 3
+      },
+      "unsupported": "some chart intervals unsupported",
+      "unsupported_intervals": [
+        {
+          "lo_m": 4.84375,
+          "hi_m": 4.921875,
+          "reason": "radial chart derivative singularity"
+        }
+      ]
+    },
+    {
+      "model": "incumbent_bicubic_32x48",
+      "ray_id": "radial-10",
+      "reference_first_distance_m": null,
+      "candidate_error_vs_target_m": null,
+      "disposition": "UNRESOLVED",
+      "candidates_m": [
+        3.9901471862576146,
+        5.759852813742386
+      ],
+      "candidate_distance_m": 3.9901471862576146,
+      "counters": {
+        "field_jet_points": 302,
+        "stationary_candidates": 0,
+        "scalar_refinements": 3
+      },
+      "unsupported": "some chart intervals unsupported",
+      "unsupported_intervals": [
+        {
+          "lo_m": 4.84375,
+          "hi_m": 4.921875,
+          "reason": "radial chart derivative singularity"
+        }
+      ]
+    },
+    {
+      "model": "incumbent_bicubic_32x48",
+      "ray_id": "radial-11",
+      "reference_first_distance_m": null,
+      "candidate_error_vs_target_m": null,
+      "disposition": "UNRESOLVED",
+      "candidates_m": [
+        4.006812125628309,
+        5.828543213431018
+      ],
+      "candidate_distance_m": 4.006812125628309,
+      "counters": {
+        "field_jet_points": 301,
+        "stationary_candidates": 0,
+        "scalar_refinements": 3
+      },
+      "unsupported": "some chart intervals unsupported",
+      "unsupported_intervals": [
+        {
+          "lo_m": 4.84375,
+          "hi_m": 4.921875,
+          "reason": "radial chart derivative singularity"
+        }
+      ]
+    },
+    {
+      "model": "incumbent_bicubic_32x48",
+      "ray_id": "radial-12",
+      "reference_first_distance_m": null,
+      "candidate_error_vs_target_m": null,
+      "disposition": "UNRESOLVED",
+      "candidates_m": [
+        4.1000000000000005,
+        5.7
+      ],
+      "candidate_distance_m": 4.1000000000000005,
+      "counters": {
+        "field_jet_points": 302,
+        "stationary_candidates": 0,
+        "scalar_refinements": 3
+      },
+      "unsupported": "some chart intervals unsupported",
+      "unsupported_intervals": [
+        {
+          "lo_m": 4.84375,
+          "hi_m": 4.921875,
+          "reason": "radial chart derivative singularity"
+        }
+      ]
+    },
+    {
+      "model": "incumbent_bicubic_32x48",
+      "ray_id": "radial-13",
+      "reference_first_distance_m": null,
+      "candidate_error_vs_target_m": null,
+      "disposition": "UNRESOLVED",
+      "candidates_m": [
+        4.193187874371691,
+        5.571456786568983
+      ],
+      "candidate_distance_m": 4.193187874371691,
+      "counters": {
+        "field_jet_points": 302,
+        "stationary_candidates": 0,
+        "scalar_refinements": 3
+      },
+      "unsupported": "some chart intervals unsupported",
+      "unsupported_intervals": [
+        {
+          "lo_m": 4.84375,
+          "hi_m": 4.921875,
+          "reason": "radial chart derivative singularity"
+        }
+      ]
+    },
+    {
+      "model": "incumbent_bicubic_32x48",
+      "ray_id": "radial-14",
+      "reference_first_distance_m": null,
+      "candidate_error_vs_target_m": null,
+      "disposition": "UNRESOLVED",
+      "candidates_m": [
+        4.209852813742386,
+        5.6401471862576145
+      ],
+      "candidate_distance_m": 4.209852813742386,
+      "counters": {
+        "field_jet_points": 301,
+        "stationary_candidates": 0,
+        "scalar_refinements": 3
+      },
+      "unsupported": "some chart intervals unsupported",
+      "unsupported_intervals": [
+        {
+          "lo_m": 4.84375,
+          "hi_m": 4.921875,
+          "reason": "radial chart derivative singularity"
+        }
+      ]
+    },
+    {
+      "model": "incumbent_bicubic_32x48",
+      "ray_id": "radial-15",
+      "reference_first_distance_m": null,
+      "candidate_error_vs_target_m": null,
+      "disposition": "UNRESOLVED",
+      "candidates_m": [
+        4.036400318586526,
+        5.728244342354147
+      ],
+      "candidate_distance_m": 4.036400318586526,
+      "counters": {
+        "field_jet_points": 302,
+        "stationary_candidates": 0,
+        "scalar_refinements": 3
+      },
+      "unsupported": "some chart intervals unsupported",
+      "unsupported_intervals": [
+        {
+          "lo_m": 4.84375,
+          "hi_m": 4.921875,
+          "reason": "radial chart derivative singularity"
+        }
+      ]
+    },
+    {
+      "model": "incumbent_bicubic_32x48",
+      "ray_id": "miss-z",
+      "reference_first_distance_m": null,
+      "candidate_error_vs_target_m": null,
+      "disposition": "UNRESOLVED",
+      "candidates_m": [],
+      "candidate_distance_m": null,
+      "counters": {
+        "field_jet_points": 257,
+        "stationary_candidates": 0,
+        "scalar_refinements": 0
+      },
+      "unsupported": "radial chart derivative singularity",
+      "unsupported_intervals": []
+    },
+    {
+      "model": "incumbent_bicubic_32x48",
+      "ray_id": "grazing",
+      "reference_first_distance_m": null,
+      "candidate_error_vs_target_m": null,
+      "disposition": "UNRESOLVED",
+      "candidates_m": [
+        1.9999999999999944,
+        2.032759722237972
+      ],
+      "candidate_distance_m": 1.9999999999999944,
+      "counters": {
+        "field_jet_points": 284,
+        "stationary_candidates": 1,
+        "scalar_refinements": 3
+      },
+      "unsupported": null,
+      "unsupported_intervals": []
+    },
+    {
+      "model": "incumbent_bicubic_32x48",
+      "ray_id": "thin-chord",
+      "reference_first_distance_m": null,
+      "candidate_error_vs_target_m": null,
+      "disposition": "UNRESOLVED",
+      "candidates_m": [],
+      "candidate_distance_m": null,
+      "counters": {
+        "field_jet_points": 265,
+        "stationary_candidates": 1,
+        "scalar_refinements": 1
+      },
+      "unsupported": null,
+      "unsupported_intervals": []
+    },
+    {
+      "model": "incumbent_bicubic_32x48",
+      "ray_id": "coincident-control",
+      "reference_first_distance_m": null,
+      "candidate_error_vs_target_m": null,
+      "disposition": "UNRESOLVED",
+      "candidates_m": [],
+      "candidate_distance_m": null,
+      "counters": {
+        "field_jet_points": 260,
+        "stationary_candidates": 0,
+        "scalar_refinements": 1
+      },
+      "unsupported": null,
+      "unsupported_intervals": []
+    },
+    {
+      "model": "incumbent_bicubic_32x48",
+      "ray_id": "known-radial-00",
+      "reference_first_distance_m": 1.0670827880293374,
+      "candidate_error_vs_target_m": 6.4637517547261325e-06,
+      "disposition": "UNRESOLVED",
+      "candidates_m": [
+        1.0670892517810922,
+        2.9067767324214504
+      ],
+      "candidate_distance_m": 1.0670892517810922,
+      "counters": {
+        "field_jet_points": 350,
+        "stationary_candidates": 3,
+        "scalar_refinements": 5
+      },
+      "unsupported": null,
+      "unsupported_intervals": []
+    },
+    {
+      "model": "incumbent_bicubic_32x48",
+      "ray_id": "known-radial-01",
+      "reference_first_distance_m": 1.191978520900117,
+      "candidate_error_vs_target_m": 1.6219189236110765e-07,
+      "disposition": "UNRESOLVED",
+      "candidates_m": [
+        1.1919783587082247,
+        2.84243093009324
+      ],
+      "candidate_distance_m": 1.1919783587082247,
+      "counters": {
+        "field_jet_points": 340,
+        "stationary_candidates": 3,
+        "scalar_refinements": 5
+      },
+      "unsupported": null,
+      "unsupported_intervals": []
+    },
+    {
+      "model": "incumbent_bicubic_32x48",
+      "ray_id": "known-radial-02",
+      "reference_first_distance_m": 1.3287649888487794,
+      "candidate_error_vs_target_m": 6.0987122505462565e-06,
+      "disposition": "UNRESOLVED",
+      "candidates_m": [
+        1.3287588901365288,
+        2.7151866190694034
+      ],
+      "candidate_distance_m": 1.3287588901365288,
+      "counters": {
+        "field_jet_points": 340,
+        "stationary_candidates": 3,
+        "scalar_refinements": 5
+      },
+      "unsupported": null,
+      "unsupported_intervals": []
+    },
+    {
+      "model": "incumbent_bicubic_32x48",
+      "ray_id": "known-radial-03",
+      "reference_first_distance_m": 1.2746751420128388,
+      "candidate_error_vs_target_m": 4.665481658117088e-06,
+      "disposition": "UNRESOLVED",
+      "candidates_m": [
+        1.2746704765311807,
+        2.7136682216682244
+      ],
+      "candidate_distance_m": 1.2746704765311807,
+      "counters": {
+        "field_jet_points": 301,
+        "stationary_candidates": 1,
+        "scalar_refinements": 3
+      },
+      "unsupported": null,
+      "unsupported_intervals": []
+    },
+    {
+      "model": "incumbent_bicubic_32x48",
+      "ray_id": "known-radial-04",
+      "reference_first_distance_m": 1.1098897090485367,
+      "candidate_error_vs_target_m": 3.0945168716378646e-07,
+      "disposition": "UNRESOLVED",
+      "candidates_m": [
+        1.1098900185002238,
+        2.8401279758713796
+      ],
+      "candidate_distance_m": 1.1098900185002238,
+      "counters": {
+        "field_jet_points": 295,
+        "stationary_candidates": 1,
+        "scalar_refinements": 3
+      },
+      "unsupported": null,
+      "unsupported_intervals": []
+    },
+    {
+      "model": "incumbent_bicubic_32x48",
+      "ray_id": "known-radial-05",
+      "reference_first_distance_m": 1.0786803390712252,
+      "candidate_error_vs_target_m": 5.646050065033492e-06,
+      "disposition": "UNRESOLVED",
+      "candidates_m": [
+        1.0786859851212902,
+        2.9071028258610263
+      ],
+      "candidate_distance_m": 1.0786859851212902,
+      "counters": {
+        "field_jet_points": 304,
+        "stationary_candidates": 1,
+        "scalar_refinements": 3
+      },
+      "unsupported": null,
+      "unsupported_intervals": []
+    },
+    {
+      "model": "incumbent_bicubic_32x48",
+      "ray_id": "known-radial-06",
+      "reference_first_distance_m": 1.227310613363969,
+      "candidate_error_vs_target_m": 1.3423568034909295e-07,
+      "disposition": "UNRESOLVED",
+      "candidates_m": [
+        1.2273107475996494,
+        2.8153148393591345
+      ],
+      "candidate_distance_m": 1.2273107475996494,
+      "counters": {
+        "field_jet_points": 297,
+        "stationary_candidates": 1,
+        "scalar_refinements": 3
+      },
+      "unsupported": null,
+      "unsupported_intervals": []
+    },
+    {
+      "model": "incumbent_bicubic_32x48",
+      "ray_id": "known-radial-07",
+      "reference_first_distance_m": 1.335456674672828,
+      "candidate_error_vs_target_m": 2.7543888037051545e-07,
+      "disposition": "UNRESOLVED",
+      "candidates_m": [
+        1.3354563992339477,
+        2.7008195421988743
+      ],
+      "candidate_distance_m": 1.3354563992339477,
+      "counters": {
+        "field_jet_points": 308,
+        "stationary_candidates": 1,
+        "scalar_refinements": 3
+      },
+      "unsupported": null,
+      "unsupported_intervals": []
+    },
+    {
+      "model": "incumbent_bicubic_32x48",
+      "ray_id": "known-radial-08",
+      "reference_first_distance_m": 1.242806921019199,
+      "candidate_error_vs_target_m": 1.8860083239591319e-06,
+      "disposition": "UNRESOLVED",
+      "candidates_m": [
+        1.242805035010875,
+        2.7333471120294495
+      ],
+      "candidate_distance_m": 1.242805035010875,
+      "counters": {
+        "field_jet_points": 301,
+        "stationary_candidates": 1,
+        "scalar_refinements": 3
+      },
+      "unsupported": null,
+      "unsupported_intervals": []
+    },
+    {
+      "model": "incumbent_bicubic_32x48",
+      "ray_id": "known-radial-09",
+      "reference_first_distance_m": 1.0867018181711083,
+      "candidate_error_vs_target_m": 4.475643737400503e-06,
+      "disposition": "UNRESOLVED",
+      "candidates_m": [
+        1.0867062938148457,
+        2.864673324804523
+      ],
+      "candidate_distance_m": 1.0867062938148457,
+      "counters": {
+        "field_jet_points": 296,
+        "stationary_candidates": 1,
+        "scalar_refinements": 3
+      },
+      "unsupported": null,
+      "unsupported_intervals": []
+    },
+    {
+      "model": "incumbent_bicubic_32x48",
+      "ray_id": "known-radial-10",
+      "reference_first_distance_m": 1.09854562451519,
+      "candidate_error_vs_target_m": 8.007771445939227e-08,
+      "disposition": "UNRESOLVED",
+      "candidates_m": [
+        1.0985457045929043,
+        2.900134372673345
+      ],
+      "candidate_distance_m": 1.0985457045929043,
+      "counters": {
+        "field_jet_points": 301,
+        "stationary_candidates": 1,
+        "scalar_refinements": 3
+      },
+      "unsupported": null,
+      "unsupported_intervals": []
+    },
+    {
+      "model": "incumbent_bicubic_32x48",
+      "ray_id": "known-radial-11",
+      "reference_first_distance_m": 1.2607815326599892,
+      "candidate_error_vs_target_m": 2.9788315139001043e-06,
+      "disposition": "UNRESOLVED",
+      "candidates_m": [
+        1.2607785538284753,
+        2.7871585922782613
+      ],
+      "candidate_distance_m": 1.2607785538284753,
+      "counters": {
+        "field_jet_points": 302,
+        "stationary_candidates": 1,
+        "scalar_refinements": 3
+      },
+      "unsupported": null,
+      "unsupported_intervals": []
+    },
+    {
+      "model": "incumbent_bicubic_32x48",
+      "ray_id": "known-radial-12",
+      "reference_first_distance_m": 1.3329172119706623,
+      "candidate_error_vs_target_m": 6.463751754282043e-06,
+      "disposition": "UNRESOLVED",
+      "candidates_m": [
+        1.332910748218908,
+        2.69322326757855
+      ],
+      "candidate_distance_m": 1.332910748218908,
+      "counters": {
+        "field_jet_points": 308,
+        "stationary_candidates": 1,
+        "scalar_refinements": 3
+      },
+      "unsupported": null,
+      "unsupported_intervals": []
+    },
+    {
+      "model": "incumbent_bicubic_32x48",
+      "ray_id": "known-radial-13",
+      "reference_first_distance_m": 1.2080214790998829,
+      "candidate_error_vs_target_m": 1.6219189213906304e-07,
+      "disposition": "UNRESOLVED",
+      "candidates_m": [
+        1.208021641291775,
+        2.7575690699067597
+      ],
+      "candidate_distance_m": 1.208021641291775,
+      "counters": {
+        "field_jet_points": 303,
+        "stationary_candidates": 1,
+        "scalar_refinements": 3
+      },
+      "unsupported": null,
+      "unsupported_intervals": []
+    },
+    {
+      "model": "incumbent_bicubic_32x48",
+      "ray_id": "known-radial-14",
+      "reference_first_distance_m": 1.0712350111512208,
+      "candidate_error_vs_target_m": 6.0987122516564796e-06,
+      "disposition": "UNRESOLVED",
+      "candidates_m": [
+        1.0712411098634724,
+        2.8848133809305962
+      ],
+      "candidate_distance_m": 1.0712411098634724,
+      "counters": {
+        "field_jet_points": 303,
+        "stationary_candidates": 1,
+        "scalar_refinements": 3
+      },
+      "unsupported": null,
+      "unsupported_intervals": []
+    },
+    {
+      "model": "incumbent_bicubic_32x48",
+      "ray_id": "known-radial-15",
+      "reference_first_distance_m": 1.1253248579871613,
+      "candidate_error_vs_target_m": 4.665481657450954e-06,
+      "disposition": "UNRESOLVED",
+      "candidates_m": [
+        1.1253295234688188,
+        2.8863317783317757
+      ],
+      "candidate_distance_m": 1.1253295234688188,
+      "counters": {
+        "field_jet_points": 300,
+        "stationary_candidates": 1,
+        "scalar_refinements": 3
+      },
+      "unsupported": null,
+      "unsupported_intervals": []
+    },
+    {
+      "model": "incumbent_bicubic_32x48",
+      "ray_id": "known-radial-16",
+      "reference_first_distance_m": 1.290110290951463,
+      "candidate_error_vs_target_m": 3.0945168671969725e-07,
+      "disposition": "UNRESOLVED",
+      "candidates_m": [
+        1.2901099814997763,
+        2.75987202412862
+      ],
+      "candidate_distance_m": 1.2901099814997763,
+      "counters": {
+        "field_jet_points": 297,
+        "stationary_candidates": 1,
+        "scalar_refinements": 3
+      },
+      "unsupported": null,
+      "unsupported_intervals": []
+    },
+    {
+      "model": "incumbent_bicubic_32x48",
+      "ray_id": "known-radial-17",
+      "reference_first_distance_m": 1.3213196609287747,
+      "candidate_error_vs_target_m": 5.646050064589403e-06,
+      "disposition": "UNRESOLVED",
+      "candidates_m": [
+        1.3213140148787101,
+        2.692897174138974
+      ],
+      "candidate_distance_m": 1.3213140148787101,
+      "counters": {
+        "field_jet_points": 300,
+        "stationary_candidates": 1,
+        "scalar_refinements": 3
+      },
+      "unsupported": null,
+      "unsupported_intervals": []
+    },
+    {
+      "model": "incumbent_bicubic_32x48",
+      "ray_id": "known-radial-18",
+      "reference_first_distance_m": 1.1726893866360308,
+      "candidate_error_vs_target_m": 1.3423568057113755e-07,
+      "disposition": "UNRESOLVED",
+      "candidates_m": [
+        1.1726892524003503,
+        2.784685160640866
+      ],
+      "candidate_distance_m": 1.1726892524003503,
+      "counters": {
+        "field_jet_points": 305,
+        "stationary_candidates": 1,
+        "scalar_refinements": 3
+      },
+      "unsupported": null,
+      "unsupported_intervals": []
+    },
+    {
+      "model": "incumbent_bicubic_32x48",
+      "ray_id": "known-radial-19",
+      "reference_first_distance_m": 1.064543325327172,
+      "candidate_error_vs_target_m": 2.7543888014847084e-07,
+      "disposition": "UNRESOLVED",
+      "candidates_m": [
+        1.0645436007660523,
+        2.8991804578011258
+      ],
+      "candidate_distance_m": 1.0645436007660523,
+      "counters": {
+        "field_jet_points": 296,
+        "stationary_candidates": 1,
+        "scalar_refinements": 3
+      },
+      "unsupported": null,
+      "unsupported_intervals": []
+    },
+    {
+      "model": "incumbent_bicubic_32x48",
+      "ray_id": "known-radial-20",
+      "reference_first_distance_m": 1.1571930789808005,
+      "candidate_error_vs_target_m": 1.8860083248473103e-06,
+      "disposition": "UNRESOLVED",
+      "candidates_m": [
+        1.1571949649891253,
+        2.86665288797055
+      ],
+      "candidate_distance_m": 1.1571949649891253,
+      "counters": {
+        "field_jet_points": 298,
+        "stationary_candidates": 1,
+        "scalar_refinements": 3
+      },
+      "unsupported": null,
+      "unsupported_intervals": []
+    },
+    {
+      "model": "incumbent_bicubic_32x48",
+      "ray_id": "known-radial-21",
+      "reference_first_distance_m": 1.3132981818288916,
+      "candidate_error_vs_target_m": 4.4756437371784585e-06,
+      "disposition": "UNRESOLVED",
+      "candidates_m": [
+        1.3132937061851544,
+        2.7353266751954775
+      ],
+      "candidate_distance_m": 1.3132937061851544,
+      "counters": {
+        "field_jet_points": 345,
+        "stationary_candidates": 3,
+        "scalar_refinements": 5
+      },
+      "unsupported": null,
+      "unsupported_intervals": []
+    },
+    {
+      "model": "incumbent_bicubic_32x48",
+      "ray_id": "known-radial-22",
+      "reference_first_distance_m": 1.30145437548481,
+      "candidate_error_vs_target_m": 8.007771357121385e-08,
+      "disposition": "UNRESOLVED",
+      "candidates_m": [
+        1.3014542954070965,
+        2.699865627326655
+      ],
+      "candidate_distance_m": 1.3014542954070965,
+      "counters": {
+        "field_jet_points": 338,
+        "stationary_candidates": 3,
+        "scalar_refinements": 5
+      },
+      "unsupported": null,
+      "unsupported_intervals": []
+    },
+    {
+      "model": "incumbent_bicubic_32x48",
+      "ray_id": "known-radial-23",
+      "reference_first_distance_m": 1.139218467340011,
+      "candidate_error_vs_target_m": 2.9788315139001043e-06,
+      "disposition": "UNRESOLVED",
+      "candidates_m": [
+        1.1392214461715249,
+        2.8128414077217387
+      ],
+      "candidate_distance_m": 1.1392214461715249,
+      "counters": {
+        "field_jet_points": 343,
+        "stationary_candidates": 3,
+        "scalar_refinements": 5
+      },
+      "unsupported": null,
+      "unsupported_intervals": []
+    }
+  ],
+  "tangent_control": {
+    "origin_m": [
+      6.006770355463454,
+      1.217632632048438,
+      -0.9424690622519262
+    ],
+    "direction": [
+      -0.28962947762551555,
+      -0.05871080169382652,
+      0.955336489125606
+    ],
+    "reference_t_m": 1.234,
+    "result": {
+      "disposition": "UNRESOLVED",
+      "candidates_m": [
+        1.234
+      ],
+      "candidate_distance_m": 1.234,
+      "counters": {
+        "field_jet_points": 40,
+        "stationary_candidates": 1,
+        "scalar_refinements": 1
+      },
+      "unsupported": null,
+      "unsupported_intervals": []
+    }
+  },
+  "native_speed_goal_status": "UNMEASURED",
+  "scope": "Frozen incumbent radius evaluator in common constant-axis wrapper; not full incumbent tracker or native C++ comparison"
+}
