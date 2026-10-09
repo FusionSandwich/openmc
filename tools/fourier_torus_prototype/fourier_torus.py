@@ -331,4 +331,3 @@ def composition_interpretations() -> dict[str, str]:
         "parametric_displacements": "Sum Fourier displacement fields on a parameterized torus; can reconstruct modes exactly, but ray intersection remains a coupled surface solve.",
         "nonlinear_coordinate_map": "Map a reference torus through a nonlinear transform; physical straight rays generally become curved transformed paths.",
     }
-
