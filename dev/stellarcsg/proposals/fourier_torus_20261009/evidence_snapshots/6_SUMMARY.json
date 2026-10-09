@@ -1,0 +1,35 @@
+{
+  "ceil8": {
+    "median_transport": {
+      "custom": 2.552029916,
+      "builtin": 1.2039016980000001
+    },
+    "min_max": {
+      "custom": [
+        2.529891014,
+        2.5807184
+      ],
+      "builtin": [
+        1.153638701,
+        1.2231556970000002
+      ]
+    },
+    "cv": {
+      "custom": 0.008564110000437308,
+      "builtin": 0.022593117513010293
+    },
+    "ratio_custom_over_builtin": 2.1197992495895623,
+    "digest": {
+      "custom": "529774d6e3c5cc9968c42021ba833c3ee1fabd9206ef1f6f74f36f31646fb4c0",
+      "builtin": "75c36a55a466251391cd6df3593b7f172776a2b4a3070e54ca5b49f331f98b7b"
+    },
+    "equals_retained_f301": {
+      "custom": false,
+      "builtin": false
+    },
+    "collisions_per_source": {
+      "custom": 51.61898496539406,
+      "builtin": 60.58913991693981
+    }
+  }
+}

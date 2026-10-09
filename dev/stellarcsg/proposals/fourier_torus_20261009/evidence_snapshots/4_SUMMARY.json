@@ -1,0 +1,60 @@
+{
+  "control": {
+    "median_transport": {
+      "custom": 24.59241964,
+      "builtin": 0.125512894
+    },
+    "min_max": {
+      "custom": [
+        24.363242342,
+        25.464560891
+      ],
+      "builtin": [
+        0.12231689600000001,
+        0.1304311
+      ]
+    },
+    "cv": {
+      "custom": 0.01810553494224722,
+      "builtin": 0.028455509056557263
+    },
+    "ratio_custom_over_builtin": 195.93540437367332,
+    "digest": {
+      "custom": "fe3c29fb85feecf3435edb45209fd275ef08f25f0f275b21384eba9c38ccdc56",
+      "builtin": "2bc42e06a85afb68f091ba3df0bcabb4fbd1bfe40a7c5decdb7a26e9b2a1b925"
+    },
+    "equals_retained_f301": {
+      "custom": true,
+      "builtin": true
+    }
+  },
+  "ceil4": {
+    "median_transport": {
+      "custom": 3.04805708,
+      "builtin": 0.12789450000000002
+    },
+    "min_max": {
+      "custom": [
+        2.991399884,
+        3.099173911
+      ],
+      "builtin": [
+        0.124477101,
+        0.129691799
+      ]
+    },
+    "cv": {
+      "custom": 0.013580901589975021,
+      "builtin": 0.017150781638964996
+    },
+    "ratio_custom_over_builtin": 23.832589204383297,
+    "digest": {
+      "custom": "fe3c29fb85feecf3435edb45209fd275ef08f25f0f275b21384eba9c38ccdc56",
+      "builtin": "2bc42e06a85afb68f091ba3df0bcabb4fbd1bfe40a7c5decdb7a26e9b2a1b925"
+    },
+    "equals_retained_f301": {
+      "custom": true,
+      "builtin": true
+    }
+  }
+}

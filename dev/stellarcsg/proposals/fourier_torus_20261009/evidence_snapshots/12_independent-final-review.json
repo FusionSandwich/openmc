@@ -1,0 +1,28 @@
+{
+  "status": "ACCEPTED_RESTRICTED_DETERMINISTIC_EVENT_SLICE",
+  "reviewer": "independent GPT-6.1 Sol subagent /root/axis_review",
+  "fresh_builds": [
+    "ON",
+    "OFF"
+  ],
+  "native_rows": 208,
+  "supported_rows": 154,
+  "expected_rejections": 54,
+  "events": 460,
+  "legacy_models": 6,
+  "legacy_rows_per_build": 24,
+  "corruption_controls": 5,
+  "frozen_source_hashes_verified": 1205,
+  "original_source_hashes_verified": 1218,
+  "original_index_and_HEAD_hashes_unchanged": true,
+  "binaries_headers_macros_loader_paths_verified": true,
+  "lineage_verified": [
+    "04a8061dde802f7fd4290fae45b7d84b33bfc020",
+    "b7458747083ed7831f0abb4bd98c9a19019f9bae",
+    "a6d167c2730be9e515ec4627b6d791168673b62d"
+  ],
+  "seconds": 420.519632388,
+  "compute_lease_absent": true,
+  "native_processes_absent": true,
+  "limitations": "void, single-instance, unit-axis built-in plane domain; no broader scientific, performance or installation ABI claim"
+}
