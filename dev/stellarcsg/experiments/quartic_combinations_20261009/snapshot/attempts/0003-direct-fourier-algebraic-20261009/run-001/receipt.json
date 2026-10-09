@@ -1,0 +1,38 @@
+{
+  "created_utc": "2026-10-09T21:28:34.529205+00:00",
+  "run_id": "run-001",
+  "status": "COMPLETED_SYNTHETIC_DIAGNOSTICS",
+  "tests_passed": 28,
+  "runtime": {
+    "python": "3.12.10",
+    "numpy": "2.5.1",
+    "scipy": "1.18.0"
+  },
+  "source_hashes": {
+    "fourier_torus.py": "fa0559134dd60b0390617a799a339ad05ad23e1f523c86ea9b92373ff2812210",
+    "test_fourier_torus.py": "ece3351a22dbb53992996d40d26c40f9a50c725cac9b1f2151d39a3f6a1f44ee",
+    "patch_methods.py": "88623c61a52a997a5770427a38ab9b2eb068c8923db8a43176488b77264fed3e",
+    "test_patch_methods.py": "7483e985c4fd556b32577450ee9b3accbca6f006b51614a46ac1ae796efd292c",
+    "direct_algebraic.py": "082d701104b9cf9f8050bcb426a30a7ab4d6a5081dd7038e6d509bed0779ab62",
+    "test_direct_algebraic.py": "9d42a49514846c0e476f6417df8fa8670201e70fa474362c34efe7408d62fcd1",
+    "run_direct_trials.py": "5a626bcc705981d536d7d2d198006df308cfea6fb14d236a505427433c614eec"
+  },
+  "input_hashes": {
+    "proposal-3rd-set.txt": "0ee2687e1efd39e20d5d1fc5bb3801c14733e4b19123c3bfadf6288e4c5bccd1",
+    "incumbent_spline.py": "499bccef7bb3fc4168a034e4e0ed8597633cb640390e1bc7598b031f5dfcab08",
+    "incumbent_surface.py": "96303d9eb2cbe681113a190daa041b2e962b124b9965fe9894970972d4aacb75",
+    "prior_METHOD_LEDGER.md": "0d48336c1f4b305bd2d7b0720aeb5a78d6c59de12a0ef7d4e9c2432cb6e84907",
+    "prior_METHOD_EVENTS.jsonl": "af36c9bddc1d81c0d63edd35d0cef11a6a3a232731679ede024a230e6413421c"
+  },
+  "output_hashes": {
+    "direct_fourier_results.json": "48f078a717edc26a5c4fe51e663cb5bdb47568d281db489772805dd346c10d72",
+    "local_quartic_results.json": "114d30a3df16ef2c91886b01576043ad33a0b704d02a0c8e4b5b0802bfeb8a2e",
+    "rays.json": "fcf08b04b8961f5455d2dd767d1bdc4c90d9d4cfebf2081c74f6362c90b4cbdf",
+    "tests.txt": "f516a47351021eb0967d382bd73bd1c75cfd06201051de9f451dbb208528d78a"
+  },
+  "prior_files_unchanged": 34,
+  "native_build": false,
+  "transport": false,
+  "physical_fidelity_acceptance": false,
+  "native_speed_acceptance": false
+}

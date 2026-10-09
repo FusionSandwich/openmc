@@ -1,0 +1,76 @@
+{
+  "date": "2026-10-09",
+  "files": [
+    {
+      "source": "C:\\Users\\joshu\\OneDrive\\Documents\\ChatGPT\\StellarCGS\\stellarcsg-workload-ladder-20261008\\RESULTS.md",
+      "snapshot": "evidence_snapshots\\1_RESULTS.md",
+      "sha256": "01066c6c7ace075e14b50fa7b4e5cb36e13e01bb115d22a38f7b70cf9324b438"
+    },
+    {
+      "source": "C:\\Users\\joshu\\OneDrive\\Documents\\ChatGPT\\StellarCGS\\stellarcsg-workload-ladder-20261008\\PLASMA_PLAN.md",
+      "snapshot": "evidence_snapshots\\2_PLASMA_PLAN.md",
+      "sha256": "801db4601c10d071a695e77e9e650a3891c8dfd6b8e83aa2b506ad02fc40047e"
+    },
+    {
+      "source": "C:\\Users\\joshu\\OneDrive\\Documents\\ChatGPT\\StellarCGS\\stellarcsg-workload-ladder-20261008\\runs\\gate-03\\GATE.json",
+      "snapshot": "evidence_snapshots\\3_GATE.json",
+      "sha256": "c88e910a8056d1042fd01fb6a3d9ceb65911fa5fdc40669ed65788c7aa9daea8"
+    },
+    {
+      "source": "C:\\Users\\joshu\\OneDrive\\Documents\\ChatGPT\\StellarCGS\\stellarcsg-workload-ladder-20261008\\plasma\\runs\\plasma-ab-01\\SUMMARY.json",
+      "snapshot": "evidence_snapshots\\4_SUMMARY.json",
+      "sha256": "2f38005c7a3dd56b9cd7076048d276f1117aea473d42af1d1e63d34c90b9ef05"
+    },
+    {
+      "source": "C:\\Users\\joshu\\OneDrive\\Documents\\ChatGPT\\StellarCGS\\stellarcsg-workload-ladder-20261008\\plasma\\runs\\plasma-matched-01\\SUMMARY.json",
+      "snapshot": "evidence_snapshots\\5_SUMMARY.json",
+      "sha256": "eae402c34a19a286af6f5d1cecdee9986ee0d967e148ae26a53c066cbaff610c"
+    },
+    {
+      "source": "C:\\Users\\joshu\\OneDrive\\Documents\\ChatGPT\\StellarCGS\\stellarcsg-workload-ladder-20261008\\plasma\\runs\\plasma-matched-02\\SUMMARY.json",
+      "snapshot": "evidence_snapshots\\6_SUMMARY.json",
+      "sha256": "979d45a5f1fc68268d17d1c5d2e080acd903b4b260488a64f4487009a80a56c0"
+    },
+    {
+      "source": "C:\\Users\\joshu\\OneDrive\\Documents\\ChatGPT\\StellarCGS\\stellarcsg-axis-integration-20261008\\dev\\stellarcsg\\python\\stellarcsg\\vmec.py",
+      "snapshot": "evidence_snapshots\\7_vmec.py",
+      "sha256": "ac42cbe73ea4e9904dcf01e3439f0ce6dd7d40f3e4ecb9cca6a9fe41fb1a051d"
+    },
+    {
+      "source": "C:\\Users\\joshu\\OneDrive\\Documents\\ChatGPT\\StellarCGS\\stellarcsg-axis-integration-20261008\\INTEGRATION_RESULT_20261008.json",
+      "snapshot": "evidence_snapshots\\8_INTEGRATION_RESULT_20261008.json",
+      "sha256": "b7285d4180c90180e45e6762900bfef34c1ec3e309527bcf95b4bf7cd60e4bfc"
+    },
+    {
+      "source": "C:\\Users\\joshu\\OneDrive\\Documents\\ChatGPT\\StellarCGS\\stellarcsg-axis-integration-20261008\\dev\\stellarcsg\\include\\stellarcsg\\periodic_radial_surface.hpp",
+      "snapshot": "evidence_snapshots\\9_periodic_radial_surface.hpp",
+      "sha256": "2f6316ca46b59303c266f0fab895931c639dc9dd91900ebe36749a41da445cee"
+    },
+    {
+      "source": "C:\\Users\\joshu\\OneDrive\\Documents\\ChatGPT\\StellarCGS\\stellarcsg-axis-integration-20261008\\dev\\stellarcsg\\METHOD_MAP.md",
+      "snapshot": "evidence_snapshots\\10_METHOD_MAP.md",
+      "sha256": "e804da971800b6b7b80c56c0c53979eefee4f816e94b286a179f6ab80a220921"
+    },
+    {
+      "source": "C:\\Users\\joshu\\OneDrive\\Documents\\ChatGPT\\StellarCGS\\stellarcsg-axis-integration-20261008\\dev\\stellarcsg\\reports\\BEST_METHOD_CONTINUATION_20260930.md",
+      "snapshot": "evidence_snapshots\\11_BEST_METHOD_CONTINUATION_20260930.md",
+      "sha256": "3d08563b5dfa0ff489c641abf06e8844144c5b70bb44808e7aa9a1f5ae8a1b07"
+    },
+    {
+      "source": "C:\\Users\\joshu\\OneDrive\\Documents\\ChatGPT\\StellarCGS\\stellarcsg-axis-integration-20261008\\integration-20261008\\independent-final-review.json",
+      "snapshot": "evidence_snapshots\\12_independent-final-review.json",
+      "sha256": "94047cc52ebce7a38522979868523bd6fa74057167a94fe24e07fa9d4aeb7390"
+    },
+    {
+      "source": "C:\\Users\\joshu\\Downloads\\StellarCSG_review_findings_and_test_contract.md",
+      "snapshot": "evidence_snapshots\\13_StellarCSG_review_findings_and_test_contract.md",
+      "sha256": "e56ca4f00e5d2d6e21306438d7e02d67d454210264bfce15f575438a1a3faf57"
+    },
+    {
+      "source": "C:\\Users\\joshu\\Downloads\\USABILITY_METHOD_REVIEW_20260926.md",
+      "snapshot": "evidence_snapshots\\14_USABILITY_METHOD_REVIEW_20260926.md",
+      "sha256": "9b48f90a94996393353a5b463be06122f45aef58f84238410a24b629d135a785"
+    }
+  ],
+  "new_method_status": "CONCEPT_NOT_YET_MEASURED"
+}

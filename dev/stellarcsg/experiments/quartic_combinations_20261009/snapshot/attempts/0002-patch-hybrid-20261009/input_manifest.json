@@ -1,0 +1,39 @@
+{
+  "inputs": [
+    {
+      "source": "C:\\Users\\joshu\\.codex\\attachments\\2698ab6f-8c4e-4102-8319-5a5f65917add\\Pasted text.txt",
+      "sha256": "55f3085fd02e89e00c8d1ab0ff1b904b96c115bff8e95b35c7f57a679bfb8b17",
+      "snapshot": "inputs/proposal-1.txt",
+      "duplicate_of_input": null
+    },
+    {
+      "source": "C:\\Users\\joshu\\.codex\\attachments\\f5eb02f0-c541-40d3-b42b-7af4c781da8a\\Pasted text.txt",
+      "sha256": "55f3085fd02e89e00c8d1ab0ff1b904b96c115bff8e95b35c7f57a679bfb8b17",
+      "snapshot": "inputs/proposal-1.txt",
+      "duplicate_of_input": 0
+    },
+    {
+      "source": "C:\\Users\\joshu\\.codex\\attachments\\f4e422ae-4909-4203-882d-e09ed38ac06d\\Pasted text.txt",
+      "sha256": "07080b3d069b21705b42e05fefde87bf8b2341ec24cb6860e7ce5b26258a538b",
+      "snapshot": "inputs/proposal-3.txt",
+      "duplicate_of_input": null
+    },
+    {
+      "source": "C:\\Users\\joshu\\OneDrive\\Documents\\ChatGPT\\StellarCGS\\stellarcsg-axis-integration-20261008\\dev\\stellarcsg\\METHOD_MAP.md",
+      "sha256": "e804da971800b6b7b80c56c0c53979eefee4f816e94b286a179f6ab80a220921",
+      "snapshot": "inputs/METHOD_MAP.md"
+    },
+    {
+      "source": "C:\\Users\\joshu\\OneDrive\\Documents\\ChatGPT\\StellarCGS\\stellarcsg-axis-integration-20261008\\dev\\stellarcsg\\reports\\CONSOLIDATED_DEVELOPMENT_20260926.md",
+      "sha256": "92cd57d70ed6c648e34e98055417823797399d30d49cb2b6809050ca65cc8687",
+      "snapshot": "inputs/CONSOLIDATED_DEVELOPMENT_20260926.md"
+    }
+  ],
+  "wout_used": false,
+  "synthetic_target": {
+    "major_radius_m": 5.0,
+    "minor_radius_m": 0.8,
+    "amplitude_m": 0.12,
+    "nfp": 3
+  }
+}

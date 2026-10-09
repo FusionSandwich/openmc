@@ -1,0 +1,47 @@
+[
+  {
+    "theta_patches": 8,
+    "phi_patches_one_field_period": 12,
+    "amplitude_m": 0.0,
+    "supported_patches": 96,
+    "unsupported_patches": [],
+    "sample_count": 2400,
+    "sampled_max_surface_error_m": 1.6653345369377348e-15,
+    "sampled_max_normal_error_deg": 1.4787793334710982e-06,
+    "sampled_max_neighbor_seam_gap_m": 1.790180836524724e-15,
+    "construction_and_diagnostic_seconds": 0.46224800002528355,
+    "closed_volume": true,
+    "whole_domain_fit_certified": false,
+    "verdict": "EXACT_CONTROL_DISPATCH"
+  },
+  {
+    "theta_patches": 8,
+    "phi_patches_one_field_period": 12,
+    "amplitude_m": 0.12,
+    "supported_patches": 96,
+    "unsupported_patches": [],
+    "sample_count": 2400,
+    "sampled_max_surface_error_m": 0.00892675354498318,
+    "sampled_max_normal_error_deg": 3.0105396531542192,
+    "sampled_max_neighbor_seam_gap_m": 0.014325801738657124,
+    "construction_and_diagnostic_seconds": 0.47565470001427457,
+    "closed_volume": false,
+    "whole_domain_fit_certified": false,
+    "verdict": "APPROXIMATE_PATCHES_NOT_A_CLOSED_SOLID"
+  },
+  {
+    "theta_patches": 16,
+    "phi_patches_one_field_period": 24,
+    "amplitude_m": 0.12,
+    "supported_patches": 384,
+    "unsupported_patches": [],
+    "sample_count": 9600,
+    "sampled_max_surface_error_m": 0.0011850350015714106,
+    "sampled_max_normal_error_deg": 0.8034619514505086,
+    "sampled_max_neighbor_seam_gap_m": 0.001931803476463284,
+    "construction_and_diagnostic_seconds": 2.013191999983974,
+    "closed_volume": false,
+    "whole_domain_fit_certified": false,
+    "verdict": "APPROXIMATE_PATCHES_NOT_A_CLOSED_SOLID"
+  }
+]

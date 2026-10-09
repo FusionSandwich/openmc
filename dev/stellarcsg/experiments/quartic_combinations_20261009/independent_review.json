@@ -1,0 +1,78 @@
+{
+  "created_utc": "2026-10-09T22:10:03.220055+00:00",
+  "reviewer": "independent Sol /root/axis_review",
+  "verdict": "ACCEPT_SCOPED_REFERENCE",
+  "blocking_findings": [],
+  "review_base": "New quartic_oracle.py and test_quartic_oracle.py versus absent files; replay status/provenance follow-up only",
+  "scope": "Distinct root isolation for degree <= 4 exact represented rational/binary coefficients on closed finite intervals, plus conservative scalar scheduler composition. Not physical geometry, VMEC, ownership, native transport, or performance acceptance.",
+  "checks": {
+    "supplied_tests": {
+      "run": 10,
+      "passed": 10
+    },
+    "independent_known_factor_cases": 386,
+    "independent_one_sided_count_checks": 1454,
+    "independent_irrational_cases": 3,
+    "independent_scheduler_compositions": 20,
+    "close_root_spacings_bits": [
+      48,
+      80,
+      200,
+      1074
+    ],
+    "budget_exhaustion_preserves_unknown": true,
+    "repeated_even_and_closed_endpoint_roots": true,
+    "represented_binary_vs_decimal_rational_endpoint": true,
+    "nonpoint_or_incomplete_isolation_never_scalar_HIT": true,
+    "snapshot_file_hashes_and_sizes_verified": 93,
+    "retained_source_hashes_verified": 7,
+    "retained_output_hashes_verified": 4,
+    "formatted_source_AST_equivalence_verified": 7,
+    "recorded_59_control_log_checked": true,
+    "replay_main_rerun": false
+  },
+  "replay_negatives": {
+    "high_mode_crossing": {
+      "independently_reproduced": true,
+      "field_bracket_m": [
+        4.413035226991102e-05,
+        -4.3684559961509883e-05
+      ],
+      "missed_crossing_separation_m": 0.0030895558973312864,
+      "disposition": "UNRESOLVED"
+    },
+    "singular_grid": {
+      "independently_reproduced": true,
+      "candidates": [],
+      "disposition": "UNRESOLVED"
+    },
+    "quartic_sheet": {
+      "independently_reproduced": true,
+      "exact_represented_root_count": 1,
+      "root_interval": [
+        "25082716075/34359738368",
+        "1567669755/2147483648"
+      ],
+      "target_field_at_interval_midpoint_m": 0.7842033643811112,
+      "disposition": "UNRESOLVED"
+    }
+  },
+  "limitations": [
+    "COMPLETE certifies distinct roots of supplied coefficients, not equivalence to the fitted or physical target surface.",
+    "Subdivision budget bounds bisection count, not total rational arithmetic cost; no speed or resource acceptance.",
+    "The target-field midpoint value is a numerical diagnostic, not an interval proof at the exact algebraic root.",
+    "The 59-suite replay receipt/log was audited without rerunning replay.main; the 10 oracle tests and independent case bank were separately executed with bytecode writes disabled.",
+    "Frozen prototype production defects remain retained negatives and do not block this restricted reference oracle."
+  ],
+  "source_commit": "9399a879926cb09658709ff030d0317e9e96b7e5",
+  "sha256": {
+    "quartic_oracle.py": "8b0993589cfa43c57f504e6e0cc2ccc79750175dbb507a65dfb046d05a8e0c49",
+    "test_quartic_oracle.py": "d23f97a2422051d5f61006f1c95bbf37b91e3bbcb184dd28d5933ad759a10dd9",
+    "independent_test.py": "c00a35a9edd4c819e6f0142e70f3506e017bdeafff1b2788ba2564105e8c4711",
+    "replay.py": "b58902ae8d206ce03ccc2688e53478ca27d68029db7df5e0cb56d4cc7c08dcbf",
+    "replay_results.json": "4c9e3ae6d638b56298c8294a79848aa9dba3821e30371b45093f52980d909f59",
+    "snapshot_manifest.json": "1c7dafa08e5e9f9f4d7f075164d01dae577bf65de2c94b5ac29df2a18a023918",
+    "README.md": "d683ec08b167bdac4f18a09ceb4ad237e375b0faa7f817e0f771e6b398ff7bda"
+  },
+  "mutations": "Only reviewer-owned independent_test.py and independent_review.json created. No primary, frozen, Claude, build, environment or remote changes."
+}

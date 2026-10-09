@@ -1,0 +1,6 @@
+{
+  "status": "FAILED_DEVELOPMENT_CHECK",
+  "exit_code": 1,
+  "failure": "Two test assertions used float(array-of-length-one), unsupported by NumPy 2.5; replacing with item(). Scientific implementation unchanged.",
+  "not_a_completed_experiment": true
+}

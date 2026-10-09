@@ -1,0 +1,45 @@
+{
+  "counterexamples": [
+    {
+      "id": "FT-006-TANGENCY-001",
+      "discovered_by": "independent gpt-6.1-sol reviewer",
+      "theta": 0.3,
+      "phi": 0.2,
+      "reference_contact_distance_m": 1.234,
+      "reference_construction": "p=(5+0.8*cos(theta))*er+0.8*sin(theta)*ez; d=-sin(theta)*er+cos(theta)*ez; origin=p-1.234*d",
+      "profile": {
+        "type": "SplineRadius",
+        "count": 12,
+        "amplitude_m": 0.0
+      },
+      "origin_m": [
+        6.006770355463454,
+        1.217632632048438,
+        -0.9424690622519262
+      ],
+      "direction": [
+        -0.28962947762551555,
+        -0.05871080169382652,
+        0.955336489125606
+      ],
+      "ceiling_m": 20,
+      "observed": {
+        "disposition": "UNRESOLVED",
+        "candidate_distance": null,
+        "candidate_kind": null,
+        "bound_candidate_count": 1,
+        "counters": {
+          "box_tests": 9,
+          "torus_candidates": 0,
+          "spline_candidates": 1,
+          "quartic_solves": 0,
+          "scalar_evaluations": 33
+        },
+        "reason": "sampled root search and numerical bounds are not completeness certificates"
+      },
+      "field_at_reference_contact": 5.551115123125783e-16,
+      "meaning": "sampled bracketing misses an even contact; UNRESOLVED is retained",
+      "source_sha256": "88623c61a52a997a5770427a38ab9b2eb068c8923db8a43176488b77264fed3e"
+    }
+  ]
+}

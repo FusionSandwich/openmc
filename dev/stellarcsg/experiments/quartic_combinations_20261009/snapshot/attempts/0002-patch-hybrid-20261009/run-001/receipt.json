@@ -1,0 +1,58 @@
+{
+  "schema": "fourier-torus-patch-trial-v1",
+  "time_utc": "2026-10-09T21:11:35.363459+00:00",
+  "status": "FUNCTIONAL_CONTROLS_PASS_RESEARCH_RESULTS_UNQUALIFIED",
+  "run_id": "run-001",
+  "source_parent_commit": "6333d4337c37aae83803012b76d67ba09ef4092f",
+  "source_hashes": {
+    "fourier_torus.py": "fa0559134dd60b0390617a799a339ad05ad23e1f523c86ea9b92373ff2812210",
+    "test_fourier_torus.py": "ece3351a22dbb53992996d40d26c40f9a50c725cac9b1f2151d39a3f6a1f44ee",
+    "patch_methods.py": "88623c61a52a997a5770427a38ab9b2eb068c8923db8a43176488b77264fed3e",
+    "test_patch_methods.py": "7483e985c4fd556b32577450ee9b3accbca6f006b51614a46ac1ae796efd292c",
+    "run_patch_trials.py": "032bbff8458c70eaa2e65f78bb22d5fb97330faceff164ec57df8d3224565479"
+  },
+  "input_manifest_sha256": "50873479eb844f45b2e2d378bbafbce2788aac19914fdf483575843adb2ad698",
+  "input_checks": {
+    "inputs/proposal-1.txt": true,
+    "inputs/proposal-3.txt": true,
+    "inputs/METHOD_MAP.md": true,
+    "inputs/CONSOLIDATED_DEVELOPMENT_20260926.md": true
+  },
+  "prior_attempt_files_unchanged": {
+    "README.md": true,
+    "fourier_torus.py": true,
+    "test_fourier_torus.py": true,
+    "run_tests.py": true,
+    "receipt.json": true
+  },
+  "runtime": {
+    "python": "3.12.10",
+    "numpy": "2.5.1",
+    "scipy": "1.18.0"
+  },
+  "controls": {
+    "tests_run": 20,
+    "failures": 0,
+    "errors": 0,
+    "seconds": 0.023432100017089397
+  },
+  "query_bank_sha256": "6d61c06164cbf144148f488bbbb578b833e632bce8815c6bc6bbfb2ed6febb71",
+  "query_count": 52,
+  "costs": {
+    "software_acquisition_bytes": 0,
+    "native_build_seconds": null,
+    "wout_loading_seconds": null,
+    "construction": "per-method result fields",
+    "memory": "Python tracemalloc construction peaks, excludes untracked native allocations",
+    "query": "instrumented candidate diagnostics, per-method seconds; not speed qualification",
+    "native_transport_seconds": null
+  },
+  "evidence_hashes": {
+    "compiled_quartic_results.json": "27513bb5105a831c6cb54b4f247e02c0a8654da2b17d0e21136f056a55907df3",
+    "hybrid_results.json": "6c3cd9a28a9eb07693c877eb60929107341c1e30e566d4d7baebbd8a1903a62b",
+    "rays.json": "6d61c06164cbf144148f488bbbb578b833e632bce8815c6bc6bbfb2ed6febb71",
+    "tests.txt": "d794cfa796cfd12237dee3e7b61ecfc52404d052fb7b2868694473583213d943",
+    "torus_patch_results.json": "102a6099f0e7bb07b0d72f9a89115bf0e97a91106ea4340447ae0a22e0ba5414"
+  },
+  "claim_boundary": "synthetic amplitude-modulated tube; no WISTELL, whole-domain atlas fidelity, certified general first roots, OpenMC scoring, or speed gate"
+}

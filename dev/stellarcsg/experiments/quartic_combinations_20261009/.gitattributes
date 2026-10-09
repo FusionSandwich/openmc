@@ -1,0 +1,3 @@
+# Preserve exact bytes used by experiment and independent-review hashes.
+* -text whitespace=cr-at-eol
+snapshot/** -text whitespace=cr-at-eol

@@ -1,0 +1,2 @@
+# Preserve snapshot byte identities across Windows and Linux clones.
+evidence_snapshots/** -text whitespace=cr-at-eol

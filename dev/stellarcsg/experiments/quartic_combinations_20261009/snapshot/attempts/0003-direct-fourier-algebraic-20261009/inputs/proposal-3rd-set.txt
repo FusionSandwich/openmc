@@ -1,0 +1,132 @@
+# StellarCSG repository review: Have you already tried analytical plasma geometry?
+
+Yes. Your repository already implements almost exactly the quasi-polar implicit-surface approach I suggested. Reimplementing that method from scratch would largely duplicate existing work.
+
+I inspected your [FusionSandwich/openmc repository](https://github.com/FusionSandwich/openmc), particularly the StellarCSG implementation, its September 25–26 technical reports, and open PRs #3–#5.
+
+The more important finding is that your existing project has two different geometry problems, and most of the difficult recent development has concerned the second:
+
+1. Plasma boundaries: Representing an arbitrary toroidal plasma surface with an implicit radial function.
+2. Magnet coils: Representing swept finite-thickness conductors and reliably computing their first ray intersections.
+
+Your plasma representation already resembles the Hirshman–Breslau approach. Your coil-intersection code has undergone considerably more intensive correctness and performance work.
+
+## 1. What you have already implemented
+
+Your [StellarCSG README](https://github.com/FusionSandwich/openmc/blob/JS/stellarcsg-local-continuation-20260925/dev/stellarcsg/README.md) documents the following:
+
+| Proposed method                       | Existing StellarCSG implementation                                  | Assessment                                  |
+| ------------------------------------- | ------------------------------------------------------------------- | ------------------------------------------- |
+| Quasi-polar implicit surface          | \\(F(x,y,z)=\rho-\rho_s(\theta,\phi)\\)                             | Already implemented                         |
+| Reparameterize VMEC-style surfaces    | Conversion of arbitrary poloidal parameter to geometric polar angle | Already implemented                         |
+| Fourier-derived geometry without CAD  | Compilation of sampled toroidal surfaces                            | Already implemented in sampled-surface form |
+| Analytic surface normals              | Analytic gradient and outward normal                                | Already implemented                         |
+| Fast special-case intersections       | Exact circular-torus and shaped-axisymmetric paths                  | Already implemented                         |
+| General stellarator ray intersections | Layered nearest-root search                                         | Implemented, not fully qualified            |
+| Native OpenMC geometry                | Experimental `periodic-spline` surface                              | Implemented, disabled by default            |
+| Eliminate splines entirely            | Direct finite-Fourier evaluation or implicit trigonometric kernel   | Not established by the reviewed evidence    |
+| Near-native CSG throughput            | Performance target and benchmark infrastructure                     | Not demonstrated                            |
+
+The key equation is already present:
+
+\\[ \boxed{F(x,y,z)=\rho-\rho_s(\theta,\phi)} \\]
+
+That means the principal idea of converting a complicated plasma surface into a single implicit geometric classifier is not new to your project.
+
+The meaningful distinction is that your current implementation uses a periodic bicubic radial spline field, rather than necessarily evaluating a compact Fourier expansion directly.
+
+A direct-Fourier alternative would therefore be a different numerical representation of an existing geometric model, not a fundamentally new surface definition.
+
+## 2. How close are you to traditional CSG speed?
+
+Your September 25–26 evidence gives a useful, but limited, performance picture.
+
+Recorded single-query times — non-matched geometries and ray banks
+
+0 ns400 ns800 ns1.2K ns1.6K nsOpenMC ZTorusRecovered spline (strict bank)Residual candidate (strict bank)
+
+These are diagnostic timings, not an apples-to-apples geometry-speed comparison.
+
+The older spline candidate was also incorrect on four of the 160 strict-bank cases. The residual-change candidate was slower and did not fix those errors.
+
+Your newer [PR #5](https://github.com/FusionSandwich/openmc/pull/5) reports a 4.05× internal improvement from Bernstein acceleration for a restricted offset geometry, with stronger crossing certificates. But that is an accelerator-on versus accelerator-off comparison, not proof of near-native CSG throughput.
+
+The [September 26 synthesis](https://github.com/FusionSandwich/openmc/blob/JS/stellarcsg-local-continuation-20260925/dev/stellarcsg/reports/CHAT_SYNTHESIS_20260926.md) explicitly states that general plasma and winding-pack near-native speed remains unqualified.
+
+These are repository-recorded results; I have not independently compiled or rerun the kernels.
+
+## 3. What mathematical approach is still worth trying?
+
+I would now focus on one specific alternative rather than revisiting the complete quasi-polar method:
+
+Compile a low-order Fourier representation into an implicit algebraic or trigonometric surface and develop a dedicated first-root solver.
+
+There are two possible paths.
+
+Path A: Direct Fourier implicit surface.
+
+Keep your established radial chart, but replace the bicubic spline evaluation with
+
+\\[ F(R,Z,\phi)= \rho- \sum\_{m,n}a\_{mn} \cos(m\theta-nN\_{\rm fp}\phi) - \sum\_{m,n}b\_{mn} \sin(m\theta-nN\_{\rm fp}\phi). \\]
+
+This avoids spline basis evaluation. However, the ray-intersection equation remains nonlinear, and repeated trigonometric evaluation might actually be slower than the current spline.
+
+A performance improvement is therefore not guaranteed.
+
+Path B: Low-degree algebraic approximations.
+
+Represent each smooth local toroidal surface region by an implicit polynomial:
+
+\\[ P(x,y,z)=0. \\]
+
+A degree-four representation has a particularly appealing property: substituting a ray,
+
+\\[ \mathbf x(t)=\mathbf x_0+t\mathbf d, \\]
+
+produces a polynomial of degree at most four in \\(t\\).
+
+That potentially allows a conventional CSG-like finite-degree intersection procedure.
+
+The major difficulty is establishing whether sufficiently low-degree pieces can reproduce realistic WISTELL-D shapes with acceptable geometric accuracy, continuity, and no spurious surfaces. A single general quartic will not represent an arbitrary stellarator.
+
+Your previous Bezier, torus-arc, and interval-root experiments are relevant negative evidence here. In particular, your September 26 synthesis records an unsuccessful quartic torus-arc candidate and a Cartesian Bezier atlas with incomplete root certification. Those should be reused as comparison baselines rather than repeated unchanged.
+
+## 4. The benchmarks I would require
+
+Your stated goal is more demanding than simply accelerating the current implementation. It requires both accurate stellarator geometry and conventional CSG-like tracking cost.
+
+I would define the acceptance criteria as follows:
+
+| Criterion              | Proposed requirement                                                                        |
+| ---------------------- | ------------------------------------------------------------------------------------------- |
+| Surface fidelity       | Error bounded against the original Fourier/VMEC surface at a tolerance specified in advance |
+| Correct intersections  | No missed first intersections in the adversarial bank                                       |
+| Grazing rays           | Explicit handling of tangencies and nearly tangent crossings                                |
+| Classification         | Same geometry for inside/outside, intersections and normals                                 |
+| Performance            | At least 80% of conventional native-CSG query throughput as an aspirational goal            |
+| End-to-end performance | Full OpenMC histories per second, including boundary and cell tracking                      |
+| Complex geometries     | WISTELL-D plasma, offset layers and realistic winding packs                                 |
+
+The native throughput target corresponds to
+
+\\[ \frac{T\_{\rm proposed}}{T\_{\rm native}}\leq1.25 \\]
+
+under an appropriate matched measurement.
+
+A geometry representation could have substantially cheaper point evaluation without improving full particle tracking, so timing the surface function by itself would be insufficient.
+
+## 5. What I recommend changing in the research direction
+
+Your current project is further along than my previous literature recommendation assumed.
+
+I would not prioritize another implementation of Hirshman–Breslau quasi-polar coordinates. You have the essential radial implicit structure already.
+
+Instead, I would prioritize:
+
+1. Benchmarking direct Fourier evaluation against your existing bicubic radial representation on the same plasma geometry and rays.
+2. Investigating low-degree implicit algebraic patches as a genuinely distinct fast-intersection method, including reviewing your historical torus-arc and Bezier experiments first.
+3. Separately finishing the certified swept-coil intersection work, because accelerating the plasma surface will not fix the winding-pack root and ownership difficulties.
+
+One important caution: I inspected the accessible repository reports and the documented implementation, but not every historical experimental branch or every C++ source file. I can therefore confirm that the quasi-polar concept has already been implemented, but I cannot conclusively exclude an unpublished or separate-branch direct-Fourier kernel.
+
+Bottom line: Your project has already tried the main geometry representation I suggested. The unresolved problem is finding a representation and intersection algorithm with both realistic stellarator fidelity and nearly conventional CSG computational cost. Direct Fourier tracking and low-degree implicit approximations remain worthwhile comparisons, but neither should be presumed faster until tested against your existing implementation.&#x20;
