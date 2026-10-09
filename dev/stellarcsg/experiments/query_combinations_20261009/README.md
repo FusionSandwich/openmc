@@ -25,6 +25,9 @@ and distinguishes a ceiling-limited exclusion from a global miss.
 - The resolver returns root candidates and all equal domain identities. It
   does not commit an owner, score tallies, compute normals or resolve contact
   semantics. Coincidence is in the cache key and remains the callback's concern.
+- Contacts accompanying `UNRESOLVED` are provisional best-known candidates.
+  Consumers must require `HIT` before using them as a certified earliest contact
+  group. An earlier unresolved interval can still contain a closer root.
 - This is a per-worker Python reference. Fraction arithmetic is intentionally
   unsuitable for claiming production throughput. A fast filtered C++ version
   needs conservative rounding and independent native tests.
