@@ -1,10 +1,10 @@
 {
   "schema": "fourier-torus-prototype-receipt-v1",
-  "created_utc": "2026-10-09T20:45:05.864179+00:00",
+  "created_utc": "2026-10-09T20:45:24.639808+00:00",
   "status": "PASS",
   "repository": "C:\\Users\\joshu\\OneDrive\\Documents\\ChatGPT\\StellarCGS\\stellarcsg-fourier-torus-prototype-20261009",
   "branch": "JS/fourier-torus-prototype-20261009",
-  "head": "5c5eb3c7684deba0338481f07bf58e631437cb2d",
+  "head": "a1fceae5e0944464044df83529249a0df126d43f",
   "upstream_base": "origin/develop@9a62e431d3101799e6179a6d0cf3b37440062e23",
   "runtime": {
     "python": "3.12.10",
@@ -32,7 +32,7 @@
     "tests_run": 10,
     "failures": 0,
     "errors": 0,
-    "functional_test_wall_seconds": 0.10805729997809976
+    "functional_test_wall_seconds": 0.11949890002142638
   },
   "costs": {
     "software_acquisition_bytes": 0,
