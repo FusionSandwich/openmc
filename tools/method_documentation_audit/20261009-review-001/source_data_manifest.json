@@ -1,0 +1,152 @@
+[
+  {
+    "original_path": "ai-review-handoff-20261008/sources/stellarcsg-astra-kernel-20260926/dev/stellarcsg/reports/HISTORICAL_ELAPSED_METHODS_010.json",
+    "sha256": "c731a0de005e6618c5db75a6038825532a0778dd0df2301c97249a1c81946b00",
+    "snapshot": "source_data/c731a0de005e6618c5db75a6038825532a0778dd0df2301c97249a1c81946b00.json",
+    "bytes": 12659
+  },
+  {
+    "original_path": "ai-review-handoff-20261008/sources/stellarcsg-astra-kernel-20260926/dev/stellarcsg/reports/astra-20260926/final-acceptance.json",
+    "sha256": "8210d88c008055ea8e948e463c5aac7bf4f0461ebebcdfd2d2cc76878fecc8be",
+    "snapshot": "source_data/8210d88c008055ea8e948e463c5aac7bf4f0461ebebcdfd2d2cc76878fecc8be.json",
+    "bytes": 8934
+  },
+  {
+    "original_path": "ai-review-handoff-20261008/sources/stellarcsg-astra-kernel-20260926/dev/stellarcsg/reports/coil-profile-20260926/fixed-section-pair-010/SUMMARY.json",
+    "sha256": "04d373bd12ec1f6ad8bc611f3635a88dd8e2ede7bfce9fd4d90f6a28f4f8030d",
+    "snapshot": "source_data/04d373bd12ec1f6ad8bc611f3635a88dd8e2ede7bfce9fd4d90f6a28f4f8030d.json",
+    "bytes": 105341
+  },
+  {
+    "original_path": "ai-review-handoff-20261008/sources/stellarcsg-astra-kernel-20260926/dev/stellarcsg/reports/p00-native-validation-20260930-05/speed/SUMMARY.json",
+    "sha256": "d493059174eee35690a2ac86135e30fb36333574fe015d36197da01aba8961a4",
+    "snapshot": "source_data/d493059174eee35690a2ac86135e30fb36333574fe015d36197da01aba8961a4.json",
+    "bytes": 10799
+  },
+  {
+    "original_path": "ai-review-handoff-20261008/sources/stellarcsg-astra-kernel-20260926/dev/stellarcsg/reports/p00-native-axis-20261001-01/failure.json",
+    "sha256": "62c0c3ce982113053944eaa6c92bfb5485f2d7fdfe745322bccf13c75e8b8405",
+    "snapshot": "source_data/62c0c3ce982113053944eaa6c92bfb5485f2d7fdfe745322bccf13c75e8b8405.json",
+    "bytes": 141
+  },
+  {
+    "original_path": "ai-review-handoff-20261008/sources/stellarcsg-astra-kernel-20260926/dev/stellarcsg/reports/plasma-best-time-20260926/source-rebuild-010-01/comparison.json",
+    "sha256": "4d3ab2737d821a24c8ce65f4a4d561998d2d9b3529c87826a3da172582993f4b",
+    "snapshot": "source_data/4d3ab2737d821a24c8ce65f4a4d561998d2d9b3529c87826a3da172582993f4b.json",
+    "bytes": 17779
+  },
+  {
+    "original_path": "stellarcsg-axis-review-20261008/AXIS_REVIEW_RESULT_20261008.json",
+    "sha256": "934ff02007923a225f82e00ffac5677dc2c78cbf2ac32b8fd316a66c3fb97f6a",
+    "snapshot": "source_data/934ff02007923a225f82e00ffac5677dc2c78cbf2ac32b8fd316a66c3fb97f6a.json",
+    "bytes": 3414
+  },
+  {
+    "original_path": "stellarcsg-axis-integration-20261008/INTEGRATION_RESULT_20261008.json",
+    "sha256": "b7285d4180c90180e45e6762900bfef34c1ec3e309527bcf95b4bf7cd60e4bfc",
+    "snapshot": "source_data/b7285d4180c90180e45e6762900bfef34c1ec3e309527bcf95b4bf7cd60e4bfc.json",
+    "bytes": 3282
+  },
+  {
+    "original_path": "stellarcsg-workload-ladder-20261008/runs/gate-03/GATE.json",
+    "sha256": "c88e910a8056d1042fd01fb6a3d9ceb65911fa5fdc40669ed65788c7aa9daea8",
+    "snapshot": "source_data/c88e910a8056d1042fd01fb6a3d9ceb65911fa5fdc40669ed65788c7aa9daea8.json",
+    "bytes": 3301
+  },
+  {
+    "original_path": "stellarcsg-workload-ladder-20261008/plasma/runs/plasma-matched-02/SUMMARY.json",
+    "sha256": "979d45a5f1fc68268d17d1c5d2e080acd903b4b260488a64f4487009a80a56c0",
+    "snapshot": "source_data/979d45a5f1fc68268d17d1c5d2e080acd903b4b260488a64f4487009a80a56c0.json",
+    "bytes": 813
+  },
+  {
+    "original_path": "stellarcsg-astra-kernel-20260926/dev/stellarcsg/reports/plasma-best-time-20260926/source-rebuild-010-01/comparison.json",
+    "sha256": "4d3ab2737d821a24c8ce65f4a4d561998d2d9b3529c87826a3da172582993f4b",
+    "snapshot": "source_data/4d3ab2737d821a24c8ce65f4a4d561998d2d9b3529c87826a3da172582993f4b.json",
+    "bytes": 17779
+  },
+  {
+    "original_path": "stellarcsg-workload-ladder-20261008/ATTEMPTS.jsonl",
+    "sha256": "29a6388777d391ed80eca4abbcfd0387484033b4560bacce42bfb04cd21b1dda",
+    "snapshot": "source_data/29a6388777d391ed80eca4abbcfd0387484033b4560bacce42bfb04cd21b1dda.jsonl",
+    "bytes": 11362
+  },
+  {
+    "original_path": "stellarcsg-workload-ladder-20261008/runs/gate-01/GATE.json",
+    "sha256": "ad65b2eb61c2644d7cb0fe83399add7d70531efeb1456fbe6bc8a05b7b0b70c3",
+    "snapshot": "source_data/ad65b2eb61c2644d7cb0fe83399add7d70531efeb1456fbe6bc8a05b7b0b70c3.json",
+    "bytes": 3309
+  },
+  {
+    "original_path": "stellarcsg-workload-ladder-20261008/plasma/runs/plasma-ab-01/SUMMARY.json",
+    "sha256": "2f38005c7a3dd56b9cd7076048d276f1117aea473d42af1d1e63d34c90b9ef05",
+    "snapshot": "source_data/2f38005c7a3dd56b9cd7076048d276f1117aea473d42af1d1e63d34c90b9ef05.json",
+    "bytes": 1395
+  },
+  {
+    "original_path": "stellarcsg-workload-ladder-20261008/runs/gate-02/GATE.json",
+    "sha256": "aaec8dcb1dfda63ba571d583effdbb38139394520c79f413816334b316208a25",
+    "snapshot": "source_data/aaec8dcb1dfda63ba571d583effdbb38139394520c79f413816334b316208a25.json",
+    "bytes": 3309
+  },
+  {
+    "original_path": "stellarcsg-workload-ladder-20261008/plasma/runs/plasma-matched-01/SUMMARY.json",
+    "sha256": "eae402c34a19a286af6f5d1cecdee9986ee0d967e148ae26a53c066cbaff610c",
+    "snapshot": "source_data/eae402c34a19a286af6f5d1cecdee9986ee0d967e148ae26a53c066cbaff610c.json",
+    "bytes": 1705
+  },
+  {
+    "original_path": "stellarcsg-axis-integration-20261008/dev/stellarcsg/experiments/query_combinations_20261009/results.json",
+    "sha256": "f90bec30e0b30826469275958620c8cf3e096eabe8f8b80d571ff266b11b4c9c",
+    "snapshot": "source_data/f90bec30e0b30826469275958620c8cf3e096eabe8f8b80d571ff266b11b4c9c.json",
+    "bytes": 4688
+  },
+  {
+    "original_path": "stellarcsg-axis-integration-20261008/dev/stellarcsg/experiments/query_combinations_20261009/independent_review.json",
+    "sha256": "dced0394c8d034bf75027f7c879cbda59fb52a9d73afee1f7630230247df0957",
+    "snapshot": "source_data/dced0394c8d034bf75027f7c879cbda59fb52a9d73afee1f7630230247df0957.json",
+    "bytes": 4183
+  },
+  {
+    "original_path": "stellarcsg-axis-integration-20261008/dev/stellarcsg/experiments/quartic_combinations_20261009/replay_results.json",
+    "sha256": "4c9e3ae6d638b56298c8294a79848aa9dba3821e30371b45093f52980d909f59",
+    "snapshot": "source_data/4c9e3ae6d638b56298c8294a79848aa9dba3821e30371b45093f52980d909f59.json",
+    "bytes": 2432
+  },
+  {
+    "original_path": "stellarcsg-axis-integration-20261008/dev/stellarcsg/experiments/quartic_combinations_20261009/independent_review.json",
+    "sha256": "1083a1e49b803113491d8c133a67e4829b8211a12164b9bee4449797c1667942",
+    "snapshot": "source_data/1083a1e49b803113491d8c133a67e4829b8211a12164b9bee4449797c1667942.json",
+    "bytes": 3793
+  },
+  {
+    "original_path": "stellarcsg-fourier-torus-prototype-20261009/tools/fourier_torus_prototype/attempts/0001-initial-20261009/receipt.json",
+    "sha256": "0fcfc09cb820f4ad001b4428a76b46e1d1a2ba5c76505c831080c935fc013919",
+    "snapshot": "source_data/0fcfc09cb820f4ad001b4428a76b46e1d1a2ba5c76505c831080c935fc013919.json",
+    "bytes": 2896
+  },
+  {
+    "original_path": "stellarcsg-fourier-torus-prototype-20261009/tools/fourier_torus_prototype/attempts/0002-patch-hybrid-20261009/run-001/receipt.json",
+    "sha256": "0b9a8543fc3058f82c3a588f221ef9031ba9653a55737811e85bd40c5898742b",
+    "snapshot": "source_data/0b9a8543fc3058f82c3a588f221ef9031ba9653a55737811e85bd40c5898742b.json",
+    "bytes": 2647
+  },
+  {
+    "original_path": "stellarcsg-fourier-torus-prototype-20261009/tools/fourier_torus_prototype/attempts/0002-patch-hybrid-20261009/independent_review.json",
+    "sha256": "f095db3affa2a6f2b7955271e45964c0c78eb51f9af0b3d72504d7a12b5b3762",
+    "snapshot": "source_data/f095db3affa2a6f2b7955271e45964c0c78eb51f9af0b3d72504d7a12b5b3762.json",
+    "bytes": 2113
+  },
+  {
+    "original_path": "stellarcsg-fourier-torus-prototype-20261009/tools/fourier_torus_prototype/attempts/0003-direct-fourier-algebraic-20261009/run-002/receipt.json",
+    "sha256": "3d819278f22c27a29ba3514057fdb8e2c476d1f85d0e213ac58d3fff3c949e0d",
+    "snapshot": "source_data/3d819278f22c27a29ba3514057fdb8e2c476d1f85d0e213ac58d3fff3c949e0d.json",
+    "bytes": 2130
+  },
+  {
+    "original_path": "stellarcsg-fourier-torus-prototype-20261009/tools/fourier_torus_prototype/attempts/0003-direct-fourier-algebraic-20261009/independent_review.json",
+    "sha256": "3adc6ac3c55b4a607cd628b9f9bbe84237a2624e270dbd5abe2a96e827dfb049",
+    "snapshot": "source_data/3adc6ac3c55b4a607cd628b9f9bbe84237a2624e270dbd5abe2a96e827dfb049.json",
+    "bytes": 2691
+  }
+]

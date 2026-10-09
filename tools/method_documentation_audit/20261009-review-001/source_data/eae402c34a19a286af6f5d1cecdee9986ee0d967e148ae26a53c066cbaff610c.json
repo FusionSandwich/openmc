@@ -1,0 +1,72 @@
+{
+  "control": {
+    "median_transport": {
+      "custom": 19.964649396000002,
+      "builtin": 1.2627856020000001
+    },
+    "min_max": {
+      "custom": [
+        19.956852641,
+        20.814964051
+      ],
+      "builtin": [
+        1.249510907,
+        1.718923205
+      ]
+    },
+    "cv": {
+      "custom": 0.024360761991265894,
+      "builtin": 0.18949548110772743
+    },
+    "ratio_custom_over_builtin": 15.810007149574707,
+    "digest": {
+      "custom": "529774d6e3c5cc9968c42021ba833c3ee1fabd9206ef1f6f74f36f31646fb4c0",
+      "builtin": "75c36a55a466251391cd6df3593b7f172776a2b4a3070e54ca5b49f331f98b7b"
+    },
+    "equals_retained_f301": {
+      "custom": false,
+      "builtin": false
+    },
+    "collisions_per_source": {
+      "custom": 51.61898496539406,
+      "builtin": 60.58913991693981
+    }
+  },
+  "ceil7": {
+    "median_transport": {
+      "custom": 2.67107725,
+      "builtin": 1.2718428019999999
+    },
+    "min_max": {
+      "custom": [
+        2.656934173,
+        2.7937035060000004
+      ],
+      "builtin": [
+        1.229434299,
+        1.447578499
+      ]
+    },
+    "cv": {
+      "custom": 0.027782638264852225,
+      "builtin": 0.08787122931502632
+    },
+    "ratio_custom_over_builtin": 2.100163043577142,
+    "digest": {
+      "custom": "529774d6e3c5cc9968c42021ba833c3ee1fabd9206ef1f6f74f36f31646fb4c0",
+      "builtin": "75c36a55a466251391cd6df3593b7f172776a2b4a3070e54ca5b49f331f98b7b"
+    },
+    "equals_retained_f301": {
+      "custom": false,
+      "builtin": false
+    },
+    "collisions_per_source": {
+      "custom": 51.61898496539406,
+      "builtin": 60.58913991693981
+    }
+  },
+  "cross_build_digests_equal": {
+    "custom": true,
+    "builtin": true
+  }
+}

@@ -1,0 +1,76 @@
+{
+  "status": "ACCEPTED_RESTRICTED_DETERMINISTIC_EVENT_SLICE",
+  "time_utc": "2026-10-08T18:55:57.861851+00:00",
+  "worktree": "C:\\Users\\joshu\\OneDrive\\Documents\\ChatGPT\\StellarCGS\\stellarcsg-axis-integration-20261008",
+  "repository": "original OpenMC/StellarCSG common Git repository",
+  "common_git_directory": "C:/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/openmc-stellarcsg/.git",
+  "branch": "JS/axis-integration-20261008",
+  "upstream_base": "04a8061dde802f7fd4290fae45b7d84b33bfc020",
+  "prerequisite_scaffold_commit": "b7458747083ed7831f0abb4bd98c9a19019f9bae",
+  "integrated_source_commit": "a6d167c2730be9e515ec4627b6d791168673b62d",
+  "integration": "Accepted repair applied and committed atop existing scaffold in a separate real repository worktree; Claude active branch not switched or merged",
+  "validation": {
+    "fresh_on_build_exit": 0,
+    "fresh_off_build_exit": 0,
+    "native_models": 39,
+    "native_rows": 208,
+    "supported_rows": 154,
+    "expected_rejections": 54,
+    "events": 460,
+    "native_rows_equal_prior_accepted_evidence": true,
+    "legacy_models": 6,
+    "legacy_rows_per_build": 24,
+    "gap48_negative_witness_models": 3,
+    "oracle_corruptions_rejected": [
+      "owner",
+      "missing_gap",
+      "redistributed_flux",
+      "wrong_current",
+      "missing_contact"
+    ],
+    "seconds": 420.519632388,
+    "no_reuse_or_retries": true,
+    "frozen_source_hashes_verified": 1205,
+    "output_bytes": 141355169,
+    "receipt": "artifacts-integration/receipt.json",
+    "independent_acceptance": "integration-20261008/independent-final-review.json"
+  },
+  "isolation": {
+    "time_utc": "2026-10-08T18:53:41.440952+00:00",
+    "protected_checkout": "C:\\Users\\joshu\\OneDrive\\Documents\\ChatGPT\\StellarCGS\\stellarcsg-astra-kernel-20260926",
+    "source_files_checked": 1218,
+    "changed_source_files": [],
+    "metadata_unchanged": {
+      "index": true,
+      "HEAD": true
+    },
+    "head_unchanged": true,
+    "branch_unchanged": true,
+    "retained_libraries_unchanged": {
+      "current": true,
+      "baseline": true
+    },
+    "writes_to_protected_checkout": 0,
+    "process_interventions": 0,
+    "compute_lease_absent": true,
+    "integration_process_exit": 0
+  },
+  "resources": {
+    "cpu_workers": 1,
+    "build_virtual_bytes": 1610612736,
+    "test_virtual_bytes": 1073741824,
+    "phase_cap_seconds": 1800,
+    "output_cap_bytes": 314572800,
+    "software_acquisition_bytes": 0,
+    "compute_lease_released": true
+  },
+  "delivery": {
+    "integrated_patch": "integrated-axis-events.patch",
+    "integrated_patch_sha256": "2d22f4083bf5ed6bb3e4503f1810043eca8f387a6ac6cdd6af6079e66ea4ae08",
+    "patch_base": "clean checkout at upstream_base; existing Claude dirty checkout intentionally untouched",
+    "source_manifest": "artifacts-integration/source-identities.json",
+    "evidence_manifest": "integration-20261008/evidence-manifest.json",
+    "reproduce": "wsl -d Debian -- python3 dev/stellarcsg/tests/axis_review_acceptance.py --output-name NEW_UNUSED_NAME --phase-seconds 1800"
+  },
+  "scope_limit": "void, single-instance, unit-axis built-in plane domain; no broader scientific, performance or installation ABI claim"
+}

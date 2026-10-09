@@ -1,0 +1,204 @@
+{
+  "status": "FINITE_REFERENCE_TESTS_PASS",
+  "tests": 20,
+  "independent_plane_bank_queries": 120,
+  "ablation": [
+    {
+      "hierarchy": false,
+      "ceiling": null,
+      "cache_entries": 0,
+      "disposition": "HIT",
+      "work": {
+        "cache_hit": false,
+        "box_tests": 129,
+        "solver_calls": 1,
+        "candidate_count": 1
+      },
+      "repeat_plan": {
+        "cache_hit": false,
+        "box_tests": 129
+      }
+    },
+    {
+      "hierarchy": false,
+      "ceiling": null,
+      "cache_entries": 4,
+      "disposition": "HIT",
+      "work": {
+        "cache_hit": false,
+        "box_tests": 129,
+        "solver_calls": 1,
+        "candidate_count": 1
+      },
+      "repeat_plan": {
+        "cache_hit": true,
+        "box_tests": 0
+      }
+    },
+    {
+      "hierarchy": false,
+      "ceiling": 1,
+      "cache_entries": 0,
+      "disposition": "NO_HIT_BEFORE_CEILING",
+      "work": {
+        "cache_hit": false,
+        "box_tests": 129,
+        "solver_calls": 0,
+        "candidate_count": 0
+      },
+      "repeat_plan": {
+        "cache_hit": false,
+        "box_tests": 129
+      }
+    },
+    {
+      "hierarchy": false,
+      "ceiling": 1,
+      "cache_entries": 4,
+      "disposition": "NO_HIT_BEFORE_CEILING",
+      "work": {
+        "cache_hit": false,
+        "box_tests": 129,
+        "solver_calls": 0,
+        "candidate_count": 0
+      },
+      "repeat_plan": {
+        "cache_hit": true,
+        "box_tests": 0
+      }
+    },
+    {
+      "hierarchy": false,
+      "ceiling": 3,
+      "cache_entries": 0,
+      "disposition": "HIT",
+      "work": {
+        "cache_hit": false,
+        "box_tests": 129,
+        "solver_calls": 1,
+        "candidate_count": 1
+      },
+      "repeat_plan": {
+        "cache_hit": false,
+        "box_tests": 129
+      }
+    },
+    {
+      "hierarchy": false,
+      "ceiling": 3,
+      "cache_entries": 4,
+      "disposition": "HIT",
+      "work": {
+        "cache_hit": false,
+        "box_tests": 129,
+        "solver_calls": 1,
+        "candidate_count": 1
+      },
+      "repeat_plan": {
+        "cache_hit": true,
+        "box_tests": 0
+      }
+    },
+    {
+      "hierarchy": true,
+      "ceiling": null,
+      "cache_entries": 0,
+      "disposition": "HIT",
+      "work": {
+        "cache_hit": false,
+        "box_tests": 15,
+        "solver_calls": 1,
+        "candidate_count": 1
+      },
+      "repeat_plan": {
+        "cache_hit": false,
+        "box_tests": 15
+      }
+    },
+    {
+      "hierarchy": true,
+      "ceiling": null,
+      "cache_entries": 4,
+      "disposition": "HIT",
+      "work": {
+        "cache_hit": false,
+        "box_tests": 15,
+        "solver_calls": 1,
+        "candidate_count": 1
+      },
+      "repeat_plan": {
+        "cache_hit": true,
+        "box_tests": 0
+      }
+    },
+    {
+      "hierarchy": true,
+      "ceiling": 1,
+      "cache_entries": 0,
+      "disposition": "NO_HIT_BEFORE_CEILING",
+      "work": {
+        "cache_hit": false,
+        "box_tests": 1,
+        "solver_calls": 0,
+        "candidate_count": 0
+      },
+      "repeat_plan": {
+        "cache_hit": false,
+        "box_tests": 1
+      }
+    },
+    {
+      "hierarchy": true,
+      "ceiling": 1,
+      "cache_entries": 4,
+      "disposition": "NO_HIT_BEFORE_CEILING",
+      "work": {
+        "cache_hit": false,
+        "box_tests": 1,
+        "solver_calls": 0,
+        "candidate_count": 0
+      },
+      "repeat_plan": {
+        "cache_hit": true,
+        "box_tests": 0
+      }
+    },
+    {
+      "hierarchy": true,
+      "ceiling": 3,
+      "cache_entries": 0,
+      "disposition": "HIT",
+      "work": {
+        "cache_hit": false,
+        "box_tests": 15,
+        "solver_calls": 1,
+        "candidate_count": 1
+      },
+      "repeat_plan": {
+        "cache_hit": false,
+        "box_tests": 15
+      }
+    },
+    {
+      "hierarchy": true,
+      "ceiling": 3,
+      "cache_entries": 4,
+      "disposition": "HIT",
+      "work": {
+        "cache_hit": false,
+        "box_tests": 15,
+        "solver_calls": 1,
+        "candidate_count": 1
+      },
+      "repeat_plan": {
+        "cache_hit": true,
+        "box_tests": 0
+      }
+    }
+  ],
+  "scope": "Exact candidate composition reference only; no native geometry, physics or speed acceptance",
+  "source_sha256": {
+    "candidate_scheduler.py": "aec32372f2d3c2aacaec5c04117ba23a49a5a9c1f0caea180f408e39c48d1af0",
+    "test_candidate_scheduler.py": "d55472ceadb13d6ea885459afdb582c2cc6a26f224a62e00dcd270bb3134e623"
+  }
+}

@@ -1,0 +1,90 @@
+{
+  "captured_utc": "2026-10-09T22:11:43.419270+00:00",
+  "reason": "Source README changed during read-only audit; new quartic composition reference completed concurrently",
+  "files": [
+    {
+      "path": "stellarcsg-axis-integration-20261008/dev/stellarcsg/experiments/quartic_combinations_20261009/.gitattributes",
+      "bytes": 141,
+      "sha256": "e912869749f8f8d05f797e4088c191feedaf49b4dd9b1a3fe3b17f5a52f28889",
+      "snapshot": "late_sources/e912869749f8f8d05f797e4088c191feedaf49b4dd9b1a3fe3b17f5a52f28889"
+    },
+    {
+      "path": "stellarcsg-axis-integration-20261008/dev/stellarcsg/experiments/quartic_combinations_20261009/.gitignore",
+      "bytes": 13,
+      "sha256": "32dae3052f331ee34d628ef535709b301259a45df7c7522c4d35dcf49873f00b",
+      "snapshot": "late_sources/32dae3052f331ee34d628ef535709b301259a45df7c7522c4d35dcf49873f00b"
+    },
+    {
+      "path": "stellarcsg-axis-integration-20261008/dev/stellarcsg/experiments/quartic_combinations_20261009/freeze_inputs.py",
+      "bytes": 1664,
+      "sha256": "743b4015deb3bc85a9e8c885dbe660abc641877ea973f1972eebe0a33cc97505",
+      "snapshot": "late_sources/743b4015deb3bc85a9e8c885dbe660abc641877ea973f1972eebe0a33cc97505.py"
+    },
+    {
+      "path": "stellarcsg-axis-integration-20261008/dev/stellarcsg/experiments/quartic_combinations_20261009/independent_review.json",
+      "bytes": 3793,
+      "sha256": "1083a1e49b803113491d8c133a67e4829b8211a12164b9bee4449797c1667942",
+      "snapshot": "late_sources/1083a1e49b803113491d8c133a67e4829b8211a12164b9bee4449797c1667942.json"
+    },
+    {
+      "path": "stellarcsg-axis-integration-20261008/dev/stellarcsg/experiments/quartic_combinations_20261009/independent_test.py",
+      "bytes": 7506,
+      "sha256": "c00a35a9edd4c819e6f0142e70f3506e017bdeafff1b2788ba2564105e8c4711",
+      "snapshot": "late_sources/c00a35a9edd4c819e6f0142e70f3506e017bdeafff1b2788ba2564105e8c4711.py"
+    },
+    {
+      "path": "stellarcsg-axis-integration-20261008/dev/stellarcsg/experiments/quartic_combinations_20261009/pr_description.md",
+      "bytes": 2881,
+      "sha256": "d42d81ce2a46a33a39eb5cc863d2e29d9d2dbb60c8ab434358a4b42f9fd47b4f",
+      "snapshot": "late_sources/d42d81ce2a46a33a39eb5cc863d2e29d9d2dbb60c8ab434358a4b42f9fd47b4f.md"
+    },
+    {
+      "path": "stellarcsg-axis-integration-20261008/dev/stellarcsg/experiments/quartic_combinations_20261009/quartic_oracle.py",
+      "bytes": 4957,
+      "sha256": "8b0993589cfa43c57f504e6e0cc2ccc79750175dbb507a65dfb046d05a8e0c49",
+      "snapshot": "late_sources/8b0993589cfa43c57f504e6e0cc2ccc79750175dbb507a65dfb046d05a8e0c49.py"
+    },
+    {
+      "path": "stellarcsg-axis-integration-20261008/dev/stellarcsg/experiments/quartic_combinations_20261009/README.md",
+      "bytes": 10831,
+      "sha256": "d683ec08b167bdac4f18a09ceb4ad237e375b0faa7f817e0f771e6b398ff7bda",
+      "snapshot": "late_sources/d683ec08b167bdac4f18a09ceb4ad237e375b0faa7f817e0f771e6b398ff7bda.md"
+    },
+    {
+      "path": "stellarcsg-axis-integration-20261008/dev/stellarcsg/experiments/quartic_combinations_20261009/replay.py",
+      "bytes": 7392,
+      "sha256": "b58902ae8d206ce03ccc2688e53478ca27d68029db7df5e0cb56d4cc7c08dcbf",
+      "snapshot": "late_sources/b58902ae8d206ce03ccc2688e53478ca27d68029db7df5e0cb56d4cc7c08dcbf.py"
+    },
+    {
+      "path": "stellarcsg-axis-integration-20261008/dev/stellarcsg/experiments/quartic_combinations_20261009/replay_results.json",
+      "bytes": 2432,
+      "sha256": "4c9e3ae6d638b56298c8294a79848aa9dba3821e30371b45093f52980d909f59",
+      "snapshot": "late_sources/4c9e3ae6d638b56298c8294a79848aa9dba3821e30371b45093f52980d909f59.json"
+    },
+    {
+      "path": "stellarcsg-axis-integration-20261008/dev/stellarcsg/experiments/quartic_combinations_20261009/replay_tests.txt",
+      "bytes": 7722,
+      "sha256": "1c487f3399b0c39906e11f90ff079265f375b24f51d4e6e8c77cbb523a104f81",
+      "snapshot": "late_sources/1c487f3399b0c39906e11f90ff079265f375b24f51d4e6e8c77cbb523a104f81.txt"
+    },
+    {
+      "path": "stellarcsg-axis-integration-20261008/dev/stellarcsg/experiments/quartic_combinations_20261009/snapshot_manifest.json",
+      "bytes": 31154,
+      "sha256": "1c7dafa08e5e9f9f4d7f075164d01dae577bf65de2c94b5ac29df2a18a023918",
+      "snapshot": "late_sources/1c7dafa08e5e9f9f4d7f075164d01dae577bf65de2c94b5ac29df2a18a023918.json"
+    },
+    {
+      "path": "stellarcsg-axis-integration-20261008/dev/stellarcsg/experiments/quartic_combinations_20261009/test_quartic_oracle.py",
+      "bytes": 4752,
+      "sha256": "d23f97a2422051d5f61006f1c95bbf37b91e3bbcb184dd28d5933ad759a10dd9",
+      "snapshot": "late_sources/d23f97a2422051d5f61006f1c95bbf37b91e3bbcb184dd28d5933ad759a10dd9.py"
+    },
+    {
+      "path": "stellarcsg-axis-integration-20261008/dev/stellarcsg/proposals/fourier_torus_20261009/README.md",
+      "bytes": 2036,
+      "sha256": "dd910fd93348ef662301cbc596ba17a90c6c34542c5105db40518d715475fe5c",
+      "snapshot": "late_sources/dd910fd93348ef662301cbc596ba17a90c6c34542c5105db40518d715475fe5c.md"
+    }
+  ]
+}

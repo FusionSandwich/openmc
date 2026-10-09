@@ -1,0 +1,310 @@
+{
+  "schema": "stellarcsg.elapsed-method-history/v1",
+  "rows": [
+    {
+      "artifact": "openmc-stellarcsg-composite/dev/stellarcsg/benchmarks/raw/composite_blanket_interop/c0_coil_controls.json",
+      "family": "analytic circular coil",
+      "method": "C0a_builtin_ztorus",
+      "histories_per_run": 1000000,
+      "observations": 7,
+      "cold_geometry_build_s": null,
+      "initialization_s": 0.046763,
+      "transport_s": 1.4343,
+      "process_wall_s": null,
+      "measurement": "median measured runs, warmup excluded",
+      "raw_lost_particles": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "original_record_commit": "1f2d53a537337616f4e87bc48ad573cc4f0bc509"
+    },
+    {
+      "artifact": "openmc-stellarcsg-composite/dev/stellarcsg/benchmarks/raw/composite_blanket_interop/c0_coil_controls.json",
+      "family": "analytic circular coil",
+      "method": "C0b_swept_exact",
+      "histories_per_run": 1000000,
+      "observations": 7,
+      "cold_geometry_build_s": null,
+      "initialization_s": 0.058542,
+      "transport_s": 1.367,
+      "process_wall_s": null,
+      "measurement": "median measured runs, warmup excluded",
+      "raw_lost_particles": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "original_record_commit": "1f2d53a537337616f4e87bc48ad573cc4f0bc509"
+    },
+    {
+      "artifact": "openmc-stellarcsg-composite/dev/stellarcsg/benchmarks/raw/composite_blanket_interop/c0_coil_controls.json",
+      "family": "analytic circular coil",
+      "method": "C0c_swept_general",
+      "histories_per_run": 1000000,
+      "observations": 7,
+      "cold_geometry_build_s": null,
+      "initialization_s": 0.064841,
+      "transport_s": 14.539,
+      "process_wall_s": null,
+      "measurement": "median measured runs, warmup excluded",
+      "raw_lost_particles": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "original_record_commit": "1f2d53a537337616f4e87bc48ad573cc4f0bc509"
+    },
+    {
+      "artifact": "openmc-stellarcsg-composite/dev/stellarcsg/benchmarks/raw/wistell_coil_set_openmc_20260831.json",
+      "family": "48 WISTELL circular 1 cm tubes",
+      "method": "native_csg",
+      "histories_per_run": 100000,
+      "observations": 7,
+      "cold_geometry_build_s": null,
+      "initialization_s": 1.4192,
+      "transport_s": 0.33282,
+      "process_wall_s": 2.459679799998412,
+      "raw_return_codes": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "measurement": "median measured runs, warmup excluded",
+      "original_record_commit": "1353d0ae5d2d64422cc7dd8a6f144cdabfa0d000",
+      "original_binary": "/work/build/openmc-stellarcsg-dagmc-container/bin/openmc"
+    },
+    {
+      "artifact": "openmc-stellarcsg-composite/dev/stellarcsg/benchmarks/raw/wistell_coil_set_openmc_20260831.json",
+      "family": "48 WISTELL circular 1 cm tubes",
+      "method": "dagmc_coarse",
+      "histories_per_run": 100000,
+      "observations": 7,
+      "cold_geometry_build_s": null,
+      "initialization_s": 1.478,
+      "transport_s": 1.4176,
+      "process_wall_s": 3.5782333000097424,
+      "raw_return_codes": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "measurement": "median measured runs, warmup excluded",
+      "original_record_commit": "1353d0ae5d2d64422cc7dd8a6f144cdabfa0d000",
+      "original_binary": "/work/build/openmc-stellarcsg-dagmc-container/bin/openmc"
+    },
+    {
+      "artifact": "openmc-stellarcsg-composite/dev/stellarcsg/benchmarks/raw/wistell_coil_set_openmc_20260831.json",
+      "family": "48 WISTELL circular 1 cm tubes",
+      "method": "dagmc_fine",
+      "histories_per_run": 100000,
+      "observations": 7,
+      "cold_geometry_build_s": null,
+      "initialization_s": 9.4735,
+      "transport_s": 2.0173,
+      "process_wall_s": 12.275017699997989,
+      "raw_return_codes": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "measurement": "median measured runs, warmup excluded",
+      "original_record_commit": "1353d0ae5d2d64422cc7dd8a6f144cdabfa0d000",
+      "original_binary": "/work/build/openmc-stellarcsg-dagmc-container/bin/openmc"
+    },
+    {
+      "artifact": "openmc-stellarcsg-composite/dev/stellarcsg/benchmarks/raw/wistell_coil_span_vs_dagmc_20260831.json",
+      "family": "WISTELL representative coil031",
+      "method": "native_swept_csg",
+      "histories_per_run": 100000,
+      "observations": 7,
+      "cold_geometry_build_s": null,
+      "initialization_s": null,
+      "transport_s": 0.21899,
+      "process_wall_s": null,
+      "measurement": "median recorded transport array"
+    },
+    {
+      "artifact": "openmc-stellarcsg-composite/dev/stellarcsg/benchmarks/raw/wistell_coil_span_vs_dagmc_20260831.json",
+      "family": "WISTELL representative coil031",
+      "method": "direct_dagmc_coarse",
+      "histories_per_run": 100000,
+      "observations": 7,
+      "cold_geometry_build_s": null,
+      "initialization_s": null,
+      "transport_s": 0.094458,
+      "process_wall_s": null,
+      "measurement": "median recorded transport array"
+    },
+    {
+      "artifact": "openmc-stellarcsg-composite/dev/stellarcsg/benchmarks/raw/wistell_coil_span_vs_dagmc_20260831.json",
+      "family": "WISTELL representative coil031",
+      "method": "direct_dagmc_fine",
+      "histories_per_run": 100000,
+      "observations": 7,
+      "cold_geometry_build_s": null,
+      "initialization_s": null,
+      "transport_s": 0.096937,
+      "process_wall_s": null,
+      "measurement": "median recorded transport array"
+    },
+    {
+      "artifact": "openmc-stellarcsg-composite/dev/stellarcsg/benchmarks/raw/wistell_openmc_patch_vs_fine_mesh_20260831.json",
+      "family": "historical general WISTELL plasma",
+      "method": "native_csg",
+      "histories_per_run": 10000,
+      "observations": 5,
+      "cold_geometry_build_s": null,
+      "initialization_s": null,
+      "transport_s": 0.36314,
+      "process_wall_s": null,
+      "measurement": "median recorded transport array",
+      "original_record_commit": "4e97b2480489e27c1939554bbab1750ebcf551a5",
+      "binary_sha256": "6d78fe4b70456483807aae6e4330415c536790826d27adca8eba93781974a307",
+      "library_sha256": "1f1efd3bf5366d698857f75ccab2050a9635ba4bcbc5e17bde58dcacd5583be6",
+      "geometry_payload_sha256": "223293dba92e73675224c5fc258250a5cabb779b3369c86f3b65ff76a269abd8",
+      "geometry_payload": "csg_surface.h5",
+      "payload_metadata_note": "Raw native_source_sha256 names geometry HDF5, not C++ source"
+    },
+    {
+      "artifact": "openmc-stellarcsg-composite/dev/stellarcsg/benchmarks/raw/wistell_openmc_patch_vs_fine_mesh_20260831.json",
+      "family": "historical general WISTELL plasma",
+      "method": "fine_direct_dagmc",
+      "histories_per_run": 10000,
+      "observations": 5,
+      "cold_geometry_build_s": null,
+      "initialization_s": null,
+      "transport_s": 0.45281,
+      "process_wall_s": null,
+      "measurement": "median recorded transport array",
+      "original_record_commit": "4e97b2480489e27c1939554bbab1750ebcf551a5",
+      "binary_sha256": "6d78fe4b70456483807aae6e4330415c536790826d27adca8eba93781974a307",
+      "library_sha256": "1f1efd3bf5366d698857f75ccab2050a9635ba4bcbc5e17bde58dcacd5583be6",
+      "geometry_payload_sha256": "223293dba92e73675224c5fc258250a5cabb779b3369c86f3b65ff76a269abd8",
+      "geometry_payload": "csg_surface.h5",
+      "payload_metadata_note": "Raw native_source_sha256 names geometry HDF5, not C++ source"
+    },
+    {
+      "artifact": "stellarcsg-local-continuation-20260925/dev/stellarcsg/reports/local-cont-20260925/p00-magnet-material-bank-02/receipt.json",
+      "family": "derived periodic P00 faceted winding-pack candidate",
+      "method": "priority components",
+      "histories_per_run": 360,
+      "observations": 1,
+      "cold_geometry_build_s": null,
+      "initialization_s": 39.842,
+      "transport_s": 0.37243,
+      "process_wall_s": null,
+      "native_total_timer_s": 40.296,
+      "raw_return_codes": [
+        0
+      ],
+      "measurement": "single material-entry/track validation; not production speed acceptance"
+    },
+    {
+      "artifact": "stellarcsg-local-continuation-20260925/dev/stellarcsg/reports/local-cont-20260925/p00-magnet-union-bank-01/receipt.json",
+      "family": "derived periodic P00 faceted winding-pack candidate",
+      "method": "common-material union",
+      "histories_per_run": 360,
+      "observations": 1,
+      "cold_geometry_build_s": null,
+      "initialization_s": 44.8,
+      "transport_s": 0.72726,
+      "process_wall_s": null,
+      "native_total_timer_s": 45.606,
+      "raw_return_codes": [
+        0
+      ],
+      "measurement": "single material-entry/track validation; not production speed acceptance"
+    },
+    {
+      "artifact": "stellarcsg-astra-kernel-20260926/dev/stellarcsg/reports/coil-profile-20260926/meaningful-coil-009/cache/receipt.json",
+      "family": "current round-tube diagnostic",
+      "method": "cache",
+      "histories_per_run": 20000,
+      "observations": 1,
+      "cold_geometry_build_s": null,
+      "initialization_s": 6.492197796,
+      "transport_s": 167.489938658,
+      "process_wall_s": 174.0984735560014,
+      "measurement": "one 20k tally-enabled pilot; different proxy shapes"
+    },
+    {
+      "artifact": "stellarcsg-astra-kernel-20260926/dev/stellarcsg/reports/coil-profile-20260926/meaningful-coil-009/flat_ring/receipt.json",
+      "family": "current round-tube diagnostic",
+      "method": "flat_ring",
+      "histories_per_run": 20000,
+      "observations": 1,
+      "cold_geometry_build_s": null,
+      "initialization_s": 6.446435942,
+      "transport_s": 0.10474359900000002,
+      "process_wall_s": 6.6949411389978195,
+      "measurement": "one 20k tally-enabled pilot; different proxy shapes"
+    }
+  ],
+  "artifacts": [
+    {
+      "path": "openmc-stellarcsg-composite/dev/stellarcsg/benchmarks/raw/composite_blanket_interop/c0_coil_controls.json",
+      "sha256": "5e8d1752f95bfcf01d8d62becb5403004d4968c30ef49228ec4ee6ab04225ed3"
+    },
+    {
+      "path": "openmc-stellarcsg-composite/dev/stellarcsg/benchmarks/raw/wistell_coil_set_openmc_20260831.json",
+      "sha256": "a27184dc87a0d18326a40f70693058abfe61a96329c660a69f77f933afac9dbf"
+    },
+    {
+      "path": "openmc-stellarcsg-composite/dev/stellarcsg/benchmarks/raw/wistell_coil_span_vs_dagmc_20260831.json",
+      "sha256": "221a90d819bf7508cb88f0c07510089488385b4d4d2e5f3edb9ad7657ae582a6"
+    },
+    {
+      "path": "openmc-stellarcsg-composite/dev/stellarcsg/benchmarks/raw/wistell_openmc_patch_vs_fine_mesh_20260831.json",
+      "sha256": "4cbc4980a011025a3a9fcffc3177e206f982bf33768375de4b3ffbb2422908f8"
+    },
+    {
+      "path": "stellarcsg-local-continuation-20260925/dev/stellarcsg/reports/local-cont-20260925/p00-magnet-material-bank-02/receipt.json",
+      "sha256": "d70216c45c454feef68e20d76318ee77b79772764760ce3a4a8bb3644842a5da"
+    },
+    {
+      "path": "stellarcsg-local-continuation-20260925/dev/stellarcsg/reports/local-cont-20260925/p00-magnet-union-bank-01/receipt.json",
+      "sha256": "e5f210464a2bc23f8ff63ea7a34ac341a154d0683a56bb32946d14dd69607d0e"
+    },
+    {
+      "path": "stellarcsg-astra-kernel-20260926/dev/stellarcsg/reports/coil-profile-20260926/meaningful-coil-009/cache/receipt.json",
+      "sha256": "9a1a1c350f898e649a6f7bdcc453fc38ba28d7ad3305c233a6215c2071ec6a6e"
+    },
+    {
+      "path": "stellarcsg-astra-kernel-20260926/dev/stellarcsg/reports/coil-profile-20260926/meaningful-coil-009/flat_ring/receipt.json",
+      "sha256": "e56cc3c68782c3a0b5305e6e10262ab4e375037715c39941ad971f94c862693a"
+    },
+    {
+      "path": "stellarcsg-astra-kernel-20260926/dev/stellarcsg/reports/plasma-best-time-20260926/transport-009-01/block-result.json",
+      "sha256": "bb89936806cb4d9a9e0de63305d7f64e075e2075f1df50f3272f84ceeb674ae2"
+    }
+  ],
+  "unknown_policy": "null means NOT_RECORDED, not zero",
+  "ranking_policy": "rank only within the same workload; no normalized or inferred times",
+  "execution": "metadata extraction only; no simulation/build",
+  "plasma_20k_record": "stellarcsg-astra-kernel-20260926/dev/stellarcsg/reports/plasma-best-time-20260926/transport-009-01/block-result.json"
+}

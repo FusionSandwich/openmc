@@ -1,0 +1,51 @@
+{
+  "created_utc": "2026-10-09T21:37:46.008648+00:00",
+  "reviewer": "/root/patch_review",
+  "model": "gpt-6.1-sol",
+  "independent_of_implementation": true,
+  "review_skill": ".claude/skills/reviewing-openmc-code/SKILL.md",
+  "context": "Attempt0003 vs f99ee6c621bcbb1b5b2f53306cbfe646052d1561; standalone prototype tooling only",
+  "verdict": "ACCEPT_SCOPED_SYNTHETIC_EXPERIMENTS",
+  "production_geometry_acceptance": false,
+  "general_first_root_acceptance": false,
+  "physical_fidelity_acceptance": false,
+  "native_speed_acceptance": false,
+  "source_hashes": {
+    "fourier_torus.py": "fa0559134dd60b0390617a799a339ad05ad23e1f523c86ea9b92373ff2812210",
+    "test_fourier_torus.py": "ece3351a22dbb53992996d40d26c40f9a50c725cac9b1f2151d39a3f6a1f44ee",
+    "patch_methods.py": "88623c61a52a997a5770427a38ab9b2eb068c8923db8a43176488b77264fed3e",
+    "test_patch_methods.py": "7483e985c4fd556b32577450ee9b3accbca6f006b51614a46ac1ae796efd292c",
+    "direct_algebraic.py": "e86ad2347aec578dfffd84d5ffe7e333bbc8e898787e7db3fd3280b13f9cd3fb",
+    "test_direct_algebraic.py": "1d626e42a8fd72fd65dceeaa2540047d7c98e06bc67911bfbd4acb844ad328b9",
+    "run_direct_trials.py": "db6bb144109fec5da551bbff7ec6c36c6211b0c2bb3ae45bc13b2cf1df7b4e83"
+  },
+  "formatting_ast_equality_independently_checked": true,
+  "checks": [
+    "Physical stored Fourier modes, gradient, outward normal and independent finite differences agree.",
+    "Normalized quartic expansion, rank35 and nonzero offset fit labels consistent.",
+    "Frozen run002 log records29passing controls; reviewer did not rerun entire suite.",
+    "Python comparator is actual frozen incumbent radius evaluator in common wrapper/search, not native tracker.",
+    "Both run hashes, expected inputs, manifest identity and output hashes match.",
+    "All34priorartifacts and12run001files unchanged.",
+    "Ledger metrics, limitations and three counterexamples match evidence."
+  ],
+  "findings": [
+    {
+      "severity": "MODERATE_DOCUMENTED",
+      "case": "Sampled stationary splitting can miss higher-mode crossings or abort on singular sample grid",
+      "evidence": "independent_counterexamples.json"
+    },
+    {
+      "severity": "MODERATE_DOCUMENTED",
+      "case": "Angular trims admit extrapolated quartic sheet outside fitted neighborhood",
+      "evidence": "quartic_counterexample.json"
+    },
+    {
+      "severity": "MINOR",
+      "case": "Expand standalone helper docstrings and parameter validation before public API integration."
+    }
+  ],
+  "blocking_issues_within_scope": [],
+  "questions": [],
+  "recorded_by": "root, transcribed from independent reviewer final report"
+}

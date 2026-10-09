@@ -1,0 +1,73 @@
+{"utc": "2026-10-08T17:39:13.084510+00:00", "run_id": "ladder-01", "event": "COMPUTE_DEFERRED", "existing_owner_files": ["AXIS_REVIEW_OWNER.json"]}
+{"utc": "2026-10-08T17:47:43.030521+00:00", "run_id": "ladder-01", "event": "lease_acquired", "owner": "workload-ladder-ladder-01-283-1791481663020973739"}
+{"utc": "2026-10-08T17:47:45.979975+00:00", "run_id": "ladder-01", "event": "plan_sealed", "plan_sha256": "b4072b5825c7d4a447128cf665713ec324fa539687603447a778a25db2855bac", "runs": 32}
+{"utc": "2026-10-08T17:48:23.431812+00:00", "run_id": "ladder-01", "event": "run_done", "id": "count-p00-k0.125", "transport_s": 23.39566870799999, "collisions_per_history": 1.24135}
+{"utc": "2026-10-08T17:48:49.959087+00:00", "run_id": "ladder-01", "event": "run_done", "id": "count-p00-k0.25", "transport_s": 17.77003646, "collisions_per_history": 2.31859}
+{"utc": "2026-10-08T17:49:15.890210+00:00", "run_id": "ladder-01", "event": "run_done", "id": "count-p00-k0.5", "transport_s": 17.681111358999996, "collisions_per_history": 4.40321}
+{"utc": "2026-10-08T17:49:48.279617+00:00", "run_id": "ladder-01", "event": "run_done", "id": "count-p00-k1", "transport_s": 24.272204134000006, "collisions_per_history": 8.42303}
+{"utc": "2026-10-08T17:50:06.978457+00:00", "run_id": "ladder-01", "event": "run_done", "id": "count-ring-k1", "transport_s": 9.398874736, "collisions_per_history": 2.0737}
+{"utc": "2026-10-08T17:50:30.001347+00:00", "run_id": "ladder-01", "event": "run_done", "id": "count-ring-k2", "transport_s": 9.777217839, "collisions_per_history": 4.79797}
+{"utc": "2026-10-08T17:50:51.447983+00:00", "run_id": "ladder-01", "event": "run_done", "id": "count-ring-k4", "transport_s": 10.980309350000002, "collisions_per_history": 9.81046}
+{"utc": "2026-10-08T17:51:16.609198+00:00", "run_id": "ladder-01", "event": "run_done", "id": "count-ring-k8", "transport_s": 13.606154428000002, "collisions_per_history": 17.95646}
+{"utc": "2026-10-08T17:52:05.548838+00:00", "run_id": "ladder-01", "event": "run_done", "id": "time-b1-p00-k0.5", "transport_s": 17.159268424}
+{"utc": "2026-10-08T17:52:27.666572+00:00", "run_id": "ladder-01", "event": "run_done", "id": "time-b1-ring-k4", "transport_s": 11.701453474000001}
+{"utc": "2026-10-08T17:52:51.346156+00:00", "run_id": "ladder-01", "event": "run_done", "id": "time-b1-ring-k2", "transport_s": 10.372341870999998}
+{"utc": "2026-10-08T17:53:23.528306+00:00", "run_id": "ladder-01", "event": "run_done", "id": "time-b1-ring-k8", "transport_s": 15.011024740999998}
+{"utc": "2026-10-08T17:53:51.161627+00:00", "run_id": "ladder-01", "event": "run_done", "id": "time-b1-p00-k0.25", "transport_s": 15.835267675999997}
+{"utc": "2026-10-08T17:54:22.942214+00:00", "run_id": "ladder-01", "event": "run_done", "id": "time-b1-p00-k1", "transport_s": 20.952039433000007}
+{"utc": "2026-10-08T17:54:50.170424+00:00", "run_id": "ladder-01", "event": "run_done", "id": "time-b1-p00-k0.125", "transport_s": 15.318254168999996}
+{"utc": "2026-10-08T17:55:09.379379+00:00", "run_id": "ladder-01", "event": "run_done", "id": "time-b1-ring-k1", "transport_s": 8.552402419000007}
+{"utc": "2026-10-08T17:55:30.584795+00:00", "run_id": "ladder-01", "event": "run_done", "id": "time-b2-ring-k4", "transport_s": 10.864290381000004}
+{"utc": "2026-10-08T17:55:49.426412+00:00", "run_id": "ladder-01", "event": "run_done", "id": "time-b2-ring-k1", "transport_s": 8.700897354999999}
+{"utc": "2026-10-08T17:56:17.051778+00:00", "run_id": "ladder-01", "event": "run_done", "id": "time-b2-p00-k0.125", "transport_s": 15.566497623000007}
+{"utc": "2026-10-08T17:56:42.555812+00:00", "run_id": "ladder-01", "event": "run_done", "id": "time-b2-ring-k8", "transport_s": 13.627417532999997}
+{"utc": "2026-10-08T17:57:09.133209+00:00", "run_id": "ladder-01", "event": "run_done", "id": "time-b2-p00-k0.25", "transport_s": 15.24368007400001}
+{"utc": "2026-10-08T17:57:28.944791+00:00", "run_id": "ladder-01", "event": "run_done", "id": "time-b2-ring-k2", "transport_s": 9.828043136000002}
+{"utc": "2026-10-08T17:57:58.565666+00:00", "run_id": "ladder-01", "event": "run_done", "id": "time-b2-p00-k0.5", "transport_s": 18.833255925999996}
+{"utc": "2026-10-08T17:58:36.845202+00:00", "run_id": "ladder-01", "event": "run_done", "id": "time-b2-p00-k1", "transport_s": 23.08639666000001}
+{"utc": "2026-10-08T17:59:03.529043+00:00", "run_id": "ladder-01", "event": "run_done", "id": "time-b3-ring-k8", "transport_s": 14.688661705000003}
+{"utc": "2026-10-08T17:59:24.720311+00:00", "run_id": "ladder-01", "event": "run_done", "id": "time-b3-ring-k2", "transport_s": 10.095289219000007}
+{"utc": "2026-10-08T17:59:45.864269+00:00", "run_id": "ladder-01", "event": "run_done", "id": "time-b3-ring-k4", "transport_s": 10.437415177}
+{"utc": "2026-10-08T18:00:02.797210+00:00", "run_id": "ladder-01", "event": "run_done", "id": "time-b3-ring-k1", "transport_s": 7.528814912000002}
+{"utc": "2026-10-08T18:00:34.110732+00:00", "run_id": "ladder-01", "event": "run_done", "id": "time-b3-p00-k0.25", "transport_s": 18.823233177000002}
+{"utc": "2026-10-08T18:01:12.585671+00:00", "run_id": "ladder-01", "event": "run_done", "id": "time-b3-p00-k0.5", "transport_s": 20.51383427499999}
+{"utc": "2026-10-08T18:01:46.633881+00:00", "run_id": "ladder-01", "event": "run_done", "id": "time-b3-p00-k1", "transport_s": 24.926729316}
+{"utc": "2026-10-08T18:02:26.464486+00:00", "run_id": "ladder-01", "event": "run_done", "id": "time-b3-p00-k0.125", "transport_s": 23.872605459000006}
+{"utc": "2026-10-08T18:02:26.579942+00:00", "run_id": "ladder-01", "event": "phase_completed", "runs": 32, "seconds": 883.5464996669998}
+{"utc": "2026-10-08T18:02:30.581926+00:00", "run_id": "ladder-01", "event": "lease_released", "owner": "workload-ladder-ladder-01-283-1791481663020973739"}
+{"utc": "2026-10-08T19:41:48.741265+00:00", "run_id": "ladder-02", "event": "lease_acquired", "owner": "workload-ladder-ladder-02-366-1791488508729680851"}
+{"utc": "2026-10-08T19:41:50.491099+00:00", "run_id": "ladder-02", "event": "plan_sealed", "plan_sha256": "bdcc544bb017ce917337cf34df9867411d806908d7b602e67e499ea46c2211a4", "runs": 32}
+{"utc": "2026-10-08T19:42:17.438224+00:00", "run_id": "ladder-02", "event": "run_done", "id": "count-p00-k0.125", "transport_s": 12.214998485999999, "collisions_per_history": 1.24135}
+{"utc": "2026-10-08T19:42:59.410537+00:00", "run_id": "ladder-02", "event": "run_done", "id": "count-p00-k0.25", "transport_s": 11.906706566999997, "collisions_per_history": 2.31859}
+{"utc": "2026-10-08T19:43:26.515826+00:00", "run_id": "ladder-02", "event": "run_done", "id": "count-p00-k0.5", "transport_s": 13.074356434999999, "collisions_per_history": 4.40321}
+{"utc": "2026-10-08T19:43:55.469722+00:00", "run_id": "ladder-02", "event": "run_done", "id": "count-p00-k1", "transport_s": 15.022270491999999, "collisions_per_history": 8.42303}
+{"utc": "2026-10-08T19:44:16.232573+00:00", "run_id": "ladder-02", "event": "run_done", "id": "count-ring-k1", "transport_s": 7.017238039, "collisions_per_history": 2.0737}
+{"utc": "2026-10-08T19:44:37.435389+00:00", "run_id": "ladder-02", "event": "run_done", "id": "count-ring-k2", "transport_s": 7.538402258999997, "collisions_per_history": 4.79797}
+{"utc": "2026-10-08T19:45:16.239050+00:00", "run_id": "ladder-02", "event": "run_done", "id": "count-ring-k4", "transport_s": 8.790486757000004, "collisions_per_history": 9.81046}
+{"utc": "2026-10-08T19:45:41.043804+00:00", "run_id": "ladder-02", "event": "run_done", "id": "count-ring-k8", "transport_s": 10.499323613000003, "collisions_per_history": 17.95646}
+{"utc": "2026-10-08T19:46:40.756295+00:00", "run_id": "ladder-02", "event": "run_done", "id": "time-b1-p00-k0.5", "transport_s": 13.826711337999997}
+{"utc": "2026-10-08T19:47:18.611479+00:00", "run_id": "ladder-02", "event": "run_done", "id": "time-b1-ring-k4", "transport_s": 8.530329049999997}
+{"utc": "2026-10-08T19:47:40.086831+00:00", "run_id": "ladder-02", "event": "run_done", "id": "time-b1-ring-k2", "transport_s": 7.512763697000001}
+{"utc": "2026-10-08T19:48:35.439805+00:00", "run_id": "ladder-02", "event": "run_done", "id": "time-b1-ring-k8", "transport_s": 10.119741956999995}
+{"utc": "2026-10-08T19:49:17.029919+00:00", "run_id": "ladder-02", "event": "run_done", "id": "time-b1-p00-k0.25", "transport_s": 11.745938981999995}
+{"utc": "2026-10-08T19:49:46.540302+00:00", "run_id": "ladder-02", "event": "run_done", "id": "time-b1-p00-k1", "transport_s": 15.275135823000001}
+{"utc": "2026-10-08T19:50:28.307118+00:00", "run_id": "ladder-02", "event": "run_done", "id": "time-b1-p00-k0.125", "transport_s": 11.887004252999997}
+{"utc": "2026-10-08T19:50:49.494517+00:00", "run_id": "ladder-02", "event": "run_done", "id": "time-b1-ring-k1", "transport_s": 7.143414291999999}
+{"utc": "2026-10-08T19:51:12.654733+00:00", "run_id": "ladder-02", "event": "run_done", "id": "time-b2-ring-k4", "transport_s": 8.961081827000001}
+{"utc": "2026-10-08T19:51:34.076289+00:00", "run_id": "ladder-02", "event": "run_done", "id": "time-b2-ring-k1", "transport_s": 7.340239603000003}
+{"utc": "2026-10-08T19:52:15.773139+00:00", "run_id": "ladder-02", "event": "run_done", "id": "time-b2-p00-k0.125", "transport_s": 12.010891794}
+{"utc": "2026-10-08T19:52:39.686017+00:00", "run_id": "ladder-02", "event": "run_done", "id": "time-b2-ring-k8", "transport_s": 10.214470941000002}
+{"utc": "2026-10-08T19:53:05.854330+00:00", "run_id": "ladder-02", "event": "run_done", "id": "time-b2-p00-k0.25", "transport_s": 12.108836096000006}
+{"utc": "2026-10-08T19:53:27.793159+00:00", "run_id": "ladder-02", "event": "run_done", "id": "time-b2-ring-k2", "transport_s": 7.5910014609999985}
+{"utc": "2026-10-08T19:53:55.437298+00:00", "run_id": "ladder-02", "event": "run_done", "id": "time-b2-p00-k0.5", "transport_s": 13.139200488000004}
+{"utc": "2026-10-08T19:54:40.928321+00:00", "run_id": "ladder-02", "event": "run_done", "id": "time-b2-p00-k1", "transport_s": 15.578331392}
+{"utc": "2026-10-08T19:55:05.333210+00:00", "run_id": "ladder-02", "event": "run_done", "id": "time-b3-ring-k8", "transport_s": 10.218335428000001}
+{"utc": "2026-10-08T19:55:42.261526+00:00", "run_id": "ladder-02", "event": "run_done", "id": "time-b3-ring-k2", "transport_s": 7.538142729}
+{"utc": "2026-10-08T19:56:20.094833+00:00", "run_id": "ladder-02", "event": "run_done", "id": "time-b3-ring-k4", "transport_s": 8.382772826}
+{"utc": "2026-10-08T19:56:40.750994+00:00", "run_id": "ladder-02", "event": "run_done", "id": "time-b3-ring-k1", "transport_s": 7.0758966569999995}
+{"utc": "2026-10-08T19:57:06.531088+00:00", "run_id": "ladder-02", "event": "run_done", "id": "time-b3-p00-k0.25", "transport_s": 11.826629562999997}
+{"utc": "2026-10-08T19:57:33.606264+00:00", "run_id": "ladder-02", "event": "run_done", "id": "time-b3-p00-k0.5", "transport_s": 13.100183738999993}
+{"utc": "2026-10-08T19:58:16.231467+00:00", "run_id": "ladder-02", "event": "run_done", "id": "time-b3-p00-k1", "transport_s": 15.089989060999997}
+{"utc": "2026-10-08T20:00:34.058898+00:00", "run_id": "ladder-02", "event": "run_done", "id": "time-b3-p00-k0.125", "transport_s": 11.906944663}
+{"utc": "2026-10-08T20:00:34.072964+00:00", "run_id": "ladder-02", "event": "phase_completed", "runs": 32, "seconds": 1125.329262498}
+{"utc": "2026-10-08T20:00:35.879522+00:00", "run_id": "ladder-02", "event": "lease_released", "owner": "workload-ladder-ladder-02-366-1791488508729680851"}

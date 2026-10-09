@@ -1,0 +1,13 @@
+# Goal and method map review
+
+ACCEPT_DIAGNOSTIC_PUBLICATION of PROJECT_GOAL.md SHA256 1b11754a1d158f059bb5f1d7d044e9b8e2c0d2c124268f7163667236c3663cb3; METHOD_MAP.md fbda7d54768a4316c30e7c3fad6e0299da3a8e97666bcf1fdad1c6250065a703; root README 2f6c8cdfa073e7be7e0e77db6bd4c4d1a0b62d9a879f8a7311747c7b1377647a; dev README a420348b4a1beb54f890c08ca79d00c362ade7347eb37ae32dcc8fdf03911271; consolidation b07b0537111f8233312d568a7ddc42002d8305a466bfb8721ebac5ffd097279f.
+
+The goal correctly requires complex target fidelity plus transport <=1.25 times declared native ring/torus proxy, with >=20k matched histories, separate preparation/init/output/wall accounting and ordinary source/local tally usability. Native simplification is explicitly a speed reference. Pinned assets remain WISTELL-D; unresolved W7-D wording is visible and does not authorize substitution.
+
+P00 facet/component CSG is a supported selected development candidate based on physical pack relevance and executed receipts, with repaired local/span/shared BVHs as an alternative. This does not establish fastest correct full-pack implementation. Whole-coil PCA envelope timing is conditional sizing evidence; fixed30 control retains different source occupancy/material paths and target fidelity uncertainty. Exact analytic dispatch and restricted offset timings do not qualify complex packs.
+
+Periodic patch/BVH with checked adapter is a supported selected nonaxisymmetric-plasma development architecture. New matched old/current diagnostic transport is 27.225501160/28.970192386 seconds, ratio1.064082979, independently accepted in PLASMA_TERMINAL_ACCEPTANCE_010.json. Old rebuild is fastest of those two variants in that one observation, but unchecked miss handling remains production-ineligible. No010 builtin worker exists.009custom/torus ratio159.7233 remains a separate failed proxy gate; no cross-campaign ratio is accepted.
+
+The docs' pending independent terminal wording can now be updated to timing-diagnostic accepted, with first-root/perbin/CAD accuracy still unresolved. Fixed-section current status should only be updated from its separately supplied terminal evidence. One seed/order does not quantify portable timing precision. Software compile764.919447 seconds is separate from cold geometry construction, which remains UNKNOWN.
+
+Reviewer performed no new numerical/native work and no duplicate HDF content analysis. Rehashed16statepoint files,8XML,82loaded dependencies,both binaries and phase logs; serialized arrays/timers finite. Wrapper exit1/own-empty-lease recovery is retained rather than described as an entirely successful wrapper. Full receipt publish whitelist is in PLASMA_TERMINAL_ACCEPTANCE_010.json; raw HDF and binaries remain local.

@@ -1,0 +1,69 @@
+{
+  "reviewed_at_utc": "2026-10-09T20:43:42.830700+00:00",
+  "verdict": "ACCEPTED_REFERENCE_COMPOSITION_ONLY",
+  "context": "Four new query-combinations reference files versus absent files; no unrelated OpenMC diff reviewed",
+  "reviewer_role": "Independent adversarial Sol reviewer; parent is implementer",
+  "scope": "Exact Fraction candidate scheduling/composition with caller-certified immutable AABBs and complete callback root contracts; no native solver, physical qualification, or performance acceptance",
+  "reviewed_sha256": {
+    "candidate_scheduler.py": "aec32372f2d3c2aacaec5c04117ba23a49a5a9c1f0caea180f408e39c48d1af0",
+    "test_candidate_scheduler.py": "d55472ceadb13d6ea885459afdb582c2cc6a26f224a62e00dcd270bb3134e623",
+    "README.md": "d627172eace19e4cc215b4da0ee8e15f118ab69b5ecc89e9c869c02397ac6930",
+    "results.json": "f90bec30e0b30826469275958620c8cf3e096eabe8f8b80d571ff266b11b4c9c"
+  },
+  "checks": {
+    "provided_unittest_tests": 20,
+    "provided_unittest_result": "PASS",
+    "recorded_source_hashes": "MATCH",
+    "recorded_12_arm_ablation": "INDEPENDENT_REPLAY_MATCH",
+    "independent_multi_root_3d_bank": {
+      "seed": 951009,
+      "geometries": 200,
+      "domains_per_geometry": 10,
+      "resolutions": 2400,
+      "result": "PASS",
+      "variants": "closed ceilings None/zero/positive; flat/BVH; cache miss/repeat; exact known multi-root banks"
+    },
+    "additional_failure_paths": {
+      "caller_owned_coordinate_and_box_list_mutation": "PASS snapshots preserve geometry/query",
+      "returned_work_dict_mutation": "PASS cache unaffected",
+      "changed_callback_with_cached_plan": "PASS outcomes recomputed",
+      "broad_earlier_unresolved_with_two_equal_known_hits": "PASS remains UNRESOLVED",
+      "six_extra_malformed_callback_packets": "PASS rejected"
+    }
+  },
+  "blocking_findings": [],
+  "nonblocking_findings": [
+    {
+      "severity": "Minor",
+      "file": "candidate_scheduler.py",
+      "line": 212,
+      "related_document": "README.md:25",
+      "title": "Document provisional contacts on unresolved resolution",
+      "detail": "A broad unresolved interval before two known roots at parameter2 returns Resolution(UNRESOLVED,parameter=None) and contacts(hit,tie). These identities are tentative best-known equal-root evidence, not a certified earliest contact group. Explicitly document this status-dependent contract; consumers must gate any contact use on HIT.",
+      "status": "RESOLVED_DOCUMENTATION_ONLY",
+      "resolution": "README explicitly documents provisional contacts with UNRESOLVED and requires HIT before using contacts as a certified earliest group."
+    }
+  ],
+  "criteria": {
+    "purpose_scope": "PASS standalone downstream reference; no core transport changes",
+    "correctness_testing": "PASS finite supplied and independent exact-bank challenges",
+    "physics_soundness": "NOT_ASSESSED bounds/root completeness remain caller obligations",
+    "quality_style": "PASS small stdlib reference; no new dependencies",
+    "design": "PASS immutable normalized records; closed conservative pruning; bounded per-instance cache; unresolved preserved",
+    "memory_performance": "Cache entry count bounded; Fraction/reference allocations not production transport; no timing acceptance",
+    "documentation": "PASS scope appropriately limited; unresolved-contact contract clarified"
+  },
+  "limitations": [
+    "No proof that caller AABBs enclose real Fourier/spline/ruled geometry",
+    "No independent certification that callbacks return their earliest complete roots or proved misses",
+    "No OpenMC native integration, ownership, tallies, normals, MPI/OpenMP, physical or speed acceptance",
+    "Python frozen records are an ordinary API contract, not a hostile-caller security boundary"
+  ],
+  "mutations": "Only this independent_review.json was written; implementer source/test/README/results unchanged",
+  "documentation_followup": {
+    "checked_at_utc": "2026-10-09T20:44:30.253007+00:00",
+    "source_test_results_hashes": "UNCHANGED",
+    "numerical_tests_repeated": false,
+    "status": "MINOR_FINDING_RESOLVED"
+  }
+}
