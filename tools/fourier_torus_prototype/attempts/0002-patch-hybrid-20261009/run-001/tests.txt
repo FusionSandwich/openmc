@@ -1,0 +1,25 @@
+test_decimal_reference_first_of_competing_roots (test_fourier_torus.FourierTorusTests.test_decimal_reference_first_of_competing_roots) ... ok
+test_decimal_reference_thin_chord (test_fourier_torus.FourierTorusTests.test_decimal_reference_thin_chord) ... ok
+test_exact_circular_and_elliptical_torus_controls (test_fourier_torus.FourierTorusTests.test_exact_circular_and_elliptical_torus_controls) ... ok
+test_no_hit_requires_complete_certified_coverage (test_fourier_torus.FourierTorusTests.test_no_hit_requires_complete_certified_coverage) ... ok
+test_original_parametric_sum_reconstructs_one_harmonic_exactly (test_fourier_torus.FourierTorusTests.test_original_parametric_sum_reconstructs_one_harmonic_exactly) ... ok
+test_quartic_torus_candidates_match_decimal_radial_roots (test_fourier_torus.FourierTorusTests.test_quartic_torus_candidates_match_decimal_radial_roots) ... ok
+test_tangency_coincidence_and_seams_remain_unresolved (test_fourier_torus.FourierTorusTests.test_tangency_coincidence_and_seams_remain_unresolved) ... ok
+test_torus_fit_residual_bound_contains_dense_synthetic_surface (test_fourier_torus.FourierTorusTests.test_torus_fit_residual_bound_contains_dense_synthetic_surface) ... ok
+test_vmec_asymmetry_xn_convention_and_metres_to_cm (test_fourier_torus.FourierTorusTests.test_vmec_asymmetry_xn_convention_and_metres_to_cm) ... ok
+test_vmec_field_period_seam (test_fourier_torus.FourierTorusTests.test_vmec_field_period_seam) ... ok
+test_compiled_quartic_matches_independent_torus_equations (test_patch_methods.PatchControls.test_compiled_quartic_matches_independent_torus_equations) ... ok
+test_compiled_ray_radial_decimal_roots (test_patch_methods.PatchControls.test_compiled_ray_radial_decimal_roots) ... ok
+test_exact_fourier_dispatch_recovers_nonequatorial_torus (test_patch_methods.PatchControls.test_exact_fourier_dispatch_recovers_nonequatorial_torus) ... ok
+test_exact_torus_recovered_by_hybrid_and_spline (test_patch_methods.PatchControls.test_exact_torus_recovered_by_hybrid_and_spline) ... ok
+test_fourier_jet_matches_independent_analytic_surface (test_patch_methods.PatchControls.test_fourier_jet_matches_independent_analytic_surface) ... ok
+test_hybrid_bound_and_join_does_not_correct_plateau_error (test_patch_methods.PatchControls.test_hybrid_bound_and_join_does_not_correct_plateau_error) ... ok
+test_hybrid_c1_joins_periodic_seam_and_consistent_field (test_patch_methods.PatchControls.test_hybrid_c1_joins_periodic_seam_and_consistent_field) ... ok
+test_osculating_torus_exact_outer_and_inner_controls (test_patch_methods.PatchControls.test_osculating_torus_exact_outer_and_inner_controls) ... ok
+test_shared_index_finds_spline_candidate_without_certifying_hit (test_patch_methods.PatchControls.test_shared_index_finds_spline_candidate_without_certifying_hit) ... ok
+test_trimmed_patch_rejects_other_side_of_torus (test_patch_methods.PatchControls.test_trimmed_patch_rejects_other_side_of_torus) ... ok
+
+----------------------------------------------------------------------
+Ran 20 tests in 0.023s
+
+OK

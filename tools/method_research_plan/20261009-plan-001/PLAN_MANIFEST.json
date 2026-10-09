@@ -1,0 +1,68 @@
+{
+  "sealed_utc": "2026-10-09T22:47:00.046539+00:00",
+  "review_verdict": "ACCEPT_SCOPED_RECOMMENDATION_AND_RECORD",
+  "scientific_executions": 0,
+  "preservation": "New execution/revision gets its own directory; initial registry and clarification are separate",
+  "files": [
+    {
+      "path": "EVENTS.jsonl",
+      "bytes": 2056,
+      "sha256": "512fb0bb42c2ccf8114f6439f3f2db2b43e9e08866418f70aa9340717154bbf8"
+    },
+    {
+      "path": "EXPERIMENT_REGISTRY.json",
+      "bytes": 28089,
+      "sha256": "ed1b47412fc08297edbc1dda1cd3f900013b1203356fed712e7900727221dff4"
+    },
+    {
+      "path": "EXPERIMENT_REGISTRY_REVISION_001.json",
+      "bytes": 28415,
+      "sha256": "3236d45c85ba318721ec24857609c40830349eef725c554ed16c315d56dfcd1f"
+    },
+    {
+      "path": "INDEPENDENT_PLAN_REVIEW.json",
+      "bytes": 10053,
+      "sha256": "42e1713ef2fac65857aaa20deb11b8911fb550a19023a3c8f526973190e84c5d"
+    },
+    {
+      "path": "PR_BODY_WITH_PLAN.md",
+      "bytes": 5734,
+      "sha256": "220153d6d66617a291289b6937804b9288f6b6e1ab88fa7501f3c021b442ea19"
+    },
+    {
+      "path": "PR_METADATA_BEFORE_PLAN.json",
+      "bytes": 5326,
+      "sha256": "2b047f2ecda3a9580f651538bfa5060c1fb4fdd4256d61aac60fb8d0f417e381"
+    },
+    {
+      "path": "PRESERVATION_CHECK.json",
+      "bytes": 345,
+      "sha256": "cdb1e54d4bca9f86ff21f9a32416eabb3ae97268e6ac6e5609f75f5d640943c0"
+    },
+    {
+      "path": "PRESERVATION_CHECK_002.json",
+      "bytes": 453,
+      "sha256": "2d25a1b12aa7d92cf5a6149575b0ccb17955b1b438559fdd02eea9f79147c2ad"
+    },
+    {
+      "path": "RECOMMENDATIONS.md",
+      "bytes": 21137,
+      "sha256": "ca472e444f0c5276008112d4d9aa49acd3f7892891efc2df17943458fcf9f823"
+    },
+    {
+      "path": "record_clarification.py",
+      "bytes": 2373,
+      "sha256": "9dd35172c9dc32a6ea7c553e3e45ac6deb475d7f804053a23a3d8ba9527bfede"
+    },
+    {
+      "path": "register_proposals.py",
+      "bytes": 13039,
+      "sha256": "dfcf9ad2db5669930415fafba01d580dc3070233710fc0eab14832327448f421"
+    },
+    {
+      "path": "REGISTRY_CORRECTIONS.json",
+      "bytes": 672,
+      "sha256": "17219f30b74e2e29ed5f7ffcefae0ed053d2c09078de52ef881406f509dbe0a6"
+    }
+  ]
+}

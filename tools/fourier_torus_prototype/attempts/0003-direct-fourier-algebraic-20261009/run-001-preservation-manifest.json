@@ -1,0 +1,17 @@
+{
+  "files": {
+    "run-001/direct_fourier_results.json": "48f078a717edc26a5c4fe51e663cb5bdb47568d281db489772805dd346c10d72",
+    "run-001/local_quartic_results.json": "114d30a3df16ef2c91886b01576043ad33a0b704d02a0c8e4b5b0802bfeb8a2e",
+    "run-001/rays.json": "fcf08b04b8961f5455d2dd767d1bdc4c90d9d4cfebf2081c74f6362c90b4cbdf",
+    "run-001/receipt.json": "9e5b84751237dbca17e8c2e511202a912dfd9f09a444d4dd8c74ec8bf2929c51",
+    "run-001/tests.txt": "f516a47351021eb0967d382bd73bd1c75cfd06201051de9f451dbb208528d78a",
+    "run-001/source/direct_algebraic.py": "082d701104b9cf9f8050bcb426a30a7ab4d6a5081dd7038e6d509bed0779ab62",
+    "run-001/source/fourier_torus.py": "fa0559134dd60b0390617a799a339ad05ad23e1f523c86ea9b92373ff2812210",
+    "run-001/source/patch_methods.py": "88623c61a52a997a5770427a38ab9b2eb068c8923db8a43176488b77264fed3e",
+    "run-001/source/run_direct_trials.py": "5a626bcc705981d536d7d2d198006df308cfea6fb14d236a505427433c614eec",
+    "run-001/source/test_direct_algebraic.py": "9d42a49514846c0e476f6417df8fa8670201e70fa474362c34efe7408d62fcd1",
+    "run-001/source/test_fourier_torus.py": "ece3351a22dbb53992996d40d26c40f9a50c725cac9b1f2151d39a3f6a1f44ee",
+    "run-001/source/test_patch_methods.py": "7483e985c4fd556b32577450ee9b3accbca6f006b51614a46ac1ae796efd292c"
+  },
+  "preserve_reason": "Completed first diagnostic run; retains candidate-loss behavior before localized singular-interval correction."
+}

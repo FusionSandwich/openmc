@@ -1,0 +1,22 @@
+{
+  "checked_at_utc": "2026-10-09T22:18:13.967248+00:00",
+  "operation": "documentation/file-identity review; no scientific tests or builds",
+  "method_entries": 81,
+  "markdown_snapshots_checked": 309,
+  "additional_machine_snapshots_checked": 25,
+  "late_source_files_checked": 14,
+  "prior_prototype_artifact_hashes_checked": 48,
+  "snapshot_hash_mismatches": [],
+  "canonical_original_changes_since_capture": [
+    {
+      "path": "stellarcsg-axis-integration-20261008/dev/stellarcsg/proposals/fourier_torus_20261009/README.md",
+      "old_sha256": "caa6c26998751d7ea3b5fd5249c436593c096e42a3b7dbf3560707a1ea07bb24",
+      "later_version_captured": true
+    }
+  ],
+  "review_links_checked": 499,
+  "broken_review_links": [],
+  "preexisting_tracked_file_changes": [],
+  "limitations": "Canonical copies plus selected receipts checked; every duplicate or all6227 original files not rehashed. Original frozen-doc internal links intentionally not rewritten.",
+  "status": "PASS_WITH_CAPTURED_EXTERNAL_UPDATE"
+}

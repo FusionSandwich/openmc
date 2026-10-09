@@ -1,0 +1,64 @@
+{
+  "schema": "fourier-torus-prototype-receipt-v1",
+  "created_utc": "2026-10-09T20:45:24.639808+00:00",
+  "status": "PASS",
+  "repository": "C:\\Users\\joshu\\OneDrive\\Documents\\ChatGPT\\StellarCGS\\stellarcsg-fourier-torus-prototype-20261009",
+  "branch": "JS/fourier-torus-prototype-20261009",
+  "head": "a1fceae5e0944464044df83529249a0df126d43f",
+  "upstream_base": "origin/develop@9a62e431d3101799e6179a6d0cf3b37440062e23",
+  "runtime": {
+    "python": "3.12.10",
+    "numpy": "2.5.1",
+    "scipy": "1.18.0",
+    "executable": "C:\\Users\\joshu\\AppData\\Local\\Programs\\Python\\Python312\\python.exe"
+  },
+  "inputs": {
+    "reviewer_packet_manifest": {
+      "path": "C:\\Users\\joshu\\OneDrive\\Documents\\ChatGPT\\StellarCGS\\stellarcsg-axis-integration-20261008\\dev\\stellarcsg\\proposals\\fourier_torus_20261009\\source_manifest.json",
+      "sha256": "a662b5c74414f1688b9b10efdbc965491658dd15a7f21690ebbc8fcb2ca107f9"
+    },
+    "wout_file": {
+      "status": "NOT_USED",
+      "reason": "synthetic coefficient controls only"
+    }
+  },
+  "prototype_source_sha256": {
+    "fourier_torus.py": "fa0559134dd60b0390617a799a339ad05ad23e1f523c86ea9b92373ff2812210",
+    "test_fourier_torus.py": "ece3351a22dbb53992996d40d26c40f9a50c725cac9b1f2151d39a3f6a1f44ee",
+    "run_tests.py": "ec89e43e883ec013f19088222d13605057c3ee57e66d25e0b374dd89cd5b9104",
+    "README.md": "9444c856c0869d9156f5e425c93ca1503b3fb278bcf561c2354e9e56e912aedc"
+  },
+  "verification": {
+    "tests_run": 10,
+    "failures": 0,
+    "errors": 0,
+    "functional_test_wall_seconds": 0.11949890002142638
+  },
+  "costs": {
+    "software_acquisition_bytes": 0,
+    "native_build": "NOT_PERFORMED",
+    "wout_load_seconds": null,
+    "fit_construction_seconds": null,
+    "peak_memory_bytes": null,
+    "query_benchmark_seconds": null,
+    "native_transport_seconds": null,
+    "transport_speed_ratio": null
+  },
+  "evidence_snapshot_hashes": {
+    "evidence_snapshots\\1_RESULTS.md": true,
+    "evidence_snapshots\\2_PLASMA_PLAN.md": true,
+    "evidence_snapshots\\3_GATE.json": true,
+    "evidence_snapshots\\4_SUMMARY.json": true,
+    "evidence_snapshots\\5_SUMMARY.json": true,
+    "evidence_snapshots\\6_SUMMARY.json": true,
+    "evidence_snapshots\\7_vmec.py": true,
+    "evidence_snapshots\\8_INTEGRATION_RESULT_20261008.json": true,
+    "evidence_snapshots\\9_periodic_radial_surface.hpp": true,
+    "evidence_snapshots\\10_METHOD_MAP.md": true,
+    "evidence_snapshots\\11_BEST_METHOD_CONTINUATION_20260930.md": true,
+    "evidence_snapshots\\12_independent-final-review.json": true,
+    "evidence_snapshots\\13_StellarCSG_review_findings_and_test_contract.md": true,
+    "evidence_snapshots\\14_USABILITY_METHOD_REVIEW_20260926.md": true
+  },
+  "scope": "synthetic geometry controls; no certified Fourier-boundary ray query or transport claim"
+}

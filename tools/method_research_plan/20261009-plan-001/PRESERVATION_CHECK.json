@@ -1,0 +1,10 @@
+{
+  "checked_utc": "2026-10-09T22:42:52.289978+00:00",
+  "status": "PASS",
+  "old_sealed_audit_artifacts_checked": 368,
+  "old_audit_changes": [],
+  "proposals": 7,
+  "new_scientific_attempts": 0,
+  "all_proposals_not_run": true,
+  "scope": "File-identity and documentation registration checks; no scientific tests or native builds"
+}

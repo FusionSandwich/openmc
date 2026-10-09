@@ -1,0 +1,1855 @@
+{
+  "checked_utc": "2026-10-09T22:18:15.028950+00:00",
+  "status": "PASS",
+  "staged_files_checked": 369,
+  "byte_conversion_mismatches": [],
+  "mechanism": "Scoped .gitattributes disables text conversion; staged Git blob identity compared with captured bytes",
+  "generated_receipt_and_seal_excluded_from_self_check": true,
+  "files": [
+    {
+      "path": "tools/method_documentation_audit/.gitattributes",
+      "git_blob": "fa1385d99a319b43c06f5309d1aae9fdd3adea46",
+      "sha256": "705fd4d6451a31d36b3df7de96f83f30ac976c9b4a6d1e51671d8e2f33e2d0da"
+    },
+    {
+      "path": "tools/method_documentation_audit/20261009-review-001/AUDIT_FINDINGS.md",
+      "git_blob": "ba588043e7ff6da1daa0d497f31554052684d12c",
+      "sha256": "ef58616ebdd378ac86dd84ae453759317228bf657001e8ccb8e48675fa2ade77"
+    },
+    {
+      "path": "tools/method_documentation_audit/20261009-review-001/DOCUMENTATION_INDEX.md",
+      "git_blob": "f3fc43765ce3995ddb9ec2e633c2c4f3e37dcae7",
+      "sha256": "e6fc38bfe27139bef6ea93e6241c0d21b9baee07634e32e22ad241cf87a4823e"
+    },
+    {
+      "path": "tools/method_documentation_audit/20261009-review-001/INDEPENDENT_COVERAGE_REVIEW.json",
+      "git_blob": "130561bf9d76ddbd2aeb4b9d4c17729f59fadd91",
+      "sha256": "512ff6037f04c933b07ea3f9275cb2ce87c03085ba9b0c7d6c88e149cbd99e57"
+    },
+    {
+      "path": "tools/method_documentation_audit/20261009-review-001/METHOD_RESULTS.json",
+      "git_blob": "ea15f926e8360cf0b9a0753b3ef4c40bf8e0af50",
+      "sha256": "5f612261467a6b04949522b81dfb51f575d4d6192e693e88274f736fa35848fb"
+    },
+    {
+      "path": "tools/method_documentation_audit/20261009-review-001/METHOD_RESULTS.md",
+      "git_blob": "c0da49935cee0a18e1ec276167db9c401dfc3c68",
+      "sha256": "0a45666b7d192917eb8b673240e355f9f14d50ad321864a0f3b705386d64b866"
+    },
+    {
+      "path": "tools/method_documentation_audit/20261009-review-001/PRESERVATION_CHECK.json",
+      "git_blob": "97fb3e51a5993f9d5b5b320388b630f72d7392ae",
+      "sha256": "4cf474a9042860e191fc9ea970bb482c92fc637c9b9ee164935716f5cddfe124"
+    },
+    {
+      "path": "tools/method_documentation_audit/20261009-review-001/PR_BODY_WITH_AUDIT.md",
+      "git_blob": "4760909f1550c43cf02165aa29cf1b2358f6374d",
+      "sha256": "2263362858f8c66b08f24eb3ef0c92506be3e378b5a63bf4d951a274ec39721c"
+    },
+    {
+      "path": "tools/method_documentation_audit/20261009-review-001/PR_METADATA_BEFORE_AUDIT.json",
+      "git_blob": "5490d261468a5d69b1b0c156a740717df1cc25b8",
+      "sha256": "91ac1fe18590b1adf4fe7d53393b75412b6c4b5861218c9c90e35792bf8ec05e"
+    },
+    {
+      "path": "tools/method_documentation_audit/20261009-review-001/README.md",
+      "git_blob": "7da63033ead6c83a1fb455f61b252a025db1cd4a",
+      "sha256": "fa5881520f30755ca09bbe714051b8dee43027805d8882c585a27984734611a2"
+    },
+    {
+      "path": "tools/method_documentation_audit/20261009-review-001/assemble_audit.py",
+      "git_blob": "a7f940fba28e94842bd0ea1220af2bcb68eabdc8",
+      "sha256": "f2c9c91169072d41ca732aca7d86155e63a6d531d274d5ebaf90d70562db40c9"
+    },
+    {
+      "path": "tools/method_documentation_audit/20261009-review-001/check_git_preservation.py",
+      "git_blob": "fde317176f6fe42bfc3aede246e20fb872575668",
+      "sha256": "68f9ebc4c657ca3c0fb401bbfc244ae541d92d1567291227d390b20cdc9ccbbf"
+    },
+    {
+      "path": "tools/method_documentation_audit/20261009-review-001/check_preservation.py",
+      "git_blob": "dfc75b3512371925a17d32903af343f1866e978e",
+      "sha256": "9103be868598c0a42c00733963cb85079f473283ea7bd8cc1195b970b14b2e84"
+    },
+    {
+      "path": "tools/method_documentation_audit/20261009-review-001/document_catalog_final.json",
+      "git_blob": "d8f226a53de717c0ac136b9fbb1ea86a6207296d",
+      "sha256": "72df1767fe9ea02ddd0b3bd64ddadd8738ba488df9fc3ad18f8197b4bf70d4c5"
+    },
+    {
+      "path": "tools/method_documentation_audit/20261009-review-001/document_catalog_with_coverage.json",
+      "git_blob": "c4268be519ba56930ea88bb6d00273335819fb7b",
+      "sha256": "d6d0c442738500af18f529e8f48c2dc6fe80654cbaee1b971107373620add150"
+    },
+    {
+      "path": "tools/method_documentation_audit/20261009-review-001/late_document_catalog.json",
+      "git_blob": "c6e1c3ffd34770b10636bdd7c699ce7ca403d1ca",
+      "sha256": "3b38d2b89e11ccd0197616bf97b5dbf2ff78a411dcd19cf490aa168545d109f7"
+    },
+    {
+      "path": "tools/method_documentation_audit/20261009-review-001/late_source_manifest.json",
+      "git_blob": "fd608ae244d07aef0e24680845bc25093b908534",
+      "sha256": "30decaf1661a28d20595cf49e06bb0cb389a8269aac3dd6c99f9fd7868982fae"
+    },
+    {
+      "path": "tools/method_documentation_audit/20261009-review-001/late_sources/1083a1e49b803113491d8c133a67e4829b8211a12164b9bee4449797c1667942.json",
+      "git_blob": "e31313cdcc6a89b291c23e6f0d658eb95c6730c6",
+      "sha256": "1083a1e49b803113491d8c133a67e4829b8211a12164b9bee4449797c1667942"
+    },
+    {
+      "path": "tools/method_documentation_audit/20261009-review-001/late_sources/1c487f3399b0c39906e11f90ff079265f375b24f51d4e6e8c77cbb523a104f81.txt",
+      "git_blob": "46d27fbea703a2b9c0b3550640b281423a33aa96",
+      "sha256": "1c487f3399b0c39906e11f90ff079265f375b24f51d4e6e8c77cbb523a104f81"
+    },
+    {
+      "path": "tools/method_documentation_audit/20261009-review-001/late_sources/1c7dafa08e5e9f9f4d7f075164d01dae577bf65de2c94b5ac29df2a18a023918.json",
+      "git_blob": "8e39403fb922fb0bf45bb81bd46c2dea10d379e6",
+      "sha256": "1c7dafa08e5e9f9f4d7f075164d01dae577bf65de2c94b5ac29df2a18a023918"
+    },
+    {
+      "path": "tools/method_documentation_audit/20261009-review-001/late_sources/32dae3052f331ee34d628ef535709b301259a45df7c7522c4d35dcf49873f00b",
+      "git_blob": "c18dd8d83ceed1806b50b0aaa46beb7e335fff13",
+      "sha256": "32dae3052f331ee34d628ef535709b301259a45df7c7522c4d35dcf49873f00b"
+    },
+    {
+      "path": "tools/method_documentation_audit/20261009-review-001/late_sources/4c9e3ae6d638b56298c8294a79848aa9dba3821e30371b45093f52980d909f59.json",
+      "git_blob": "b1f3c95901136ce9dfb0e811588dcdacf497234e",
+      "sha256": "4c9e3ae6d638b56298c8294a79848aa9dba3821e30371b45093f52980d909f59"
+    },
+    {
+      "path": "tools/method_documentation_audit/20261009-review-001/late_sources/743b4015deb3bc85a9e8c885dbe660abc641877ea973f1972eebe0a33cc97505.py",
+      "git_blob": "ee6b6d9f02c63b27552506b81a52522dc973697d",
+      "sha256": "743b4015deb3bc85a9e8c885dbe660abc641877ea973f1972eebe0a33cc97505"
+    },
+    {
+      "path": "tools/method_documentation_audit/20261009-review-001/late_sources/8b0993589cfa43c57f504e6e0cc2ccc79750175dbb507a65dfb046d05a8e0c49.py",
+      "git_blob": "eb1930914a538440cc80eb5ee39964049f73883d",
+      "sha256": "8b0993589cfa43c57f504e6e0cc2ccc79750175dbb507a65dfb046d05a8e0c49"
+    },
+    {
+      "path": "tools/method_documentation_audit/20261009-review-001/late_sources/b58902ae8d206ce03ccc2688e53478ca27d68029db7df5e0cb56d4cc7c08dcbf.py",
+      "git_blob": "12628c8ed434fd6fc38ed804e71055760b1f259b",
+      "sha256": "b58902ae8d206ce03ccc2688e53478ca27d68029db7df5e0cb56d4cc7c08dcbf"
+    },
+    {
+      "path": "tools/method_documentation_audit/20261009-review-001/late_sources/c00a35a9edd4c819e6f0142e70f3506e017bdeafff1b2788ba2564105e8c4711.py",
+      "git_blob": "9d6c4d4406d4e110411495eefc11ba9b6341c371",
+      "sha256": "c00a35a9edd4c819e6f0142e70f3506e017bdeafff1b2788ba2564105e8c4711"
+    },
+    {
+      "path": "tools/method_documentation_audit/20261009-review-001/late_sources/d23f97a2422051d5f61006f1c95bbf37b91e3bbcb184dd28d5933ad759a10dd9.py",
+      "git_blob": "e271b75104b77af52bf219fbff600feb7213b5e9",
+      "sha256": "d23f97a2422051d5f61006f1c95bbf37b91e3bbcb184dd28d5933ad759a10dd9"
+    },
+    {
+      "path": "tools/method_documentation_audit/20261009-review-001/late_sources/d42d81ce2a46a33a39eb5cc863d2e29d9d2dbb60c8ab434358a4b42f9fd47b4f.md",
+      "git_blob": "7bfecc984183e96bbdbe15bbcc35803daaf0c57c",
+      "sha256": "d42d81ce2a46a33a39eb5cc863d2e29d9d2dbb60c8ab434358a4b42f9fd47b4f"
+    },
+    {
+      "path": "tools/method_documentation_audit/20261009-review-001/late_sources/d683ec08b167bdac4f18a09ceb4ad237e375b0faa7f817e0f771e6b398ff7bda.md",
+      "git_blob": "c51ddb9c9411d39fde51839ff38eb773a9370abe",
+      "sha256": "d683ec08b167bdac4f18a09ceb4ad237e375b0faa7f817e0f771e6b398ff7bda"
+    },
+    {
+      "path": "tools/method_documentation_audit/20261009-review-001/late_sources/dd910fd93348ef662301cbc596ba17a90c6c34542c5105db40518d715475fe5c.md",
+      "git_blob": "e4a5d2f8ccec18846c44d1c890a9cc51e5ff5198",
+      "sha256": "dd910fd93348ef662301cbc596ba17a90c6c34542c5105db40518d715475fe5c"
+    },
+    {
+      "path": "tools/method_documentation_audit/20261009-review-001/late_sources/e912869749f8f8d05f797e4088c191feedaf49b4dd9b1a3fe3b17f5a52f28889",
+      "git_blob": "cb6c784e658dc2fac3c94c85a0212d846f1e39b4",
+      "sha256": "e912869749f8f8d05f797e4088c191feedaf49b4dd9b1a3fe3b17f5a52f28889"
+    },
+    {
+      "path": "tools/method_documentation_audit/20261009-review-001/source_data/04d373bd12ec1f6ad8bc611f3635a88dd8e2ede7bfce9fd4d90f6a28f4f8030d.json",
+      "git_blob": "833b97d5d2c996137156559d931112a665d366e9",
+      "sha256": "04d373bd12ec1f6ad8bc611f3635a88dd8e2ede7bfce9fd4d90f6a28f4f8030d"
+    },
+    {
+      "path": "tools/method_documentation_audit/20261009-review-001/source_data/0b9a8543fc3058f82c3a588f221ef9031ba9653a55737811e85bd40c5898742b.json",
+      "git_blob": "ade00c249522f393b1d83079bc7fd3f4612e51a1",
+      "sha256": "0b9a8543fc3058f82c3a588f221ef9031ba9653a55737811e85bd40c5898742b"
+    },
+    {
+      "path": "tools/method_documentation_audit/20261009-review-001/source_data/0fcfc09cb820f4ad001b4428a76b46e1d1a2ba5c76505c831080c935fc013919.json",
+      "git_blob": "86d2aeb66a35e150e001498c7da6645838e405b0",
+      "sha256": "0fcfc09cb820f4ad001b4428a76b46e1d1a2ba5c76505c831080c935fc013919"
+    },
+    {
+      "path": "tools/method_documentation_audit/20261009-review-001/source_data/1083a1e49b803113491d8c133a67e4829b8211a12164b9bee4449797c1667942.json",
+      "git_blob": "e31313cdcc6a89b291c23e6f0d658eb95c6730c6",
+      "sha256": "1083a1e49b803113491d8c133a67e4829b8211a12164b9bee4449797c1667942"
+    },
+    {
+      "path": "tools/method_documentation_audit/20261009-review-001/source_data/29a6388777d391ed80eca4abbcfd0387484033b4560bacce42bfb04cd21b1dda.jsonl",
+      "git_blob": "1bd34d2ca422f62738ea3e5aa35487bdbb5585d1",
+      "sha256": "29a6388777d391ed80eca4abbcfd0387484033b4560bacce42bfb04cd21b1dda"
+    },
+    {
+      "path": "tools/method_documentation_audit/20261009-review-001/source_data/2f38005c7a3dd56b9cd7076048d276f1117aea473d42af1d1e63d34c90b9ef05.json",
+      "git_blob": "af507b130e88c80ccb91f98f1d20009a6d8b29b6",
+      "sha256": "2f38005c7a3dd56b9cd7076048d276f1117aea473d42af1d1e63d34c90b9ef05"
+    },
+    {
+      "path": "tools/method_documentation_audit/20261009-review-001/source_data/3adc6ac3c55b4a607cd628b9f9bbe84237a2624e270dbd5abe2a96e827dfb049.json",
+      "git_blob": "f683036e07164db565c87bb64cfedf2a1b6b5a12",
+      "sha256": "3adc6ac3c55b4a607cd628b9f9bbe84237a2624e270dbd5abe2a96e827dfb049"
+    },
+    {
+      "path": "tools/method_documentation_audit/20261009-review-001/source_data/3d819278f22c27a29ba3514057fdb8e2c476d1f85d0e213ac58d3fff3c949e0d.json",
+      "git_blob": "e0ce8c2750f5a92dfac2357316a9b052b285d948",
+      "sha256": "3d819278f22c27a29ba3514057fdb8e2c476d1f85d0e213ac58d3fff3c949e0d"
+    },
+    {
+      "path": "tools/method_documentation_audit/20261009-review-001/source_data/4c9e3ae6d638b56298c8294a79848aa9dba3821e30371b45093f52980d909f59.json",
+      "git_blob": "b1f3c95901136ce9dfb0e811588dcdacf497234e",
+      "sha256": "4c9e3ae6d638b56298c8294a79848aa9dba3821e30371b45093f52980d909f59"
+    },
+    {
+      "path": "tools/method_documentation_audit/20261009-review-001/source_data/4d3ab2737d821a24c8ce65f4a4d561998d2d9b3529c87826a3da172582993f4b.json",
+      "git_blob": "99445bf9fe2b78c8245a1aaefe6bcbad5745a554",
+      "sha256": "4d3ab2737d821a24c8ce65f4a4d561998d2d9b3529c87826a3da172582993f4b"
+    },
+    {
+      "path": "tools/method_documentation_audit/20261009-review-001/source_data/62c0c3ce982113053944eaa6c92bfb5485f2d7fdfe745322bccf13c75e8b8405.json",
+      "git_blob": "46b8e1d5ee91d3aa4f8ea72d2a3b3faf86cc723f",
+      "sha256": "62c0c3ce982113053944eaa6c92bfb5485f2d7fdfe745322bccf13c75e8b8405"
+    },
+    {
+      "path": "tools/method_documentation_audit/20261009-review-001/source_data/8210d88c008055ea8e948e463c5aac7bf4f0461ebebcdfd2d2cc76878fecc8be.json",
+      "git_blob": "120432527800cdd18f211c59121d11793dc41bdc",
+      "sha256": "8210d88c008055ea8e948e463c5aac7bf4f0461ebebcdfd2d2cc76878fecc8be"
+    },
+    {
+      "path": "tools/method_documentation_audit/20261009-review-001/source_data/934ff02007923a225f82e00ffac5677dc2c78cbf2ac32b8fd316a66c3fb97f6a.json",
+      "git_blob": "d91521d1b4a4fe46640e56ed67a3e5187d2d6b93",
+      "sha256": "934ff02007923a225f82e00ffac5677dc2c78cbf2ac32b8fd316a66c3fb97f6a"
+    },
+    {
+      "path": "tools/method_documentation_audit/20261009-review-001/source_data/979d45a5f1fc68268d17d1c5d2e080acd903b4b260488a64f4487009a80a56c0.json",
+      "git_blob": "51d38e7c83acc55770c60c946a6a335455be048f",
+      "sha256": "979d45a5f1fc68268d17d1c5d2e080acd903b4b260488a64f4487009a80a56c0"
+    },
+    {
+      "path": "tools/method_documentation_audit/20261009-review-001/source_data/aaec8dcb1dfda63ba571d583effdbb38139394520c79f413816334b316208a25.json",
+      "git_blob": "5ebdbca2a457676b5a833d059a09babc750d7595",
+      "sha256": "aaec8dcb1dfda63ba571d583effdbb38139394520c79f413816334b316208a25"
+    },
+    {
+      "path": "tools/method_documentation_audit/20261009-review-001/source_data/ad65b2eb61c2644d7cb0fe83399add7d70531efeb1456fbe6bc8a05b7b0b70c3.json",
+      "git_blob": "25b1ad0fe099d86bf6b3e47681c6f329895cb925",
+      "sha256": "ad65b2eb61c2644d7cb0fe83399add7d70531efeb1456fbe6bc8a05b7b0b70c3"
+    },
+    {
+      "path": "tools/method_documentation_audit/20261009-review-001/source_data/b7285d4180c90180e45e6762900bfef34c1ec3e309527bcf95b4bf7cd60e4bfc.json",
+      "git_blob": "89102d0753d83b226c27fa8e78e62276c8a431ba",
+      "sha256": "b7285d4180c90180e45e6762900bfef34c1ec3e309527bcf95b4bf7cd60e4bfc"
+    },
+    {
+      "path": "tools/method_documentation_audit/20261009-review-001/source_data/c731a0de005e6618c5db75a6038825532a0778dd0df2301c97249a1c81946b00.json",
+      "git_blob": "1b90fb94b215cd2d96eb8f1bcf4aede3b7b13595",
+      "sha256": "c731a0de005e6618c5db75a6038825532a0778dd0df2301c97249a1c81946b00"
+    },
+    {
+      "path": "tools/method_documentation_audit/20261009-review-001/source_data/c88e910a8056d1042fd01fb6a3d9ceb65911fa5fdc40669ed65788c7aa9daea8.json",
+      "git_blob": "d355d9c5893d8a518488f91127a8e8e4ca02bfec",
+      "sha256": "c88e910a8056d1042fd01fb6a3d9ceb65911fa5fdc40669ed65788c7aa9daea8"
+    },
+    {
+      "path": "tools/method_documentation_audit/20261009-review-001/source_data/d493059174eee35690a2ac86135e30fb36333574fe015d36197da01aba8961a4.json",
+      "git_blob": "12b4feac6c6e986030529229ade3822a9d6da305",
+      "sha256": "d493059174eee35690a2ac86135e30fb36333574fe015d36197da01aba8961a4"
+    },
+    {
+      "path": "tools/method_documentation_audit/20261009-review-001/source_data/dced0394c8d034bf75027f7c879cbda59fb52a9d73afee1f7630230247df0957.json",
+      "git_blob": "ddbb5137c516003235608a3378c79e4964af950c",
+      "sha256": "dced0394c8d034bf75027f7c879cbda59fb52a9d73afee1f7630230247df0957"
+    },
+    {
+      "path": "tools/method_documentation_audit/20261009-review-001/source_data/eae402c34a19a286af6f5d1cecdee9986ee0d967e148ae26a53c066cbaff610c.json",
+      "git_blob": "5a2d53d300172cda66f66df5cf08726cd5ddad0f",
+      "sha256": "eae402c34a19a286af6f5d1cecdee9986ee0d967e148ae26a53c066cbaff610c"
+    },
+    {
+      "path": "tools/method_documentation_audit/20261009-review-001/source_data/f095db3affa2a6f2b7955271e45964c0c78eb51f9af0b3d72504d7a12b5b3762.json",
+      "git_blob": "a8c9e9b2caad6d8677e28e629bea1184e2af73fb",
+      "sha256": "f095db3affa2a6f2b7955271e45964c0c78eb51f9af0b3d72504d7a12b5b3762"
+    },
+    {
+      "path": "tools/method_documentation_audit/20261009-review-001/source_data/f90bec30e0b30826469275958620c8cf3e096eabe8f8b80d571ff266b11b4c9c.json",
+      "git_blob": "cb25e3ebd19544856fe804fbf0b3e58ddc0d0eca",
+      "sha256": "f90bec30e0b30826469275958620c8cf3e096eabe8f8b80d571ff266b11b4c9c"
+    },
+    {
+      "path": "tools/method_documentation_audit/20261009-review-001/source_data_manifest.json",
+      "git_blob": "d3f7855666abb1cbccd935e1b7f25a87c4845c48",
+      "sha256": "3d4e5784c03d1107c9e4a91d3feeff1f4a90b86acb54f7aebf4d6d808e148094"
+    },
+    {
+      "path": "tools/method_documentation_audit/20261009-review-001/source_inventory.json",
+      "git_blob": "8136e950ffd8de4fb47e9350bdfcab80431ff689",
+      "sha256": "6fb582780087f3a75a90770bca64d4a6c46c8a5fac9aa90ae7994db2631d67b6"
+    },
+    {
+      "path": "tools/method_documentation_audit/20261009-review-001/source_inventory_final.json",
+      "git_blob": "67465e6738df4136dfb7ae61b87a24b95e2780ab",
+      "sha256": "e6783c8bedc6ebc8ea2524db464b3829444a77747472fd9820b12115a115eee9"
+    },
+    {
+      "path": "tools/method_documentation_audit/20261009-review-001/source_snapshots/01066c6c7ace075e14b50fa7b4e5cb36e13e01bb115d22a38f7b70cf9324b438.md",
+      "git_blob": "e10ed999b42620c6b7991fdf38c7cc3d35baad85",
+      "sha256": "01066c6c7ace075e14b50fa7b4e5cb36e13e01bb115d22a38f7b70cf9324b438"
+    },
+    {
+      "path": "tools/method_documentation_audit/20261009-review-001/source_snapshots/01ccf4f03779e8fdd40b9a9bef636b7580f0b318a6ee03a69abaab99400ce778.md",
+      "git_blob": "184f67cdc87f102956c12f722136e8f5d74c9626",
+      "sha256": "01ccf4f03779e8fdd40b9a9bef636b7580f0b318a6ee03a69abaab99400ce778"
+    },
+    {
+      "path": "tools/method_documentation_audit/20261009-review-001/source_snapshots/0274a79995fb834142cf51f133c1cb33baafe7126152413d7ab19f80fab099c3.md",
+      "git_blob": "8f9efa5f29b2de1e35a8d454ba30e72d4013c4c2",
+      "sha256": "0274a79995fb834142cf51f133c1cb33baafe7126152413d7ab19f80fab099c3"
+    },
+    {
+      "path": "tools/method_documentation_audit/20261009-review-001/source_snapshots/02a27cfb8eaf304901246a5008de79d6361a78853a4de0506e98e075c620bf46.md",
+      "git_blob": "21c7bb4d08c183de0f33294b97ffe930d9b19c86",
+      "sha256": "02a27cfb8eaf304901246a5008de79d6361a78853a4de0506e98e075c620bf46"
+    },
+    {
+      "path": "tools/method_documentation_audit/20261009-review-001/source_snapshots/02f694373998c66b078b6732b8632989faa9afead9f60342f7b52400a722aa08.md",
+      "git_blob": "215ddf45fb482c6a76d76d130e44cd7ac6fca234",
+      "sha256": "02f694373998c66b078b6732b8632989faa9afead9f60342f7b52400a722aa08"
+    },
+    {
+      "path": "tools/method_documentation_audit/20261009-review-001/source_snapshots/036f3c095ca1523d674841e0804b2641b466684955098d0ee2f4c17d7142aa72.md",
+      "git_blob": "797a119124de9c344ce7d74481c432a6f42023b1",
+      "sha256": "036f3c095ca1523d674841e0804b2641b466684955098d0ee2f4c17d7142aa72"
+    },
+    {
+      "path": "tools/method_documentation_audit/20261009-review-001/source_snapshots/03e419e95d517f3941d1da89ebc5a5699527e1a855feb11119aa043524e24e12.md",
+      "git_blob": "2d1b275701e0304a7d87411a05706d5d1563fe4d",
+      "sha256": "03e419e95d517f3941d1da89ebc5a5699527e1a855feb11119aa043524e24e12"
+    },
+    {
+      "path": "tools/method_documentation_audit/20261009-review-001/source_snapshots/0407ae9dbfc05179e1d4cfcb3ab8d528ed5746d18207f2eca0e093af4dbc584c.md",
+      "git_blob": "d02a46fed741cfaacac8cb3b8dca590666810772",
+      "sha256": "0407ae9dbfc05179e1d4cfcb3ab8d528ed5746d18207f2eca0e093af4dbc584c"
+    },
+    {
+      "path": "tools/method_documentation_audit/20261009-review-001/source_snapshots/04e68526a70ec9ad249c0b075ea9bd5733632afb24a72ad8ca2b8ea0b397da4e.md",
+      "git_blob": "d9db6694210409595be36c80d1c602a78402629b",
+      "sha256": "04e68526a70ec9ad249c0b075ea9bd5733632afb24a72ad8ca2b8ea0b397da4e"
+    },
+    {
+      "path": "tools/method_documentation_audit/20261009-review-001/source_snapshots/058652fb5e68616de85b405067573026e06094ba141d3773800ff4c4cd91d9e4.md",
+      "git_blob": "f9fb634c173e7fc1e9a430fdd58f07532e83c391",
+      "sha256": "058652fb5e68616de85b405067573026e06094ba141d3773800ff4c4cd91d9e4"
+    },
+    {
+      "path": "tools/method_documentation_audit/20261009-review-001/source_snapshots/05e0757ce6e30e05a66f62c30dbf146d407b4697e59d239699befad369417e4e.md",
+      "git_blob": "2cc83204812bf99496c72907f57d9f53e84a6482",
+      "sha256": "05e0757ce6e30e05a66f62c30dbf146d407b4697e59d239699befad369417e4e"
+    },
+    {
+      "path": "tools/method_documentation_audit/20261009-review-001/source_snapshots/06214f574a78fbd0210163c3dae4daccbafea36c4c4e2fbfb5af405504f46738.md",
+      "git_blob": "d10a6c0ca578f11d018dbf891627a8012dd25543",
+      "sha256": "06214f574a78fbd0210163c3dae4daccbafea36c4c4e2fbfb5af405504f46738"
+    },
+    {
+      "path": "tools/method_documentation_audit/20261009-review-001/source_snapshots/090ff069169dd996f9d839e1d96bd0aaf72ecac8e034db54beccb81beb74f4a8.md",
+      "git_blob": "633f88e4c01c8aecb962f739c97e573ffb83a3ea",
+      "sha256": "090ff069169dd996f9d839e1d96bd0aaf72ecac8e034db54beccb81beb74f4a8"
+    },
+    {
+      "path": "tools/method_documentation_audit/20261009-review-001/source_snapshots/091c0672ddc031547eb11847399ffb4378f9432109f0177590bb24a2bf76ee18.md",
+      "git_blob": "4cf7431c10fdbe24daee95f488cf9bedd8c1ccec",
+      "sha256": "091c0672ddc031547eb11847399ffb4378f9432109f0177590bb24a2bf76ee18"
+    },
+    {
+      "path": "tools/method_documentation_audit/20261009-review-001/source_snapshots/09bbab04053dde8db9af9ea69133fb936989817f0fce038371612907d612f2e4.md",
+      "git_blob": "96e8155bc898bde174ca8371386ee86e1c05f8f2",
+      "sha256": "09bbab04053dde8db9af9ea69133fb936989817f0fce038371612907d612f2e4"
+    },
+    {
+      "path": "tools/method_documentation_audit/20261009-review-001/source_snapshots/0a83eefbf1ec9a231ba3367758e6fbe876428a761ed4ec8e2c8baaec67603de2.md",
+      "git_blob": "9f6b82a68ed1b578e28640f580f71ac6aa2084cb",
+      "sha256": "0a83eefbf1ec9a231ba3367758e6fbe876428a761ed4ec8e2c8baaec67603de2"
+    },
+    {
+      "path": "tools/method_documentation_audit/20261009-review-001/source_snapshots/0b424322217ab7861c637d88af8915bb7aa6f6fa188250c528f981ed8fb9fd26.md",
+      "git_blob": "bbc490d485ea391d47803f06315203e0a0767239",
+      "sha256": "0b424322217ab7861c637d88af8915bb7aa6f6fa188250c528f981ed8fb9fd26"
+    },
+    {
+      "path": "tools/method_documentation_audit/20261009-review-001/source_snapshots/0c0f4398c44da682a5c87546bd2c9799d949a9e82f8b5f7d21c950e389da3952.md",
+      "git_blob": "241ac1c7b954b87ee73bb0d23f43889026ae2848",
+      "sha256": "0c0f4398c44da682a5c87546bd2c9799d949a9e82f8b5f7d21c950e389da3952"
+    },
+    {
+      "path": "tools/method_documentation_audit/20261009-review-001/source_snapshots/0c4d6e6bdb2199626d0910f6018565418ecd2c461908b032649d1ee422d798a6.md",
+      "git_blob": "165cd122c175f049188be56124b133ab7fcfc599",
+      "sha256": "0c4d6e6bdb2199626d0910f6018565418ecd2c461908b032649d1ee422d798a6"
+    },
+    {
+      "path": "tools/method_documentation_audit/20261009-review-001/source_snapshots/0c78ee5f5886b172cd0f47d9de05639fb0b303f1b64222f4944c11cc9a410b05.md",
+      "git_blob": "a1c51974562d5faae0154a29def4b0ea2eb9655a",
+      "sha256": "0c78ee5f5886b172cd0f47d9de05639fb0b303f1b64222f4944c11cc9a410b05"
+    },
+    {
+      "path": "tools/method_documentation_audit/20261009-review-001/source_snapshots/0cf2fe88c746a38288ef09dd44785227dc653248981cfcda16846f820f9a7a95.md",
+      "git_blob": "ed601dee4814963001b65c4aaf93b1c95b279cbc",
+      "sha256": "0cf2fe88c746a38288ef09dd44785227dc653248981cfcda16846f820f9a7a95"
+    },
+    {
+      "path": "tools/method_documentation_audit/20261009-review-001/source_snapshots/0d48336c1f4b305bd2d7b0720aeb5a78d6c59de12a0ef7d4e9c2432cb6e84907.md",
+      "git_blob": "b90c4b176c9d3dc1abe2aba996443aebabf0a259",
+      "sha256": "0d48336c1f4b305bd2d7b0720aeb5a78d6c59de12a0ef7d4e9c2432cb6e84907"
+    },
+    {
+      "path": "tools/method_documentation_audit/20261009-review-001/source_snapshots/0dee70c9ab27377de90f9ea0eed39e731a2224a13bdf6c1686b3b33fccbbb2c8.md",
+      "git_blob": "1acd6c14483be15d96e83f5e5d0de01218e95004",
+      "sha256": "0dee70c9ab27377de90f9ea0eed39e731a2224a13bdf6c1686b3b33fccbbb2c8"
+    },
+    {
+      "path": "tools/method_documentation_audit/20261009-review-001/source_snapshots/0f071df712025e771124bfa210f81c9df211e842367a3dc8fa6443808f1d66ff.md",
+      "git_blob": "2e2ffd4dc41dd00072284b5dcf00bc72405de4a4",
+      "sha256": "0f071df712025e771124bfa210f81c9df211e842367a3dc8fa6443808f1d66ff"
+    },
+    {
+      "path": "tools/method_documentation_audit/20261009-review-001/source_snapshots/0f727a47cb013eca908e4ba0f85ff4f5bf402b5e2c65c9ee747c30ce8f1538f3.md",
+      "git_blob": "eacc6005882c258fa5d1e3e7d406e34c5f876df5",
+      "sha256": "0f727a47cb013eca908e4ba0f85ff4f5bf402b5e2c65c9ee747c30ce8f1538f3"
+    },
+    {
+      "path": "tools/method_documentation_audit/20261009-review-001/source_snapshots/12193a6353b1b0ebee2d422af6aa97894fec44083267720c99ccb7c9bc896d8e.md",
+      "git_blob": "28c764fd11a58d8085f54e3f07f2c45f82967f06",
+      "sha256": "12193a6353b1b0ebee2d422af6aa97894fec44083267720c99ccb7c9bc896d8e"
+    },
+    {
+      "path": "tools/method_documentation_audit/20261009-review-001/source_snapshots/135a75e45770b83c7d6f7d3ae9d3169beeef205416ef79e658cc905e6ee287f4.md",
+      "git_blob": "46fc79700e6f0c2bdff3b0730e6711d24cddd4f8",
+      "sha256": "135a75e45770b83c7d6f7d3ae9d3169beeef205416ef79e658cc905e6ee287f4"
+    },
+    {
+      "path": "tools/method_documentation_audit/20261009-review-001/source_snapshots/1444abbef2a5afcd875fd3ab8065dee78a44c720833836f2f24a34e5e528aea5.md",
+      "git_blob": "73bdae349a886037d1633af766b8e21247def6c0",
+      "sha256": "1444abbef2a5afcd875fd3ab8065dee78a44c720833836f2f24a34e5e528aea5"
+    },
+    {
+      "path": "tools/method_documentation_audit/20261009-review-001/source_snapshots/1516f2414ad2582ec583efe6ae51d686c6d2df54aab770245441bb6082ff5352.md",
+      "git_blob": "72f0dab556b46e7edcf7e211edba23b992c928d8",
+      "sha256": "1516f2414ad2582ec583efe6ae51d686c6d2df54aab770245441bb6082ff5352"
+    },
+    {
+      "path": "tools/method_documentation_audit/20261009-review-001/source_snapshots/163d78e9f3c920b0a64d047623bc51308eb2067562354a7c4955e9c8b4774fc3.md",
+      "git_blob": "390c9ea4352241b5be52e7a1f710cb007ef4f735",
+      "sha256": "163d78e9f3c920b0a64d047623bc51308eb2067562354a7c4955e9c8b4774fc3"
+    },
+    {
+      "path": "tools/method_documentation_audit/20261009-review-001/source_snapshots/1698b1708e00329b510d1cd1f73521d3a912a704594e4c9060e69c668add7f03.md",
+      "git_blob": "da886bdf0e63762340e6654542a9e9f4740b527f",
+      "sha256": "1698b1708e00329b510d1cd1f73521d3a912a704594e4c9060e69c668add7f03"
+    },
+    {
+      "path": "tools/method_documentation_audit/20261009-review-001/source_snapshots/171aeb53648793647538f7a3f2ef7ec96ac966f670ecd20957605c92f43b866e.md",
+      "git_blob": "998c7848b82fc24f6d33ffd1ffa23a976cb5470d",
+      "sha256": "171aeb53648793647538f7a3f2ef7ec96ac966f670ecd20957605c92f43b866e"
+    },
+    {
+      "path": "tools/method_documentation_audit/20261009-review-001/source_snapshots/175c2b3f364969a5eefc4b62a8116383afe4484777474b6527fbbede32b8bf1d.md",
+      "git_blob": "0c3111bb289806813112305265de39eb37111fbc",
+      "sha256": "175c2b3f364969a5eefc4b62a8116383afe4484777474b6527fbbede32b8bf1d"
+    },
+    {
+      "path": "tools/method_documentation_audit/20261009-review-001/source_snapshots/1afdcf95fb9c70a3efb592b52a439a29d4aeea1a13ceef74e5e26481f041647b.md",
+      "git_blob": "2402e15868cb22b139a2e75ad952f2715e4f69d9",
+      "sha256": "1afdcf95fb9c70a3efb592b52a439a29d4aeea1a13ceef74e5e26481f041647b"
+    },
+    {
+      "path": "tools/method_documentation_audit/20261009-review-001/source_snapshots/1b11754a1d158f059bb5f1d7d044e9b8e2c0d2c124268f7163667236c3663cb3.md",
+      "git_blob": "4b10c31f025053915055af11df0483b35bf3dbfd",
+      "sha256": "1b11754a1d158f059bb5f1d7d044e9b8e2c0d2c124268f7163667236c3663cb3"
+    },
+    {
+      "path": "tools/method_documentation_audit/20261009-review-001/source_snapshots/1bf3db16c133bee1e8a8cfdd21b4d9e38d8de23b75ce1ca11dba8e2601f19f93.md",
+      "git_blob": "46ac5de27947eada76c3649d4db44976a7ccf13a",
+      "sha256": "1bf3db16c133bee1e8a8cfdd21b4d9e38d8de23b75ce1ca11dba8e2601f19f93"
+    },
+    {
+      "path": "tools/method_documentation_audit/20261009-review-001/source_snapshots/1ddccf41c5e90761b082aa10f977507b8a098c8d58d09fd736c617e63fd976e2.md",
+      "git_blob": "5738600199ada573f41914e5a4ca1cbc409605ff",
+      "sha256": "1ddccf41c5e90761b082aa10f977507b8a098c8d58d09fd736c617e63fd976e2"
+    },
+    {
+      "path": "tools/method_documentation_audit/20261009-review-001/source_snapshots/1e66211634e0c43d59fd1073bb5a077ae2a012513c1039aeb72d0d323b4750ef.md",
+      "git_blob": "f6166cb8ae60ea6e770115f356ae504f53140dc2",
+      "sha256": "1e66211634e0c43d59fd1073bb5a077ae2a012513c1039aeb72d0d323b4750ef"
+    },
+    {
+      "path": "tools/method_documentation_audit/20261009-review-001/source_snapshots/1f04a5645e60e326811136941ff8c4cd4732b738b99b315c5ee188e76f9a9884.md",
+      "git_blob": "1bbb3d5c40b653d76ad5b405cf0133183c6d13b4",
+      "sha256": "1f04a5645e60e326811136941ff8c4cd4732b738b99b315c5ee188e76f9a9884"
+    },
+    {
+      "path": "tools/method_documentation_audit/20261009-review-001/source_snapshots/1f2b7f349fdc69affa6f6f8f69414728a8b0c5bad63cf0a336d3e65664659b74.md",
+      "git_blob": "73fbbc202cdd6badf6a4afc162d4033d3f9b7ba4",
+      "sha256": "1f2b7f349fdc69affa6f6f8f69414728a8b0c5bad63cf0a336d3e65664659b74"
+    },
+    {
+      "path": "tools/method_documentation_audit/20261009-review-001/source_snapshots/1f4712ff4987ea3088e123833a86c0370cadd8572dab4829e5160a697da4d79b.md",
+      "git_blob": "8e1c4601cd4d4de7df35ebc2f9cab82f3f6d680b",
+      "sha256": "1f4712ff4987ea3088e123833a86c0370cadd8572dab4829e5160a697da4d79b"
+    },
+    {
+      "path": "tools/method_documentation_audit/20261009-review-001/source_snapshots/1fc917f7146cac9a486bfad186ffb624d8e0bc694d0c82d08be62158c92d6e93.md",
+      "git_blob": "408c4a038017f609613400ab6682ab3a009d78f6",
+      "sha256": "1fc917f7146cac9a486bfad186ffb624d8e0bc694d0c82d08be62158c92d6e93"
+    },
+    {
+      "path": "tools/method_documentation_audit/20261009-review-001/source_snapshots/20b996eddf088e5bce65ea96703c97629291e77bfbfeeb8f170c3ecf7303db2d.md",
+      "git_blob": "78598e785242c0b5cd6670cda10e68e073a9d39c",
+      "sha256": "20b996eddf088e5bce65ea96703c97629291e77bfbfeeb8f170c3ecf7303db2d"
+    },
+    {
+      "path": "tools/method_documentation_audit/20261009-review-001/source_snapshots/22a38097d50555bc09b33a0d4c4aaee9e20b7595e5b07fd1fe2f8a45f54757d2.md",
+      "git_blob": "965f201c0793d83c60a54fc650707d7c2af13a1f",
+      "sha256": "22a38097d50555bc09b33a0d4c4aaee9e20b7595e5b07fd1fe2f8a45f54757d2"
+    },
+    {
+      "path": "tools/method_documentation_audit/20261009-review-001/source_snapshots/23906b9ec1e5b811b0ad3529374e6f859a09a185c3b289a815bb4a432e594d62.md",
+      "git_blob": "5c51808b108a2ff83d66d3dd7e270cdb621917ae",
+      "sha256": "23906b9ec1e5b811b0ad3529374e6f859a09a185c3b289a815bb4a432e594d62"
+    },
+    {
+      "path": "tools/method_documentation_audit/20261009-review-001/source_snapshots/240a352c2336d0be5261dcf0001debf7660bf7bf7daafa3a6111034c45869483.md",
+      "git_blob": "cc3aef55a32d0018e45e79b7a9508fa366c31e46",
+      "sha256": "240a352c2336d0be5261dcf0001debf7660bf7bf7daafa3a6111034c45869483"
+    },
+    {
+      "path": "tools/method_documentation_audit/20261009-review-001/source_snapshots/24183994c52a804e17efd6e3ec65a9f733b9fc7a75c92652bde5480601a5f22d.md",
+      "git_blob": "44964c1cdb7709727bf721635f85e1eb57a1f7a9",
+      "sha256": "24183994c52a804e17efd6e3ec65a9f733b9fc7a75c92652bde5480601a5f22d"
+    },
+    {
+      "path": "tools/method_documentation_audit/20261009-review-001/source_snapshots/241d79a7adc95be2ae689112fc18fa3a52a6bbd5ff63fcffbacb8ebabcc599ea.md",
+      "git_blob": "ef86ceba178511746112afcbc7c533376eef87a0",
+      "sha256": "241d79a7adc95be2ae689112fc18fa3a52a6bbd5ff63fcffbacb8ebabcc599ea"
+    },
+    {
+      "path": "tools/method_documentation_audit/20261009-review-001/source_snapshots/24ad57b1bdfe89b7f36af8db6abe2996015dfa189776eeb7ed2acd9359f20890.md",
+      "git_blob": "2e7c5163f75543cbc6687f1e76dbcc5851e40eae",
+      "sha256": "24ad57b1bdfe89b7f36af8db6abe2996015dfa189776eeb7ed2acd9359f20890"
+    },
+    {
+      "path": "tools/method_documentation_audit/20261009-review-001/source_snapshots/2504b4f5108818d52b98a8387385ee4e8e6d81f92aa8a3048fd390aa0b1c385c.md",
+      "git_blob": "d9c33fac87ea7296caa08c3000e103ecd8ff39d3",
+      "sha256": "2504b4f5108818d52b98a8387385ee4e8e6d81f92aa8a3048fd390aa0b1c385c"
+    },
+    {
+      "path": "tools/method_documentation_audit/20261009-review-001/source_snapshots/25781237f4af05ba7a2d9a2a62a962d87c4449464db7d044e7dc96cd36979e8d.md",
+      "git_blob": "183016855a8c8b1af61a78e82a6cf5f151aa74fd",
+      "sha256": "25781237f4af05ba7a2d9a2a62a962d87c4449464db7d044e7dc96cd36979e8d"
+    },
+    {
+      "path": "tools/method_documentation_audit/20261009-review-001/source_snapshots/257eba379ed5c202399358cad2274d2766b12edb37c9458201fd743b420be292.md",
+      "git_blob": "8d823e888414f0de9380aef213a8914d65f783e4",
+      "sha256": "257eba379ed5c202399358cad2274d2766b12edb37c9458201fd743b420be292"
+    },
+    {
+      "path": "tools/method_documentation_audit/20261009-review-001/source_snapshots/25c7a9a6d9bfa08f66f151252aa89f4d5b22d105120c95daba775e2a83a3c175.md",
+      "git_blob": "75a1290a591c29274bedfe9429572eccb1d029b3",
+      "sha256": "25c7a9a6d9bfa08f66f151252aa89f4d5b22d105120c95daba775e2a83a3c175"
+    },
+    {
+      "path": "tools/method_documentation_audit/20261009-review-001/source_snapshots/25da3afaf7ebbf8f898e62cc14d97f7326cf6cdbc285add7c924c2fc05c7de19.md",
+      "git_blob": "e16f09e3aed0e40220565e455d5f16c5c6c03422",
+      "sha256": "25da3afaf7ebbf8f898e62cc14d97f7326cf6cdbc285add7c924c2fc05c7de19"
+    },
+    {
+      "path": "tools/method_documentation_audit/20261009-review-001/source_snapshots/25de9f615d70d8168868cb90693c3360ad1ffddec50f3c6727462eb4218a310f.md",
+      "git_blob": "7ffa88b9eecc5c5f9bdb8392e446b9a210b50f24",
+      "sha256": "25de9f615d70d8168868cb90693c3360ad1ffddec50f3c6727462eb4218a310f"
+    },
+    {
+      "path": "tools/method_documentation_audit/20261009-review-001/source_snapshots/2697fbe35d414227192a17d13bfecd2fb815baaf4c55d9cdc1c7af71cff54229.md",
+      "git_blob": "560dcf375dde37c9cf15eb5d7f90e0cea5fe5234",
+      "sha256": "2697fbe35d414227192a17d13bfecd2fb815baaf4c55d9cdc1c7af71cff54229"
+    },
+    {
+      "path": "tools/method_documentation_audit/20261009-review-001/source_snapshots/2746a8d265d32abe6ad1c3645d4f7adc99ffdb508adc59741ab4713e0d229a93.md",
+      "git_blob": "812cf8a3516c534b113204b01d321b4dc120a113",
+      "sha256": "2746a8d265d32abe6ad1c3645d4f7adc99ffdb508adc59741ab4713e0d229a93"
+    },
+    {
+      "path": "tools/method_documentation_audit/20261009-review-001/source_snapshots/27b89c0f386443699827de00d4cdfa5a94d0a410b8fd057b120829e6cea46a0f.md",
+      "git_blob": "30940bce71cc261adedded818b3fd1a1d903a27b",
+      "sha256": "27b89c0f386443699827de00d4cdfa5a94d0a410b8fd057b120829e6cea46a0f"
+    },
+    {
+      "path": "tools/method_documentation_audit/20261009-review-001/source_snapshots/2827799bd3f64723d309f919f57340c5058e8064d31f1b6ee4927029c436c03a.md",
+      "git_blob": "a137b3c763435b05637c0a787498cd3b063773eb",
+      "sha256": "2827799bd3f64723d309f919f57340c5058e8064d31f1b6ee4927029c436c03a"
+    },
+    {
+      "path": "tools/method_documentation_audit/20261009-review-001/source_snapshots/2860b93575ecb9c4ee84f19974b182e0b8efd7b6582f8240e17d13bc4e9aacba.md",
+      "git_blob": "3d7f0c31bb3cc23a29608ce8655f16d7af21cbf9",
+      "sha256": "2860b93575ecb9c4ee84f19974b182e0b8efd7b6582f8240e17d13bc4e9aacba"
+    },
+    {
+      "path": "tools/method_documentation_audit/20261009-review-001/source_snapshots/295e1c67c8389c10dcb4e5f4635ed3a3ee99598047bd7b2a41fceb09429bc89d.md",
+      "git_blob": "9df86a1ad81f7b980688e96d2655297ea616849c",
+      "sha256": "295e1c67c8389c10dcb4e5f4635ed3a3ee99598047bd7b2a41fceb09429bc89d"
+    },
+    {
+      "path": "tools/method_documentation_audit/20261009-review-001/source_snapshots/29bf0886741598de0cf45553d24b2c5a8148eb7809f815c9864dc89964c8e7b5.md",
+      "git_blob": "eee65390bfb2637bd1c07a58d7eaf01d07c5e25e",
+      "sha256": "29bf0886741598de0cf45553d24b2c5a8148eb7809f815c9864dc89964c8e7b5"
+    },
+    {
+      "path": "tools/method_documentation_audit/20261009-review-001/source_snapshots/2ac266f87b5ad0e15adbc6dfe77b5c6ead84003a736010b183fdedd011999cfa.md",
+      "git_blob": "0e93dd370db44fd2d94400a76d69319f573b2711",
+      "sha256": "2ac266f87b5ad0e15adbc6dfe77b5c6ead84003a736010b183fdedd011999cfa"
+    },
+    {
+      "path": "tools/method_documentation_audit/20261009-review-001/source_snapshots/2afaeccbd1d977f47d1b4037c70220cc3cc8c821b0a5e57cd175911de0b8949d.md",
+      "git_blob": "fbb01bfae1c531e234083d93618258078b79de91",
+      "sha256": "2afaeccbd1d977f47d1b4037c70220cc3cc8c821b0a5e57cd175911de0b8949d"
+    },
+    {
+      "path": "tools/method_documentation_audit/20261009-review-001/source_snapshots/2bdc468e0ebf209963c4653defd63ac09177950bd505260216a85c071c596d7d.md",
+      "git_blob": "1cba5d79c8941d29f48f99c6ea81f7e060a1002d",
+      "sha256": "2bdc468e0ebf209963c4653defd63ac09177950bd505260216a85c071c596d7d"
+    },
+    {
+      "path": "tools/method_documentation_audit/20261009-review-001/source_snapshots/2d91bde548e8aa2bcb1079adb69dc68c8399b062c68ff330f7856fd440089ed8.md",
+      "git_blob": "e0b2f8d379edd61f8d60f6fcf2690df5fae5d4e3",
+      "sha256": "2d91bde548e8aa2bcb1079adb69dc68c8399b062c68ff330f7856fd440089ed8"
+    },
+    {
+      "path": "tools/method_documentation_audit/20261009-review-001/source_snapshots/2e449183b19b17d72e9bf9fa07959ad872cf26b838caeb88e3da259f00d66eb9.md",
+      "git_blob": "790f922bcbfbb65cbdacc615b528373d8c0e46b8",
+      "sha256": "2e449183b19b17d72e9bf9fa07959ad872cf26b838caeb88e3da259f00d66eb9"
+    },
+    {
+      "path": "tools/method_documentation_audit/20261009-review-001/source_snapshots/2f07f1bd278119e591f4dcdc5a5a93748966f8077e3598766928fd7eb1ecd66a.md",
+      "git_blob": "97e62afcda614e193196676bcfb3feab584ce5cc",
+      "sha256": "2f07f1bd278119e591f4dcdc5a5a93748966f8077e3598766928fd7eb1ecd66a"
+    },
+    {
+      "path": "tools/method_documentation_audit/20261009-review-001/source_snapshots/2f5fee6948dd33ac9c4b264940f0dab307b806e38cc92f1708cc55e4d08f3203.md",
+      "git_blob": "9f4a1c591a4f5751f4e85bdbfc5dc617f6c15f86",
+      "sha256": "2f5fee6948dd33ac9c4b264940f0dab307b806e38cc92f1708cc55e4d08f3203"
+    },
+    {
+      "path": "tools/method_documentation_audit/20261009-review-001/source_snapshots/30d0dc98e569da1942a687e71ae6a2b433b47640a40edf349d12a2d0b49eac5d.md",
+      "git_blob": "e56c3dd8af9cf23e82fa6fa1a130421329c1e6b7",
+      "sha256": "30d0dc98e569da1942a687e71ae6a2b433b47640a40edf349d12a2d0b49eac5d"
+    },
+    {
+      "path": "tools/method_documentation_audit/20261009-review-001/source_snapshots/313a6c1727178305320672b74371517b9830913d3b5c394dd005fec2e4f7f67c.md",
+      "git_blob": "a35ae04fe0ee3c96683836dc48fec147fcdd0dff",
+      "sha256": "313a6c1727178305320672b74371517b9830913d3b5c394dd005fec2e4f7f67c"
+    },
+    {
+      "path": "tools/method_documentation_audit/20261009-review-001/source_snapshots/33a30976adc4c5b38b645c0dd3aaed70b72b9668666455d79afb7b50f640df84.md",
+      "git_blob": "e604321195d2cde8d46cd9d5a16139013cc3fcf7",
+      "sha256": "33a30976adc4c5b38b645c0dd3aaed70b72b9668666455d79afb7b50f640df84"
+    },
+    {
+      "path": "tools/method_documentation_audit/20261009-review-001/source_snapshots/344424e2483eaa7a7010a306ba3e532a4688917783b161f87bfc98f743bad048.md",
+      "git_blob": "ec4ec15fdd7d14e657dcaef1c193a2bbf94b28c4",
+      "sha256": "344424e2483eaa7a7010a306ba3e532a4688917783b161f87bfc98f743bad048"
+    },
+    {
+      "path": "tools/method_documentation_audit/20261009-review-001/source_snapshots/35a793f81defd21a51fdcfaa6517578a5b365d6cd5f40666faab065fb6d5f746.md",
+      "git_blob": "3cb12aa6878856fd9f4ca10fa9644b02590cfe4a",
+      "sha256": "35a793f81defd21a51fdcfaa6517578a5b365d6cd5f40666faab065fb6d5f746"
+    },
+    {
+      "path": "tools/method_documentation_audit/20261009-review-001/source_snapshots/36157f890cf0eccaae3956ddfbc865663c6907f5917bfaef163604685ad7cd30.md",
+      "git_blob": "b30a8030f9963414c14a2c952039faa9189959b8",
+      "sha256": "36157f890cf0eccaae3956ddfbc865663c6907f5917bfaef163604685ad7cd30"
+    },
+    {
+      "path": "tools/method_documentation_audit/20261009-review-001/source_snapshots/373b361a6b169b22704a8bac9d0dfccbdaeb2c4b5d65c5c6f43782304c8e012b.md",
+      "git_blob": "64db9628681bc44a926c3bfac95f0071b29deff9",
+      "sha256": "373b361a6b169b22704a8bac9d0dfccbdaeb2c4b5d65c5c6f43782304c8e012b"
+    },
+    {
+      "path": "tools/method_documentation_audit/20261009-review-001/source_snapshots/385fe940db044859840bb87b9db77fff1fa242fbbb30838028af6d2e6dbc7274.md",
+      "git_blob": "a26c2585c3f5e7af487683a4f5ec8081d83c1935",
+      "sha256": "385fe940db044859840bb87b9db77fff1fa242fbbb30838028af6d2e6dbc7274"
+    },
+    {
+      "path": "tools/method_documentation_audit/20261009-review-001/source_snapshots/3888cef808f5a6daec92dd336a759e8540621590978b0a54d97b4fc1acf60902.md",
+      "git_blob": "125f53c1269e77fc15628bd6562ed4b03f30a7cb",
+      "sha256": "3888cef808f5a6daec92dd336a759e8540621590978b0a54d97b4fc1acf60902"
+    },
+    {
+      "path": "tools/method_documentation_audit/20261009-review-001/source_snapshots/39d0a2d6f6a0018abfa06cbe898dff2bb9cd5113170b8cb20defc058aa1be5ad.md",
+      "git_blob": "a54c09e5d81fd789d7c32c503ae33f8a291b76ab",
+      "sha256": "39d0a2d6f6a0018abfa06cbe898dff2bb9cd5113170b8cb20defc058aa1be5ad"
+    },
+    {
+      "path": "tools/method_documentation_audit/20261009-review-001/source_snapshots/3a282a85812b5c8f278fc64fda9d7a957a22010587be3fd59cce85e011454ad3.md",
+      "git_blob": "34b67bd0ad0b616f80f0abeda8560d41ada55a17",
+      "sha256": "3a282a85812b5c8f278fc64fda9d7a957a22010587be3fd59cce85e011454ad3"
+    },
+    {
+      "path": "tools/method_documentation_audit/20261009-review-001/source_snapshots/3b89f777361690b2f61085273c163da50d3e3999abda0709f17e0c9a446ca785.md",
+      "git_blob": "1b8203e8808806b5866f9666c2e09672c2827241",
+      "sha256": "3b89f777361690b2f61085273c163da50d3e3999abda0709f17e0c9a446ca785"
+    },
+    {
+      "path": "tools/method_documentation_audit/20261009-review-001/source_snapshots/3d08563b5dfa0ff489c641abf06e8844144c5b70bb44808e7aa9a1f5ae8a1b07.md",
+      "git_blob": "8bbb2a6f351eae499d115486e940a4561ae46599",
+      "sha256": "3d08563b5dfa0ff489c641abf06e8844144c5b70bb44808e7aa9a1f5ae8a1b07"
+    },
+    {
+      "path": "tools/method_documentation_audit/20261009-review-001/source_snapshots/3d3145d134f77a0d33b7b41b44e13e1d73670dd71154817b84856d2fa2fcb4ec.md",
+      "git_blob": "1ac32de84a1912da37759605c1eba3facf3064a9",
+      "sha256": "3d3145d134f77a0d33b7b41b44e13e1d73670dd71154817b84856d2fa2fcb4ec"
+    },
+    {
+      "path": "tools/method_documentation_audit/20261009-review-001/source_snapshots/3e8a9c41e14c7287807efed13671358142eb3167479a05f4dae814b40d2fd5ff.md",
+      "git_blob": "686e90008e4638566f2e6c6831e18e5f83601ead",
+      "sha256": "3e8a9c41e14c7287807efed13671358142eb3167479a05f4dae814b40d2fd5ff"
+    },
+    {
+      "path": "tools/method_documentation_audit/20261009-review-001/source_snapshots/3f0b8618ab518912bb04cb487894f60869c70577e14d9c4b8c63ba0a26c17311.md",
+      "git_blob": "c0d86d744d6e1a14e32ac23e725e8fb9a9b06019",
+      "sha256": "3f0b8618ab518912bb04cb487894f60869c70577e14d9c4b8c63ba0a26c17311"
+    },
+    {
+      "path": "tools/method_documentation_audit/20261009-review-001/source_snapshots/3fcccb773c42d639bdd93786d634f4d5c3bf80a001325be619f2cc51c4f9d61d.md",
+      "git_blob": "a8d1ccc45c9e9f0c90cddf6ab186b35023dcc78c",
+      "sha256": "3fcccb773c42d639bdd93786d634f4d5c3bf80a001325be619f2cc51c4f9d61d"
+    },
+    {
+      "path": "tools/method_documentation_audit/20261009-review-001/source_snapshots/429bed9d7650107c25b280560d067f8227cebcf39e57ea687052182d57920134.md",
+      "git_blob": "2b4a367c2b32a7261555fcee40182504dfcfb1fb",
+      "sha256": "429bed9d7650107c25b280560d067f8227cebcf39e57ea687052182d57920134"
+    },
+    {
+      "path": "tools/method_documentation_audit/20261009-review-001/source_snapshots/4401ddf16429f7fcad0442ccc6f59928b1fceaa8c7c28859600411716f60cd7e.md",
+      "git_blob": "472d98d4bdfe155f45ab9f9f152621630ec3dae9",
+      "sha256": "4401ddf16429f7fcad0442ccc6f59928b1fceaa8c7c28859600411716f60cd7e"
+    },
+    {
+      "path": "tools/method_documentation_audit/20261009-review-001/source_snapshots/44bd386e782bfb35e5e5e44d0576d54978ac28e363360560909ad0312fb2b1e2.md",
+      "git_blob": "7b15a5dc9164c0e090cab0b53497f2bd265bca3b",
+      "sha256": "44bd386e782bfb35e5e5e44d0576d54978ac28e363360560909ad0312fb2b1e2"
+    },
+    {
+      "path": "tools/method_documentation_audit/20261009-review-001/source_snapshots/44e49e065e371401030b07bbdfdacff41a85c8cc307222edc53019f38da8a0cc.md",
+      "git_blob": "4ce13fa824a813937844932c51cc634682c28f60",
+      "sha256": "44e49e065e371401030b07bbdfdacff41a85c8cc307222edc53019f38da8a0cc"
+    },
+    {
+      "path": "tools/method_documentation_audit/20261009-review-001/source_snapshots/479417d40b0c6c4647894b22788a7c0a23146a110b0847276d314b03883fa895.md",
+      "git_blob": "45d00536603aae9cbffc26aa8a05a9f8e327b36b",
+      "sha256": "479417d40b0c6c4647894b22788a7c0a23146a110b0847276d314b03883fa895"
+    },
+    {
+      "path": "tools/method_documentation_audit/20261009-review-001/source_snapshots/49d142bf6aba4d52d7ebfa6286ef5055bf006d1e698d0880f912e0b37e6138a6.md",
+      "git_blob": "aab64cf4ab0891e65761d4db5c8fbe9d102e1718",
+      "sha256": "49d142bf6aba4d52d7ebfa6286ef5055bf006d1e698d0880f912e0b37e6138a6"
+    },
+    {
+      "path": "tools/method_documentation_audit/20261009-review-001/source_snapshots/4b153900cc087bab678ae26282b86a2954c6a605125a1a673963296ccf93e3ed.md",
+      "git_blob": "4ea74dee68420de6584781dab2a43dfd8f5057af",
+      "sha256": "4b153900cc087bab678ae26282b86a2954c6a605125a1a673963296ccf93e3ed"
+    },
+    {
+      "path": "tools/method_documentation_audit/20261009-review-001/source_snapshots/4ba92dd940489c1a7604d2970f4140f80a372bb8ad38132e0de48ade27e605c2.md",
+      "git_blob": "56d531f72d8266a0511415082dd2d32d25d4e826",
+      "sha256": "4ba92dd940489c1a7604d2970f4140f80a372bb8ad38132e0de48ade27e605c2"
+    },
+    {
+      "path": "tools/method_documentation_audit/20261009-review-001/source_snapshots/4bcfb831857e1be75a36e58e248946dc4f707f917ca20818d292690ebab686e6.md",
+      "git_blob": "e16f1525d09a043e5031bcdd52e14f40d480260d",
+      "sha256": "4bcfb831857e1be75a36e58e248946dc4f707f917ca20818d292690ebab686e6"
+    },
+    {
+      "path": "tools/method_documentation_audit/20261009-review-001/source_snapshots/4d28d78689184707103b897fee0cf7d114946f2727522a58c4710657ce7b2f45.md",
+      "git_blob": "1e4040086543eaad62cbb44fa8c1db5ce33760bc",
+      "sha256": "4d28d78689184707103b897fee0cf7d114946f2727522a58c4710657ce7b2f45"
+    },
+    {
+      "path": "tools/method_documentation_audit/20261009-review-001/source_snapshots/4d4031ed0d6276c3bbc328977f1137af0c17f94c365973140940d9f321ef6f6b.md",
+      "git_blob": "38139248a03372d7d88085fb1cb3615e4802a07c",
+      "sha256": "4d4031ed0d6276c3bbc328977f1137af0c17f94c365973140940d9f321ef6f6b"
+    },
+    {
+      "path": "tools/method_documentation_audit/20261009-review-001/source_snapshots/4d8b202cc283061c29e33f10c5387ad6df9d8b2a7050046b1f6193a67bcde4dc.md",
+      "git_blob": "736ca4b8a324570647c9eaff297b0936826681ed",
+      "sha256": "4d8b202cc283061c29e33f10c5387ad6df9d8b2a7050046b1f6193a67bcde4dc"
+    },
+    {
+      "path": "tools/method_documentation_audit/20261009-review-001/source_snapshots/4dd76174fd781834349e82fd8480946271f5df8759ac8dd1e4220b7fbd0dfe7d.md",
+      "git_blob": "1e3bad1bd208ce91d63f020a6668cbac733a6ac2",
+      "sha256": "4dd76174fd781834349e82fd8480946271f5df8759ac8dd1e4220b7fbd0dfe7d"
+    },
+    {
+      "path": "tools/method_documentation_audit/20261009-review-001/source_snapshots/4ec4b222d34a3d35aec9b8125836de17f47eb45c7c2d087f9c4064595bd3198c.md",
+      "git_blob": "9397a47144ad906297c701e544fb97d8962f971b",
+      "sha256": "4ec4b222d34a3d35aec9b8125836de17f47eb45c7c2d087f9c4064595bd3198c"
+    },
+    {
+      "path": "tools/method_documentation_audit/20261009-review-001/source_snapshots/4efc14525f1a7de57419feff8256d3dfa9e690db48f4ee094f48068a42281359.md",
+      "git_blob": "2b0a4c9ba4347abb19a83782c717dd5653199a6b",
+      "sha256": "4efc14525f1a7de57419feff8256d3dfa9e690db48f4ee094f48068a42281359"
+    },
+    {
+      "path": "tools/method_documentation_audit/20261009-review-001/source_snapshots/515774a86049187f12642c809d9f11a992f1404fd75163dbdb8a0a53763c2a04.md",
+      "git_blob": "e7c867f6baadc25bd21e2916ae6e5d33df8c258e",
+      "sha256": "515774a86049187f12642c809d9f11a992f1404fd75163dbdb8a0a53763c2a04"
+    },
+    {
+      "path": "tools/method_documentation_audit/20261009-review-001/source_snapshots/524dcab65d72faefc873252cc53a7589561351cf8ea67064b575518f69bc7c3a.md",
+      "git_blob": "57d0062c08035a3b0300a826ca874b5c87bdfec2",
+      "sha256": "524dcab65d72faefc873252cc53a7589561351cf8ea67064b575518f69bc7c3a"
+    },
+    {
+      "path": "tools/method_documentation_audit/20261009-review-001/source_snapshots/53ccd4f65a0737f387d85aad0dbc1aba3417f337172b9ba987b36af172713c32.md",
+      "git_blob": "809c064c0fd10f8801bbcacfc9098f6f0945eae4",
+      "sha256": "53ccd4f65a0737f387d85aad0dbc1aba3417f337172b9ba987b36af172713c32"
+    },
+    {
+      "path": "tools/method_documentation_audit/20261009-review-001/source_snapshots/53ce8e64d0084a55fb59db35ea63271360ff9846d6afa403a2088d35d6006dca.md",
+      "git_blob": "0ea09ebfd2f6bb44b07779f6e95809366c68142d",
+      "sha256": "53ce8e64d0084a55fb59db35ea63271360ff9846d6afa403a2088d35d6006dca"
+    },
+    {
+      "path": "tools/method_documentation_audit/20261009-review-001/source_snapshots/53e0661451c8b4fd522bbb56993be9cc16376ef03159b06d186d399bd2add3aa.md",
+      "git_blob": "f8a5fb1be5c745664e85b1757b014457be0361d3",
+      "sha256": "53e0661451c8b4fd522bbb56993be9cc16376ef03159b06d186d399bd2add3aa"
+    },
+    {
+      "path": "tools/method_documentation_audit/20261009-review-001/source_snapshots/5476fa1c4de4258d8d4ecf44231e1005cc9ac04478ebd4d0effb13b78aa24ae5.md",
+      "git_blob": "54f5631fc14f16784c2a74755e592062d82091b1",
+      "sha256": "5476fa1c4de4258d8d4ecf44231e1005cc9ac04478ebd4d0effb13b78aa24ae5"
+    },
+    {
+      "path": "tools/method_documentation_audit/20261009-review-001/source_snapshots/5729e6c78cc6dbed4b10db455630d6f27a50a60de50a5ed7ac6ce7ac6598bc49.md",
+      "git_blob": "84e89750c0849901ccd9852d5569672f2a6f5667",
+      "sha256": "5729e6c78cc6dbed4b10db455630d6f27a50a60de50a5ed7ac6ce7ac6598bc49"
+    },
+    {
+      "path": "tools/method_documentation_audit/20261009-review-001/source_snapshots/58bb7b2ba7efe2a5b33d344278762561b7229d6260a9a23658c9aaac60d3f630.md",
+      "git_blob": "64cf2ba942fa93470e01c957be37172d2e54fb50",
+      "sha256": "58bb7b2ba7efe2a5b33d344278762561b7229d6260a9a23658c9aaac60d3f630"
+    },
+    {
+      "path": "tools/method_documentation_audit/20261009-review-001/source_snapshots/597cfdc96cbca7adb2d468efdb524a0aa3eace5ee09b844b55dca4860cd9a083.md",
+      "git_blob": "08fc7608fa84d917d7a7fb3dfd33fb9836861486",
+      "sha256": "597cfdc96cbca7adb2d468efdb524a0aa3eace5ee09b844b55dca4860cd9a083"
+    },
+    {
+      "path": "tools/method_documentation_audit/20261009-review-001/source_snapshots/5984b5b867b569f8b180233926789ef357c6462d3442bd34814ae2d395adc95d.md",
+      "git_blob": "0080ec1965aa9d6f7a064198dab5b361ef358f6f",
+      "sha256": "5984b5b867b569f8b180233926789ef357c6462d3442bd34814ae2d395adc95d"
+    },
+    {
+      "path": "tools/method_documentation_audit/20261009-review-001/source_snapshots/5ca88bf002ee159efa5fd167c4825ae7d8a3a1c697c6fb7b8fa5c0881672bff5.md",
+      "git_blob": "77f09e27aada82ab93e7c80e824aa10325ebf218",
+      "sha256": "5ca88bf002ee159efa5fd167c4825ae7d8a3a1c697c6fb7b8fa5c0881672bff5"
+    },
+    {
+      "path": "tools/method_documentation_audit/20261009-review-001/source_snapshots/5d75d7ecedeeb58f1282fbd2dc0f2eae25bc66d424cafa0efb1d2e028e05c9c6.md",
+      "git_blob": "75c6e89de45f7f2d63dceb2e85b233d7820537e9",
+      "sha256": "5d75d7ecedeeb58f1282fbd2dc0f2eae25bc66d424cafa0efb1d2e028e05c9c6"
+    },
+    {
+      "path": "tools/method_documentation_audit/20261009-review-001/source_snapshots/5e0a71b58d523c0819a5644d4f8d22521774dbaea0f1b4334e3ba0d3c409fab4.md",
+      "git_blob": "1083661635c6e2c9dece09dfe468f92dd1ec1159",
+      "sha256": "5e0a71b58d523c0819a5644d4f8d22521774dbaea0f1b4334e3ba0d3c409fab4"
+    },
+    {
+      "path": "tools/method_documentation_audit/20261009-review-001/source_snapshots/5e5b621c385346e2fe89d86b702066f9c008990c00a1eaaf191a93d65408c1e9.md",
+      "git_blob": "7b4a7899661a5837e63fec146865f1cbc88d3d8b",
+      "sha256": "5e5b621c385346e2fe89d86b702066f9c008990c00a1eaaf191a93d65408c1e9"
+    },
+    {
+      "path": "tools/method_documentation_audit/20261009-review-001/source_snapshots/6003db5659a92be4f69eb91e85751db674034b5318ecddf0f881dbf2615b4c33.md",
+      "git_blob": "be74cdddec61e8fe7c476b0e3d83d77a4e536077",
+      "sha256": "6003db5659a92be4f69eb91e85751db674034b5318ecddf0f881dbf2615b4c33"
+    },
+    {
+      "path": "tools/method_documentation_audit/20261009-review-001/source_snapshots/609164dc5e6a2914f6248ba79bca267f13785807599b64df7084362e238ebbbc.md",
+      "git_blob": "b622339f04c5f24358fbb8e519e24d91bac21055",
+      "sha256": "609164dc5e6a2914f6248ba79bca267f13785807599b64df7084362e238ebbbc"
+    },
+    {
+      "path": "tools/method_documentation_audit/20261009-review-001/source_snapshots/63030e406963f4c31a6a97412f5dcaa844e7ba2c5db5729dba65fb01126be8e6.md",
+      "git_blob": "b4356f84befe0b97abff16721caa40a160c06c59",
+      "sha256": "63030e406963f4c31a6a97412f5dcaa844e7ba2c5db5729dba65fb01126be8e6"
+    },
+    {
+      "path": "tools/method_documentation_audit/20261009-review-001/source_snapshots/6369c02e8879dc2adad201ba786b31df78ef4c5a774c1c63e503fb3749573404.md",
+      "git_blob": "fa33f06b8a84eebbc20984c6c56ed6f56cc25693",
+      "sha256": "6369c02e8879dc2adad201ba786b31df78ef4c5a774c1c63e503fb3749573404"
+    },
+    {
+      "path": "tools/method_documentation_audit/20261009-review-001/source_snapshots/63dae59766a22f4bb66f6e96e0b8289e7b80667f379d978ff05a084f39a64bc0.md",
+      "git_blob": "8905b56c4633266325dd6031682f778605835256",
+      "sha256": "63dae59766a22f4bb66f6e96e0b8289e7b80667f379d978ff05a084f39a64bc0"
+    },
+    {
+      "path": "tools/method_documentation_audit/20261009-review-001/source_snapshots/63dc9726784b3048549dc949a1175f58ef57b3928985f5f19219c0b8ef2906ae.md",
+      "git_blob": "31a41eb8fa7126441a157c8b717800140b4c3005",
+      "sha256": "63dc9726784b3048549dc949a1175f58ef57b3928985f5f19219c0b8ef2906ae"
+    },
+    {
+      "path": "tools/method_documentation_audit/20261009-review-001/source_snapshots/64967a7190aefb6efbc4ed59060db2489737f80c308ea095f27f490dd5568678.md",
+      "git_blob": "412b01f31592fe6b8f6179715f07b5074bc6adaf",
+      "sha256": "64967a7190aefb6efbc4ed59060db2489737f80c308ea095f27f490dd5568678"
+    },
+    {
+      "path": "tools/method_documentation_audit/20261009-review-001/source_snapshots/665df95fff5dd008f8980ecbdc2a09ecdfd5346d7b8d52945266969708e9e560.md",
+      "git_blob": "5d95a3f19958858b47f12975f565facd66caf8fc",
+      "sha256": "665df95fff5dd008f8980ecbdc2a09ecdfd5346d7b8d52945266969708e9e560"
+    },
+    {
+      "path": "tools/method_documentation_audit/20261009-review-001/source_snapshots/67524931b6387d5d74e55c82bc9ee14f1cc1a976160e620b6cb3ee71cd685f52.md",
+      "git_blob": "a682dccd629c168b85f1956f898bcd20780c5182",
+      "sha256": "67524931b6387d5d74e55c82bc9ee14f1cc1a976160e620b6cb3ee71cd685f52"
+    },
+    {
+      "path": "tools/method_documentation_audit/20261009-review-001/source_snapshots/68619b7bb7f01ff457f57a1a1505c62ff283b950a5019e3e2d7a5c7bd83b13b3.md",
+      "git_blob": "7c952e2578a40f7a93c6d80392d5dcc842d75323",
+      "sha256": "68619b7bb7f01ff457f57a1a1505c62ff283b950a5019e3e2d7a5c7bd83b13b3"
+    },
+    {
+      "path": "tools/method_documentation_audit/20261009-review-001/source_snapshots/6922449438407e49c08caa190cce7084ed7080f0a87ac8f8274e805eae27db89.md",
+      "git_blob": "5f9841e863d3e1d14048799194c23a9b7cfb8cda",
+      "sha256": "6922449438407e49c08caa190cce7084ed7080f0a87ac8f8274e805eae27db89"
+    },
+    {
+      "path": "tools/method_documentation_audit/20261009-review-001/source_snapshots/69895570cea5314e119cc8c414d069efd52b180007272556ff961d83d6eaaedd.md",
+      "git_blob": "c2b379074457f96140d698146feca72362bcb181",
+      "sha256": "69895570cea5314e119cc8c414d069efd52b180007272556ff961d83d6eaaedd"
+    },
+    {
+      "path": "tools/method_documentation_audit/20261009-review-001/source_snapshots/6a1e7ce662de92a64805e1af2911bdde460c6b495c6951ab97f3df6d48a787fb.md",
+      "git_blob": "a381d281a84e7e5bde055faf9b31241a8eda165a",
+      "sha256": "6a1e7ce662de92a64805e1af2911bdde460c6b495c6951ab97f3df6d48a787fb"
+    },
+    {
+      "path": "tools/method_documentation_audit/20261009-review-001/source_snapshots/6bdbb23d58a430c40516015ebf53503272678570f21569aca796767b3a62205a.md",
+      "git_blob": "c8e1bdc8a38d5f7d88e5f43ccb32139961203da4",
+      "sha256": "6bdbb23d58a430c40516015ebf53503272678570f21569aca796767b3a62205a"
+    },
+    {
+      "path": "tools/method_documentation_audit/20261009-review-001/source_snapshots/6c09a0d3b43d124e6350ea9264db61eb4652213f47b80bec60ac6d764a1f0de2.md",
+      "git_blob": "dc78236b2f8539d999ddcdf3cbb59fdbe8c29433",
+      "sha256": "6c09a0d3b43d124e6350ea9264db61eb4652213f47b80bec60ac6d764a1f0de2"
+    },
+    {
+      "path": "tools/method_documentation_audit/20261009-review-001/source_snapshots/6cb8c1eafbfe8d1204ee26c515f93dd8fe051716721be44b2449c827cd13ab35.md",
+      "git_blob": "06136348681738233ae8b85bb91a8c6f82673b9b",
+      "sha256": "6cb8c1eafbfe8d1204ee26c515f93dd8fe051716721be44b2449c827cd13ab35"
+    },
+    {
+      "path": "tools/method_documentation_audit/20261009-review-001/source_snapshots/6f00e3ebda55c7c3dbacfaaf210c78b65b1039354e6cce87ddeb7b1acb840d85.md",
+      "git_blob": "20ee21743bb7817a78478f51f83cedd19ac69c47",
+      "sha256": "6f00e3ebda55c7c3dbacfaaf210c78b65b1039354e6cce87ddeb7b1acb840d85"
+    },
+    {
+      "path": "tools/method_documentation_audit/20261009-review-001/source_snapshots/6f5b3b6b1743f8fac530ebc59151548e6955fe16c54c56d766d1b05ed6cc61ee.md",
+      "git_blob": "0e024821b7c917788a35242fc4aa09cbde75df0a",
+      "sha256": "6f5b3b6b1743f8fac530ebc59151548e6955fe16c54c56d766d1b05ed6cc61ee"
+    },
+    {
+      "path": "tools/method_documentation_audit/20261009-review-001/source_snapshots/6fe7566e7f3a168a9945f05a5fdafd03b968330aa83f535a27a46148d9d8458b.md",
+      "git_blob": "ac31b451cd63928426b985262b79cf8d3a4beb7f",
+      "sha256": "6fe7566e7f3a168a9945f05a5fdafd03b968330aa83f535a27a46148d9d8458b"
+    },
+    {
+      "path": "tools/method_documentation_audit/20261009-review-001/source_snapshots/701bc7b22a2ad14ed1a9c391cf113373932914a8cb53ceba3b55cd9ff28f4d5f.md",
+      "git_blob": "39014c6e992485f4aa81c79bfaf19aaf2d44879c",
+      "sha256": "701bc7b22a2ad14ed1a9c391cf113373932914a8cb53ceba3b55cd9ff28f4d5f"
+    },
+    {
+      "path": "tools/method_documentation_audit/20261009-review-001/source_snapshots/709fdd3a02b44879066964bf7c73c5293d7904f05123e5a53b8851eff12eb569.md",
+      "git_blob": "9358b4566e75a5731ce4fafefadb2d195cc8bf19",
+      "sha256": "709fdd3a02b44879066964bf7c73c5293d7904f05123e5a53b8851eff12eb569"
+    },
+    {
+      "path": "tools/method_documentation_audit/20261009-review-001/source_snapshots/70e1bee61645ef2ac4c6d785aee933368dbda93e42a63301de256f3f02a94ddc.md",
+      "git_blob": "81f1307f61305165dd6386d9d1f57e952d4cd2c4",
+      "sha256": "70e1bee61645ef2ac4c6d785aee933368dbda93e42a63301de256f3f02a94ddc"
+    },
+    {
+      "path": "tools/method_documentation_audit/20261009-review-001/source_snapshots/7255cf0d4366ea80ad44fae600211810082ab0880fc2f4f5426de934d9e0b828.md",
+      "git_blob": "343b6f5fe3135e050cdef468722d386b36887f52",
+      "sha256": "7255cf0d4366ea80ad44fae600211810082ab0880fc2f4f5426de934d9e0b828"
+    },
+    {
+      "path": "tools/method_documentation_audit/20261009-review-001/source_snapshots/74b46871795458cc7cb271ab08edfc8b067a85b9117af6dfaa880341e6328472.md",
+      "git_blob": "d58952e7fc17504f98260d4a80be60ab1a4d9150",
+      "sha256": "74b46871795458cc7cb271ab08edfc8b067a85b9117af6dfaa880341e6328472"
+    },
+    {
+      "path": "tools/method_documentation_audit/20261009-review-001/source_snapshots/751a493057acf1aeb8307d7aa9037b38e4f88d7b04a1b76454032479866b819f.md",
+      "git_blob": "34ba4d307ecab90c1c98522a9a01505d8f388d04",
+      "sha256": "751a493057acf1aeb8307d7aa9037b38e4f88d7b04a1b76454032479866b819f"
+    },
+    {
+      "path": "tools/method_documentation_audit/20261009-review-001/source_snapshots/761d3acd65c997ab2e2b9ed399be7b348898bb75ca844ca58cc52a5d9fd292d3.md",
+      "git_blob": "2ad5c593dbb3063b345319678b49dfdd74940a7b",
+      "sha256": "761d3acd65c997ab2e2b9ed399be7b348898bb75ca844ca58cc52a5d9fd292d3"
+    },
+    {
+      "path": "tools/method_documentation_audit/20261009-review-001/source_snapshots/769c897d5883f43f1410bdfa9fa2e6951921564a09ce7c428fc3b9afc662ca0b.md",
+      "git_blob": "7dc37d38038489ed28204611455f7d64030a056e",
+      "sha256": "769c897d5883f43f1410bdfa9fa2e6951921564a09ce7c428fc3b9afc662ca0b"
+    },
+    {
+      "path": "tools/method_documentation_audit/20261009-review-001/source_snapshots/77a2829453595ee4c1056817078f7b99e8814f02c62704788acbac07e5ae60a5.md",
+      "git_blob": "54b0180f6f5da256e56bbc908a4ea14bec61d6c0",
+      "sha256": "77a2829453595ee4c1056817078f7b99e8814f02c62704788acbac07e5ae60a5"
+    },
+    {
+      "path": "tools/method_documentation_audit/20261009-review-001/source_snapshots/77de1f9fd2b81af02410ad40ef6e639930d38c2ab50f911e92f18ae2e113f263.md",
+      "git_blob": "869bb252f59b7a00955d3cb8a41d2710821d2957",
+      "sha256": "77de1f9fd2b81af02410ad40ef6e639930d38c2ab50f911e92f18ae2e113f263"
+    },
+    {
+      "path": "tools/method_documentation_audit/20261009-review-001/source_snapshots/77fb4e8ded82db12ee8bf92613a890cf01465908dae7f5e6b7a6eda75d486a8d.md",
+      "git_blob": "3cecff987e23aed70ad7010aa78ed697a8071b53",
+      "sha256": "77fb4e8ded82db12ee8bf92613a890cf01465908dae7f5e6b7a6eda75d486a8d"
+    },
+    {
+      "path": "tools/method_documentation_audit/20261009-review-001/source_snapshots/785859d61233f3ed4fdcaf7e32451ce44b3595c9e33bd0f177b17416ae9b84c6.md",
+      "git_blob": "72c44fa45b54d249ff2132758002625d84f793ce",
+      "sha256": "785859d61233f3ed4fdcaf7e32451ce44b3595c9e33bd0f177b17416ae9b84c6"
+    },
+    {
+      "path": "tools/method_documentation_audit/20261009-review-001/source_snapshots/78bcae211260fa3e77cb540b42cc96472422a38e6984c773be2e54e9e87c4938.md",
+      "git_blob": "4374e5888dbb5f7d57d60f29029bd586fa6d47de",
+      "sha256": "78bcae211260fa3e77cb540b42cc96472422a38e6984c773be2e54e9e87c4938"
+    },
+    {
+      "path": "tools/method_documentation_audit/20261009-review-001/source_snapshots/7afd1a39ef5377422e3201e51c2db4fa157fcac493445dba35840c96aa3e7813.md",
+      "git_blob": "72e93d5e745f2aa8186119cb8ffb2e6770ffd6d6",
+      "sha256": "7afd1a39ef5377422e3201e51c2db4fa157fcac493445dba35840c96aa3e7813"
+    },
+    {
+      "path": "tools/method_documentation_audit/20261009-review-001/source_snapshots/7bdfce98acfaf0d962d0adc1b6f39c8ca19c522cb94191571635f60e98b351af.md",
+      "git_blob": "df396e8b73e5a74a7280e17c646d4cfdf4eeb525",
+      "sha256": "7bdfce98acfaf0d962d0adc1b6f39c8ca19c522cb94191571635f60e98b351af"
+    },
+    {
+      "path": "tools/method_documentation_audit/20261009-review-001/source_snapshots/7db88b85849d31b120ea0de983762ac96fa576d463c17f355c62d1d8fca10f45.md",
+      "git_blob": "53069b747faeb10b7e8471dfa6554c24adb704fb",
+      "sha256": "7db88b85849d31b120ea0de983762ac96fa576d463c17f355c62d1d8fca10f45"
+    },
+    {
+      "path": "tools/method_documentation_audit/20261009-review-001/source_snapshots/7e32dd672382de56373a021f2bbd118bf2f2f920f828eead532e37a93fa1e176.md",
+      "git_blob": "0bc5449f2ac428be044a8e55c80299cb72b314c8",
+      "sha256": "7e32dd672382de56373a021f2bbd118bf2f2f920f828eead532e37a93fa1e176"
+    },
+    {
+      "path": "tools/method_documentation_audit/20261009-review-001/source_snapshots/801db4601c10d071a695e77e9e650a3891c8dfd6b8e83aa2b506ad02fc40047e.md",
+      "git_blob": "8c7e194cc9c7dca591b12a3a13d7126cd6c3aef4",
+      "sha256": "801db4601c10d071a695e77e9e650a3891c8dfd6b8e83aa2b506ad02fc40047e"
+    },
+    {
+      "path": "tools/method_documentation_audit/20261009-review-001/source_snapshots/808884720f02a6128fd0e38a285c20e260544e8a97eabf3cb14b32c9d71bca5a.md",
+      "git_blob": "a5cd8e73f059c6c069ffc3ffcb5df79562f2ab35",
+      "sha256": "808884720f02a6128fd0e38a285c20e260544e8a97eabf3cb14b32c9d71bca5a"
+    },
+    {
+      "path": "tools/method_documentation_audit/20261009-review-001/source_snapshots/814f72b68f5b8877322794f227cb9d10a5890b7407b04564768f4629f369203c.md",
+      "git_blob": "8500692001a484e8fce592dae6c5ea37f94fd056",
+      "sha256": "814f72b68f5b8877322794f227cb9d10a5890b7407b04564768f4629f369203c"
+    },
+    {
+      "path": "tools/method_documentation_audit/20261009-review-001/source_snapshots/81c59516bf40ab7b42e7c183be69400bb2b0cc08fc20e5e9370c1b9568c51634.md",
+      "git_blob": "fcbf990286bf4256091a6d9c6059c23165f5b0ba",
+      "sha256": "81c59516bf40ab7b42e7c183be69400bb2b0cc08fc20e5e9370c1b9568c51634"
+    },
+    {
+      "path": "tools/method_documentation_audit/20261009-review-001/source_snapshots/8211760a9b7a2fba26672f735cc40a2bdebff85b8ff048b5cb8b2f814407f5ec.md",
+      "git_blob": "2c933a1eda0791a3787b71d0395b201cd4bcaf44",
+      "sha256": "8211760a9b7a2fba26672f735cc40a2bdebff85b8ff048b5cb8b2f814407f5ec"
+    },
+    {
+      "path": "tools/method_documentation_audit/20261009-review-001/source_snapshots/824a3b05271b8e489ef56657cfcdce6776a25666fecfcb6ea43744a1a450b928.md",
+      "git_blob": "9fe22b39a879ae37412881b8982f7ef5d94a156a",
+      "sha256": "824a3b05271b8e489ef56657cfcdce6776a25666fecfcb6ea43744a1a450b928"
+    },
+    {
+      "path": "tools/method_documentation_audit/20261009-review-001/source_snapshots/83068e59850f36a4715232379a0084a55351cd23905b581c20ea947cfe243dfb.md",
+      "git_blob": "b5edad916a0d08cc4d332f704c7419567cb12f4e",
+      "sha256": "83068e59850f36a4715232379a0084a55351cd23905b581c20ea947cfe243dfb"
+    },
+    {
+      "path": "tools/method_documentation_audit/20261009-review-001/source_snapshots/834414fabdd75a5da3c5a60c96e25a9739b3ba7ddd678358d54d6545a87e912c.md",
+      "git_blob": "79fe739153875ce772d0c9e79a939e6d197a104c",
+      "sha256": "834414fabdd75a5da3c5a60c96e25a9739b3ba7ddd678358d54d6545a87e912c"
+    },
+    {
+      "path": "tools/method_documentation_audit/20261009-review-001/source_snapshots/83b94f80059867d2d1b005ea6ff9222edf72e1a2d5be5200c979bca03858a870.md",
+      "git_blob": "9091eb5cd2cd09ad6227a3391518a761348e639e",
+      "sha256": "83b94f80059867d2d1b005ea6ff9222edf72e1a2d5be5200c979bca03858a870"
+    },
+    {
+      "path": "tools/method_documentation_audit/20261009-review-001/source_snapshots/84b4e969ef0e709dff3412db751895f9045cf286a88ed6673ac7de3f5ce6bf3f.md",
+      "git_blob": "345fd79a6f8ef758bf491d1b818741fe0caa652c",
+      "sha256": "84b4e969ef0e709dff3412db751895f9045cf286a88ed6673ac7de3f5ce6bf3f"
+    },
+    {
+      "path": "tools/method_documentation_audit/20261009-review-001/source_snapshots/8668154eb94f29927b4bda8dafa186eb950c90c0efa965016bf504059b22655f.md",
+      "git_blob": "3d00e32d2b608b4ba68e9c0294302b57bb082b90",
+      "sha256": "8668154eb94f29927b4bda8dafa186eb950c90c0efa965016bf504059b22655f"
+    },
+    {
+      "path": "tools/method_documentation_audit/20261009-review-001/source_snapshots/867ada9c68c13009a44f69554c2993621caea802084cd119c9bd1d1052057ffe.md",
+      "git_blob": "dbfcf2b9839485121271d262d3f176079ed157e4",
+      "sha256": "867ada9c68c13009a44f69554c2993621caea802084cd119c9bd1d1052057ffe"
+    },
+    {
+      "path": "tools/method_documentation_audit/20261009-review-001/source_snapshots/891c9b5b6ccf1dcd656f4fae61ed0284ce9800a4245b3aafdb7de3ec365ae0c3.md",
+      "git_blob": "5da1f2085a42e51c924a88f0495d62a3858a56b9",
+      "sha256": "891c9b5b6ccf1dcd656f4fae61ed0284ce9800a4245b3aafdb7de3ec365ae0c3"
+    },
+    {
+      "path": "tools/method_documentation_audit/20261009-review-001/source_snapshots/898572b05c8400a527a01f07227295b33a148f3033bc1006744fb7153b7d3827.md",
+      "git_blob": "74715d0a5fe67d97fce9311702ec2ebac8c868c3",
+      "sha256": "898572b05c8400a527a01f07227295b33a148f3033bc1006744fb7153b7d3827"
+    },
+    {
+      "path": "tools/method_documentation_audit/20261009-review-001/source_snapshots/89e6de363f6dee6b3cea9d7ee540d953fdf9d9486b2fc36399a85c9fb644e01f.md",
+      "git_blob": "0da250ee78887a51c0391ac883f9d6e98b7502c4",
+      "sha256": "89e6de363f6dee6b3cea9d7ee540d953fdf9d9486b2fc36399a85c9fb644e01f"
+    },
+    {
+      "path": "tools/method_documentation_audit/20261009-review-001/source_snapshots/8a7135e6596ee867a5532cf7a50e2ada8184f46af0e57cf9b3d857746c9f883d.md",
+      "git_blob": "046e6520dda18753bd0cc544486b0fdbcfacc87a",
+      "sha256": "8a7135e6596ee867a5532cf7a50e2ada8184f46af0e57cf9b3d857746c9f883d"
+    },
+    {
+      "path": "tools/method_documentation_audit/20261009-review-001/source_snapshots/8aded3bb150fd4ed64dd7a638859f0137836793e3754c86adaf68b17424de640.md",
+      "git_blob": "6e7800b31a995ef49cdbc3a62ffdb06a0b2b4e5c",
+      "sha256": "8aded3bb150fd4ed64dd7a638859f0137836793e3754c86adaf68b17424de640"
+    },
+    {
+      "path": "tools/method_documentation_audit/20261009-review-001/source_snapshots/8b385cd81cf6ba6e5c1730bcd465b69907d611c8f50cd134e8842740f5d9dc3a.md",
+      "git_blob": "b475faa82e08705b6204d821549113b4553b1bd3",
+      "sha256": "8b385cd81cf6ba6e5c1730bcd465b69907d611c8f50cd134e8842740f5d9dc3a"
+    },
+    {
+      "path": "tools/method_documentation_audit/20261009-review-001/source_snapshots/8b96852601b74e460485d0285b89deb27dc63dea59092ddb5ef7dc20fedc5003.md",
+      "git_blob": "de001c5d94c1a6f8f1cba7a15a54f15db4493b43",
+      "sha256": "8b96852601b74e460485d0285b89deb27dc63dea59092ddb5ef7dc20fedc5003"
+    },
+    {
+      "path": "tools/method_documentation_audit/20261009-review-001/source_snapshots/8c84fc0293df4b4614521ff0963916d58876efcfd155bb91f288de84eed1ad1d.md",
+      "git_blob": "6c23ed1d1b927e020aecda38a90fcc6b50b7a16b",
+      "sha256": "8c84fc0293df4b4614521ff0963916d58876efcfd155bb91f288de84eed1ad1d"
+    },
+    {
+      "path": "tools/method_documentation_audit/20261009-review-001/source_snapshots/8d1ac7bccbb062b2f8ca4823d5ac089ea2ab925adb95c118ef68f22fb028c743.md",
+      "git_blob": "87f9fe9fa3e351edfbae485f7644f7441afbda5b",
+      "sha256": "8d1ac7bccbb062b2f8ca4823d5ac089ea2ab925adb95c118ef68f22fb028c743"
+    },
+    {
+      "path": "tools/method_documentation_audit/20261009-review-001/source_snapshots/8e5799d3aa6cb73bf1d18dded9b2d280612524c547125a3346adfa0e5dfcb6a2.md",
+      "git_blob": "036f9eea7526d79cd34726ba9228ce30783b974c",
+      "sha256": "8e5799d3aa6cb73bf1d18dded9b2d280612524c547125a3346adfa0e5dfcb6a2"
+    },
+    {
+      "path": "tools/method_documentation_audit/20261009-review-001/source_snapshots/8f10e5f6e185eddfee3b1ae46ec52be25af0ae96b2469c44c971c0bfeb6446d5.md",
+      "git_blob": "02c820afe34c2775c0584a2f35e25f6462e4b90a",
+      "sha256": "8f10e5f6e185eddfee3b1ae46ec52be25af0ae96b2469c44c971c0bfeb6446d5"
+    },
+    {
+      "path": "tools/method_documentation_audit/20261009-review-001/source_snapshots/90fa80d698137a49024982bdc255f9b29ed3d2e85cd531c156ab5ab527edc221.md",
+      "git_blob": "cf3b2cfeec795ae1c02edee6002dc0a44da21408",
+      "sha256": "90fa80d698137a49024982bdc255f9b29ed3d2e85cd531c156ab5ab527edc221"
+    },
+    {
+      "path": "tools/method_documentation_audit/20261009-review-001/source_snapshots/92cd57d70ed6c648e34e98055417823797399d30d49cb2b6809050ca65cc8687.md",
+      "git_blob": "ea62edf4268bb283b3fef889a17c745b004562e9",
+      "sha256": "92cd57d70ed6c648e34e98055417823797399d30d49cb2b6809050ca65cc8687"
+    },
+    {
+      "path": "tools/method_documentation_audit/20261009-review-001/source_snapshots/934d906eed6ad5ede1ad297c5666b91a937f796e63c56c1f8c36a55e62b5c4a2.md",
+      "git_blob": "c43ff3bba8efcad89817e9f2405524eb04b91f98",
+      "sha256": "934d906eed6ad5ede1ad297c5666b91a937f796e63c56c1f8c36a55e62b5c4a2"
+    },
+    {
+      "path": "tools/method_documentation_audit/20261009-review-001/source_snapshots/93f166b04f836c0dcb27a864b62235e7700c8ccfbeefd8cee1753e90a9f2fda7.md",
+      "git_blob": "11c80ab221a62c46451fd000905cb2d331e78abe",
+      "sha256": "93f166b04f836c0dcb27a864b62235e7700c8ccfbeefd8cee1753e90a9f2fda7"
+    },
+    {
+      "path": "tools/method_documentation_audit/20261009-review-001/source_snapshots/9444c856c0869d9156f5e425c93ca1503b3fb278bcf561c2354e9e56e912aedc.md",
+      "git_blob": "d6f5eeb86ce705efa826e86bb4dbf9eae131f765",
+      "sha256": "9444c856c0869d9156f5e425c93ca1503b3fb278bcf561c2354e9e56e912aedc"
+    },
+    {
+      "path": "tools/method_documentation_audit/20261009-review-001/source_snapshots/94473be6dfc38773ac849a8163e65dae3cac6d3609cca1d1b4a10b3356f2aecf.md",
+      "git_blob": "3bebf42a884493ba7947e542b3f60f57428a2f49",
+      "sha256": "94473be6dfc38773ac849a8163e65dae3cac6d3609cca1d1b4a10b3356f2aecf"
+    },
+    {
+      "path": "tools/method_documentation_audit/20261009-review-001/source_snapshots/94bfc02ecd85ba61be78bb3c0291a642d1d4738ec0aa77aea6c4092bab5ab478.md",
+      "git_blob": "7bd798b0e920b202368588ace7d9e5659be75b86",
+      "sha256": "94bfc02ecd85ba61be78bb3c0291a642d1d4738ec0aa77aea6c4092bab5ab478"
+    },
+    {
+      "path": "tools/method_documentation_audit/20261009-review-001/source_snapshots/955ffcb8333e7d2ff51af746b364525e53075f5ec609ebcf966703dfaaa01fbb.md",
+      "git_blob": "d9e386cbad92f97313b4f606c29ea0279ea40d94",
+      "sha256": "955ffcb8333e7d2ff51af746b364525e53075f5ec609ebcf966703dfaaa01fbb"
+    },
+    {
+      "path": "tools/method_documentation_audit/20261009-review-001/source_snapshots/962f6de024a3cd4f31d5be6da9ef3bc033e04fccf8ec537c912d535ab4730371.md",
+      "git_blob": "d92dc610b850f5e423e6bd39cb5ca415d75d3314",
+      "sha256": "962f6de024a3cd4f31d5be6da9ef3bc033e04fccf8ec537c912d535ab4730371"
+    },
+    {
+      "path": "tools/method_documentation_audit/20261009-review-001/source_snapshots/96b702cb9b2a8793d46372e6d0bbd27a3a430a86f1e5f787bbb60f95405eca4c.md",
+      "git_blob": "0117e3d08f1d0f3002006d1fa73b6f684287ca17",
+      "sha256": "96b702cb9b2a8793d46372e6d0bbd27a3a430a86f1e5f787bbb60f95405eca4c"
+    },
+    {
+      "path": "tools/method_documentation_audit/20261009-review-001/source_snapshots/96cbb47dd430911b097c1e403c08cac6caf5cffb3324fec6084fef19689cdfda.md",
+      "git_blob": "ec33aa74f1f64e2c2b9196a587a4083867e3a821",
+      "sha256": "96cbb47dd430911b097c1e403c08cac6caf5cffb3324fec6084fef19689cdfda"
+    },
+    {
+      "path": "tools/method_documentation_audit/20261009-review-001/source_snapshots/96d4155d41159b18d00bad8c04961185ead78eee2077a400a813bb4b8f8ea8bc.md",
+      "git_blob": "babdda1e17b37766eb5d095f11d0a8442528485c",
+      "sha256": "96d4155d41159b18d00bad8c04961185ead78eee2077a400a813bb4b8f8ea8bc"
+    },
+    {
+      "path": "tools/method_documentation_audit/20261009-review-001/source_snapshots/97deafe38791040ba94b21b79ec14cb115db8cac0a09ce2ef2a5800385f304d8.md",
+      "git_blob": "96cb28306534d3ffeac7865890e28f9ad3c4727e",
+      "sha256": "97deafe38791040ba94b21b79ec14cb115db8cac0a09ce2ef2a5800385f304d8"
+    },
+    {
+      "path": "tools/method_documentation_audit/20261009-review-001/source_snapshots/98431ef9fca0896c6b3be986fd74d8b87a7e5233d2b1f0ff7d52782833536eb3.md",
+      "git_blob": "4d19db5b6473449738efa63eb1362c87ac45ae1e",
+      "sha256": "98431ef9fca0896c6b3be986fd74d8b87a7e5233d2b1f0ff7d52782833536eb3"
+    },
+    {
+      "path": "tools/method_documentation_audit/20261009-review-001/source_snapshots/98517101a07953464507608179e6955efb51257bcd1e1695de733ee40e6ead78.md",
+      "git_blob": "df9f307fe55ca18f69d6728621b107c818893a68",
+      "sha256": "98517101a07953464507608179e6955efb51257bcd1e1695de733ee40e6ead78"
+    },
+    {
+      "path": "tools/method_documentation_audit/20261009-review-001/source_snapshots/9878de2f0313e4a6aca5587f7f2a4e35cba2de4700fcf457c002815ffda83de3.md",
+      "git_blob": "affb9215bbfeb59c8f9c0911a8308917cd007c6c",
+      "sha256": "9878de2f0313e4a6aca5587f7f2a4e35cba2de4700fcf457c002815ffda83de3"
+    },
+    {
+      "path": "tools/method_documentation_audit/20261009-review-001/source_snapshots/98cd836268184f9abdc7a791fe2519e25d320861e029f0e81e11e19921e0eca6.md",
+      "git_blob": "5034c03dfce1dc4f675daab184bd9b5f92762d31",
+      "sha256": "98cd836268184f9abdc7a791fe2519e25d320861e029f0e81e11e19921e0eca6"
+    },
+    {
+      "path": "tools/method_documentation_audit/20261009-review-001/source_snapshots/9b48f90a94996393353a5b463be06122f45aef58f84238410a24b629d135a785.md",
+      "git_blob": "897f8b388c7eb16b528ec0ad0d2f890c7401c30a",
+      "sha256": "9b48f90a94996393353a5b463be06122f45aef58f84238410a24b629d135a785"
+    },
+    {
+      "path": "tools/method_documentation_audit/20261009-review-001/source_snapshots/9d024e491107dd302073540e478ac4647fe3eb785249e5022c88b60d22154b10.md",
+      "git_blob": "763ac92defd6b133c81cd10bf2563379b254a30f",
+      "sha256": "9d024e491107dd302073540e478ac4647fe3eb785249e5022c88b60d22154b10"
+    },
+    {
+      "path": "tools/method_documentation_audit/20261009-review-001/source_snapshots/9d0cc61a9931c2d46b706ec8cfdbcea764d862e6c20aabcdc46cf82e12a0908c.md",
+      "git_blob": "e0f17d940e9140b5eed86b21b6aee3e990925ea8",
+      "sha256": "9d0cc61a9931c2d46b706ec8cfdbcea764d862e6c20aabcdc46cf82e12a0908c"
+    },
+    {
+      "path": "tools/method_documentation_audit/20261009-review-001/source_snapshots/9ddb91aeff9323cddccecf4aeb54c5d74e2d2c76bb3d9b413888c20345300d76.md",
+      "git_blob": "0bfd6a0e0654c84b410c19db537dc075938ec6ec",
+      "sha256": "9ddb91aeff9323cddccecf4aeb54c5d74e2d2c76bb3d9b413888c20345300d76"
+    },
+    {
+      "path": "tools/method_documentation_audit/20261009-review-001/source_snapshots/9e11018efacefa7fcc6102a844a57dd04b0a05d085188c05fa547e317926b75e.md",
+      "git_blob": "024232b34741aded6c7600c01111f18fae4e27a4",
+      "sha256": "9e11018efacefa7fcc6102a844a57dd04b0a05d085188c05fa547e317926b75e"
+    },
+    {
+      "path": "tools/method_documentation_audit/20261009-review-001/source_snapshots/9e938e8ff81ac6cf24fcbc65493fdedde5f4d6f198b0364f55ce147ff5776f87.md",
+      "git_blob": "2a8c154b9550339321fc2c941b99a26d2fa1ea10",
+      "sha256": "9e938e8ff81ac6cf24fcbc65493fdedde5f4d6f198b0364f55ce147ff5776f87"
+    },
+    {
+      "path": "tools/method_documentation_audit/20261009-review-001/source_snapshots/9eb83eb10602c51f28cd83ec18c0a3a4ece32682a4e588bf0f86eefef8850f02.md",
+      "git_blob": "d96cc09d55a7c6b6655da798393d8549757254a0",
+      "sha256": "9eb83eb10602c51f28cd83ec18c0a3a4ece32682a4e588bf0f86eefef8850f02"
+    },
+    {
+      "path": "tools/method_documentation_audit/20261009-review-001/source_snapshots/a0bc97588120ea2d38d706ceffe8439a59b3e1cf750baca4ec4c3f4ab9713c4e.md",
+      "git_blob": "bf801c2e85be116d3833be96ec137a0e5359f5e2",
+      "sha256": "a0bc97588120ea2d38d706ceffe8439a59b3e1cf750baca4ec4c3f4ab9713c4e"
+    },
+    {
+      "path": "tools/method_documentation_audit/20261009-review-001/source_snapshots/a30ef3eb8dae2523e9e8ba1921c56a11e6acfe95d4483b823d07292c289f9166.md",
+      "git_blob": "b0ea30f5a18b4f519c0e5a05cef720a69eb2c5f9",
+      "sha256": "a30ef3eb8dae2523e9e8ba1921c56a11e6acfe95d4483b823d07292c289f9166"
+    },
+    {
+      "path": "tools/method_documentation_audit/20261009-review-001/source_snapshots/a4686cf26c6dc2be52c22e0ec4313e30895865f3a942eb4b9ceba1bd167e0f97.md",
+      "git_blob": "d068ab65683a0d620bbadb8f104718b6d087a1cc",
+      "sha256": "a4686cf26c6dc2be52c22e0ec4313e30895865f3a942eb4b9ceba1bd167e0f97"
+    },
+    {
+      "path": "tools/method_documentation_audit/20261009-review-001/source_snapshots/a4ca91c1f0e40f58d93f4c092f55213b59f475017838a45ff294eb2ec3f93772.md",
+      "git_blob": "0cbf6ecfa839e1be3be4473fc5a9517febc39e12",
+      "sha256": "a4ca91c1f0e40f58d93f4c092f55213b59f475017838a45ff294eb2ec3f93772"
+    },
+    {
+      "path": "tools/method_documentation_audit/20261009-review-001/source_snapshots/a572a7a7f7adf8e4d0117bd1cbf698a0a7436c41bd2960622f501dfb4f6dfe6a.md",
+      "git_blob": "b06c6c61c48b03f6741715acefac07b3281e55bd",
+      "sha256": "a572a7a7f7adf8e4d0117bd1cbf698a0a7436c41bd2960622f501dfb4f6dfe6a"
+    },
+    {
+      "path": "tools/method_documentation_audit/20261009-review-001/source_snapshots/a702dbd6d1c5eaa039817adae2f6e19fdb0e8c3068fa101a76e47c91c1fce6b1.md",
+      "git_blob": "0536291574b8114d7747d1b9e354ceaae7e4a509",
+      "sha256": "a702dbd6d1c5eaa039817adae2f6e19fdb0e8c3068fa101a76e47c91c1fce6b1"
+    },
+    {
+      "path": "tools/method_documentation_audit/20261009-review-001/source_snapshots/a82224df51ea4381b9c655a61f858654a17b5cd9087557a400ced7ef26533693.md",
+      "git_blob": "3013f0074d0894f2cb53912c2991ce47c62379c5",
+      "sha256": "a82224df51ea4381b9c655a61f858654a17b5cd9087557a400ced7ef26533693"
+    },
+    {
+      "path": "tools/method_documentation_audit/20261009-review-001/source_snapshots/a868ca3182b81ee0a5a8619c466dd9f080e9baa92358a518aea15c1dc1a712a0.md",
+      "git_blob": "5a97a370769ea8191561c82aa87e48201c6d1b37",
+      "sha256": "a868ca3182b81ee0a5a8619c466dd9f080e9baa92358a518aea15c1dc1a712a0"
+    },
+    {
+      "path": "tools/method_documentation_audit/20261009-review-001/source_snapshots/a8875238674ef0993903bb7fc3fd30983229ce3dfdcc6c7f90417dc5848d8920.md",
+      "git_blob": "f2334f2e64d4819b2a8bfefedc14b0fe2fad2d9b",
+      "sha256": "a8875238674ef0993903bb7fc3fd30983229ce3dfdcc6c7f90417dc5848d8920"
+    },
+    {
+      "path": "tools/method_documentation_audit/20261009-review-001/source_snapshots/a889309f7eaf7ac9aa14feb40dd984a277eaed9b2d0b5e48e63ad7d45615c9bf.md",
+      "git_blob": "b315dc358c27ce2932fa352ad55ac8db380920d7",
+      "sha256": "a889309f7eaf7ac9aa14feb40dd984a277eaed9b2d0b5e48e63ad7d45615c9bf"
+    },
+    {
+      "path": "tools/method_documentation_audit/20261009-review-001/source_snapshots/a8fb573cb75f9e3e2e7c9fdbc750651f0bca20860b1be4ded870496ccc4e7a95.md",
+      "git_blob": "ea65515f38a40f14b99d7cb40200d6ebcce9a473",
+      "sha256": "a8fb573cb75f9e3e2e7c9fdbc750651f0bca20860b1be4ded870496ccc4e7a95"
+    },
+    {
+      "path": "tools/method_documentation_audit/20261009-review-001/source_snapshots/a926b1abe744f6f169b9725dce544e5b8757f7e98bd44813ec43cad05d6ffd33.md",
+      "git_blob": "ed0e71951d2376ef30446483cd2bc32cdc02b81b",
+      "sha256": "a926b1abe744f6f169b9725dce544e5b8757f7e98bd44813ec43cad05d6ffd33"
+    },
+    {
+      "path": "tools/method_documentation_audit/20261009-review-001/source_snapshots/aae2ef17e6148bebdb5e60ae75815559dc0a9e2c6af6c2cbef7759e71f6151ae.md",
+      "git_blob": "5767bade821ad26088e4f099e9f97926c0a76141",
+      "sha256": "aae2ef17e6148bebdb5e60ae75815559dc0a9e2c6af6c2cbef7759e71f6151ae"
+    },
+    {
+      "path": "tools/method_documentation_audit/20261009-review-001/source_snapshots/aae999cce29c2893fc9d243cc34f51df2c0219947358c215daca3907cad03d17.md",
+      "git_blob": "62286cae0302afc5066114cf9238fc3dece4522d",
+      "sha256": "aae999cce29c2893fc9d243cc34f51df2c0219947358c215daca3907cad03d17"
+    },
+    {
+      "path": "tools/method_documentation_audit/20261009-review-001/source_snapshots/ab447798b4a8298f7ccc94de36def180c4aa6a66698bca60145568e900f6db03.md",
+      "git_blob": "9887a2573a5d5b68d6fdea4757f0a7d803903ad6",
+      "sha256": "ab447798b4a8298f7ccc94de36def180c4aa6a66698bca60145568e900f6db03"
+    },
+    {
+      "path": "tools/method_documentation_audit/20261009-review-001/source_snapshots/ab566f51d985948da996862ef29f4b58cb0789989501d4830b58e89e882d493b.md",
+      "git_blob": "44e5edebc6c4648c15201d5ad6b664b0eaf3bbb0",
+      "sha256": "ab566f51d985948da996862ef29f4b58cb0789989501d4830b58e89e882d493b"
+    },
+    {
+      "path": "tools/method_documentation_audit/20261009-review-001/source_snapshots/ab997b69e7177c885496553c5e0f5c5bdf038477aaa2a4450cb4ddb9b9b3b6d3.md",
+      "git_blob": "bbf67148a0129c6486f38528057467439459bb9b",
+      "sha256": "ab997b69e7177c885496553c5e0f5c5bdf038477aaa2a4450cb4ddb9b9b3b6d3"
+    },
+    {
+      "path": "tools/method_documentation_audit/20261009-review-001/source_snapshots/ac4e5f88c91c7fcbf39a7b5762d46862819a3a23108c09e75333368fab718be2.md",
+      "git_blob": "cba670d5e6e0f6585e14656e5928325afde13f11",
+      "sha256": "ac4e5f88c91c7fcbf39a7b5762d46862819a3a23108c09e75333368fab718be2"
+    },
+    {
+      "path": "tools/method_documentation_audit/20261009-review-001/source_snapshots/ad1d4b1f1dff3456560ca2fdeb4510d12a7c2cec93e8823117e76e8d2d44bdd1.md",
+      "git_blob": "b4cfb3b6ee6d4d028d421bb4de030b59fbe304fa",
+      "sha256": "ad1d4b1f1dff3456560ca2fdeb4510d12a7c2cec93e8823117e76e8d2d44bdd1"
+    },
+    {
+      "path": "tools/method_documentation_audit/20261009-review-001/source_snapshots/ad792cb0d08f6516cfd8fb8a6803ad4d2a21b69485c444edcf1831c5d38c51f4.md",
+      "git_blob": "7169ed5ff2cec4c09cafa9883caed6952d8c2c42",
+      "sha256": "ad792cb0d08f6516cfd8fb8a6803ad4d2a21b69485c444edcf1831c5d38c51f4"
+    },
+    {
+      "path": "tools/method_documentation_audit/20261009-review-001/source_snapshots/ade2ef3666a2742e24398a100e6039f9044c90bb97da7ed5d497ab21d6e396d3.md",
+      "git_blob": "71324312d87e5c4fa78156dbbdc1b585020a3904",
+      "sha256": "ade2ef3666a2742e24398a100e6039f9044c90bb97da7ed5d497ab21d6e396d3"
+    },
+    {
+      "path": "tools/method_documentation_audit/20261009-review-001/source_snapshots/ae33ef22cc584bd0682c9e14598018ae691f04c1ea4c925359b67bb3bb188790.md",
+      "git_blob": "1da68fdf572188b99a6f19e4aec75c61d819fcb8",
+      "sha256": "ae33ef22cc584bd0682c9e14598018ae691f04c1ea4c925359b67bb3bb188790"
+    },
+    {
+      "path": "tools/method_documentation_audit/20261009-review-001/source_snapshots/af1e5df136ac202f17fc10f969bed7b67636dbdd689cf42ed4814a02297a3754.md",
+      "git_blob": "8f4d6bad1021893362cf34e7fea6b92e02fe1f2d",
+      "sha256": "af1e5df136ac202f17fc10f969bed7b67636dbdd689cf42ed4814a02297a3754"
+    },
+    {
+      "path": "tools/method_documentation_audit/20261009-review-001/source_snapshots/af568c2638caa34f9eb8993494f26753e3a4d60be9af7b89e3799aaeb6f52fb7.md",
+      "git_blob": "1483c045483f058efb0b118356143a981e1e91f2",
+      "sha256": "af568c2638caa34f9eb8993494f26753e3a4d60be9af7b89e3799aaeb6f52fb7"
+    },
+    {
+      "path": "tools/method_documentation_audit/20261009-review-001/source_snapshots/afeb9a7e5578273da54fa86e0cc4210fbdbbf68c44f079a88d46ec802a4406f7.md",
+      "git_blob": "fae2d7ee22ea4324ab00db8317428683d834b45e",
+      "sha256": "afeb9a7e5578273da54fa86e0cc4210fbdbbf68c44f079a88d46ec802a4406f7"
+    },
+    {
+      "path": "tools/method_documentation_audit/20261009-review-001/source_snapshots/aff6612e1ce7f3ffd77cbed4f8ac1fb639956cf934aca9134c6ee71bf9380ec7.md",
+      "git_blob": "ca445f024761cb72a2564d9338e103f304f11636",
+      "sha256": "aff6612e1ce7f3ffd77cbed4f8ac1fb639956cf934aca9134c6ee71bf9380ec7"
+    },
+    {
+      "path": "tools/method_documentation_audit/20261009-review-001/source_snapshots/b2369172456b4312aa9f3c39fff0a3313416417222f8a429e00e6452361b5a65.md",
+      "git_blob": "6252da53e37c80c413201d3119cbc26b3ba34ab7",
+      "sha256": "b2369172456b4312aa9f3c39fff0a3313416417222f8a429e00e6452361b5a65"
+    },
+    {
+      "path": "tools/method_documentation_audit/20261009-review-001/source_snapshots/b26c70095d5a50220be8789bd9754fe74df099935b6f28a82ca97930c9e8fd58.md",
+      "git_blob": "147cdedfd3eaa08feb4b824db49c35a796e77644",
+      "sha256": "b26c70095d5a50220be8789bd9754fe74df099935b6f28a82ca97930c9e8fd58"
+    },
+    {
+      "path": "tools/method_documentation_audit/20261009-review-001/source_snapshots/b3b0d9f4dee2087e53fdd389d50612a2a466d7a41161e24822110d3967ff88bb.md",
+      "git_blob": "a42234298a0cd6b845b3b4dcd833806d011d1bb7",
+      "sha256": "b3b0d9f4dee2087e53fdd389d50612a2a466d7a41161e24822110d3967ff88bb"
+    },
+    {
+      "path": "tools/method_documentation_audit/20261009-review-001/source_snapshots/b44dac8968ed3fcd9b2c19ab02574da3957f55e5350bfb0600c6a0bf80e91742.md",
+      "git_blob": "e2471482c9e36a6f98844ab3c41fda33c479f71e",
+      "sha256": "b44dac8968ed3fcd9b2c19ab02574da3957f55e5350bfb0600c6a0bf80e91742"
+    },
+    {
+      "path": "tools/method_documentation_audit/20261009-review-001/source_snapshots/b4797412dcd584d98836954f6ba214f94e6ef5492d3a2c6649f0eb038d3a1249.md",
+      "git_blob": "523faa9c7bf4cdaaaa4107b2399d327f6e2f73ab",
+      "sha256": "b4797412dcd584d98836954f6ba214f94e6ef5492d3a2c6649f0eb038d3a1249"
+    },
+    {
+      "path": "tools/method_documentation_audit/20261009-review-001/source_snapshots/b538912ccdc251d431b44c3e8f604976fad32606230a31eb6b59c60e33f0b75e.md",
+      "git_blob": "f1e2b3918156c37609df8e1bbe87c933f286a365",
+      "sha256": "b538912ccdc251d431b44c3e8f604976fad32606230a31eb6b59c60e33f0b75e"
+    },
+    {
+      "path": "tools/method_documentation_audit/20261009-review-001/source_snapshots/b6ba027053fd15b70598b46d50582e66235c9f834e65c82c95496165962d0d71.md",
+      "git_blob": "e8f240727ed9f0a9b0c22e30590add34c12dbcc2",
+      "sha256": "b6ba027053fd15b70598b46d50582e66235c9f834e65c82c95496165962d0d71"
+    },
+    {
+      "path": "tools/method_documentation_audit/20261009-review-001/source_snapshots/b70e71a67bccec0a9dc62fff82351cbc631f0970603664b7487af2fad627a8c2.md",
+      "git_blob": "c694457f4936369d742ed79d2cb5009b2ee71efb",
+      "sha256": "b70e71a67bccec0a9dc62fff82351cbc631f0970603664b7487af2fad627a8c2"
+    },
+    {
+      "path": "tools/method_documentation_audit/20261009-review-001/source_snapshots/b7fb05941aaa958fce63c4dd2c2e5edd1513f9ed86b7bfe368316b63dcbc9505.md",
+      "git_blob": "6b9d9ae557981ad050db3b25bff6fa1c455675d7",
+      "sha256": "b7fb05941aaa958fce63c4dd2c2e5edd1513f9ed86b7bfe368316b63dcbc9505"
+    },
+    {
+      "path": "tools/method_documentation_audit/20261009-review-001/source_snapshots/b86835bedcbf7dc0428b6d4058e94f64f65034174a989aeac4231d85d7edf124.md",
+      "git_blob": "111ee7452b97d18c75fbeed22f335af39df5cfc3",
+      "sha256": "b86835bedcbf7dc0428b6d4058e94f64f65034174a989aeac4231d85d7edf124"
+    },
+    {
+      "path": "tools/method_documentation_audit/20261009-review-001/source_snapshots/b940904282416bfb99898dfaab2e3f86274aea5c9f67c0985f89c411b3cd82e6.md",
+      "git_blob": "e168f93d82f27fea74ebed35f0703ffbf8327789",
+      "sha256": "b940904282416bfb99898dfaab2e3f86274aea5c9f67c0985f89c411b3cd82e6"
+    },
+    {
+      "path": "tools/method_documentation_audit/20261009-review-001/source_snapshots/bb22b678fb58b3d184863c82c8251b4c0bf4f0b85cd7c823854fbd0c459cc924.md",
+      "git_blob": "ef9bca26ee0185541f7d53241268e1f16adf8b0d",
+      "sha256": "bb22b678fb58b3d184863c82c8251b4c0bf4f0b85cd7c823854fbd0c459cc924"
+    },
+    {
+      "path": "tools/method_documentation_audit/20261009-review-001/source_snapshots/bbe83368ae33ae5ac88f86e9c613a34672dd1de22f5040aa23c8305c3ab56170.md",
+      "git_blob": "3f6a60dea5ece4f118e8df9e28bcd9be9ac4c164",
+      "sha256": "bbe83368ae33ae5ac88f86e9c613a34672dd1de22f5040aa23c8305c3ab56170"
+    },
+    {
+      "path": "tools/method_documentation_audit/20261009-review-001/source_snapshots/bd44b84a94ce409693968c83602c1d24da5357bc982a6422c2c102fab282bfa0.md",
+      "git_blob": "f255ece0942f2ce2d41f9d3de33a2b54ca044821",
+      "sha256": "bd44b84a94ce409693968c83602c1d24da5357bc982a6422c2c102fab282bfa0"
+    },
+    {
+      "path": "tools/method_documentation_audit/20261009-review-001/source_snapshots/be280233a72f97f49995e0ef2bd149d46499ad27125ccfb8d2afd0dd58f9470c.md",
+      "git_blob": "f7b85c6b3279f0bb93770345ba5840b4679bdacd",
+      "sha256": "be280233a72f97f49995e0ef2bd149d46499ad27125ccfb8d2afd0dd58f9470c"
+    },
+    {
+      "path": "tools/method_documentation_audit/20261009-review-001/source_snapshots/c015d468ffe21d8081b195f61a24611986f097c069825cee0dbec9b50c6da22a.md",
+      "git_blob": "cc14d0d806ad2e6ba223087329727a9387dac978",
+      "sha256": "c015d468ffe21d8081b195f61a24611986f097c069825cee0dbec9b50c6da22a"
+    },
+    {
+      "path": "tools/method_documentation_audit/20261009-review-001/source_snapshots/c238d382c1b0bbd18fccc71421c8656164a2b972f678a35b8514a99402dac07c.md",
+      "git_blob": "7f41ecdde263b10bb6120973ebcce1be7f59d0e5",
+      "sha256": "c238d382c1b0bbd18fccc71421c8656164a2b972f678a35b8514a99402dac07c"
+    },
+    {
+      "path": "tools/method_documentation_audit/20261009-review-001/source_snapshots/c2c770b1836508ca242fbff671e4e7aff8e22fee425df458f7f47e368b209d7a.md",
+      "git_blob": "4f9dae1caf3add71c1fffa2c003d3688596baea0",
+      "sha256": "c2c770b1836508ca242fbff671e4e7aff8e22fee425df458f7f47e368b209d7a"
+    },
+    {
+      "path": "tools/method_documentation_audit/20261009-review-001/source_snapshots/c344b2767132815999f82ee29a2550555b985c20b1e3a27d0eb19e7a0425eb20.md",
+      "git_blob": "5e0fabbb0bf8426e3fc1ff114e882d049c3b4a7b",
+      "sha256": "c344b2767132815999f82ee29a2550555b985c20b1e3a27d0eb19e7a0425eb20"
+    },
+    {
+      "path": "tools/method_documentation_audit/20261009-review-001/source_snapshots/c39272e8051ce21599e3bb9e164c27b448fc0fde03a48a7825e0e9fc69bf8aad.md",
+      "git_blob": "9d057f8738b5d790c6822ffa8ce167432e01c81e",
+      "sha256": "c39272e8051ce21599e3bb9e164c27b448fc0fde03a48a7825e0e9fc69bf8aad"
+    },
+    {
+      "path": "tools/method_documentation_audit/20261009-review-001/source_snapshots/c3cf148f3c7df8b788fcb52af5747157192a812260c048c8280b5ffeb0710ddc.md",
+      "git_blob": "1eead6ea4c7b6f5f5da20a488ed14691cc70ebb3",
+      "sha256": "c3cf148f3c7df8b788fcb52af5747157192a812260c048c8280b5ffeb0710ddc"
+    },
+    {
+      "path": "tools/method_documentation_audit/20261009-review-001/source_snapshots/c57fc4f2921d0f0336beb8eaedf57a40e3906492161f4f6edf5987cc33bf07a5.md",
+      "git_blob": "d9ed57271b6f438e0f5f5d3014b0922571f604b9",
+      "sha256": "c57fc4f2921d0f0336beb8eaedf57a40e3906492161f4f6edf5987cc33bf07a5"
+    },
+    {
+      "path": "tools/method_documentation_audit/20261009-review-001/source_snapshots/c78072d3174d16f4fd497d43861a8c2fb31ac135492240d88ec9cfa891648501.md",
+      "git_blob": "f6cae3c0f05a5c95ddc239c87e963f032c80e3d8",
+      "sha256": "c78072d3174d16f4fd497d43861a8c2fb31ac135492240d88ec9cfa891648501"
+    },
+    {
+      "path": "tools/method_documentation_audit/20261009-review-001/source_snapshots/c7ab8a0c3497d52d5298c3622ac2d21b322dcfd3633ea69a053f37958718ecbe.md",
+      "git_blob": "4650ed96ae953da1df42364be943cb38b4200275",
+      "sha256": "c7ab8a0c3497d52d5298c3622ac2d21b322dcfd3633ea69a053f37958718ecbe"
+    },
+    {
+      "path": "tools/method_documentation_audit/20261009-review-001/source_snapshots/c9a8bba5c414abee94a3c8a77cdfc6a599d39a817c4924d554441b3d350c3e36.md",
+      "git_blob": "e1f0e5171bef2f7ea8f5f56f95eb26dcdd85d8e5",
+      "sha256": "c9a8bba5c414abee94a3c8a77cdfc6a599d39a817c4924d554441b3d350c3e36"
+    },
+    {
+      "path": "tools/method_documentation_audit/20261009-review-001/source_snapshots/caa6c26998751d7ea3b5fd5249c436593c096e42a3b7dbf3560707a1ea07bb24.md",
+      "git_blob": "9cf24dd1de1244ab52bf0f721ff63230968f5a2d",
+      "sha256": "caa6c26998751d7ea3b5fd5249c436593c096e42a3b7dbf3560707a1ea07bb24"
+    },
+    {
+      "path": "tools/method_documentation_audit/20261009-review-001/source_snapshots/cb1f9ff5f96305e187d52422e859bc98f9a2c334b8511c6cc5502ea565580ec1.md",
+      "git_blob": "b6e41f7751d86a8494cf6acbc9c556ac0da7ff31",
+      "sha256": "cb1f9ff5f96305e187d52422e859bc98f9a2c334b8511c6cc5502ea565580ec1"
+    },
+    {
+      "path": "tools/method_documentation_audit/20261009-review-001/source_snapshots/cbaecb0246907fcf729f6f7d02f6553f024129ffeda6788e3ce85e20df85e553.md",
+      "git_blob": "415ddef9b18746f3bef8314ae9b58db469a21d03",
+      "sha256": "cbaecb0246907fcf729f6f7d02f6553f024129ffeda6788e3ce85e20df85e553"
+    },
+    {
+      "path": "tools/method_documentation_audit/20261009-review-001/source_snapshots/cbc63cad330d1f3afe6103d891e2fdb3debda6528c12d8e8f46a659dd7157c23.md",
+      "git_blob": "826a824f3175967b1b8ab348b121c3f3d49c1381",
+      "sha256": "cbc63cad330d1f3afe6103d891e2fdb3debda6528c12d8e8f46a659dd7157c23"
+    },
+    {
+      "path": "tools/method_documentation_audit/20261009-review-001/source_snapshots/ce9d58557aad71ee5d92b62e58b4d26a9ba8afe86f1a88baf0673a2fb31b5f93.md",
+      "git_blob": "c70eb66d0e69055bfd457f27d207653f6745e909",
+      "sha256": "ce9d58557aad71ee5d92b62e58b4d26a9ba8afe86f1a88baf0673a2fb31b5f93"
+    },
+    {
+      "path": "tools/method_documentation_audit/20261009-review-001/source_snapshots/cfe640ee70cb056f197e3c6ecbb9526dc9e0b30e8478a86077a8aeb596a9b263.md",
+      "git_blob": "3dfe79607050ff9d1b67070ea9dd55674025f89e",
+      "sha256": "cfe640ee70cb056f197e3c6ecbb9526dc9e0b30e8478a86077a8aeb596a9b263"
+    },
+    {
+      "path": "tools/method_documentation_audit/20261009-review-001/source_snapshots/d06b132e32a175eb86fe5f92b0533cbbb37aa62afe9de4624b58db42841961f7.md",
+      "git_blob": "4233877f8121f3140b76c0e4fec4537bb6b53418",
+      "sha256": "d06b132e32a175eb86fe5f92b0533cbbb37aa62afe9de4624b58db42841961f7"
+    },
+    {
+      "path": "tools/method_documentation_audit/20261009-review-001/source_snapshots/d17628204d0a0decb120861aaf3051273d1ac6d0e144820ba443913241edab24.md",
+      "git_blob": "8c49cdd462f9c4631281a61b2610911b796fa2b4",
+      "sha256": "d17628204d0a0decb120861aaf3051273d1ac6d0e144820ba443913241edab24"
+    },
+    {
+      "path": "tools/method_documentation_audit/20261009-review-001/source_snapshots/d215d4f50dfd39df5c5e666b5a28f7cc591c3a8a00359316435d02f9f376306d.md",
+      "git_blob": "5c3eae5ccc3ff005fa51a8c7f086f30165b67bd3",
+      "sha256": "d215d4f50dfd39df5c5e666b5a28f7cc591c3a8a00359316435d02f9f376306d"
+    },
+    {
+      "path": "tools/method_documentation_audit/20261009-review-001/source_snapshots/d42d81ce2a46a33a39eb5cc863d2e29d9d2dbb60c8ab434358a4b42f9fd47b4f.md",
+      "git_blob": "7bfecc984183e96bbdbe15bbcc35803daaf0c57c",
+      "sha256": "d42d81ce2a46a33a39eb5cc863d2e29d9d2dbb60c8ab434358a4b42f9fd47b4f"
+    },
+    {
+      "path": "tools/method_documentation_audit/20261009-review-001/source_snapshots/d60829284c3c0ba9a44ab99d60002719fe3e4893ff2d7602afc936eb15bb86c0.md",
+      "git_blob": "a83d53ee845e0ea5743ce4c34d93297c96f4af0c",
+      "sha256": "d60829284c3c0ba9a44ab99d60002719fe3e4893ff2d7602afc936eb15bb86c0"
+    },
+    {
+      "path": "tools/method_documentation_audit/20261009-review-001/source_snapshots/d627172eace19e4cc215b4da0ee8e15f118ab69b5ecc89e9c869c02397ac6930.md",
+      "git_blob": "2bae343874e785489f96a9a7bb5c30cb3866cbb7",
+      "sha256": "d627172eace19e4cc215b4da0ee8e15f118ab69b5ecc89e9c869c02397ac6930"
+    },
+    {
+      "path": "tools/method_documentation_audit/20261009-review-001/source_snapshots/d683ec08b167bdac4f18a09ceb4ad237e375b0faa7f817e0f771e6b398ff7bda.md",
+      "git_blob": "c51ddb9c9411d39fde51839ff38eb773a9370abe",
+      "sha256": "d683ec08b167bdac4f18a09ceb4ad237e375b0faa7f817e0f771e6b398ff7bda"
+    },
+    {
+      "path": "tools/method_documentation_audit/20261009-review-001/source_snapshots/d6b5450bccb8ac9bf61b7125135c1a1d26bf7933fcb409f5d9d0d7f718501531.md",
+      "git_blob": "7918ac9431435fc0c18be7b3468c64f5d530c02d",
+      "sha256": "d6b5450bccb8ac9bf61b7125135c1a1d26bf7933fcb409f5d9d0d7f718501531"
+    },
+    {
+      "path": "tools/method_documentation_audit/20261009-review-001/source_snapshots/d6d177f18f3710cedf935eea4946a9eee6d11759d011f2e1411f267558b2cdc4.md",
+      "git_blob": "b7e298ab087091085cd3cd1b239007b5599e8e7d",
+      "sha256": "d6d177f18f3710cedf935eea4946a9eee6d11759d011f2e1411f267558b2cdc4"
+    },
+    {
+      "path": "tools/method_documentation_audit/20261009-review-001/source_snapshots/d79f3d42b068340c25d967887adaf5158d707cec8d7e3f776bd98fb2667c9412.md",
+      "git_blob": "34532a90f1fe2955745990c3549453ff1c6d899c",
+      "sha256": "d79f3d42b068340c25d967887adaf5158d707cec8d7e3f776bd98fb2667c9412"
+    },
+    {
+      "path": "tools/method_documentation_audit/20261009-review-001/source_snapshots/d7dfa98c88cfc3ab26814df9e189587779bb9978cf2276a49b970325d74c987c.md",
+      "git_blob": "ee6dbc840cb6e4b903f20e76e8b3bb2b230fe9c7",
+      "sha256": "d7dfa98c88cfc3ab26814df9e189587779bb9978cf2276a49b970325d74c987c"
+    },
+    {
+      "path": "tools/method_documentation_audit/20261009-review-001/source_snapshots/d867c40516a307ab085228c5a66ce2c36cf2512a25a9d85f0599cca1491574ff.md",
+      "git_blob": "28a789e4d699ff30d8a6d0f0e93574470183c27e",
+      "sha256": "d867c40516a307ab085228c5a66ce2c36cf2512a25a9d85f0599cca1491574ff"
+    },
+    {
+      "path": "tools/method_documentation_audit/20261009-review-001/source_snapshots/d8b0d1bff767fc9171ba05a2e6bc17b20b40c7ef096e4acf951379e6bb053ec0.md",
+      "git_blob": "8c64d8172ea70c1eb4a7dced093545567ba891bf",
+      "sha256": "d8b0d1bff767fc9171ba05a2e6bc17b20b40c7ef096e4acf951379e6bb053ec0"
+    },
+    {
+      "path": "tools/method_documentation_audit/20261009-review-001/source_snapshots/d9064c8b6bda71e22af3416e460366af2aacf90cb094a99a02e12f781c239c60.md",
+      "git_blob": "2a5534284be1f6de5dce3703c2ed0a50bc2465fe",
+      "sha256": "d9064c8b6bda71e22af3416e460366af2aacf90cb094a99a02e12f781c239c60"
+    },
+    {
+      "path": "tools/method_documentation_audit/20261009-review-001/source_snapshots/d90ec57dc3bb5ef2bdca9d3077b77f336ad9e88b268981fbc50f3eccb0ab3c3f.md",
+      "git_blob": "ab4138b996f8e92d2111e37fd14a31c1471405ac",
+      "sha256": "d90ec57dc3bb5ef2bdca9d3077b77f336ad9e88b268981fbc50f3eccb0ab3c3f"
+    },
+    {
+      "path": "tools/method_documentation_audit/20261009-review-001/source_snapshots/da7346f8aebd4e90f7458ee6fa4001c654996789445c21449fe39141cb129925.md",
+      "git_blob": "3a840ad54af20e45d69277ef7c2d959522a471c8",
+      "sha256": "da7346f8aebd4e90f7458ee6fa4001c654996789445c21449fe39141cb129925"
+    },
+    {
+      "path": "tools/method_documentation_audit/20261009-review-001/source_snapshots/dc4fc950085da6ef471a5d75e49968c97beca35e3603a2fe4d549de2225fa0ee.md",
+      "git_blob": "7256250067d8f94af8e6f952edd103bbd316fbf9",
+      "sha256": "dc4fc950085da6ef471a5d75e49968c97beca35e3603a2fe4d549de2225fa0ee"
+    },
+    {
+      "path": "tools/method_documentation_audit/20261009-review-001/source_snapshots/dcfec85bea853be11bbb84c52bcaf933cc00acacf7d13d6a7e830be6fbadf6b7.md",
+      "git_blob": "9ca765b16c767a986f5d60ffc3f048cd9fb8795f",
+      "sha256": "dcfec85bea853be11bbb84c52bcaf933cc00acacf7d13d6a7e830be6fbadf6b7"
+    },
+    {
+      "path": "tools/method_documentation_audit/20261009-review-001/source_snapshots/dd910fd93348ef662301cbc596ba17a90c6c34542c5105db40518d715475fe5c.md",
+      "git_blob": "e4a5d2f8ccec18846c44d1c890a9cc51e5ff5198",
+      "sha256": "dd910fd93348ef662301cbc596ba17a90c6c34542c5105db40518d715475fe5c"
+    },
+    {
+      "path": "tools/method_documentation_audit/20261009-review-001/source_snapshots/de6c68153bb4833a7bfbf6eefa35ac7d1fbb18841a8fa0746664b1d91c495b0b.md",
+      "git_blob": "3a64d122a19c488246b001f3e884cfc0ba9b8182",
+      "sha256": "de6c68153bb4833a7bfbf6eefa35ac7d1fbb18841a8fa0746664b1d91c495b0b"
+    },
+    {
+      "path": "tools/method_documentation_audit/20261009-review-001/source_snapshots/dfe46230d8964588aea39514a67bb3f04dde42e7a4f6e653b812fa43fc0e14fe.md",
+      "git_blob": "2425bd93f9e78090bf72d7234969a1526756d825",
+      "sha256": "dfe46230d8964588aea39514a67bb3f04dde42e7a4f6e653b812fa43fc0e14fe"
+    },
+    {
+      "path": "tools/method_documentation_audit/20261009-review-001/source_snapshots/e0ca4d019155f1366d6f83a26464d9c83a2f01bfc417b1da969fd2e5c23f3e0b.md",
+      "git_blob": "f74f6306f65b4a46365c275227cf1739827e9d08",
+      "sha256": "e0ca4d019155f1366d6f83a26464d9c83a2f01bfc417b1da969fd2e5c23f3e0b"
+    },
+    {
+      "path": "tools/method_documentation_audit/20261009-review-001/source_snapshots/e1028c3b2eb8b24f1280ec1b8ef04ce0b904e3117fa5595122490d1f258896c7.md",
+      "git_blob": "7ebabca1659c573f8c54e04da39467aad7f39929",
+      "sha256": "e1028c3b2eb8b24f1280ec1b8ef04ce0b904e3117fa5595122490d1f258896c7"
+    },
+    {
+      "path": "tools/method_documentation_audit/20261009-review-001/source_snapshots/e1d92508f9df32999a082b2d2c29ec2945cec87933886d201828124c0830ce8c.md",
+      "git_blob": "7794f92f7a0765eb128c0f5bc4e41627a07696fb",
+      "sha256": "e1d92508f9df32999a082b2d2c29ec2945cec87933886d201828124c0830ce8c"
+    },
+    {
+      "path": "tools/method_documentation_audit/20261009-review-001/source_snapshots/e20ff2b4381c711d482a6e878dfc1fe1e6d2609d5b51c1770ebcdc89036ac085.md",
+      "git_blob": "e6c72a3b3060bce7296a8917bae4cbcec9249ef4",
+      "sha256": "e20ff2b4381c711d482a6e878dfc1fe1e6d2609d5b51c1770ebcdc89036ac085"
+    },
+    {
+      "path": "tools/method_documentation_audit/20261009-review-001/source_snapshots/e2e15243757c733a0fe49c3d9bd10a2fcb54857a4fe74e40cd398a6be14b72fb.md",
+      "git_blob": "eeeb56d08ba86dd8ec0568926b5acc6a006a51c2",
+      "sha256": "e2e15243757c733a0fe49c3d9bd10a2fcb54857a4fe74e40cd398a6be14b72fb"
+    },
+    {
+      "path": "tools/method_documentation_audit/20261009-review-001/source_snapshots/e34a19837d721f4985e2e643ebd2331a10a24e0fa3e753c4257917d5d7a8df8f.md",
+      "git_blob": "193488445e39a50e4be43f4ef3dcbf77557b2e4b",
+      "sha256": "e34a19837d721f4985e2e643ebd2331a10a24e0fa3e753c4257917d5d7a8df8f"
+    },
+    {
+      "path": "tools/method_documentation_audit/20261009-review-001/source_snapshots/e3ee419be65a21269abcc3e98a6cfd3f3a2a500ae7d4ca86723e166efd41b397.md",
+      "git_blob": "c0042d44917aae51685d1d8a18152b43ccf1241e",
+      "sha256": "e3ee419be65a21269abcc3e98a6cfd3f3a2a500ae7d4ca86723e166efd41b397"
+    },
+    {
+      "path": "tools/method_documentation_audit/20261009-review-001/source_snapshots/e433a784b7dfd0379e61a02f3ee3d89476b438014859892c32c0530999ad2575.md",
+      "git_blob": "59ed081f381c6b91a7e7a8d4c0c83cfbfa761ee3",
+      "sha256": "e433a784b7dfd0379e61a02f3ee3d89476b438014859892c32c0530999ad2575"
+    },
+    {
+      "path": "tools/method_documentation_audit/20261009-review-001/source_snapshots/e56ca4f00e5d2d6e21306438d7e02d67d454210264bfce15f575438a1a3faf57.md",
+      "git_blob": "6f6afecfbf21839118347d16729a52c7e9d84256",
+      "sha256": "e56ca4f00e5d2d6e21306438d7e02d67d454210264bfce15f575438a1a3faf57"
+    },
+    {
+      "path": "tools/method_documentation_audit/20261009-review-001/source_snapshots/e62fbd2e5ff944a78427e740e5d84797950fef8ae60e14254b25d0018bfffa73.md",
+      "git_blob": "345aa1c58f6d33fac54889d5bb3358ec7f302235",
+      "sha256": "e62fbd2e5ff944a78427e740e5d84797950fef8ae60e14254b25d0018bfffa73"
+    },
+    {
+      "path": "tools/method_documentation_audit/20261009-review-001/source_snapshots/e7510f6e5e9cdb8e546e7e1ee7417bfbacfccc129090dc7dce1a51a8b72da5c2.md",
+      "git_blob": "386d262affd31bab577df00d1200f2b259f1a621",
+      "sha256": "e7510f6e5e9cdb8e546e7e1ee7417bfbacfccc129090dc7dce1a51a8b72da5c2"
+    },
+    {
+      "path": "tools/method_documentation_audit/20261009-review-001/source_snapshots/e804da971800b6b7b80c56c0c53979eefee4f816e94b286a179f6ab80a220921.md",
+      "git_blob": "0f6b3b708c817fdfa4e162fbdf72599698f7f43c",
+      "sha256": "e804da971800b6b7b80c56c0c53979eefee4f816e94b286a179f6ab80a220921"
+    },
+    {
+      "path": "tools/method_documentation_audit/20261009-review-001/source_snapshots/e916d3d0d1181950856e30422e56d146b3d88d52ccd7b96c2b99816149f9e86c.md",
+      "git_blob": "5e5a7a6d0eccc11b06db5cbd7196c43b552eba1a",
+      "sha256": "e916d3d0d1181950856e30422e56d146b3d88d52ccd7b96c2b99816149f9e86c"
+    },
+    {
+      "path": "tools/method_documentation_audit/20261009-review-001/source_snapshots/eac734e55016ef95b95f521e6d050de44c6485f6bf136284df573acd7db35ad7.md",
+      "git_blob": "782c40771ccc78844016106d83c645e90be7cfd3",
+      "sha256": "eac734e55016ef95b95f521e6d050de44c6485f6bf136284df573acd7db35ad7"
+    },
+    {
+      "path": "tools/method_documentation_audit/20261009-review-001/source_snapshots/eb2a9f7b4a783dcc5bc884965a0c1c330f714ec0a608619e3fb8318344999958.md",
+      "git_blob": "166a1a3238fdfa48a603e4ca50decae227330818",
+      "sha256": "eb2a9f7b4a783dcc5bc884965a0c1c330f714ec0a608619e3fb8318344999958"
+    },
+    {
+      "path": "tools/method_documentation_audit/20261009-review-001/source_snapshots/ee8e3a7939de3989c84b2c7e241b61230ae571bc17c1e4b1c6766a4170e435e6.md",
+      "git_blob": "8603738adfff2ed6221942aa9a5760020de494ec",
+      "sha256": "ee8e3a7939de3989c84b2c7e241b61230ae571bc17c1e4b1c6766a4170e435e6"
+    },
+    {
+      "path": "tools/method_documentation_audit/20261009-review-001/source_snapshots/eeae98c4b40544c653fc26e125eb276e278938edadde1183f683ffe21faed599.md",
+      "git_blob": "abf246581461c7afb23088af7947c9fd1076eef5",
+      "sha256": "eeae98c4b40544c653fc26e125eb276e278938edadde1183f683ffe21faed599"
+    },
+    {
+      "path": "tools/method_documentation_audit/20261009-review-001/source_snapshots/ef22420198f47a7c19160c50434e03e7e4275ead7510a6cac34f3414d7b7882d.md",
+      "git_blob": "4273e99db77242de306b7f4f38e34a14928988c4",
+      "sha256": "ef22420198f47a7c19160c50434e03e7e4275ead7510a6cac34f3414d7b7882d"
+    },
+    {
+      "path": "tools/method_documentation_audit/20261009-review-001/source_snapshots/ef4cb450359e243ffd2c86b877e069ebe85f7e1e5a1798866dc879ed114f12f8.md",
+      "git_blob": "5cd9c01d3ca74410046de7d09fb6601db6ae6755",
+      "sha256": "ef4cb450359e243ffd2c86b877e069ebe85f7e1e5a1798866dc879ed114f12f8"
+    },
+    {
+      "path": "tools/method_documentation_audit/20261009-review-001/source_snapshots/f00b8b3eb23dde8a3874a1d2bdd41b85265a1bd0eb26314e25e53827608262a0.md",
+      "git_blob": "425c953aa423daa16ae7a053a684d419d5cae8e5",
+      "sha256": "f00b8b3eb23dde8a3874a1d2bdd41b85265a1bd0eb26314e25e53827608262a0"
+    },
+    {
+      "path": "tools/method_documentation_audit/20261009-review-001/source_snapshots/f2844b66a32b49c0d52e1a63c2a4a20ce453b18d7611fcb2379e22482e952477.md",
+      "git_blob": "73aa13321eeab97f3ba8a15325cb247d54e33a51",
+      "sha256": "f2844b66a32b49c0d52e1a63c2a4a20ce453b18d7611fcb2379e22482e952477"
+    },
+    {
+      "path": "tools/method_documentation_audit/20261009-review-001/source_snapshots/f3baad6b556728bbcdacc541c18afcb2f7b4c9fed600f5b23f8cb50bef8d959d.md",
+      "git_blob": "ce87475a5264802f738538a72ecb79b51bfbdaf9",
+      "sha256": "f3baad6b556728bbcdacc541c18afcb2f7b4c9fed600f5b23f8cb50bef8d959d"
+    },
+    {
+      "path": "tools/method_documentation_audit/20261009-review-001/source_snapshots/f478a2d27c34d7ad6a77920b1397cf6566b3b299efadc19221e34a84ec6a580c.md",
+      "git_blob": "51677ec2b88975a41937e3e93220d1cac2d9e62e",
+      "sha256": "f478a2d27c34d7ad6a77920b1397cf6566b3b299efadc19221e34a84ec6a580c"
+    },
+    {
+      "path": "tools/method_documentation_audit/20261009-review-001/source_snapshots/f893a5065e38e2905b91781896de092f0210e99357d72508a9632dc81fd891ac.md",
+      "git_blob": "d454126a858c8cbff42f010bafa8f64287f57a4f",
+      "sha256": "f893a5065e38e2905b91781896de092f0210e99357d72508a9632dc81fd891ac"
+    },
+    {
+      "path": "tools/method_documentation_audit/20261009-review-001/source_snapshots/f8a3c30f203dc5bf4fac9ce6b5fd81fd2a51161a50b6ec79309380f5e80220e6.md",
+      "git_blob": "43e302199d6942bc3e7e27544fba790f710e2eee",
+      "sha256": "f8a3c30f203dc5bf4fac9ce6b5fd81fd2a51161a50b6ec79309380f5e80220e6"
+    },
+    {
+      "path": "tools/method_documentation_audit/20261009-review-001/source_snapshots/fa9631492b7165af100c03be9d2dacec32da79afcc31a5526675b37761e2f23f.md",
+      "git_blob": "5b122dad835d3a08e006e3707ebcfbb34e243092",
+      "sha256": "fa9631492b7165af100c03be9d2dacec32da79afcc31a5526675b37761e2f23f"
+    },
+    {
+      "path": "tools/method_documentation_audit/20261009-review-001/source_snapshots/fb1196ffd4b99539683ce052ebd5ce3d885fc93a761bfd9adb59b3dc64a713c1.md",
+      "git_blob": "5adde71923363c7306ef0969d69d2927e8d22d87",
+      "sha256": "fb1196ffd4b99539683ce052ebd5ce3d885fc93a761bfd9adb59b3dc64a713c1"
+    },
+    {
+      "path": "tools/method_documentation_audit/20261009-review-001/source_snapshots/fb8e905b239b456a519e9e02ad8700b5cc098b5208f31ce0693b2e9e1f1861fa.md",
+      "git_blob": "ce1531b08e963deb820c5b8cf415a32438255ca0",
+      "sha256": "fb8e905b239b456a519e9e02ad8700b5cc098b5208f31ce0693b2e9e1f1861fa"
+    },
+    {
+      "path": "tools/method_documentation_audit/20261009-review-001/source_snapshots/fdf2a5f948d4882be856948db67597db6ef3f289dcf9e011448b5cd244efa416.md",
+      "git_blob": "8d540925980696b64bf5a612d671b2a66bb5d374",
+      "sha256": "fdf2a5f948d4882be856948db67597db6ef3f289dcf9e011448b5cd244efa416"
+    },
+    {
+      "path": "tools/method_documentation_audit/20261009-review-001/source_snapshots/fe3c41cd5328a872df57dbdac3ae9a40d7a3847f42b560f8edf1b54b3c7efe5a.md",
+      "git_blob": "86e42c889b94e60dcf59619ebbdef6296dd82bc4",
+      "sha256": "fe3c41cd5328a872df57dbdac3ae9a40d7a3847f42b560f8edf1b54b3c7efe5a"
+    },
+    {
+      "path": "tools/method_documentation_audit/20261009-review-001/source_snapshots/fec3999f6e3d389fd2da1fc614ab21f092268ffa59352fc577ce43806a5d9772.md",
+      "git_blob": "b7914bf68c06727b25e99b8926dc340c3b26e170",
+      "sha256": "fec3999f6e3d389fd2da1fc614ab21f092268ffa59352fc577ce43806a5d9772"
+    },
+    {
+      "path": "tools/method_documentation_audit/20261009-review-001/source_snapshots/ff08ac2ef24d6c487504f1da83d66264eb618f7d50ba79c95baf3deb87a26f7a.md",
+      "git_blob": "d06634df6f4676d1c4b03cf6cda3fbc5d1eb143e",
+      "sha256": "ff08ac2ef24d6c487504f1da83d66264eb618f7d50ba79c95baf3deb87a26f7a"
+    },
+    {
+      "path": "tools/method_documentation_audit/20261009-review-001/source_snapshots/ff2c83a40d4d3aa5f24321c47f47d16ce45111380ea95b98975c43c4f91d8e92.md",
+      "git_blob": "bf40b71009a6a83af7a8552f9f1c3a8ddd389101",
+      "sha256": "ff2c83a40d4d3aa5f24321c47f47d16ce45111380ea95b98975c43c4f91d8e92"
+    },
+    {
+      "path": "tools/method_documentation_audit/20261009-review-001/unique_document_catalog.json",
+      "git_blob": "0270c793f046bd73b2d1341ae625d60da3af7293",
+      "sha256": "189571ffc349bdc89758fc4490dcb3923e2a143afca8a2b480828716ba2c86e1"
+    },
+    {
+      "path": "tools/method_documentation_audit/README.md",
+      "git_blob": "83fd1c1f18b6487b09f026cfa77959057eff572e",
+      "sha256": "c14ee0e581968772987aa1a3faaf6a999ce685ba3b1cdb14c5d4376b5c0e4106"
+    }
+  ]
+}

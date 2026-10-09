@@ -1,0 +1,11 @@
+{
+  "recorded_utc": "2026-10-09T22:43:46.764141+00:00",
+  "kind": "proposal wording clarification; no execution or outcome change",
+  "initial_registry_sha256": "ed1b47412fc08297edbc1dda1cd3f900013b1203356fed712e7900727221dff4",
+  "proposal_id": "NEXT-P01",
+  "field": "negative_controls",
+  "old_text_retained_in_initial_registry": "M22 sense counterexample",
+  "clarified_text": "M22 failed-sense probe: recover exact point/direction with diagnostic before freezing a regression",
+  "reason": "Retained M22 report establishes sense failure but lacks exact point/direction; planned control needs input recovery",
+  "all_proposals_remain": "PROPOSED_NOT_RUN"
+}

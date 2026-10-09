@@ -1,0 +1,2 @@
+* -text whitespace=trailing-space,space-before-tab,cr-at-eol
+20261009-plan-001/PR_BODY_WITH_PLAN.md -whitespace

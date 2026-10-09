@@ -1,0 +1,26 @@
+{
+  "source_commit": "6333d4337c37aae83803012b76d67ba09ef4092f",
+  "files": [
+    {
+      "file": "README.md",
+      "sha256": "9444c856c0869d9156f5e425c93ca1503b3fb278bcf561c2354e9e56e912aedc"
+    },
+    {
+      "file": "fourier_torus.py",
+      "sha256": "fa0559134dd60b0390617a799a339ad05ad23e1f523c86ea9b92373ff2812210"
+    },
+    {
+      "file": "test_fourier_torus.py",
+      "sha256": "ece3351a22dbb53992996d40d26c40f9a50c725cac9b1f2151d39a3f6a1f44ee"
+    },
+    {
+      "file": "run_tests.py",
+      "sha256": "ec89e43e883ec013f19088222d13605057c3ee57e66d25e0b374dd89cd5b9104"
+    },
+    {
+      "file": "receipt.json",
+      "sha256": "0fcfc09cb820f4ad001b4428a76b46e1d1a2ba5c76505c831080c935fc013919"
+    }
+  ],
+  "status": "PRESERVED_PRIOR_ATTEMPT"
+}

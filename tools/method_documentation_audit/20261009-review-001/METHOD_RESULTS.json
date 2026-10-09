@@ -1,0 +1,1856 @@
+{
+  "review_date": "2026-10-09",
+  "scope": "Local StellarCSG docs/reports, archived review packet, scientific campaign handoffs and prototype ledgers; no vendor/general OpenMC manuals or schedule audit",
+  "not_a_count_of_unique_experiments": true,
+  "method_variant_or_proposal_entries": 81,
+  "preserves_historical_ledger_rows": 32,
+  "methods": [
+    {
+      "id": "M01",
+      "method": "Broad reference/global searches",
+      "category": "Historical geometry",
+      "status": "REFERENCE / INCOMPLETE GENERAL ROOT COVERAGE",
+      "recorded_result": "Independent reference machinery and general periodic/swept evaluation supplied correctness controls.",
+      "limitations_or_negative_results": "Expensive dense/global refinement; old swept implementation lacked complete first-root certification.",
+      "evidence": [
+        {
+          "original_path": "ai-review-handoff-20261008/sources/stellarcsg-astra-kernel-20260926/dev/stellarcsg/reports/PERFORMANCE_REDESIGN_FINAL_REPORT.md",
+          "sha256": "a4ca91c1f0e40f58d93f4c092f55213b59f475017838a45ff294eb2ec3f93772",
+          "snapshot": "source_snapshots/a4ca91c1f0e40f58d93f4c092f55213b59f475017838a45ff294eb2ec3f93772.md"
+        },
+        {
+          "original_path": "ai-review-handoff-20261008/sources/stellarcsg-local-continuation-20260925/dev/stellarcsg/reports/CHAT_SYNTHESIS_20260926.md",
+          "sha256": "8b385cd81cf6ba6e5c1730bcd465b69907d611c8f50cd134e8842740f5d9dc3a",
+          "snapshot": "source_snapshots/8b385cd81cf6ba6e5c1730bcd465b69907d611c8f50cd134e8842740f5d9dc3a.md"
+        },
+        {
+          "original_path": "ai-review-handoff-20261008/sources/stellarcsg-astra-kernel-20260926/dev/stellarcsg/reports/astra-20260926/APPROACH_REGISTRY.md",
+          "sha256": "63dc9726784b3048549dc949a1175f58ef57b3928985f5f19219c0b8ef2906ae",
+          "snapshot": "source_snapshots/63dc9726784b3048549dc949a1175f58ef57b3928985f5f19219c0b8ef2906ae.md"
+        }
+      ],
+      "historical_ledger_row_verbatim": "| M01 Broad reference/global searches | Independent reference machinery and general periodic/swept evaluation supplied correctness controls. | Expensive dense/global refinement; old swept implementation lacked complete first-root certification. | Preserve as references under explicit scope; do not assume a broad oracle is a fast production path. | S07, S12, S13 |",
+      "historical_disposition": "Preserve as references under explicit scope; do not assume a broad oracle is a fast production path.",
+      "historical_record_cutoff": "2026-10-01; packet prepared 2026-10-08",
+      "current_addendum": null
+    },
+    {
+      "id": "M02",
+      "method": "Exact torus and circular-coil specialization",
+      "category": "Historical geometry",
+      "status": "PARTIAL: EXACT ANALYTIC INPUTS",
+      "recorded_result": "C0 exact dispatch: 1.3670 s versus native 1.4343 s, seven 1M-history observations. Native torus helpers can avoid generic solving.",
+      "limitations_or_negative_results": "Analytic controls do not reproduce nonaxisymmetric plasma or physical packs. Near-constant recognition previously admitted inappropriate specialization and was repaired.",
+      "evidence": [
+        {
+          "original_path": "ai-review-handoff-20261008/sources/stellarcsg-astra-kernel-20260926/dev/stellarcsg/reports/FASTEST_METHOD_BRANCH_REVIEW_20260926.md",
+          "sha256": "c344b2767132815999f82ee29a2550555b985c20b1e3a27d0eb19e7a0425eb20",
+          "snapshot": "source_snapshots/c344b2767132815999f82ee29a2550555b985c20b1e3a27d0eb19e7a0425eb20.md"
+        },
+        {
+          "original_path": "ai-review-handoff-20261008/sources/stellarcsg-astra-kernel-20260926/dev/stellarcsg/reports/HISTORICAL_ELAPSED_METHODS_010.json",
+          "sha256": "c731a0de005e6618c5db75a6038825532a0778dd0df2301c97249a1c81946b00",
+          "snapshot": "source_data/c731a0de005e6618c5db75a6038825532a0778dd0df2301c97249a1c81946b00.json",
+          "bytes": 12659
+        },
+        {
+          "original_path": "ai-review-handoff-20261008/sources/stellarcsg-local-continuation-20260925/dev/stellarcsg/reports/USABILITY_METHOD_REVIEW_20260926.md",
+          "sha256": "9b48f90a94996393353a5b463be06122f45aef58f84238410a24b629d135a785",
+          "snapshot": "source_snapshots/9b48f90a94996393353a5b463be06122f45aef58f84238410a24b629d135a785.md"
+        }
+      ],
+      "historical_ledger_row_verbatim": "| M02 Exact torus and circular-coil specialization | C0 exact dispatch: 1.3670 s versus native 1.4343 s, seven 1M-history observations. Native torus helpers can avoid generic solving. | Analytic controls do not reproduce nonaxisymmetric plasma or physical packs. Near-constant recognition previously admitted inappropriate specialization and was repaired. | Keep for genuinely analytic inputs. One-ULP/forced-general negative controls must prevent approximate admission. | S05, S06, S08 |",
+      "historical_disposition": "Keep for genuinely analytic inputs. One-ULP/forced-general negative controls must prevent approximate admission.",
+      "historical_record_cutoff": "2026-10-01; packet prepared 2026-10-08",
+      "current_addendum": null
+    },
+    {
+      "id": "M03",
+      "method": "Shaped axisymmetric and synthetic helical paths",
+      "category": "Historical geometry",
+      "status": "PARTIAL; NATIVE SHAPED/HELICAL GATES NOT_RUN",
+      "recorded_result": "Detection/evaluate/normal and some correctness machinery exist in early reports.",
+      "limitations_or_negative_results": "Shaped/helical OpenMC performance gates were NOT_RUN; exact-torus ray campaigns were sometimes broader than their actual shape scope.",
+      "evidence": [
+        {
+          "original_path": "ai-review-handoff-20261008/sources/stellarcsg-astra-kernel-20260926/dev/stellarcsg/reports/PERFORMANCE_REDESIGN_FINAL_REPORT.md",
+          "sha256": "a4ca91c1f0e40f58d93f4c092f55213b59f475017838a45ff294eb2ec3f93772",
+          "snapshot": "source_snapshots/a4ca91c1f0e40f58d93f4c092f55213b59f475017838a45ff294eb2ec3f93772.md"
+        },
+        {
+          "original_path": "ai-review-handoff-20261008/sources/stellarcsg-astra-kernel-20260926/dev/stellarcsg/reports/FINAL_TECHNICAL_BOUNDARIES.md",
+          "sha256": "29bf0886741598de0cf45553d24b2c5a8148eb7809f815c9864dc89964c8e7b5",
+          "snapshot": "source_snapshots/29bf0886741598de0cf45553d24b2c5a8148eb7809f815c9864dc89964c8e7b5.md"
+        }
+      ],
+      "historical_ledger_row_verbatim": "| M03 Shaped axisymmetric and synthetic helical paths | Detection/evaluate/normal and some correctness machinery exist in early reports. | Shaped/helical OpenMC performance gates were NOT_RUN; exact-torus ray campaigns were sometimes broader than their actual shape scope. | No target-speed claim; require explicit nonanalytic representation and native events. | S07, S29 |",
+      "historical_disposition": "No target-speed claim; require explicit nonanalytic representation and native events.",
+      "historical_record_cutoff": "2026-10-01; packet prepared 2026-10-08",
+      "current_addendum": null
+    },
+    {
+      "id": "M04",
+      "method": "Local periodic plasma patches and BVH",
+      "category": "Historical geometry",
+      "status": "FAILED HISTORICAL GATE; LATER OPTIMIZATION DIAGNOSTICS",
+      "recorded_result": "Conservative local patches, proxy proposals, damped Newton and local recovery. Historical 0.36314 s/10k versus ordinary DAGMC 0.45281 s.",
+      "limitations_or_negative_results": "Historical leakage mismatch; current solid-Fe56 torus-proxy ratio 159.7233 FAIL. Generic Newton failure is not a no-hit proof.",
+      "evidence": [
+        {
+          "original_path": "ai-review-handoff-20261008/sources/stellarcsg-astra-kernel-20260926/dev/stellarcsg/METHOD_MAP.md",
+          "sha256": "0c0f4398c44da682a5c87546bd2c9799d949a9e82f8b5f7d21c950e389da3952",
+          "snapshot": "source_snapshots/0c0f4398c44da682a5c87546bd2c9799d949a9e82f8b5f7d21c950e389da3952.md"
+        },
+        {
+          "original_path": "ai-review-handoff-20261008/sources/stellarcsg-astra-kernel-20260926/dev/stellarcsg/reports/FASTEST_METHOD_BRANCH_REVIEW_20260926.md",
+          "sha256": "c344b2767132815999f82ee29a2550555b985c20b1e3a27d0eb19e7a0425eb20",
+          "snapshot": "source_snapshots/c344b2767132815999f82ee29a2550555b985c20b1e3a27d0eb19e7a0425eb20.md"
+        },
+        {
+          "original_path": "ai-review-handoff-20261008/sources/stellarcsg-astra-kernel-20260926/dev/stellarcsg/reports/PERFORMANCE_REDESIGN_FINAL_REPORT.md",
+          "sha256": "a4ca91c1f0e40f58d93f4c092f55213b59f475017838a45ff294eb2ec3f93772",
+          "snapshot": "source_snapshots/a4ca91c1f0e40f58d93f4c092f55213b59f475017838a45ff294eb2ec3f93772.md"
+        },
+        {
+          "original_path": "ai-review-handoff-20261008/sources/stellarcsg-astra-kernel-20260926/dev/stellarcsg/reports/plasma-best-time-20260926/SOURCE_REVIEW.md",
+          "sha256": "90fa80d698137a49024982bdc255f9b29ed3d2e85cd531c156ab5ab527edc221",
+          "snapshot": "source_snapshots/90fa80d698137a49024982bdc255f9b29ed3d2e85cd531c156ab5ab527edc221.md"
+        },
+        {
+          "original_path": "ai-review-handoff-20261008/sources/stellarcsg-astra-kernel-20260926/dev/stellarcsg/reports/plasma-best-time-20260926/CALL_PATH_AUDIT_009.md",
+          "sha256": "3888cef808f5a6daec92dd336a759e8540621590978b0a54d97b4fc1acf60902",
+          "snapshot": "source_snapshots/3888cef808f5a6daec92dd336a759e8540621590978b0a54d97b4fc1acf60902.md"
+        },
+        {
+          "original_path": "stellarcsg-workload-ladder-20261008/RESULTS.md",
+          "sha256": "01066c6c7ace075e14b50fa7b4e5cb36e13e01bb115d22a38f7b70cf9324b438",
+          "snapshot": "source_snapshots/01066c6c7ace075e14b50fa7b4e5cb36e13e01bb115d22a38f7b70cf9324b438.md"
+        },
+        {
+          "original_path": "stellarcsg-workload-ladder-20261008/plasma/runs/plasma-matched-02/SUMMARY.json",
+          "sha256": "979d45a5f1fc68268d17d1c5d2e080acd903b4b260488a64f4487009a80a56c0",
+          "snapshot": "source_data/979d45a5f1fc68268d17d1c5d2e080acd903b4b260488a64f4487009a80a56c0.json",
+          "bytes": 813
+        }
+      ],
+      "historical_ledger_row_verbatim": "| M04 Local periodic plasma patches and BVH | Conservative local patches, proxy proposals, damped Newton and local recovery. Historical 0.36314 s/10k versus ordinary DAGMC 0.45281 s. | Historical leakage mismatch; current solid-Fe56 torus-proxy ratio 159.7233 FAIL. Generic Newton failure is not a no-hit proof. | Selected general-plasma development route, not production winner. Profile complete queries, prefixes, iterations and fallback dispositions. | S02, S05, S07, S18, S30 |",
+      "historical_disposition": "Selected general-plasma development route, not production winner. Profile complete queries, prefixes, iterations and fallback dispositions.",
+      "historical_record_cutoff": "2026-10-01; packet prepared 2026-10-08",
+      "current_addendum": "Later plasma ceiling variants report large improvements on the original unequal-source workload. More work-matched geometry-specific source diagnostics still give 2.100163 and 2.119799 custom/torus, above 1.25. They are different experiments, not a replacement replay of the 159.7233 failed gate. See L07/L14."
+    },
+    {
+      "id": "M05",
+      "method": "Local swept spans and shared 48-coil BVH",
+      "category": "Historical geometry",
+      "status": "PARTIAL ROUND-TUBE SPEED; PHYSICAL PACK UNQUALIFIED",
+      "recorded_result": "Cubic control hulls, conservative boxes, local narrow phases; 48-tube set 0.33282 s/100k versus 2.01730 s fine ordinary DAGMC.",
+      "limitations_or_negative_results": "Single-coil native slower than mesh. Round 1 cm tubes/near-vacuum/no tallies, not actual packs. Later a03/a06/a08/a15 root failures block unchanged reuse.",
+      "evidence": [
+        {
+          "original_path": "ai-review-handoff-20261008/sources/stellarcsg-astra-kernel-20260926/dev/stellarcsg/reports/FASTEST_METHOD_BRANCH_REVIEW_20260926.md",
+          "sha256": "c344b2767132815999f82ee29a2550555b985c20b1e3a27d0eb19e7a0425eb20",
+          "snapshot": "source_snapshots/c344b2767132815999f82ee29a2550555b985c20b1e3a27d0eb19e7a0425eb20.md"
+        },
+        {
+          "original_path": "ai-review-handoff-20261008/sources/stellarcsg-astra-kernel-20260926/dev/stellarcsg/reports/HISTORICAL_ELAPSED_METHODS_010.json",
+          "sha256": "c731a0de005e6618c5db75a6038825532a0778dd0df2301c97249a1c81946b00",
+          "snapshot": "source_data/c731a0de005e6618c5db75a6038825532a0778dd0df2301c97249a1c81946b00.json",
+          "bytes": 12659
+        },
+        {
+          "original_path": "ai-review-handoff-20261008/sources/stellarcsg-astra-kernel-20260926/dev/stellarcsg/reports/PERFORMANCE_REDESIGN_FINAL_REPORT.md",
+          "sha256": "a4ca91c1f0e40f58d93f4c092f55213b59f475017838a45ff294eb2ec3f93772",
+          "snapshot": "source_snapshots/a4ca91c1f0e40f58d93f4c092f55213b59f475017838a45ff294eb2ec3f93772.md"
+        },
+        {
+          "original_path": "ai-review-handoff-20261008/sources/stellarcsg-local-continuation-20260925/dev/stellarcsg/reports/CHAT_SYNTHESIS_20260926.md",
+          "sha256": "8b385cd81cf6ba6e5c1730bcd465b69907d611c8f50cd134e8842740f5d9dc3a",
+          "snapshot": "source_snapshots/8b385cd81cf6ba6e5c1730bcd465b69907d611c8f50cd134e8842740f5d9dc3a.md"
+        }
+      ],
+      "historical_ledger_row_verbatim": "| M05 Local swept spans and shared 48-coil BVH | Cubic control hulls, conservative boxes, local narrow phases; 48-tube set 0.33282 s/100k versus 2.01730 s fine ordinary DAGMC. | Single-coil native slower than mesh. Round 1 cm tubes/near-vacuum/no tallies, not actual packs. Later a03/a06/a08/a15 root failures block unchanged reuse. | Preserve and repair architecture; replay frozen same-solid failures before comparing native workloads. | S05, S06, S07, S12 |",
+      "historical_disposition": "Preserve and repair architecture; replay frozen same-solid failures before comparing native workloads.",
+      "historical_record_cutoff": "2026-10-01; packet prepared 2026-10-08",
+      "current_addendum": null
+    },
+    {
+      "id": "M06",
+      "method": "Legacy projected Newton/sign scans and fast recovery",
+      "category": "Historical geometry",
+      "status": "FAILED GENERAL SOLVER",
+      "recorded_result": "Recovered/compiled fast source; strict failures reproducible; later earlier-entry repair supplied useful witnesses.",
+      "limitations_or_negative_results": "Wrong first entry around 0.502 cm instead of 0.002 cm; saved strict result 73 unresolved/87 no-hit. Increasing seeds/residual changes did not close completeness and could slow it. Current legacy native replay aborted unresolved, exit -6.",
+      "evidence": [
+        {
+          "original_path": "ai-review-handoff-20261008/sources/stellarcsg-astra-kernel-20260926/dev/stellarcsg/reports/FASTEST_METHOD_BRANCH_REVIEW_20260926.md",
+          "sha256": "c344b2767132815999f82ee29a2550555b985c20b1e3a27d0eb19e7a0425eb20",
+          "snapshot": "source_snapshots/c344b2767132815999f82ee29a2550555b985c20b1e3a27d0eb19e7a0425eb20.md"
+        },
+        {
+          "original_path": "ai-review-handoff-20261008/sources/stellarcsg-local-continuation-20260925/dev/stellarcsg/reports/USABILITY_METHOD_REVIEW_20260926.md",
+          "sha256": "9b48f90a94996393353a5b463be06122f45aef58f84238410a24b629d135a785",
+          "snapshot": "source_snapshots/9b48f90a94996393353a5b463be06122f45aef58f84238410a24b629d135a785.md"
+        },
+        {
+          "original_path": "ai-review-handoff-20261008/sources/stellarcsg-local-continuation-20260925/dev/stellarcsg/reports/CHAT_SYNTHESIS_20260926.md",
+          "sha256": "8b385cd81cf6ba6e5c1730bcd465b69907d611c8f50cd134e8842740f5d9dc3a",
+          "snapshot": "source_snapshots/8b385cd81cf6ba6e5c1730bcd465b69907d611c8f50cd134e8842740f5d9dc3a.md"
+        },
+        {
+          "original_path": "ai-review-handoff-20261008/sources/stellarcsg-astra-kernel-20260926/dev/stellarcsg/reports/astra-20260926/APPROACH_REGISTRY.md",
+          "sha256": "63dc9726784b3048549dc949a1175f58ef57b3928985f5f19219c0b8ef2906ae",
+          "snapshot": "source_snapshots/63dc9726784b3048549dc949a1175f58ef57b3928985f5f19219c0b8ef2906ae.md"
+        }
+      ],
+      "historical_ledger_row_verbatim": "| M06 Legacy projected Newton/sign scans and fast recovery | Recovered/compiled fast source; strict failures reproducible; later earlier-entry repair supplied useful witnesses. | Wrong first entry around 0.502 cm instead of 0.002 cm; saved strict result 73 unresolved/87 no-hit. Increasing seeds/residual changes did not close completeness and could slow it. Current legacy native replay aborted unresolved, exit -6. | Failed general solver. Reopen with a concrete prefix/even-contact/seam repair, not more heuristic search. | S05, S08, S12, S13 |",
+      "historical_disposition": "Failed general solver. Reopen with a concrete prefix/even-contact/seam repair, not more heuristic search.",
+      "historical_record_cutoff": "2026-10-01; packet prepared 2026-10-08",
+      "current_addendum": null
+    },
+    {
+      "id": "M07",
+      "method": "Original Bernstein degree-ten coil solver",
+      "category": "Historical geometry",
+      "status": "FAILED; FINAL PATCH UNRECOVERED",
+      "recorded_result": "Constructive algebraic elimination and root isolation ideas.",
+      "limitations_or_negative_results": "Reported stress bank 32 wrong/160; apparent strict success used 12 sampled fallbacks, and every stress ray used fallback. Roughly 90% strict cost was fallback; candidate cost about 253 times old. Final fail-closed patch was not applied before disconnection.",
+      "evidence": [
+        {
+          "original_path": "ai-review-handoff-20261008/sources/stellarcsg-local-continuation-20260925/dev/stellarcsg/reports/CHAT_SYNTHESIS_20260926.md",
+          "sha256": "8b385cd81cf6ba6e5c1730bcd465b69907d611c8f50cd134e8842740f5d9dc3a",
+          "snapshot": "source_snapshots/8b385cd81cf6ba6e5c1730bcd465b69907d611c8f50cd134e8842740f5d9dc3a.md"
+        }
+      ],
+      "historical_ledger_row_verbatim": "| M07 Original Bernstein degree-ten coil solver | Constructive algebraic elimination and root isolation ideas. | Reported stress bank 32 wrong/160; apparent strict success used 12 sampled fallbacks, and every stress ray used fallback. Roughly 90% strict cost was fallback; candidate cost about 253 times old. Final fail-closed patch was not applied before disconnection. | Reject sampled fallback as authority. Distinguish this failed route from M11's later certified Bernstein prefix. | S12 |",
+      "historical_disposition": "Reject sampled fallback as authority. Distinguish this failed route from M11's later certified Bernstein prefix.",
+      "historical_record_cutoff": "2026-10-01; packet prepared 2026-10-08",
+      "current_addendum": null
+    },
+    {
+      "id": "M08",
+      "method": "Candidate B torus-arc quartics",
+      "category": "Historical geometry",
+      "status": "BLOCKED / APPROXIMATION ONLY",
+      "recorded_result": "Opt-in fitting and quartic candidate prototype.",
+      "limitations_or_negative_results": "160/160 blocked strict and stress; C0 rather than intended G1 chain; tangent mismatch 0.002010197 rad; continuous fidelity and owner/root proof absent.",
+      "evidence": [
+        {
+          "original_path": "ai-review-handoff-20261008/sources/stellarcsg-local-continuation-20260925/dev/stellarcsg/reports/CHAT_SYNTHESIS_20260926.md",
+          "sha256": "8b385cd81cf6ba6e5c1730bcd465b69907d611c8f50cd134e8842740f5d9dc3a",
+          "snapshot": "source_snapshots/8b385cd81cf6ba6e5c1730bcd465b69907d611c8f50cd134e8842740f5d9dc3a.md"
+        }
+      ],
+      "historical_ledger_row_verbatim": "| M08 Candidate B torus-arc quartics | Opt-in fitting and quartic candidate prototype. | 160/160 blocked strict and stress; C0 rather than intended G1 chain; tangent mismatch 0.002010197 rad; continuous fidelity and owner/root proof absent. | Approximation research only. Need conservative geometry bounds and complete root/event handling. | S12 |",
+      "historical_disposition": "Approximation research only. Need conservative geometry bounds and complete root/event handling.",
+      "historical_record_cutoff": "2026-10-01; packet prepared 2026-10-08",
+      "current_addendum": null
+    },
+    {
+      "id": "M09",
+      "method": "Bézier Cartesian plasma atlas",
+      "category": "Historical geometry",
+      "status": "NOT ADMITTED; FINAL ARTIFACT UNRECOVERED",
+      "recorded_result": "Atlas-local classification and interval/Newton framework.",
+      "limitations_or_negative_results": "Inclusion returned Boolean and discarded parameter enclosure; point-estimated ray distance drove pruning. Grazing residual cannot bound longitudinal error. Final patch unavailable in retained review.",
+      "evidence": [
+        {
+          "original_path": "ai-review-handoff-20261008/sources/stellarcsg-local-continuation-20260925/dev/stellarcsg/reports/CHAT_SYNTHESIS_20260926.md",
+          "sha256": "8b385cd81cf6ba6e5c1730bcd465b69907d611c8f50cd134e8842740f5d9dc3a",
+          "snapshot": "source_snapshots/8b385cd81cf6ba6e5c1730bcd465b69907d611c8f50cd134e8842740f5d9dc3a.md"
+        }
+      ],
+      "historical_ledger_row_verbatim": "| M09 Bézier Cartesian plasma atlas | Atlas-local classification and interval/Newton framework. | Inclusion returned Boolean and discarded parameter enclosure; point-estimated ray distance drove pruning. Grazing residual cannot bound longitudinal error. Final patch unavailable in retained review. | Not admitted. Recover exact artifact and certify ray-distance intervals plus topology/seams before reuse. | S12 |",
+      "historical_disposition": "Not admitted. Recover exact artifact and certify ray-distance intervals plus topology/seams before reuse.",
+      "historical_record_cutoff": "2026-10-01; packet prepared 2026-10-08",
+      "current_addendum": null
+    },
+    {
+      "id": "M10",
+      "method": "Candidate D hierarchy/solver",
+      "category": "Historical geometry",
+      "status": "REJECTED AUTHORITATIVE SOLVER",
+      "recorded_result": "Useful candidate-generation/hierarchy diagnostics.",
+      "limitations_or_negative_results": "All strict/stress unresolved. Near-parallel false exclusion, clipped leads, radius bounds, heuristic padding and deduplication were unsafe. Candidate-only timings omitted completion cost.",
+      "evidence": [
+        {
+          "original_path": "ai-review-handoff-20261008/sources/stellarcsg-local-continuation-20260925/dev/stellarcsg/reports/CHAT_SYNTHESIS_20260926.md",
+          "sha256": "8b385cd81cf6ba6e5c1730bcd465b69907d611c8f50cd134e8842740f5d9dc3a",
+          "snapshot": "source_snapshots/8b385cd81cf6ba6e5c1730bcd465b69907d611c8f50cd134e8842740f5d9dc3a.md"
+        }
+      ],
+      "historical_ledger_row_verbatim": "| M10 Candidate D hierarchy/solver | Useful candidate-generation/hierarchy diagnostics. | All strict/stress unresolved. Near-parallel false exclusion, clipped leads, radius bounds, heuristic padding and deduplication were unsafe. Candidate-only timings omitted completion cost. | Rejected authoritative solver. Address a retained counterexample and domain coverage before another timing attempt. | S12 |",
+      "historical_disposition": "Rejected authoritative solver. Address a retained counterexample and domain coverage before another timing attempt.",
+      "historical_record_cutoff": "2026-10-01; packet prepared 2026-10-08",
+      "current_addendum": null
+    },
+    {
+      "id": "M11",
+      "method": "Exact-control constant-metric offset with certified Bernstein prefix",
+      "category": "Historical geometry",
+      "status": "ACCEPTED RESTRICTED SCALAR CORRECTNESS / INTERNAL SPEED",
+      "recorded_result": "Native shaped seam entry/exit; frozen 160 scalar queries independently certified, 69 hits/91 misses in both modes. Same-binary prefix on/off summed-distance gain 4.052; child-wall gain 2.605. Exact positive tiny contact and even-contact mechanisms retained.",
+      "limitations_or_negative_results": "Restricted circular or constant planar-ellipse metric, different from legacy varying frames/rectangular packs. Nine normal/projection gaps; imported scalar coil rows all misses. No full physical target qualification.",
+      "evidence": [
+        {
+          "original_path": "ai-review-handoff-20261008/sources/stellarcsg-astra-kernel-20260926/dev/stellarcsg/reports/astra-20260926/APPROACH_REGISTRY.md",
+          "sha256": "63dc9726784b3048549dc949a1175f58ef57b3928985f5f19219c0b8ef2906ae",
+          "snapshot": "source_snapshots/63dc9726784b3048549dc949a1175f58ef57b3928985f5f19219c0b8ef2906ae.md"
+        },
+        {
+          "original_path": "ai-review-handoff-20261008/sources/stellarcsg-astra-kernel-20260926/dev/stellarcsg/reports/astra-20260926/PERFORMANCE_REVIEW.md",
+          "sha256": "701bc7b22a2ad14ed1a9c391cf113373932914a8cb53ceba3b55cd9ff28f4d5f",
+          "snapshot": "source_snapshots/701bc7b22a2ad14ed1a9c391cf113373932914a8cb53ceba3b55cd9ff28f4d5f.md"
+        },
+        {
+          "original_path": "ai-review-handoff-20261008/sources/stellarcsg-astra-kernel-20260926/dev/stellarcsg/reports/astra-20260926/final-acceptance.json",
+          "sha256": "8210d88c008055ea8e948e463c5aac7bf4f0461ebebcdfd2d2cc76878fecc8be",
+          "snapshot": "source_data/8210d88c008055ea8e948e463c5aac7bf4f0461ebebcdfd2d2cc76878fecc8be.json",
+          "bytes": 8934
+        },
+        {
+          "original_path": "ai-review-handoff-20261008/sources/stellarcsg-astra-kernel-20260926/dev/stellarcsg/reports/astra-20260926/ALGORITHM_CONTRACT.md",
+          "sha256": "6c09a0d3b43d124e6350ea9264db61eb4652213f47b80bec60ac6d764a1f0de2",
+          "snapshot": "source_snapshots/6c09a0d3b43d124e6350ea9264db61eb4652213f47b80bec60ac6d764a1f0de2.md"
+        }
+      ],
+      "historical_ledger_row_verbatim": "| M11 Exact-control constant-metric offset with certified Bernstein prefix | Native shaped seam entry/exit; frozen 160 scalar queries independently certified, 69 hits/91 misses in both modes. Same-binary prefix on/off summed-distance gain 4.052; child-wall gain 2.605. Exact positive tiny contact and even-contact mechanisms retained. | Restricted circular or constant planar-ellipse metric, different from legacy varying frames/rectangular packs. Nine normal/projection gaps; imported scalar coil rows all misses. No full physical target qualification. | Real restricted correctness and internal acceleration. Preserve as reference/fallback research; demand normal/hit and native ownership coverage before promotion. | S13, S14, S15, S31 |",
+      "historical_disposition": "Real restricted correctness and internal acceleration. Preserve as reference/fallback research; demand normal/hit and native ownership coverage before promotion.",
+      "historical_record_cutoff": "2026-10-01; packet prepared 2026-10-08",
+      "current_addendum": null
+    },
+    {
+      "id": "M12",
+      "method": "Immutable full-span interval cache",
+      "category": "Historical geometry",
+      "status": "ACCEPTED NARROW CACHE PATCH / PARTIAL SPEED",
+      "recorded_result": "Reuses identical outward interval expressions; finite scalar outputs unchanged, original nine normal errors retained. About 1.993 times complete primitive-workload improvement; later independent cache review accepted a narrow patch.",
+      "limitations_or_negative_results": "Primitive workload only; 0.01761% of its analytic native control is not native transport throughput. Cached 20k round-offset transport still about 166–167 s and fails native proxy badly.",
+      "evidence": [
+        {
+          "original_path": "ai-review-handoff-20261008/sources/stellarcsg-astra-kernel-20260926/dev/stellarcsg/reports/coil-profile-20260926/RESULTS.md",
+          "sha256": "c39272e8051ce21599e3bb9e164c27b448fc0fde03a48a7825e0e9fc69bf8aad",
+          "snapshot": "source_snapshots/c39272e8051ce21599e3bb9e164c27b448fc0fde03a48a7825e0e9fc69bf8aad.md"
+        },
+        {
+          "original_path": "ai-review-handoff-20261008/sources/stellarcsg-astra-kernel-20260926/dev/stellarcsg/reports/coil-hybrid-accuracy-20260926/CACHE_ACCEPTANCE_003.md",
+          "sha256": "b538912ccdc251d431b44c3e8f604976fad32606230a31eb6b59c60e33f0b75e",
+          "snapshot": "source_snapshots/b538912ccdc251d431b44c3e8f604976fad32606230a31eb6b59c60e33f0b75e.md"
+        },
+        {
+          "original_path": "ai-review-handoff-20261008/sources/stellarcsg-astra-kernel-20260926/dev/stellarcsg/reports/FASTEST_METHOD_BRANCH_REVIEW_20260926.md",
+          "sha256": "c344b2767132815999f82ee29a2550555b985c20b1e3a27d0eb19e7a0425eb20",
+          "snapshot": "source_snapshots/c344b2767132815999f82ee29a2550555b985c20b1e3a27d0eb19e7a0425eb20.md"
+        }
+      ],
+      "historical_ledger_row_verbatim": "| M12 Immutable full-span interval cache | Reuses identical outward interval expressions; finite scalar outputs unchanged, original nine normal errors retained. About 1.993 times complete primitive-workload improvement; later independent cache review accepted a narrow patch. | Primitive workload only; 0.01761% of its analytic native control is not native transport throughput. Cached 20k round-offset transport still about 166–167 s and fails native proxy badly. | Useful local optimization, insufficient architecture for full packs. Keep cost denominator explicit. | S16, S17, S05 |",
+      "historical_disposition": "Useful local optimization, insufficient architecture for full packs. Keep cost denominator explicit.",
+      "historical_record_cutoff": "2026-10-01; packet prepared 2026-10-08",
+      "current_addendum": null
+    },
+    {
+      "id": "M13",
+      "method": "Conservative hierarchy/bounds proposals",
+      "category": "Historical geometry",
+      "status": "PROPOSAL; REAL COMPILED AUDIT NOT_RUN",
+      "recorded_result": "Exact control hulls support conservative exclusion; compile-once bounds can avoid repeated expensive interval construction.",
+      "limitations_or_negative_results": "Proposed global-offset BVH uncompiled/untimed; PR4 real compiled 640-span audit NOT_RUN in retained review. A topology pass cannot prove correct traversal or roots.",
+      "evidence": [
+        {
+          "original_path": "ai-review-handoff-20261008/sources/stellarcsg-astra-kernel-20260926/dev/stellarcsg/reports/astra-20260926/APPROACH_REGISTRY.md",
+          "sha256": "63dc9726784b3048549dc949a1175f58ef57b3928985f5f19219c0b8ef2906ae",
+          "snapshot": "source_snapshots/63dc9726784b3048549dc949a1175f58ef57b3928985f5f19219c0b8ef2906ae.md"
+        },
+        {
+          "original_path": "ai-review-handoff-20261008/sources/stellarcsg-astra-kernel-20260926/dev/stellarcsg/reports/coil-hybrid-accuracy-20260926/CACHE_ACCEPTANCE_003.md",
+          "sha256": "b538912ccdc251d431b44c3e8f604976fad32606230a31eb6b59c60e33f0b75e",
+          "snapshot": "source_snapshots/b538912ccdc251d431b44c3e8f604976fad32606230a31eb6b59c60e33f0b75e.md"
+        },
+        {
+          "original_path": "ai-review-handoff-20261008/sources/stellarcsg-astra-kernel-20260926/dev/stellarcsg/reports/coil-hybrid-accuracy-20260926/EMBREE_AND_METHOD_REVIEW_009.md",
+          "sha256": "c238d382c1b0bbd18fccc71421c8656164a2b972f678a35b8514a99402dac07c",
+          "snapshot": "source_snapshots/c238d382c1b0bbd18fccc71421c8656164a2b972f678a35b8514a99402dac07c.md"
+        },
+        {
+          "original_path": "ai-review-handoff-20261008/sources/stellarcsg-local-continuation-20260925/dev/stellarcsg/reports/CHAT_SYNTHESIS_20260926.md",
+          "sha256": "8b385cd81cf6ba6e5c1730bcd465b69907d611c8f50cd134e8842740f5d9dc3a",
+          "snapshot": "source_snapshots/8b385cd81cf6ba6e5c1730bcd465b69907d611c8f50cd134e8842740f5d9dc3a.md"
+        }
+      ],
+      "historical_ledger_row_verbatim": "| M13 Conservative hierarchy/bounds proposals | Exact control hulls support conservative exclusion; compile-once bounds can avoid repeated expensive interval construction. | Proposed global-offset BVH uncompiled/untimed; PR4 real compiled 640-span audit NOT_RUN in retained review. A topology pass cannot prove correct traversal or roots. | Not a measured speed improvement. Audit outward enclosure, uncertain/touching retention, stack/domain coverage and witness upper bounds. | S13, S17, S23, S12 |",
+      "historical_disposition": "Not a measured speed improvement. Audit outward enclosure, uncertain/touching retention, stack/domain coverage and witness upper bounds.",
+      "historical_record_cutoff": "2026-10-01; packet prepared 2026-10-08",
+      "current_addendum": null
+    },
+    {
+      "id": "M14",
+      "method": "P00 native facets with priority components",
+      "category": "Historical geometry",
+      "status": "HISTORICAL FAIL; LATER REPORTED TIMING PASS; PHYSICAL GATE OPEN",
+      "recorded_result": "Directly relevant derived pack mesh; same 360-history bank 0.37243 s priority versus 0.72726 s union. Corrected 20k fixed-ring pair completed. Boolean occupancy test covered 262, 144 sign assignments.",
+      "limitations_or_negative_results": "Seam-repaired payload differs from accepted CAD; max cap-vertex move 0.003328774 cm is not a continuous fidelity certificate. 18 selectors not proven physical owners. Corrected speed ratio 4.797639 FAIL; later native contact/score failures.",
+      "evidence": [
+        {
+          "original_path": "ai-review-handoff-20261008/sources/stellarcsg-astra-kernel-20260926/dev/stellarcsg/reports/BEST_METHOD_CONTINUATION_20260930.md",
+          "sha256": "cfe640ee70cb056f197e3c6ecbb9526dc9e0b30e8478a86077a8aeb596a9b263",
+          "snapshot": "source_snapshots/cfe640ee70cb056f197e3c6ecbb9526dc9e0b30e8478a86077a8aeb596a9b263.md"
+        },
+        {
+          "original_path": "ai-review-handoff-20261008/sources/stellarcsg-astra-kernel-20260926/dev/stellarcsg/reports/FASTEST_METHOD_BRANCH_REVIEW_20260926.md",
+          "sha256": "c344b2767132815999f82ee29a2550555b985c20b1e3a27d0eb19e7a0425eb20",
+          "snapshot": "source_snapshots/c344b2767132815999f82ee29a2550555b985c20b1e3a27d0eb19e7a0425eb20.md"
+        },
+        {
+          "original_path": "ai-review-handoff-20261008/sources/stellarcsg-astra-kernel-20260926/dev/stellarcsg/reports/coil-profile-20260926/fixed-section-pair-010/SUMMARY.json",
+          "sha256": "04d373bd12ec1f6ad8bc611f3635a88dd8e2ede7bfce9fd4d90f6a28f4f8030d",
+          "snapshot": "source_data/04d373bd12ec1f6ad8bc611f3635a88dd8e2ede7bfce9fd4d90f6a28f4f8030d.json",
+          "bytes": 105341
+        },
+        {
+          "original_path": "ai-review-handoff-20261008/sources/stellarcsg-astra-kernel-20260926/dev/stellarcsg/reports/P00_STEPS_1_TO_4_INTEGRATION_20261001.md",
+          "sha256": "bbe83368ae33ae5ac88f86e9c613a34672dd1de22f5040aa23c8305c3ab56170",
+          "snapshot": "source_snapshots/bbe83368ae33ae5ac88f86e9c613a34672dd1de22f5040aa23c8305c3ab56170.md"
+        },
+        {
+          "original_path": "ai-review-handoff-20261008/sources/stellarcsg-astra-kernel-20260926/dev/stellarcsg/reports/P00_ASSEMBLY_REPORT_20261001.md",
+          "sha256": "74b46871795458cc7cb271ab08edfc8b067a85b9117af6dfaa880341e6328472",
+          "snapshot": "source_snapshots/74b46871795458cc7cb271ab08edfc8b067a85b9117af6dfaa880341e6328472.md"
+        },
+        {
+          "original_path": "stellarcsg-workload-ladder-20261008/RESULTS.md",
+          "sha256": "01066c6c7ace075e14b50fa7b4e5cb36e13e01bb115d22a38f7b70cf9324b438",
+          "snapshot": "source_snapshots/01066c6c7ace075e14b50fa7b4e5cb36e13e01bb115d22a38f7b70cf9324b438.md"
+        },
+        {
+          "original_path": "stellarcsg-workload-ladder-20261008/runs/gate-03/GATE.json",
+          "sha256": "c88e910a8056d1042fd01fb6a3d9ceb65911fa5fdc40669ed65788c7aa9daea8",
+          "snapshot": "source_data/c88e910a8056d1042fd01fb6a3d9ceb65911fa5fdc40669ed65788c7aa9daea8.json",
+          "bytes": 3301
+        }
+      ],
+      "historical_ledger_row_verbatim": "| M14 P00 native facets with priority components | Directly relevant derived pack mesh; same 360-history bank 0.37243 s priority versus 0.72726 s union. Corrected 20k fixed-ring pair completed. Boolean occupancy test covered 262,144 sign assignments. | Seam-repaired payload differs from accepted CAD; max cap-vertex move 0.003328774 cm is not a continuous fidelity certificate. 18 selectors not proven physical owners. Corrected speed ratio 4.797639 FAIL; later native contact/score failures. | Selected executed pack development candidate, not accepted physical pack. Close native event semantics and physical ownership/fidelity. | S04, S05, S20, S11, S24 |",
+      "historical_disposition": "Selected executed pack development candidate, not accepted physical pack. Close native event semantics and physical ownership/fidelity.",
+      "historical_record_cutoff": "2026-10-01; packet prepared 2026-10-08",
+      "current_addendum": "Later ladder gate-03 reports PASS_ROBUST on all three seeds; pooled P00/ring transport ratio 1.104614615471397. This is represented P00 versus fixed 30x30 cm rings, with independent physical/owner/native-event acceptance still open. Earlier 4.797639 failure, oracle conflicts and assembly failures remain. See L06/L10/L11 and R01/R02."
+    },
+    {
+      "id": "M15",
+      "method": "P00 component-AABB exterior classification",
+      "category": "Historical geometry",
+      "status": "PARTIAL FINITE CLASSIFICATION / CONFOUNDED TRANSPORT EFFECT",
+      "recorded_result": "Avoids three parity rays on distant points. Same-command classification loops improve; all 1, 944 derived-payload sampled classifications agree. Two 100k seed pairs retain exact production raw sums/squares.",
+      "limitations_or_negative_results": "Initial one-ULP exclusion rejected; repaired margin used instead. Observed 37–41% transport reduction is compiler/runtime-confounded. Candidate/ring 2.368/2.608 FAIL. Same-build stochastic matrix not run.",
+      "evidence": [
+        {
+          "original_path": "ai-review-handoff-20261008/sources/stellarcsg-astra-kernel-20260926/dev/stellarcsg/reports/P00_BOUNDING_CLASSIFICATION_20260930.md",
+          "sha256": "1afdcf95fb9c70a3efb592b52a439a29d4aeea1a13ceef74e5e26481f041647b",
+          "snapshot": "source_snapshots/1afdcf95fb9c70a3efb592b52a439a29d4aeea1a13ceef74e5e26481f041647b.md"
+        },
+        {
+          "original_path": "ai-review-handoff-20261008/sources/stellarcsg-astra-kernel-20260926/dev/stellarcsg/reports/p00-native-validation-20260930-05/speed/SUMMARY.json",
+          "sha256": "d493059174eee35690a2ac86135e30fb36333574fe015d36197da01aba8961a4",
+          "snapshot": "source_data/d493059174eee35690a2ac86135e30fb36333574fe015d36197da01aba8961a4.json",
+          "bytes": 10799
+        },
+        {
+          "original_path": "ai-review-handoff-20261008/sources/stellarcsg-astra-kernel-20260926/dev/stellarcsg/reports/P00_STEPS_1_TO_4_INTEGRATION_20261001.md",
+          "sha256": "bbe83368ae33ae5ac88f86e9c613a34672dd1de22f5040aa23c8305c3ab56170",
+          "snapshot": "source_snapshots/bbe83368ae33ae5ac88f86e9c613a34672dd1de22f5040aa23c8305c3ab56170.md"
+        }
+      ],
+      "historical_ledger_row_verbatim": "| M15 P00 component-AABB exterior classification | Avoids three parity rays on distant points. Same-command classification loops improve; all 1,944 derived-payload sampled classifications agree. Two 100k seed pairs retain exact production raw sums/squares. | Initial one-ULP exclusion rejected; repaired margin used instead. Observed 37–41% transport reduction is compiler/runtime-confounded. Candidate/ring 2.368/2.608 FAIL. Same-build stochastic matrix not run. | Partial measured benefit; no isolated transport effect or complete correctness acceptance. Repair shared events before next native speed admission. | S09, S10, S11 |",
+      "historical_disposition": "Partial measured benefit; no isolated transport effect or complete correctness acceptance. Repair shared events before next native speed admission.",
+      "historical_record_cutoff": "2026-10-01; packet prepared 2026-10-08",
+      "current_addendum": null
+    },
+    {
+      "id": "M16",
+      "method": "Offline normal ownership/reach certificates",
+      "category": "Historical geometry",
+      "status": "PRO-REPORTED PROTOTYPE / PHYSICAL BINDING OPEN",
+      "recorded_result": "Pro-reported member-2 all-pairs admission: 256 spans, 65, 536 ordered pairs, transformed reach bound 1.25. Independent checker reported; useful compile-time invariant can remove one post-root owner recheck.",
+      "limitations_or_negative_results": "Actual loader/frame/physical pack binding open. Whole diagnostic bank barely improves (about 0.99–1.02 times); thin crossing remains unresolved at roughly 216k system evaluations. Five nonvertical accepted hits lacked independent reference.",
+      "evidence": [
+        {
+          "original_path": "ai-review-handoff-20261008/sources/stellarcsg-local-continuation-20260925/dev/stellarcsg/reports/USABILITY_METHOD_REVIEW_20260926.md",
+          "sha256": "9b48f90a94996393353a5b463be06122f45aef58f84238410a24b629d135a785",
+          "snapshot": "source_snapshots/9b48f90a94996393353a5b463be06122f45aef58f84238410a24b629d135a785.md"
+        }
+      ],
+      "historical_ledger_row_verbatim": "| M16 Offline normal ownership/reach certificates | Pro-reported member-2 all-pairs admission: 256 spans, 65,536 ordered pairs, transformed reach bound 1.25. Independent checker reported; useful compile-time invariant can remove one post-root owner recheck. | Actual loader/frame/physical pack binding open. Whole diagnostic bank barely improves (about 0.99–1.02 times); thin crossing remains unresolved at roughly 216k system evaluations. Five nonvertical accepted hits lacked independent reference. | Preserve certificate idea; destination-reported prototype is not local native acceptance. Fix thin pair and bind actual geometry before import/promotion. | S08 |",
+      "historical_disposition": "Preserve certificate idea; destination-reported prototype is not local native acceptance. Fix thin pair and bind actual geometry before import/promotion.",
+      "historical_record_cutoff": "2026-10-01; packet prepared 2026-10-08",
+      "current_addendum": null
+    },
+    {
+      "id": "M17",
+      "method": "Direct ruled cubic/rational rectangular faces",
+      "category": "Historical geometry",
+      "status": "PRO-REPORTED SYNTHETIC REFERENCE; GENERAL NATIVE NOT_RUN",
+      "recorded_result": "Pro-reported complete synthetic reference; determinant polynomial degree at most six, complete event ledger/endcaps and six-crossing witness. 72 reported Python tests.",
+      "limitations_or_negative_results": "General cubic C++/OpenMC backend absent. Annular standalone control only 6.099% median native-primitive query ratio; physical pack edge/frame/trims missing. Creases challenge one-normal whole-solid sense.",
+      "evidence": [
+        {
+          "original_path": "ai-review-handoff-20261008/sources/stellarcsg-local-continuation-20260925/dev/stellarcsg/reports/USABILITY_METHOD_REVIEW_20260926.md",
+          "sha256": "9b48f90a94996393353a5b463be06122f45aef58f84238410a24b629d135a785",
+          "snapshot": "source_snapshots/9b48f90a94996393353a5b463be06122f45aef58f84238410a24b629d135a785.md"
+        }
+      ],
+      "historical_ledger_row_verbatim": "| M17 Direct ruled cubic/rational rectangular faces | Pro-reported complete synthetic reference; determinant polynomial degree at most six, complete event ledger/endcaps and six-crossing witness. 72 reported Python tests. | General cubic C++/OpenMC backend absent. Annular standalone control only 6.099% median native-primitive query ratio; physical pack edge/frame/trims missing. Creases challenge one-normal whole-solid sense. | Promising representation research, native NOT_RUN. Recover artifact and actual CAD correspondence; validate all events ordered in ray distance. | S08 |",
+      "historical_disposition": "Promising representation research, native NOT_RUN. Recover artifact and actual CAD correspondence; validate all events ordered in ray distance.",
+      "historical_record_cutoff": "2026-10-01; packet prepared 2026-10-08",
+      "current_addendum": null
+    },
+    {
+      "id": "M18",
+      "method": "Canonical cardinal-spline/Krawczyk swept alternative",
+      "category": "Historical geometry",
+      "status": "PRO-REPORTED STANDALONE; PROOF UNACCEPTED",
+      "recorded_result": "Recovered Pro final reports standalone GCC/Clang/sanitizer controls, 48 high-precision comparisons and 15, 027 enclosure checks; shaped seam and consistent local predicates.",
+      "limitations_or_negative_results": "Proof independently unaccepted; tangent/near-tangent unresolved. Original four failure IDs and frozen 160 not replayed. Adapter uncompiled.",
+      "evidence": [
+        {
+          "original_path": "ai-review-handoff-20261008/sources/stellarcsg-local-continuation-20260925/dev/stellarcsg/reports/USABILITY_METHOD_REVIEW_20260926.md",
+          "sha256": "9b48f90a94996393353a5b463be06122f45aef58f84238410a24b629d135a785",
+          "snapshot": "source_snapshots/9b48f90a94996393353a5b463be06122f45aef58f84238410a24b629d135a785.md"
+        }
+      ],
+      "historical_ledger_row_verbatim": "| M18 Canonical cardinal-spline/Krawczyk swept alternative | Recovered Pro final reports standalone GCC/Clang/sanitizer controls, 48 high-precision comparisons and 15,027 enclosure checks; shaped seam and consistent local predicates. | Proof independently unaccepted; tangent/near-tangent unresolved. Original four failure IDs and frozen 160 not replayed. Adapter uncompiled. | Separate representation, not silent repair of legacy solid. Recover/import only after decisive comparison with existing restricted offset. | S08 |",
+      "historical_disposition": "Separate representation, not silent repair of legacy solid. Recover/import only after decisive comparison with existing restricted offset.",
+      "historical_record_cutoff": "2026-10-01; packet prepared 2026-10-08",
+      "current_addendum": null
+    },
+    {
+      "id": "M19",
+      "method": "General radical-free polynomial elimination",
+      "category": "Historical geometry",
+      "status": "PROPOSAL NOT_IMPLEMENTED",
+      "recorded_result": "Constructive H/Q equations; degree at most 26, planar constant ellipse at most 10. Exact root-isolation reference is possible.",
+      "limitations_or_negative_results": "Not implemented in the local registry; B=0/A=0 exceptional branches, spurious solutions, endpoint rounding and global owner switches remain.",
+      "evidence": [
+        {
+          "original_path": "ai-review-handoff-20261008/sources/stellarcsg-astra-kernel-20260926/dev/stellarcsg/reports/astra-20260926/APPROACH_REGISTRY.md",
+          "sha256": "63dc9726784b3048549dc949a1175f58ef57b3928985f5f19219c0b8ef2906ae",
+          "snapshot": "source_snapshots/63dc9726784b3048549dc949a1175f58ef57b3928985f5f19219c0b8ef2906ae.md"
+        }
+      ],
+      "historical_ledger_row_verbatim": "| M19 General radical-free polynomial elimination | Constructive H/Q equations; degree at most 26, planar constant ellipse at most 10. Exact root-isolation reference is possible. | Not implemented in the local registry; B=0/A=0 exceptional branches, spurious solutions, endpoint rounding and global owner switches remain. | Research proposal, no speed claim. Explicit branches and same-solid reference required. | S13 |",
+      "historical_disposition": "Research proposal, no speed claim. Explicit branches and same-solid reference required.",
+      "historical_record_cutoff": "2026-10-01; packet prepared 2026-10-08",
+      "current_addendum": null
+    },
+    {
+      "id": "M20",
+      "method": "Interval Newton/Krawczyk across joined patches",
+      "category": "Historical geometry",
+      "status": "PARTIAL PROOF INGREDIENT",
+      "recorded_result": "Exact-control C2 seam contracts support joined derivative enclosures and local proof arcs.",
+      "limitations_or_negative_results": "General variable-frame classifier and complete prefix coverage not established. Larger proof arcs initially rejected a rounded-square projection conservatively.",
+      "evidence": [
+        {
+          "original_path": "ai-review-handoff-20261008/sources/stellarcsg-astra-kernel-20260926/dev/stellarcsg/reports/astra-20260926/APPROACH_REGISTRY.md",
+          "sha256": "63dc9726784b3048549dc949a1175f58ef57b3928985f5f19219c0b8ef2906ae",
+          "snapshot": "source_snapshots/63dc9726784b3048549dc949a1175f58ef57b3928985f5f19219c0b8ef2906ae.md"
+        }
+      ],
+      "historical_ledger_row_verbatim": "| M20 Interval Newton/Krawczyk across joined patches | Exact-control C2 seam contracts support joined derivative enclosures and local proof arcs. | General variable-frame classifier and complete prefix coverage not established. Larger proof arcs initially rejected a rounded-square projection conservatively. | Useful ingredient; not a separately accepted general native method. | S13 |",
+      "historical_disposition": "Useful ingredient; not a separately accepted general native method.",
+      "historical_record_cutoff": "2026-10-01; packet prepared 2026-10-08",
+      "current_addendum": null
+    },
+    {
+      "id": "M21",
+      "method": "Conservative analytic sandwiches and planar-normal specialization",
+      "category": "Historical geometry",
+      "status": "PROPOSAL / UNMEASURED",
+      "recorded_result": "Inner/outer offset bounds can supply certain inside/outside tests. Exact orthogonality may simplify a specific thin pair.",
+      "limitations_or_negative_results": "Positional fit alone cannot preserve tangency or hit count; qualifying direction fraction unmeasured; broad native timing absent.",
+      "evidence": [
+        {
+          "original_path": "ai-review-handoff-20261008/sources/stellarcsg-local-continuation-20260925/dev/stellarcsg/reports/CHAT_SYNTHESIS_20260926.md",
+          "sha256": "8b385cd81cf6ba6e5c1730bcd465b69907d611c8f50cd134e8842740f5d9dc3a",
+          "snapshot": "source_snapshots/8b385cd81cf6ba6e5c1730bcd465b69907d611c8f50cd134e8842740f5d9dc3a.md"
+        },
+        {
+          "original_path": "ai-review-handoff-20261008/sources/stellarcsg-astra-kernel-20260926/dev/stellarcsg/reports/coil-hybrid-accuracy-20260926/CACHE_ACCEPTANCE_003.md",
+          "sha256": "b538912ccdc251d431b44c3e8f604976fad32606230a31eb6b59c60e33f0b75e",
+          "snapshot": "source_snapshots/b538912ccdc251d431b44c3e8f604976fad32606230a31eb6b59c60e33f0b75e.md"
+        }
+      ],
+      "historical_ledger_row_verbatim": "| M21 Conservative analytic sandwiches and planar-normal specialization | Inner/outer offset bounds can supply certain inside/outside tests. Exact orthogonality may simplify a specific thin pair. | Positional fit alone cannot preserve tangency or hit count; qualifying direction fraction unmeasured; broad native timing absent. | Secondary bounded research, not a shortcut to declaring Candidate B or general coils solved. | S12, S17 |",
+      "historical_disposition": "Secondary bounded research, not a shortcut to declaring Candidate B or general coils solved.",
+      "historical_record_cutoff": "2026-10-01; packet prepared 2026-10-08",
+      "current_addendum": null
+    },
+    {
+      "id": "M22",
+      "method": "Plasma direct evaluate/normal shortcut and cache-only proposal",
+      "category": "Historical geometry",
+      "status": "REJECTED NORMAL/SENSE SHORTCUT; CACHE PROPOSAL UNBUILT",
+      "recorded_result": "Isolated renamed-class build completed; eleven printed distance records agreed.",
+      "limitations_or_negative_results": "Probe failed Boolean sense equivalence; exact point/direction absent. Later controls/timing stopped. Cache-only proposal unbuilt.",
+      "evidence": [
+        {
+          "original_path": "ai-review-handoff-20261008/sources/stellarcsg-astra-kernel-20260926/dev/stellarcsg/reports/plasma-best-time-20260926/SOURCE_REVIEW.md",
+          "sha256": "90fa80d698137a49024982bdc255f9b29ed3d2e85cd531c156ab5ab527edc221",
+          "snapshot": "source_snapshots/90fa80d698137a49024982bdc255f9b29ed3d2e85cd531c156ab5ab527edc221.md"
+        }
+      ],
+      "historical_ledger_row_verbatim": "| M22 Plasma direct evaluate/normal shortcut and cache-only proposal | Isolated renamed-class build completed; eleven printed distance records agreed. | Probe failed Boolean sense equivalence; exact point/direction absent. Later controls/timing stopped. Cache-only proposal unbuilt. | Rejected shortcut; diagnose precise failure before retry. Caching unchanged options is a separate untested candidate. | S18 |",
+      "historical_disposition": "Rejected shortcut; diagnose precise failure before retry. Caching unchanged options is a separate untested candidate.",
+      "historical_record_cutoff": "2026-10-01; packet prepared 2026-10-08",
+      "current_addendum": null
+    },
+    {
+      "id": "M23",
+      "method": "Native exact event handling with dyadic arithmetic",
+      "category": "Historical geometry",
+      "status": "ACCEPTED RESTRICTED DETERMINISTIC NATIVE EVENT SLICE",
+      "recorded_result": "33-word exact binary64 difference/order/rounding foundation passed directed controls and 5, 520 Fraction differential rows. Addresses a concrete positive-gap failure.",
+      "limitations_or_negative_results": "Native functional repair was subsequently wired only in source; configure exit 124 before any build/native rows. Known fixture restoration issue. Narrow void axis-plane scope, no general facets/materials qualification.",
+      "evidence": [
+        {
+          "original_path": "ai-review-handoff-20261008/sources/stellarcsg-astra-kernel-20260926/dev/stellarcsg/reports/P00_ASSEMBLY_REPAIR_DESIGN_20261001.md",
+          "sha256": "9d024e491107dd302073540e478ac4647fe3eb785249e5022c88b60d22154b10",
+          "snapshot": "source_snapshots/9d024e491107dd302073540e478ac4647fe3eb785249e5022c88b60d22154b10.md"
+        },
+        {
+          "original_path": "ai-review-handoff-20261008/sources/stellarcsg-astra-kernel-20260926/dev/stellarcsg/reports/P00_DYADIC_AXIS_CHECKPOINT_20261001.md",
+          "sha256": "241d79a7adc95be2ae689112fc18fa3a52a6bbd5ff63fcffbacb8ebabcc599ea",
+          "snapshot": "source_snapshots/241d79a7adc95be2ae689112fc18fa3a52a6bbd5ff63fcffbacb8ebabcc599ea.md"
+        },
+        {
+          "original_path": "ai-review-handoff-20261008/sources/stellarcsg-astra-kernel-20260926/dev/stellarcsg/reports/P00_ASSEMBLY_PLANES_FOCUSED_RESULT_20261001.md",
+          "sha256": "a82224df51ea4381b9c655a61f858654a17b5cd9087557a400ced7ef26533693",
+          "snapshot": "source_snapshots/a82224df51ea4381b9c655a61f858654a17b5cd9087557a400ced7ef26533693.md"
+        },
+        {
+          "original_path": "ai-review-handoff-20261008/sources/stellarcsg-astra-kernel-20260926/dev/stellarcsg/reports/P00_NATIVE_AXIS_CHECKPOINT_20261001.md",
+          "sha256": "6fe7566e7f3a168a9945f05a5fdafd03b968330aa83f535a27a46148d9d8458b",
+          "snapshot": "source_snapshots/6fe7566e7f3a168a9945f05a5fdafd03b968330aa83f535a27a46148d9d8458b.md"
+        },
+        {
+          "original_path": "ai-review-handoff-20261008/sources/stellarcsg-astra-kernel-20260926/dev/stellarcsg/reports/p00-native-axis-20261001-01/failure.json",
+          "sha256": "62c0c3ce982113053944eaa6c92bfb5485f2d7fdfe745322bccf13c75e8b8405",
+          "snapshot": "source_data/62c0c3ce982113053944eaa6c92bfb5485f2d7fdfe745322bccf13c75e8b8405.json",
+          "bytes": 141
+        },
+        {
+          "original_path": "stellarcsg-axis-review-20261008/AXIS_REVIEW_RESULT_20261008.json",
+          "sha256": "934ff02007923a225f82e00ffac5677dc2c78cbf2ac32b8fd316a66c3fb97f6a",
+          "snapshot": "source_data/934ff02007923a225f82e00ffac5677dc2c78cbf2ac32b8fd316a66c3fb97f6a.json",
+          "bytes": 3414
+        },
+        {
+          "original_path": "stellarcsg-axis-integration-20261008/INTEGRATION_RESULT_20261008.json",
+          "sha256": "b7285d4180c90180e45e6762900bfef34c1ec3e309527bcf95b4bf7cd60e4bfc",
+          "snapshot": "source_data/b7285d4180c90180e45e6762900bfef34c1ec3e309527bcf95b4bf7cd60e4bfc.json",
+          "bytes": 3282
+        }
+      ],
+      "historical_ledger_row_verbatim": "| M23 Native exact event handling with dyadic arithmetic | 33-word exact binary64 difference/order/rounding foundation passed directed controls and 5,520 Fraction differential rows. Addresses a concrete positive-gap failure. | Native functional repair was subsequently wired only in source; configure exit 124 before any build/native rows. Known fixture restoration issue. Narrow void axis-plane scope, no general facets/materials qualification. | Latest unfinished checkpoint. Review coupled event, owner, scoring and ABI logic plus timeout evidence. No repair acceptance. | S19, S22, S25, S27, S28 |",
+      "historical_disposition": "Latest unfinished checkpoint. Review coupled event, owner, scoring and ABI logic plus timeout evidence. No repair acceptance.",
+      "historical_record_cutoff": "2026-10-01; packet prepared 2026-10-08",
+      "current_addendum": "The October 1 configure timeout remains history. October 8 independent review and fresh integration accepted ONLY void, single-instance, unit-axis built-in plane events: 39 models / 208 rows / 154 supported / 54 expected rejections / 460 events. Integration replay matches the review rows and rejects five corrupt oracles. General facets, materials, physical performance and installation ABI remain outside acceptance."
+    },
+    {
+      "id": "I01",
+      "method": "Ordinary DAGMC coarse/fine references",
+      "category": "Reference and integration",
+      "status": "PARTIAL MESH REFERENCES / DEBUG NEGATIVES",
+      "recorded_result": "Same-target historical mesh approximations and separately measured elapsed/initialization records.",
+      "limitations_or_negative_results": "Single-coil versus full-set outcomes differ; mesh sampled deviations not two-sided Hausdorff certificates. Geometry-debug explicit-volume/implicit-complement complaint remains.",
+      "evidence": [
+        {
+          "original_path": "ai-review-handoff-20261008/sources/stellarcsg-astra-kernel-20260926/dev/stellarcsg/reports/PERFORMANCE_REDESIGN_FINAL_REPORT.md",
+          "sha256": "a4ca91c1f0e40f58d93f4c092f55213b59f475017838a45ff294eb2ec3f93772",
+          "snapshot": "source_snapshots/a4ca91c1f0e40f58d93f4c092f55213b59f475017838a45ff294eb2ec3f93772.md"
+        },
+        {
+          "original_path": "ai-review-handoff-20261008/sources/stellarcsg-astra-kernel-20260926/dev/stellarcsg/reports/FASTEST_METHOD_BRANCH_REVIEW_20260926.md",
+          "sha256": "c344b2767132815999f82ee29a2550555b985c20b1e3a27d0eb19e7a0425eb20",
+          "snapshot": "source_snapshots/c344b2767132815999f82ee29a2550555b985c20b1e3a27d0eb19e7a0425eb20.md"
+        }
+      ],
+      "historical_ledger_row_verbatim": "| I01 Ordinary DAGMC coarse/fine references | Same-target historical mesh approximations and separately measured elapsed/initialization records. | Single-coil versus full-set outcomes differ; mesh sampled deviations not two-sided Hausdorff certificates. Geometry-debug explicit-volume/implicit-complement complaint remains. | Preserve accuracy and debug negatives alongside speed. Never label these runs Embree. | S07, S05 |",
+      "historical_disposition": "Preserve accuracy and debug negatives alongside speed. Never label these runs Embree.",
+      "historical_record_cutoff": "2026-10-01; packet prepared 2026-10-08",
+      "current_addendum": null
+    },
+    {
+      "id": "I02",
+      "method": "Double Down/Embree backend",
+      "category": "Reference and integration",
+      "status": "HISTORICAL VERIFIED BACKEND; CURRENT TARGET NOT_RUN",
+      "recorded_result": "Genuine historical linkage/banner for a 10k hybrid torus; binary hash retained.",
+      "limitations_or_negative_results": "Current runnable historical dependencies not established; current experimental runtime DAGMC OFF. Same-target WISTELL pack/plasma verified-Embree run absent.",
+      "evidence": [
+        {
+          "original_path": "ai-review-handoff-20261008/sources/stellarcsg-astra-kernel-20260926/dev/stellarcsg/reports/coil-hybrid-accuracy-20260926/EMBREE_AND_METHOD_REVIEW_009.md",
+          "sha256": "c238d382c1b0bbd18fccc71421c8656164a2b972f678a35b8514a99402dac07c",
+          "snapshot": "source_snapshots/c238d382c1b0bbd18fccc71421c8656164a2b972f678a35b8514a99402dac07c.md"
+        },
+        {
+          "original_path": "ai-review-handoff-20261008/sources/stellarcsg-astra-kernel-20260926/dev/stellarcsg/reports/FASTEST_METHOD_BRANCH_REVIEW_20260926.md",
+          "sha256": "c344b2767132815999f82ee29a2550555b985c20b1e3a27d0eb19e7a0425eb20",
+          "snapshot": "source_snapshots/c344b2767132815999f82ee29a2550555b985c20b1e3a27d0eb19e7a0425eb20.md"
+        }
+      ],
+      "historical_ledger_row_verbatim": "| I02 Double Down/Embree backend | Genuine historical linkage/banner for a 10k hybrid torus; binary hash retained. | Current runnable historical dependencies not established; current experimental runtime DAGMC OFF. Same-target WISTELL pack/plasma verified-Embree run absent. | Capability gap, not numerical failure. Reuse verified existing runtime if later authorized; do not install speculatively. | S23, S05 |",
+      "historical_disposition": "Capability gap, not numerical failure. Reuse verified existing runtime if later authorized; do not install speculatively.",
+      "historical_record_cutoff": "2026-10-01; packet prepared 2026-10-08",
+      "current_addendum": null
+    },
+    {
+      "id": "I03",
+      "method": "Period import and coil frames",
+      "category": "Reference and integration",
+      "status": "PARTIAL IMPORT; HELD-OUT FIT REJECTED",
+      "recorded_result": "NFP=4 import, exact quarter-turn derived images, provenance repairs.",
+      "limitations_or_negative_results": "1 cm circular diagnostic envelope; physical clearance unknown. Held-out ParaStell fidelity 2.39627% rejected. Derived canonicalization changes geometry.",
+      "evidence": [
+        {
+          "original_path": "ai-review-handoff-20261008/sources/stellarcsg-local-continuation-20260925/dev/stellarcsg/reports/CHAT_SYNTHESIS_20260926.md",
+          "sha256": "8b385cd81cf6ba6e5c1730bcd465b69907d611c8f50cd134e8842740f5d9dc3a",
+          "snapshot": "source_snapshots/8b385cd81cf6ba6e5c1730bcd465b69907d611c8f50cd134e8842740f5d9dc3a.md"
+        },
+        {
+          "original_path": "ai-review-handoff-20261008/sources/stellarcsg-local-continuation-20260925/dev/stellarcsg/reports/USABILITY_METHOD_REVIEW_20260926.md",
+          "sha256": "9b48f90a94996393353a5b463be06122f45aef58f84238410a24b629d135a785",
+          "snapshot": "source_snapshots/9b48f90a94996393353a5b463be06122f45aef58f84238410a24b629d135a785.md"
+        }
+      ],
+      "historical_ledger_row_verbatim": "| I03 Period import and coil frames | NFP=4 import, exact quarter-turn derived images, provenance repairs. | 1 cm circular diagnostic envelope; physical clearance unknown. Held-out ParaStell fidelity 2.39627% rejected. Derived canonicalization changes geometry. | Retain provenance, obtain physical section/frame/CAD identity. | S12, S08 |",
+      "historical_disposition": "Retain provenance, obtain physical section/frame/CAD identity.",
+      "historical_record_cutoff": "2026-10-01; packet prepared 2026-10-08",
+      "current_addendum": null
+    },
+    {
+      "id": "I04",
+      "method": "Source model and source binding",
+      "category": "Reference and integration",
+      "status": "PARTIAL INTERFACES; PHYSICAL PREDICTIONS FAILED",
+      "recorded_result": "Normalized PDF separated from rate; shutdown zero-rate handling; bank contracts, named-hash validation and analytic birth controls.",
+      "limitations_or_negative_results": "Held-out source-rate errors +347.018%/+220.553%, ion-temperature profile error 60%. Analytic births not physical WISTELL source support/rate/clearance.",
+      "evidence": [
+        {
+          "original_path": "ai-review-handoff-20261008/sources/stellarcsg-local-continuation-20260925/dev/stellarcsg/reports/CHAT_SYNTHESIS_20260926.md",
+          "sha256": "8b385cd81cf6ba6e5c1730bcd465b69907d611c8f50cd134e8842740f5d9dc3a",
+          "snapshot": "source_snapshots/8b385cd81cf6ba6e5c1730bcd465b69907d611c8f50cd134e8842740f5d9dc3a.md"
+        },
+        {
+          "original_path": "ai-review-handoff-20261008/sources/stellarcsg-local-continuation-20260925/dev/stellarcsg/reports/USABILITY_METHOD_REVIEW_20260926.md",
+          "sha256": "9b48f90a94996393353a5b463be06122f45aef58f84238410a24b629d135a785",
+          "snapshot": "source_snapshots/9b48f90a94996393353a5b463be06122f45aef58f84238410a24b629d135a785.md"
+        }
+      ],
+      "historical_ledger_row_verbatim": "| I04 Source model and source binding | Normalized PDF separated from rate; shutdown zero-rate handling; bank contracts, named-hash validation and analytic birth controls. | Held-out source-rate errors +347.018%/+220.553%, ion-temperature profile error 60%. Analytic births not physical WISTELL source support/rate/clearance. | Keep interfaces and failed predictions; reconcile current hash-role fixes rather than reapply old patches. | S12, S08 |",
+      "historical_disposition": "Keep interfaces and failed predictions; reconcile current hash-role fixes rather than reapply old patches.",
+      "historical_record_cutoff": "2026-10-01; packet prepared 2026-10-08",
+      "current_addendum": null
+    },
+    {
+      "id": "I05",
+      "method": "Native tally/source integration",
+      "category": "Reference and integration",
+      "status": "PARTIAL FINITE NATIVE INTEGRATION",
+      "recorded_result": "Six repaired finite proxy runs, 37 plasma and 18 approximate-coil comparisons; selected cell/material/mesh/current/energy/damage combinations.",
+      "limitations_or_negative_results": "Sparse bins and instance-zero tests; not universal filters, transforms, parallel, photon or physics qualification.",
+      "evidence": [
+        {
+          "original_path": "ai-review-handoff-20261008/sources/stellarcsg-local-continuation-20260925/dev/stellarcsg/reports/USABILITY_METHOD_REVIEW_20260926.md",
+          "sha256": "9b48f90a94996393353a5b463be06122f45aef58f84238410a24b629d135a785",
+          "snapshot": "source_snapshots/9b48f90a94996393353a5b463be06122f45aef58f84238410a24b629d135a785.md"
+        },
+        {
+          "original_path": "ai-review-handoff-20261008/sources/stellarcsg-astra-kernel-20260926/dev/stellarcsg/reports/openmc-integration-20260926/RESULTS.md",
+          "sha256": "1fc917f7146cac9a486bfad186ffb624d8e0bc694d0c82d08be62158c92d6e93",
+          "snapshot": "source_snapshots/1fc917f7146cac9a486bfad186ffb624d8e0bc694d0c82d08be62158c92d6e93.md"
+        }
+      ],
+      "historical_ledger_row_verbatim": "| I05 Native tally/source integration | Six repaired finite proxy runs, 37 plasma and 18 approximate-coil comparisons; selected cell/material/mesh/current/energy/damage combinations. | Sparse bins and instance-zero tests; not universal filters, transforms, parallel, photon or physics qualification. | Validate every local bin and actual transported ownership; use occupied volumes/atom counts/rate for physical normalization. | S08, S32 |",
+      "historical_disposition": "Validate every local bin and actual transported ownership; use occupied volumes/atom counts/rate for physical normalization.",
+      "historical_record_cutoff": "2026-10-01; packet prepared 2026-10-08",
+      "current_addendum": null
+    },
+    {
+      "id": "I06",
+      "method": "Spherical mesh equator and short-flight traversal",
+      "category": "Reference and integration",
+      "status": "PARTIAL EQUATOR REPAIR; TINY-TRACK NATIVE OPEN",
+      "recorded_result": "Native exact-equator/sign-height repair plus partial-grid indexing controls caught a defect that preserved integrated totals.",
+      "limitations_or_negative_results": "A separate <2*TINY_BIT branch can assign a crossing track to one bin; retained counterexample was scaffold/extracted, native acceptance remains open.",
+      "evidence": [
+        {
+          "original_path": "ai-review-handoff-20261008/sources/stellarcsg-local-continuation-20260925/dev/stellarcsg/reports/USABILITY_METHOD_REVIEW_20260926.md",
+          "sha256": "9b48f90a94996393353a5b463be06122f45aef58f84238410a24b629d135a785",
+          "snapshot": "source_snapshots/9b48f90a94996393353a5b463be06122f45aef58f84238410a24b629d135a785.md"
+        }
+      ],
+      "historical_ledger_row_verbatim": "| I06 Spherical mesh equator and short-flight traversal | Native exact-equator/sign-height repair plus partial-grid indexing controls caught a defect that preserved integrated totals. | A separate <2*TINY_BIT branch can assign a crossing track to one bin; retained counterexample was scaffold/extracted, native acceptance remains open. | Totals are insufficient; demand per-bin fractions and native short-track regression. | S08 |",
+      "historical_disposition": "Totals are insufficient; demand per-bin fractions and native short-track regression.",
+      "historical_record_cutoff": "2026-10-01; packet prepared 2026-10-08",
+      "current_addendum": null
+    },
+    {
+      "id": "I07",
+      "method": "MeshFilter identity and HDF5 rotation",
+      "category": "Reference and integration",
+      "status": "ACCEPTED NARROW IDENTITY/HDF REPAIR",
+      "recorded_result": "Transform-aware equality/hash; native 9/12-value matrix decoding. 13 targeted WSL Python tests, later independent review/publication.",
+      "limitations_or_negative_results": "First Windows test could not collect against Unix DSO (WinError 193). Targeted tests not broad native transformed-statepoint transport.",
+      "evidence": [
+        {
+          "original_path": "ai-review-handoff-20261008/sources/stellarcsg-astra-kernel-20260926/dev/stellarcsg/reports/mesh-filter-transform-20260926/RESULTS.md",
+          "sha256": "171aeb53648793647538f7a3f2ef7ec96ac966f670ecd20957605c92f43b866e",
+          "snapshot": "source_snapshots/171aeb53648793647538f7a3f2ef7ec96ac966f670ecd20957605c92f43b866e.md"
+        },
+        {
+          "original_path": "ai-review-handoff-20261008/sources/stellarcsg-astra-kernel-20260926/dev/stellarcsg/reports/ACCEPTED_PATCH_PUBLICATION_20260926.md",
+          "sha256": "ade2ef3666a2742e24398a100e6039f9044c90bb97da7ed5d497ab21d6e396d3",
+          "snapshot": "source_snapshots/ade2ef3666a2742e24398a100e6039f9044c90bb97da7ed5d497ab21d6e396d3.md"
+        }
+      ],
+      "historical_ledger_row_verbatim": "| I07 MeshFilter identity and HDF5 rotation | Transform-aware equality/hash; native 9/12-value matrix decoding. 13 targeted WSL Python tests, later independent review/publication. | First Windows test could not collect against Unix DSO (WinError 193). Targeted tests not broad native transformed-statepoint transport. | Keep narrow accepted repair; extend actual native and repeated-instance tests only under concrete scope. | S26, S33 |",
+      "historical_disposition": "Keep narrow accepted repair; extend actual native and repeated-instance tests only under concrete scope.",
+      "historical_record_cutoff": "2026-10-01; packet prepared 2026-10-08",
+      "current_addendum": null
+    },
+    {
+      "id": "I08",
+      "method": "Portable runner and adapter repair",
+      "category": "Reference and integration",
+      "status": "PARTIAL VALIDATOR/ADAPTER REPAIR",
+      "recorded_result": "Reported 76/76 validator mocks; child exit 7 propagation; duplicates rejected; controlled adapter pass counts improved.",
+      "limitations_or_negative_results": "Mock versus native distinction; unresolved propagation, unions, identity ties, hidden NaNs and serialization retained.",
+      "evidence": [
+        {
+          "original_path": "ai-review-handoff-20261008/sources/stellarcsg-local-continuation-20260925/dev/stellarcsg/reports/CHAT_SYNTHESIS_20260926.md",
+          "sha256": "8b385cd81cf6ba6e5c1730bcd465b69907d611c8f50cd134e8842740f5d9dc3a",
+          "snapshot": "source_snapshots/8b385cd81cf6ba6e5c1730bcd465b69907d611c8f50cd134e8842740f5d9dc3a.md"
+        },
+        {
+          "original_path": "ai-review-handoff-20261008/sources/stellarcsg-local-continuation-20260925/dev/stellarcsg/reports/USABILITY_METHOD_REVIEW_20260926.md",
+          "sha256": "9b48f90a94996393353a5b463be06122f45aef58f84238410a24b629d135a785",
+          "snapshot": "source_snapshots/9b48f90a94996393353a5b463be06122f45aef58f84238410a24b629d135a785.md"
+        },
+        {
+          "original_path": "ai-review-handoff-20261008/sources/stellarcsg-astra-kernel-20260926/dev/stellarcsg/reports/plasma-best-time-20260926/source-rebuild-010-01/comparison.json",
+          "sha256": "4d3ab2737d821a24c8ce65f4a4d561998d2d9b3529c87826a3da172582993f4b",
+          "snapshot": "source_data/4d3ab2737d821a24c8ce65f4a4d561998d2d9b3529c87826a3da172582993f4b.json",
+          "bytes": 17779
+        }
+      ],
+      "historical_ledger_row_verbatim": "| I08 Portable runner and adapter repair | Reported 76/76 validator mocks; child exit 7 propagation; duplicates rejected; controlled adapter pass counts improved. | Mock versus native distinction; unresolved propagation, unions, identity ties, hidden NaNs and serialization retained. | Inspect exact provenance and native failure paths. Wrapper cleanup exit 1 can coexist with completed native workers; record both. | S12, S08, S21 |",
+      "historical_disposition": "Inspect exact provenance and native failure paths. Wrapper cleanup exit 1 can coexist with completed native workers; record both.",
+      "historical_record_cutoff": "2026-10-01; packet prepared 2026-10-08",
+      "current_addendum": null
+    },
+    {
+      "id": "I09",
+      "method": "Counter census and same-build performance protocol",
+      "category": "Reference and integration",
+      "status": "OFFLINE PREPARATION PASS; ORIGINAL NATIVE MATRIX NOT_RUN",
+      "recorded_result": "Matched libraries prepared; offline worker-epoch/uint64 checker and 65 rejection controls passed.",
+      "limitations_or_negative_results": "Native hooks/checked increments not implemented; 18-run matrix NOT_RUN. Checker cannot detect unflagged producer wrap or missing instrumentation.",
+      "evidence": [
+        {
+          "original_path": "ai-review-handoff-20261008/sources/stellarcsg-astra-kernel-20260926/dev/stellarcsg/reports/P00_STEPS_1_TO_4_INTEGRATION_20261001.md",
+          "sha256": "bbe83368ae33ae5ac88f86e9c613a34672dd1de22f5040aa23c8305c3ab56170",
+          "snapshot": "source_snapshots/bbe83368ae33ae5ac88f86e9c613a34672dd1de22f5040aa23c8305c3ab56170.md"
+        },
+        {
+          "original_path": "ai-review-handoff-20261008/sources/stellarcsg-astra-kernel-20260926/dev/stellarcsg/reports/P00_COUNTER_CHECKER_ROOT_REVIEW_20261001.md",
+          "sha256": "e34a19837d721f4985e2e643ebd2331a10a24e0fa3e753c4257917d5d7a8df8f",
+          "snapshot": "source_snapshots/e34a19837d721f4985e2e643ebd2331a10a24e0fa3e753c4257917d5d7a8df8f.md"
+        },
+        {
+          "original_path": "ai-review-handoff-20261008/sources/stellarcsg-astra-kernel-20260926/dev/stellarcsg/reports/P00_COUNTER_CHECKER_CHANGE_20261001.md",
+          "sha256": "ad792cb0d08f6516cfd8fb8a6803ad4d2a21b69485c444edcf1831c5d38c51f4",
+          "snapshot": "source_snapshots/ad792cb0d08f6516cfd8fb8a6803ad4d2a21b69485c444edcf1831c5d38c51f4.md"
+        },
+        {
+          "original_path": "stellarcsg-workload-ladder-20261008/RESULTS.md",
+          "sha256": "01066c6c7ace075e14b50fa7b4e5cb36e13e01bb115d22a38f7b70cf9324b438",
+          "snapshot": "source_snapshots/01066c6c7ace075e14b50fa7b4e5cb36e13e01bb115d22a38f7b70cf9324b438.md"
+        }
+      ],
+      "historical_ledger_row_verbatim": "| I09 Counter census and same-build performance protocol | Matched libraries prepared; offline worker-epoch/uint64 checker and 65 rejection controls passed. | Native hooks/checked increments not implemented; 18-run matrix NOT_RUN. Checker cannot detect unflagged producer wrap or missing instrumentation. | Preparatory success only. Geometry gate precedes census/performance admission. | S11, S34, S35 |",
+      "historical_disposition": "Preparatory success only. Geometry gate precedes census/performance admission.",
+      "historical_record_cutoff": "2026-10-01; packet prepared 2026-10-08",
+      "current_addendum": "The later ladder uses actual counting experiments and file rechecks; these are a separate scope from the original unimplemented 18-run census plan. Counting classifications do not independently certify the solver. See L01/L15."
+    },
+    {
+      "id": "H01",
+      "method": "Track B capsule/admissible seed recovery",
+      "category": "Earlier recovery and exact-reference variants",
+      "status": "PARTIAL; WRONG ROOTS REMAIN",
+      "recorded_result": "81211f7b supplied an inside-capsule seed and recovered missed entry; later conditional-seed controls measured 1685.63 ns/query with 3 strict disagreements on the fresh 160 bank.",
+      "limitations_or_negative_results": "Unsafe proxy pruning/completeness remain. Earlier-entry fix is not a first-root proof.",
+      "evidence": [
+        {
+          "original_path": "stellarcsg-fast-recovery-04/dev/stellarcsg/reports/FAST_RECOVERY_04_HISTORY.md",
+          "sha256": "e62fbd2e5ff944a78427e740e5d84797950fef8ae60e14254b25d0018bfffa73",
+          "snapshot": "source_snapshots/e62fbd2e5ff944a78427e740e5d84797950fef8ae60e14254b25d0018bfffa73.md"
+        },
+        {
+          "original_path": "stellarcsg-fast-recovery-04/dev/stellarcsg/reports/FAST_RECOVERY_04_CHECKPOINT.md",
+          "sha256": "ff08ac2ef24d6c487504f1da83d66264eb618f7d50ba79c95baf3deb87a26f7a",
+          "snapshot": "source_snapshots/ff08ac2ef24d6c487504f1da83d66264eb618f7d50ba79c95baf3deb87a26f7a.md"
+        }
+      ]
+    },
+    {
+      "id": "H02",
+      "method": "Track A floating admissible seed and removal of unsafe proxy pruning",
+      "category": "Earlier recovery and exact-reference variants",
+      "status": "PARTIAL; NOT COMPLETE",
+      "recorded_result": "4e1efc947 retained polynomial bank improved 273 PASS / 88 FAIL / 23 BLOCKED to 361 / 0 / 23; reported distance 2784.93 ns/query.",
+      "limitations_or_negative_results": "Two tangent metamorphisms remain unresolved. Different bank from recovery04. Blocked domain and general native gates remain; prior-A fresh160 control still had 3 disagreements.",
+      "evidence": [
+        {
+          "original_path": "stellarcsg-fast-recovery-04/dev/stellarcsg/reports/FAST_RECOVERY_04_HISTORY.md",
+          "sha256": "e62fbd2e5ff944a78427e740e5d84797950fef8ae60e14254b25d0018bfffa73",
+          "snapshot": "source_snapshots/e62fbd2e5ff944a78427e740e5d84797950fef8ae60e14254b25d0018bfffa73.md"
+        },
+        {
+          "original_path": "stellarcsg-fast-recovery-04/dev/stellarcsg/reports/FAST_RECOVERY_04_CHECKPOINT.md",
+          "sha256": "ff08ac2ef24d6c487504f1da83d66264eb618f7d50ba79c95baf3deb87a26f7a",
+          "snapshot": "source_snapshots/ff08ac2ef24d6c487504f1da83d66264eb618f7d50ba79c95baf3deb87a26f7a.md"
+        }
+      ]
+    },
+    {
+      "id": "H03",
+      "method": "Exact rational resultant/gcd/Sturm circular reference",
+      "category": "Earlier recovery and exact-reference variants",
+      "status": "REFERENCE PASS IN RESTRICTED DOMAIN; TOO COSTLY",
+      "recorded_result": "da7a5417 exact elimination and nearest-stationary classification: retained 384 replay 256 PASS / 0 FAIL / 128 BLOCKED. Recovery04 exact control costs 14.41848849 ms/query on its separate 160 bank.",
+      "limitations_or_negative_results": "Constant circular binary64 cubics only; elliptic/variable frames unsupported. Reference domain blocks are not enforced by recovered production.",
+      "evidence": [
+        {
+          "original_path": "stellarcsg-fast-recovery-04/dev/stellarcsg/reports/FAST_RECOVERY_04_HISTORY.md",
+          "sha256": "e62fbd2e5ff944a78427e740e5d84797950fef8ae60e14254b25d0018bfffa73",
+          "snapshot": "source_snapshots/e62fbd2e5ff944a78427e740e5d84797950fef8ae60e14254b25d0018bfffa73.md"
+        },
+        {
+          "original_path": "stellarcsg-fast-recovery-04/dev/stellarcsg/reports/FAST_RECOVERY_04_CHECKPOINT.md",
+          "sha256": "ff08ac2ef24d6c487504f1da83d66264eb618f7d50ba79c95baf3deb87a26f7a",
+          "snapshot": "source_snapshots/ff08ac2ef24d6c487504f1da83d66264eb618f7d50ba79c95baf3deb87a26f7a.md"
+        },
+        {
+          "original_path": "stellarcsg-neutral-03/dev/stellarcsg/reports/CONTINUATION_20260913.md",
+          "sha256": "ef4cb450359e243ffd2c86b877e069ebe85f7e1e5a1798866dc879ed114f12f8",
+          "snapshot": "source_snapshots/ef4cb450359e243ffd2c86b877e069ebe85f7e1e5a1798866dc879ed114f12f8.md"
+        }
+      ]
+    },
+    {
+      "id": "H04",
+      "method": "Shared exact-query reuse and exact-work accounting",
+      "category": "Earlier recovery and exact-reference variants",
+      "status": "PARTIAL REUSE / DIAGNOSTIC",
+      "recorded_result": "223ea7a1 reuses common exact query work and exposes exact cost.",
+      "limitations_or_negative_results": "Reuse benefit is not cold-query or native throughput; retain bank and warm/cold distinctions.",
+      "evidence": [
+        {
+          "original_path": "stellarcsg-fast-recovery-04/dev/stellarcsg/reports/FAST_RECOVERY_04_HISTORY.md",
+          "sha256": "e62fbd2e5ff944a78427e740e5d84797950fef8ae60e14254b25d0018bfffa73",
+          "snapshot": "source_snapshots/e62fbd2e5ff944a78427e740e5d84797950fef8ae60e14254b25d0018bfffa73.md"
+        }
+      ]
+    },
+    {
+      "id": "H05",
+      "method": "Outward floating BVH and Bernstein sign exclusion before exact solve",
+      "category": "Earlier recovery and exact-reference variants",
+      "status": "PARTIAL; SPEED INCONCLUSIVE",
+      "recorded_result": "0b56166b conservatively retains uncertain intervals before the exact solver.",
+      "limitations_or_negative_results": "Aggregate speed gain inconclusive; distinct from failed original degree-ten solver and later 2-D interval cover.",
+      "evidence": [
+        {
+          "original_path": "stellarcsg-fast-recovery-04/dev/stellarcsg/reports/FAST_RECOVERY_04_HISTORY.md",
+          "sha256": "e62fbd2e5ff944a78427e740e5d84797950fef8ae60e14254b25d0018bfffa73",
+          "snapshot": "source_snapshots/e62fbd2e5ff944a78427e740e5d84797950fef8ae60e14254b25d0018bfffa73.md"
+        }
+      ]
+    },
+    {
+      "id": "H06",
+      "method": "Exact-rational monotone isolation before gcd/Sturm",
+      "category": "Earlier recovery and exact-reference variants",
+      "status": "REFERENCE-CONSISTENT INTERNAL SPEED",
+      "recorded_result": "dc76fbd1 / 5ed327ad: 64 mode comparisons identical, 384 replay 256/0/128. Separate 16-ray bank: mode2 2.1309001 ms vs mode0 82.4534045 ms; 1000-history diagnostic 7.05622 histories/s.",
+      "limitations_or_negative_results": "98.213% of instrumented time remains exact work. No arbitrary-precision-free/general fast transport claim.",
+      "evidence": [
+        {
+          "original_path": "stellarcsg-fast-recovery-04/dev/stellarcsg/reports/FAST_RECOVERY_04_HISTORY.md",
+          "sha256": "e62fbd2e5ff944a78427e740e5d84797950fef8ae60e14254b25d0018bfffa73",
+          "snapshot": "source_snapshots/e62fbd2e5ff944a78427e740e5d84797950fef8ae60e14254b25d0018bfffa73.md"
+        },
+        {
+          "original_path": "stellarcsg-neutral-03/dev/stellarcsg/reports/CONTINUATION_20260913.md",
+          "sha256": "ef4cb450359e243ffd2c86b877e069ebe85f7e1e5a1798866dc879ed114f12f8",
+          "snapshot": "source_snapshots/ef4cb450359e243ffd2c86b877e069ebe85f7e1e5a1798866dc879ed114f12f8.md"
+        }
+      ]
+    },
+    {
+      "id": "H07",
+      "method": "Old plasma source reproduction versus current implementation",
+      "category": "Earlier recovery and exact-reference variants",
+      "status": "COMPLETED MATCHED DIAGNOSTIC",
+      "recorded_result": "Same-workload old source 27.225501 s versus current 28.970192 s; ratio 1.064083. Whitespace-normalized source bodies agree.",
+      "limitations_or_negative_results": "Old boundary handling unsafe; diagnostic is not promotion. Unlike historical workloads cannot establish a 0.36-to-35-second regression.",
+      "evidence": [
+        {
+          "original_path": "stellarcsg-astra-kernel-20260926/dev/stellarcsg/reports/plasma-best-time-20260926/METHOD_COMPARISON_REBUILD_010.md",
+          "sha256": "b6ba027053fd15b70598b46d50582e66235c9f834e65c82c95496165962d0d71",
+          "snapshot": "source_snapshots/b6ba027053fd15b70598b46d50582e66235c9f834e65c82c95496165962d0d71.md"
+        },
+        {
+          "original_path": "stellarcsg-astra-kernel-20260926/dev/stellarcsg/reports/plasma-best-time-20260926/source-rebuild-010-01/comparison.json",
+          "sha256": "4d3ab2737d821a24c8ce65f4a4d561998d2d9b3529c87826a3da172582993f4b",
+          "snapshot": "source_data/4d3ab2737d821a24c8ce65f4a4d561998d2d9b3529c87826a3da172582993f4b.json",
+          "bytes": 17779
+        }
+      ]
+    },
+    {
+      "id": "H08",
+      "method": "Adaptive VMEC radial spline fit and single-chart admission",
+      "category": "Earlier recovery and exact-reference variants",
+      "status": "SAMPLED FIT SELECTED; GENERAL ADMISSION PARTIAL",
+      "recorded_result": "Auto-fit errors: 64x32 7.8086% REJECT, 128x64 1.22134% REJECT, 256x128 0.099667% selected under declared 1% sampled target. Independent 4608 grid max0.2042205 cm / 0.119736% local radius, RMS0.018439 cm, P95 0.030255 cm.",
+      "limitations_or_negative_results": "Initial separate off-grid 64x32 result 11.33767 cm / 8.16553% fails. Geometric-theta folds including held-out ParaStell rejected; sampled radial error is not normal/volume/Hausdorff certificate or periodic navigation.",
+      "evidence": [
+        {
+          "original_path": "stellarcsg-root-repair-07/dev/stellarcsg/reports/PRODUCT_05_CHECKPOINT.md",
+          "sha256": "9878de2f0313e4a6aca5587f7f2a4e35cba2de4700fcf457c002815ffda83de3",
+          "snapshot": "source_snapshots/9878de2f0313e4a6aca5587f7f2a4e35cba2de4700fcf457c002815ffda83de3.md"
+        },
+        {
+          "original_path": "stellarcsg-neutral-03/dev/stellarcsg/test_data/local_catalog/LOCAL_STELLARATOR_MODEL_CATALOG.md",
+          "sha256": "c2c770b1836508ca242fbff671e4e7aff8e22fee425df458f7f47e368b209d7a",
+          "snapshot": "source_snapshots/c2c770b1836508ca242fbff671e4e7aff8e22fee425df458f7f47e368b209d7a.md"
+        }
+      ]
+    },
+    {
+      "id": "H09",
+      "method": "Candidate A outward 2-D Bernstein interval-cover exclusion",
+      "category": "Earlier recovery and exact-reference variants",
+      "status": "CONDITIONALLY APPROVED EXCLUSION; HOT PATH REJECTED",
+      "recorded_result": "Executed Product05 bank: 90 ROOT_FREE / 70 UNRESOLVED, no saved-bank false exclusions; approximately 106397 ns/query.",
+      "limitations_or_negative_results": "Certifies only stationary-equation exclusion under stated assumptions; no exact fallback, hit ordering or full solver. Too costly/incomplete for production.",
+      "evidence": [
+        {
+          "original_path": "stellarcsg-root-repair-07/dev/stellarcsg/reports/PRODUCT_05_CHECKPOINT.md",
+          "sha256": "9878de2f0313e4a6aca5587f7f2a4e35cba2de4700fcf457c002815ffda83de3",
+          "snapshot": "source_snapshots/9878de2f0313e4a6aca5587f7f2a4e35cba2de4700fcf457c002815ffda83de3.md"
+        },
+        {
+          "original_path": "stellarcsg-root-repair-07/dev/stellarcsg/reports/REPAIR_07_CHECKPOINT.md",
+          "sha256": "8f10e5f6e185eddfee3b1ae46ec52be25af0ae96b2469c44c971c0bfeb6446d5",
+          "snapshot": "source_snapshots/8f10e5f6e185eddfee3b1ae46ec52be25af0ae96b2469c44c971c0bfeb6446d5.md"
+        }
+      ]
+    },
+    {
+      "id": "H10",
+      "method": "Final-iterate residual recomputation",
+      "category": "Earlier recovery and exact-reference variants",
+      "status": "REJECTED AS COMPLETE REPAIR",
+      "recorded_result": "Repair07 strict bank 1728.125 ns/query, 3 wrong/0 blocked; real stress 15 discrepancies. Exposes real23 false finite hit0.19916695971482617 cm where exact reports no hit.",
+      "limitations_or_negative_results": "Bookkeeping fix cannot prove a root; no correctness gain over seed control.",
+      "evidence": [
+        {
+          "original_path": "stellarcsg-root-repair-07/dev/stellarcsg/reports/REPAIR_07_CHECKPOINT.md",
+          "sha256": "8f10e5f6e185eddfee3b1ae46ec52be25af0ae96b2469c44c971c0bfeb6446d5",
+          "snapshot": "source_snapshots/8f10e5f6e185eddfee3b1ae46ec52be25af0ae96b2469c44c971c0bfeb6446d5.md"
+        }
+      ]
+    },
+    {
+      "id": "H11",
+      "method": "Process all queued nearer unresolved spans",
+      "category": "Earlier recovery and exact-reference variants",
+      "status": "REJECTED FOR PROMOTION",
+      "recorded_result": "Strict 3266.25 ns/query, 3 wrong/0 blocked; fixes no observed discrepancy; 2.8683x old-fast. Stress 15 discrepancies.",
+      "limitations_or_negative_results": "Zero-proxy and solved-prefix completeness still open; negative commit retained.",
+      "evidence": [
+        {
+          "original_path": "stellarcsg-root-repair-07/dev/stellarcsg/reports/REPAIR_07_CHECKPOINT.md",
+          "sha256": "8f10e5f6e185eddfee3b1ae46ec52be25af0ae96b2469c44c971c0bfeb6446d5",
+          "snapshot": "source_snapshots/8f10e5f6e185eddfee3b1ae46ec52be25af0ae96b2469c44c971c0bfeb6446d5.md"
+        }
+      ]
+    },
+    {
+      "id": "H12",
+      "method": "Broad crossing conditioning",
+      "category": "Earlier recovery and exact-reference variants",
+      "status": "EXPERIMENTAL OVERBLOCKING",
+      "recorded_result": "Strict 0 wrong /21 BLOCKED.",
+      "limitations_or_negative_results": "Blocked-query time absent; survivor means cannot be full-bank speed. Regression tests fail with unresolved exceptions.",
+      "evidence": [
+        {
+          "original_path": "stellarcsg-root-repair-07/dev/stellarcsg/reports/REPAIR_07_CHECKPOINT.md",
+          "sha256": "8f10e5f6e185eddfee3b1ae46ec52be25af0ae96b2469c44c971c0bfeb6446d5",
+          "snapshot": "source_snapshots/8f10e5f6e185eddfee3b1ae46ec52be25af0ae96b2469c44c971c0bfeb6446d5.md"
+        }
+      ]
+    },
+    {
+      "id": "H13",
+      "method": "Broad crossing conditioning plus outward center/radius bounds",
+      "category": "Earlier recovery and exact-reference variants",
+      "status": "EXPERIMENTAL OVERBLOCKING",
+      "recorded_result": "Strict 0 wrong /17 BLOCKED, reduced from21 without a new block. Per-operation outward propagation replaced rejected one-nextafter conversion.",
+      "limitations_or_negative_results": "Whole-span regularity/frame evaluation/pruning coverage unadmitted; bounds are conditionally sound for ideal regular spline, not production proof.",
+      "evidence": [
+        {
+          "original_path": "stellarcsg-root-repair-07/dev/stellarcsg/reports/REPAIR_07_CHECKPOINT.md",
+          "sha256": "8f10e5f6e185eddfee3b1ae46ec52be25af0ae96b2469c44c971c0bfeb6446d5",
+          "snapshot": "source_snapshots/8f10e5f6e185eddfee3b1ae46ec52be25af0ae96b2469c44c971c0bfeb6446d5.md"
+        }
+      ]
+    },
+    {
+      "id": "H14",
+      "method": "Narrow acceptance plus ordering and bounds",
+      "category": "Earlier recovery and exact-reference variants",
+      "status": "REJECTED FOR PROMOTION",
+      "recorded_result": "Strict 4726.25 ns/query, 2 wrong/0 blocked, 4.15x old. a15 distance error improves to about 1.1e-11 cm. Stress 12 wrong plus 3 BLOCKED.",
+      "limitations_or_negative_results": "a06 origin and a08 even tangent remain silent wrong no-hits; retained256 admitted replay still2 failures and 128 reference blocks.",
+      "evidence": [
+        {
+          "original_path": "stellarcsg-root-repair-07/dev/stellarcsg/reports/REPAIR_07_CHECKPOINT.md",
+          "sha256": "8f10e5f6e185eddfee3b1ae46ec52be25af0ae96b2469c44c971c0bfeb6446d5",
+          "snapshot": "source_snapshots/8f10e5f6e185eddfee3b1ae46ec52be25af0ae96b2469c44c971c0bfeb6446d5.md"
+        }
+      ]
+    },
+    {
+      "id": "H15",
+      "method": "Isolated narrow acceptance repair",
+      "category": "Earlier recovery and exact-reference variants",
+      "status": "EXPERIMENTAL; NOT PROMOTED",
+      "recorded_result": "Strict 2319.375 ns/query, 2 wrong/0 blocked; interleaved confirmation2422.5 ns/query. Old-fast ratio ranges1.89–2.04 across campaigns; a15 improvement retained without ordering/bounds additions.",
+      "limitations_or_negative_results": "2x timing guardrail straddled; correctness independently prevents promotion. Stress 12 wrong plus 3 BLOCKED, not only12 failures. Native new repair NOT_RUN.",
+      "evidence": [
+        {
+          "original_path": "stellarcsg-root-repair-07/dev/stellarcsg/reports/REPAIR_07_CHECKPOINT.md",
+          "sha256": "8f10e5f6e185eddfee3b1ae46ec52be25af0ae96b2469c44c971c0bfeb6446d5",
+          "snapshot": "source_snapshots/8f10e5f6e185eddfee3b1ae46ec52be25af0ae96b2469c44c971c0bfeb6446d5.md"
+        }
+      ]
+    },
+    {
+      "id": "H16",
+      "method": "Recovered-seed clipped one-period native transport versus old and exact",
+      "category": "Earlier recovery and exact-reference variants",
+      "status": "COMPLETED DIAGNOSTIC; PERIODIC MODEL UNQUALIFIED",
+      "recorded_result": "RunCompare06: old8387.7 vs recovered8179.8 histories/s (3x8192); exact8.4200 vs recovered7360.5 histories/s on separate3x256 workload. All24 primary attempts exit0. Seed19 64-history replay234 steps has zero discrete sequence changes.",
+      "limitations_or_negative_results": "90-degree vacuum clipping, 16 finite1 cm diagnostic members. Tally threshold exceedances25(debug), 16(256), 4(8192); floating coordinates differ. Strict 3/160, retained2/256, stress 14/160 persist. No periodic qualification or matched Embree/native-torus ratio.",
+      "evidence": [
+        {
+          "original_path": "stellarcsg-root-repair-07/dev/stellarcsg/reports/RUN_COMPARE_06_CHECKPOINT.md",
+          "sha256": "d6b5450bccb8ac9bf61b7125135c1a1d26bf7933fcb409f5d9d0d7f718501531",
+          "snapshot": "source_snapshots/d6b5450bccb8ac9bf61b7125135c1a1d26bf7933fcb409f5d9d0d7f718501531.md"
+        }
+      ]
+    },
+    {
+      "id": "B01",
+      "method": "Physical-normal multilayer blanket compiler",
+      "category": "Blanket and composite variants",
+      "status": "PARTIAL GEOMETRY; WISTELL ENGINEERING CLEARANCE FAIL",
+      "recorded_result": "Six layers totaling 135.5 cm, with seven boundaries per model (14 across the exact-torus and WISTELL controls): positive Jacobians, nesting and seam checks reported.",
+      "limitations_or_negative_results": "Minimum coil clearance −37.1463 cm FAIL. Earlier blanket-not-implemented report is an earlier milestone; nonuniform coil-constrained/scaling/full physical qualification NOT_RUN.",
+      "evidence": [
+        {
+          "original_path": "openmc-stellarcsg-composite/dev/stellarcsg/reports/COMPOSITE_BLANKET_INTEROP_FINAL_REPORT.md",
+          "sha256": "3fcccb773c42d639bdd93786d634f4d5c3bf80a001325be619f2cc51c4f9d61d",
+          "snapshot": "source_snapshots/3fcccb773c42d639bdd93786d634f4d5c3bf80a001325be619f2cc51c4f9d61d.md"
+        },
+        {
+          "original_path": "stellarcsg-astra-kernel-20260926/dev/stellarcsg/reports/BLANKET_FAMILY_REPORT.md",
+          "sha256": "fdf2a5f948d4882be856948db67597db6ef3f289dcf9e011448b5cd244efa416",
+          "snapshot": "source_snapshots/fdf2a5f948d4882be856948db67597db6ef3f289dcf9e011448b5cd244efa416.md"
+        }
+      ]
+    },
+    {
+      "id": "B02",
+      "method": "Combined native plasma, blanket and coil model with Boolean cutouts",
+      "category": "Blanket and composite variants",
+      "status": "PARTIAL SMOKE / PARTITION",
+      "recorded_result": "7 blanket boundaries and 12/48 coils; zero lost particles; native smoke3331.0/2762.19 histories/s, one repetition. TrackA later reproduction3436.33/2440.47 histories/s.",
+      "limitations_or_negative_results": "Cutout partition does not remedy engineering clearance; smoke rates not medians. Multithreading/materialized closure/general physical pack qualification NOT_RUN.",
+      "evidence": [
+        {
+          "original_path": "openmc-stellarcsg-composite/dev/stellarcsg/reports/COMPOSITE_BLANKET_INTEROP_FINAL_REPORT.md",
+          "sha256": "3fcccb773c42d639bdd93786d634f4d5c3bf80a001325be619f2cc51c4f9d61d",
+          "snapshot": "source_snapshots/3fcccb773c42d639bdd93786d634f4d5c3bf80a001325be619f2cc51c4f9d61d.md"
+        },
+        {
+          "original_path": "stellarcsg-cont-a/dev/stellarcsg/reports/TRACK_A_LEGACY_V2_REPORT.md",
+          "sha256": "9eb83eb10602c51f28cd83ec18c0a3a4ece32682a4e588bf0f86eefef8850f02",
+          "snapshot": "source_snapshots/9eb83eb10602c51f28cd83ec18c0a3a4ece32682a4e588bf0f86eefef8850f02.md"
+        }
+      ]
+    },
+    {
+      "id": "B03",
+      "method": "Native CSG outer fill with fine DAGMC torus hybrid",
+      "category": "Blanket and composite variants",
+      "status": "PARTIAL INTEROPERABILITY / HISTORICAL VERIFIED EMBREE",
+      "recorded_result": "Ordinary DAGMC and genuine DoubleDown hybrid smokes; reported32 interoperability checks. Cached exact swept torus724869 vs690434 histories/s, 1.04987x. Exact periodic 711268 vs696970, 1.02051x with lower bootstrap0.97647 meets3% noninferiority control.",
+      "limitations_or_negative_results": "Forced-general swept path0.09951x FAIL. Rigid payload transforms unsupported. C1 ellipse/C3 racetrack/C4 capsule chains and full WISTELL verified-Embree comparison NOT_RUN.",
+      "evidence": [
+        {
+          "original_path": "openmc-stellarcsg-composite/dev/stellarcsg/reports/COMPOSITE_BLANKET_INTEROP_FINAL_REPORT.md",
+          "sha256": "3fcccb773c42d639bdd93786d634f4d5c3bf80a001325be619f2cc51c4f9d61d",
+          "snapshot": "source_snapshots/3fcccb773c42d639bdd93786d634f4d5c3bf80a001325be619f2cc51c4f9d61d.md"
+        },
+        {
+          "original_path": "openmc-stellarcsg-composite/dev/stellarcsg/reports/DOUBLE_DOWN_COMPOSITE_RESULTS.md",
+          "sha256": "44bd386e782bfb35e5e5e44d0576d54978ac28e363360560909ad0312fb2b1e2",
+          "snapshot": "source_snapshots/44bd386e782bfb35e5e5e44d0576d54978ac28e363360560909ad0312fb2b1e2.md"
+        },
+        {
+          "original_path": "openmc-stellarcsg-composite/dev/stellarcsg/reports/EXACT_TORUS_PARITY_FINAL.md",
+          "sha256": "0cf2fe88c746a38288ef09dd44785227dc653248981cfcda16846f820f9a7a95",
+          "snapshot": "source_snapshots/0cf2fe88c746a38288ef09dd44785227dc653248981cfcda16846f820f9a7a95.md"
+        }
+      ]
+    },
+    {
+      "id": "R01",
+      "method": "Exact represented-facet topology and component-AABB certificate",
+      "category": "P00 geometry and event diagnostics",
+      "status": "CONDITIONAL REPRESENTED-SOLID PREMISE; OWNER COUNTEREXAMPLES",
+      "recorded_result": "Derived3348 facets/18 selectors: exact nonzero triangles, links, orientation and 25431 pair predicates support embedded bounded components; derived 1944 sampled classifications agree. Mesh-to-mesh displacement bound0.0033287735930590413 cm.",
+      "limitations_or_negative_results": "8 exact cross-component intersection segments in15/16 and 17/18; selectors are priority partition, not disjoint physical-coil owners. No continuous CAD/floating operational theorem.",
+      "evidence": [
+        {
+          "original_path": "stellarcsg-astra-kernel-20260926/dev/stellarcsg/reports/P00_STEP2_CERTIFICATE_20261001.md",
+          "sha256": "1f04a5645e60e326811136941ff8c4cd4732b738b99b315c5ee188e76f9a9884",
+          "snapshot": "source_snapshots/1f04a5645e60e326811136941ff8c4cd4732b738b99b315c5ee188e76f9a9884.md"
+        }
+      ]
+    },
+    {
+      "id": "R02",
+      "method": "Independent rational facet first-event oracle",
+      "category": "P00 geometry and event diagnostics",
+      "status": "COUNTEREXAMPLES_FOUND",
+      "recorded_result": "810-query authoritative_03: 537 MATCH, 116 EXPECTED_UNRESOLVED, 154 CONSERVATIVE_UNRESOLVED, 3 FAIL. P00 subset 738 has495/93/150/0; cube 72 has42/23/4/3. Exact equal-time contacts expose facet-order-dependent owner/normal.",
+      "limitations_or_negative_results": "Do not count154 conservative unresolved as successful resolved queries. _01 self-test failure and _02 two-failure800-query run retained. Exit1 means found counterexamples, not failed execution.",
+      "evidence": [
+        {
+          "original_path": "stellarcsg-astra-kernel-20260926/dev/stellarcsg/reports/P00_STEP3_REPORT_20261001.md",
+          "sha256": "c015d468ffe21d8081b195f61a24611986f097c069825cee0dbec9b50c6da22a",
+          "snapshot": "source_snapshots/c015d468ffe21d8081b195f61a24611986f097c069825cee0dbec9b50c6da22a.md"
+        }
+      ]
+    },
+    {
+      "id": "R03",
+      "method": "Native assembly and positive-gap localization",
+      "category": "P00 geometry and event diagnostics",
+      "status": "FAILED GENERAL EVENT/SCORING GATE",
+      "recorded_result": "680 queries on both libraries: 21 first-event discrepancies/library, 85 continuation aborts/library (74analytic/11derived). Focused planes show successor skips a real2^-48 cm positive gap.",
+      "limitations_or_negative_results": "Later M23 accepts only a repaired restricted plane slice; these facet/material/general ownership failures are not automatically closed.",
+      "evidence": [
+        {
+          "original_path": "stellarcsg-astra-kernel-20260926/dev/stellarcsg/reports/P00_ASSEMBLY_REPORT_20261001.md",
+          "sha256": "74b46871795458cc7cb271ab08edfc8b067a85b9117af6dfaa880341e6328472",
+          "snapshot": "source_snapshots/74b46871795458cc7cb271ab08edfc8b067a85b9117af6dfaa880341e6328472.md"
+        },
+        {
+          "original_path": "stellarcsg-astra-kernel-20260926/dev/stellarcsg/reports/P00_ASSEMBLY_PLANES_FOCUSED_RESULT_20261001.md",
+          "sha256": "a82224df51ea4381b9c655a61f858654a17b5cd9087557a400ced7ef26533693",
+          "snapshot": "source_snapshots/a82224df51ea4381b9c655a61f858654a17b5cd9087557a400ced7ef26533693.md"
+        }
+      ]
+    },
+    {
+      "id": "L01",
+      "method": "Density ladder with collision workload matching",
+      "category": "Later workload and optimization experiments",
+      "status": "LADDER01 INCONCLUSIVE; LADDER02 GEOMETRY_BOUND",
+      "recorded_result": "Both32-run phases complete. Quiet ladder02 reports236/236 checker results: thin ratio 1.658(1.605–1.708), dense1.850(1.758–1.913), workload F1.156; nominal4.06x collision difference.",
+      "limitations_or_negative_results": "Ladder01 noise/CV/drift gates fail; descriptive times cannot be accepted. Geometry/source workload differ; comparison not physical pack qualification.",
+      "evidence": [
+        {
+          "original_path": "stellarcsg-workload-ladder-20261008/RESULTS.md",
+          "sha256": "01066c6c7ace075e14b50fa7b4e5cb36e13e01bb115d22a38f7b70cf9324b438",
+          "snapshot": "source_snapshots/01066c6c7ace075e14b50fa7b4e5cb36e13e01bb115d22a38f7b70cf9324b438.md"
+        },
+        {
+          "original_path": "stellarcsg-workload-ladder-20261008/ATTEMPTS.jsonl",
+          "sha256": "29a6388777d391ed80eca4abbcfd0387484033b4560bacce42bfb04cd21b1dda",
+          "snapshot": "source_data/29a6388777d391ed80eca4abbcfd0387484033b4560bacce42bfb04cd21b1dda.jsonl",
+          "bytes": 11362
+        },
+        {
+          "original_path": "stellarcsg-workload-ladder-20261008/PLAN.md",
+          "sha256": "44e49e065e371401030b07bbdfdacff41a85c8cc307222edc53019f38da8a0cc",
+          "snapshot": "source_snapshots/44e49e065e371401030b07bbdfdacff41a85c8cc307222edc53019f38da8a0cc.md"
+        }
+      ]
+    },
+    {
+      "id": "L02",
+      "method": "Transport stack profiling and plasma workload attribution",
+      "category": "Later workload and optimization experiments",
+      "status": "COMPLETED DIAGNOSTIC",
+      "recorded_result": "P00 samples: facet distance57%, contains/parity28%, normal10%; nextafter innermost30.9%; physics2–3%. Plasma profile95% distance solver, 55% evaluations tangent scan. Original256 source sites all same point inside custom/outside torus: 68.4027 vs5.4117 collisions/source.",
+      "limitations_or_negative_results": "Sample percentages overlap and must not be added. Approx12.6x original collision workload is not geometry speed; original quiet plasma ratio 199.9856.",
+      "evidence": [
+        {
+          "original_path": "stellarcsg-workload-ladder-20261008/RESULTS.md",
+          "sha256": "01066c6c7ace075e14b50fa7b4e5cb36e13e01bb115d22a38f7b70cf9324b438",
+          "snapshot": "source_snapshots/01066c6c7ace075e14b50fa7b4e5cb36e13e01bb115d22a38f7b70cf9324b438.md"
+        }
+      ]
+    },
+    {
+      "id": "L03",
+      "method": "v1 inline nextafter with std::memcpy bit casts",
+      "category": "Later workload and optimization experiments",
+      "status": "REJECT_EFFECT",
+      "recorded_result": "Reported1.05x; -fno-builtin emits memcpy@plt calls.",
+      "limitations_or_negative_results": "Failed pre-registered effect threshold; preserve failed implementation alongside later repair.",
+      "evidence": [
+        {
+          "original_path": "stellarcsg-workload-ladder-20261008/RESULTS.md",
+          "sha256": "01066c6c7ace075e14b50fa7b4e5cb36e13e01bb115d22a38f7b70cf9324b438",
+          "snapshot": "source_snapshots/01066c6c7ace075e14b50fa7b4e5cb36e13e01bb115d22a38f7b70cf9324b438.md"
+        }
+      ]
+    },
+    {
+      "id": "L04",
+      "method": "v2 inline nextafter with __builtin_memcpy bit casts",
+      "category": "Later workload and optimization experiments",
+      "status": "REPORTED ACCEPT_SPEEDUP_EVIDENCE",
+      "recorded_result": "Reported1.65748x; tested seeds/densities bitwise equal in ab02/xval01.",
+      "limitations_or_negative_results": "Finite output agreement and internal effect evidence; independent physical/native-event acceptance open.",
+      "evidence": [
+        {
+          "original_path": "stellarcsg-workload-ladder-20261008/RESULTS.md",
+          "sha256": "01066c6c7ace075e14b50fa7b4e5cb36e13e01bb115d22a38f7b70cf9324b438",
+          "snapshot": "source_snapshots/01066c6c7ace075e14b50fa7b4e5cb36e13e01bb115d22a38f7b70cf9324b438.md"
+        }
+      ]
+    },
+    {
+      "id": "L05",
+      "method": "v3 normal precompute and exact early reject",
+      "category": "Later workload and optimization experiments",
+      "status": "UNDECIDED EFFECT",
+      "recorded_result": "Reported additional 1.07603x, tested outputs bitwise equal.",
+      "limitations_or_negative_results": "Below pre-registered1.10 effect threshold; no acceptance inferred from composition.",
+      "evidence": [
+        {
+          "original_path": "stellarcsg-workload-ladder-20261008/RESULTS.md",
+          "sha256": "01066c6c7ace075e14b50fa7b4e5cb36e13e01bb115d22a38f7b70cf9324b438",
+          "snapshot": "source_snapshots/01066c6c7ace075e14b50fa7b4e5cb36e13e01bb115d22a38f7b70cf9324b438.md"
+        }
+      ]
+    },
+    {
+      "id": "L06",
+      "method": "P00 gate01 with v2+v3",
+      "category": "Later workload and optimization experiments",
+      "status": "PASS_MEDIAN; ROBUST WORST PAIR FAILS",
+      "recorded_result": "Three-seed medians1.212/1.211/1.178, pooled1.20060445.",
+      "limitations_or_negative_results": "Worst pairings1.27–1.28 exceed1.25. This median pass is distinct from later robust pass.",
+      "evidence": [
+        {
+          "original_path": "stellarcsg-workload-ladder-20261008/RESULTS.md",
+          "sha256": "01066c6c7ace075e14b50fa7b4e5cb36e13e01bb115d22a38f7b70cf9324b438",
+          "snapshot": "source_snapshots/01066c6c7ace075e14b50fa7b4e5cb36e13e01bb115d22a38f7b70cf9324b438.md"
+        },
+        {
+          "original_path": "stellarcsg-workload-ladder-20261008/runs/gate-01/GATE.json",
+          "sha256": "ad65b2eb61c2644d7cb0fe83399add7d70531efeb1456fbe6bc8a05b7b0b70c3",
+          "snapshot": "source_data/ad65b2eb61c2644d7cb0fe83399add7d70531efeb1456fbe6bc8a05b7b0b70c3.json",
+          "bytes": 3309
+        }
+      ]
+    },
+    {
+      "id": "L07",
+      "method": "v4 opt-in plasma collision-distance ceiling",
+      "category": "Later workload and optimization experiments",
+      "status": "REPORTED ACCEPT_SPEEDUP_EVIDENCE",
+      "recorded_result": "Reported8.07x(7.86–8.51); 12 gate runs bitwise equal; original unequal-source custom/torus195.935→23.833.",
+      "limitations_or_negative_results": "No independent root/exclusion certificate acceptance. Unequal point-source workload; more matched diagnostic still over1.25.",
+      "evidence": [
+        {
+          "original_path": "stellarcsg-workload-ladder-20261008/RESULTS.md",
+          "sha256": "01066c6c7ace075e14b50fa7b4e5cb36e13e01bb115d22a38f7b70cf9324b438",
+          "snapshot": "source_snapshots/01066c6c7ace075e14b50fa7b4e5cb36e13e01bb115d22a38f7b70cf9324b438.md"
+        },
+        {
+          "original_path": "stellarcsg-workload-ladder-20261008/plasma/runs/plasma-ab-01/SUMMARY.json",
+          "sha256": "2f38005c7a3dd56b9cd7076048d276f1117aea473d42af1d1e63d34c90b9ef05",
+          "snapshot": "source_data/2f38005c7a3dd56b9cd7076048d276f1117aea473d42af1d1e63d34c90b9ef05.json",
+          "bytes": 1395
+        }
+      ]
+    },
+    {
+      "id": "L08",
+      "method": "v5 facet distance ceiling",
+      "category": "Later workload and optimization experiments",
+      "status": "FINITE BITWISE CONTROLS PASS",
+      "recorded_result": "v5+v6 composition retains equality across 12 gate and 5 cross-validation runs.",
+      "limitations_or_negative_results": "No isolated individual v5 speed effect established; native event/physical owner caveats remain.",
+      "evidence": [
+        {
+          "original_path": "stellarcsg-workload-ladder-20261008/RESULTS.md",
+          "sha256": "01066c6c7ace075e14b50fa7b4e5cb36e13e01bb115d22a38f7b70cf9324b438",
+          "snapshot": "source_snapshots/01066c6c7ace075e14b50fa7b4e5cb36e13e01bb115d22a38f7b70cf9324b438.md"
+        }
+      ]
+    },
+    {
+      "id": "L09",
+      "method": "v6 exact periodic-spline indexing",
+      "category": "Later workload and optimization experiments",
+      "status": "FINITE BITWISE CONTROLS PASS",
+      "recorded_result": "v5+v6 composition retains equality across 12 gate and 5 cross-validation runs.",
+      "limitations_or_negative_results": "No isolated individual v6 speed effect established; equality only for tested records.",
+      "evidence": [
+        {
+          "original_path": "stellarcsg-workload-ladder-20261008/RESULTS.md",
+          "sha256": "01066c6c7ace075e14b50fa7b4e5cb36e13e01bb115d22a38f7b70cf9324b438",
+          "snapshot": "source_snapshots/01066c6c7ace075e14b50fa7b4e5cb36e13e01bb115d22a38f7b70cf9324b438.md"
+        }
+      ]
+    },
+    {
+      "id": "L10",
+      "method": "P00 gate02 with v2–v6 and ceiling",
+      "category": "Later workload and optimization experiments",
+      "status": "INVALID OVERALL",
+      "recorded_result": "Seeds1742/1743 PASS_ROBUST; pooled1.108598 descriptive.",
+      "limitations_or_negative_results": "Seed1741 first-run outlier/CV6.8% invalidates overall timing decision. Later warmup replication is a separate attempt.",
+      "evidence": [
+        {
+          "original_path": "stellarcsg-workload-ladder-20261008/RESULTS.md",
+          "sha256": "01066c6c7ace075e14b50fa7b4e5cb36e13e01bb115d22a38f7b70cf9324b438",
+          "snapshot": "source_snapshots/01066c6c7ace075e14b50fa7b4e5cb36e13e01bb115d22a38f7b70cf9324b438.md"
+        },
+        {
+          "original_path": "stellarcsg-workload-ladder-20261008/runs/gate-02/GATE.json",
+          "sha256": "aaec8dcb1dfda63ba571d583effdbb38139394520c79f413816334b316208a25",
+          "snapshot": "source_data/aaec8dcb1dfda63ba571d583effdbb38139394520c79f413816334b316208a25.json",
+          "bytes": 3309
+        }
+      ]
+    },
+    {
+      "id": "L11",
+      "method": "P00 gate03 warmup-discarded replication",
+      "category": "Later workload and optimization experiments",
+      "status": "REPORTED PASS_ROBUST TIMING ONLY",
+      "recorded_result": "All3 seeds PASS_ROBUST; pooled1.104614615471397; medians1.126/1.117/1.071, worst1.138/1.122/1.087.",
+      "limitations_or_negative_results": "Derived P00 versus fixed30x30 cm rings, all tested tally bits unchanged. Continuous CAD/section/frame fidelity, physical ownership, event semantics and independent Sol physical acceptance remain open.",
+      "evidence": [
+        {
+          "original_path": "stellarcsg-workload-ladder-20261008/RESULTS.md",
+          "sha256": "01066c6c7ace075e14b50fa7b4e5cb36e13e01bb115d22a38f7b70cf9324b438",
+          "snapshot": "source_snapshots/01066c6c7ace075e14b50fa7b4e5cb36e13e01bb115d22a38f7b70cf9324b438.md"
+        },
+        {
+          "original_path": "stellarcsg-workload-ladder-20261008/runs/gate-03/GATE.json",
+          "sha256": "c88e910a8056d1042fd01fb6a3d9ceb65911fa5fdc40669ed65788c7aa9daea8",
+          "snapshot": "source_data/c88e910a8056d1042fd01fb6a3d9ceb65911fa5fdc40669ed65788c7aa9daea8.json",
+          "bytes": 3301
+        },
+        {
+          "original_path": "stellarcsg-workload-ladder-20261008/GATE_PLAN.md",
+          "sha256": "02a27cfb8eaf304901246a5008de79d6361a78853a4de0506e98e075c620bf46",
+          "snapshot": "source_snapshots/02a27cfb8eaf304901246a5008de79d6361a78853a4de0506e98e075c620bf46.md"
+        }
+      ]
+    },
+    {
+      "id": "L12",
+      "method": "v7 exact value-only plasma evaluation",
+      "category": "Later workload and optimization experiments",
+      "status": "UNDECIDED; NO MEASURABLE EFFECT",
+      "recorded_result": "Reported1.004x, finite bitwise equality.",
+      "limitations_or_negative_results": "Distinct from rejected M22 normal/sense shortcut; no speed acceptance.",
+      "evidence": [
+        {
+          "original_path": "stellarcsg-workload-ladder-20261008/RESULTS.md",
+          "sha256": "01066c6c7ace075e14b50fa7b4e5cb36e13e01bb115d22a38f7b70cf9324b438",
+          "snapshot": "source_snapshots/01066c6c7ace075e14b50fa7b4e5cb36e13e01bb115d22a38f7b70cf9324b438.md"
+        }
+      ]
+    },
+    {
+      "id": "L13",
+      "method": "v8 voxel clearance fast path",
+      "category": "Later workload and optimization experiments",
+      "status": "UNDECIDED EFFECT",
+      "recorded_result": "Reported1.139x with band1.092–1.216; tested outputs bitwise equal; initialization+0.39 s.",
+      "limitations_or_negative_results": "Band crosses1.10 effect threshold. No independent clearance/root oracle acceptance.",
+      "evidence": [
+        {
+          "original_path": "stellarcsg-workload-ladder-20261008/RESULTS.md",
+          "sha256": "01066c6c7ace075e14b50fa7b4e5cb36e13e01bb115d22a38f7b70cf9324b438",
+          "snapshot": "source_snapshots/01066c6c7ace075e14b50fa7b4e5cb36e13e01bb115d22a38f7b70cf9324b438.md"
+        }
+      ]
+    },
+    {
+      "id": "L14",
+      "method": "Plasma geometry-specific uniform-source diagnostics",
+      "category": "Later workload and optimization experiments",
+      "status": "IMPROVED; NATIVE 1.25 TARGET STILL MISSED",
+      "recorded_result": "51.619 vs60.589 collisions/source: control custom/torus15.8100→v2–v7 2.100163043577142; v2–v8 2.1197992495895623.",
+      "limitations_or_negative_results": "Source banks and solids differ; closer collision workload is not identical physical geometry. Do not overwrite older proxy failure or compare unrelated absolute times.",
+      "evidence": [
+        {
+          "original_path": "stellarcsg-workload-ladder-20261008/RESULTS.md",
+          "sha256": "01066c6c7ace075e14b50fa7b4e5cb36e13e01bb115d22a38f7b70cf9324b438",
+          "snapshot": "source_snapshots/01066c6c7ace075e14b50fa7b4e5cb36e13e01bb115d22a38f7b70cf9324b438.md"
+        },
+        {
+          "original_path": "stellarcsg-workload-ladder-20261008/plasma/runs/plasma-matched-01/SUMMARY.json",
+          "sha256": "eae402c34a19a286af6f5d1cecdee9986ee0d967e148ae26a53c066cbaff610c",
+          "snapshot": "source_data/eae402c34a19a286af6f5d1cecdee9986ee0d967e148ae26a53c066cbaff610c.json",
+          "bytes": 1705
+        },
+        {
+          "original_path": "stellarcsg-workload-ladder-20261008/plasma/runs/plasma-matched-02/SUMMARY.json",
+          "sha256": "979d45a5f1fc68268d17d1c5d2e080acd903b4b260488a64f4487009a80a56c0",
+          "snapshot": "source_data/979d45a5f1fc68268d17d1c5d2e080acd903b4b260488a64f4487009a80a56c0.json",
+          "bytes": 813
+        }
+      ]
+    },
+    {
+      "id": "L15",
+      "method": "Plasma ceiling counters and matched profile",
+      "category": "Later workload and optimization experiments",
+      "status": "REPORTED DIAGNOSTIC; ORACLE VALIDATION OPEN",
+      "recorded_result": "Implementation records92–95% ceiling_certified distance calls; full solver4.4 calls/history≈45% time.",
+      "limitations_or_negative_results": "Counter label is implementation classification, not independent mathematical certification; allocation/profiling coverage does not prove all queries.",
+      "evidence": [
+        {
+          "original_path": "stellarcsg-workload-ladder-20261008/RESULTS.md",
+          "sha256": "01066c6c7ace075e14b50fa7b4e5cb36e13e01bb115d22a38f7b70cf9324b438",
+          "snapshot": "source_snapshots/01066c6c7ace075e14b50fa7b4e5cb36e13e01bb115d22a38f7b70cf9324b438.md"
+        }
+      ]
+    },
+    {
+      "id": "Q01",
+      "method": "Exact candidate hierarchy, closed ceiling, query reuse and root scheduling composition",
+      "category": "Query composition reference",
+      "status": "ACCEPTED_REFERENCE_COMPOSITION_ONLY",
+      "recorded_result": "20 supplied controls and 120 plane queries pass; 12-arm hierarchy/ceiling/reuse ablation replay matches. Independent reviewer 200 geometries/2400 exact multi-root resolutions plus malformed/alias/cache challenges pass.",
+      "limitations_or_negative_results": "Caller must certify real-geometry AABBs and callback earliest-root completeness. No native OpenMC solver, physical acceptance or timed speedup. Earlier/equal unresolved preserves UNRESOLVED; provisional contacts not certified owners.",
+      "evidence": [
+        {
+          "original_path": "stellarcsg-axis-integration-20261008/dev/stellarcsg/experiments/query_combinations_20261009/README.md",
+          "sha256": "d627172eace19e4cc215b4da0ee8e15f118ab69b5ecc89e9c869c02397ac6930",
+          "snapshot": "source_snapshots/d627172eace19e4cc215b4da0ee8e15f118ab69b5ecc89e9c869c02397ac6930.md"
+        },
+        {
+          "original_path": "stellarcsg-axis-integration-20261008/dev/stellarcsg/experiments/query_combinations_20261009/results.json",
+          "sha256": "f90bec30e0b30826469275958620c8cf3e096eabe8f8b80d571ff266b11b4c9c",
+          "snapshot": "source_data/f90bec30e0b30826469275958620c8cf3e096eabe8f8b80d571ff266b11b4c9c.json",
+          "bytes": 4688
+        },
+        {
+          "original_path": "stellarcsg-axis-integration-20261008/dev/stellarcsg/experiments/query_combinations_20261009/independent_review.json",
+          "sha256": "dced0394c8d034bf75027f7c879cbda59fb52a9d73afee1f7630230247df0957",
+          "snapshot": "source_data/dced0394c8d034bf75027f7c879cbda59fb52a9d73afee1f7630230247df0957.json",
+          "bytes": 4183
+        }
+      ]
+    },
+    {
+      "id": "Q02",
+      "method": "Exact rational quartic Sturm root isolation with conservative scalar scheduler",
+      "category": "Query composition reference",
+      "status": "ACCEPT_SCOPED_REFERENCE",
+      "recorded_result": "New degree-at-most-four oracle: 10 supplied controls, 386 independent known-factor cases, 1454 one-sided counts, three irrational cases and 20 scheduler compositions. Separate retained 59-control replay receipt passes and reproduces all three Fourier negative cases; reviewer audited that receipt without rerunning the complete replay.",
+      "limitations_or_negative_results": "COMPLETE means distinct roots of supplied exact represented coefficients on a finite closed interval, not physical HIT. Budget exhaustion/all-zero polynomial remain UNRESOLVED; nonpoint intervals do not become scalar HIT. Coefficient uncertainty, actual-surface equivalence, trims, owner identity, native throughput and real VMEC remain unaccepted.",
+      "evidence": [
+        {
+          "original_path": "stellarcsg-axis-integration-20261008/dev/stellarcsg/experiments/quartic_combinations_20261009/README.md",
+          "sha256": "d683ec08b167bdac4f18a09ceb4ad237e375b0faa7f817e0f771e6b398ff7bda",
+          "snapshot": "source_snapshots/d683ec08b167bdac4f18a09ceb4ad237e375b0faa7f817e0f771e6b398ff7bda.md"
+        },
+        {
+          "original_path": "stellarcsg-axis-integration-20261008/dev/stellarcsg/experiments/quartic_combinations_20261009/replay_results.json",
+          "sha256": "4c9e3ae6d638b56298c8294a79848aa9dba3821e30371b45093f52980d909f59",
+          "snapshot": "source_data/4c9e3ae6d638b56298c8294a79848aa9dba3821e30371b45093f52980d909f59.json",
+          "bytes": 2432
+        },
+        {
+          "original_path": "stellarcsg-axis-integration-20261008/dev/stellarcsg/experiments/quartic_combinations_20261009/independent_review.json",
+          "sha256": "1083a1e49b803113491d8c133a67e4829b8211a12164b9bee4449797c1667942",
+          "snapshot": "source_data/1083a1e49b803113491d8c133a67e4829b8211a12164b9bee4449797c1667942.json",
+          "bytes": 3793
+        }
+      ]
+    },
+    {
+      "id": "FT-001",
+      "method": "Fourier displacements added to a reference torus",
+      "category": "Fourier, toroidal patch and hybrid trials",
+      "status": "SYNTHETIC RECONSTRUCTION PASS",
+      "recorded_result": "Exact one-harmonic reconstruction control.",
+      "limitations_or_negative_results": "General intersection remains coupled; no production solver.",
+      "evidence": [
+        {
+          "original_path": "stellarcsg-fourier-torus-prototype-20261009/tools/fourier_torus_prototype/METHOD_LEDGER.md",
+          "sha256": "2f07f1bd278119e591f4dcdc5a5a93748966f8077e3598766928fd7eb1ecd66a",
+          "snapshot": "source_snapshots/2f07f1bd278119e591f4dcdc5a5a93748966f8077e3598766928fd7eb1ecd66a.md"
+        },
+        {
+          "original_path": "stellarcsg-fourier-torus-prototype-20261009/tools/fourier_torus_prototype/attempts/0001-initial-20261009/receipt.json",
+          "sha256": "0fcfc09cb820f4ad001b4428a76b46e1d1a2ba5c76505c831080c935fc013919",
+          "snapshot": "source_data/0fcfc09cb820f4ad001b4428a76b46e1d1a2ba5c76505c831080c935fc013919.json",
+          "bytes": 2896
+        }
+      ]
+    },
+    {
+      "id": "FT-002",
+      "method": "Global torus fit, coefficient bounds and quartic candidates",
+      "category": "Fourier, toroidal patch and hybrid trials",
+      "status": "SCOPED CONTROLS PASS; GENERAL QUERIES UNRESOLVED",
+      "recorded_result": "Attempt0001 10 controls; endpoint-sign counterexample(t−.1)(t−.2)(t−.8) preserved and corrected by external single-root contract.",
+      "limitations_or_negative_results": "Requires external exclusion/single-root certificates; candidate is not HIT; no general Fourier certificate generator.",
+      "evidence": [
+        {
+          "original_path": "stellarcsg-fourier-torus-prototype-20261009/tools/fourier_torus_prototype/METHOD_LEDGER.md",
+          "sha256": "2f07f1bd278119e591f4dcdc5a5a93748966f8077e3598766928fd7eb1ecd66a",
+          "snapshot": "source_snapshots/2f07f1bd278119e591f4dcdc5a5a93748966f8077e3598766928fd7eb1ecd66a.md"
+        },
+        {
+          "original_path": "stellarcsg-fourier-torus-prototype-20261009/tools/fourier_torus_prototype/attempts/0001-initial-20261009/receipt.json",
+          "sha256": "0fcfc09cb820f4ad001b4428a76b46e1d1a2ba5c76505c831080c935fc013919",
+          "snapshot": "source_data/0fcfc09cb820f4ad001b4428a76b46e1d1a2ba5c76505c831080c935fc013919.json",
+          "bytes": 2896
+        }
+      ]
+    },
+    {
+      "id": "FT-001-B",
+      "method": "Boolean combinations of complete coaxial torus solids",
+      "category": "Fourier, toroidal patch and hybrid trials",
+      "status": "RESTRICTED FAMILY COUNTEREXAMPLE; NOT_EXECUTED",
+      "recorded_result": "Rotational symmetry prevents representing the proposed nonaxisymmetric target in this restricted family.",
+      "limitations_or_negative_results": "No new Boolean compiler executed; displaced/trimmed constructions are different.",
+      "evidence": [
+        {
+          "original_path": "stellarcsg-fourier-torus-prototype-20261009/tools/fourier_torus_prototype/METHOD_LEDGER.md",
+          "sha256": "2f07f1bd278119e591f4dcdc5a5a93748966f8077e3598766928fd7eb1ecd66a",
+          "snapshot": "source_snapshots/2f07f1bd278119e591f4dcdc5a5a93748966f8077e3598766928fd7eb1ecd66a.md"
+        },
+        {
+          "original_path": "stellarcsg-fourier-torus-prototype-20261009/tools/fourier_torus_prototype/attempts/0001-initial-20261009/receipt.json",
+          "sha256": "0fcfc09cb820f4ad001b4428a76b46e1d1a2ba5c76505c831080c935fc013919",
+          "snapshot": "source_data/0fcfc09cb820f4ad001b4428a76b46e1d1a2ba5c76505c831080c935fc013919.json",
+          "bytes": 2896
+        }
+      ]
+    },
+    {
+      "id": "FT-001-C",
+      "method": "Nonlinear coordinate map to a reference torus",
+      "category": "Fourier, toroidal patch and hybrid trials",
+      "status": "PROPOSAL NOT_IMPLEMENTED",
+      "recorded_result": "Interpretation documented.",
+      "limitations_or_negative_results": "Transformed rays curved; lengths, normals and complete intersection unresolved.",
+      "evidence": [
+        {
+          "original_path": "stellarcsg-fourier-torus-prototype-20261009/tools/fourier_torus_prototype/METHOD_LEDGER.md",
+          "sha256": "2f07f1bd278119e591f4dcdc5a5a93748966f8077e3598766928fd7eb1ecd66a",
+          "snapshot": "source_snapshots/2f07f1bd278119e591f4dcdc5a5a93748966f8077e3598766928fd7eb1ecd66a.md"
+        },
+        {
+          "original_path": "stellarcsg-fourier-torus-prototype-20261009/tools/fourier_torus_prototype/attempts/0001-initial-20261009/receipt.json",
+          "sha256": "0fcfc09cb820f4ad001b4428a76b46e1d1a2ba5c76505c831080c935fc013919",
+          "snapshot": "source_data/0fcfc09cb820f4ad001b4428a76b46e1d1a2ba5c76505c831080c935fc013919.json",
+          "bytes": 2896
+        }
+      ]
+    },
+    {
+      "id": "FT-003",
+      "method": "Fourier-guided osculating torus patch atlas",
+      "category": "Fourier, toroidal patch and hybrid trials",
+      "status": "APPROXIMATION; NO CLOSED SOLID",
+      "recorded_result": "Sampled distance to the full fitted torus 8.927→1.185 mm and sampled projected-neighbor gap 14.326→1.932 mm with refinement; local admitted curvatures matched.",
+      "limitations_or_negative_results": "This is not positional correspondence error or distance to the admitted trim. Projected patches have gaps; no trim-coverage certificate or closed solid/event qualification.",
+      "evidence": [
+        {
+          "original_path": "stellarcsg-fourier-torus-prototype-20261009/tools/fourier_torus_prototype/METHOD_LEDGER.md",
+          "sha256": "2f07f1bd278119e591f4dcdc5a5a93748966f8077e3598766928fd7eb1ecd66a",
+          "snapshot": "source_snapshots/2f07f1bd278119e591f4dcdc5a5a93748966f8077e3598766928fd7eb1ecd66a.md"
+        },
+        {
+          "original_path": "stellarcsg-fourier-torus-prototype-20261009/tools/fourier_torus_prototype/attempts/0002-patch-hybrid-20261009/run-001/receipt.json",
+          "sha256": "0b9a8543fc3058f82c3a588f221ef9031ba9653a55737811e85bd40c5898742b",
+          "snapshot": "source_data/0b9a8543fc3058f82c3a588f221ef9031ba9653a55737811e85bd40c5898742b.json",
+          "bytes": 2647
+        },
+        {
+          "original_path": "stellarcsg-fourier-torus-prototype-20261009/tools/fourier_torus_prototype/attempts/0002-patch-hybrid-20261009/independent_review.json",
+          "sha256": "f095db3affa2a6f2b7955271e45964c0c78eb51f9af0b3d72504d7a12b5b3762",
+          "snapshot": "source_data/f095db3affa2a6f2b7955271e45964c0c78eb51f9af0b3d72504d7a12b5b3762.json",
+          "bytes": 2113
+        }
+      ]
+    },
+    {
+      "id": "FT-004",
+      "method": "Constant-weight torus polynomial sums compiled to quartic",
+      "category": "Fourier, toroidal patch and hybrid trials",
+      "status": "COMPILATION PASS; LIMITED FIT",
+      "recorded_result": "Degree remains4; circular-torus coefficient family rank saturates14; tested global candidates radial errors 125.96/159.68 mm.",
+      "limitations_or_negative_results": "Finite-dimensional family cannot supply progressively complete Fourier basis; not physical admission.",
+      "evidence": [
+        {
+          "original_path": "stellarcsg-fourier-torus-prototype-20261009/tools/fourier_torus_prototype/METHOD_LEDGER.md",
+          "sha256": "2f07f1bd278119e591f4dcdc5a5a93748966f8077e3598766928fd7eb1ecd66a",
+          "snapshot": "source_snapshots/2f07f1bd278119e591f4dcdc5a5a93748966f8077e3598766928fd7eb1ecd66a.md"
+        },
+        {
+          "original_path": "stellarcsg-fourier-torus-prototype-20261009/tools/fourier_torus_prototype/attempts/0002-patch-hybrid-20261009/run-001/receipt.json",
+          "sha256": "0b9a8543fc3058f82c3a588f221ef9031ba9653a55737811e85bd40c5898742b",
+          "snapshot": "source_data/0b9a8543fc3058f82c3a588f221ef9031ba9653a55737811e85bd40c5898742b.json",
+          "bytes": 2647
+        },
+        {
+          "original_path": "stellarcsg-fourier-torus-prototype-20261009/tools/fourier_torus_prototype/attempts/0002-patch-hybrid-20261009/independent_review.json",
+          "sha256": "f095db3affa2a6f2b7955271e45964c0c78eb51f9af0b3d72504d7a12b5b3762",
+          "snapshot": "source_data/f095db3affa2a6f2b7955271e45964c0c78eb51f9af0b3d72504d7a12b5b3762.json",
+          "bytes": 2113
+        }
+      ]
+    },
+    {
+      "id": "FT-005",
+      "method": "Torus plateaus plus localized cubic-Hermite joins in one hierarchy",
+      "category": "Fourier, toroidal patch and hybrid trials",
+      "status": "C1 SYNTHETIC CONSTRUCTION; QUERIES UNRESOLVED",
+      "recorded_result": "N48 errors 21.109/16.808/10.970 mm for strip fractions.1/.3/.6.",
+      "limitations_or_negative_results": "Torus interiors inaccurate; narrow strips concentrate normal error. Candidate workload differs from hit frequency.",
+      "evidence": [
+        {
+          "original_path": "stellarcsg-fourier-torus-prototype-20261009/tools/fourier_torus_prototype/METHOD_LEDGER.md",
+          "sha256": "2f07f1bd278119e591f4dcdc5a5a93748966f8077e3598766928fd7eb1ecd66a",
+          "snapshot": "source_snapshots/2f07f1bd278119e591f4dcdc5a5a93748966f8077e3598766928fd7eb1ecd66a.md"
+        },
+        {
+          "original_path": "stellarcsg-fourier-torus-prototype-20261009/tools/fourier_torus_prototype/attempts/0002-patch-hybrid-20261009/run-001/receipt.json",
+          "sha256": "0b9a8543fc3058f82c3a588f221ef9031ba9653a55737811e85bd40c5898742b",
+          "snapshot": "source_data/0b9a8543fc3058f82c3a588f221ef9031ba9653a55737811e85bd40c5898742b.json",
+          "bytes": 2647
+        },
+        {
+          "original_path": "stellarcsg-fourier-torus-prototype-20261009/tools/fourier_torus_prototype/attempts/0002-patch-hybrid-20261009/independent_review.json",
+          "sha256": "f095db3affa2a6f2b7955271e45964c0c78eb51f9af0b3d72504d7a12b5b3762",
+          "snapshot": "source_data/f095db3affa2a6f2b7955271e45964c0c78eb51f9af0b3d72504d7a12b5b3762.json",
+          "bytes": 2113
+        }
+      ]
+    },
+    {
+      "id": "FT-006",
+      "method": "All-spline synthetic periodic-radius comparator",
+      "category": "Fourier, toroidal patch and hybrid trials",
+      "status": "SAMPLED ACCURACY IMPROVES; QUERIES UNRESOLVED",
+      "recorded_result": "N48 sampled error0.007575 mm on attempt0002 target; all 624 general query rows across attempt0002 methods UNRESOLVED.",
+      "limitations_or_negative_results": "New comparator, not incumbent. Exact tangent missed by sampled search; negative evidence retained.",
+      "evidence": [
+        {
+          "original_path": "stellarcsg-fourier-torus-prototype-20261009/tools/fourier_torus_prototype/METHOD_LEDGER.md",
+          "sha256": "2f07f1bd278119e591f4dcdc5a5a93748966f8077e3598766928fd7eb1ecd66a",
+          "snapshot": "source_snapshots/2f07f1bd278119e591f4dcdc5a5a93748966f8077e3598766928fd7eb1ecd66a.md"
+        },
+        {
+          "original_path": "stellarcsg-fourier-torus-prototype-20261009/tools/fourier_torus_prototype/attempts/0002-patch-hybrid-20261009/run-001/receipt.json",
+          "sha256": "0b9a8543fc3058f82c3a588f221ef9031ba9653a55737811e85bd40c5898742b",
+          "snapshot": "source_data/0b9a8543fc3058f82c3a588f221ef9031ba9653a55737811e85bd40c5898742b.json",
+          "bytes": 2647
+        },
+        {
+          "original_path": "stellarcsg-fourier-torus-prototype-20261009/tools/fourier_torus_prototype/attempts/0002-patch-hybrid-20261009/independent_review.json",
+          "sha256": "f095db3affa2a6f2b7955271e45964c0c78eb51f9af0b3d72504d7a12b5b3762",
+          "snapshot": "source_data/f095db3affa2a6f2b7955271e45964c0c78eb51f9af0b3d72504d7a12b5b3762.json",
+          "bytes": 2113
+        }
+      ]
+    },
+    {
+      "id": "FT-007",
+      "method": "Direct radial Fourier versus frozen incumbent bicubic evaluator",
+      "category": "Fourier, toroidal patch and hybrid trials",
+      "status": "SCOPED SYNTHETIC DIAGNOSTIC; QUERIES UNRESOLVED",
+      "recorded_result": "Attempt0003 run00229 controls; 76-ray median Python cost direct.2629 s vs bicubic.8587–.8831 s≈3.3x. Known24 candidates retained; direct maxerror8.88e−16 m vs spline3.276/.1128/.006464 mm. Same-parameter4745-point spline errors 3.466/.1452/.008117 mm.",
+      "limitations_or_negative_results": "All304 general query rows UNRESOLVED. Synthetic physical n[0, 3,−6], geometric theta not raw VMEC theta. m2048 crossing missed despite78 candidates; tube-axis evaluation singularity preserved; no native speed claim.",
+      "evidence": [
+        {
+          "original_path": "stellarcsg-fourier-torus-prototype-20261009/tools/fourier_torus_prototype/METHOD_LEDGER.md",
+          "sha256": "2f07f1bd278119e591f4dcdc5a5a93748966f8077e3598766928fd7eb1ecd66a",
+          "snapshot": "source_snapshots/2f07f1bd278119e591f4dcdc5a5a93748966f8077e3598766928fd7eb1ecd66a.md"
+        },
+        {
+          "original_path": "stellarcsg-fourier-torus-prototype-20261009/tools/fourier_torus_prototype/attempts/0003-direct-fourier-algebraic-20261009/run-002/receipt.json",
+          "sha256": "3d819278f22c27a29ba3514057fdb8e2c476d1f85d0e213ac58d3fff3c949e0d",
+          "snapshot": "source_data/3d819278f22c27a29ba3514057fdb8e2c476d1f85d0e213ac58d3fff3c949e0d.json",
+          "bytes": 2130
+        },
+        {
+          "original_path": "stellarcsg-fourier-torus-prototype-20261009/tools/fourier_torus_prototype/attempts/0003-direct-fourier-algebraic-20261009/independent_review.json",
+          "sha256": "3adc6ac3c55b4a607cd628b9f9bbe84237a2624e270dbd5abe2a96e827dfb049",
+          "snapshot": "source_data/3adc6ac3c55b4a607cd628b9f9bbe84237a2624e270dbd5abe2a96e827dfb049.json",
+          "bytes": 2691
+        }
+      ]
+    },
+    {
+      "id": "FT-008",
+      "method": "Full35-coefficient local algebraic quartic fits",
+      "category": "Fourier, toroidal patch and hybrid trials",
+      "status": "APPROXIMATE ATLAS; NO CLOSED SOLID",
+      "recorded_result": "96/384 patch holdout normal-line errors.3056/.01187 mm; midpoint seams.2045/.01271 mm; rank35, condition4.49e5/2.54e6.",
+      "limitations_or_negative_results": "Periodic seams unassessed; angular trim admits extra quartic sheet(t.730003, target field.7842 m). No complete root/owner certificate.",
+      "evidence": [
+        {
+          "original_path": "stellarcsg-fourier-torus-prototype-20261009/tools/fourier_torus_prototype/METHOD_LEDGER.md",
+          "sha256": "2f07f1bd278119e591f4dcdc5a5a93748966f8077e3598766928fd7eb1ecd66a",
+          "snapshot": "source_snapshots/2f07f1bd278119e591f4dcdc5a5a93748966f8077e3598766928fd7eb1ecd66a.md"
+        },
+        {
+          "original_path": "stellarcsg-fourier-torus-prototype-20261009/tools/fourier_torus_prototype/attempts/0003-direct-fourier-algebraic-20261009/run-002/receipt.json",
+          "sha256": "3d819278f22c27a29ba3514057fdb8e2c476d1f85d0e213ac58d3fff3c949e0d",
+          "snapshot": "source_data/3d819278f22c27a29ba3514057fdb8e2c476d1f85d0e213ac58d3fff3c949e0d.json",
+          "bytes": 2130
+        },
+        {
+          "original_path": "stellarcsg-fourier-torus-prototype-20261009/tools/fourier_torus_prototype/attempts/0003-direct-fourier-algebraic-20261009/independent_review.json",
+          "sha256": "3adc6ac3c55b4a607cd628b9f9bbe84237a2624e270dbd5abe2a96e827dfb049",
+          "snapshot": "source_data/3adc6ac3c55b4a607cd628b9f9bbe84237a2624e270dbd5abe2a96e827dfb049.json",
+          "bytes": 2691
+        }
+      ]
+    }
+  ]
+}

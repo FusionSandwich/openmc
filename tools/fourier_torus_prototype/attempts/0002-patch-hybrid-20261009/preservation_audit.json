@@ -1,0 +1,21 @@
+{
+  "time_utc": "2026-10-09T21:14:53.870725+00:00",
+  "status": "PASS",
+  "collision_returncode": 1,
+  "collision_error": "Traceback (most recent call last):\n  File \"C:\\Users\\joshu\\OneDrive\\Documents\\ChatGPT\\StellarCGS\\stellarcsg-fourier-torus-prototype-20261009\\tools\\fourier_torus_prototype\\experiments\\run_patch_trials.py\", line 279, in <module>\n    main()\n  File \"C:\\Users\\joshu\\OneDrive\\Documents\\ChatGPT\\StellarCGS\\stellarcsg-fourier-torus-prototype-20261009\\tools\\fourier_torus_prototype\\experiments\\run_patch_trials.py\", line 219, in main\n    out.mkdir(exist_ok=False)\n  File \"C:\\Users\\joshu\\AppData\\Local\\Programs\\Python\\Python312\\Lib\\pathlib.py\", line 1311, in mkdir\n    os.mkdir(self, mode)\nFileExistsError: [WinError 183] Cannot create a file when that file already exists: 'C:\\\\Users\\\\joshu\\\\OneDrive\\\\Documents\\\\ChatGPT\\\\StellarCGS\\\\stellarcsg-fourier-torus-prototype-20261009\\\\tools\\\\fourier_torus_prototype\\\\attempts\\\\0002-patch-hybrid-20261009\\\\run-001'\n",
+  "existing_run_file_hashes_unchanged": true,
+  "existing_run_file_count": 11,
+  "existing_run_hashes": {
+    "compiled_quartic_results.json": "27513bb5105a831c6cb54b4f247e02c0a8654da2b17d0e21136f056a55907df3",
+    "hybrid_results.json": "6c3cd9a28a9eb07693c877eb60929107341c1e30e566d4d7baebbd8a1903a62b",
+    "rays.json": "6d61c06164cbf144148f488bbbb578b833e632bce8815c6bc6bbfb2ed6febb71",
+    "receipt.json": "0b9a8543fc3058f82c3a588f221ef9031ba9653a55737811e85bd40c5898742b",
+    "tests.txt": "d794cfa796cfd12237dee3e7b61ecfc52404d052fb7b2868694473583213d943",
+    "torus_patch_results.json": "102a6099f0e7bb07b0d72f9a89115bf0e97a91106ea4340447ae0a22e0ba5414",
+    "source\\fourier_torus.py": "fa0559134dd60b0390617a799a339ad05ad23e1f523c86ea9b92373ff2812210",
+    "source\\patch_methods.py": "88623c61a52a997a5770427a38ab9b2eb068c8923db8a43176488b77264fed3e",
+    "source\\run_patch_trials.py": "032bbff8458c70eaa2e65f78bb22d5fb97330faceff164ec57df8d3224565479",
+    "source\\test_fourier_torus.py": "ece3351a22dbb53992996d40d26c40f9a50c725cac9b1f2151d39a3f6a1f44ee",
+    "source\\test_patch_methods.py": "7483e985c4fd556b32577450ee9b3accbca6f006b51614a46ac1ae796efd292c"
+  }
+}

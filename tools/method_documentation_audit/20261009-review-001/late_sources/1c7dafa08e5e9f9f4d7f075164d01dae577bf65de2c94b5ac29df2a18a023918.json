@@ -1,0 +1,565 @@
+{
+  "created_utc": "2026-10-09T22:02:05.949497+00:00",
+  "source_commit": "9399a879926cb09658709ff030d0317e9e96b7e5",
+  "owner_checkout": "C:\\Users\\joshu\\OneDrive\\Documents\\ChatGPT\\StellarCGS\\stellarcsg-fourier-torus-prototype-20261009",
+  "files": [
+    {
+      "source": "tools/fourier_torus_prototype/.gitattributes",
+      "snapshot": "snapshot\\.gitattributes",
+      "bytes": 181,
+      "sha256": "ca64bc693440f562851ac2e7ca8caa88f6b9e043335bbea864fd2d2459f2000c"
+    },
+    {
+      "source": "tools/fourier_torus_prototype/METHOD_EVENTS.jsonl",
+      "snapshot": "snapshot\\METHOD_EVENTS.jsonl",
+      "bytes": 8396,
+      "sha256": "696faab44fd0564457b493268fa6b90fc417e84d39dd50878beae8d757057efd"
+    },
+    {
+      "source": "tools/fourier_torus_prototype/METHOD_LEDGER.md",
+      "snapshot": "snapshot\\METHOD_LEDGER.md",
+      "bytes": 22118,
+      "sha256": "f090ca491314ed68cc6ab5472c2f4030929c86448f0d537d04841ac0d1895bab"
+    },
+    {
+      "source": "tools/fourier_torus_prototype/README.md",
+      "snapshot": "snapshot\\README.md",
+      "bytes": 5752,
+      "sha256": "9444c856c0869d9156f5e425c93ca1503b3fb278bcf561c2354e9e56e912aedc"
+    },
+    {
+      "source": "tools/fourier_torus_prototype/attempts/0001-initial-20261009/README.md",
+      "snapshot": "snapshot\\attempts\\0001-initial-20261009\\README.md",
+      "bytes": 5752,
+      "sha256": "9444c856c0869d9156f5e425c93ca1503b3fb278bcf561c2354e9e56e912aedc"
+    },
+    {
+      "source": "tools/fourier_torus_prototype/attempts/0001-initial-20261009/fourier_torus.py",
+      "snapshot": "snapshot\\attempts\\0001-initial-20261009\\fourier_torus.py",
+      "bytes": 14858,
+      "sha256": "fa0559134dd60b0390617a799a339ad05ad23e1f523c86ea9b92373ff2812210"
+    },
+    {
+      "source": "tools/fourier_torus_prototype/attempts/0001-initial-20261009/manifest.json",
+      "snapshot": "snapshot\\attempts\\0001-initial-20261009\\manifest.json",
+      "bytes": 788,
+      "sha256": "c7eb94bf14bacf0431010db2e171bef89f7874aa1ab525ec1a59123add87f4b1"
+    },
+    {
+      "source": "tools/fourier_torus_prototype/attempts/0001-initial-20261009/receipt.json",
+      "snapshot": "snapshot\\attempts\\0001-initial-20261009\\receipt.json",
+      "bytes": 2896,
+      "sha256": "0fcfc09cb820f4ad001b4428a76b46e1d1a2ba5c76505c831080c935fc013919"
+    },
+    {
+      "source": "tools/fourier_torus_prototype/attempts/0001-initial-20261009/run_tests.py",
+      "snapshot": "snapshot\\attempts\\0001-initial-20261009\\run_tests.py",
+      "bytes": 3506,
+      "sha256": "ec89e43e883ec013f19088222d13605057c3ee57e66d25e0b374dd89cd5b9104"
+    },
+    {
+      "source": "tools/fourier_torus_prototype/attempts/0001-initial-20261009/test_fourier_torus.py",
+      "snapshot": "snapshot\\attempts\\0001-initial-20261009\\test_fourier_torus.py",
+      "bytes": 10228,
+      "sha256": "ece3351a22dbb53992996d40d26c40f9a50c725cac9b1f2151d39a3f6a1f44ee"
+    },
+    {
+      "source": "tools/fourier_torus_prototype/attempts/0002-patch-hybrid-20261009/draft_pr_description.md",
+      "snapshot": "snapshot\\attempts\\0002-patch-hybrid-20261009\\draft_pr_description.md",
+      "bytes": 1925,
+      "sha256": "d7dfa98c88cfc3ab26814df9e189587779bb9978cf2276a49b970325d74c987c"
+    },
+    {
+      "source": "tools/fourier_torus_prototype/attempts/0002-patch-hybrid-20261009/independent_counterexamples.json",
+      "snapshot": "snapshot\\attempts\\0002-patch-hybrid-20261009\\independent_counterexamples.json",
+      "bytes": 1442,
+      "sha256": "da2f1b1eb434ba51bf9ec3f5ee85a84afecb51104efdb69ce7d97eb59ca04f3a"
+    },
+    {
+      "source": "tools/fourier_torus_prototype/attempts/0002-patch-hybrid-20261009/independent_review.json",
+      "snapshot": "snapshot\\attempts\\0002-patch-hybrid-20261009\\independent_review.json",
+      "bytes": 2113,
+      "sha256": "f095db3affa2a6f2b7955271e45964c0c78eb51f9af0b3d72504d7a12b5b3762"
+    },
+    {
+      "source": "tools/fourier_torus_prototype/attempts/0002-patch-hybrid-20261009/input_manifest.json",
+      "snapshot": "snapshot\\attempts\\0002-patch-hybrid-20261009\\input_manifest.json",
+      "bytes": 1682,
+      "sha256": "50873479eb844f45b2e2d378bbafbce2788aac19914fdf483575843adb2ad698"
+    },
+    {
+      "source": "tools/fourier_torus_prototype/attempts/0002-patch-hybrid-20261009/inputs/CONSOLIDATED_DEVELOPMENT_20260926.md",
+      "snapshot": "snapshot\\attempts\\0002-patch-hybrid-20261009\\inputs\\CONSOLIDATED_DEVELOPMENT_20260926.md",
+      "bytes": 20064,
+      "sha256": "92cd57d70ed6c648e34e98055417823797399d30d49cb2b6809050ca65cc8687"
+    },
+    {
+      "source": "tools/fourier_torus_prototype/attempts/0002-patch-hybrid-20261009/inputs/METHOD_MAP.md",
+      "snapshot": "snapshot\\attempts\\0002-patch-hybrid-20261009\\inputs\\METHOD_MAP.md",
+      "bytes": 11648,
+      "sha256": "e804da971800b6b7b80c56c0c53979eefee4f816e94b286a179f6ab80a220921"
+    },
+    {
+      "source": "tools/fourier_torus_prototype/attempts/0002-patch-hybrid-20261009/inputs/proposal-1.txt",
+      "snapshot": "snapshot\\attempts\\0002-patch-hybrid-20261009\\inputs\\proposal-1.txt",
+      "bytes": 17099,
+      "sha256": "55f3085fd02e89e00c8d1ab0ff1b904b96c115bff8e95b35c7f57a679bfb8b17"
+    },
+    {
+      "source": "tools/fourier_torus_prototype/attempts/0002-patch-hybrid-20261009/inputs/proposal-3.txt",
+      "snapshot": "snapshot\\attempts\\0002-patch-hybrid-20261009\\inputs\\proposal-3.txt",
+      "bytes": 13017,
+      "sha256": "07080b3d069b21705b42e05fefde87bf8b2341ec24cb6860e7ce5b26258a538b"
+    },
+    {
+      "source": "tools/fourier_torus_prototype/attempts/0002-patch-hybrid-20261009/local_inventory.json",
+      "snapshot": "snapshot\\attempts\\0002-patch-hybrid-20261009\\local_inventory.json",
+      "bytes": 1590,
+      "sha256": "b3ad64d0b1bb675c603ece15bbc202f884fb1923a71163d88c2737cf6234cb22"
+    },
+    {
+      "source": "tools/fourier_torus_prototype/attempts/0002-patch-hybrid-20261009/preservation_audit.json",
+      "snapshot": "snapshot\\attempts\\0002-patch-hybrid-20261009\\preservation_audit.json",
+      "bytes": 2246,
+      "sha256": "6d8e637a189ae88cf1f839b2a6113c3dd5991434ffbdb3d324bddcdc2ec9aa72"
+    },
+    {
+      "source": "tools/fourier_torus_prototype/attempts/0002-patch-hybrid-20261009/publication_manifest.json",
+      "snapshot": "snapshot\\attempts\\0002-patch-hybrid-20261009\\publication_manifest.json",
+      "bytes": 5229,
+      "sha256": "2a1af16161fcca0bae3492e876df76c9ec3ed896ddb696d767d21cc7fbfb34a2"
+    },
+    {
+      "source": "tools/fourier_torus_prototype/attempts/0002-patch-hybrid-20261009/publication_manifest_final.json",
+      "snapshot": "snapshot\\attempts\\0002-patch-hybrid-20261009\\publication_manifest_final.json",
+      "bytes": 5610,
+      "sha256": "8e2d26aa8d54cd60100422e716f1079f465cd61169ee305a9b25bac96da05deb"
+    },
+    {
+      "source": "tools/fourier_torus_prototype/attempts/0002-patch-hybrid-20261009/run-001/compiled_quartic_results.json",
+      "snapshot": "snapshot\\attempts\\0002-patch-hybrid-20261009\\run-001\\compiled_quartic_results.json",
+      "bytes": 11178,
+      "sha256": "27513bb5105a831c6cb54b4f247e02c0a8654da2b17d0e21136f056a55907df3"
+    },
+    {
+      "source": "tools/fourier_torus_prototype/attempts/0002-patch-hybrid-20261009/run-001/hybrid_results.json",
+      "snapshot": "snapshot\\attempts\\0002-patch-hybrid-20261009\\run-001\\hybrid_results.json",
+      "bytes": 329124,
+      "sha256": "6c3cd9a28a9eb07693c877eb60929107341c1e30e566d4d7baebbd8a1903a62b"
+    },
+    {
+      "source": "tools/fourier_torus_prototype/attempts/0002-patch-hybrid-20261009/run-001/rays.json",
+      "snapshot": "snapshot\\attempts\\0002-patch-hybrid-20261009\\run-001\\rays.json",
+      "bytes": 12126,
+      "sha256": "6d61c06164cbf144148f488bbbb578b833e632bce8815c6bc6bbfb2ed6febb71"
+    },
+    {
+      "source": "tools/fourier_torus_prototype/attempts/0002-patch-hybrid-20261009/run-001/receipt.json",
+      "snapshot": "snapshot\\attempts\\0002-patch-hybrid-20261009\\run-001\\receipt.json",
+      "bytes": 2647,
+      "sha256": "0b9a8543fc3058f82c3a588f221ef9031ba9653a55737811e85bd40c5898742b"
+    },
+    {
+      "source": "tools/fourier_torus_prototype/attempts/0002-patch-hybrid-20261009/run-001/source/fourier_torus.py",
+      "snapshot": "snapshot\\attempts\\0002-patch-hybrid-20261009\\run-001\\source\\fourier_torus.py",
+      "bytes": 14858,
+      "sha256": "fa0559134dd60b0390617a799a339ad05ad23e1f523c86ea9b92373ff2812210"
+    },
+    {
+      "source": "tools/fourier_torus_prototype/attempts/0002-patch-hybrid-20261009/run-001/source/patch_methods.py",
+      "snapshot": "snapshot\\attempts\\0002-patch-hybrid-20261009\\run-001\\source\\patch_methods.py",
+      "bytes": 17540,
+      "sha256": "88623c61a52a997a5770427a38ab9b2eb068c8923db8a43176488b77264fed3e"
+    },
+    {
+      "source": "tools/fourier_torus_prototype/attempts/0002-patch-hybrid-20261009/run-001/source/run_patch_trials.py",
+      "snapshot": "snapshot\\attempts\\0002-patch-hybrid-20261009\\run-001\\source\\run_patch_trials.py",
+      "bytes": 15156,
+      "sha256": "032bbff8458c70eaa2e65f78bb22d5fb97330faceff164ec57df8d3224565479"
+    },
+    {
+      "source": "tools/fourier_torus_prototype/attempts/0002-patch-hybrid-20261009/run-001/source/test_fourier_torus.py",
+      "snapshot": "snapshot\\attempts\\0002-patch-hybrid-20261009\\run-001\\source\\test_fourier_torus.py",
+      "bytes": 10228,
+      "sha256": "ece3351a22dbb53992996d40d26c40f9a50c725cac9b1f2151d39a3f6a1f44ee"
+    },
+    {
+      "source": "tools/fourier_torus_prototype/attempts/0002-patch-hybrid-20261009/run-001/source/test_patch_methods.py",
+      "snapshot": "snapshot\\attempts\\0002-patch-hybrid-20261009\\run-001\\source\\test_patch_methods.py",
+      "bytes": 7444,
+      "sha256": "7483e985c4fd556b32577450ee9b3accbca6f006b51614a46ac1ae796efd292c"
+    },
+    {
+      "source": "tools/fourier_torus_prototype/attempts/0002-patch-hybrid-20261009/run-001/tests.txt",
+      "snapshot": "snapshot\\attempts\\0002-patch-hybrid-20261009\\run-001\\tests.txt",
+      "bytes": 3066,
+      "sha256": "d794cfa796cfd12237dee3e7b61ecfc52404d052fb7b2868694473583213d943"
+    },
+    {
+      "source": "tools/fourier_torus_prototype/attempts/0002-patch-hybrid-20261009/run-001/torus_patch_results.json",
+      "snapshot": "snapshot\\attempts\\0002-patch-hybrid-20261009\\run-001\\torus_patch_results.json",
+      "bytes": 1680,
+      "sha256": "102a6099f0e7bb07b0d72f9a89115bf0e97a91106ea4340447ae0a22e0ba5414"
+    },
+    {
+      "source": "tools/fourier_torus_prototype/attempts/0003-direct-fourier-algebraic-20261009/development-check-001/direct_algebraic.py",
+      "snapshot": "snapshot\\attempts\\0003-direct-fourier-algebraic-20261009\\development-check-001\\direct_algebraic.py",
+      "bytes": 9822,
+      "sha256": "082d701104b9cf9f8050bcb426a30a7ab4d6a5081dd7038e6d509bed0779ab62"
+    },
+    {
+      "source": "tools/fourier_torus_prototype/attempts/0003-direct-fourier-algebraic-20261009/development-check-001/status.json",
+      "snapshot": "snapshot\\attempts\\0003-direct-fourier-algebraic-20261009\\development-check-001\\status.json",
+      "bytes": 260,
+      "sha256": "9fb2624cbb0f6132897d2054325da1ad4824a01653191ed9c8eb8760477edd5a"
+    },
+    {
+      "source": "tools/fourier_torus_prototype/attempts/0003-direct-fourier-algebraic-20261009/development-check-001/test_direct_algebraic.py",
+      "snapshot": "snapshot\\attempts\\0003-direct-fourier-algebraic-20261009\\development-check-001\\test_direct_algebraic.py",
+      "bytes": 4724,
+      "sha256": "c8524a0836279c8b1c7e02c8ce13f7d8607fcbde809301030cee9cf688ae27bc"
+    },
+    {
+      "source": "tools/fourier_torus_prototype/attempts/0003-direct-fourier-algebraic-20261009/development-check-001/tests.txt",
+      "snapshot": "snapshot\\attempts\\0003-direct-fourier-algebraic-20261009\\development-check-001\\tests.txt",
+      "bytes": 1744,
+      "sha256": "cf4764628fcba28556636c58dcd301201d3f588c6157551fdd9a0e3f053594ec"
+    },
+    {
+      "source": "tools/fourier_torus_prototype/attempts/0003-direct-fourier-algebraic-20261009/draft_pr_before_update.json",
+      "snapshot": "snapshot\\attempts\\0003-direct-fourier-algebraic-20261009\\draft_pr_before_update.json",
+      "bytes": 2246,
+      "sha256": "01ce05859e03798ca69ea0fe8e4f74f03ddcdc4f495cb7e39826cdf6734d7361"
+    },
+    {
+      "source": "tools/fourier_torus_prototype/attempts/0003-direct-fourier-algebraic-20261009/draft_pr_description.md",
+      "snapshot": "snapshot\\attempts\\0003-direct-fourier-algebraic-20261009\\draft_pr_description.md",
+      "bytes": 3854,
+      "sha256": "89e6de363f6dee6b3cea9d7ee540d953fdf9d9486b2fc36399a85c9fb644e01f"
+    },
+    {
+      "source": "tools/fourier_torus_prototype/attempts/0003-direct-fourier-algebraic-20261009/formatting_manifest.json",
+      "snapshot": "snapshot\\attempts\\0003-direct-fourier-algebraic-20261009\\formatting_manifest.json",
+      "bytes": 1548,
+      "sha256": "cc041d15bf453012c4a13ee6dcbf64a692d71155ad10f92e9f3be80557652c80"
+    },
+    {
+      "source": "tools/fourier_torus_prototype/attempts/0003-direct-fourier-algebraic-20261009/gitattributes-before-events-normalization.txt",
+      "snapshot": "snapshot\\attempts\\0003-direct-fourier-algebraic-20261009\\gitattributes-before-events-normalization.txt",
+      "bytes": 175,
+      "sha256": "9b1ee21acd538b1d7fab989f558a33abe5884d3a81ef62fa269ce13e461adee9"
+    },
+    {
+      "source": "tools/fourier_torus_prototype/attempts/0003-direct-fourier-algebraic-20261009/independent_counterexamples-preclarification.json",
+      "snapshot": "snapshot\\attempts\\0003-direct-fourier-algebraic-20261009\\independent_counterexamples-preclarification.json",
+      "bytes": 4901,
+      "sha256": "811b5b0c2372ec81c2f1df7f6a14804c9350e22d002b6bac185559ecf4ab4f3e"
+    },
+    {
+      "source": "tools/fourier_torus_prototype/attempts/0003-direct-fourier-algebraic-20261009/independent_counterexamples.json",
+      "snapshot": "snapshot\\attempts\\0003-direct-fourier-algebraic-20261009\\independent_counterexamples.json",
+      "bytes": 5000,
+      "sha256": "e87203ba9d99b8475945ecc24e9b39340f58d8e327c10d587818207b097aabbb"
+    },
+    {
+      "source": "tools/fourier_torus_prototype/attempts/0003-direct-fourier-algebraic-20261009/independent_review.json",
+      "snapshot": "snapshot\\attempts\\0003-direct-fourier-algebraic-20261009\\independent_review.json",
+      "bytes": 2691,
+      "sha256": "3adc6ac3c55b4a607cd628b9f9bbe84237a2624e270dbd5abe2a96e827dfb049"
+    },
+    {
+      "source": "tools/fourier_torus_prototype/attempts/0003-direct-fourier-algebraic-20261009/input_manifest.json",
+      "snapshot": "snapshot\\attempts\\0003-direct-fourier-algebraic-20261009\\input_manifest.json",
+      "bytes": 6366,
+      "sha256": "bcfea6daeb60fe386312e3dcb8e71e1f85a8b887869d85609165b38201cb74d6"
+    },
+    {
+      "source": "tools/fourier_torus_prototype/attempts/0003-direct-fourier-algebraic-20261009/inputs/incumbent_spline.py",
+      "snapshot": "snapshot\\attempts\\0003-direct-fourier-algebraic-20261009\\inputs\\incumbent_spline.py",
+      "bytes": 5517,
+      "sha256": "499bccef7bb3fc4168a034e4e0ed8597633cb640390e1bc7598b031f5dfcab08"
+    },
+    {
+      "source": "tools/fourier_torus_prototype/attempts/0003-direct-fourier-algebraic-20261009/inputs/incumbent_surface.py",
+      "snapshot": "snapshot\\attempts\\0003-direct-fourier-algebraic-20261009\\inputs\\incumbent_surface.py",
+      "bytes": 21250,
+      "sha256": "96303d9eb2cbe681113a190daa041b2e962b124b9965fe9894970972d4aacb75"
+    },
+    {
+      "source": "tools/fourier_torus_prototype/attempts/0003-direct-fourier-algebraic-20261009/inputs/prior_METHOD_EVENTS.jsonl",
+      "snapshot": "snapshot\\attempts\\0003-direct-fourier-algebraic-20261009\\inputs\\prior_METHOD_EVENTS.jsonl",
+      "bytes": 4798,
+      "sha256": "af36c9bddc1d81c0d63edd35d0cef11a6a3a232731679ede024a230e6413421c"
+    },
+    {
+      "source": "tools/fourier_torus_prototype/attempts/0003-direct-fourier-algebraic-20261009/inputs/prior_METHOD_LEDGER.md",
+      "snapshot": "snapshot\\attempts\\0003-direct-fourier-algebraic-20261009\\inputs\\prior_METHOD_LEDGER.md",
+      "bytes": 12421,
+      "sha256": "0d48336c1f4b305bd2d7b0720aeb5a78d6c59de12a0ef7d4e9c2432cb6e84907"
+    },
+    {
+      "source": "tools/fourier_torus_prototype/attempts/0003-direct-fourier-algebraic-20261009/inputs/proposal-3rd-set.txt",
+      "snapshot": "snapshot\\attempts\\0003-direct-fourier-algebraic-20261009\\inputs\\proposal-3rd-set.txt",
+      "bytes": 10081,
+      "sha256": "0ee2687e1efd39e20d5d1fc5bb3801c14733e4b19123c3bfadf6288e4c5bccd1"
+    },
+    {
+      "source": "tools/fourier_torus_prototype/attempts/0003-direct-fourier-algebraic-20261009/local_inventory.json",
+      "snapshot": "snapshot\\attempts\\0003-direct-fourier-algebraic-20261009\\local_inventory.json",
+      "bytes": 1511,
+      "sha256": "12c7721499358d1a598bee7d6cf0bbd6a53e3b2401853563471dd5e9be56b3b3"
+    },
+    {
+      "source": "tools/fourier_torus_prototype/attempts/0003-direct-fourier-algebraic-20261009/preservation_audit.json",
+      "snapshot": "snapshot\\attempts\\0003-direct-fourier-algebraic-20261009\\preservation_audit.json",
+      "bytes": 1490,
+      "sha256": "9e9e82a78cca0cc14d2d180c7808fa6e5f0b746e470708912f3dba2b616493d4"
+    },
+    {
+      "source": "tools/fourier_torus_prototype/attempts/0003-direct-fourier-algebraic-20261009/publication_manifest.json",
+      "snapshot": "snapshot\\attempts\\0003-direct-fourier-algebraic-20261009\\publication_manifest.json",
+      "bytes": 13105,
+      "sha256": "2ad35736821e3ea8f66a8732e02eaa44ec6cccc5e9dc6bb062dbc83c081adc04"
+    },
+    {
+      "source": "tools/fourier_torus_prototype/attempts/0003-direct-fourier-algebraic-20261009/publication_manifest_final.json",
+      "snapshot": "snapshot\\attempts\\0003-direct-fourier-algebraic-20261009\\publication_manifest_final.json",
+      "bytes": 13286,
+      "sha256": "e2f4b6d9a5607d8cdb4f657d2b006cf76b189db6e10c8b01638c064c6525195c"
+    },
+    {
+      "source": "tools/fourier_torus_prototype/attempts/0003-direct-fourier-algebraic-20261009/quartic_counterexample.json",
+      "snapshot": "snapshot\\attempts\\0003-direct-fourier-algebraic-20261009\\quartic_counterexample.json",
+      "bytes": 1051,
+      "sha256": "5b15f52ceb59acd76e448b9fe5c07a5e10cdb41207126324e55fec34b317d6e9"
+    },
+    {
+      "source": "tools/fourier_torus_prototype/attempts/0003-direct-fourier-algebraic-20261009/run-001-preservation-manifest.json",
+      "snapshot": "snapshot\\attempts\\0003-direct-fourier-algebraic-20261009\\run-001-preservation-manifest.json",
+      "bytes": 1449,
+      "sha256": "4f83e2489cec7a5ba8367550851e5897cbe7b4acf8f546db1b3692047cecca28"
+    },
+    {
+      "source": "tools/fourier_torus_prototype/attempts/0003-direct-fourier-algebraic-20261009/run-001/direct_fourier_results.json",
+      "snapshot": "snapshot\\attempts\\0003-direct-fourier-algebraic-20261009\\run-001\\direct_fourier_results.json",
+      "bytes": 159987,
+      "sha256": "48f078a717edc26a5c4fe51e663cb5bdb47568d281db489772805dd346c10d72"
+    },
+    {
+      "source": "tools/fourier_torus_prototype/attempts/0003-direct-fourier-algebraic-20261009/run-001/local_quartic_results.json",
+      "snapshot": "snapshot\\attempts\\0003-direct-fourier-algebraic-20261009\\run-001\\local_quartic_results.json",
+      "bytes": 933926,
+      "sha256": "114d30a3df16ef2c91886b01576043ad33a0b704d02a0c8e4b5b0802bfeb8a2e"
+    },
+    {
+      "source": "tools/fourier_torus_prototype/attempts/0003-direct-fourier-algebraic-20261009/run-001/rays.json",
+      "snapshot": "snapshot\\attempts\\0003-direct-fourier-algebraic-20261009\\run-001\\rays.json",
+      "bytes": 25747,
+      "sha256": "fcf08b04b8961f5455d2dd767d1bdc4c90d9d4cfebf2081c74f6362c90b4cbdf"
+    },
+    {
+      "source": "tools/fourier_torus_prototype/attempts/0003-direct-fourier-algebraic-20261009/run-001/receipt.json",
+      "snapshot": "snapshot\\attempts\\0003-direct-fourier-algebraic-20261009\\run-001\\receipt.json",
+      "bytes": 2034,
+      "sha256": "9e5b84751237dbca17e8c2e511202a912dfd9f09a444d4dd8c74ec8bf2929c51"
+    },
+    {
+      "source": "tools/fourier_torus_prototype/attempts/0003-direct-fourier-algebraic-20261009/run-001/source/direct_algebraic.py",
+      "snapshot": "snapshot\\attempts\\0003-direct-fourier-algebraic-20261009\\run-001\\source\\direct_algebraic.py",
+      "bytes": 9822,
+      "sha256": "082d701104b9cf9f8050bcb426a30a7ab4d6a5081dd7038e6d509bed0779ab62"
+    },
+    {
+      "source": "tools/fourier_torus_prototype/attempts/0003-direct-fourier-algebraic-20261009/run-001/source/fourier_torus.py",
+      "snapshot": "snapshot\\attempts\\0003-direct-fourier-algebraic-20261009\\run-001\\source\\fourier_torus.py",
+      "bytes": 14858,
+      "sha256": "fa0559134dd60b0390617a799a339ad05ad23e1f523c86ea9b92373ff2812210"
+    },
+    {
+      "source": "tools/fourier_torus_prototype/attempts/0003-direct-fourier-algebraic-20261009/run-001/source/patch_methods.py",
+      "snapshot": "snapshot\\attempts\\0003-direct-fourier-algebraic-20261009\\run-001\\source\\patch_methods.py",
+      "bytes": 17540,
+      "sha256": "88623c61a52a997a5770427a38ab9b2eb068c8923db8a43176488b77264fed3e"
+    },
+    {
+      "source": "tools/fourier_torus_prototype/attempts/0003-direct-fourier-algebraic-20261009/run-001/source/run_direct_trials.py",
+      "snapshot": "snapshot\\attempts\\0003-direct-fourier-algebraic-20261009\\run-001\\source\\run_direct_trials.py",
+      "bytes": 12054,
+      "sha256": "5a626bcc705981d536d7d2d198006df308cfea6fb14d236a505427433c614eec"
+    },
+    {
+      "source": "tools/fourier_torus_prototype/attempts/0003-direct-fourier-algebraic-20261009/run-001/source/test_direct_algebraic.py",
+      "snapshot": "snapshot\\attempts\\0003-direct-fourier-algebraic-20261009\\run-001\\source\\test_direct_algebraic.py",
+      "bytes": 4719,
+      "sha256": "9d42a49514846c0e476f6417df8fa8670201e70fa474362c34efe7408d62fcd1"
+    },
+    {
+      "source": "tools/fourier_torus_prototype/attempts/0003-direct-fourier-algebraic-20261009/run-001/source/test_fourier_torus.py",
+      "snapshot": "snapshot\\attempts\\0003-direct-fourier-algebraic-20261009\\run-001\\source\\test_fourier_torus.py",
+      "bytes": 10228,
+      "sha256": "ece3351a22dbb53992996d40d26c40f9a50c725cac9b1f2151d39a3f6a1f44ee"
+    },
+    {
+      "source": "tools/fourier_torus_prototype/attempts/0003-direct-fourier-algebraic-20261009/run-001/source/test_patch_methods.py",
+      "snapshot": "snapshot\\attempts\\0003-direct-fourier-algebraic-20261009\\run-001\\source\\test_patch_methods.py",
+      "bytes": 7444,
+      "sha256": "7483e985c4fd556b32577450ee9b3accbca6f006b51614a46ac1ae796efd292c"
+    },
+    {
+      "source": "tools/fourier_torus_prototype/attempts/0003-direct-fourier-algebraic-20261009/run-001/tests.txt",
+      "snapshot": "snapshot\\attempts\\0003-direct-fourier-algebraic-20261009\\run-001\\tests.txt",
+      "bytes": 4058,
+      "sha256": "f516a47351021eb0967d382bd73bd1c75cfd06201051de9f451dbb208528d78a"
+    },
+    {
+      "source": "tools/fourier_torus_prototype/attempts/0003-direct-fourier-algebraic-20261009/run-002/direct_fourier_results.json",
+      "snapshot": "snapshot\\attempts\\0003-direct-fourier-algebraic-20261009\\run-002\\direct_fourier_results.json",
+      "bytes": 185285,
+      "sha256": "876917c1d1c0d1e120ddb9e40233c35412eebfaa15f822173ce56566038a126a"
+    },
+    {
+      "source": "tools/fourier_torus_prototype/attempts/0003-direct-fourier-algebraic-20261009/run-002/local_quartic_results.json",
+      "snapshot": "snapshot\\attempts\\0003-direct-fourier-algebraic-20261009\\run-002\\local_quartic_results.json",
+      "bytes": 933926,
+      "sha256": "ef4370c079b2bf99c2635dec85c46a3f86fa6e62d9442db4b2bcf4b1f6c2cccb"
+    },
+    {
+      "source": "tools/fourier_torus_prototype/attempts/0003-direct-fourier-algebraic-20261009/run-002/rays.json",
+      "snapshot": "snapshot\\attempts\\0003-direct-fourier-algebraic-20261009\\run-002\\rays.json",
+      "bytes": 25747,
+      "sha256": "fcf08b04b8961f5455d2dd767d1bdc4c90d9d4cfebf2081c74f6362c90b4cbdf"
+    },
+    {
+      "source": "tools/fourier_torus_prototype/attempts/0003-direct-fourier-algebraic-20261009/run-002/receipt.json",
+      "snapshot": "snapshot\\attempts\\0003-direct-fourier-algebraic-20261009\\run-002\\receipt.json",
+      "bytes": 2130,
+      "sha256": "3d819278f22c27a29ba3514057fdb8e2c476d1f85d0e213ac58d3fff3c949e0d"
+    },
+    {
+      "source": "tools/fourier_torus_prototype/attempts/0003-direct-fourier-algebraic-20261009/run-002/source/direct_algebraic.py",
+      "snapshot": "snapshot\\attempts\\0003-direct-fourier-algebraic-20261009\\run-002\\source\\direct_algebraic.py",
+      "bytes": 10586,
+      "sha256": "e86ad2347aec578dfffd84d5ffe7e333bbc8e898787e7db3fd3280b13f9cd3fb"
+    },
+    {
+      "source": "tools/fourier_torus_prototype/attempts/0003-direct-fourier-algebraic-20261009/run-002/source/fourier_torus.py",
+      "snapshot": "snapshot\\attempts\\0003-direct-fourier-algebraic-20261009\\run-002\\source\\fourier_torus.py",
+      "bytes": 14858,
+      "sha256": "fa0559134dd60b0390617a799a339ad05ad23e1f523c86ea9b92373ff2812210"
+    },
+    {
+      "source": "tools/fourier_torus_prototype/attempts/0003-direct-fourier-algebraic-20261009/run-002/source/patch_methods.py",
+      "snapshot": "snapshot\\attempts\\0003-direct-fourier-algebraic-20261009\\run-002\\source\\patch_methods.py",
+      "bytes": 17540,
+      "sha256": "88623c61a52a997a5770427a38ab9b2eb068c8923db8a43176488b77264fed3e"
+    },
+    {
+      "source": "tools/fourier_torus_prototype/attempts/0003-direct-fourier-algebraic-20261009/run-002/source/run_direct_trials.py",
+      "snapshot": "snapshot\\attempts\\0003-direct-fourier-algebraic-20261009\\run-002\\source\\run_direct_trials.py",
+      "bytes": 12904,
+      "sha256": "db6bb144109fec5da551bbff7ec6c36c6211b0c2bb3ae45bc13b2cf1df7b4e83"
+    },
+    {
+      "source": "tools/fourier_torus_prototype/attempts/0003-direct-fourier-algebraic-20261009/run-002/source/test_direct_algebraic.py",
+      "snapshot": "snapshot\\attempts\\0003-direct-fourier-algebraic-20261009\\run-002\\source\\test_direct_algebraic.py",
+      "bytes": 5241,
+      "sha256": "1d626e42a8fd72fd65dceeaa2540047d7c98e06bc67911bfbd4acb844ad328b9"
+    },
+    {
+      "source": "tools/fourier_torus_prototype/attempts/0003-direct-fourier-algebraic-20261009/run-002/source/test_fourier_torus.py",
+      "snapshot": "snapshot\\attempts\\0003-direct-fourier-algebraic-20261009\\run-002\\source\\test_fourier_torus.py",
+      "bytes": 10228,
+      "sha256": "ece3351a22dbb53992996d40d26c40f9a50c725cac9b1f2151d39a3f6a1f44ee"
+    },
+    {
+      "source": "tools/fourier_torus_prototype/attempts/0003-direct-fourier-algebraic-20261009/run-002/source/test_patch_methods.py",
+      "snapshot": "snapshot\\attempts\\0003-direct-fourier-algebraic-20261009\\run-002\\source\\test_patch_methods.py",
+      "bytes": 7444,
+      "sha256": "7483e985c4fd556b32577450ee9b3accbca6f006b51614a46ac1ae796efd292c"
+    },
+    {
+      "source": "tools/fourier_torus_prototype/attempts/0003-direct-fourier-algebraic-20261009/run-002/tests.txt",
+      "snapshot": "snapshot\\attempts\\0003-direct-fourier-algebraic-20261009\\run-002\\tests.txt",
+      "bytes": 4212,
+      "sha256": "e643441e7c2458d3f4792ea35e3551df22dfa2e8005f8b734329aa6525643640"
+    },
+    {
+      "source": "tools/fourier_torus_prototype/conftest.py",
+      "snapshot": "snapshot\\conftest.py",
+      "bytes": 103,
+      "sha256": "7f4fcd498ce7dd6352f406e955cab01a905ad7ce97fdf539916ee458d53d9576"
+    },
+    {
+      "source": "tools/fourier_torus_prototype/experiments/DIRECT_ALGEBRAIC_README.md",
+      "snapshot": "snapshot\\experiments\\DIRECT_ALGEBRAIC_README.md",
+      "bytes": 1815,
+      "sha256": "97deafe38791040ba94b21b79ec14cb115db8cac0a09ce2ef2a5800385f304d8"
+    },
+    {
+      "source": "tools/fourier_torus_prototype/experiments/README.md",
+      "snapshot": "snapshot\\experiments\\README.md",
+      "bytes": 1827,
+      "sha256": "f893a5065e38e2905b91781896de092f0210e99357d72508a9632dc81fd891ac"
+    },
+    {
+      "source": "tools/fourier_torus_prototype/experiments/direct_algebraic.py",
+      "snapshot": "snapshot\\experiments\\direct_algebraic.py",
+      "bytes": 12043,
+      "sha256": "6aa4ff7d7e4a867e1796674e6be22c8e66ed2e9cb2d81cd1fac4c6f69a71db67"
+    },
+    {
+      "source": "tools/fourier_torus_prototype/experiments/patch_methods.py",
+      "snapshot": "snapshot\\experiments\\patch_methods.py",
+      "bytes": 17540,
+      "sha256": "88623c61a52a997a5770427a38ab9b2eb068c8923db8a43176488b77264fed3e"
+    },
+    {
+      "source": "tools/fourier_torus_prototype/experiments/run_direct_trials.py",
+      "snapshot": "snapshot\\experiments\\run_direct_trials.py",
+      "bytes": 16097,
+      "sha256": "720bb09322f2c12a26f022b70b9fc1a0c1d047dd102e1df1bf508a7da9d8748f"
+    },
+    {
+      "source": "tools/fourier_torus_prototype/experiments/run_patch_trials.py",
+      "snapshot": "snapshot\\experiments\\run_patch_trials.py",
+      "bytes": 15156,
+      "sha256": "032bbff8458c70eaa2e65f78bb22d5fb97330faceff164ec57df8d3224565479"
+    },
+    {
+      "source": "tools/fourier_torus_prototype/experiments/test_direct_algebraic.py",
+      "snapshot": "snapshot\\experiments\\test_direct_algebraic.py",
+      "bytes": 6590,
+      "sha256": "b1226c146b2e1e79e699e6ca29a3766fbd541885aa55039ba016dc8d32802cd7"
+    },
+    {
+      "source": "tools/fourier_torus_prototype/experiments/test_patch_methods.py",
+      "snapshot": "snapshot\\experiments\\test_patch_methods.py",
+      "bytes": 7444,
+      "sha256": "7483e985c4fd556b32577450ee9b3accbca6f006b51614a46ac1ae796efd292c"
+    },
+    {
+      "source": "tools/fourier_torus_prototype/fourier_torus.py",
+      "snapshot": "snapshot\\fourier_torus.py",
+      "bytes": 14858,
+      "sha256": "fa0559134dd60b0390617a799a339ad05ad23e1f523c86ea9b92373ff2812210"
+    },
+    {
+      "source": "tools/fourier_torus_prototype/receipt.json",
+      "snapshot": "snapshot\\receipt.json",
+      "bytes": 2832,
+      "sha256": "a991181ac8454e0215446c9603d1c18178b35242ec4cd886f7b4c870190b84e8"
+    },
+    {
+      "source": "tools/fourier_torus_prototype/run_tests.py",
+      "snapshot": "snapshot\\run_tests.py",
+      "bytes": 3506,
+      "sha256": "ec89e43e883ec013f19088222d13605057c3ee57e66d25e0b374dd89cd5b9104"
+    },
+    {
+      "source": "tools/fourier_torus_prototype/test_fourier_torus.py",
+      "snapshot": "snapshot\\test_fourier_torus.py",
+      "bytes": 10228,
+      "sha256": "ece3351a22dbb53992996d40d26c40f9a50c725cac9b1f2151d39a3f6a1f44ee"
+    }
+  ]
+}

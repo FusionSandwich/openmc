@@ -1,0 +1,39 @@
+{
+  "created_utc": "2026-10-09T21:30:31.464509+00:00",
+  "run_id": "run-002",
+  "status": "COMPLETED_SYNTHETIC_DIAGNOSTICS",
+  "tests_passed": 29,
+  "runtime": {
+    "python": "3.12.10",
+    "numpy": "2.5.1",
+    "scipy": "1.18.0"
+  },
+  "source_hashes": {
+    "fourier_torus.py": "fa0559134dd60b0390617a799a339ad05ad23e1f523c86ea9b92373ff2812210",
+    "test_fourier_torus.py": "ece3351a22dbb53992996d40d26c40f9a50c725cac9b1f2151d39a3f6a1f44ee",
+    "patch_methods.py": "88623c61a52a997a5770427a38ab9b2eb068c8923db8a43176488b77264fed3e",
+    "test_patch_methods.py": "7483e985c4fd556b32577450ee9b3accbca6f006b51614a46ac1ae796efd292c",
+    "direct_algebraic.py": "e86ad2347aec578dfffd84d5ffe7e333bbc8e898787e7db3fd3280b13f9cd3fb",
+    "test_direct_algebraic.py": "1d626e42a8fd72fd65dceeaa2540047d7c98e06bc67911bfbd4acb844ad328b9",
+    "run_direct_trials.py": "db6bb144109fec5da551bbff7ec6c36c6211b0c2bb3ae45bc13b2cf1df7b4e83"
+  },
+  "input_manifest_sha256": "bcfea6daeb60fe386312e3dcb8e71e1f85a8b887869d85609165b38201cb74d6",
+  "input_hashes": {
+    "proposal-3rd-set.txt": "0ee2687e1efd39e20d5d1fc5bb3801c14733e4b19123c3bfadf6288e4c5bccd1",
+    "incumbent_spline.py": "499bccef7bb3fc4168a034e4e0ed8597633cb640390e1bc7598b031f5dfcab08",
+    "incumbent_surface.py": "96303d9eb2cbe681113a190daa041b2e962b124b9965fe9894970972d4aacb75",
+    "prior_METHOD_LEDGER.md": "0d48336c1f4b305bd2d7b0720aeb5a78d6c59de12a0ef7d4e9c2432cb6e84907",
+    "prior_METHOD_EVENTS.jsonl": "af36c9bddc1d81c0d63edd35d0cef11a6a3a232731679ede024a230e6413421c"
+  },
+  "output_hashes": {
+    "direct_fourier_results.json": "876917c1d1c0d1e120ddb9e40233c35412eebfaa15f822173ce56566038a126a",
+    "local_quartic_results.json": "ef4370c079b2bf99c2635dec85c46a3f86fa6e62d9442db4b2bcf4b1f6c2cccb",
+    "rays.json": "fcf08b04b8961f5455d2dd767d1bdc4c90d9d4cfebf2081c74f6362c90b4cbdf",
+    "tests.txt": "e643441e7c2458d3f4792ea35e3551df22dfa2e8005f8b734329aa6525643640"
+  },
+  "prior_files_unchanged": 34,
+  "native_build": false,
+  "transport": false,
+  "physical_fidelity_acceptance": false,
+  "native_speed_acceptance": false
+}

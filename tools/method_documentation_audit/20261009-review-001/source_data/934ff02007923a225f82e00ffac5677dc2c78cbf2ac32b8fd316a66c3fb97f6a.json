@@ -1,0 +1,60 @@
+{
+  "status": "ACCEPTED_RESTRICTED_DETERMINISTIC_EVENT_SLICE",
+  "time_utc": "2026-10-08T18:15:21.957928+00:00",
+  "candidate": "C:\\Users\\joshu\\OneDrive\\Documents\\ChatGPT\\StellarCGS\\stellarcsg-axis-review-20261008",
+  "branch": "JS/axis-review-20261008",
+  "source_repair_commit": "5e4fbacb80e6fe1ec2b49281efca41c4dbc375d7",
+  "base_snapshot_commit": "b93b47cd086eb40b49464bbf14baf737ad4f6272",
+  "upstream_base_commit": "04a8061dde802f7fd4290fae45b7d84b33bfc020",
+  "scope": "October 8 review R1-R4 repairs; attached documents used as review evidence, not operator instructions",
+  "changes": [
+    "require a conservative common six-face vacuum enclosure before movement or scoring",
+    "reject positive local intervals rounding to INFTY (DBL_MAX)",
+    "restore per-query fault injections; reuse Particle and exercise two init/finalize cycles",
+    "complete default-off traces, compile-option-off comparison and matching build identities",
+    "correct inherited banking-eligibility and instance-bookkeeping admission checks"
+  ],
+  "validation": {
+    "models": 39,
+    "rows": 208,
+    "supported_rows": 154,
+    "expected_rejections": 54,
+    "events": 460,
+    "legacy_models": 6,
+    "legacy_rows_per_build": 24,
+    "corruption_controls_rejected": 5,
+    "independent_review": "independent-final-review.json",
+    "terminal_receipt": "artifacts-completion/receipt.json",
+    "original_phase": "native matrix passed; original 900-second cap stopped OFF build",
+    "completion_phase": "resumed only incomplete OFF build; no ON rebuild or repeated native matrix",
+    "cumulative_seconds": 1322.57624037,
+    "source_hashes_verified": 1218,
+    "software_acquisition_bytes": 0,
+    "compute_lease_released": true
+  },
+  "delivery": {
+    "integration_patch": "axis-review-repairs.patch",
+    "integration_patch_sha256": "738dcede410bcb2bb2b4897e4057e48602b40babcba5a8153d614f6bb855ed81",
+    "integration_check": "git apply --check succeeded against original checkout; no patch applied",
+    "archival_metadata": "patch changes original unexpanded .git_archival.txt placeholders to the isolated native source marker; exact modified sources are bound by source-identities.json",
+    "reproduction": "dev/stellarcsg/tests/axis_review_acceptance.py with installed Debian WSL; complete_axis_review.py records explicit bounded continuation of retained OFF-build timeout",
+    "retained_failure_history": "validation-history.json",
+    "frozen_sources": "artifacts-single-instance/source-identities.json",
+    "evidence_manifest": "evidence-manifest.json"
+  },
+  "isolation": {
+    "original_checkout": "C:\\Users\\joshu\\OneDrive\\Documents\\ChatGPT\\StellarCGS\\stellarcsg-astra-kernel-20260926",
+    "original_selected_source_hashes_unchanged": true,
+    "original_head_unchanged": true,
+    "original_source_writes": 0,
+    "original_index_or_branch_changes": 0,
+    "other_agent_messages_or_process_interventions": 0,
+    "read_only_preservation_check": "original-preservation-check.json"
+  },
+  "limitations": [
+    "single-instance void unit-axis built-in plane domain only",
+    "general geometry and mixed-configuration lifecycle support not established",
+    "installation ABI compatibility, scientific fidelity and performance not established"
+  ],
+  "default_behavior": "compile and runtime feature options remain OFF by default"
+}

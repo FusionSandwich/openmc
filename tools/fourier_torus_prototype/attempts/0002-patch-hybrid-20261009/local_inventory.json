@@ -1,0 +1,71 @@
+{
+  "time_utc": "2026-10-09T21:11:29.0571994Z",
+  "total_ram_bytes": 34260418560,
+  "free_ram_bytes": 6012796928,
+  "drives": [
+    {
+      "DeviceID": "C:",
+      "Size": 998965768192,
+      "FreeSpace": 108895514624
+    },
+    {
+      "DeviceID": "D:",
+      "Size": 2000397791232,
+      "FreeSpace": 84357447680
+    },
+    {
+      "DeviceID": "G:",
+      "Size": 998965768192,
+      "FreeSpace": 103450738688
+    }
+  ],
+  "significant_processes": [
+    {
+      "ProcessName": "Memory Compression",
+      "Id": 3368,
+      "WorkingSet64": 1556226048
+    },
+    {
+      "ProcessName": "ChatGPT",
+      "Id": 10692,
+      "WorkingSet64": 1476489216
+    },
+    {
+      "ProcessName": "codex",
+      "Id": 43688,
+      "WorkingSet64": 1137582080
+    },
+    {
+      "ProcessName": "chrome",
+      "Id": 63032,
+      "WorkingSet64": 940433408
+    },
+    {
+      "ProcessName": "chrome",
+      "Id": 53472,
+      "WorkingSet64": 847069184
+    },
+    {
+      "ProcessName": "chrome",
+      "Id": 28680,
+      "WorkingSet64": 834985984
+    },
+    {
+      "ProcessName": "chrome",
+      "Id": 29872,
+      "WorkingSet64": 643952640
+    },
+    {
+      "ProcessName": "chrome",
+      "Id": 53220,
+      "WorkingSet64": 633040896
+    }
+  ],
+  "cpu_workers": 1,
+  "software_acquisition_bytes": 0,
+  "native_build": false,
+  "remote_execution": false,
+  "query_bank": 52,
+  "candidate_configurations": 12,
+  "resource_coordination": "bounded pure Python trial in isolated worktree; no active lease acquired or process controlled"
+}

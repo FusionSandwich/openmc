@@ -1,0 +1,45 @@
+[
+  {
+    "canonical_path": "stellarcsg-axis-integration-20261008/dev/stellarcsg/experiments/quartic_combinations_20261009/pr_description.md",
+    "sha256": "d42d81ce2a46a33a39eb5cc863d2e29d9d2dbb60c8ab434358a4b42f9fd47b4f",
+    "copies": [
+      "stellarcsg-axis-integration-20261008/dev/stellarcsg/experiments/quartic_combinations_20261009/pr_description.md"
+    ],
+    "title": "pr_description.md",
+    "headings": [],
+    "snapshot": "source_snapshots/d42d81ce2a46a33a39eb5cc863d2e29d9d2dbb60c8ab434358a4b42f9fd47b4f.md",
+    "late_capture_utc": "2026-10-09T22:11:43.419270+00:00"
+  },
+  {
+    "canonical_path": "stellarcsg-axis-integration-20261008/dev/stellarcsg/experiments/quartic_combinations_20261009/README.md",
+    "sha256": "d683ec08b167bdac4f18a09ceb4ad237e375b0faa7f817e0f771e6b398ff7bda",
+    "copies": [
+      "stellarcsg-axis-integration-20261008/dev/stellarcsg/experiments/quartic_combinations_20261009/README.md"
+    ],
+    "title": "Fourier trial review and quartic composition reference",
+    "headings": [
+      "## Context",
+      "## Summary",
+      "## Evidence from the reviewed methods",
+      "## Detailed findings",
+      "## Implemented combination",
+      "## Most useful combinations to investigate next",
+      "## Reproduce"
+    ],
+    "snapshot": "source_snapshots/d683ec08b167bdac4f18a09ceb4ad237e375b0faa7f817e0f771e6b398ff7bda.md",
+    "late_capture_utc": "2026-10-09T22:11:43.419270+00:00"
+  },
+  {
+    "canonical_path": "stellarcsg-axis-integration-20261008/dev/stellarcsg/proposals/fourier_torus_20261009/README.md",
+    "sha256": "dd910fd93348ef662301cbc596ba17a90c6c34542c5105db40518d715475fe5c",
+    "copies": [
+      "stellarcsg-axis-integration-20261008/dev/stellarcsg/proposals/fourier_torus_20261009/README.md"
+    ],
+    "title": "Fourier torus plasma review packet",
+    "headings": [
+      "## Follow-up review"
+    ],
+    "snapshot": "source_snapshots/dd910fd93348ef662301cbc596ba17a90c6c34542c5105db40518d715475fe5c.md",
+    "late_capture_utc": "2026-10-09T22:11:43.419270+00:00"
+  }
+]
