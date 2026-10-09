@@ -43,6 +43,9 @@ namespace openmc {
 //==============================================================================
 
 namespace settings {
+#ifdef OPENMC_EXPERIMENTAL_AXIS_PLANES
+bool experimental_axis_plane_events {false};
+#endif
 
 // Default values for boolean flags
 bool assume_separate {false};
@@ -431,6 +434,16 @@ void read_settings_xml()
 
 void read_settings_xml(pugi::xml_node root)
 {
+#ifdef OPENMC_EXPERIMENTAL_AXIS_PLANES
+  settings::experimental_axis_plane_events =
+    check_for_node(root, "experimental_axis_plane_events") &&
+    get_node_value_bool(root, "experimental_axis_plane_events");
+#else
+  if (check_for_node(root, "experimental_axis_plane_events") &&
+      get_node_value_bool(root, "experimental_axis_plane_events")) {
+    fatal_error("Exact axis-plane events were not enabled at compile time.");
+  }
+#endif
   using namespace settings;
   using namespace pugi;
 
@@ -1347,6 +1360,9 @@ void read_settings_xml(pugi::xml_node root)
 
 void free_memory_settings()
 {
+#ifdef OPENMC_EXPERIMENTAL_AXIS_PLANES
+  settings::experimental_axis_plane_events = false;
+#endif
   settings::statepoint_batch.clear();
   settings::sourcepoint_batch.clear();
   settings::source_write_surf_id.clear();

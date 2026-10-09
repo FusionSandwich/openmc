@@ -1,0 +1,46 @@
+{
+  "files": {
+    "legacy-gap48-axis0/cross_sections.xml": "6c642a0c1fc5ffbe29dfa6993f4c6c4459030f4e45cee2038db7288d65708525",
+    "legacy-gap48-axis0/geometry.xml": "b54d2eab7867807954099f8f2bc49ad9109510c74223b0686343372015026ebe",
+    "legacy-gap48-axis0/materials.xml": "d105cf78f35b925b50d7efcb34c051d3bb1c0345a688eba610f18bf6d3c7a506",
+    "legacy-gap48-axis0/queries.txt": "d9f558398bec9aebff93b115c4fbd6349d9f89ba5efe1a75521e040c670838a5",
+    "legacy-gap48-axis0/settings.xml": "1d1f6fa2df8d1af42bdce83da2ac9e2ae0fc6afe73d807cc988a70fd2fbb5cc3",
+    "legacy-gap48-axis0/tallies.xml": "c3cb98c6fb0f1b111dd8eaa736fae628ae17a6949fa0c41ac09c7b0cfba690a0"
+  },
+  "queries": [
+    {
+      "id": 0,
+      "p": [
+        0.25,
+        0.42,
+        0.27
+      ],
+      "d": [
+        1,
+        0.0,
+        0.0
+      ],
+      "hint": 0,
+      "steps": 5,
+      "mode": 0,
+      "enclosure_halfspaces": true
+    },
+    {
+      "id": 1,
+      "p": [
+        1.7500000000000036,
+        0.42,
+        0.27
+      ],
+      "d": [
+        -1,
+        0.0,
+        0.0
+      ],
+      "hint": 0,
+      "steps": 5,
+      "mode": 0,
+      "enclosure_halfspaces": true
+    }
+  ]
+}

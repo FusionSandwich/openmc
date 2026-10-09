@@ -85,3 +85,7 @@ dev/stellarcsg/reports/local-cont-20260925/compiled-horner-enclosure-03.json tex
 
 dev/stellarcsg/reports/transport-proxy-20260926/** -text
 dev/stellarcsg/reports/openmc-integration-20260926/** -text
+/artifacts-integration/** -text
+/integration-20261008/** -text
+/INTEGRATION_RESULT_20261008.json -text
+/integrated-axis-events.patch -text

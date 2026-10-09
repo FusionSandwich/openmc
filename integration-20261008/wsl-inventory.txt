@@ -1,0 +1,32 @@
+Thu Oct  8 06:40:22 PM UTC 2026
+               total        used        free      shared  buff/cache   available
+Mem:     25200033792   873185280 24203681792     3379200   386347008 24326848512
+Swap:    34359738368           0 34359738368
+Filesystem         1B-blocks          Used    Available Use% Mounted on
+/dev/sdd       1081101176832   46734434304 979374387200   5% /
+C:\             998965768192  895221305344 103744462848  90% /mnt/c
+D:\            2000397791232 1920061812736  80335978496  96% /mnt/d
+    PID COMMAND           RSS %CPU
+     37 systemd-journal 16268 11.4
+      1 systemd         14192 25.6
+    221 systemd         12264 36.8
+     79 systemd-udevd    9976 21.4
+    121 systemd-logind   9108 10.2
+    118 (udev-worker)    8196  4.0
+    112 (udev-worker)    7508  3.9
+    111 (udev-worker)    7452  3.9
+    116 (udev-worker)    7340  8.0
+    136 (udev-worker)    7296  0.0
+    139 (udev-worker)    6964  6.2
+    194 (udev-worker)    6860  2.3
+Python 3.13.5
+cmake version 3.31.6
+g++ (Debian 14.2.0-19) 14.2.0
+1.14.5
+1.6.48
+/opt/openmc-fes-venv/pyvenv.cfg
+36K	/var/cache/apt
+/var/tmp/stellarcsg-axis-review-20261008-200-1791481135617777868
+/var/tmp/stellarcsg-axis-review-20261008-207-1791481257094990325
+/var/tmp/stellarcsg-axis-review-20261008-209-1791480838452000521
+/var/tmp/stellarcsg-axis-review-20261008-516-1791481546708378517

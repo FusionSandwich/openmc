@@ -1,0 +1,62 @@
+{
+  "files": {
+    "unsupported-overflow/cross_sections.xml": "6c642a0c1fc5ffbe29dfa6993f4c6c4459030f4e45cee2038db7288d65708525",
+    "unsupported-overflow/geometry.xml": "b54d2eab7867807954099f8f2bc49ad9109510c74223b0686343372015026ebe",
+    "unsupported-overflow/materials.xml": "d105cf78f35b925b50d7efcb34c051d3bb1c0345a688eba610f18bf6d3c7a506",
+    "unsupported-overflow/queries.txt": "9ecb46e7173b7dff4d9424d0a0b42710a4f2c330f12fe9a803ad07b076fbced3",
+    "unsupported-overflow/settings.xml": "9e1ba50047d0d1537c6e11dcf9ea1603464cd1ed2ae32347d7b015f345bf6696",
+    "unsupported-overflow/tallies.xml": "c3cb98c6fb0f1b111dd8eaa736fae628ae17a6949fa0c41ac09c7b0cfba690a0"
+  },
+  "queries": [
+    {
+      "id": 0,
+      "p": [
+        0.25,
+        0.42,
+        0.27
+      ],
+      "d": [
+        1,
+        0.0,
+        0.0
+      ],
+      "hint": 0,
+      "steps": 5,
+      "mode": 4,
+      "enclosure_halfspaces": true
+    },
+    {
+      "id": 1,
+      "p": [
+        1.7500000000000036,
+        0.42,
+        0.27
+      ],
+      "d": [
+        -1,
+        0.0,
+        0.0
+      ],
+      "hint": 0,
+      "steps": 5,
+      "mode": 4,
+      "enclosure_halfspaces": true
+    },
+    {
+      "id": 2,
+      "p": [
+        0.25,
+        0.42,
+        0.27
+      ],
+      "d": [
+        1.0,
+        0.0,
+        0.0
+      ],
+      "hint": 0,
+      "steps": 5,
+      "mode": 0
+    }
+  ]
+}

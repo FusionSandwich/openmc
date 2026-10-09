@@ -1,0 +1,16 @@
+{
+  "mem_available": 24300658688,
+  "acquisition_bytes": 0,
+  "source": "/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-axis-integration-20261008",
+  "native": "/var/tmp/stellarcsg-axis-review-20261008-271-1791485152067081400",
+  "deadline_seconds": 1800,
+  "tools": {
+    "g++": "/usr/bin/g++",
+    "cmake": "/usr/bin/cmake",
+    "python3": "/usr/bin/python3"
+  },
+  "git_pointer_diagnosis": "Windows worktree pointer is invalid in WSL; copy has no .git",
+  "configure_cap_seconds_per_build": 150,
+  "cross_sections_index": "/mnt/d/openc-hts-dpa-data/openmc-data/endfb-vii.1-hdf5/cross_sections.xml",
+  "index_sha256": "2789cb61537a56a14b555ca97f439ed14896bd6db9bfe6460e066db3c96843db"
+}

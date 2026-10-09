@@ -1,0 +1,9 @@
+{
+  "args": [
+    "/var/tmp/stellarcsg-axis-review-20261008-271-1791485152067081400/on/bin/stellarcsg_native_axis_test",
+    "/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-axis-integration-20261008/artifacts-integration/unsupported-material",
+    "/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-axis-integration-20261008/artifacts-integration/unsupported-material/queries.txt"
+  ],
+  "exit": 0,
+  "seconds": 1.783603415000016
+}

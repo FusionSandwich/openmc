@@ -1,0 +1,8 @@
+{
+  "args": [
+    "ldd",
+    "/var/tmp/stellarcsg-axis-review-20261008-271-1791485152067081400/on/bin/stellarcsg_native_axis_test"
+  ],
+  "exit": 0,
+  "seconds": 1.0342227289999926
+}

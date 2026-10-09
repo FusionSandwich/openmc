@@ -1,0 +1,62 @@
+{
+  "files": {
+    "gap48-axis2-tokens1/cross_sections.xml": "6c642a0c1fc5ffbe29dfa6993f4c6c4459030f4e45cee2038db7288d65708525",
+    "gap48-axis2-tokens1/geometry.xml": "0e17f4162c0acf3f94f3a51b175e9bdda55c1cea29511f52254083cf07af8fd3",
+    "gap48-axis2-tokens1/materials.xml": "d105cf78f35b925b50d7efcb34c051d3bb1c0345a688eba610f18bf6d3c7a506",
+    "gap48-axis2-tokens1/queries.txt": "6e47ccf054562f7d4a8f5cd11673cb9f7db501dca01d6380b3b593f92bcf546d",
+    "gap48-axis2-tokens1/settings.xml": "9e1ba50047d0d1537c6e11dcf9ea1603464cd1ed2ae32347d7b015f345bf6696",
+    "gap48-axis2-tokens1/tallies.xml": "c3cb98c6fb0f1b111dd8eaa736fae628ae17a6949fa0c41ac09c7b0cfba690a0"
+  },
+  "queries": [
+    {
+      "id": 0,
+      "p": [
+        0.31,
+        0.42,
+        0.25
+      ],
+      "d": [
+        0.0,
+        0.0,
+        1
+      ],
+      "hint": 0,
+      "steps": 5,
+      "mode": 0,
+      "enclosure_halfspaces": true
+    },
+    {
+      "id": 1,
+      "p": [
+        0.31,
+        0.42,
+        1.7500000000000036
+      ],
+      "d": [
+        0.0,
+        0.0,
+        -1
+      ],
+      "hint": 0,
+      "steps": 5,
+      "mode": 0,
+      "enclosure_halfspaces": true
+    },
+    {
+      "id": 2,
+      "p": [
+        0.31,
+        0.42,
+        1.0
+      ],
+      "d": [
+        0.0,
+        0.0,
+        1.0
+      ],
+      "hint": 11,
+      "steps": 4,
+      "mode": 0
+    }
+  ]
+}

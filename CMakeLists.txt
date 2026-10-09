@@ -47,6 +47,8 @@ option(OPENMC_ENABLE_STRICT_FP "Enable strict FP flags to improve test portabili
 option(OPENMC_ENABLE_EXPERIMENTAL_STELLARCSG
   "Enable experimental native periodic/swept spline CSG surfaces" OFF)
 option(STELLARCSG_BUILD_OFFSET_PROBE "Build exact-control native offset probe" OFF)
+option(OPENMC_ENABLE_EXPERIMENTAL_AXIS_PLANES
+  "Build opt-in exact unit-axis void plane events" OFF)
 option(STELLARCSG_ENABLE_PERFORMANCE_COUNTERS
   "Enable thread-local experimental StellarCSG performance counters" OFF)
 option(STELLARCSG_VERIFY_FAST_WITH_ORACLE
@@ -533,6 +535,17 @@ if(OPENMC_ENABLE_EXPERIMENTAL_STELLARCSG)
 endif()
 
 # For Visual Studio compilers
+if(OPENMC_ENABLE_EXPERIMENTAL_AXIS_PLANES)
+  list(APPEND libopenmc_SOURCES src/axis_plane_events.cpp
+    dev/stellarcsg/src/dyadic_axis_plane.cpp)
+  if(CMAKE_CXX_COMPILER_ID MATCHES "GNU|Clang")
+    set_source_files_properties(src/axis_plane_events.cpp
+      dev/stellarcsg/src/dyadic_axis_plane.cpp
+      PROPERTIES COMPILE_OPTIONS "-fno-fast-math;-ffp-contract=off")
+  endif()
+endif()
+
+# For Visual Studio compilers
 if(MSVC)
   # Use static library (otherwise explicit symbol portings are needed)
   add_library(libopenmc STATIC ${libopenmc_SOURCES})
@@ -557,6 +570,20 @@ target_include_directories(libopenmc
     $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>
     ${HDF5_INCLUDE_DIRS}
 )
+
+if(OPENMC_ENABLE_EXPERIMENTAL_AXIS_PLANES)
+  target_include_directories(libopenmc PUBLIC
+    $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/dev/stellarcsg/include>)
+  # Public because GeometryState owns the context: clients must match its ABI.
+  target_compile_definitions(libopenmc PUBLIC OPENMC_EXPERIMENTAL_AXIS_PLANES)
+endif()
+
+option(STELLARCSG_BUILD_AXIS_TEST_CLIENT "Build deterministic axis-event client" OFF)
+if(OPENMC_ENABLE_EXPERIMENTAL_AXIS_PLANES OR STELLARCSG_BUILD_AXIS_TEST_CLIENT)
+  add_executable(stellarcsg_native_axis_test
+    dev/stellarcsg/tests/test_native_axis_events.cpp)
+  target_link_libraries(stellarcsg_native_axis_test PRIVATE libopenmc ${CMAKE_DL_LIBS})
+endif()
 
 if(OPENMC_ENABLE_EXPERIMENTAL_STELLARCSG)
   target_include_directories(libopenmc PUBLIC

@@ -1,0 +1,29 @@
+Thu Oct  8 06:45:39 PM UTC 2026
+               total        used        free      shared  buff/cache   available
+Mem:     25200025600   874569728 24228700160     3162112   360267776 24325455872
+Swap:    34359738368           0 34359738368
+Filesystem         1B-blocks          Used    Available Use% Mounted on
+/dev/sdd       1081101176832   46784765952 979324055552   5% /
+C:\             998965768192  895861366784 103104401408  90% /mnt/c
+D:\            2000397791232 1920053923840  80343867392  96% /mnt/d
+    PID COMMAND           RSS %CPU
+     37 systemd-journal 16168 12.6
+      1 systemd         14180 22.6
+    216 systemd         12340 34.7
+     76 systemd-udevd    9576 19.6
+    231 bash             9436 75.0
+    177 systemd-logind   9136  9.5
+    114 (udev-worker)    7676  0.0
+     95 (udev-worker)    7580  4.1
+    125 (udev-worker)    7456  0.0
+     93 (udev-worker)    7116  2.0
+     99 (udev-worker)    6976  2.0
+    111 (udev-worker)    6920  2.1
+Python 3.13.5
+cmake version 3.31.6
+g++ (Debian 14.2.0-19) 14.2.0
+1.14.5
+1.6.48
+/opt/openmc-fes-venv/pyvenv.cfg
+36K	/var/cache/apt
+15M	/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-axis-integration-20261008/vendor

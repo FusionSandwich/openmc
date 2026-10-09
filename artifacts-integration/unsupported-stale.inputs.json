@@ -1,0 +1,62 @@
+{
+  "files": {
+    "unsupported-stale/cross_sections.xml": "6c642a0c1fc5ffbe29dfa6993f4c6c4459030f4e45cee2038db7288d65708525",
+    "unsupported-stale/geometry.xml": "b54d2eab7867807954099f8f2bc49ad9109510c74223b0686343372015026ebe",
+    "unsupported-stale/materials.xml": "d105cf78f35b925b50d7efcb34c051d3bb1c0345a688eba610f18bf6d3c7a506",
+    "unsupported-stale/queries.txt": "0fc424baba4d56b1c2df19aeb9e0bf04ff04cf38400308ca32c88964753635a6",
+    "unsupported-stale/settings.xml": "9e1ba50047d0d1537c6e11dcf9ea1603464cd1ed2ae32347d7b015f345bf6696",
+    "unsupported-stale/tallies.xml": "c3cb98c6fb0f1b111dd8eaa736fae628ae17a6949fa0c41ac09c7b0cfba690a0"
+  },
+  "queries": [
+    {
+      "id": 0,
+      "p": [
+        0.25,
+        0.42,
+        0.27
+      ],
+      "d": [
+        1,
+        0.0,
+        0.0
+      ],
+      "hint": 0,
+      "steps": 5,
+      "mode": 1,
+      "enclosure_halfspaces": true
+    },
+    {
+      "id": 1,
+      "p": [
+        1.7500000000000036,
+        0.42,
+        0.27
+      ],
+      "d": [
+        -1,
+        0.0,
+        0.0
+      ],
+      "hint": 0,
+      "steps": 5,
+      "mode": 1,
+      "enclosure_halfspaces": true
+    },
+    {
+      "id": 2,
+      "p": [
+        0.25,
+        0.42,
+        0.27
+      ],
+      "d": [
+        1.0,
+        0.0,
+        0.0
+      ],
+      "hint": 0,
+      "steps": 5,
+      "mode": 0
+    }
+  ]
+}

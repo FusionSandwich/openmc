@@ -1,0 +1,9 @@
+{
+  "args": [
+    "/var/tmp/stellarcsg-axis-review-20261008-271-1791485152067081400/on/bin/stellarcsg_native_axis_test",
+    "/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-axis-integration-20261008/artifacts-integration/touching-axis2-tokens0",
+    "/mnt/c/Users/joshu/OneDrive/Documents/ChatGPT/StellarCGS/stellarcsg-axis-integration-20261008/artifacts-integration/touching-axis2-tokens0/queries.txt"
+  ],
+  "exit": 0,
+  "seconds": 1.4805275939999945
+}

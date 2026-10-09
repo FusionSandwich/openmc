@@ -1,0 +1,3362 @@
+[
+  {
+    "model": "legacy-resolved-axis0",
+    "rows": [
+      {
+        "id": 0,
+        "cycle": 0,
+        "events": [
+          {
+            "before": 108,
+            "length": 0.75,
+            "region_length": 0.75,
+            "surface": 11,
+            "context": false,
+            "coordinate": 1,
+            "contacts": [],
+            "after": 100,
+            "weight": 1,
+            "scores": [
+              [
+                0,
+                0.75,
+                0
+              ],
+              [
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                1,
+                0,
+                0,
+                0
+              ]
+            ]
+          },
+          {
+            "before": 100,
+            "length": 1,
+            "region_length": 1,
+            "surface": 20,
+            "context": false,
+            "coordinate": 2,
+            "contacts": [],
+            "after": 109,
+            "weight": 1,
+            "scores": [
+              [
+                1,
+                0.75,
+                0
+              ],
+              [
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                1,
+                1,
+                0,
+                0
+              ]
+            ]
+          },
+          {
+            "before": 109,
+            "length": 1,
+            "region_length": 1,
+            "surface": 21,
+            "context": false,
+            "coordinate": 3,
+            "contacts": [],
+            "after": 100,
+            "weight": 1,
+            "scores": [
+              [
+                1,
+                0.75,
+                1
+              ],
+              [
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                1,
+                1,
+                1,
+                0
+              ]
+            ]
+          },
+          {
+            "before": 100,
+            "length": 1,
+            "region_length": 1,
+            "surface": 2,
+            "context": false,
+            "coordinate": 4,
+            "contacts": [],
+            "after": -1,
+            "weight": 0,
+            "scores": [
+              [
+                2,
+                0.75,
+                1
+              ],
+              [
+                0,
+                1,
+                0,
+                0,
+                0,
+                0,
+                0,
+                1,
+                1,
+                1,
+                0
+              ]
+            ]
+          }
+        ],
+        "error": "",
+        "fixture_restored": true,
+        "source_reset": true,
+        "source_position_unchanged": false,
+        "scores": [
+          [
+            2,
+            0.75,
+            1
+          ],
+          [
+            0,
+            1,
+            0,
+            0,
+            0,
+            0,
+            0,
+            1,
+            1,
+            1,
+            0
+          ]
+        ]
+      },
+      {
+        "id": 1,
+        "cycle": 0,
+        "events": [
+          {
+            "before": 109,
+            "length": 0.75,
+            "region_length": 0.75,
+            "surface": -20,
+            "context": false,
+            "coordinate": 2,
+            "contacts": [],
+            "after": 100,
+            "weight": 1,
+            "scores": [
+              [
+                0,
+                0,
+                0.75
+              ],
+              [
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                -1,
+                0,
+                0
+              ]
+            ]
+          },
+          {
+            "before": 100,
+            "length": 1,
+            "region_length": 1,
+            "surface": -11,
+            "context": false,
+            "coordinate": 1,
+            "contacts": [],
+            "after": 108,
+            "weight": 1,
+            "scores": [
+              [
+                1,
+                0,
+                0.75
+              ],
+              [
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                -1,
+                -1,
+                0,
+                0
+              ]
+            ]
+          },
+          {
+            "before": 108,
+            "length": 1,
+            "region_length": 1,
+            "surface": -10,
+            "context": false,
+            "coordinate": 0,
+            "contacts": [],
+            "after": 100,
+            "weight": 1,
+            "scores": [
+              [
+                1,
+                1,
+                0.75
+              ],
+              [
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                -1,
+                -1,
+                -1,
+                0,
+                0
+              ]
+            ]
+          },
+          {
+            "before": 100,
+            "length": 4,
+            "region_length": 4,
+            "surface": -1,
+            "context": false,
+            "coordinate": -4,
+            "contacts": [],
+            "after": -1,
+            "weight": 0,
+            "scores": [
+              [
+                5,
+                1,
+                0.75
+              ],
+              [
+                -1,
+                0,
+                0,
+                0,
+                0,
+                0,
+                -1,
+                -1,
+                -1,
+                0,
+                0
+              ]
+            ]
+          }
+        ],
+        "error": "",
+        "fixture_restored": true,
+        "source_reset": true,
+        "source_position_unchanged": false,
+        "scores": [
+          [
+            5,
+            1,
+            0.75
+          ],
+          [
+            -1,
+            0,
+            0,
+            0,
+            0,
+            0,
+            -1,
+            -1,
+            -1,
+            0,
+            0
+          ]
+        ]
+      },
+      {
+        "id": 0,
+        "cycle": 1,
+        "events": [
+          {
+            "before": 108,
+            "length": 0.75,
+            "region_length": 0.75,
+            "surface": 11,
+            "context": false,
+            "coordinate": 1,
+            "contacts": [],
+            "after": 100,
+            "weight": 1,
+            "scores": [
+              [
+                0,
+                0.75,
+                0
+              ],
+              [
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                1,
+                0,
+                0,
+                0
+              ]
+            ]
+          },
+          {
+            "before": 100,
+            "length": 1,
+            "region_length": 1,
+            "surface": 20,
+            "context": false,
+            "coordinate": 2,
+            "contacts": [],
+            "after": 109,
+            "weight": 1,
+            "scores": [
+              [
+                1,
+                0.75,
+                0
+              ],
+              [
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                1,
+                1,
+                0,
+                0
+              ]
+            ]
+          },
+          {
+            "before": 109,
+            "length": 1,
+            "region_length": 1,
+            "surface": 21,
+            "context": false,
+            "coordinate": 3,
+            "contacts": [],
+            "after": 100,
+            "weight": 1,
+            "scores": [
+              [
+                1,
+                0.75,
+                1
+              ],
+              [
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                1,
+                1,
+                1,
+                0
+              ]
+            ]
+          },
+          {
+            "before": 100,
+            "length": 1,
+            "region_length": 1,
+            "surface": 2,
+            "context": false,
+            "coordinate": 4,
+            "contacts": [],
+            "after": -1,
+            "weight": 0,
+            "scores": [
+              [
+                2,
+                0.75,
+                1
+              ],
+              [
+                0,
+                1,
+                0,
+                0,
+                0,
+                0,
+                0,
+                1,
+                1,
+                1,
+                0
+              ]
+            ]
+          }
+        ],
+        "error": "",
+        "fixture_restored": true,
+        "source_reset": true,
+        "source_position_unchanged": false,
+        "scores": [
+          [
+            2,
+            0.75,
+            1
+          ],
+          [
+            0,
+            1,
+            0,
+            0,
+            0,
+            0,
+            0,
+            1,
+            1,
+            1,
+            0
+          ]
+        ]
+      },
+      {
+        "id": 1,
+        "cycle": 1,
+        "events": [
+          {
+            "before": 109,
+            "length": 0.75,
+            "region_length": 0.75,
+            "surface": -20,
+            "context": false,
+            "coordinate": 2,
+            "contacts": [],
+            "after": 100,
+            "weight": 1,
+            "scores": [
+              [
+                0,
+                0,
+                0.75
+              ],
+              [
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                -1,
+                0,
+                0
+              ]
+            ]
+          },
+          {
+            "before": 100,
+            "length": 1,
+            "region_length": 1,
+            "surface": -11,
+            "context": false,
+            "coordinate": 1,
+            "contacts": [],
+            "after": 108,
+            "weight": 1,
+            "scores": [
+              [
+                1,
+                0,
+                0.75
+              ],
+              [
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                -1,
+                -1,
+                0,
+                0
+              ]
+            ]
+          },
+          {
+            "before": 108,
+            "length": 1,
+            "region_length": 1,
+            "surface": -10,
+            "context": false,
+            "coordinate": 0,
+            "contacts": [],
+            "after": 100,
+            "weight": 1,
+            "scores": [
+              [
+                1,
+                1,
+                0.75
+              ],
+              [
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                -1,
+                -1,
+                -1,
+                0,
+                0
+              ]
+            ]
+          },
+          {
+            "before": 100,
+            "length": 4,
+            "region_length": 4,
+            "surface": -1,
+            "context": false,
+            "coordinate": -4,
+            "contacts": [],
+            "after": -1,
+            "weight": 0,
+            "scores": [
+              [
+                5,
+                1,
+                0.75
+              ],
+              [
+                -1,
+                0,
+                0,
+                0,
+                0,
+                0,
+                -1,
+                -1,
+                -1,
+                0,
+                0
+              ]
+            ]
+          }
+        ],
+        "error": "",
+        "fixture_restored": true,
+        "source_reset": true,
+        "source_position_unchanged": false,
+        "scores": [
+          [
+            5,
+            1,
+            0.75
+          ],
+          [
+            -1,
+            0,
+            0,
+            0,
+            0,
+            0,
+            -1,
+            -1,
+            -1,
+            0,
+            0
+          ]
+        ]
+      }
+    ],
+    "legacy_negative_witness": false
+  },
+  {
+    "model": "legacy-gap48-axis0",
+    "rows": [
+      {
+        "id": 0,
+        "cycle": 0,
+        "events": [
+          {
+            "before": 108,
+            "length": 0.75,
+            "region_length": 0.75,
+            "surface": 11,
+            "context": false,
+            "coordinate": 1,
+            "contacts": [],
+            "after": 109,
+            "weight": 1,
+            "scores": [
+              [
+                0,
+                0.75,
+                0
+              ],
+              [
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                1,
+                0,
+                0,
+                0
+              ]
+            ]
+          },
+          {
+            "before": 109,
+            "length": 1.0000000000000036,
+            "region_length": 1.0000000000000036,
+            "surface": 21,
+            "context": false,
+            "coordinate": 2.0000000000000036,
+            "contacts": [],
+            "after": 100,
+            "weight": 1,
+            "scores": [
+              [
+                0,
+                0.75,
+                1.0000000000000036
+              ],
+              [
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                1,
+                0,
+                1,
+                0
+              ]
+            ]
+          },
+          {
+            "before": 100,
+            "length": 1.9999999999999964,
+            "region_length": 1.9999999999999964,
+            "surface": 2,
+            "context": false,
+            "coordinate": 4,
+            "contacts": [],
+            "after": -1,
+            "weight": 0,
+            "scores": [
+              [
+                1.9999999999999964,
+                0.75,
+                1.0000000000000036
+              ],
+              [
+                0,
+                1,
+                0,
+                0,
+                0,
+                0,
+                0,
+                1,
+                0,
+                1,
+                0
+              ]
+            ]
+          }
+        ],
+        "error": "",
+        "fixture_restored": true,
+        "source_reset": true,
+        "source_position_unchanged": false,
+        "scores": [
+          [
+            1.9999999999999964,
+            0.75,
+            1.0000000000000036
+          ],
+          [
+            0,
+            1,
+            0,
+            0,
+            0,
+            0,
+            0,
+            1,
+            0,
+            1,
+            0
+          ]
+        ]
+      },
+      {
+        "id": 1,
+        "cycle": 0,
+        "events": [
+          {
+            "before": 109,
+            "length": 0.75,
+            "region_length": 0.75,
+            "surface": -20,
+            "context": false,
+            "coordinate": 1.0000000000000036,
+            "contacts": [],
+            "after": 108,
+            "weight": 1,
+            "scores": [
+              [
+                0,
+                0,
+                0.75
+              ],
+              [
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                -1,
+                0,
+                0
+              ]
+            ]
+          },
+          {
+            "before": 108,
+            "length": 1.0000000000000036,
+            "region_length": 1.0000000000000036,
+            "surface": -10,
+            "context": false,
+            "coordinate": 0,
+            "contacts": [],
+            "after": 100,
+            "weight": 1,
+            "scores": [
+              [
+                0,
+                1.0000000000000036,
+                0.75
+              ],
+              [
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                -1,
+                0,
+                -1,
+                0,
+                0
+              ]
+            ]
+          },
+          {
+            "before": 100,
+            "length": 4,
+            "region_length": 4,
+            "surface": -1,
+            "context": false,
+            "coordinate": -4,
+            "contacts": [],
+            "after": -1,
+            "weight": 0,
+            "scores": [
+              [
+                4,
+                1.0000000000000036,
+                0.75
+              ],
+              [
+                -1,
+                0,
+                0,
+                0,
+                0,
+                0,
+                -1,
+                0,
+                -1,
+                0,
+                0
+              ]
+            ]
+          }
+        ],
+        "error": "",
+        "fixture_restored": true,
+        "source_reset": true,
+        "source_position_unchanged": false,
+        "scores": [
+          [
+            4,
+            1.0000000000000036,
+            0.75
+          ],
+          [
+            -1,
+            0,
+            0,
+            0,
+            0,
+            0,
+            -1,
+            0,
+            -1,
+            0,
+            0
+          ]
+        ]
+      },
+      {
+        "id": 0,
+        "cycle": 1,
+        "events": [
+          {
+            "before": 108,
+            "length": 0.75,
+            "region_length": 0.75,
+            "surface": 11,
+            "context": false,
+            "coordinate": 1,
+            "contacts": [],
+            "after": 109,
+            "weight": 1,
+            "scores": [
+              [
+                0,
+                0.75,
+                0
+              ],
+              [
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                1,
+                0,
+                0,
+                0
+              ]
+            ]
+          },
+          {
+            "before": 109,
+            "length": 1.0000000000000036,
+            "region_length": 1.0000000000000036,
+            "surface": 21,
+            "context": false,
+            "coordinate": 2.0000000000000036,
+            "contacts": [],
+            "after": 100,
+            "weight": 1,
+            "scores": [
+              [
+                0,
+                0.75,
+                1.0000000000000036
+              ],
+              [
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                1,
+                0,
+                1,
+                0
+              ]
+            ]
+          },
+          {
+            "before": 100,
+            "length": 1.9999999999999964,
+            "region_length": 1.9999999999999964,
+            "surface": 2,
+            "context": false,
+            "coordinate": 4,
+            "contacts": [],
+            "after": -1,
+            "weight": 0,
+            "scores": [
+              [
+                1.9999999999999964,
+                0.75,
+                1.0000000000000036
+              ],
+              [
+                0,
+                1,
+                0,
+                0,
+                0,
+                0,
+                0,
+                1,
+                0,
+                1,
+                0
+              ]
+            ]
+          }
+        ],
+        "error": "",
+        "fixture_restored": true,
+        "source_reset": true,
+        "source_position_unchanged": false,
+        "scores": [
+          [
+            1.9999999999999964,
+            0.75,
+            1.0000000000000036
+          ],
+          [
+            0,
+            1,
+            0,
+            0,
+            0,
+            0,
+            0,
+            1,
+            0,
+            1,
+            0
+          ]
+        ]
+      },
+      {
+        "id": 1,
+        "cycle": 1,
+        "events": [
+          {
+            "before": 109,
+            "length": 0.75,
+            "region_length": 0.75,
+            "surface": -20,
+            "context": false,
+            "coordinate": 1.0000000000000036,
+            "contacts": [],
+            "after": 108,
+            "weight": 1,
+            "scores": [
+              [
+                0,
+                0,
+                0.75
+              ],
+              [
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                -1,
+                0,
+                0
+              ]
+            ]
+          },
+          {
+            "before": 108,
+            "length": 1.0000000000000036,
+            "region_length": 1.0000000000000036,
+            "surface": -10,
+            "context": false,
+            "coordinate": 0,
+            "contacts": [],
+            "after": 100,
+            "weight": 1,
+            "scores": [
+              [
+                0,
+                1.0000000000000036,
+                0.75
+              ],
+              [
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                -1,
+                0,
+                -1,
+                0,
+                0
+              ]
+            ]
+          },
+          {
+            "before": 100,
+            "length": 4,
+            "region_length": 4,
+            "surface": -1,
+            "context": false,
+            "coordinate": -4,
+            "contacts": [],
+            "after": -1,
+            "weight": 0,
+            "scores": [
+              [
+                4,
+                1.0000000000000036,
+                0.75
+              ],
+              [
+                -1,
+                0,
+                0,
+                0,
+                0,
+                0,
+                -1,
+                0,
+                -1,
+                0,
+                0
+              ]
+            ]
+          }
+        ],
+        "error": "",
+        "fixture_restored": true,
+        "source_reset": true,
+        "source_position_unchanged": false,
+        "scores": [
+          [
+            4,
+            1.0000000000000036,
+            0.75
+          ],
+          [
+            -1,
+            0,
+            0,
+            0,
+            0,
+            0,
+            -1,
+            0,
+            -1,
+            0,
+            0
+          ]
+        ]
+      }
+    ],
+    "legacy_negative_witness": true
+  },
+  {
+    "model": "legacy-resolved-axis1",
+    "rows": [
+      {
+        "id": 0,
+        "cycle": 0,
+        "events": [
+          {
+            "before": 108,
+            "length": 0.75,
+            "region_length": 0.75,
+            "surface": 11,
+            "context": false,
+            "coordinate": 1,
+            "contacts": [],
+            "after": 100,
+            "weight": 1,
+            "scores": [
+              [
+                0,
+                0.75,
+                0
+              ],
+              [
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                1,
+                0,
+                0,
+                0
+              ]
+            ]
+          },
+          {
+            "before": 100,
+            "length": 1,
+            "region_length": 1,
+            "surface": 20,
+            "context": false,
+            "coordinate": 2,
+            "contacts": [],
+            "after": 109,
+            "weight": 1,
+            "scores": [
+              [
+                1,
+                0.75,
+                0
+              ],
+              [
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                1,
+                1,
+                0,
+                0
+              ]
+            ]
+          },
+          {
+            "before": 109,
+            "length": 1,
+            "region_length": 1,
+            "surface": 21,
+            "context": false,
+            "coordinate": 3,
+            "contacts": [],
+            "after": 100,
+            "weight": 1,
+            "scores": [
+              [
+                1,
+                0.75,
+                1
+              ],
+              [
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                1,
+                1,
+                1,
+                0
+              ]
+            ]
+          },
+          {
+            "before": 100,
+            "length": 1,
+            "region_length": 1,
+            "surface": 4,
+            "context": false,
+            "coordinate": 4,
+            "contacts": [],
+            "after": -1,
+            "weight": 0,
+            "scores": [
+              [
+                2,
+                0.75,
+                1
+              ],
+              [
+                0,
+                0,
+                0,
+                1,
+                0,
+                0,
+                0,
+                1,
+                1,
+                1,
+                0
+              ]
+            ]
+          }
+        ],
+        "error": "",
+        "fixture_restored": true,
+        "source_reset": true,
+        "source_position_unchanged": false,
+        "scores": [
+          [
+            2,
+            0.75,
+            1
+          ],
+          [
+            0,
+            0,
+            0,
+            1,
+            0,
+            0,
+            0,
+            1,
+            1,
+            1,
+            0
+          ]
+        ]
+      },
+      {
+        "id": 1,
+        "cycle": 0,
+        "events": [
+          {
+            "before": 109,
+            "length": 0.75,
+            "region_length": 0.75,
+            "surface": -20,
+            "context": false,
+            "coordinate": 2,
+            "contacts": [],
+            "after": 100,
+            "weight": 1,
+            "scores": [
+              [
+                0,
+                0,
+                0.75
+              ],
+              [
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                -1,
+                0,
+                0
+              ]
+            ]
+          },
+          {
+            "before": 100,
+            "length": 1,
+            "region_length": 1,
+            "surface": -11,
+            "context": false,
+            "coordinate": 1,
+            "contacts": [],
+            "after": 108,
+            "weight": 1,
+            "scores": [
+              [
+                1,
+                0,
+                0.75
+              ],
+              [
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                -1,
+                -1,
+                0,
+                0
+              ]
+            ]
+          },
+          {
+            "before": 108,
+            "length": 1,
+            "region_length": 1,
+            "surface": -10,
+            "context": false,
+            "coordinate": 0,
+            "contacts": [],
+            "after": 100,
+            "weight": 1,
+            "scores": [
+              [
+                1,
+                1,
+                0.75
+              ],
+              [
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                -1,
+                -1,
+                -1,
+                0,
+                0
+              ]
+            ]
+          },
+          {
+            "before": 100,
+            "length": 4,
+            "region_length": 4,
+            "surface": -3,
+            "context": false,
+            "coordinate": -4,
+            "contacts": [],
+            "after": -1,
+            "weight": 0,
+            "scores": [
+              [
+                5,
+                1,
+                0.75
+              ],
+              [
+                0,
+                0,
+                -1,
+                0,
+                0,
+                0,
+                -1,
+                -1,
+                -1,
+                0,
+                0
+              ]
+            ]
+          }
+        ],
+        "error": "",
+        "fixture_restored": true,
+        "source_reset": true,
+        "source_position_unchanged": false,
+        "scores": [
+          [
+            5,
+            1,
+            0.75
+          ],
+          [
+            0,
+            0,
+            -1,
+            0,
+            0,
+            0,
+            -1,
+            -1,
+            -1,
+            0,
+            0
+          ]
+        ]
+      },
+      {
+        "id": 0,
+        "cycle": 1,
+        "events": [
+          {
+            "before": 108,
+            "length": 0.75,
+            "region_length": 0.75,
+            "surface": 11,
+            "context": false,
+            "coordinate": 1,
+            "contacts": [],
+            "after": 100,
+            "weight": 1,
+            "scores": [
+              [
+                0,
+                0.75,
+                0
+              ],
+              [
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                1,
+                0,
+                0,
+                0
+              ]
+            ]
+          },
+          {
+            "before": 100,
+            "length": 1,
+            "region_length": 1,
+            "surface": 20,
+            "context": false,
+            "coordinate": 2,
+            "contacts": [],
+            "after": 109,
+            "weight": 1,
+            "scores": [
+              [
+                1,
+                0.75,
+                0
+              ],
+              [
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                1,
+                1,
+                0,
+                0
+              ]
+            ]
+          },
+          {
+            "before": 109,
+            "length": 1,
+            "region_length": 1,
+            "surface": 21,
+            "context": false,
+            "coordinate": 3,
+            "contacts": [],
+            "after": 100,
+            "weight": 1,
+            "scores": [
+              [
+                1,
+                0.75,
+                1
+              ],
+              [
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                1,
+                1,
+                1,
+                0
+              ]
+            ]
+          },
+          {
+            "before": 100,
+            "length": 1,
+            "region_length": 1,
+            "surface": 4,
+            "context": false,
+            "coordinate": 4,
+            "contacts": [],
+            "after": -1,
+            "weight": 0,
+            "scores": [
+              [
+                2,
+                0.75,
+                1
+              ],
+              [
+                0,
+                0,
+                0,
+                1,
+                0,
+                0,
+                0,
+                1,
+                1,
+                1,
+                0
+              ]
+            ]
+          }
+        ],
+        "error": "",
+        "fixture_restored": true,
+        "source_reset": true,
+        "source_position_unchanged": false,
+        "scores": [
+          [
+            2,
+            0.75,
+            1
+          ],
+          [
+            0,
+            0,
+            0,
+            1,
+            0,
+            0,
+            0,
+            1,
+            1,
+            1,
+            0
+          ]
+        ]
+      },
+      {
+        "id": 1,
+        "cycle": 1,
+        "events": [
+          {
+            "before": 109,
+            "length": 0.75,
+            "region_length": 0.75,
+            "surface": -20,
+            "context": false,
+            "coordinate": 2,
+            "contacts": [],
+            "after": 100,
+            "weight": 1,
+            "scores": [
+              [
+                0,
+                0,
+                0.75
+              ],
+              [
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                -1,
+                0,
+                0
+              ]
+            ]
+          },
+          {
+            "before": 100,
+            "length": 1,
+            "region_length": 1,
+            "surface": -11,
+            "context": false,
+            "coordinate": 1,
+            "contacts": [],
+            "after": 108,
+            "weight": 1,
+            "scores": [
+              [
+                1,
+                0,
+                0.75
+              ],
+              [
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                -1,
+                -1,
+                0,
+                0
+              ]
+            ]
+          },
+          {
+            "before": 108,
+            "length": 1,
+            "region_length": 1,
+            "surface": -10,
+            "context": false,
+            "coordinate": 0,
+            "contacts": [],
+            "after": 100,
+            "weight": 1,
+            "scores": [
+              [
+                1,
+                1,
+                0.75
+              ],
+              [
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                -1,
+                -1,
+                -1,
+                0,
+                0
+              ]
+            ]
+          },
+          {
+            "before": 100,
+            "length": 4,
+            "region_length": 4,
+            "surface": -3,
+            "context": false,
+            "coordinate": -4,
+            "contacts": [],
+            "after": -1,
+            "weight": 0,
+            "scores": [
+              [
+                5,
+                1,
+                0.75
+              ],
+              [
+                0,
+                0,
+                -1,
+                0,
+                0,
+                0,
+                -1,
+                -1,
+                -1,
+                0,
+                0
+              ]
+            ]
+          }
+        ],
+        "error": "",
+        "fixture_restored": true,
+        "source_reset": true,
+        "source_position_unchanged": false,
+        "scores": [
+          [
+            5,
+            1,
+            0.75
+          ],
+          [
+            0,
+            0,
+            -1,
+            0,
+            0,
+            0,
+            -1,
+            -1,
+            -1,
+            0,
+            0
+          ]
+        ]
+      }
+    ],
+    "legacy_negative_witness": false
+  },
+  {
+    "model": "legacy-gap48-axis1",
+    "rows": [
+      {
+        "id": 0,
+        "cycle": 0,
+        "events": [
+          {
+            "before": 108,
+            "length": 0.75,
+            "region_length": 0.75,
+            "surface": 11,
+            "context": false,
+            "coordinate": 1,
+            "contacts": [],
+            "after": 109,
+            "weight": 1,
+            "scores": [
+              [
+                0,
+                0.75,
+                0
+              ],
+              [
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                1,
+                0,
+                0,
+                0
+              ]
+            ]
+          },
+          {
+            "before": 109,
+            "length": 1.0000000000000036,
+            "region_length": 1.0000000000000036,
+            "surface": 21,
+            "context": false,
+            "coordinate": 2.0000000000000036,
+            "contacts": [],
+            "after": 100,
+            "weight": 1,
+            "scores": [
+              [
+                0,
+                0.75,
+                1.0000000000000036
+              ],
+              [
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                1,
+                0,
+                1,
+                0
+              ]
+            ]
+          },
+          {
+            "before": 100,
+            "length": 1.9999999999999964,
+            "region_length": 1.9999999999999964,
+            "surface": 4,
+            "context": false,
+            "coordinate": 4,
+            "contacts": [],
+            "after": -1,
+            "weight": 0,
+            "scores": [
+              [
+                1.9999999999999964,
+                0.75,
+                1.0000000000000036
+              ],
+              [
+                0,
+                0,
+                0,
+                1,
+                0,
+                0,
+                0,
+                1,
+                0,
+                1,
+                0
+              ]
+            ]
+          }
+        ],
+        "error": "",
+        "fixture_restored": true,
+        "source_reset": true,
+        "source_position_unchanged": false,
+        "scores": [
+          [
+            1.9999999999999964,
+            0.75,
+            1.0000000000000036
+          ],
+          [
+            0,
+            0,
+            0,
+            1,
+            0,
+            0,
+            0,
+            1,
+            0,
+            1,
+            0
+          ]
+        ]
+      },
+      {
+        "id": 1,
+        "cycle": 0,
+        "events": [
+          {
+            "before": 109,
+            "length": 0.75,
+            "region_length": 0.75,
+            "surface": -20,
+            "context": false,
+            "coordinate": 1.0000000000000036,
+            "contacts": [],
+            "after": 108,
+            "weight": 1,
+            "scores": [
+              [
+                0,
+                0,
+                0.75
+              ],
+              [
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                -1,
+                0,
+                0
+              ]
+            ]
+          },
+          {
+            "before": 108,
+            "length": 1.0000000000000036,
+            "region_length": 1.0000000000000036,
+            "surface": -10,
+            "context": false,
+            "coordinate": 0,
+            "contacts": [],
+            "after": 100,
+            "weight": 1,
+            "scores": [
+              [
+                0,
+                1.0000000000000036,
+                0.75
+              ],
+              [
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                -1,
+                0,
+                -1,
+                0,
+                0
+              ]
+            ]
+          },
+          {
+            "before": 100,
+            "length": 4,
+            "region_length": 4,
+            "surface": -3,
+            "context": false,
+            "coordinate": -4,
+            "contacts": [],
+            "after": -1,
+            "weight": 0,
+            "scores": [
+              [
+                4,
+                1.0000000000000036,
+                0.75
+              ],
+              [
+                0,
+                0,
+                -1,
+                0,
+                0,
+                0,
+                -1,
+                0,
+                -1,
+                0,
+                0
+              ]
+            ]
+          }
+        ],
+        "error": "",
+        "fixture_restored": true,
+        "source_reset": true,
+        "source_position_unchanged": false,
+        "scores": [
+          [
+            4,
+            1.0000000000000036,
+            0.75
+          ],
+          [
+            0,
+            0,
+            -1,
+            0,
+            0,
+            0,
+            -1,
+            0,
+            -1,
+            0,
+            0
+          ]
+        ]
+      },
+      {
+        "id": 0,
+        "cycle": 1,
+        "events": [
+          {
+            "before": 108,
+            "length": 0.75,
+            "region_length": 0.75,
+            "surface": 11,
+            "context": false,
+            "coordinate": 1,
+            "contacts": [],
+            "after": 109,
+            "weight": 1,
+            "scores": [
+              [
+                0,
+                0.75,
+                0
+              ],
+              [
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                1,
+                0,
+                0,
+                0
+              ]
+            ]
+          },
+          {
+            "before": 109,
+            "length": 1.0000000000000036,
+            "region_length": 1.0000000000000036,
+            "surface": 21,
+            "context": false,
+            "coordinate": 2.0000000000000036,
+            "contacts": [],
+            "after": 100,
+            "weight": 1,
+            "scores": [
+              [
+                0,
+                0.75,
+                1.0000000000000036
+              ],
+              [
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                1,
+                0,
+                1,
+                0
+              ]
+            ]
+          },
+          {
+            "before": 100,
+            "length": 1.9999999999999964,
+            "region_length": 1.9999999999999964,
+            "surface": 4,
+            "context": false,
+            "coordinate": 4,
+            "contacts": [],
+            "after": -1,
+            "weight": 0,
+            "scores": [
+              [
+                1.9999999999999964,
+                0.75,
+                1.0000000000000036
+              ],
+              [
+                0,
+                0,
+                0,
+                1,
+                0,
+                0,
+                0,
+                1,
+                0,
+                1,
+                0
+              ]
+            ]
+          }
+        ],
+        "error": "",
+        "fixture_restored": true,
+        "source_reset": true,
+        "source_position_unchanged": false,
+        "scores": [
+          [
+            1.9999999999999964,
+            0.75,
+            1.0000000000000036
+          ],
+          [
+            0,
+            0,
+            0,
+            1,
+            0,
+            0,
+            0,
+            1,
+            0,
+            1,
+            0
+          ]
+        ]
+      },
+      {
+        "id": 1,
+        "cycle": 1,
+        "events": [
+          {
+            "before": 109,
+            "length": 0.75,
+            "region_length": 0.75,
+            "surface": -20,
+            "context": false,
+            "coordinate": 1.0000000000000036,
+            "contacts": [],
+            "after": 108,
+            "weight": 1,
+            "scores": [
+              [
+                0,
+                0,
+                0.75
+              ],
+              [
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                -1,
+                0,
+                0
+              ]
+            ]
+          },
+          {
+            "before": 108,
+            "length": 1.0000000000000036,
+            "region_length": 1.0000000000000036,
+            "surface": -10,
+            "context": false,
+            "coordinate": 0,
+            "contacts": [],
+            "after": 100,
+            "weight": 1,
+            "scores": [
+              [
+                0,
+                1.0000000000000036,
+                0.75
+              ],
+              [
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                -1,
+                0,
+                -1,
+                0,
+                0
+              ]
+            ]
+          },
+          {
+            "before": 100,
+            "length": 4,
+            "region_length": 4,
+            "surface": -3,
+            "context": false,
+            "coordinate": -4,
+            "contacts": [],
+            "after": -1,
+            "weight": 0,
+            "scores": [
+              [
+                4,
+                1.0000000000000036,
+                0.75
+              ],
+              [
+                0,
+                0,
+                -1,
+                0,
+                0,
+                0,
+                -1,
+                0,
+                -1,
+                0,
+                0
+              ]
+            ]
+          }
+        ],
+        "error": "",
+        "fixture_restored": true,
+        "source_reset": true,
+        "source_position_unchanged": false,
+        "scores": [
+          [
+            4,
+            1.0000000000000036,
+            0.75
+          ],
+          [
+            0,
+            0,
+            -1,
+            0,
+            0,
+            0,
+            -1,
+            0,
+            -1,
+            0,
+            0
+          ]
+        ]
+      }
+    ],
+    "legacy_negative_witness": true
+  },
+  {
+    "model": "legacy-resolved-axis2",
+    "rows": [
+      {
+        "id": 0,
+        "cycle": 0,
+        "events": [
+          {
+            "before": 108,
+            "length": 0.75,
+            "region_length": 0.75,
+            "surface": 11,
+            "context": false,
+            "coordinate": 1,
+            "contacts": [],
+            "after": 100,
+            "weight": 1,
+            "scores": [
+              [
+                0,
+                0.75,
+                0
+              ],
+              [
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                1,
+                0,
+                0,
+                0
+              ]
+            ]
+          },
+          {
+            "before": 100,
+            "length": 1,
+            "region_length": 1,
+            "surface": 20,
+            "context": false,
+            "coordinate": 2,
+            "contacts": [],
+            "after": 109,
+            "weight": 1,
+            "scores": [
+              [
+                1,
+                0.75,
+                0
+              ],
+              [
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                1,
+                1,
+                0,
+                0
+              ]
+            ]
+          },
+          {
+            "before": 109,
+            "length": 1,
+            "region_length": 1,
+            "surface": 21,
+            "context": false,
+            "coordinate": 3,
+            "contacts": [],
+            "after": 100,
+            "weight": 1,
+            "scores": [
+              [
+                1,
+                0.75,
+                1
+              ],
+              [
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                1,
+                1,
+                1,
+                0
+              ]
+            ]
+          },
+          {
+            "before": 100,
+            "length": 1,
+            "region_length": 1,
+            "surface": 6,
+            "context": false,
+            "coordinate": 4,
+            "contacts": [],
+            "after": -1,
+            "weight": 0,
+            "scores": [
+              [
+                2,
+                0.75,
+                1
+              ],
+              [
+                0,
+                0,
+                0,
+                0,
+                0,
+                1,
+                0,
+                1,
+                1,
+                1,
+                0
+              ]
+            ]
+          }
+        ],
+        "error": "",
+        "fixture_restored": true,
+        "source_reset": true,
+        "source_position_unchanged": false,
+        "scores": [
+          [
+            2,
+            0.75,
+            1
+          ],
+          [
+            0,
+            0,
+            0,
+            0,
+            0,
+            1,
+            0,
+            1,
+            1,
+            1,
+            0
+          ]
+        ]
+      },
+      {
+        "id": 1,
+        "cycle": 0,
+        "events": [
+          {
+            "before": 109,
+            "length": 0.75,
+            "region_length": 0.75,
+            "surface": -20,
+            "context": false,
+            "coordinate": 2,
+            "contacts": [],
+            "after": 100,
+            "weight": 1,
+            "scores": [
+              [
+                0,
+                0,
+                0.75
+              ],
+              [
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                -1,
+                0,
+                0
+              ]
+            ]
+          },
+          {
+            "before": 100,
+            "length": 1,
+            "region_length": 1,
+            "surface": -11,
+            "context": false,
+            "coordinate": 1,
+            "contacts": [],
+            "after": 108,
+            "weight": 1,
+            "scores": [
+              [
+                1,
+                0,
+                0.75
+              ],
+              [
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                -1,
+                -1,
+                0,
+                0
+              ]
+            ]
+          },
+          {
+            "before": 108,
+            "length": 1,
+            "region_length": 1,
+            "surface": -10,
+            "context": false,
+            "coordinate": 0,
+            "contacts": [],
+            "after": 100,
+            "weight": 1,
+            "scores": [
+              [
+                1,
+                1,
+                0.75
+              ],
+              [
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                -1,
+                -1,
+                -1,
+                0,
+                0
+              ]
+            ]
+          },
+          {
+            "before": 100,
+            "length": 4,
+            "region_length": 4,
+            "surface": -5,
+            "context": false,
+            "coordinate": -4,
+            "contacts": [],
+            "after": -1,
+            "weight": 0,
+            "scores": [
+              [
+                5,
+                1,
+                0.75
+              ],
+              [
+                0,
+                0,
+                0,
+                0,
+                -1,
+                0,
+                -1,
+                -1,
+                -1,
+                0,
+                0
+              ]
+            ]
+          }
+        ],
+        "error": "",
+        "fixture_restored": true,
+        "source_reset": true,
+        "source_position_unchanged": false,
+        "scores": [
+          [
+            5,
+            1,
+            0.75
+          ],
+          [
+            0,
+            0,
+            0,
+            0,
+            -1,
+            0,
+            -1,
+            -1,
+            -1,
+            0,
+            0
+          ]
+        ]
+      },
+      {
+        "id": 0,
+        "cycle": 1,
+        "events": [
+          {
+            "before": 108,
+            "length": 0.75,
+            "region_length": 0.75,
+            "surface": 11,
+            "context": false,
+            "coordinate": 1,
+            "contacts": [],
+            "after": 100,
+            "weight": 1,
+            "scores": [
+              [
+                0,
+                0.75,
+                0
+              ],
+              [
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                1,
+                0,
+                0,
+                0
+              ]
+            ]
+          },
+          {
+            "before": 100,
+            "length": 1,
+            "region_length": 1,
+            "surface": 20,
+            "context": false,
+            "coordinate": 2,
+            "contacts": [],
+            "after": 109,
+            "weight": 1,
+            "scores": [
+              [
+                1,
+                0.75,
+                0
+              ],
+              [
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                1,
+                1,
+                0,
+                0
+              ]
+            ]
+          },
+          {
+            "before": 109,
+            "length": 1,
+            "region_length": 1,
+            "surface": 21,
+            "context": false,
+            "coordinate": 3,
+            "contacts": [],
+            "after": 100,
+            "weight": 1,
+            "scores": [
+              [
+                1,
+                0.75,
+                1
+              ],
+              [
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                1,
+                1,
+                1,
+                0
+              ]
+            ]
+          },
+          {
+            "before": 100,
+            "length": 1,
+            "region_length": 1,
+            "surface": 6,
+            "context": false,
+            "coordinate": 4,
+            "contacts": [],
+            "after": -1,
+            "weight": 0,
+            "scores": [
+              [
+                2,
+                0.75,
+                1
+              ],
+              [
+                0,
+                0,
+                0,
+                0,
+                0,
+                1,
+                0,
+                1,
+                1,
+                1,
+                0
+              ]
+            ]
+          }
+        ],
+        "error": "",
+        "fixture_restored": true,
+        "source_reset": true,
+        "source_position_unchanged": false,
+        "scores": [
+          [
+            2,
+            0.75,
+            1
+          ],
+          [
+            0,
+            0,
+            0,
+            0,
+            0,
+            1,
+            0,
+            1,
+            1,
+            1,
+            0
+          ]
+        ]
+      },
+      {
+        "id": 1,
+        "cycle": 1,
+        "events": [
+          {
+            "before": 109,
+            "length": 0.75,
+            "region_length": 0.75,
+            "surface": -20,
+            "context": false,
+            "coordinate": 2,
+            "contacts": [],
+            "after": 100,
+            "weight": 1,
+            "scores": [
+              [
+                0,
+                0,
+                0.75
+              ],
+              [
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                -1,
+                0,
+                0
+              ]
+            ]
+          },
+          {
+            "before": 100,
+            "length": 1,
+            "region_length": 1,
+            "surface": -11,
+            "context": false,
+            "coordinate": 1,
+            "contacts": [],
+            "after": 108,
+            "weight": 1,
+            "scores": [
+              [
+                1,
+                0,
+                0.75
+              ],
+              [
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                -1,
+                -1,
+                0,
+                0
+              ]
+            ]
+          },
+          {
+            "before": 108,
+            "length": 1,
+            "region_length": 1,
+            "surface": -10,
+            "context": false,
+            "coordinate": 0,
+            "contacts": [],
+            "after": 100,
+            "weight": 1,
+            "scores": [
+              [
+                1,
+                1,
+                0.75
+              ],
+              [
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                -1,
+                -1,
+                -1,
+                0,
+                0
+              ]
+            ]
+          },
+          {
+            "before": 100,
+            "length": 4,
+            "region_length": 4,
+            "surface": -5,
+            "context": false,
+            "coordinate": -4,
+            "contacts": [],
+            "after": -1,
+            "weight": 0,
+            "scores": [
+              [
+                5,
+                1,
+                0.75
+              ],
+              [
+                0,
+                0,
+                0,
+                0,
+                -1,
+                0,
+                -1,
+                -1,
+                -1,
+                0,
+                0
+              ]
+            ]
+          }
+        ],
+        "error": "",
+        "fixture_restored": true,
+        "source_reset": true,
+        "source_position_unchanged": false,
+        "scores": [
+          [
+            5,
+            1,
+            0.75
+          ],
+          [
+            0,
+            0,
+            0,
+            0,
+            -1,
+            0,
+            -1,
+            -1,
+            -1,
+            0,
+            0
+          ]
+        ]
+      }
+    ],
+    "legacy_negative_witness": false
+  },
+  {
+    "model": "legacy-gap48-axis2",
+    "rows": [
+      {
+        "id": 0,
+        "cycle": 0,
+        "events": [
+          {
+            "before": 108,
+            "length": 0.75,
+            "region_length": 0.75,
+            "surface": 11,
+            "context": false,
+            "coordinate": 1,
+            "contacts": [],
+            "after": 109,
+            "weight": 1,
+            "scores": [
+              [
+                0,
+                0.75,
+                0
+              ],
+              [
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                1,
+                0,
+                0,
+                0
+              ]
+            ]
+          },
+          {
+            "before": 109,
+            "length": 1.0000000000000036,
+            "region_length": 1.0000000000000036,
+            "surface": 21,
+            "context": false,
+            "coordinate": 2.0000000000000036,
+            "contacts": [],
+            "after": 100,
+            "weight": 1,
+            "scores": [
+              [
+                0,
+                0.75,
+                1.0000000000000036
+              ],
+              [
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                1,
+                0,
+                1,
+                0
+              ]
+            ]
+          },
+          {
+            "before": 100,
+            "length": 1.9999999999999964,
+            "region_length": 1.9999999999999964,
+            "surface": 6,
+            "context": false,
+            "coordinate": 4,
+            "contacts": [],
+            "after": -1,
+            "weight": 0,
+            "scores": [
+              [
+                1.9999999999999964,
+                0.75,
+                1.0000000000000036
+              ],
+              [
+                0,
+                0,
+                0,
+                0,
+                0,
+                1,
+                0,
+                1,
+                0,
+                1,
+                0
+              ]
+            ]
+          }
+        ],
+        "error": "",
+        "fixture_restored": true,
+        "source_reset": true,
+        "source_position_unchanged": false,
+        "scores": [
+          [
+            1.9999999999999964,
+            0.75,
+            1.0000000000000036
+          ],
+          [
+            0,
+            0,
+            0,
+            0,
+            0,
+            1,
+            0,
+            1,
+            0,
+            1,
+            0
+          ]
+        ]
+      },
+      {
+        "id": 1,
+        "cycle": 0,
+        "events": [
+          {
+            "before": 109,
+            "length": 0.75,
+            "region_length": 0.75,
+            "surface": -20,
+            "context": false,
+            "coordinate": 1.0000000000000036,
+            "contacts": [],
+            "after": 108,
+            "weight": 1,
+            "scores": [
+              [
+                0,
+                0,
+                0.75
+              ],
+              [
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                -1,
+                0,
+                0
+              ]
+            ]
+          },
+          {
+            "before": 108,
+            "length": 1.0000000000000036,
+            "region_length": 1.0000000000000036,
+            "surface": -10,
+            "context": false,
+            "coordinate": 0,
+            "contacts": [],
+            "after": 100,
+            "weight": 1,
+            "scores": [
+              [
+                0,
+                1.0000000000000036,
+                0.75
+              ],
+              [
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                -1,
+                0,
+                -1,
+                0,
+                0
+              ]
+            ]
+          },
+          {
+            "before": 100,
+            "length": 4,
+            "region_length": 4,
+            "surface": -5,
+            "context": false,
+            "coordinate": -4,
+            "contacts": [],
+            "after": -1,
+            "weight": 0,
+            "scores": [
+              [
+                4,
+                1.0000000000000036,
+                0.75
+              ],
+              [
+                0,
+                0,
+                0,
+                0,
+                -1,
+                0,
+                -1,
+                0,
+                -1,
+                0,
+                0
+              ]
+            ]
+          }
+        ],
+        "error": "",
+        "fixture_restored": true,
+        "source_reset": true,
+        "source_position_unchanged": false,
+        "scores": [
+          [
+            4,
+            1.0000000000000036,
+            0.75
+          ],
+          [
+            0,
+            0,
+            0,
+            0,
+            -1,
+            0,
+            -1,
+            0,
+            -1,
+            0,
+            0
+          ]
+        ]
+      },
+      {
+        "id": 0,
+        "cycle": 1,
+        "events": [
+          {
+            "before": 108,
+            "length": 0.75,
+            "region_length": 0.75,
+            "surface": 11,
+            "context": false,
+            "coordinate": 1,
+            "contacts": [],
+            "after": 109,
+            "weight": 1,
+            "scores": [
+              [
+                0,
+                0.75,
+                0
+              ],
+              [
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                1,
+                0,
+                0,
+                0
+              ]
+            ]
+          },
+          {
+            "before": 109,
+            "length": 1.0000000000000036,
+            "region_length": 1.0000000000000036,
+            "surface": 21,
+            "context": false,
+            "coordinate": 2.0000000000000036,
+            "contacts": [],
+            "after": 100,
+            "weight": 1,
+            "scores": [
+              [
+                0,
+                0.75,
+                1.0000000000000036
+              ],
+              [
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                1,
+                0,
+                1,
+                0
+              ]
+            ]
+          },
+          {
+            "before": 100,
+            "length": 1.9999999999999964,
+            "region_length": 1.9999999999999964,
+            "surface": 6,
+            "context": false,
+            "coordinate": 4,
+            "contacts": [],
+            "after": -1,
+            "weight": 0,
+            "scores": [
+              [
+                1.9999999999999964,
+                0.75,
+                1.0000000000000036
+              ],
+              [
+                0,
+                0,
+                0,
+                0,
+                0,
+                1,
+                0,
+                1,
+                0,
+                1,
+                0
+              ]
+            ]
+          }
+        ],
+        "error": "",
+        "fixture_restored": true,
+        "source_reset": true,
+        "source_position_unchanged": false,
+        "scores": [
+          [
+            1.9999999999999964,
+            0.75,
+            1.0000000000000036
+          ],
+          [
+            0,
+            0,
+            0,
+            0,
+            0,
+            1,
+            0,
+            1,
+            0,
+            1,
+            0
+          ]
+        ]
+      },
+      {
+        "id": 1,
+        "cycle": 1,
+        "events": [
+          {
+            "before": 109,
+            "length": 0.75,
+            "region_length": 0.75,
+            "surface": -20,
+            "context": false,
+            "coordinate": 1.0000000000000036,
+            "contacts": [],
+            "after": 108,
+            "weight": 1,
+            "scores": [
+              [
+                0,
+                0,
+                0.75
+              ],
+              [
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                -1,
+                0,
+                0
+              ]
+            ]
+          },
+          {
+            "before": 108,
+            "length": 1.0000000000000036,
+            "region_length": 1.0000000000000036,
+            "surface": -10,
+            "context": false,
+            "coordinate": 0,
+            "contacts": [],
+            "after": 100,
+            "weight": 1,
+            "scores": [
+              [
+                0,
+                1.0000000000000036,
+                0.75
+              ],
+              [
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                -1,
+                0,
+                -1,
+                0,
+                0
+              ]
+            ]
+          },
+          {
+            "before": 100,
+            "length": 4,
+            "region_length": 4,
+            "surface": -5,
+            "context": false,
+            "coordinate": -4,
+            "contacts": [],
+            "after": -1,
+            "weight": 0,
+            "scores": [
+              [
+                4,
+                1.0000000000000036,
+                0.75
+              ],
+              [
+                0,
+                0,
+                0,
+                0,
+                -1,
+                0,
+                -1,
+                0,
+                -1,
+                0,
+                0
+              ]
+            ]
+          }
+        ],
+        "error": "",
+        "fixture_restored": true,
+        "source_reset": true,
+        "source_position_unchanged": false,
+        "scores": [
+          [
+            4,
+            1.0000000000000036,
+            0.75
+          ],
+          [
+            0,
+            0,
+            0,
+            0,
+            -1,
+            0,
+            -1,
+            0,
+            -1,
+            0,
+            0
+          ]
+        ]
+      }
+    ],
+    "legacy_negative_witness": true
+  }
+]

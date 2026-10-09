@@ -79,6 +79,11 @@ public:
   //!   known to be on.  This index takes precedence over surface sense
   //!   calculations.
   bool contains(Position r, Direction u, int32_t on_surface) const;
+#ifdef OPENMC_EXPERIMENTAL_AXIS_PLANES
+  bool contains_axis_sides(const vector<int>& sides) const;
+  // Conservative Boolean implication, independent of finite bbox sentinels.
+  bool requires_axis_halfspace(int32_t signed_surface) const;
+#endif
 
   //! Find the oncoming boundary of this cell.
   std::pair<double, int32_t> distance(
@@ -108,14 +113,16 @@ private:
 
   //! Determine if a particle is inside the cell for a simple cell (only
   //! intersection operators)
-  bool contains_simple(Position r, Direction u, int32_t on_surface) const;
+  bool contains_simple(Position r, Direction u, int32_t on_surface,
+    const vector<int>* sides = nullptr) const;
 
   //! Determine if a particle is inside the cell for a complex cell.
   //!
   //! Uses the combination of half-spaces and binary operators to determine
   //! if short circuiting can be used. Short circuiting uses the relative and
   //! absolute depth of parentheses in the expression.
-  bool contains_complex(Position r, Direction u, int32_t on_surface) const;
+  bool contains_complex(Position r, Direction u, int32_t on_surface,
+    const vector<int>* sides = nullptr) const;
 
   //! Find the nearest intersection with any surface in the region expression.
   std::pair<double, int32_t> distance_to_nearest_surface(Position r,
@@ -427,6 +434,16 @@ public:
   //----------------------------------------------------------------------------
   // Methods
   vector<int32_t> surfaces() const override { return region_.surfaces(); }
+#ifdef OPENMC_EXPERIMENTAL_AXIS_PLANES
+  bool contains_axis_sides(const vector<int>& sides) const
+  {
+    return region_.contains_axis_sides(sides);
+  }
+  bool requires_axis_halfspace(int32_t signed_surface) const
+  {
+    return region_.requires_axis_halfspace(signed_surface);
+  }
+#endif
 
   std::pair<double, int32_t> distance(Position r, Direction u,
     int32_t on_surface, GeometryState* p) const override

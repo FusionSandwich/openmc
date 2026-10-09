@@ -1,5 +1,8 @@
 
 #include "openmc/cell.h"
+#ifdef OPENMC_EXPERIMENTAL_AXIS_PLANES
+#include "openmc/axis_plane_events.h"
+#endif
 
 #include <algorithm>
 #include <cassert>
@@ -950,6 +953,10 @@ std::string Region::str() const
 std::pair<double, int32_t> Region::distance(
   Position r, Direction u, int32_t on_surface) const
 {
+#ifdef OPENMC_EXPERIMENTAL_AXIS_PLANES
+  if (settings::experimental_axis_plane_events)
+    return axis_plane_region_distance(*this, r, u);
+#endif
   if (simple_) {
     return distance_to_nearest_surface(r, u, on_surface, false);
   } else {
@@ -1043,7 +1050,8 @@ bool Region::contains(Position r, Direction u, int32_t on_surface) const
 
 //==============================================================================
 
-bool Region::contains_simple(Position r, Direction u, int32_t on_surface) const
+bool Region::contains_simple(Position r, Direction u, int32_t on_surface,
+  const vector<int>* sides) const
 {
   for (int32_t token : expression_) {
     // Assume that no tokens are operators. Evaluate the sense of particle with
@@ -1055,7 +1063,8 @@ bool Region::contains_simple(Position r, Direction u, int32_t on_surface) const
       return false;
     } else {
       // Note the off-by-one indexing
-      bool sense = model::surfaces[abs(token) - 1]->sense(r, u);
+      bool sense = sides ? sides->at(abs(token) - 1) > 0 :
+        model::surfaces[abs(token) - 1]->sense(r, u);
       if (sense != (token > 0)) {
         return false;
       }
@@ -1066,7 +1075,8 @@ bool Region::contains_simple(Position r, Direction u, int32_t on_surface) const
 
 //==============================================================================
 
-bool Region::contains_complex(Position r, Direction u, int32_t on_surface) const
+bool Region::contains_complex(Position r, Direction u, int32_t on_surface,
+  const vector<int>* sides) const
 {
   bool in_cell = true;
   int total_depth = 0;
@@ -1085,7 +1095,8 @@ bool Region::contains_complex(Position r, Direction u, int32_t on_surface) const
         in_cell = false;
       } else {
         // Note the off-by-one indexing
-        bool sense = model::surfaces[abs(token) - 1]->sense(r, u);
+        bool sense = sides ? sides->at(abs(token) - 1) > 0 :
+          model::surfaces[abs(token) - 1]->sense(r, u);
         in_cell = (sense == (token > 0));
       }
     } else if ((token == OP_UNION && in_cell == true) ||
@@ -1124,6 +1135,39 @@ bool Region::contains_complex(Position r, Direction u, int32_t on_surface) const
 }
 
 //==============================================================================
+
+#ifdef OPENMC_EXPERIMENTAL_AXIS_PLANES
+bool Region::contains_axis_sides(const vector<int>& sides) const
+{
+  if (sides.size() != model::surfaces.size() ||
+      std::any_of(sides.begin(), sides.end(), [](int s) { return s != -1 && s != 1; }))
+    throw std::runtime_error("AXIS_PLANE_UNSUPPORTED: incomplete strict sides");
+  return simple_ ? contains_simple({}, {}, SURFACE_NONE, &sides) :
+    contains_complex({}, {}, SURFACE_NONE, &sides);
+}
+
+bool Region::requires_axis_halfspace(int32_t signed_surface) const
+{
+  if (simple_)
+    return std::find(expression_.begin(), expression_.end(), signed_surface) !=
+      expression_.end();
+  // Fix the required halfspace false. Every other literal may be true, an
+  // overestimate of satisfiability that is safe even for correlated literals.
+  // AND/OR preserve that overestimate. A false final value proves implication.
+  vector<int> possible;
+  for (const auto token : generate_postfix(0)) {
+    if (token == OP_INTERSECTION || token == OP_UNION) {
+      const int right = possible.back();
+      possible.pop_back();
+      possible.back() = token == OP_INTERSECTION ?
+        possible.back() && right : possible.back() || right;
+    } else {
+      possible.push_back(token != signed_surface);
+    }
+  }
+  return !possible.empty() && !possible.back();
+}
+#endif
 
 BoundingBox Region::bounding_box(int32_t cell_id) const
 {

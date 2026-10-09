@@ -1,0 +1,14 @@
+{
+  "accepted_source_files": 1218,
+  "all_bytes_match": true,
+  "eol_normalized_after_patch": [
+    "CMakeLists.txt",
+    ".git_archival.txt",
+    "src/cell.cpp",
+    "src/axis_plane_events.cpp",
+    "include/openmc/cell.h",
+    "dev/stellarcsg/tests/axis_review_acceptance.py",
+    "dev/stellarcsg/tests/P00_NATIVE_AXIS_ACCEPTANCE_20261001.py"
+  ],
+  "semantic_patch_changes": false
+}

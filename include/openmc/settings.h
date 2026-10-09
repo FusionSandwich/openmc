@@ -55,6 +55,9 @@ struct CollisionTrackConfig {
 //==============================================================================
 
 namespace settings {
+#ifdef OPENMC_EXPERIMENTAL_AXIS_PLANES
+extern bool experimental_axis_plane_events; //!< Exact void/unit-axis opt-in
+#endif
 
 // Boolean flags
 extern bool assume_separate;      //!< assume tallies are spatially separate?

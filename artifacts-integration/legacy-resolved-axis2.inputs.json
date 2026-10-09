@@ -1,0 +1,46 @@
+{
+  "files": {
+    "legacy-resolved-axis2/cross_sections.xml": "6c642a0c1fc5ffbe29dfa6993f4c6c4459030f4e45cee2038db7288d65708525",
+    "legacy-resolved-axis2/geometry.xml": "d2ec425b934945bac7e0f5e0de49988e3b3622a239f6bcc40529cfe90ac745c5",
+    "legacy-resolved-axis2/materials.xml": "d105cf78f35b925b50d7efcb34c051d3bb1c0345a688eba610f18bf6d3c7a506",
+    "legacy-resolved-axis2/queries.txt": "0a3d76564cbad32825897c5946257810b34f419164161b4304562d193d360a92",
+    "legacy-resolved-axis2/settings.xml": "1d1f6fa2df8d1af42bdce83da2ac9e2ae0fc6afe73d807cc988a70fd2fbb5cc3",
+    "legacy-resolved-axis2/tallies.xml": "c3cb98c6fb0f1b111dd8eaa736fae628ae17a6949fa0c41ac09c7b0cfba690a0"
+  },
+  "queries": [
+    {
+      "id": 0,
+      "p": [
+        0.31,
+        0.42,
+        0.25
+      ],
+      "d": [
+        0.0,
+        0.0,
+        1
+      ],
+      "hint": 0,
+      "steps": 5,
+      "mode": 0,
+      "enclosure_halfspaces": true
+    },
+    {
+      "id": 1,
+      "p": [
+        0.31,
+        0.42,
+        2.75
+      ],
+      "d": [
+        0.0,
+        0.0,
+        -1
+      ],
+      "hint": 0,
+      "steps": 5,
+      "mode": 0,
+      "enclosure_halfspaces": true
+    }
+  ]
+}

@@ -24,11 +24,12 @@ add_library(stellarcsg_reference STATIC
   src/certified_spline_offset.cpp
   src/compiled_swept_surface_set.cpp
   src/compiled_facet_surface_set.cpp
+  src/dyadic_axis_plane.cpp
   ../../src/external/quartic_solver.cpp
 )
 add_library(StellarCSG::reference ALIAS stellarcsg_reference)
 if(CMAKE_CXX_COMPILER_ID MATCHES "GNU|Clang")
-  set_source_files_properties(src/certified_spline_offset.cpp PROPERTIES
+  set_source_files_properties(src/certified_spline_offset.cpp src/dyadic_axis_plane.cpp PROPERTIES
     COMPILE_OPTIONS "-fno-fast-math;-ffp-contract=off")
 endif()
 target_compile_features(stellarcsg_reference PUBLIC cxx_std_17)
@@ -114,6 +115,11 @@ if(STELLARCSG_BUILD_TESTS)
   target_link_libraries(stellarcsg_facet_surface_tests
     PRIVATE StellarCSG::reference)
   target_compile_features(stellarcsg_facet_surface_tests PRIVATE cxx_std_17)
+  add_executable(stellarcsg_dyadic_axis_plane_tests tests/test_dyadic_axis_plane.cpp)
+  target_link_libraries(stellarcsg_dyadic_axis_plane_tests PRIVATE StellarCSG::reference)
+  target_compile_features(stellarcsg_dyadic_axis_plane_tests PRIVATE cxx_std_17)
+  add_test(NAME stellarcsg_dyadic_axis_plane_tests
+    COMMAND stellarcsg_dyadic_axis_plane_tests)
   add_test(NAME stellarcsg_facet_surface_tests
     COMMAND stellarcsg_facet_surface_tests)
   add_test(NAME stellarcsg_facet_p00_tests
@@ -129,7 +135,7 @@ if(STELLARCSG_BUILD_TESTS)
 
   if(CMAKE_CXX_COMPILER_ID MATCHES "GNU|Clang")
     foreach(target stellarcsg_reference_tests stellarcsg_compiled_surface_tests
-        stellarcsg_facet_surface_tests)
+        stellarcsg_facet_surface_tests stellarcsg_dyadic_axis_plane_tests)
       target_compile_options(${target} PRIVATE
         -Wall -Wextra -Wpedantic -Wconversion -Wshadow)
       if(STELLARCSG_ENABLE_SANITIZERS)
