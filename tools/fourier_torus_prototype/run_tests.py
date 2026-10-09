@@ -47,7 +47,7 @@ snapshot_verification = {
     row["snapshot"]: sha256(PACKET / row["snapshot"]) == row["sha256"]
     for row in manifest["files"]
 }
-snapshots_valid = len(snapshot_verification) == 8 and all(snapshot_verification.values())
+snapshots_valid = len(snapshot_verification) == len(manifest["files"]) and all(snapshot_verification.values())
 files = [HERE / "fourier_torus.py", HERE / "test_fourier_torus.py", HERE / "run_tests.py", HERE / "README.md"]
 receipt = {
     "schema": "fourier-torus-prototype-receipt-v1",
